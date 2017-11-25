@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sashigane on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/sashigane</link>
+    <description>Recent content in Sashigane on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 09 Nov 2012 17:03:16 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/sashigane/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Puzzle 31 / Fillomino [Sashigane]</title>
+      <link>//blog.vero.site/post/puzzle-31</link>
+      <pubDate>Fri, 09 Nov 2012 17:03:16 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-31</guid>
+      <description>This is a Fillomino puzzle where every polyomino is required to be an L-shape, as in Sashigane. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.
+My second, and now symmetric, attempt at this crazy self-invented mutant; puzzle 22 was the first.</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 22 / Fillomino [Sashigane]</title>
+      <link>//blog.vero.site/post/puzzle-22</link>
+      <pubDate>Mon, 10 Sep 2012 21:07:31 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-22</guid>
+      <description>This is a Fillomino puzzle where every polyomino is required to be an L-shape, as in Sashigane. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.
+May be slightly reminiscent of no-rectangle Fillominoes. Slightly… (Has anybody done this before? It seems so interesting that I feel like I couldn’t be first.</description>
+    </item>
+    
+  </channel>
+</rss>

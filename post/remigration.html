@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Remigration</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="betaveros" />
+  <meta name="description" content="I guess I lied in my penultimate post.
+I’m planning on migrating my primary blog (again), off WordPress to a static site hosted somewhere. I might just throw everything onto GitHub Pages, or might follow any of the zillions of tutorials on how to host static sites off a cheap Amazon S3 bucket — I haven’t decided yet, but no longer having to rely on the free part of freemium services is fairly liberating.
+Why? Lots of small reasons.
+
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/remigration" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Remigration</h1>
+		
+		<p class="post-meta">
+		
+		2017-11-05
+		(758 words)
+		
+		</p>
+	</header>
+	<article><p>I guess I lied in my penultimate post.</p>
+<p>I’m planning on migrating my primary blog (again), off WordPress to a static site hosted somewhere. I might just throw everything onto GitHub Pages, or might follow any of the zillions of tutorials on how to host static sites off a cheap Amazon S3 bucket — I haven’t decided yet, but no longer having to rely on the free part of freemium services is fairly liberating.</p>
+<p>Why? Lots of small reasons.</p>
+<p></p>
+<p>I like having full control over my HTML/CSS/JavaScript and my post-processing (pun intended) pipeline. Whereas before I could not justify wanting that control beyond gaining the ability to bikeshed, now I think that web design is enough of a thing I do that it’s not a bad idea to make a visually distinctive blog that coheres with my overall Online Identity™. There are also a few specific pain points with WordPress, e.g. it doesn’t handle code formatting or HTML escapes all that well. To some extent this is preventing me from blogging about more technical things, which I want to do, both because it would be interesting and because it would make me feel less awkward about putting my blog on my résumé and showing it to potential employers and the like. (Once again, with style, while looking dapper: if you’re a recruiter reading this, please hire me :)</p>
+<p>It’s also nice to always have all my posts with me as simple, flexible Markdown files that support attaching arbitrary front-matter metadata. This lets me perform blog-wide searches or modifications easily with simple scripts and command-line tools. Perhaps more importantly, although I haven’t fully fleshed out my ideas here yet, I might find a solution to one of my most awkward blogging scenarios, where I abandon posts about events that are far in the past because the post date will seem wrong. If I can develop a system and schema that explicitly supports posting about events weeks or months or even years after they occur, maybe I will feel more comfortable pulling more drafts out of limbo. This is very much a technical solution to a psychological problem, but who knows.</p>
+<p>Finally, I guess it’s really time to move past my old posts. “Emotional baggage from another era” is right. Deleting stuff pains me — the internet archivist in me doesn’t want to delete anything for fear of disrupting old links, pingbacks, and conversations; the surveillance nut in me figures it’s futile because copies of the post will probably persist in some cache or mirror forever anyway; and personally, a huge motivation for why I blog is that I’ve always enjoyed reading my old posts and marveling at my past selves and how far I’ve come, so this just feels like I’m destroying old versions of me, even if I’m definitely keeping all my old posts locally. But the ruthlessly pragmatic side of me is louder than any of these voices. The Internet really does not need to know about every painstaking detail of my fourth-grade life. This migration is the perfect opportunity to archive all my old posts for personal perusal, and then decide which ones to cull or put more carefully in context before public display. Maybe I’ll even consolidate posts from my other blogs into this new one. The sky is the limit.</p>
+<p>There are lots of things I’ll miss, of course — comments, pingbacks, analytics, automatic seasonal easter eggs and reminders from the Internet Defense League. But I’m sure I’ll be able to get some of those things back by investing some amount of time and money, eventually. Static sites are fairly popular because hosting them is cheap and it looks like the tooling around them is very mature, so I won’t be on my own. And maybe some of my readers will miss being able to subscribe through WordPress or via email (to which I would respond, read my last post and get an RSS reader already — it’s good for the health of the Internet — or if you’re really desperate, put “RSS to email” into your favorite search engine.) But overall I think it’s worth it.</p>
+<p>Of course, this migration is far more complicated than exporting a nice XML file from one system and importing it into another, so it will take time, which is not something I have in abundance right now. However, it also appears that migrating this blog is very much the sort of task I procrastinate other things in order to do, so that’s a reason for cautious optimism.</p></article>
+	<footer class="post-footer">
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/me-and-facebook">← Me and Facebook</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/hello-again">Hello, Again →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

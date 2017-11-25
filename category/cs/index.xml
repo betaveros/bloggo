@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cs on Bounded-Error Log</title>
+    <link>//blog.vero.site/category/cs</link>
+    <description>Recent content in Cs on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Aug 2016 13:54:22 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/category/cs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>020315040524</title>
+      <link>//blog.vero.site/post/bcodex</link>
+      <pubDate>Mon, 08 Aug 2016 13:54:22 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/bcodex</guid>
+      <description>&lt;p&gt;&lt;code&gt;--... ---.. ....- ..... ..--- ----- ....- ....- ...-- -.... ...-- -.... ...-- . ....- ....- ..--- ----- ....- ..... ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -.... ....- ....- ..--- ----- ...-- ..-. ....- ----- ..--- ----- ...-- ..--- ...-- ..-. ....- ..... ...-- .- ...-- ..... ....- ----- ....- ..... ...-- -.... ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ...-- ..-. ...-- ---.. ....- ....- ....- ..... ..--- ----- ...-- -.. ...-- .- ...-- -.-. ...-- -.... ..--- ----- ...-- --... ...-- .- ...-- ..-. ...-- ..... ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ....- ....- ....- ----- ...-- . ...-- -.... ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- ....- ....- ----- ....- ----- ...-- -.. ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ....- ---.. ...-- ..-. ..... -.-. ....- ..... ....- ----- ..... -.-. ...-- -.... ...-- ..--- ....- ...-- ....- ..... ...-- ----. ..... -... ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- .- ....- ..... ..... -..&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 46 / Fillomino [LITS &#43; Extra Region &#43; Walls &#43; Anti-Walls &#43; Inequality &#43; Tapa &#43; Masyu]</title>
+      <link>//blog.vero.site/post/puzzle-46</link>
+      <pubDate>Sun, 29 Mar 2015 13:01:08 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-46</guid>
+      <description>5:27 PM phenomist: do you use gridderface to make pretty puzzles?
+…
+5:52 PM phenomist: actually nvm excel is probably easier lol  Okay I’m sorry this is a horrible puzzle where the rules don’t make sense and I didn’t even get it testsolved. I just wanted an image to concisely demonstrate the capabilities of gridderface, my puzzle marking and creation program, for the project homepage, after somebody expressed interest in using the program to write a puzzle.</description>
+    </item>
+    
+    <item>
+      <title>C/C&#43;&#43; to D</title>
+      <link>//blog.vero.site/post/c-to-d</link>
+      <pubDate>Wed, 14 Jan 2015 00:00:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/c-to-d</guid>
+      <description>&lt;p&gt;Some notes.&lt;/p&gt;
+&lt;p&gt;I’m assuming you want to use D largely, but not entirely, for competitive programming. That’s me right now.&lt;/p&gt;
+&lt;h3 id=&#34;basics&#34;&gt;Basics&lt;/h3&gt;
+&lt;p&gt;Syntax is very similar. Function definitions, semicolon-terminated statements, variable declarations, and so on. You can declare &lt;code&gt;int main() {...}&lt;/code&gt; or &lt;code&gt;void main() {...}&lt;/code&gt; or something with arguments.&lt;/p&gt;
+&lt;p&gt;Basic types like &lt;code&gt;bool&lt;/code&gt; and &lt;code&gt;int&lt;/code&gt; and &lt;code&gt;double&lt;/code&gt; are all there. Wonderfully, &lt;code&gt;long&lt;/code&gt; is 64 bits. Instead of &lt;code&gt;unsigned&lt;/code&gt; whatever, just prefix a &lt;code&gt;u&lt;/code&gt;, e.g. &lt;code&gt;uint&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Arithmetic operators and bit operators are all there too, including unsigned right shift &lt;code&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/code&gt;. Although &lt;code&gt;^&lt;/code&gt; is still xor, D has exponentiation as &lt;code&gt;^^&lt;/code&gt;. Sadly, &lt;code&gt;%&lt;/code&gt; is still same-sign remainder; there’s no true mod.&lt;/p&gt;
+&lt;pre class=&#34;sourceCode d&#34;&gt;&lt;code class=&#34;sourceCode d&#34;&gt;&lt;div class=&#34;sourceLine&#34; id=&#34;1&#34; href=&#34;#1&#34; data-line-number=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;import&lt;/span&gt; std.stdio;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Casts look like &lt;code&gt;cast(int) x;&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;control-flow&#34;&gt;Control Flow&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;if&lt;/code&gt;, &lt;code&gt;while&lt;/code&gt;, &lt;code&gt;for&lt;/code&gt;, &lt;code&gt;do&lt;/code&gt;, and even &lt;code&gt;switch&lt;/code&gt; all work as you’d expect, along with &lt;code&gt;break&lt;/code&gt; and &lt;code&gt;continue&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;foreach&lt;/code&gt; is the nice addition though. Not only can you iterate over arrays and stuff, but range loops go like:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HOJ 226: CP (中)</title>
+      <link>//blog.vero.site/post/hoj-cp</link>
+      <pubDate>Mon, 15 Dec 2014 00:00:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/hoj-cp</guid>
+      <description>&lt;p&gt;This post was written in Traditional Mandarin Chinese for my fellow competitive programmers in Taiwan.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://hoj.twbbs.org/judge/problem/view/226&#34;&gt;題目在這裡，HOJ 226&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;有關的題目出現於NPSC 2014 高中組決賽pD。&lt;/p&gt;
+&lt;p&gt;前置要求：treap (split, merge)跟在上面實作區段操作（請參考資訊枝幹）。&lt;/p&gt;
+&lt;p&gt;這裡沒有完整的解答code，因為AC是要用血汗換來的才值得 :-)&lt;/p&gt;
+&lt;h2 id=&#34;treap&#34;&gt;Treap&lt;/h2&gt;
+&lt;p&gt;我討厭單字母&lt;code&gt;l&lt;/code&gt;的變數名稱（跟&lt;code&gt;1&lt;/code&gt;太像了。我沒有被這個雷過，這只是自己對自己程式碼可讀性的要求），所以我的子樹叫做&lt;code&gt;lc&lt;/code&gt;(left child)，&lt;code&gt;rc&lt;/code&gt;(right child)。&lt;/p&gt;
+&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;div class=&#34;sourceLine&#34; id=&#34;1&#34; href=&#34;#1&#34; data-line-number=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;struct&lt;/span&gt; Treap {&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;2&#34; href=&#34;#2&#34; data-line-number=&#34;2&#34;&gt;    Treap * lc;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;3&#34; href=&#34;#3&#34; data-line-number=&#34;3&#34;&gt;    Treap * rc;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;4&#34; href=&#34;#4&#34; data-line-number=&#34;4&#34;&gt;    &lt;span class=&#34;dt&#34;&gt;unsigned&lt;/span&gt; pri;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;5&#34; href=&#34;#5&#34; data-line-number=&#34;5&#34;&gt;    &lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; val;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;6&#34; href=&#34;#6&#34; data-line-number=&#34;6&#34;&gt;    &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; size;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;7&#34; href=&#34;#7&#34; data-line-number=&#34;7&#34;&gt;};&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;8&#34; href=&#34;#8&#34; data-line-number=&#34;8&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;9&#34; href=&#34;#9&#34; data-line-number=&#34;9&#34;&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; size(Treap * a) { &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; a ? a-&amp;gt;size : &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;; }&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;10&#34; href=&#34;#10&#34; data-line-number=&#34;10&#34;&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; pull(Treap * a) {&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;11&#34; href=&#34;#11&#34; data-line-number=&#34;11&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; (a) a-&amp;gt;size = &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; + size(a-&amp;gt;lc) + size(a-&amp;gt;rc);&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;12&#34; href=&#34;#12&#34; data-line-number=&#34;12&#34;&gt;}&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Gridderface 0.5</title>
+      <link>//blog.vero.site/post/gridderface-0-5</link>
+      <pubDate>Tue, 27 Nov 2012 17:53:13 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/gridderface-0-5</guid>
+      <description>Okay, I give up. Here it is: Gridderface is a (quoting the project description, which I wrote anyway so whatever) “keyboard inferface for marking grid-based puzzles in Java” that I’ve been working on for too long. It is open-source under the GPL v3.
+Basically, it’s a thing you can paste logic puzzle images into to solve them in, like people do in Paint, when you can’t or don’t want to print them.</description>
+    </item>
+    
+    <item>
+      <title>Java Clipboards and Data Transfer</title>
+      <link>//blog.vero.site/ref/java-clipboards</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/java-clipboards</guid>
+      <description>(Ported from betaveros.stash. Wow, I get syntax highlighting and footnotes!)
+A quick brief guide. At least, that’s how I planned it.
+A lot of stuff is in the package java.awt.datatransfer. Class Toolkit is in java.awt.
+Some basic classes. The class Clipboard is a clipboard, obviously. Its content is/will be an instance of the class Transferable. Some content can be read as different types of objects depending on what you want; to choose which type you use an instance of DataFlavor.</description>
+    </item>
+    
+  </channel>
+</rss>

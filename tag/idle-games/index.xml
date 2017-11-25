@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Idle Games on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/idle-games</link>
+    <description>Recent content in Idle Games on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Jul 2015 11:46:04 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/idle-games/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[warp]clicker.html</title>
+      <link>//blog.vero.site/post/clicker</link>
+      <pubDate>Sun, 26 Jul 2015 11:46:04 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/clicker</guid>
+      <description>&lt;p&gt;Okay, just one more post for the &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;streak&lt;/a&gt; milking the stuff uncovered in my old hard drive, and then it’s over, I promise. Here is a &lt;a href=&#34;https://betaveros.github.io/clicker.html&#34;&gt;silly three-button idle game&lt;/a&gt; I discovered, which I apparently made in 2010 when I was a bored eighth-grader and the most recent jQuery version was 1.4.x. Instead of enjoying a text wall, please enjoy trying to get 16,384 clicks in the non-warp version. (There’s no victory message or anything; it’s just a nice round number that I reached while writing this post. And yes, I know you can call JavaScript from your developer console, or edit the source or DOM. That’s cheating.)&lt;/p&gt;
+&lt;p&gt;And I realize this is short even for filler posts, so if you don’t want to play an idle game, here is a remix of &lt;a href=&#34;//blog.vero.site/post/numbers-bmp&#34;&gt;numbers.bmp&lt;/a&gt; to stare at and feel inspired by. Or disgusted with, or indignant at. Your choice.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

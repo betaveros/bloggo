@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CaR>
+<Construction>
+<Window x="0.0" y="0.0" w="7.550994501453547"/>
+<Windowdim w="1280" h="800"/>
+<Preferences minfontsize="12" minpointsize="3" minlinesize="1" arrowsize="10" selectionsize="8" monkeyspeed="20" gridopacity="20" digits.lengths="2" digits.edit="4" digits.angles="2" colorbackground="245,245,245" colorbackgroundx="139" colorbackgroundy="9" colorbackgroundPal="4" fig3D="false" figDP="false"/>
+<Objects>
+<Point name="P1" n="0" color="2" x="-3.6693914623069936" y="3.5894641235240696" shape="cross">Point</Point>
+<Point name="P2" n="3" color="2" hidden="true" x="-1.1843778383287917" y="-0.6394187102633975" shape="cross">Point</Point>
+<Segment name="s1" n="4" color="1" hidden="true" from="P1" to="P2">Line segment from P1 to P2</Segment>
+<Point name="P3" n="7" color="2" x="2.303360581289736" y="2.3106267029972747" shape="cross">Point</Point>
+<Segment name="s2" n="8" color="1" hidden="true" from="P2" to="P3">Line segment from P2 to P3</Segment>
+<Point name="P5" n="10" color="5" x="-1.1989100817438691" y="1.7148047229791095" shape="circle">Point</Point>
+<Point name="P6" n="80" color="2" hidden="true" x="2*x(P5)-x(P2)" actx="-1.2134423251589466" y="2*y(P5)-y(P2)" acty="4.069028156221616" shape="cross" fixed="true">Point</Point>
+<Point name="P7" n="81" color="2" hidden="true" x="2*x(P5)-x(P3)" actx="-4.701180744777474" y="2*y(P5)-y(P3)" acty="1.1189827429609442" shape="cross" fixed="true">Point</Point>
+<Segment name="s3" n="82" color="1" hidden="true" from="P6" to="P7">Line segment from P2 to P3</Segment>
+<Intersection name="P8" n="83" color="2" hidden="true" first="s1" second="s3" shape="cross">Intersection between s1 and s3</Intersection>
+<Point name="P9" n="270" color="2" hidden="true" x="2*x(P5)-x(P1)" actx="1.2715712988192553" y="2*y(P5)-y(P1)" acty="-0.1598546775658507" shape="cross" fixed="true">Point</Point>
+<Point name="P10" n="271" color="2" hidden="true" x="2*x(P5)-x(P2)" actx="-1.2134423251589466" y="2*y(P5)-y(P2)" acty="4.069028156221616" shape="cross" fixed="true">Point</Point>
+<Segment name="s4" n="272" color="1" hidden="true" from="P9" to="P10">Line segment from P1 to P2</Segment>
+<Intersection name="P11" n="275" color="2" hidden="true" first="s4" second="s2" shape="cross">Intersection between s4 and s2</Intersection>
+<Ray name="r3" n="285" color="1" type="thin" hidden="true" from="P2" to="P3">Ray from P2 pointing to P3</Ray>
+<Ray name="r4" n="288" color="1" type="thin" hidden="true" from="P2" to="P1">Ray from P2 pointing to P1</Ray>
+<Parallel name="pl1" n="291" color="3" hidden="true" point="P5" line="s1">Parallel line through P5 to s1</Parallel>
+<Parallel name="pl2" n="294" color="3" hidden="true" point="P5" line="s2">Parallel line through P5 to s2</Parallel>
+<Intersection name="P4" n="297" color="2" hidden="true" first="s1" second="pl2" shape="circle">Intersection between s1 and pl2</Intersection>
+<Segment name="v1" n="298" color="5" hidden="true" from="P2" to="P4" arrow="true">Line segment from P2 to P4</Segment>
+<Intersection name="P12" n="301" color="2" hidden="true" first="s2" second="pl1" shape="circle">Intersection between s2 and pl1</Intersection>
+<Segment name="v2" n="302" color="5" hidden="true" from="P2" to="P12" arrow="true">Line segment from P2 to P12</Segment>
+<Segment name="v3" n="305" color="5" hidden="true" from="P4" to="P8" arrow="true">Line segment from P4 to P8</Segment>
+<Segment name="v4" n="308" color="5" hidden="true" from="P12" to="P11" arrow="true">Line segment from P12 to P11</Segment>
+<Segment name="v5" n="311" color="5" hidden="true" from="P4" to="P5" arrow="true">Line segment from P4 to P5</Segment>
+<Segment name="v6" n="314" color="5" hidden="true" from="P12" to="P5" arrow="true">Line segment from P12 to P5</Segment>
+<Segment name="s6" n="317" color="2" hidden="true" from="P8" to="P5" code_symbol="2">Line segment from P8 to P5</Segment>
+<Segment name="s7" n="320" color="2" hidden="true" from="P5" to="P11" code_symbol="2">Line segment from P5 to P11</Segment>
+<PointOn name="P13" n="329" color="2" on="s1" alpha="0.42628706170036257" x="-2.6100623062559563" y="1.7867460860337077" shape="cross">Point on s1</PointOn>
+<Point name="P14" n="332" color="2" x="-1.2425068119891005" y="0.5514096176229852" shape="cross">Point</Point>
+<Segment name="s8" n="333" color="1" from="P13" to="P14">Line segment from P13 to P14</Segment>
+<Point name="P15" n="336" color="2" x="0.06539509536784749" y="0.7257965386039116" shape="cross">Point</Point>
+<Segment name="s9" n="337" color="1" from="P14" to="P15">Line segment from P14 to P15</Segment>
+<PointOn name="P16" n="340" color="2" hidden="true" on="s2" alpha="0.8697993097794737" x="1.8492546317467564" y="1.9265287540088378" shape="cross">Point on s2</PointOn>
+<Segment name="s10" n="341" color="1" from="P15" to="P16">Line segment from P15 to P16</Segment>
+<Line name="l2" n="344" color="1" type="thin" hidden="true" from="P13" to="P14">Line through P13 and P14</Line>
+<Line name="l3" n="347" color="1" type="thin" hidden="true" from="P14" to="P15">Line through P14 and P15</Line>
+<Line name="l4" n="350" color="1" type="thin" hidden="true" from="P15" to="P16">Line through P15 and P16</Line>
+<Point name="P19" n="1531" color="2" hidden="true" x="2*x(P5)-x(P15)" actx="-2.463215258855586" y="2*y(P5)-y(P15)" acty="2.7038129073543073" shape="cross" fixed="true">Point</Point>
+<Point name="P20" n="1627" color="2" hidden="true" x="2*x(P5)-x(P14)" actx="-1.1553133514986378" y="2*y(P5)-y(P14)" acty="2.8781998283352337" shape="cross" fixed="true">Point</Point>
+<Point name="P21" n="1681" color="2" hidden="true" x="2*x(P5)-x(P13)" actx="0.21224214276821796" y="2*y(P5)-y(P13)" acty="1.6428633599245113" shape="cross" fixed="true">Point</Point>
+<Segment name="s12" n="1687" color="1" hidden="true" from="P19" to="P20">Line segment from P19 to P20</Segment>
+<Segment name="s13" n="1690" color="1" hidden="true" from="P20" to="P21">Line segment from P20 to P21</Segment>
+<Intersection name="P22" n="1693" color="2" first="s4" second="s10" shape="cross">Intersection between s4 and s10</Intersection>
+<Line name="l5" n="1696" color="3" hidden="true" from="P20" to="P21">Line through P20 and P21</Line>
+<Line name="l6" n="1699" color="3" hidden="true" from="P20" to="P19">Line through P20 and P19</Line>
+<Segment name="s15" n="1711" color="2" from="P5" to="P22" code_symbol="2">Line segment from P5 to P22</Segment>
+<Intersection name="P25" n="1713" color="2" hidden="true" first="l2" second="l6" shape="cross">Intersection between l2 and l6</Intersection>
+<Intersection name="P27" n="1715" color="2" hidden="true" first="l4" second="l6" shape="circle">Intersection between l4 and l6</Intersection>
+<Intersection name="P28" n="1716" color="2" hidden="true" first="l3" second="l5" shape="cross">Intersection between l3 and l5</Intersection>
+<Intersection name="P29" n="1717" color="2" hidden="true" first="l5" second="s10" shape="cross">Intersection between l5 and s10</Intersection>
+<Segment name="s17" n="1723" color="2" hidden="true" from="P25" to="P5" code_symbol="2">Line segment from P25 to P5</Segment>
+<Segment name="s18" n="1726" color="2" hidden="true" from="P28" to="P5" code_symbol="2">Line segment from P28 to P5</Segment>
+<Segment name="s19" n="1729" color="2" hidden="true" from="P29" to="P5" code_symbol="2">Line segment from P29 to P5</Segment>
+<Segment name="s20" n="1732" color="2" hidden="true" from="P27" to="P5" code_symbol="2">Line segment from P27 to P5</Segment>
+<Intersection name="P17" n="490" color="2" hidden="true" first="s10" second="r3" shape="cross">Intersection between s10 and r3</Intersection>
+<Point name="P18" n="491" color="2" hidden="true" x="2*x(P5)-x(P17)" actx="-4.247074795234495" y="2*y(P5)-y(P17)" acty="1.5030806919493809" shape="cross" fixed="true">Point</Point>
+<Segment name="s11" n="1684" color="1" hidden="true" from="P18" to="P19">Line segment from P18 to P19</Segment>
+<Line name="l7" n="1702" color="3" hidden="true" from="P18" to="P19">Line through P18 and P19</Line>
+<Intersection name="P23" n="1703" color="2" first="s11" second="s1" shape="cross">Intersection between s11 and s1</Intersection>
+<Segment name="s14" n="1706" color="2" from="P23" to="P5" code_symbol="2">Line segment from P23 to P5</Segment>
+<Intersection name="P24" n="1712" color="2" hidden="true" first="l2" second="s11" shape="cross">Intersection between l2 and s11</Intersection>
+<Intersection name="P26" n="1714" color="2" hidden="true" first="l3" second="l7" shape="circle">Intersection between l3 and l7</Intersection>
+<Segment name="s16" n="1720" color="2" hidden="true" from="P24" to="P5" code_symbol="2">Line segment from P24 to P5</Segment>
+<Segment name="s21" n="1735" color="2" hidden="true" from="P26" to="P5" code_symbol="2">Line segment from P26 to P5</Segment>
+<Segment name="s22" n="1738" color="1" hidden="true" from="P21" to="P9">Line segment from P21 to P9</Segment>
+<Segment name="s23" n="1741" color="1" from="P16" to="P3">Line segment from P16 to P3</Segment>
+<Segment name="s24" n="1744" color="1" from="P13" to="P1">Line segment from P13 to P1</Segment>
+<Polygon name="poly8" n="1745" color="2" type="thin" background="true" point1="P23" point2="P22" point3="P15" point4="P14" point5="P13">Polygon</Polygon>
+</Objects>
+</Construction>
+</CaR>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Extreme Value Theorem</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="betaveros" />
+  <meta name="description" content="original sillier post
+The “Extreme Value Theorem”, according to my old calculus textbook (Larson, Hostetler, Edwards, 8th ed.), is “A continuous function defined on a closed interval attains a minimum and a maximum on the interval.” The calculus textbook continues,
+ Although [it] is intuitively plausible, a proof of this theorem is not within the scope of this text.
+ Of course Rudin proves this, but coming from an unrigorous calculus background, the required deductions span three chapters and are very hard to motivate. That’s probably because it proves things for extremely general objects.
+In particular, I have no idea why the definition of “compact” is what it is: “a set for which every open cover has a finite subcovering”. Therefore, here’s a less general but more motivated proof, from the grounds-up.
+Definitions Real numbers are hard to define. We only need to know that we can add, subtract, multiply, divide, and compare them, i.e. they’re an ordered field, and that they have the least-upper-bound property. That is, if we have a set of real numbers that are bounded above, then the set has a least upper bound, a bound that “perfectly fits” the set. Precisely, the bound must be such that every element of the set is less than or equal to it, and no smaller value satisfies the same property.
+
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/evt" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Extreme Value Theorem</h1>
+		
+		<p class="post-meta">
+		
+		2014-10-22
+		(1007 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p><a href="http://www.artofproblemsolving.com/community/c1285h1042959">original sillier post</a></p>
+<p>The “Extreme Value Theorem”, according to my old calculus textbook (Larson, Hostetler, Edwards, 8th ed.), is “A continuous function defined on a closed interval attains a minimum and a maximum on the interval.” The calculus textbook continues,</p>
+<blockquote>
+<p>Although [it] is intuitively plausible, a proof of this theorem is not within the scope of this text.</p>
+</blockquote>
+<p>Of course Rudin proves this, but coming from an unrigorous calculus background, the required deductions span three chapters and are very hard to motivate. That’s probably because it proves things for extremely general objects.</p>
+<p>In particular, I have no idea why the definition of “compact” is what it is: “a set for which every open cover has a finite subcovering”. Therefore, here’s a less general but more motivated proof, from the grounds-up.</p>
+<h3 id="definitions">Definitions</h3>
+<p><strong>Real numbers</strong> are hard to define. We only need to know that we can add, subtract, multiply, divide, and compare them, i.e. they’re an ordered field, and that they have the <strong>least-upper-bound property</strong>. That is, if we have a set of real numbers that are bounded above, then the set has a <em>least upper bound</em>, a bound that “perfectly fits” the set. Precisely, the bound must be such that every element of the set is less than or equal to it, and no smaller value satisfies the same property.</p>
+<p></p>
+<p>(The rationals don’t have this property, since <span class="math inline">\(\{x \in \mathbb{Q} \mid x^2 &lt; 2\}\)</span> has no rational that bounds it perfectly. For any bound, you can find a smaller bound between it and that beastly irrational <span class="math inline">\(\sqrt{2}\)</span>.)</p>
+<p>(Also note that the least-upper-bound property quickly implies its mirror image, the greatest-lower-bound property: just consider the least-upper-bound of the lower bounds of some set.)</p>
+<p>A set is <strong>bounded</strong> if there’s a fixed number that’s greater than the distance between any two points. Easy.</p>
+<p>A set <span class="math inline">\(S\)</span> is <strong>closed</strong>, intuitively speaking, if it contains its “boundary”. Rigorously, <span class="math inline">\(S\)</span> is closed iff it contains all its <em>limit points</em>, that is, any point such that for any distance <span class="math inline">\(d\)</span>, it’s closer than distance <span class="math inline">\(d\)</span> to a point in <span class="math inline">\(S\)</span>. So there are no fuzzy edges that <span class="math inline">\(S\)</span> gets infinitely close to but never reaches.</p>
+<p>To keep things simple, we shall decree, technically incorrectly, that <strong>a set is compact iff it is closed and bounded</strong> for this page.</p>
+<h3 id="attempting-the-proof">Attempting the Proof</h3>
+<p>Now we try proving the Extreme Value Theorem. So: we have a continuous function <span class="math inline">\(f : [a, b] \to \mathbb{R}\)</span>. Since we want to use continuity, our imagined proof will end with taking a limit of <span class="math inline">\(f\)</span>. In both cases it’s pretty clear what we want the limit to be equal to, so here’s what we end up with:</p>
+<p>First, we prove <span class="math inline">\(f\)</span> is bounded on <span class="math inline">\([a, b]\)</span> (otherwise where do we get a maximum?) If it isn’t, then we can pick a sequence of points <span class="math inline">\(x_1, x_2, \ldots\)</span> in <span class="math inline">\([a, b]\)</span> so that <span class="math inline">\(f(x_i) \to \pm \infty\)</span> as <span class="math inline">\(i \to \infty\)</span>. Then we <em class="danger">???!!!???</em>, so we have <span class="math inline">\(c\)</span> so that <span class="math inline">\(\lim_{x \to c} f(x) \to \pm \infty\)</span>, which is impossible as this limit should be defined and equal to <span class="math inline">\(f(c)\)</span> (and thus finite).</p>
+<p>Next, we prove <span class="math inline">\(f\)</span>’s range is closed on <span class="math inline">\([a, b]\)</span>. Suppose we know that for some value <span class="math inline">\(y\)</span>, we can pick <span class="math inline">\(x\)</span> so that <span class="math inline">\(f(x)\)</span> is arbitrarily close to <span class="math inline">\(y\)</span> (i.e. <span class="math inline">\(y\)</span> is “on the boundary”). More precisely, we can pick a sequence of points <span class="math inline">\(x_1, x_2, \ldots\)</span> in $[a, b] $so that <span class="math inline">\(f(x_i) \to y\)</span> as <span class="math inline">\(i \to \infty\)</span>. Then we <em class="danger">???!!!???</em>, so we have <span class="math inline">\(c\)</span> so that <span class="math inline">\(\lim_{x \to c} f(x) = y\)</span>, so by continuity <span class="math inline">\(f(c) = y\)</span>. Thus the boundary points of <span class="math inline">\(f\)</span>’s range are in <span class="math inline">\(f\)</span>’s range.</p>
+<p>Thus, <span class="math inline">\(f\)</span>’s range is closed and bounded. Immediately we obtain that its range has and includes a least-upper-bound, so it attains its maximum.</p>
+<p>Q<em class="danger">?!?</em>E<em class="danger">?!?</em>D</p>
+<h3 id="plugging-the-proof">Plugging the Proof</h3>
+<p>So this is what our proof looks like overall. But of course this is not at all a valid proof, since there are two glaring red gaps here. What could we prove that fills them?</p>
+<p>In both cases, we have a bunch of points <span class="math inline">\(x_1, x_2, \ldots\)</span>, and we want some point <span class="math inline">\(c\)</span> so that a subsequence of <span class="math inline">\(\{x_i\}\)</span> converges to <span class="math inline">\(c\)</span>. And that’s all we need to prove now! (This property is generally called <em>sequential compactness</em>. Rudin 3.6 proves that compactness implies sequential compactness in <span class="math inline">\(\mathbb{R}^n\)</span>, but it doesn’t seem to get used much.)</p>
+<p><strong>Lemma.</strong> Let <span class="math inline">\(\{x_i\}\)</span>be an infinite sequence of points in a closed interval <span class="math inline">\([a, b]\)</span>. Then there exists a subsequence <span class="math inline">\(\{x_{j_i}\}\)</span> that converges to a point <span class="math inline">\(c\)</span> in <span class="math inline">\([a, b]\)</span>.</p>
+<p>Proving this is also rather intuitive. We just want to find a place where there are a lot of points from <span class="math inline">\(\{x_i\}\)</span> nearby. So we cut <span class="math inline">\([a, b]\)</span> in half, into <span class="math inline">\([a, (a+b)/2]\)</span> and <span class="math inline">\([(a+b)/2, b]\)</span>. At least one of these intervals contains infinitely many points of the sequence <span class="math inline">\(\{x_i\}\)</span>.</p>
+<p>And we repeat! Keep cutting the interval with infinitely many points in half, and keep picking the half that still has infinitely many points. We get an infinite sequence of intervals, each of which is one of the halves of the previous one, and each of which contains infinitely many terms of the sequence.</p>
+<p>How do we pick <span class="math inline">\(c\)</span>? Well, we really want it to be in all of those intervals, and the least-upper-bound property comes in useful again: if the intervals are <span class="math inline">\([a_i, b_i]\)</span>, we pick it to be the least-upper-bound of all the <span class="math inline">\(a_i\)</span>’s. So <span class="math inline">\(c\)</span> would be at least as large as every <span class="math inline">\(a_i\)</span>, and since each <span class="math inline">\(b_i\)</span> is an upper bound of all of the <span class="math inline">\(a_i\)</span>’s, our value of <span class="math inline">\(c\)</span> is at most as large as every <span class="math inline">\(b_i\)</span>. So <span class="math inline">\(c\)</span> is in all the intervals.</p>
+<p>Then to get a sequence that converges to <span class="math inline">\(c\)</span>, we just build a sequence of <span class="math inline">\(x_{j_i}\)</span> s by starting with a random <span class="math inline">\(x\)</span>, then picking the next one from the next interval <span class="math inline">\([a_i, b_i]\)</span> that comes after all the previous <span class="math inline">\(x\)</span>’s; since there are always infinitely many choices, such a choice always exists. And we’re done!</p></article>
+	<footer class="post-footer">
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/exchange">← Operation Exchange</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/comics">Commemorating Obvious Milestones Involving Chronological Sustenance →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Hello, Again</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="betaveros" />
+  <meta name="description" content="And here we are.
+This is the first post on this blog after I migrated off WordPress for a static solution.
+At first, I wanted to set things up on Amazon Web Services (AWS), which was an adventure. There are lots of online posts about how to do this, but Amazon’s services change quickly and there was often outdated information. For instance, Amazon had a wizard that led you through setting up a static site, which I clicked on. It helpfully handled a lot of grunt work, but now I was out of sync with all of the guides. Oh well.
+I think things are confusing partly because there are four AWS components all interacting to make a static site happen:
+
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/hello-again" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Hello, Again</h1>
+		
+		<p class="post-meta">
+		
+		2017-11-07
+		(1930 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/meta">Meta</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>And here we are.</p>
+<p>This is the first post on this blog after I migrated off WordPress for a static solution.</p>
+<p>At first, I wanted to set things up on Amazon Web Services (AWS), which was an adventure. There are lots of online posts about how to do this, but Amazon’s services change quickly and there was often outdated information. For instance, Amazon had a wizard that led you through setting up a static site, which I clicked on. It helpfully handled a lot of grunt work, but now I was out of sync with all of the guides. Oh well.</p>
+<p>I think things are confusing partly because there are four AWS components all interacting to make a static site happen:</p>
+<p></p>
+<ul>
+<li><p>Amazon S3: Simple Storage Service. Stores your files and serves them, but from a really long URL. Amazon has a command-line client <code>aws</code> that will let you push things by typing something like:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="ex">aws</span> s3 sync --acl <span class="st">&quot;public-read&quot;</span> --sse <span class="st">&quot;AES256&quot;</span> public/ s3://aws-website-blogverosite-zld83</div></code></pre></li>
+<li>Amazon Certificate Manager: Does what you think it does, manages certificates. It will also issue you a HTTPS certificate for a domain you control by emailing you.</li>
+<li>Amazon CloudFront: Distributes content through the content delivery network and serves your website from a reasonable domain. You can load a certificate if it’s issued from Amazon Certificate Manager in the region <code>us-east-1</code>, and serve it using SNI for free.</li>
+<li><p>Amazon Route 53: DNS service, which lets you point your domain to the CloudFront servers.</p></li>
+</ul>
+<p>(I really should understand this better than I do after taking 6.033; hopefully I got the details right.)</p>
+<p>I actually ended up abandoning AWS for the other popular static site serving option online, GitHub Pages + CloudFlare, once I realized that this wasn’t actually less sketchy just because all my components were under Amazon. As I understand it, you can get that sweet (search-engine-rank-boosting) green padlock on your GitHub Pages site by getting CloudFlare to serve it to users over HTTPS, but behind the scenes there is still no HTTPS between GitHub Pages and the CloudFlare servers. Similarly, in the above setup I think there is still no HTTPS between Amazon S3 and Amazon CloudFront, so these setups still don’t achieve end-to-end HTTPS. Still, I tried and have the padlock to show for it… For me the tiebreaker ended up being that I knew GitHub Pages supported <a href="https://jekyllrb.com/docs/permalinks/#extensionless-permalinks">extensionless permalinks</a>. I’m kind of picky about URLs. I also couldn’t quite figure out how 404 pages work exactly, although I didn’t really try that hard. I never got to setting the “error” page, but my site seemed to be giving 403s, which seemed wrong, and <a href="this%20page">http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html</a> suggests granting <code>s3:ListBucket</code> would cause 404s to happen.</p>
+<hr />
+<p>As for site generation, I went with <a href="http://gohugo.io/">Hugo</a> because it was the second-most popular static site generator on the most popular list of static site generators I could find, <a href="https://www.staticgen.com/">staticgen.com</a>, and I wasn’t satisfied with Jekyll’s filename convention. I wanted flexibility instead of simplicity for this site. Even then, there were enough things I wanted to change that I hacked on it, sent two pull requests (one to shell out to <a href="http://pandoc.org/">Pandoc</a> and one to support custom permalinks for categories and tags), and locally merged a third (extensionless permalinks).</p>
+<p>This was essentially my first actual experience writing Go (*ahem* Golang, for the search engines), which was also an adventure. My previous impressions of Go weren’t great and I’ve resisted learning it for a while, but I thought most of this was just because it was a language for a different niche of programmers and projects than the one I was in, big projects for big teams. Bashing Go is a fairly common pastime; there’s even a <a href="https://github.com/ksimka/go-is-not-good">GitHub repo for collecting articles complaining about Go</a>. After actually digging into a Go codebase, I think my overall feeling went from “Go is bad” to “Go could have been so much better”. Go does a lot of things well and scratches a lot of itches that previous languages just don’t. There are pointers, but you can’t shoot yourself in the foot with them, which is already transformational; Go handles random-access integer-index data structures with slices instead. The syntax is mostly crisp and concise (I haven’t made up my mind about the way one declares methods on classes yet, but right now I think I like it). Functions are first-class objects with concise syntax and types. The opinionated tooling built into the <code>go</code> executable makes getting started easy. Thanks to Google’s backing, the ecosystem is great. This is to say nothing of concurrency, which is supposed to be Go’s big selling point but which I haven’t even used yet.</p>
+<p>Still, all of the reasons I didn’t like Go before still pretty much stand. To be fair, I think a lot of reasons I dislike Go, including most of the reasons I had a negative impression of it, boil down to the fact that I’m just not a fan of removing language features because they can be abused, usually to write unreadable or unmaintainable code. I don’t think I’ll ever get over the lack of ternary expressions. A more advanced type system would also be nice (I will never get tired of showing people the <a href="https://www.reddit.com/r/rust/comments/5penft/parallelizing_enjarify_in_go_and_rust/dcsgk7n/">Canadian Aboriginal Syllabics thing</a>). But from my couple-hour dip into a big Go codebase, I haven’t <em>acutely</em> missed these features, so I won’t go into these reasons here.</p>
+<p>I feel like the biggest missed opportunity is the pesky <code>nil</code>, or in more memorable terms the <a href="https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare">“billion dollar mistake” of null references</a>. I’d prefer the full-blown functor <code>T -&gt; Option[T]</code> where you can create a nullable version of any type <a href="http://james-iry.blogspot.com/2010/08/why-scalas-and-haskells-types-will-save.html">(James Iry makes this case here)</a>, but if I had just been given a hardwired single-level nullable, I would have grumbled a little and moved on. As it is, <code>nil</code> exists almost-but-not-quite-everywhere and I still don’t understand how it works. Apparently it inhabits <a href="https://stackoverflow.com/a/35983594/3243497">pointers, interfaces, maps, slices, channels and function types</a>, but it’s not a <code>string</code> even though they seem to be basically immutable <code>byte</code> slices, so where everywhere else you can (or kind of have to) use and treat <code>nil</code> as a sentinel, for <code>string</code> you’re stuck with the empty string, crossing your fingers hoping that you’ll never need to accept both a null value and the empty string as a valid value for the same use case. You can take the length of a <code>nil</code> slice and you can index into <code>nil</code> as a map with any key and get the default type of the map value, but you can also make empty slices and empty maps that have the same behavior, which are not <code>nil</code>, but have the same behavior if you only read from them. Things can even have <code>nil</code> value but not <code>nil</code> type or something, so now you have this <a href="https://golang.org/doc/faq#nil_error">weird nil error</a>. What? I understand the semantics of JavaScript’s <code>null</code> and <code>undefined</code> better than this.</p>
+<p>Then there’s the case-for-visibility feature (uppercase for exported identifiers, lowercase for unexported identifiers), which is even <a href="https://golang.org/doc/faq#unicode_identifiers">one of the Go team’s favorite features</a>, despite how they note in the same answer how they kind of went for supporting anybody who wanted to use Unicode identifiers but then ended up screwing those people over if their preferred language doesn’t have uppercase and lowercase letters. I’m sure some of my reaction is just unfamiliarity from reading, uh, every other language under the planet, but I think there are a few objective drawbacks. The small things: I have to think a lot harder about naming and remembering the names of things if the name has the same visibility as the type. The mitigation technique seems to be a convention of using short or single-letter variable names, which is mystifying to me — what are we doing, programming with punch cards in 1960? If I want to declare <code>structs</code> that will be magically parsed from JSON or YAML or whatever, I have to think carefully about whatever case transformations the engine will want to do and not just write what I mean. Changing the visibility of an identifier can only be accomplished by changing every instance of that identifier in your code, and shuts the door to more granular permissions. For what gain? I suppose it’s kind of useful to be able to know the visibility of an identifier just by glancing at it, but then one loses the ability to differentiate between different categorizations of identifiers by convention or by syntactic rule. My initial reaction was that now I can’t tell if something is a type or a variable, but upon further reflection I guess in Go you can usually tell them apart from syntactic context. What I miss more is telling if something is a constant or a variable. Oh wait, Go doesn’t have constants…</p>
+<p>My last comment is neither praise nor a complaint because I still don’t know how to feel about it: You specify a time format <a href="https://golang.org/pkg/time/#Time.Format"><code>Time.Format</code> works</a> by formatting the following magical reference date.</p>
+<pre><code>Mon Jan 2 15:04:05 -0700 MST 2006</code></pre>
+<p>Month 1, day 2, hour 3 (PM), minute 4, second 5, year (20)06, time zone UTC−7. The great thing about this is that you can format a date by just looking up the short reference date and formatting it yourself, and you can also intuitively get most of the time format just by reading it and don’t need to stare at a table of <code>strftime</code> codes.</p>
+<p>The awful thing about this is that the time format is super ambiguous if you don’t look up the reference date, and can totally look like the format you think it is, but be slightly off or totally nonsensical. Is <code>01/02/2006</code> month/day/year or day/month/year? What about <code>05/15/2006</code> even? Second/24-hour hour/year? What? The ambiguity between MM/DD and DD/MM and many other choices arises because the day is ≤ 12, but solving this ambiguity by choosing a reference day ≥ 13 removes functionality from the library, because then you can’t specify if you want to zero-pad (or space-pad) the day by choosing to format the date as <code>2</code> or <code>02</code>.</p>
+<p>Some other notes: The blog theme/CSS is based on <a href="https://github.com/laozhu/hugo-nuo">Hugo Nuo</a> — it was pretty useful to have scaffolding to base everything on, but I modified it pretty heavily and I don’t know if it’s recognizably such any more. Pandoc syntax highlighting will result in HTML with suitable markup and classes, but you need to supply your own CSS. It seems the best way to do this is grab the CSS from the output of <code>pandoc -s</code> on a trivial highlighted code block, perhaps with your preferred <code>--highlight-style</code> (I chose <code>tango</code>).</p>
+<hr />
+<p>I think that’s most of what I have to say about the technical details of this new blog. There are a lot of missing features, of course, most notably comments, but given their rarity on the old blog I don’t think I’m in a rush to get them working.</p>
+<p>As for the content, you might be able to tell that I haven’t ported all of the posts from my old blog. I took some kind of transitive closure of a handful of recent posts just to have somewhere to start, and as I get free time, I’ll probably keep porting more posts (that I want to) and also merge in more technical posts on other subjects from other places once I figure out a categorization system I’m happy with. I might even sneakily merge in a few old drafts I never posted on my old blog. Finally, I have a few drafts of CTF writeups that might be up Soon™. Stay tuned or something.</p></article>
+	<footer class="post-footer">
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/remigration">← Remigration</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

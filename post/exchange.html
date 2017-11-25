@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Operation Exchange</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="betaveros" />
+  <meta name="description" content="Limit &#43; Limit Cheaply, using an Iverson bracket expression:
+\[ \begin{aligned} \lim_{a \to \infty} \lim_{b \to \infty} [a &amp;gt; b] &amp;amp;= 0 \\ \lim_{b \to \infty} \lim_{a \to \infty} [a &amp;gt; b] &amp;amp;= 1 \end{aligned} \]
+For more continuity, use \(\frac{a}{a &#43; b}\) instead (Rudin Example 7.2).
+Uniform convergence on one limit suffices to allow this exchange, almost by definition.
+Limit &#43; Continuity Let
+\[ f_\epsilon(x) = \begin{cases} 0 &amp;amp; \text{if } |x| \geq \epsilon \\ 1 - \left|\frac{x}{\epsilon}\right| &amp;amp;\text{if } |x| &amp;lt; \epsilon \end{cases}. \]
+
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/exchange" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Operation Exchange</h1>
+		
+		<p class="post-meta">
+		
+		2014-10-21
+		(457 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><h3 id="limit-limit">Limit + Limit</h3>
+<p>Cheaply, using an <a href="%7B%%20post_url%202014-10-21-iverson-bracket%20%%7D">Iverson bracket</a> expression:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\lim_{a \to \infty} \lim_{b \to \infty} [a &gt; b] &amp;= 0 \\
+\lim_{b \to \infty} \lim_{a \to \infty} [a &gt; b] &amp;= 1
+\end{aligned}
+\]</span></p>
+<p>For more continuity, use <span class="math inline">\(\frac{a}{a + b}\)</span> instead (Rudin Example 7.2).</p>
+<p>Uniform convergence on one limit suffices to allow this exchange, almost by definition.</p>
+<h3 id="limit-continuity">Limit + Continuity</h3>
+<p>Let</p>
+<p><span class="math display">\[
+f_\epsilon(x) = \begin{cases} 0 &amp; \text{if } |x| \geq \epsilon \\ 1 - \left|\frac{x}{\epsilon}\right| &amp;\text{if } |x| &lt; \epsilon \end{cases}.
+\]</span></p>
+<p></p>
+<p>In English: <span class="math inline">\(f_\epsilon(x)\)</span> has a triangular bump at <span class="math inline">\(x = 0\)</span> with height <span class="math inline">\(1\)</span> and width <span class="math inline">\(2\epsilon\)</span>. It’s continuous. But</p>
+<p><span class="math display">\[
+\lim_{\epsilon \to \infty} f_\epsilon(x) = [x = 0],
+\]</span></p>
+<p>which is not.</p>
+<p>Rudin Example 7.3 is a more differentiable variant.</p>
+<p>Uniform convergence on the limit suffices.</p>
+<h3 id="limit-derivative">Limit + Derivative</h3>
+<p>This is a sine wave. <span class="math display">\[
+f_\epsilon(x) = \epsilon \sin \frac{x}{\epsilon^2}.
+\]</span></p>
+<p>If you decrease <span class="math inline">\(\epsilon\)</span>, its amplitude decreases, so it converges uniformly to <span class="math inline">\(f(x) \equiv 0\)</span>. But its period decreases even faster, so as a result its derivative</p>
+<p><span class="math display">\[
+f&#39;_\epsilon(x) = \frac{1}{\epsilon} \cos \frac{x}{\epsilon^2}
+\]</span></p>
+<p>diverges everywhere.</p>
+<p>There’s a lot of room for tweaking in this one.</p>
+<h3 id="limit-integral">Limit + Integral</h3>
+<p>Consider this function defined on <span class="math inline">\([0,1]\)</span>:</p>
+<p><span class="math display">\[
+f_\epsilon(x) = \begin{cases} 0 &amp; \text{if } x \geq 2\epsilon \\ \frac{1}{\epsilon}\left(1 - \left|\frac{x - \epsilon}{\epsilon}\right|\right) &amp;\text{if } x &lt; 2\epsilon \end{cases}.
+\]</span></p>
+<p>So <span class="math inline">\(f_\epsilon(x)\)</span> has a triangular bump of width <span class="math inline">\(2\epsilon\)</span> and height <span class="math inline">\(\frac{1}{\epsilon}\)</span> right next to <span class="math inline">\(0\)</span>, which means</p>
+<p><span class="math display">\[
+\int_0^1 f_\epsilon(x) = 1
+\]</span></p>
+<p>for all <span class="math inline">\(\epsilon &lt; 1/2\)</span>.</p>
+<p>But</p>
+<p><span class="math display">\[
+\lim_{\epsilon \to 0^+} f_\epsilon(x) = 0
+\]</span></p>
+<p>and the integral of this is obviously 0.</p>
+<p>Once again, uniform convergence allows the exchange.</p>
+<h3 id="dc">Derivative + Continuity</h3>
+<p>Single-variable: Rudin’s Example 5.6(b).</p>
+<p><span class="math display">\[
+f(x) = \begin{cases} x^2 \sin(1/x) &amp;\text{if } x \neq 0 \\ 0 &amp;\text{if } x = 0 \end{cases}
+\]</span></p>
+<p>is differentiable everywhere, but its derivative is discontinuous at 0. (The other direction is moot: differentiable functions are continuous.)</p>
+<p>Two-variable: Just use the above function and consider <span class="math display">\[ f(x + y) \]</span>?</p>
+<h3 id="derivative-derivative">Derivative + Derivative</h3>
+<p>Rudin chapter 9, exercise 27: If</p>
+<p><span class="math display">\[
+f(x, y) = \begin{cases} 0 &amp;\text{if } x = y = 0 \\ \frac{xy(x^2 - y^2)}{x^2 + y^2} &amp;\text{else} \end{cases}
+\]</span></p>
+<p>then</p>
+<p><span class="math display">\[
+\begin{aligned}
+\left(\frac{\partial^2 f}{\partial x \partial y} \right)(0, 0) &amp;= 1 \\
+\left(\frac{\partial^2 f}{\partial y \partial x} \right)(0, 0) &amp;= -1
+\end{aligned}
+\]</span></p>
+<p>If just one of these partial derivatives is continuous, one can deduce that the other exists and they’re equal (Rudin Theorem 9.41).</p>
+<h3 id="integral-integral">Integral + Integral</h3>
+<p>Finally, one without any counterexamples! (Note we disallow improper integrals, since those are really limits of integrals in disguise.) Basically, apply the definition. It helps to consider “rectangular partitions” made from intersecting two partitions, one in each dimension.</p></article>
+	<footer class="post-footer">
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/numbers">← Numbers</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/evt">Extreme Value Theorem →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

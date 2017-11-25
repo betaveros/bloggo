@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>
+Posts
+ | Bounded-Error Log
+</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="betaveros" />
+  <meta name="description" content="" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-list">
+	<header class="list-header">
+		<h2 class="list-label">Posts</h2>
+	</header>
+	<article class="content"></article>
+	
+	
+	
+	<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/sat" class="post-link">Re-Re-Revisiting the SAT</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-02-08
+		(4139 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/school">School</a>, <a href="/category/thoughts">Thoughts</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>First, I got worked up about the test. Then I got a score and ranted about it on this blog. (I’m still uncertainly hoping that didn’t come off as arrogant. Let me add, I did not get a perfect PSAT.) Then a friend pitched to me the idea that I write an article about it for my school newspaper, which I did. It was far too long. As if that weren’t enough, I then decided to examine whether the SAT was an accurate prediction of “academic ability and success” for my English research paper. Now I’ve come full circle to this blog, where I’m going to try to synthesize and conclude everything, free of the shackles of the research paper format, to allow me to move on with my life. This post contains bits lifted from all three essays and lots of new stuff; I’ve been editing it for so long that I feel like I have it memorized. Its word count is around that of the newspaper article <em>plus</em> the research paper, i.e. far far far too long.</p>
+<p>But whatever, nobody reads this blog anyway and I have to get this out of my system. When I said I wanted to “move on with my life”, I really meant my winter homework. Oops!</p>
+<p><strong>Disclaimer:</strong> I am not an admissions officer. I have not yet even been accepted to a prestigious university (despite rumors to the contrary…), for whatever definition of “prestigious”, unlike some of the bloggers I’m referencing. So some of this is pure speculation. On the other hand, some of it is researched and referenced, and I think the pure speculation still makes sense. That’s why I’m posting it.</p>
+<p>Okay, here we go…</p>
+<p>Let’s start with the question of accurate prediction. The SAT is a useful predictor, but not as useful as one might assume. Intuitively, it ought to be more accurate than other metrics because it’s a <em>standardized</em> test, whereas GPAs other awards vary by habits of teacher and region and are hard to compare objectively. But as a <a href="http://research.collegeboard.org/sites/default/files/publications/2012/7/researchreport-2008-5-validity-sat-predicting-first-year-college-grade-point-average.pdf">study from the College Board <em>itself</em> (PDF)</a> found:</p>
+<blockquote>
+the correlation of HSGPA [high-school GPA] and FYGPA [first-year GPA in college] is 0.36 (Adj. r = 0.54), which is slightly higher than the multiple correlation of the SAT (critical reading, math, and writing combined) with FYGPA (r = 0.35, Adj. r = 0.53).
+</blockquote>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/sat">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/time" class="post-link">The Sands of Time</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-12-31
+		(1489 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>, <a href="/category/programming">Programming</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Random video! Although I feel that I’ve heard it earlier, my first conscious memory of getting linked to it is from <a href="http://usamoarchive.wordpress.com/2012/03/01/youre-older-than-youve-ever-been/">this post</a>. At first I thought it would be the right background music for this post, but upon further reflection I think it mainly suited me while I was writing this post. Well, it’s topical if you mentally replace “day” with “year”.</p>
+
+<div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/q2bo_u_YmW8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="YouTube Video"></iframe>
+ </div>
+
+<p>Anyway. Around this time a year ago, I paused my participation in big high-school competitions, for a variety of reasons.</p>
+<p>Firstly, I stopped attempting to make IMO both because I wouldn’t get that much from the training and because other people ought to have the opportunity. I was concerned that I might condition myself to only be able to do math with the short-term motivation of contests. Better to focus on college math and maybe some original research, I thought. During the year, I did lots of the former and very little of the latter. Meh.</p>
+<p>As for the IOI, my obvious next target: I was tired of training and going abroad while paranoid about whether my immune system would hold up. I didn’t feel that the IOI was worth that. To some degree, I also felt burned out about programming. Long story short, my treatment should end soon, and learning Haskell completely resolved the burnout problem.</p>
+<p>But the most important reason, I think, was that “high school was too short”. I started math competitions ridiculously early and didn’t spend much time exploring other interests. I thought I knew myself well enough that I could say I didn’t have many more interests at all, but I was completely wrong (psych nerds will reflexively note this to be the <a href="https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect">Dunning-Kruger effect</a>). I coded lots in weird languages — Haskell, as mentioned previously, plus Scala, plus all manner of other magical command line tools. I wrote my first math problem and submitted it officially, picked up a new instrument, went to a debate competition, served as an unimportant tech guy for MUN, discovered and became hooked on Pentatonix, participated in three puzzle hunts in Australia and one in Massachusetts, figured out my rough political stance, rode a boat, got retweeted by <span class="citation" data-cites="eevee">@eevee</span> and <span class="citation" data-cites="Kyrgyzstan_News">@Kyrgyzstan_News</span>, increased my Neopets™ fortune by over 3400%, and lurked on FurAffinity a little too much.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/time">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/74-days" class="post-link">74 Days</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-12-27
+		(196 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/procrastination">Procrastination</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>I did it!</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/74-days">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/2400" class="post-link">Okay, I got a 2400. Happy now?</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-11-21
+		(1068 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/thoughts">Thoughts</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<ins datetime="2017-11-25T01:23:34-0500">
+Note from the future, 2017: I am fairly unhappy with this rant as it stands — it makes many points I still agree with, but it just sounds sooo pretentious — but it is one of very few posts to actually receive a link from an external post I’m aware of, so I guess I should let it stand for historical interest. I wrote this years ago; please don’t take it out of context.
+</ins>
+<p>I have to admit, I got unhealthily worked up about getting this score.</p>
+<p>For the purposes of college, I only ever wanted a score that wouldn’t be a deal-breaker — anything above 2300 would be enough. Any other time I had left would be better spent in other endeavors. Such endeavors might help on the college app, but more importantly, I’d also get to enjoy them.</p>
+So why am I here? Partly it’s because my classmates got worked up about it. Somebody specifically requested me to post my score somewhere. And partly it’s because there couldn’t be a better way at the moment to establish my authority to (yet again) rant against standardized tests here. 
+<blockquote>
+“Everyone is a genius. But if you judge a fish by its ability to climb a tree, it will live its whole life believing that it is stupid.”
+<p class="source">
+— <a href="http://quoteinvestigator.com/2013/04/06/fish-climb/">not actually Albert Einstein</a>
+</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/2400">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/fiction" class="post-link">Fiction</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-10-20
+		(1758 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/self-analysis">Self-Analysis</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>“I like fantasy books! I used to read a lot of Eoin Colfer.”</p>
+<p>“What does that mean, <em>used to</em>? You don’t read anymore? That’s so <em>sa-a-a-ad</em>…”</p>
+<p>Our teacher and I had this conversation during our first English class, and I realized I agreed with her. Well, no, of course I still read: news articles, r/AskReddit threads, and the books we get assigned in class. But not fiction, almost. As I later mentioned to my teacher, I followed Sam Hughes’ <a href="http://qntm.org/ra">Ra</a> avidly (something I highly recommend). That was it.</p>
+<p>What does my present self still think of Eoin Colfer? Although I adored the <i>Artemis Fowl</i> books when I was younger, my interest faded, but not before I had recommended it to my sister. The conversation spurred me to get out the seventh <i>Artemis Fowl</i> book, which I had stopped reading halfway through a year ago, and finish it. It was still true that I didn’t like it as much, because I couldn’t feel the high stakes strongly in the book and I found that the joking asides compounded the problem. But a few days later, when we took a trip to the Taipei library, I found the eighth book and borrowed it, plowing through nine-tenths of the book before we left. The ending seemed to be happy but still felt counterintuitively poignant for me. In any case, I had closure.</p>
+<p>So what’s the lesson? Authors vary in output too. I was naïve to suppose that because I found this book boring, I had outgrown all books that were even vaguely similar. In the same trip, I also borrowed a bunch of other random fantasy books, plus a realistic fiction book about a teenage pregnancy, just for kicks. It turned out to be surprisingly good. In a week, I read four books, cover to cover, despite a typical load of homework and chemo.</p>
+Any excuses I made before about not having enough time simply don’t hold water. Still, I have yet to figure out if this sort of reading is sustainable, because not every book is so engrossing. Far from it… 
+<hr />
+<p>There’s a flip side, of course — writing.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/fiction">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-43" class="post-link">Puzzle 43 / Fillomino [Nonrectangular &#43; Walls]</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-09-30
+		(140 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	I’m extremely satisfied — a little incredulous, in fact — with how this puzzle came out. chaotic_iak labels it the “most ridiculous fillomino ever in history”. Apparently, it’s rather tricky.
+ETA: Journalistic responsibility compels me to mention that chaotic_iak also added, “might be beaten later”. Oops?  This is a Fillomino combining the Nonrectangular (polyominoes can’t be rectangles) and Walls (polyominoes can’t span thick lines) variant rules. I think the first variant first came from mathgrant; I’m not as sure about the second, but they both appeared in Fillomino-Fillia 2, at least.
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/puzzle-43">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/music" class="post-link">Music</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-06-22
+		(983 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>, <a href="/category/school">School</a>, <a href="/category/self-analysis">Self-Analysis</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Isn’t it weird to suddenly talk about this topic?</p>
+<p>I don’t think that I have ever talked about music any more than briefly in passing. It might be confusing to my <em>finger quotes</em> <em>audience</em>, and I worry I’ll seem inconsistent.</p>
+Well, a foolish consistency is the hobgoblin of little minds. If you wonder, “I didn’t know that you sang and played the piano, or you liked music in that way — or, at all…” please note that I didn’t know either. 
+<hr />
+<p>For most of my life, I was just a shower singer to myself.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/music">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/test" class="post-link">Test</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-06-09
+		(3093 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/procrastination">Procrastination</a>, <a href="/category/school">School</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Parts of this (a majority of questions, I hope) are intended as satire. Other parts of this are silliness created to blow off steam from being coerced into spending nine unproductive hours. Still other parts exist simply because I wanted to have equally many questions per test. Also, 256th post w00t.</p>
+<h3>
+“Verbal Reasoning”
+</h3>
+<em>Directions:</em> The questions in this test are multiple-choice. Each question has four possible choices. Read each question and decide which answer is the best answer. Find the row in your answer sheet that matches the number of the question. In that row, fill in the oval corresponding to the answer you selected. 
+<ol>
+<li>
+height : tall :: size :
+<ol style="list-style-type:upper-alpha;">
+<li>
+big
+</li>
+<li>
+hot
+</li>
+<li>
+random
+</li>
+<li>
+soft
+</li>
+</ol>
+</li>
+<li>
+<p>malapert : effrontery :: argute :</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/test">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/haskell" class="post-link">Haskell and Primes</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-05-25
+		(682 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>, <a href="/category/programming">Programming</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+“I have been told that any encryption becomes safer if the underlying algorithm is maximally obscured, what is most conveniently done by coding it in Haskell.” – rankk
+</blockquote>
+<p>Functional programming is terribly addicting! Partly I think the completely different way of thinking makes it feel like learning programming, and falling in love with it, all over again. Partly there’s this evil sense of satisfaction from using <code>$</code>s (and later <code>&lt;$&gt;</code>s and <code>=&lt;&lt;</code>s and <code>&amp;&amp;&amp;</code>s) to improve readability for initiated Haskellers and worsen it for everybody else. Partly it’s because <a href="http://learnyouahaskell.com/"><i>Learn You a Haskell for Great Good!</i></a> is such a fun read — there are too many funny bits to list but my favorite so far is when the author analyzes the first verse of Avril Lavigne’s <em>Girlfriend</em>.</p>
+<p>Although I think my code in Haskell tends to be more readable than in other languages, code obfuscation in Haskell is almost natural: all you have to do is refactor the wrong function to be “pointfree”, which means that even though it’s a function that takes arguments, you define it without parameters by manipulating and joining a bunch of other functions. Example (plus a few other tiny obfuscations):</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><div class="sourceLine" id="1" href="#1" data-line-number="1">isPrime <span class="fu">=</span> liftA2 (<span class="fu">&amp;&amp;</span>) (liftA2 (<span class="fu">$</span>) (all <span class="fu">.</span> ((<span class="fu">.</span>) (<span class="dv">0</span> <span class="fu">/=</span>)) <span class="fu">.</span> rem) (flip</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">    takeWhile [<span class="dv">2</span><span class="fu">..</span>] <span class="fu">.</span> (flip (<span class="fu">.</span>) <span class="fu">$</span> liftA2 (<span class="fu">*</span>) id id) <span class="fu">.</span> (<span class="fu">&gt;=</span>))) ((<span class="fu">&lt;</span>) <span class="dv">1</span>)</div></code></pre>
+<p>QQ wordpress why no Haskell highlighting <ins>(Editor’s note from 2017: The migration should highlight this now!)</ins></p>
+<p>Also, for some reason, you can do this in Haskell:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><div class="sourceLine" id="1" href="#1" data-line-number="1">ghci<span class="fu">&gt;</span> <span class="kw">let</span> <span class="dv">2</span> <span class="fu">+</span> <span class="dv">2</span> <span class="fu">=</span> <span class="dv">5</span> <span class="kw">in</span> <span class="dv">2</span> <span class="fu">+</span> <span class="dv">2</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="dv">5</span></div></code></pre>
+<p>(via <a href="http://www.yellosoft.us/evilgenius/">Haskell for the Evil Genius</a>)</p>
+<hr />
+<p>Okay, but seriously now. I wrote this about my journey to learn functional programming in the <a href="//blog.vero.site/post/programming">programming babble post</a> half a year ago:</p>
+<blockquote>
+The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes).
+</blockquote>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/haskell">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/mums" class="post-link">MUMS Puzzle Hunt 2013</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-05-24
+		(290 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>, <a href="/category/nerdship">Nerdship</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p><a href="/img/informatix.jpg"><img src="/img/informatix.jpg?w=300" alt="Informatix [MUMS Puzzle Hunt 2013]"/></a></p>
+<p>So, I somehow managed to <a href="http://www.ms.unimelb.edu.au/~mums/puzzlehunt/teamstats.html?team=not+AoPS">get 25 points all by myself</a> in <a href="http://www.ms.unimelb.edu.au/~mums/puzzlehunt/">MUMS Puzzle Hunt 2013</a>. Well, I pestered chaotic_iak a little with <a href="http://www.ms.unimelb.edu.au/~mums/puzzlehunt/2013/puzzles/3.3_Diagnosus_ghQ3AcbJ.html">3.3 Diagnosus (.html with animated .gif)</a> but we still didn’t recognize all the Pokémon until hint 3, at which point Google sufficed for me.</p>
+<p>This is nowhere near the top, but compared to the usual results of whatever AoPS team I form, it’s amazing. By far the best result of AoPS was on CiSRA in 2010 (46th with 58 points), before I discovered puzzle hunts in AoPS; unfortunately due to people getting older and the influx of younger and younger people to the fora, there are less possible teammates each year and they have less time, so here I am by myself. (Also I could have accepted an invitation from a guy in the some-form-of-Elephant team, but I figure if you can win two MUMS hunts in a row you don’t need any more people.)</p>
+<p>All in all: Yay!</p>
+<p></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/mums">→ read more</a>
+	</footer>
+</article>
+
+	
+	
+	
+	<footer class="list-footer">
+		<nav class="pagination">
+			<h3 class="offscreen">Pagination</h3>
+			
+			<a class="pagination-previous" href="/post/page/8">← newer posts</a>
+			
+			
+			<a class="pagination-next" href="/post/page/10">older posts →</a>
+			
+		</nav>
+	</footer>
+	
+</section>
+<footer class="site-footer">
+	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

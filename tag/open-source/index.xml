@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Open Source on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/open-source</link>
+    <description>Recent content in Open Source on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Aug 2016 13:54:22 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/open-source/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>020315040524</title>
+      <link>//blog.vero.site/post/bcodex</link>
+      <pubDate>Mon, 08 Aug 2016 13:54:22 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/bcodex</guid>
+      <description>&lt;p&gt;&lt;code&gt;--... ---.. ....- ..... ..--- ----- ....- ....- ...-- -.... ...-- -.... ...-- . ....- ....- ..--- ----- ....- ..... ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -.... ....- ....- ..--- ----- ...-- ..-. ....- ----- ..--- ----- ...-- ..--- ...-- ..-. ....- ..... ...-- .- ...-- ..... ....- ----- ....- ..... ...-- -.... ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ...-- ..-. ...-- ---.. ....- ....- ....- ..... ..--- ----- ...-- -.. ...-- .- ...-- -.-. ...-- -.... ..--- ----- ...-- --... ...-- .- ...-- ..-. ...-- ..... ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ....- ....- ....- ----- ...-- . ...-- -.... ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- ....- ....- ----- ....- ----- ...-- -.. ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ....- ---.. ...-- ..-. ..... -.-. ....- ..... ....- ----- ..... -.-. ...-- -.... ...-- ..--- ....- ...-- ....- ..... ...-- ----. ..... -... ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- .- ....- ..... ..... -..&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Gridderface 0.5</title>
+      <link>//blog.vero.site/post/gridderface-0-5</link>
+      <pubDate>Tue, 27 Nov 2012 17:53:13 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/gridderface-0-5</guid>
+      <description>Okay, I give up. Here it is: Gridderface is a (quoting the project description, which I wrote anyway so whatever) “keyboard inferface for marking grid-based puzzles in Java” that I’ve been working on for too long. It is open-source under the GPL v3.
+Basically, it’s a thing you can paste logic puzzle images into to solve them in, like people do in Paint, when you can’t or don’t want to print them.</description>
+    </item>
+    
+  </channel>
+</rss>

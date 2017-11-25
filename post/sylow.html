@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Sylow</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="betaveros" />
+  <meta name="description" content="original sillier post
+Note on notation: I’m going to use \(\text{Stab}(x)\) instead of \(G_x\) for the stabilizer subgroup and \(\text{Cl}(x)\) instead of \(^Gx\) for the conjugacy classes. For the orbit of \(x\) I’ll stick with the norm and use \(Gx\), although it’s only used in confusing summation notation that I’ll explain with words too.
+We keep using this silly counting argument which I thought was something like Burnside’s lemma but actually is a lot simpler, just partitioning the set into orbits and slapping the orbit-stabilizer theorem on.
+If \(G\) is the group and \(S\) is the set then
+
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/sylow" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Sylow</h1>
+		
+		<p class="post-meta">
+		
+		2015-05-16
+		(1375 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p><a href="http://www.artofproblemsolving.com/community/c1285h1035830">original sillier post</a></p>
+<p>Note on notation: I’m going to use <span class="math inline">\(\text{Stab}(x)\)</span> instead of <span class="math inline">\(G_x\)</span> for the stabilizer subgroup and <span class="math inline">\(\text{Cl}(x)\)</span> instead of <span class="math inline">\(^Gx\)</span> for the conjugacy classes. For the orbit of <span class="math inline">\(x\)</span> I’ll stick with the norm and use <span class="math inline">\(Gx\)</span>, although it’s only used in confusing summation notation that I’ll explain with words too.</p>
+<hr />
+<p>We keep using this silly counting argument which I thought was something like Burnside’s lemma but actually is a lot simpler, just partitioning the set into orbits and slapping the orbit-stabilizer theorem on.</p>
+<p>If <span class="math inline">\(G\)</span> is the group and <span class="math inline">\(S\)</span> is the set then</p>
+<p></p>
+<p><span class="math display">\[
+\vert S\vert = \sum_{Gx} \vert Gx\vert = \sum_{Gx} \frac{\vert G\vert}{\vert\text{Stab}(x)\vert}
+\]</span></p>
+<p>where in the sum, <span class="math inline">\(x\)</span> ranges over a set of representatives of the orbits, i.e. exactly one <span class="math inline">\(x\)</span> is taken from each orbit, i.e. <span class="math inline">\(Gx\)</span> is equal to each orbit exactly once. Anyway, that sum is a terrible abuse of notation so I’ll just leave it out and explain things in English.</p>
+<p>Below, let <span class="math inline">\(p\)</span> denote some fixed prime.</p>
+<h3 id="cauchys-lemma">Cauchy’s Lemma</h3>
+<p>Let <span class="math inline">\(G\)</span> be a finite abelian group. Then if <span class="math inline">\(p \mid \vert G\vert\)</span> then <span class="math inline">\(G\)</span> has a subgroup of order <span class="math inline">\(p\)</span>.</p>
+<p>Proof: Induct on the order of <span class="math inline">\(G\)</span>.</p>
+<p>If we have an element <span class="math inline">\(a\)</span> with order <span class="math inline">\(pr\)</span> for some positive integer <span class="math inline">\(r\)</span> then <span class="math inline">\(\langle a^r \rangle\)</span> (the subgroup generated by <span class="math inline">\(a^r\)</span>) works.</p>
+<p>Otherwise, we can at least pick an element <span class="math inline">\(a \neq 1\)</span> with order not divisible by <span class="math inline">\(p\)</span>. As <span class="math inline">\(G\)</span> is abelian, we can take the factor group <span class="math inline">\(G/\langle a \rangle\)</span>, whose order is divisible by <span class="math inline">\(p\)</span>. By induction, this factor group contains a subgroup with order <span class="math inline">\(p\)</span>; taking a generator of it, we obtain a coset <span class="math inline">\(b\langle a\rangle\)</span> with order <span class="math inline">\(p\)</span>, where <span class="math inline">\(b \in G\)</span>. Then <span class="math inline">\(b\)</span> has order divisible by <span class="math inline">\(p\)</span>, because if <span class="math inline">\(b^s = 1\)</span> then <span class="math inline">\((b\langle a\rangle)^s = \langle a\rangle\)</span>, the identity of the factor group, and <span class="math inline">\(p \mid s\)</span>. As before, let <span class="math inline">\(b\)</span>’s order be <span class="math inline">\(pr\)</span> and take <span class="math inline">\(\langle b^r \rangle\)</span>.</p>
+<p>(Alternatively: this is entirely trivial if you know the structure of all finitely generated abelian groups.)</p>
+<p>— end Cauchy’s lemma —</p>
+<h3 id="sylow-i">Sylow I</h3>
+<p>Let <span class="math inline">\(G\)</span> be a finite group, let <span class="math inline">\(p\)</span> be a prime and let <span class="math inline">\(k\)</span> be a positive integer. If <span class="math inline">\(p^k \mid \vert G\vert\)</span> then there exists a subgroup <span class="math inline">\(H\)</span> of <span class="math inline">\(G\)</span> with order <span class="math inline">\(p^k\)</span>.</p>
+<p>Proof:</p>
+<p>Consider the <strong>group action</strong> <span class="math inline">\(G\)</span> acting via conjugation (<span class="math inline">\(g: x \mapsto gxg^{-1}\)</span>) on the <strong>set</strong> <span class="math inline">\(G\)</span> itself.</p>
+<p>Then</p>
+<p><span class="math display">\[
+\vert G\vert = \sum \vert\text{Cl}(x)\vert = \sum \frac{\vert G\vert}{\vert C(x)\vert}
+\]</span></p>
+<p>where in the sum, <span class="math inline">\(x\)</span> ranges over a set of representatives of the conjugacy classes, or orbits under conjugation.</p>
+<p>Consider the center <span class="math inline">\(C(G)\)</span>. It’s just the set of <span class="math inline">\(x\)</span> for which <span class="math inline">\(\vert C(x)\vert = \vert G\vert\)</span>, so <span class="math inline">\(\frac{\vert G\vert}{\vert C(x)\vert} = 1\)</span> and the conjugacy class of <span class="math inline">\(x\)</span> contains only <span class="math inline">\(x\)</span> itself. We separate them from the summation like so:</p>
+<p><span class="math display">\[
+\vert G\vert = \vert C(G)\vert + \sum \frac{\vert G\vert}{\vert C(x)\vert}
+\]</span></p>
+<p>where in the sum, <span class="math inline">\(x\)</span> ranges over a set of representatives of the conjugacy classes with at least two elements.</p>
+<p><strong>I.1. If <span class="math inline">\(\vert C(G)\vert\)</span> is divisible by <span class="math inline">\(p\)</span></strong>:</p>
+<p>Of course, <span class="math inline">\(C(G)\)</span> is abelian. So, by Cauchy’s Lemma above, there exists a subgroup <span class="math inline">\(L &lt; C(G)\)</span> with order <span class="math inline">\(p\)</span>. As <span class="math inline">\(L\)</span> is a subgroup of the center, it commutes with every element of <span class="math inline">\(G\)</span>, so it’s normal. Then we can compute the factor group <span class="math inline">\(G/L\)</span>, whose order is divisible by <span class="math inline">\(p^{k-1}\)</span>. Thus by induction <span class="math inline">\(G/L\)</span> contains a subgroup <span class="math inline">\(H\)</span> with order <span class="math inline">\(p^{k-1}\)</span>. The union of all the cosets in <span class="math inline">\(H\)</span> is a subgroup with order <span class="math inline">\(p^k\)</span>, so we’re done.</p>
+<p><strong>I.2. If <span class="math inline">\(\vert C(G)\vert\)</span> is not divisible by <span class="math inline">\(p\)</span></strong>:</p>
+<p>Since <span class="math inline">\(\vert G\vert\)</span> is divisible by <span class="math inline">\(p\)</span>, there would have to be another term on the RHS of the equation not divisible by <span class="math inline">\(p\)</span>. Thus, for some <span class="math inline">\(x \in G\)</span>, the value <span class="math inline">\(\frac{\vert G\vert}{\vert C(x)\vert}\)</span> is not divisible by <span class="math inline">\(p\)</span>. This is only possible if <span class="math inline">\(p^k \mid \vert C(x)\vert\)</span>. But <span class="math inline">\(C(x) \lneqq G\)</span> (if the equality sign held <span class="math inline">\(x\)</span> should have been moved out into <span class="math inline">\(C(G)\)</span>), hence by the induction hypothesis on <span class="math inline">\(C(x)\)</span> we have a subgroup <span class="math inline">\(L &lt; C(X) &lt; G\)</span> with <span class="math inline">\(\vert L\vert = p^k\)</span> and we’re done.</p>
+<p>— end Sylow I —</p>
+<h3 id="sylow-ii">Sylow II</h3>
+<p>Let <span class="math inline">\(G\)</span> be a finite group; suppose <span class="math inline">\(p^k \parallel \vert G\vert\)</span> (i.e. <span class="math inline">\(p^k \mid \vert G\vert, p^{k+1} \nmid \vert G\vert\)</span>). Consider the collection <span class="math inline">\(\mathcal{S} = \{H &lt; G \mid \vert H\vert = p^k \}\)</span> of all subgroups of <span class="math inline">\(G\)</span> with order <span class="math inline">\(p^k\)</span> (which are called <strong>Sylow subgroups</strong>).</p>
+<p>Then:</p>
+<ol type="a">
+<li>for any two Sylow subgroups <span class="math inline">\(H_1, H_2 \in \mathcal{S}\)</span>, they are conjugate, i.e. <span class="math inline">\(\exists x \in G\)</span> such that <span class="math inline">\(xH_1x^{-1} = H_2\)</span>;</li>
+<li><span class="math inline">\(\vert\mathcal{S}\vert\)</span> is a divisor of <span class="math inline">\(\frac{\vert G\vert}{p^k}\)</span>, the index of any Sylow subgroup;</li>
+<li><span class="math inline">\(\vert\mathcal{S}\vert\equiv 1 \bmod p\)</span>;</li>
+<li>for any subgroup <span class="math inline">\(L &lt; G\)</span> with order <span class="math inline">\(p^r\)</span> for some nonnegative integer <span class="math inline">\(r\)</span>, there is some Sylow subgroup <span class="math inline">\(H \in \mathcal{S}\)</span> with <span class="math inline">\(L &lt; H\)</span>.</li>
+</ol>
+<p>Proof.</p>
+<p>First, we prove this statement: (d’) given a fixed Sylow subgroup <span class="math inline">\(H\)</span>, for any subgroup <span class="math inline">\(L &lt; G\)</span> with order <span class="math inline">\(p^r\)</span> for some nonnegative integer <span class="math inline">\(r\)</span>, there exists a conjugation <span class="math inline">\(xHx^{-1}\)</span> of <span class="math inline">\(H\)</span> such that <span class="math inline">\(L &lt; xHx^{-1}\)</span>.</p>
+<p>Consider the <strong>group action</strong> <span class="math inline">\(L\)</span> acting via left translaion (<span class="math inline">\(\ell: gH \mapsto \ell gH\)</span>) on the <strong>set</strong> of left cosets of <span class="math inline">\(H\)</span>, which we’ll denote <span class="math inline">\(\mathcal{T} = \{gH \mid g \in G\}\)</span>.</p>
+<p>Again:</p>
+<p><span class="math display">\[
+\vert\mathcal{T}\vert = \sum \frac{\vert L\vert}{\vert\text{Stab}(gH)\vert}
+\]</span></p>
+<p>where <span class="math inline">\(gH\)</span> ranges over a set of representatives of the orbits in <span class="math inline">\(\mathcal{T}\)</span>.</p>
+<p>Now, we certainly know that <span class="math inline">\(\vert\mathcal{T}\vert = \frac{\vert G\vert}{\vert H\vert = p^k}\)</span> is not divisible by <span class="math inline">\(p\)</span>. Hence again there’s a term on the RHS that’s not divisible by <span class="math inline">\(p\)</span>. As <span class="math inline">\(\vert L\vert = p^r\)</span> this is only possible if, for some coset <span class="math inline">\(gH\)</span>, we have <span class="math inline">\(\text{Stab}(gH) = L\)</span>.</p>
+<p>Thus, that coset <span class="math inline">\(gH\)</span> satisfies: for any <span class="math inline">\(\ell \in L\)</span>, we have <span class="math inline">\(\ell gH = gH\)</span>, i.e. <span class="math inline">\(\ell \in gHg^{-1}\)</span>. Then <span class="math inline">\(L \subset gHg^{-1}\)</span>, and as both are subgroups of <span class="math inline">\(G\)</span> we’re done.</p>
+<p>With this we have proved (d), since (by Sylow I) at least one <span class="math inline">\(H\)</span> exists, and the <span class="math inline">\(gHg^{-1}\)</span> produced is a subgroup with the same order as <span class="math inline">\(H\)</span> and is thus another Sylow subgroup. It also implies (a), just by setting <span class="math inline">\(L\)</span> to be another Sylow group.</p>
+<p>Now we prove (c). Fix a Sylow subgroup <span class="math inline">\(H_1\)</span> and consider the <strong>group action</strong> <span class="math inline">\(H_1\)</span> acting via conjugation (<span class="math inline">\(x: H \mapsto xHx^{-1}\)</span>) on the <strong>set</strong> of Sylow subgroups <span class="math inline">\(\mathcal{S}\)</span>. Then</p>
+<p><span class="math display">\[
+\vert\mathcal{S}\vert = \sum \frac{\vert H_1\vert}{\vert\text{Stab}(H_j)\vert}
+\]</span></p>
+<p>where <span class="math inline">\(H_j\)</span> ranges over a set of representatives of the orbits in <span class="math inline">\(\mathcal{S}\)</span>.</p>
+<p>If <span class="math inline">\(H_j = H_1\)</span> it’s obvious that every element of <span class="math inline">\(H_1\)</span> is in the stabilizer, hence the summand is <span class="math inline">\(1\)</span>.</p>
+<p>On the other hand, if <span class="math inline">\(H_j \neq H_1\)</span>, we claim that <span class="math inline">\(\text{Stab}(H_j) \neq H_1\)</span>. Suppose otherwise; then <span class="math inline">\(xH_jx^{-1} = H_j\)</span> for any <span class="math inline">\(x \in H_1\)</span>, so <span class="math inline">\(H_j\)</span> is a normal subgroup of the subgroup generated by these two Sylow subgroups, <span class="math inline">\(M = \langle H_1, H_j \rangle\)</span>.</p>
+<p>Consider the factor group <span class="math inline">\(M/H_j\)</span>; we claim that its order is also a power of <span class="math inline">\(p\)</span>. This is because if we take the intersection of each coset with <span class="math inline">\(H_1\)</span>, we actually get a factor group of <span class="math inline">\(H_1\)</span>. (I think it’s the “first isomorphism theorem” or something.) That is, <span class="math inline">\(M/H_j \cong H_1/(H_1 \cap H_j)\)</span> so its order is a divisor of <span class="math inline">\(\vert H_1\vert = p^k\)</span>.</p>
+<p>Thus <span class="math inline">\(\vert M\vert = p^k\vert M/H_j\vert\)</span> is also a power of <span class="math inline">\(p\)</span>, and <span class="math inline">\(\vert M\vert &gt; \vert H_1\vert = p^k\)</span>. But as <span class="math inline">\(M\)</span> is a subgroup of <span class="math inline">\(G\)</span>, we know <span class="math inline">\(\vert M\vert\)</span> (a higher power of <span class="math inline">\(p\)</span> than <span class="math inline">\(p^k\)</span>) divides <span class="math inline">\(\vert G\vert\)</span>, contradicting our selection of <span class="math inline">\(k\)</span>.</p>
+<p>Therefore, <span class="math inline">\(\text{Stab}(H_j) \neq H_1\)</span> and therefore <span class="math inline">\(\frac{\vert H_1\vert}{\vert\text{Stab}(H_j)\vert}\)</span> is greater than 1. As <span class="math inline">\(\vert H_1\vert = p^k\)</span>, the result is divisible by <span class="math inline">\(p\)</span>. Therefore, all terms vanish <span class="math inline">\(\bmod p\)</span> except for the orbit of <span class="math inline">\(H_1\)</span> whose summand is <span class="math inline">\(1\)</span>, so <span class="math inline">\(\vert\mathcal{S}\vert\equiv 1 \bmod p\)</span>.</p>
+<p>Now, (b) is easy. Consider the <strong>group action</strong> <span class="math inline">\(G\)</span> acting via conjugation (<span class="math inline">\(g: H \mapsto gHg^{-1}\)</span>) on the <strong>set</strong> of Sylow subgroups <span class="math inline">\(\mathcal{S}\)</span>. Since there’s only one orbit,</p>
+<p><span class="math display">\[
+\vert\mathcal{S}\vert = \frac{\vert G\vert}{\vert\text{Stab}(H)\vert}
+\]</span></p>
+<p>from which it’s obvious <span class="math inline">\(\vert G\vert\)</span> is divisible by <span class="math inline">\(\vert\mathcal{S}\vert\)</span>. And since <span class="math inline">\(\vert\mathcal{S}\vert\)</span> is not divisible by <span class="math inline">\(p\)</span>, we know that <span class="math inline">\(\vert G\vert /p^k\)</span> is divisible by <span class="math inline">\(\vert\mathcal{S}\vert\)</span> too.</p>
+<p>— end Sylow II —</p></article>
+	<footer class="post-footer">
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/wedge">← |Wedge|</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/commitment">A Commitment →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Rise from the Ashes</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="betaveros" />
+  <meta name="description" content="After the first stage of selection camp, I was very nervous because I was fifth place in a selection sequence that would finally result in a team of four.
+I screwed myself over on the first mock test by committing to a bad implementation method on a problem that was hard to get points on. My method seemed simple, but the memory usage leaked out in a way that was confusing and hard to patch; unfortunately, I tried to patch it in increasingly desperate and convoluted ways rather than scrapping the method, and thus missed out on many of the points elsewhere.
+During the second test I failed to read the last problem carefully and spent too much of my time on the second problem, once again missing out on a lot of relatively easy points. I had optimized and optimized and pushed my quadratic runtime down to linearithmic, which would allow me to get the points for the last subtask — or so I thought. But with 10 minutes left I had all but one testcase right, and after desperately rereading my code, I realized that I had a string comparison stuck in an inner loop that could make my runtime degenerate to quadratic if the input string had lots of the same digit. In order to have a solidly linearithmic algorithm, I would have to implement a suffix array. Ten minutes? I gave up. (The problem setters told me afterwards that hashing would have worked too; I didn’t think of that at all. Oops.) I spent the 10 minutes reading the last problem and still failed to read it carefully. So that did not go very well.
+But, as the title probably gave away, during the third and fourth mock tests everything went much better than expected. :) There are two good reasons:
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/rise" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Rise from the Ashes</h1>
+		
+		<p class="post-meta">
+		
+		2014-04-29
+		(1625 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>, <a href="/category/programming">Programming</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>After the first stage of selection camp, I was very nervous because I was fifth place in a selection sequence that would finally result in a team of four.</p>
+<p>I screwed myself over on the first mock test by committing to a bad implementation method on a problem that was hard to get points on. My method seemed simple, but the memory usage leaked out in a way that was confusing and hard to patch; unfortunately, I tried to patch it in increasingly desperate and convoluted ways rather than scrapping the method, and thus missed out on many of the points elsewhere.</p>
+<p>During the second test I failed to read the last problem carefully and spent too much of my time on the second problem, once again missing out on a lot of relatively easy points. I had optimized and optimized and pushed my quadratic runtime down to linearithmic, which would allow me to get the points for the last subtask — or so I thought. But with 10 minutes left I had all but one testcase right, and after desperately rereading my code, I realized that I had a string comparison stuck in an inner loop that could make my runtime degenerate to quadratic if the input string had lots of the same digit. In order to have a solidly linearithmic algorithm, I would have to implement a <a href="https://en.wikipedia.org/wiki/Suffix_array">suffix array</a>. Ten minutes? I gave up. (The problem setters told me afterwards that hashing would have worked too; I didn’t think of that at all. Oops.) I spent the 10 minutes reading the last problem and still failed to read it carefully. So that did not go very well.</p>
+<p>But, as the title probably gave away, during the third and fourth mock tests everything went much better than expected. :)  There are two good reasons:</p>
+<ol>
+<li>
+I had finally learned that in these mock tests, the correlation between problem position and difficulty was effectively zero. This is true even if you assume “difficulty” refers to “difficulty according to a rushed problem-setting committee who only has time to judge a problem by how complex its solution looks rather than how hard it is to think of the solution.” Long-term readers of this blog know <a href="http://www.artofproblemsolving.com/Forum/viewtopic.php?p=2363537">what IMO problem I’m referring to.</a> Knowing this changed my score-maximization strategy significantly.
+</li>
+<li>
+The later test problems had more math-olympiad dependencies, and were thus naturally immensely advantageous for myself too.
+</li>
+</ol>
+<p>To elaborate: Test #3 included one strange output-only hodgepodge problem of probability and combinatorial design tasks, and one combinatorial enumeration problem involving the Fibonacci sequence which then required some optimizations with number theory. Test #4 included two geometric problems, one somewhat standard and one somewhat “creative” (the last test case was a height map of Taiwan with our four nuclear power plants labeled.) Of course, since geometry on computers is always coordinate geometry, there was plenty of algebra in those problems too. So, in other words, these two tests pretty much covered all four math olympiad subject fields (otherwise known as <a href="http://www.artofproblemsolving.com/Forum/viewtopic.php?f=581&amp;t=583653">silver cyanide</a>) between them.</p>
+<p>The story of problem 4.3 is so exciting that I’m going to tell it here. If geometry and estimates of asymptotic time complexity are not your sort of thing, you probably want to skip to the end of this post. There’s a mysterious fun animated bar graph there.</p>
+<hr />
+<p>Problem 4.3, the un-story-fied version:</p>
+<p>There’s an infinite convex polygonal line of N points, given to you with the coordinates of the points. Rigorously: there are at least 3 points, their x-coordinates strictly increase, and the slopes of the segments connecting each point to the next strictly increase as well. The first and last segments given are to be extended infinitely to the left and right. There’s also a “central point” specified above this polygonal line. Find the minimum possible area bounded by some line passing through the central point and the polygonal line.</p>
+<p><a href="/img/prob.png"><img src="/img/prob.png" alt="prob" width="484" height="280" class="aligncenter size-full wp-image-2408" /></a></p>
+<p>I drew a crappy freehand diagram and came up with the neat synthetic property hidden in the problem requirement: The central point had to be equidistant from the solution line’s intersections with the polygonal line.</p>
+<p>The reason is that that’s where marginal benefit equals marginal cost. If you rotate the line a little dθ one way or the other, the change in area will be proportional to the square of the ratio of the distances from the central point to the places where the cut line intersects the polygonal line. Law of sines, vertical angles, economics 101. Boom!</p>
+<p><a href="/img/deduce1.png"><img src="/img/deduce1.png" alt="deduce1" width="565" height="434" class="aligncenter size-full wp-image-2397" /></a></p>
+<p>Good job, me from the past.</p>
+<p>So <em>obviously</em>, I thought, the simplest way to calculate the right intersections given a polygonal line with only two segments was to construct a linear transformation mapping base unit vectors to the two segments’ displacements, and then applying its inverse to the displacement of the central point from the two segments’ intersection.</p>
+<p>omgwtfbbq are you doing, me from the past.</p>
+<p><a href="/img/deduce2.png"><img src="/img/deduce2.png" alt="deduce2" width="565" height="434" class="aligncenter size-full wp-image-2398" /></a></p>
+<p>After discovering that, being the brilliant geometric impostor that I am, I decided to just check all <span class="math inline">\(\binom{n}{2}\)</span> pairs by extending them, solving them as above, and checking if the answers were inside the actual segments, resulting in an at-least-quadratic-time brute-force.</p>
+<p><a href="/img/bash.png"><img src="/img/bash.png" alt="bash" width="565" height="434" class="aligncenter size-full wp-image-2399" /></a></p>
+<p>(Sorry, I didn’t draw all Θ(n<sup>2</sup>) pairs above; I have time, but not <em>that</em> much time.)</p>
+<p>This solved the first two subtasks, so I proceeded to bash the third by pretending it was “almost” monotonic. Intuitively I thought it was monotonic and the bruteforcing could be made linear by a two-pointer sweep, but after messing with it a little bit, I didn’t quite get it working and lacked the geometric finesse to figure out why. So I just brute-forced a bunch of extra combinations past the second pointer.</p>
+<p>The results:</p>
+<ul>
+<li>
+With monotonic-plus-200, I had all the test data except one Wrong Answer.
+</li>
+<li>
+With monotonic-plus-320, I had all the test data except one Time Limit Exceeded.
+</li>
+</ul>
+<p>I was about to give up and switch to making up solutions for Problem 4, until I backtracked on a faint suspicion and realized that the Wrong Answer and the Time Limit Exceeded were on <em>different testcases</em>.</p>
+<p>So I set the magic number to 260 and got a mostly undeserved 25/25! Hooray! (This was only somewhat overshadowed by the fact that my score at that point was already enough to guarantee me a spot on the team, as long as our unofficial scores were accurate.)</p>
+<p>The wallbash-worthy thing, which I learned after the contest, was of course that the intended solution was much simpler, eliminating the need for any linear transformation magic as well as any concerns about brute force and monotonicity in one fell swoop. And I was so close, too.</p>
+<p>All that was necessary was to reflect the polygonal line about the central point.</p>
+<p><a href="/img/correct.png"><img src="/img/correct.png" alt="correct" width="565" height="434" class="aligncenter size-full wp-image-2400" /></a></p>
+<p>Hindsight facepalm: in any synthetic geometry configuration, that midpoint should have been an immediate trigger for applying one of a long list of geometric transformations and auxiliary lines. I had completely forgotten about those triggers, probably because I never expected to use them again and I had replaced them with a few programming-competition triggers that had to almost always fire. So far, I only have two:</p>
+<ol>
+<li>
+“Binary search the answer!” (This helped in Test #2, actually.)
+</li>
+<li>
+“Use a scan line!”
+</li>
+</ol>
+<p>Oops.</p>
+<p>Maybe I’m just not very good at <a href="http://www.artofproblemsolving.com/Forum/viewtopic.php?p=2363537">lines rotating around points…</a> (Yes, that’s a link to the same problem.)</p>
+<hr />
+<p>And so it ends. Or is it a beginning? I made it. I’m going to the 2014 International Olympiad in Informatics. There are several consequences.</p>
+<ul>
+<li>
+We get to take a plane to… oh wait, we’re staying in our own country. I know people in my place who’d rather travel to someplace exotic, go on cool excursions, and get some notable souvenirs. But I’m not a travel sort of guy; I actually prefer the home advantage.
+</li>
+<li>
+I might meet some more cool people! I don’t know. Have I matured enough to stop short-circuiting into socially-awkward-penguin mode around other people? To hell with that. I’m a dragon. Dragons don’t suffer from social anxiety because everybody is potential prey. Fake it ’til you make it.
+</li>
+<li>
+There’s probably going to be an [IOI 2014] tag and sequence of posts on this blog. Actually, let me commit to this beforehand so my future self doesn’t succumb to laziness and rationalize it away by finding a loophole: there <strong>will</strong> be an [IOI 2014] tag and sequence of posts on this blog. Take that, akrasia. (Admittedly, the tag already exists on this post, so half of that is already finished.)
+</li>
+<li>
+This is all very tentative, but I think this is going to be my last high-school olympiad, because alas, high-school is still too short for some things.
+</li>
+</ul>
+<p>It’s too early to get carried away, though, because there’s another beast to slay before then. Four more, in fact, that I can think of right now, which all begin with “AP”:</p>
+<ol>
+<li>
+AP Microeconomics
+</li>
+<li>
+AP Macroeconomics
+</li>
+<li>
+AP English Language and Composition
+</li>
+<li>
+APIO (Asian Pacific Informatics Olympiad)
+</li>
+</ol>
+<p>Haha.</p>
+<p>Yes, okay, fine, I should be studying or practicing. As usual.</p>
+<p>Post-script:</p>
+<ul>
+<li>
+Yes, the title of the post is somewhere between obnoxiously hyperbolic and confusingly irrelevant. For topics like this, that’s just how we roll.
+</li>
+<li>
+I didn’t post this yesterday when the news came out (well, that was fast) because I wasn’t finished writing it and because one of my HabitRPG dailies is “Go to sleep on time”, where “on time” means 10:30 PM. Seriously, it works. I’m Level 4 already.
+</li>
+<li>
+Oh, you were looking for the <a href="https://betaveros.github.io/bars.html">mysterious fun animated bar graph?</a> Make sure to click the radio buttons. It’s my way of celebrating, I guess — grabbing a random popular library and cobbling pieces of code from the internet together until I get something that might pass for cool. It might even have something to do with this post. I wonder what…
+</li>
+</ul></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/bar-graphs"><span class="tag">Bar Graphs</span></a></li>
+			
+			<li><a href="/tag/competitions"><span class="tag">Competitions</span></a></li>
+			
+			<li><a href="/tag/geometry"><span class="tag">Geometry</span></a></li>
+			
+			<li><a href="/tag/ioi-2014"><span class="tag">IOI 2014</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/puzzle-45">← Puzzle 45 / Fillomino [No-Path]</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/pycon">#pyconapac2014 →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

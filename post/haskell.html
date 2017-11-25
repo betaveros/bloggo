@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Haskell and Primes</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="betaveros" />
+  <meta name="description" content=" “I have been told that any encryption becomes safer if the underlying algorithm is maximally obscured, what is most conveniently done by coding it in Haskell.” – rankk  Functional programming is terribly addicting! Partly I think the completely different way of thinking makes it feel like learning programming, and falling in love with it, all over again. Partly there’s this evil sense of satisfaction from using $s (and later &amp;lt;$&amp;gt;s and =&amp;lt;&amp;lt;s and &amp;amp;&amp;amp;&amp;amp;s) to improve readability for initiated Haskellers and worsen it for everybody else. Partly it’s because Learn You a Haskell for Great Good! is such a fun read — there are too many funny bits to list but my favorite so far is when the author analyzes the first verse of Avril Lavigne’s Girlfriend.
+Although I think my code in Haskell tends to be more readable than in other languages, code obfuscation in Haskell is almost natural: all you have to do is refactor the wrong function to be “pointfree”, which means that even though it’s a function that takes arguments, you define it without parameters by manipulating and joining a bunch of other functions. Example (plus a few other tiny obfuscations):
+isPrime = liftA2 (&amp;amp;&amp;amp;) (liftA2 ($) (all . ((.) (0 /=)) . rem) (flip takeWhile [2..] . (flip (.) $ liftA2 (*) id id) . (&amp;gt;=))) ((&amp;lt;) 1) QQ wordpress why no Haskell highlighting (Editor’s note from 2017: The migration should highlight this now!)
+Also, for some reason, you can do this in Haskell:
+ghci&amp;gt; let 2 &#43; 2 = 5 in 2 &#43; 2 5 (via Haskell for the Evil Genius)
+Okay, but seriously now. I wrote this about my journey to learn functional programming in the programming babble post half a year ago:
+ The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes). " />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/haskell" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Haskell and Primes</h1>
+		
+		<p class="post-meta">
+		
+		2013-05-25
+		(682 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>, <a href="/category/programming">Programming</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><blockquote>
+“I have been told that any encryption becomes safer if the underlying algorithm is maximally obscured, what is most conveniently done by coding it in Haskell.” – rankk
+</blockquote>
+<p>Functional programming is terribly addicting! Partly I think the completely different way of thinking makes it feel like learning programming, and falling in love with it, all over again. Partly there’s this evil sense of satisfaction from using <code>$</code>s (and later <code>&lt;$&gt;</code>s and <code>=&lt;&lt;</code>s and <code>&amp;&amp;&amp;</code>s) to improve readability for initiated Haskellers and worsen it for everybody else. Partly it’s because <a href="http://learnyouahaskell.com/"><i>Learn You a Haskell for Great Good!</i></a> is such a fun read — there are too many funny bits to list but my favorite so far is when the author analyzes the first verse of Avril Lavigne’s <em>Girlfriend</em>.</p>
+<p>Although I think my code in Haskell tends to be more readable than in other languages, code obfuscation in Haskell is almost natural: all you have to do is refactor the wrong function to be “pointfree”, which means that even though it’s a function that takes arguments, you define it without parameters by manipulating and joining a bunch of other functions. Example (plus a few other tiny obfuscations):</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><div class="sourceLine" id="1" href="#1" data-line-number="1">isPrime <span class="fu">=</span> liftA2 (<span class="fu">&amp;&amp;</span>) (liftA2 (<span class="fu">$</span>) (all <span class="fu">.</span> ((<span class="fu">.</span>) (<span class="dv">0</span> <span class="fu">/=</span>)) <span class="fu">.</span> rem) (flip</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">    takeWhile [<span class="dv">2</span><span class="fu">..</span>] <span class="fu">.</span> (flip (<span class="fu">.</span>) <span class="fu">$</span> liftA2 (<span class="fu">*</span>) id id) <span class="fu">.</span> (<span class="fu">&gt;=</span>))) ((<span class="fu">&lt;</span>) <span class="dv">1</span>)</div></code></pre>
+<p>QQ wordpress why no Haskell highlighting <ins>(Editor’s note from 2017: The migration should highlight this now!)</ins></p>
+<p>Also, for some reason, you can do this in Haskell:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><div class="sourceLine" id="1" href="#1" data-line-number="1">ghci<span class="fu">&gt;</span> <span class="kw">let</span> <span class="dv">2</span> <span class="fu">+</span> <span class="dv">2</span> <span class="fu">=</span> <span class="dv">5</span> <span class="kw">in</span> <span class="dv">2</span> <span class="fu">+</span> <span class="dv">2</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="dv">5</span></div></code></pre>
+<p>(via <a href="http://www.yellosoft.us/evilgenius/">Haskell for the Evil Genius</a>)</p>
+<hr />
+<p>Okay, but seriously now. I wrote this about my journey to learn functional programming in the <a href="//blog.vero.site/post/programming">programming babble post</a> half a year ago:</p>
+<blockquote>
+The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes).
+</blockquote>
+<p> Anyway, while browsing <a href="http://www.reddit.com/r/haskell">r/haskell</a>, I learned from this article what I was doing wrong; it’s entirely possible to generate primes functionally and quickly. This article on <a href="http://www.cs.tufts.edu/%7Enr/cs257/archive/melissa-oneill/Sieve-JFP.pdf">functional Sieve of Eratosthenes</a> explains why the “naive Sieve of Eratosthenes”, viz.,</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><div class="sourceLine" id="1" href="#1" data-line-number="1">primes <span class="fu">=</span> sieve [<span class="dv">2</span><span class="fu">..</span>]</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">sieve (p <span class="fu">:</span> xs) <span class="fu">=</span> p <span class="fu">:</span> sieve [x <span class="fu">|</span> x <span class="ot">&lt;-</span> xs, x <span class="ot">`mod`</span> p <span class="fu">&gt;</span> <span class="dv">0</span>]</div></code></pre>
+<p>(copied from the article; it’s simpler than my own naive attempt) is severely slow, in fact with time complexity <span class="math inline">\(\Theta(n^2 / (\log n)^2)\)</span>. Even trial division with a suitable cut-off is faster.</p>
+<p>The reason the real Sieve is fast is that it’s easy to “cross off” the multiples of a prime. Here’s my naive Python implementation; it can definitely be optimized, but since I’ve solved quite a few Project Euler problems with it already, it’s “fast enough”.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">def</span> precomputePrimes(limit):</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">    <span class="co">&quot;&quot;&quot;Generator of primes up to, but not including, limit. Kind of slow.&quot;&quot;&quot;</span></div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">    arr <span class="op">=</span> [<span class="va">True</span>] <span class="op">*</span> limit</div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">    arr[<span class="dv">0</span>] <span class="op">=</span> <span class="va">False</span></div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">    arr[<span class="dv">1</span>] <span class="op">=</span> <span class="va">False</span></div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">    <span class="cf">for</span> p <span class="kw">in</span> <span class="bu">range</span>(limit):</div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">        <span class="cf">if</span> arr[p]:</div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">            <span class="cf">yield</span> p</div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, limit, p):</div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10">                arr[i] <span class="op">=</span> <span class="va">False</span></div></code></pre>
+<p>The Python code directly loops through the multiples of each prime p, only touching roughly 1/p of the numbers. In contrast, in the naive Haskell code, the computer tries to divide every single number still in the sieve by every prime. We don’t need that; from the point of view of the prime, the numbers that divide it are easy to compute, and this ease is exactly why the Sieve of Eratosthenes is fast.</p>
+<p>The article contains a fast Haskell implementation that reaches <span class="math inline">\(\Theta(n \log n \log \log n)\)</span>, which you can check out if you want one, but to preserve the spirit of Project Euler, here’s a description without any code if you want to implement this yourself (it’s not that hard). You still keep track of the sieve as a list and sieve through it recursively, but you “cross off” prime multiples lazily, or “just-in-time”; you remember the primes in a way that you can tell, without any trial division, when you reach the next number that needs to be crossed off by a prime.</p></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/code-obfuscation"><span class="tag">Code Obfuscation</span></a></li>
+			
+			<li><a href="/tag/functional-programming"><span class="tag">Functional Programming</span></a></li>
+			
+			<li><a href="/tag/haskell"><span class="tag">Haskell</span></a></li>
+			
+			<li><a href="/tag/primes"><span class="tag">Primes</span></a></li>
+			
+			<li><a href="/tag/project-euler"><span class="tag">Project Euler</span></a></li>
+			
+			<li><a href="/tag/python"><span class="tag">Python</span></a></li>
+			
+			<li><a href="/tag/rankk"><span class="tag">Rankk</span></a></li>
+			
+			<li><a href="/tag/sieve-of-eratosthenes"><span class="tag">Sieve of Eratosthenes</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/mums">← MUMS Puzzle Hunt 2013</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/test">Test →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

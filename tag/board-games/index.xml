@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Board Games on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/board-games</link>
+    <description>Recent content in Board Games on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 20 Jul 2012 12:45:41 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/board-games/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[IMO 2012 Part 2] The Hotel of Deception</title>
+      <link>//blog.vero.site/post/hotel</link>
+      <pubDate>Fri, 20 Jul 2012 12:45:41 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/hotel</guid>
+      <description>&lt;p&gt;We finally arrived at the hotel at 3:30, meeting another local from Taiwan, Mr. Chen, who helped us carry some of our stuff off the bus. Po-Chiang, our guide, was waiting inside. We took more pictures and finally lugged the meager stuff we had off to our hotel rooms.&lt;/p&gt;
+&lt;p&gt;At least, we tried. I started to realize that there was much more to this hotel than it seemed.&lt;/p&gt;
+&lt;p&gt;Firstly, of course, was the confusing placement of rooms with numbers starting with 4 and 5 on the fourth floor (which would be the fifth floor by our numbering system, where the lobby is floor 1; but here the lobby was assigned 0. Off-by-one errors just waiting to happen here.) Secondly were the completely indecipherable signs. I don’t remember the details, but the first signs we saw read something like “560 ~ 540: left; 520 ~ 540: right”. Occasionally there would be weird slashes or half-slashes between the numbers instead (later I finally realized they were slanted, Comic-Sans-style capital Ys, or “and” in Spanish). Are these closed, open, or half-open intervals? And why the heck are their upper and lower bounds in a different order!?&lt;/p&gt;
+&lt;p&gt;We wandered through the corridors, peeking down each one, trying to figure out whether the numbers were increasing or decreasing and whether a parity argument (for those of you not fluent in math lingo, that means odds and evens) allowed for the existence of our room. Who knew the simple act of finding one’s living quarters could be so mathematically tasking? In the end, our rooms were in the last corridor, just about diametrically opposite to the elevators on the half of our floor. Oh well.&lt;/p&gt;
+&lt;p&gt;The room was pretty nice overall. The furniture and basic facilities were quite complete, with a sparkly bathroom and a couple tables and chairs of various shapes. The closet was big and had a safe, which was rather important because just about everybody we had met had warned us over and over again about all the incredibly skilled thieves, muggers, and pickpockets in Argentina. It was probably much safer (no pun intended) in the hotel, but with all of these warnings (later we would even find a notice from the hotel warning us to lock our doors) I was never entirely certain. There were lots of lights controlled by a set of confusing switches on either side of our beds. There was at least one white immovable divider cunningly disguised as a switch, one switch that didn’t ever seem to do anything, and one that turned everything off. The last one made a little sense after a while because it had pictures of stars and a moon on it, but the whole setup was still pretty non-user-friendly in my opinion.  The awesome part was that our room was connected with the one next door with a tiny midway corridor, so by keeping the connecting doors unlocked, the four of us (me, WL, CPT, KYL) could share one room key and just hang out really conveniently. The other two had a room connected to one with two guys from Cyprus. I don’t think they interacted that much, although I know we got an inequality from them one of the days before the contest. We observed that Jensen didn’t work on it and didn’t really touch it afterwards, still living under the mistaken and highly deluded assumption that there was no way the PSC would choose an inequality now that they finally realized that everybody knew Muirhead.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

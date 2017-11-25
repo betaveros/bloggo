@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Adventures in Cabal Installations</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="betaveros" />
+  <meta name="description" content="First Google Code Jam!
+The format of this competition, allowing us to run programs on our own machines, brought up a very interesting issue for me: what programming language should I be using? (I had had similar considerations for IPSC 2013, but GCJ’s problems are closer to the traditional ACM-ICPC style.)
+The obvious choice is C&#43;&#43;, the language I use for roughly every other competition, but its safety (or lack thereof) is not very appealing. I need speed, but not that much speed. Unfortunately I still haven’t gotten around to learning any other friendlier mid-level languages (on the list: D, Go, or Rust), so I have no close substitutes for C&#43;&#43; right now.
+Python is certainly available for a reliable arbitrary-length integer type, if nothing else.
+As for non-candidates, Java has BigInteger and memory safety, but all in all I decided the benefits are too minor and it’s too ugly without operator overloading. Scala is probably way too slow. So I don’t expect to be writing either language.
+The only difficult choice I have to make is, of course, Haskell — which can be quite fast, even while it’s ridiculously type-safe and expressive and referentially transparent and easy to reason about, once you’ve:
+ figured out how to do the problem scrapped step 1 and actually figured out how to do the problem functionally gotten the thing to compile  Even if I can handle step 1, step 2 is by no means a simple task, as my struggle to implement a mere Sieve of Eratosthenes efficiently shows. That is fun, but not at all intuitive; I am doubtful I can do this under contest conditions. It is extremely difficult to transfer my skills in learning how to implement, say, a segment tree or treap into this language.
+But! Google links to the programming language breakdown for 2010 Qualification Round as an example, and much to my surprise, Haskell ranks somewhere between sixth and tenth place in popularity (depending on what you sort by), so there are functional superprogrammers who can presumably do something like this.
+As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it. " />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/cabal" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Adventures in Cabal Installations</h1>
+		
+		<p class="post-meta">
+		
+		2014-04-13
+		(1550 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/programming">Programming</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>First Google Code Jam!</p>
+<p>The format of this competition, allowing us to run programs on our own machines, brought up a very interesting issue for me: what programming language should I be using? (I had had similar considerations for IPSC 2013, but GCJ’s problems are closer to the traditional ACM-ICPC style.)</p>
+<p>The obvious choice is C++, the language I use for roughly every other competition, but its safety (or lack thereof) is not very appealing. I need speed, but not <em>that much</em> speed. Unfortunately I still haven’t gotten around to learning any other friendlier mid-level languages (on the list: D, Go, or Rust), so I have no close substitutes for C++ right now.</p>
+<p>Python is certainly available for a reliable arbitrary-length integer type, if nothing else.</p>
+<p>As for non-candidates, Java has <code>BigInteger</code> and memory safety, but all in all I decided the benefits are too minor and it’s too ugly without operator overloading. Scala is probably way too slow. So I don’t expect to be writing either language.</p>
+<p>The only difficult choice I have to make is, of course, Haskell — which can be quite fast, even while it’s ridiculously type-safe and expressive and referentially transparent and easy to reason about, once you’ve:</p>
+<ul>
+<li>figured out how to do the problem</li>
+<li>scrapped step 1 and <em>actually</em> figured out how to do the problem <em>functionally</em></li>
+<li>gotten the thing to compile</li>
+</ul>
+<p>Even if I can handle step 1, step 2 is by no means a simple task, as my struggle to implement a mere <a href="//blog.vero.site/post/haskell">Sieve of Eratosthenes</a> efficiently shows. That is fun, but not at all intuitive; I am doubtful I can do this under contest conditions. It is extremely difficult to transfer my skills in learning how to implement, say, a segment tree or treap into this language.</p>
+<p>But! Google links to the <a href="http://www.go-hero.net/jam/10/round/0">programming language breakdown for 2010 Qualification Round</a> as an example, and much to my surprise, Haskell ranks somewhere between sixth and tenth place in popularity (depending on what you sort by), so there are functional superprogrammers who can presumably do something like this.</p>
+<p>As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it. </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">let</span> sols <span class="fu">=</span> (g1 <span class="fu">!!</span> pred r1) <span class="ot">`intersect`</span> (g2 <span class="fu">!!</span> pred r2) <span class="kw">in</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">    printf <span class="st">&quot;Case #%d: %s\n&quot;</span> tci <span class="fu">$</span> <span class="kw">case</span> sols <span class="kw">of</span></div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">        [] <span class="ot">-&gt;</span> <span class="st">&quot;Volunteer cheated!&quot;</span></div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">        [a] <span class="ot">-&gt;</span> show a</div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">        _ <span class="ot">-&gt;</span> <span class="st">&quot;Bad magician!&quot;</span></div></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="ot">war ::</span> [<span class="dt">Double</span>] <span class="ot">-&gt;</span> [<span class="dt">Double</span>] <span class="ot">-&gt;</span> <span class="dt">Int</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">war nblocks kblocks <span class="fu">=</span> maximum <span class="fu">.</span> scanl (<span class="fu">+</span>) <span class="dv">0</span> <span class="fu">.</span> map snd <span class="fu">.</span> sort <span class="fu">$</span></div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">    map (,<span class="fu">-</span><span class="dv">1</span>) nblocks <span class="fu">++</span> map (,<span class="dv">1</span>) kblocks</div></code></pre>
+<p>Pattern matching! Scans, maps, tuple sections! &lt;3</p>
+<p>On the other hand, for problem C I encountered a subtle edge case where my program would print an extra row, which was partly hidden by Haskell’s <code>replicate</code> happily receiving a negative integer and not complaining. Too bad Haskell doesn’t have a natural number type.</p>
+<p>In any case, I’m not expecting to continue this for later rounds, at least not for the ones with complex algorithms. I looked at STRefs and IORefs and the Vector library to learn how Haskell interfaces with mutable stuff — it's possible, but I'm quite sure I can't do it quickly enough for a contest. Besides, these skills are nontransferable to most programming competitions and instead just make me annoyed at all the cool Haskell features I don't get to use when I'm competing in them. Oh well.</p>
+<p>The other thing I was doing during the contest, in partial anticipation of later rounds, was tidying up my Haskell installation and workflow. More on that later.</p>
+<p>But remember that <code>replicate</code> bug? While thinking about installing libraries, I remembered something else that has nothing to do with Google Code Jam: I wanted to install <a href="http://www.idris-lang.org/">Idris</a>, a highly Haskellish and totally radical functional programming language with <a href="https://en.wikipedia.org/wiki/Dependent_types">dependent types</a>. I’m not even going to try to explain in this post, but theoretically, dependent types could have encoded the integers involved in that bug into the type system and caught it at compile time.</p>
+<p>The installation failed, which is why I’m here and why this post is actually labeled Cabal installations rather than being about my attempt to use Haskell for competitive programming. The rest of this post is about my debugging efforts — a responsible offering of a solution for anybody who has to deal with this in the future and comes across this page by the well-worn method of “Googling the error message”.</p>
+<hr />
+<p>After twenty eternities, <code>cabal install idris</code> errored out with a ridiculous message and an inexplicable sixty-something-character identifier that started with “<code>_hashable</code>”. The failing dependency was <code>lens-4.1.2</code>. The interesting lines I copied down are these:</p>
+<pre><code>lookupSymbol failed in relocateSection (relocate external)
+unable to load package `void-0.6.1&#39;</code></pre>
+<p>I should have copied down the whole thing…</p>
+<p><img src="http://imgs.xkcd.com/comics/second.png" /></p>
+<p>…but nothing came of it after putting it in Google. It seems as if the actual packages involved may be somewhat random.</p>
+<p>So, for maybe the second time in my life, I decide to hop onto the #haskell IRC channel, and for the first time, I decide to say something. The somethings are preserved for all eternity on <a href="http://ircbrowse.net/browse/haskell?events_page=511041">the logs</a>. After help from some channel gurus and more Googling, I finally solved the problem by this method:</p>
+<p><strong>Nuke Haskell entirely and reinstall it from the package.</strong></p>
+<p>What a civilized solution, right?</p>
+<p>On OS X, there’s a script at <code>/Library/Frameworks/GHC.framework/Versions/Current/Tools/Uninstaller</code>. It took me a while to figure out how to run it; eventually I <code>cd</code>ed into the directory and then <code>sudo bash</code> it. Then I deleted other stuff — <code>/Library/Haskell</code>, <code>~/.ghc</code>, <code>~/.cabal</code>. I cleaned up my $PATH, found the Haskell .pkg, checked its SHA1 against the online version, and installed it. That was quick.</p>
+<pre><code>$ cabal install idris</code></pre>
+<p>And after twenty to thirty more minutes of non-stop compiling, I had Idris installed!</p>
+<p><img src="http://imgs.xkcd.com/comics/compiling.png" /></p>
+<p>But there were other installation failures — one error manifests itself with, as of time of writing, at least the two packages <code>conduit</code> and <code>binary</code>, probably more. But only on OS X. This is due to C++ preprocessor incompatibilities.</p>
+<p>The problem is that OS X (specifically Xcode, I think, but don’t cite me on it) symlinks <code>gcc</code> to a version of <code>clang</code>, which doesn’t support all the same preprocessing directives slash bells and whistles as a true <code>gcc</code> (though it is arguably better in other ways (but this is another programming holy war I don’t have time to go into; I don’t have a strong opinion)). The result is mysterious error messages like this:</p>
+<pre><code>Data/Conduit/Internal.hs:338:4:
+     error: invalid preprocessing directive
+      #-}
+       ^</code></pre>
+<p>I think I read somewhere that there’s a wrapper script around clang to support it in the GHC pipeline, but in the meantime, to get a real <code>gcc</code> on OS X using Homebrew: tap <code>homebrew/versions</code>, then <code>brew install gcc48</code>. <strong>This takes a long time!</strong> The compiler has to bootstrap itself. Luckily, I had done this before and it was not necessary to nuke this along with the Haskell installation.</p>
+<p>To tell GHC about this, find GHC <code>settings</code> (that’s the actual filename; I found mine under <code>/Library/Frameworks/GHC.framework/Versions/7.6.3-x86_64/usr/lib/ghc-7.6.3</code>) and edit the string paired with “C compiler command” to <code>/usr/local/bin/gcc-4.8</code> or wherever Homebrew linked <code>gcc48</code>. Or you could just change the system-wide <code>gcc</code> symlink to point there, but I thought this fit my goals better. I’m mentioning this specifically because I remember seeing it online, but Googling for it led me several times to a link to a particular GitHub page that has since vanished, so the internet may be missing it.</p>
+<hr />
+<p>After all this was done, I got to install a long list of useful Haskell packages. Here they are for my own future reference and for anybody who’s interested.</p>
+<p>Selected from Stephen Diehl’s <a href="http://dev.stephendiehl.com/hask/">What I Wish I Knew When Learning Haskell</a> and <a href="http://www.stephendiehl.com/posts/vim_haskell.html">A Vim + Haskell Workflow</a>:</p>
+<ul>
+<li><code>hoogle</code></li>
+<li><code>pointfree</code></li>
+<li><code>hlint</code> (syntastic integration!)</li>
+<li><code>quickcheck</code></li>
+<li><code>criterion</code></li>
+<li><code>ghc-mod</code> (syntastic integration!)</li>
+<li><code>hdevtools</code> (syntastic integration!)</li>
+</ul>
+<p>It may be necessary to manually symlink executables somewhere into your $PATH. If so, they can probably be found in <code>~/Library/Haskell/ghc-7.6.3/lib/</code> <em><package-name></em> <code>/bin</code>. I had to do this with my old install, but after the nuke and reinstall I didn’t. I don’t know why.</p>
+<p>I’m going to gush again: <a href="https://github.com/scrooloose/syntastic">syntastic</a> is just magical &lt;3 — it magically interfaces with everything, and with hlint it taught me about more than one function lurking in the library I never knew about. Otherwise, the linked posts describe everything here perfectly, except for the fact that getting the Vim commands to work requires separate plugins specifically for interfacing with the tools that aren't mentioned. They're easy to find, though.</p>
+<p>Other personal selections:</p>
+<ul>
+<li><code>data-memocombinators</code> (a significant number of my solutions for stuff like Project Euler and Brilliant.org depend on this)</li>
+<li><code>idris</code> (see much earlier in this post)</li>
+<li><code>vector</code> (the StackOverflow consensus is that this is nicer than Data.Array, apparently, and it’s a must-have if I ever need a speedy destructive algorithm)</li>
+<li><code>parsec</code> (a recent <a href="https://github.com/betaveros/hyperpolymorph">project of mine</a> depends on this; besides it’s just cool)</li>
+<li><code>transformers</code> (? this may come with the platform by default, or at least a dependency of something above)</li>
+</ul>
+<p>Alas, there’s a version dependency of Idris that clashes with Criterion. Note to self next time: get a cabal sandbox working. But that’s enough adventuring for the weekend before midterms, so I’m stopping here.</p></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/cabal-install"><span class="tag">Cabal-Install</span></a></li>
+			
+			<li><a href="/tag/competitions"><span class="tag">Competitions</span></a></li>
+			
+			<li><a href="/tag/haskell"><span class="tag">Haskell</span></a></li>
+			
+			<li><a href="/tag/vim"><span class="tag">Vim</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/sat">← Re-Re-Revisiting the SAT</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/puzzle-45">Puzzle 45 / Fillomino [No-Path] →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

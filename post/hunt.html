@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>2015 MIT Mystery Hunt (spoiler-free version)</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="betaveros" />
+  <meta name="description" content="Well, it’s been over a week, which is a long time for blog posts to be delayed after the event they’re documenting in probably all of the world except my blog. So.
+I guess this post should start with a bit of background. I’ve been puzzlehunting for… wow, three and a half years now. I was introduced to puzzlehunts from AoPS, when some fellow members got together a team for CiSRA 2011, and I think I’ve participated to some degree in every known internet Australian puzzlehunt since.
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/hunt" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">2015 MIT Mystery Hunt (spoiler-free version)</h1>
+		
+		<p class="post-meta">
+		
+		2015-01-27
+		(2159 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/inductive-puzzles">Inductive Puzzles</a>, <a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>Well, it’s been over a week, which is a long time for blog posts to be delayed after the event they’re documenting in probably all of the world except my blog. So.</p>
+<p>I guess this post should start with a bit of background. I’ve been puzzlehunting for… wow, three and a half years now. I was introduced to puzzlehunts from AoPS, when some fellow members got together a team for <a href="http://puzzle.cisra.com.au/2011/teamstats_AoPS.html">CiSRA 2011</a>, and I think I’ve participated to some degree in every known internet Australian puzzlehunt since.</p>
+<p>But as for my experience with the MIT Mystery Hunt in particular, I sort of hunted with a decidedly uncompetitive AoPS team in 2012 (I think we solved one puzzle exactly), but my serious hunting career began when dzaefn recruited me into the Random team (then Random Thymes) <a href="//blog.vero.site/post/hunter">for the 2013 hunt</a> (and I did blog obliquely about it). We didn’t win (and I actually didn’t participate that much because I was traveling with family) but the next year (as One Fish Two Fish Random Fish Blue Fish (1f-2f-17f-255f (I am evidently in a parentheses mood today because as you’ve probably noticed, the amount and depth of parentheses in this sentence are positively alarming (lol)))) we won.</p>
+And I do have a half-written post about that which will never get posted (and I <em>also</em> didn’t participate that much, because my family was moving that weekend) but okay, let’s just drop any semblance of chronological coherence on this blog and dump a short version of the list of puzzles and parts towards which I contributed solving, as I wrote them down one year ago: 
+<ul>
+<li>
+2013
+<ul>
+<li>
+<a href="http://web.mit.edu/puzzle/www/2013/coinheist.com/feynman/a_set_of_words/index.html">A Set of Words</a> (a measly one-fourth of the aha!)
+</li>
+<li>
+<a href="http://web.mit.edu/puzzle/www/2013/coinheist.com/get_smart/portals/index.html">Portals</a> (some co-solving by proxy with chaotic)
+</li>
+<li>
+<a href="http://web.mit.edu/puzzle/www/2013/coinheist.com/indiana/numbers/index.html">Numbers</a> (aha! of first stage, although it turns out that led to a second, more significant stage to be obtained physically, and also it didn’t matter since if I remember correctly we dropped that meta after the wincon nerf)
+</li>
+<li>
+<a href="http://web.mit.edu/puzzle/www/2013/coinheist.com/rubik/agricultural_operations/index.html">Agricultural Operations</a> (aha! and, if I remember correctly, after the team was stuck for a long time! That reminds me, I should go back and solve this puzzle by myself)
+</li>
+</ul>
+</li>
+<li>
+2014
+<ul>
+<li>
+<a href="http://www.mit.edu/~puzzle/2014/puzzle/puzzle_with_answer_cronin/">A Puzzle with the Answer CRONIN</a> (aha!? but I am pretty sure the on-site solver(s) would have gotten it soon anyway)
+</li>
+<li>
+<a href="http://www.mit.edu/~puzzle/2014/puzzle/guess_what_im_thinking/">Guess What I’m Thinking</a> (20-character subpuzzle (but that was the easiest, just spam guesses) and part of 21-character subpuzzle)
+</li>
+<li>
+<a href="http://web.mit.edu/puzzle/www/2014/puzzle/callooh_callay_world/">Callooh Callay, World!</a> (identified a few elements)
+</li>
+<li>
+<a href="http://web.mit.edu/puzzle/www/2014/puzzle/initial_impressions/">Initial Impressions</a> (extraction)
+</li>
+<li>
+<a href="http://web.mit.edu/puzzle/www/2014/puzzle-solution/a_curious_incidence/">A Curious INCIDENCE</a> (extraction, but only after somebody else brought up a similar idea)
+</li>
+</ul>
+</li>
+</ul>
+<p>One year late — woo!!!</p>
+<p>But as per tradition, this meant we had to write the 2015 hunt.</p>
+<blockquote>
+<a href="http://tvtropes.org/pmwiki/pmwiki.php/Main/BlessedWithSuck">Blessed with Suck</a>: Congratulations! You won the Hunt! Now design next year’s Hunt!
+<p class="source">
+— <a href="http://www.tvtropes.org/pmwiki/pmwiki.php/Main/MITMysteryHunt">TVTropes on MIT Mystery Hunt</a>
+</p>
+</blockquote>
+<p>(In particular, for some inexplicable reason, I seem to have unwittingly become Master <a href="http://eev.ee/blog/2012/04/09/php-a-fractal-of-bad-design/">PHP</a> Wrangler for the team, but that’s another non-puzzly story.)</p>
+<p>(Yes, I most absolutely positively definitely am in a parentheses mood today.)</p>
+<p>Okay, backing up just in case some readers are puzzled (haha) about this whole puzzlehunt thing: What <em>is</em> a puzzlehunt?</p>
+<p>I have no experience trying to explain this in-depth to people and I expect most of the people who are still reading to be part of those readers who are already familiar with puzzlehunts, but: in general, what makes a puzzlehunt puzzle special is that there are no instructions and figuring out what to do is part of the puzzle. In an average newspaper Sudoku or crossword or other logic puzzle, you go in knowing you have to fill in the numbers or letters according to the clues; if you see a normal-looking logic puzzle in a puzzlehunt, you can guess that there is some twist that isn’t spelled out (e.g. <a href="http://web.mit.edu/puzzle/www/2012/puzzles/a_circus_line/blackout/">Blackout</a> (2012 MIT) or <a href="http://web.mit.edu/puzzle/www/2013/coinheist.com/rubik/agricultural_operations/index.html">Agricultural Operations</a> from 2013 as linked above)</p>
+<p>Of course, there are exceptions, e.g. most Duck Konundra (a primarily Mystery Hunt–centric tradition involving following lots and lots of detailed explicit instructions instead of having to guess them) or the occasional logic puzzle whose innovativeness or sheer bizarreness makes it hunt-worthy, e.g. <a href="http://web.mit.edu/puzzle/www/2013/coinheist.com/get_smart/portals/index.html">Portals</a> from 2013 as linked above.</p>
+<p>Anyway, as a super-remote writing team member I don’t have any exciting stories about runarounds, but here are a sample of notable, relatively easy puzzles from this year:</p>
+<ul>
+<li>
+<a href="http://web.mit.edu/puzzle/www/2015/puzzle/feeling_bluefin/">Feeling Bluefin</a>, the most solved and probably the easiest puzzle
+</li>
+<li>
+<a href="http://web.mit.edu/puzzle/www/2015/puzzle/nautiluss_duplicated_quest/">Nautilus’s Duplicated Quest (<em>archived version does not work yet</em>)</a>, also well-solved and highly acclaimed
+</li>
+<li>
+<a href="http://web.mit.edu/puzzle/www/2015/puzzle/moves/">Moves</a>
+</li>
+<li>
+<a href="http://web.mit.edu/puzzle/www/2015/puzzle/eh/">Eh?</a>
+</li>
+<li>
+<a href="http://web.mit.edu/puzzle/www/2015/puzzle/the_cats_meow/">The Cat’s Meow</a>
+</li>
+</ul>
+<p>Other notable puzzles:</p>
+<ul>
+<li>
+<a href="http://www.20000puzzles.com/puzzle/polyglot/">Polyglot</a>, chaotic’s masterpiece
+</li>
+<li>
+<a href="http://www.20000puzzles.com/puzzle/lets_get_submersible/">Let’s Get Submersible!</a>, a Battleship variant
+</li>
+<li>
+<a href="http://www.20000puzzles.com/puzzle/watch_me_blow_this/">Watch Me Blow This!</a>, chess (I just realized from peeking at Puzzletron that the author was originally planning a music puzzle. Fascinating)
+</li>
+<li>
+<a href="http://web.mit.edu/puzzle/www/2015/puzzle/representative_characters/">Representative Characters</a>, which I’m going to leave discussion for the spoilery post
+</li>
+</ul>
+<p>Anyway, I wrote three and a quarter puzzles.</p>
+<ul>
+<li>
+<a href="http://web.mit.edu/puzzle/www/2015/puzzle/a_puzzle_consisting_entirely_of_random_anagrams/">A Puzzle Consisting Entirely of Random Anagrams</a>
+</li>
+<li>
+<a href="http://web.mit.edu/puzzle/www/2015/puzzle/pipe/">Pipe (<em>archived version does not work yet</em>)</a>
+</li>
+<li>
+<a href="http://web.mit.edu/puzzle/www/2015/puzzle/p1ctures/">p1ctures</a>
+</li>
+<li>
+and a tiny bit of <a href="http://web.mit.edu/puzzle/www/2015/puzzle/the_10_000_puzzle_pyramid/">The 10,000 Puzzle Pyramid</a>
+</li>
+</ul>
+<p>This is the spoiler-free post (I hope nobody is concerned about being spoiled purely about the existence of puzzles with certain titles or explicit types). <ins>edit: Spoilery comments are below. Cool, I can keep everything in one post now.</ins></p>
+<button class="unhide" data-unhide="spoiler" data-rehide="Hide spoilers">
+Show spoilers
+</button>
+<div id="spoiler" class="hidden">
+<p>Spoilery rambling about my puzzles and other puzzles and stuff!</p>
+<h3 id="a-puzzle-consisting-entirely-of-random-anagrams">A Puzzle Consisting Entirely of Random Anagrams</h3>
+<p><a href="http://web.mit.edu/puzzle/www/2015/puzzle/a_puzzle_consisting_entirely_of_random_anagrams/">→ Archive link ←</a></p>
+<p>This is somewhat of a spiritual successor to <a href="http://www.mit.edu/~puzzle/2014/puzzle/guess_what_im_thinking/">Guess What I’m Thinking</a> (2014), “a parody of the puzzle authoring no-no of writing a puzzle that is essentially ‘guess what the author is thinking’.”</p>
+<p>It’s common puzzle-writing advice to “avoid random anagrams”. This is literally the first item on the Random Fish newsletter on elegance:</p>
+<blockquote>
+Special Feature: 6 Tips for Writing a More Elegant Puzzle<br />
+<strong>#1 No random anagrams.</strong><br />
+— Weekly News Angler #16
+</blockquote>
+<p>as well as the first miscellaneous item in this other advice article by David Wilson, <a href="http://web.mit.edu/dwilson/www/puzzles/puzzlewriting.html">Introduction to Writing Good puzzlehunt Puzzles</a>:</p>
+<blockquote>
+6. Miscellaneous Other Dos and Don’ts<br />
+Don’t use unclued (random) anagrams.
+</blockquote>
+<ins datetime="2015-01-27T04:54:10+00:00">
+ETA: chaotic_iak has also pointed out <a href="http://www.youtube.com/watch?v=Of-ciQoR0I8#t=18m47s">this image macro from the 2014 kickoff</a>.
+</ins>
+<p>So of course, being the rebel that I am (/sarc), I had to try to write a cohesive and solvable puzzle incorporating random anagrams. How do you present a long random anagram and allow the solver to be justifiably able to unscramble it? Find a way to simultaneously clue the unscrambling permutation, of course. And make that a second stage to an easier first stage with the same mechanism… and treat the title literally to make it even funnier… and voilà!</p>
+<p>There are several imperfections:</p>
+<ul>
+<li>
+There might have been a little more work than I would consider optimal. One of the testsolvers <em>hated</em> it over this (although I had gotten an answer with a shorter cluephrase afterwards). And it does have to be long enough to make the cluephrase impractical to anagram without also solving the clues and extracting the number, so I don’t think there was that much to do about it.
+</li>
+<li>
+ASCII is completely unclued, so you probably need puzzlehunt experience and familiarity with your standard puzzle codes to consider it fair. But I opted for flavor-text-free elegance over cluing it.
+</li>
+<li>
+There’s a zero/one-indexing ambiguity about how to convert permutations to numbers. I personally think ASCII makes more sense with zero-indexing, but neither choice is really obviously correct, and once again, I thought we’d go all the way with no flavor text.
+</li>
+<li>
+The way most but not all of the second-stage answer words were five letters long tripped up some people. On the other hand, I think the words I could choose from were scarce already and I tried very hard to make my clues fully unambiguous. I think I deserve some slack for having to clue six 6’s. (Although looking back again, maybe I could have avoided that with a little more trying different final cluephrases.)
+</li>
+</ul>
+<p>But I still think the idea is enough to make it all worth it. And I think most people agreed — for fun rating, it received six 4s and two 5s, and it made the wrap-up slides! Woo! Now I can sleep knowing I’ve contributed something original to the world.</p>
+<h3 id="pipe">Pipe</h3>
+<p><a href="http://web.mit.edu/puzzle/www/2015/puzzle/pipe/">→ Archive link (<em>version does not work yet</em>) ←</a></p>
+<p>The motivation was simple: I wanted to make a <a href="http://devjoe.appspot.com/huntindex/keyword/blackboxsolvermustfigureoutinnerworkings">“black box”</a> puzzle for the culture-deprived puzzlers like me quite early. (Guess What I’m Thinking likely also belongs here, so you can see I like this puzzle type.) I got some particular inspiration from <a href="http://web.mit.edu/puzzle/www/2012/puzzles/okla_holmes_a/winning_conditions/">Winning Conditions</a> (2012), except I went for the challenge of not showing the final result, forcing solvers to find it themselves, and also make it exactly the same as the answer. It did end up involving some outside knowledge (chemical elements), but hopefully solvers agree that’s a more universal bit of knowledge than dozens of movies or songs that were made before I was born.</p>
+<p>I think this puzzle solved pretty well too. One team wrote feedback:</p>
+<blockquote>
+This was my favorite puzzle! I wish every puzzle were like this! It was so much fun
+</blockquote>
+<p>:)</p>
+<p>Some people didn’t find the chemical-element jump fun, though. Also, one of the surveys we received pointed out that Google Docs’s <code>floor</code> function <em>truncates towards zero</em> (<code>floor(-0.1) = 0</code>); the solver was stuck due to this, and suggested such a convention issue ought to be noted somewhere. I have never heard of this alternate <code>floor</code> convention — Wikipedia seems pretty clear on the matter that rounding towards zero is a separate concept, <a href="https://en.wikipedia.org/wiki/Truncation">truncation</a> — and if I had, I don’t know what I would have done about it, if anything. I guess I can only suggest that solvers exercise a little more caution with Google Sheets. (Inexplicably, the <code>int</code> function in Google Sheets seems to round down whereas it truncates in most languages I know of.) Finally, it proved to be very tricky to answer oracle questions about, partly because my solution assumed certain things about functions that were never clearly-defined from the solver’s point of view, so the oracle gave out several mistaken answers. Sorry to anybody who got tripped up at that point.</p>
+<p>Ratings were two 3s, four 4s, and two 5s.</p>
+<p>Aside: I learned about the Haskell function <code>Data.List.delete</code> from a factchecker during the writing of this puzzle because my solution script reinvented it. Oops!</p>
+<h3 id="p1ctures">p1ctures</h3>
+<p><a href="http://web.mit.edu/puzzle/www/2015/puzzle/p1ctures/">→ Archive link ←</a></p>
+<p>The notpr0n gimmick, with the number that you’re supposed to change pretending to be 1337speak and an extra-troll 404 gap at 5 that you have to jump. (At least one team got stuck looking for metadata in the original picture. Mission accomplished! Well, OK, I’m not sure this is proper puzzlehunt ethos, but maybe getting stuck like that makes the moment of realization all the more fun?) Basically I got this idea because I do things like it completely unprovoked when I get stuck on a puzzlehunt. Did anybody access <code>pictures.png</code>?</p>
+<p>I’m amazed that there didn’t seem to be any feedback asking if the puzzle was broken, since it looks empty. I guess Mystery Hunters are prepared for shenanigans.</p>
+<p>I should note that the sequence, as clued, is ambiguous — OEIS has <a href="http://oeis.org/search?q=1%2C2%2C3%2C4%2C6%2C8%2C9%2C12&amp;language=english&amp;go=Search">dozens of sequences starting with the same terms</a>. I floated the idea of adding p1ctures up to 27 to completely specify it, at least among sequences on OEIS, but none of the testsolvers indicated any hesitance about which sequence it was, so I let it slide. Maybe I should have insisted.</p>
+<p>Also, I heard reports of some teams hit with intermittent 403s, which is pretty sad. Ratings were one 3, two 4s, and one 5.</p>
+<h3 id="the-10000-puzzle-pyramid">The 10,000 Puzzle Pyramid</h3>
+<p><a href="http://web.mit.edu/puzzle/www/2015/puzzle/the_10_000_puzzle_pyramid/">→ Archive link ←</a></p>
+<p>Oh boy, this puzzle. We finished this three days before hunt, and even despite last-minute nerfs it turned out to indeed mostly be aimed at backsolvers. Still, it was rated pretty decently too. I only contributed a little code to this, in addition to incompletely testsolving it spoiled. Only interesting thing to report is, I figured out this DP while doing the latter.</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="ot">mark ::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">mark wordlist <span class="fu">=</span> head <span class="fu">.</span> foldr go [<span class="dv">0</span>] <span class="fu">.</span> tails</div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">    <span class="kw">where</span> go t xs <span class="fu">=</span> maximum (head xs <span class="fu">:</span></div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">                    [length w <span class="fu">+</span> xs <span class="fu">!!</span> (length w <span class="fu">-</span> <span class="dv">1</span>)</div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">                    <span class="fu">|</span> w <span class="ot">&lt;-</span> wordlist, w <span class="ot">`isPrefixOf`</span> t]) <span class="fu">:</span> xs</div></code></pre>
+<p>Every puzzle is more fun if you force yourself to solve it with pure Haskell!</p>
+<h3 id="representative-characters">
+Representative Characters
+</h3>
+<p><a href="http://web.mit.edu/puzzle/www/2015/puzzle/representative_characters/">→ Archive link ←</a></p>
+<p>The hardcore math puzzle! I did not write this. I wish I had. I spent maybe ten hours over five months testsolving it (3/16 – 8/28) and learned 90% of the representation theory I know now in the process. Although I loved it, I was kind of worried that puzzlers in the real hunt would think it too mathy, but I guess I underestimated the Mystery Hunt audience; it also solved well and received positive reviews.</p>
+<p>I had no idea that representation theory was a significant field of math before this puzzle. Maybe it is a little serendipitous that <a href="https://usamo.wordpress.com/tag/representation-theory/">Power Overwhelming is going over it</a> recently.</p>
+</div></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/mit"><span class="tag">MIT</span></a></li>
+			
+			<li><a href="/tag/puzzle"><span class="tag">Puzzle</span></a></li>
+			
+			<li><a href="/tag/puzzlehunt"><span class="tag">Puzzlehunt</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/c-to-d">← C/C&#43;&#43; to D</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/midnight">Thoughts at Midnight →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/blogs</link>
+    <description>Recent content in Blogs on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 27 Jul 2015 07:10:20 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/blogs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>C-c-c-Combo Breaker!</title>
+      <link>//blog.vero.site/post/combo</link>
+      <pubDate>Mon, 27 Jul 2015 07:10:20 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/combo</guid>
+      <description>&lt;p&gt;I made it!&lt;/p&gt;
+&lt;p&gt;After a &lt;a href=&#34;//blog.vero.site/post/rekt&#34;&gt;misstep on the fourth day&lt;/a&gt; I managed to post one post every day, completing the rest of the &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;streak&lt;/a&gt;! This post is scheduled to go out around the time my plane takes off.&lt;/p&gt;
+&lt;p&gt;I’m free!&lt;/p&gt;
+&lt;p&gt;I’d insert a &lt;cite&gt;Frozen&lt;/cite&gt; gif here if I could find a good one, but I don’t like any of the ones I found and besides, copyright is an issue. So instead:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;figure&gt;
+&lt;a href=&#34;//blog.vero.site/img/cliques.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/cliques.png&#34; alt=&#34;source: Wikimedia Commons, public domain&#34; width=&#34;585&#34; height=&#34;468&#34; class=&#34;size-full wp-image-3257&#34; /&gt;&lt;/a&gt;
+&lt;figcaption&gt;
+source: &lt;a href=&#34;https://commons.wikimedia.org/wiki/File:VR_complex.svg&#34;&gt;Wikimedia Commons&lt;/a&gt;, public domain
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;IMO2007.C6. In a mathematical competition some competitors are friends. Friendship is always mutual. Call a group of competitors a clique if each two of them are friends. (In particular, any group of fewer than two competitiors is a clique.) The number of members of a clique is called its size.&lt;/p&gt;
+&lt;p&gt;Given that, in this competition, the largest size of a clique is even, prove that the competitors can be arranged into two rooms such that the largest size of a clique contained in one room is the same as the largest size of a clique contained in the other room.&lt;/p&gt;
+Author: Vasily Astakhov, Russia
+&lt;/blockquote&gt;
+&lt;p&gt;If you remember where I first posted this to break a combo, you have an excellent memory and/or spend too much time stalking me. If you remember the &lt;em&gt;context&lt;/em&gt; under which I posted this to break a combo, you have a better memory than I do.&lt;/p&gt;
+&lt;p&gt;Was my streak a success? On the bright side, I definitely generated lots of posts, many of which were radical departures from my old blogging habits:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;//blog.vero.site/post/99&#34;&gt;card game documentation&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;//blog.vero.site/post/nuclear&#34;&gt;weird short stories&lt;/a&gt; and &lt;a href=&#34;//blog.vero.site/post/nuclear-ii&#34;&gt;sequels to weird short stories&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+an essay (liberally defined) with &lt;a href=&#34;//blog.vero.site/post/quixotic-1&#34;&gt;two&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/quixotic-2&#34;&gt;parts&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+an essay with &lt;a href=&#34;//blog.vero.site/post/more-fiction-1&#34;&gt;two&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/more-fiction-2&#34;&gt;parts&lt;/a&gt; and a &lt;a href=&#34;//blog.vero.site/post/more-fiction-part-2-5&#34;&gt;half&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+another &lt;a href=&#34;//blog.vero.site/post/college-emails&#34;&gt;bar graph&lt;/a&gt; that is actually documented,
+&lt;/li&gt;
+&lt;li&gt;
+a ridiculous &lt;a href=&#34;//blog.vero.site/post/phone&#34;&gt;literate Haskell post&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+numerous &lt;a href=&#34;//blog.vero.site/post/1024&#34;&gt;facetious&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/zzz&#34;&gt;Paintbrush&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/double-post&#34;&gt;dragons&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a side blog&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;//blog.vero.site/post/index-txt&#34;&gt;and&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/897&#34;&gt;of&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/drop-in&#34;&gt;course&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/a-list&#34;&gt;metric&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/sheep&#34;&gt;zarktons&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/2857&#34;&gt;of&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/numbers-bmp&#34;&gt;shameless&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/clicker&#34;&gt;filler&lt;/a&gt;.
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I also had lots of fun conversations about my posts, such as:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Signal Boost</title>
+      <link>//blog.vero.site/post/signal</link>
+      <pubDate>Wed, 17 Jun 2015 21:59:18 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/signal</guid>
+      <description>&lt;p&gt;(Short blog content, posted as part of a &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly committed to&lt;/a&gt;; standard disclaimers apply)&lt;/p&gt;
+&lt;p&gt;For the interested, I wrote a &lt;a href=&#34;https://ibshgin.wordpress.com/2015/06/17/copyright/&#34;&gt;&lt;strong&gt;post summarizing issues in copyright and patent law&lt;/strong&gt;&lt;/a&gt; on a new blog for a school club. Actually, if you’re reading this post, you’re probably already interested enough / bored enough to read that post, so go read it. I think the videos are worth watching despite their length, but I tried to summarize the key points in text, so decide how much to read or watch depending on how much spare time you have.&lt;/p&gt;
+&lt;p&gt;I don’t know if that blog will work out, but anyway WordPress tells me I have 8500% more followers on this blog than the other one, even though I have doubts about how many of those followers actually read anything I post at all, so I thought I should link to that post here. Also, by publicizing the blog, I get to shame my friends and fellow club members into posting so that it doesn’t look so empty. Social media expertise, you know?&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Scheduled Blogging</title>
+      <link>//blog.vero.site/post/scheduled-blogging</link>
+      <pubDate>Fri, 20 Apr 2012 11:43:31 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/scheduled-blogging</guid>
+      <description>Some bloggers have a regular schedule for posting and forcing themselves to meet the deadlines. In essence, something like &amp;quot; updates every Thursday.&amp;quot;
+For me, I think this is a bad idea, because it forces me to write. If my day is boring and uneventful as it quite often is and I still have to crank out a post, it would not be a post that readers would enjoy. Better once-a-month enthusiastic, interesting posts then an ugly stream of tedious drudgery for the visitor to wade through every time, stuff like (quoting one random ancient post):</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming Languages on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/programming-languages</link>
+    <description>Recent content in Programming Languages on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 16 Dec 2012 22:08:28 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/programming-languages/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ridiculously Long-Winded Programming Babble</title>
+      <link>//blog.vero.site/post/programming</link>
+      <pubDate>Sun, 16 Dec 2012 22:08:28 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/programming</guid>
+      <description>&lt;p&gt;Okay I don’t actually know how this pointless rambling got so long. I know the longer it is the more people will just tend to skim, because I do that all the time. So I went back and refactored—er, rewrote all the somewhat tangential bits (wow these puns are too easy) into footnotes. Manually. Obviously if I have to do this again I’ll write a script for it. But the post is still really long, and I bet nobody will read the whole thing. Oh well.&lt;/p&gt;
+&lt;p&gt;Life updates: I got out of the hospital Friday two-and-a-half weeks ago, went to the preliminaries of NPSC (a national team programming contest) with classmates, threw up a lot, went back into the hospital, and came out again. I wrote a lot of stuff about the experience and how much it sucked (hint: &lt;em&gt;a lot&lt;/em&gt;) when I started this draft around that time, but now putting so much detail in this post feels weird. I’m mostly good now.&lt;/p&gt;
+&lt;p&gt;Three years ago NPSC was the only programming contest I really knew of; now I’ve participated in quite a few more, both online and locally, but it’s still the only contest I’ve entered that gives you real-time verdicts. I believe it inherits this from being modeled after ACM-ICPC, but that’s for college people and I’m less clear on how it works. All the other contests, namely &lt;a href=&#34;https://www.topcoder.com/&#34;&gt;TopCoder&lt;/a&gt;, &lt;a href=&#34;http://www.codeforces.com/&#34;&gt;CodeForces&lt;/a&gt;, &lt;a href=&#34;http://usaco.org/&#34;&gt;USACO&lt;/a&gt;, and the other local individual competition (there doesn’t appear to be an English name so for the purpose of this post I’ll just call it “Nameless Local”; there’s a nation-wide competition in one-and-a-half weeks!), have system tests after the contest that don’t allow you to resubmit afterwards.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; They all give pretests that you get to know about right away, just to catch super-silly non-algorithmic mistakes like failing to remove the debug statements or reading input from the wrong place, but these contain weak test cases and don’t guarantee that the solution will pass the system tests and get full score.  After roughly parsing the rules on the IOI’s website, I believe the IOI (at least this year; I don’t know if it has evolved or anything) allows real-time testing and feedback with a confusing bunch of restrictions: how it apparently works is there are free “public tests”, and you can get results for a “release test” using the official test cases by using a “release token”, which you get two of every half hour. Additionally, there is apparently a cap of 64 submissions per problem, but I’m pretty sure it’s the kind of cap that honest competitors can safely ignore, like the 100-per-group in Australian puzzlehunts. Well, at least it tells us the organizers think in binary. Or octal.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Ninety-nine (card game)</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="betaveros" />
+  <meta name="description" content="(Frivolous blog content, posted as part of a daily posting streak I have openly committed to; standard disclaimers apply)
+It is quite interesting that Wikipedia’s article on Ninety-nine (addition card game), plus many of the following search results (ignoring the identically-named trick-taking game that is guaranteed to show up), have the same basic idea but wildly differing assignment of special cards from the one I’m familiar with, which everybody I can recall having played with agrees on. (Admittedly I’ve only ever played this among Taiwanese friends.) The only special-card assignment method that came close was a certain person’s “stuff from my old blog” dumping post I bumped into very accidentally. (His 5 is our 4; our 5 skips to an arbitrary player. The post also clarifies that negative totals bounce back to zero, and includes a clause whereby players must state the running total after playing and lose if they’re wrong. Interesting.)
+Anyway, yes, I am documenting the rules to a card game on this blog. I think this deserves to exist online.
+These rules are not completely rigorous because I don’t know them completely rigorously. You can use common sense to reach a consensus in corner cases.
+Use a normal deck of playing cards, or two or more identical decks if you want. Deal five cards to each player and set the rest aside to form a draw pile. Cards are played into a discard pile in the center. Players sit in an approximate circle and take turns along the circle, playing one card and then, usually, drawing one replacement card from the draw pile, so in normal 99, hands stay at five cards. When the draw pile runs out, shuffle the discard pile to become the new draw pile. There is a “running total” in the game, an integer that starts at 0. Normal cards add their value to the running total when played. The total cannot become greater than 99, hence the name. If you have no cards that could keep it less than or equal to 99, you lose. In that case, the turn passes to the next player and the game continues until only one player remains, or until players get bored and decide to play something else.
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/99" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Ninety-nine (card game)</h1>
+		
+		<p class="post-meta">
+		
+		2015-06-12
+		(1348 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/randomness">Randomness</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>(Frivolous blog content, posted as part of a <a href="//blog.vero.site/post/commitment">daily posting streak I have openly committed to</a>; standard disclaimers apply)</p>
+<p>It is quite interesting that Wikipedia’s article on <a href="https://en.wikipedia.org/wiki/Ninety-nine_%28addition_card_game%29">Ninety-nine (addition card game)</a>, plus many of the following search results (ignoring the identically-named trick-taking game that is guaranteed to show up), have the same basic idea but wildly differing assignment of special cards from the one I’m familiar with, which everybody I can recall having played with agrees on. (Admittedly I’ve only ever played this among Taiwanese friends.) The only special-card assignment method that came close was a certain person’s <a href="https://nmnnmnnmmnnnmnrnmnmnnmn.wordpress.com/2012/09/27/concatenation/">“stuff from my old blog” dumping post</a> I bumped into very accidentally. (His 5 is our 4; our 5 skips to an arbitrary player. The post also clarifies that negative totals bounce back to zero, and includes a clause whereby players must state the running total after playing and lose if they’re wrong. Interesting.)</p>
+<p>Anyway, yes, I am documenting the rules to a card game on this blog. I think this deserves to exist online.</p>
+<p>These rules are not completely rigorous because I don’t know them completely rigorously. You can use common sense to reach a consensus in corner cases.</p>
+<hr />
+<p>Use a normal deck of playing cards, or two or more identical decks if you want. Deal five cards to each player and set the rest aside to form a draw pile. Cards are played into a discard pile in the center. Players sit in an approximate circle and take turns along the circle, playing one card and then, usually, drawing one replacement card from the draw pile, so in normal 99, hands stay at five cards. When the draw pile runs out, shuffle the discard pile to become the new draw pile.  There is a “running total” in the game, an integer that starts at 0. Normal cards add their value to the running total when played. The total cannot become greater than 99, hence the name. If you have no cards that could keep it less than or equal to 99, you lose. In that case, the turn passes to the next player and the game continues until only one player remains, or until players get bored and decide to play something else.</p>
+<h3 id="normal-99">
+Normal 99
+</h3>
+<p>Normal cards are A=1 except ace of spades, 2, 3, 6, 7, 8, 9.</p>
+<p>Special cards have these effects:</p>
+<ul>
+<li>
+<strong>4</strong>, reverse: change the direction of play from clockwise to counterclockwise or vice versa. Like the Uno card. The player who played just before you will also play next, unless the turn order was disrupted by a 5 before you.
+</li>
+<li>
+<strong>5</strong>, target: pick an arbitrary player to play next. Play continues from that player, going in the same direction along the circle. (Strictly more powerful than “pass” because you can target the player who would have gone next anyway.)
+</li>
+<li>
+<strong>10</strong>, ±10. You may choose to add or subtract 10 from the running total.
+</li>
+<li>
+<strong>J</strong>, pass. Acts like adding 0 to the running total.
+</li>
+<li>
+<strong>Q</strong>, ±20. You may choose to add or subtract 20 from the running total.
+</li>
+<li>
+<strong>K</strong>, max. Set the running total directly to 99.
+</li>
+<li>
+<strong>A of spades</strong>, reset. Set the running total directly to 0.
+</li>
+</ul>
+<p>This game is an interesting way to train the players’ mental arithmetic, but for a strategic game, much less so. Not to mention slow.</p>
+<h3 id="bloody-99">
+Bloody? 99
+</h3>
+<p>I do not know if there is a more fitting English term than “bloody”; I know the phrase that this was literally translated from is also used to modify other games, such as Big Two, to indicate more exciting variants. But this version is actually fun.</p>
+<p>Normal cards are 2, 3, 6, 8, 9.</p>
+<p>You still lose when none of your cards are playable. However, this can now be caused by having no cards at all in your hand. Your hand size is going to go down over the course of the game.</p>
+<p>Special cards are these two, in addition to those listed above:</p>
+<ul>
+<li>
+<strong>7</strong>, steal: after discarding the 7, draw your replacement card from an opponent’s hand that you choose. Your opponent does not draw any replacement cards, so his/her hand now permanently has one fewer card than it did before. The running total is not affected.
+</li>
+<li>
+<strong>A</strong>, swap: after discarding the Ace, swap your entire hand with an opponent’s. Your opponent does not draw any replacement cards, so his/her hand now has one fewer card than you did before your turn. The running total is not affected.
+</li>
+</ul>
+<p>(Edit: To be clear, either card can be played to cause the chosen opponent to end up with a hand of zero cards and therefore lose. Well, technically the opponent only loses the next time it’s their turn, because none of the zero cards they hold can be played. But unless you’re paying close attention to the order in which players lose it doesn’t matter.)</p>
+<p>And, the <strong>sum rule</strong>: you can play two or more cards together to have the effect of a special card with their sum as value. (For this purpose, A = 1, J = 11, Q = 12, K = 13.) However, you don’t get to draw any more replacement cards than you would if you just played one card (i.e. you don’t draw any replacement cards if you played cards that summed to 7, and you draw only one replacement card if you played cards that sum to any other number), so your hand will get smaller.</p>
+<p>Examples:</p>
+<ul>
+<li>
+You might play a 5 and an 8 as a K, setting the running total to 99. You draw one card afterwards; your hand size decreases by 1.
+</li>
+<li>
+You might play a 2 and a 5 as a 7, thus drawing one replacement card from an opponent. Your hand size decreases by 1, as does that of your opponent.
+</li>
+</ul>
+<h3 id="more-9s">
+More 9s
+</h3>
+<p>Sometimes we played with this additional rule:</p>
+<ul>
+<li>
+<strong>9</strong>s must be unconditionally discarded whenever drawn, with no replacement.
+</li>
+</ul>
+<p>For more fun, you can allow the application of the sum rule to 9s, so you may spontaneously choose to discard a combination of cards that sums to 9 without drawing any replacement cards, even when it’s not your turn. Usually if you do this (or if you are blatantly playing more cards under the sum rule than you need to), you are decreasing your hand size because you have an Ace ready to sabotage somebody. But once your group gets the hang of the game, you realize it’s also possible that you’re bluffing to try to trick somebody into swapping hands with you…</p>
+<h3 id="jokers">
+Jokers?
+</h3>
+<p>And finally, extra fun with jokers. These arguably go against the spirit of the above modifications because they make your hand larger and slow down the game, though, so you may not want to use them.</p>
+<ul>
+<li>
+<strong>“Small” joker</strong>: look through the face-up discard pile and choose up to 5 cards to add to your hand.
+</li>
+<li>
+<strong>“Big” joker</strong>: draw up to 5 cards from other player’s hands, with the restriction that you are not allowed to take anybody’s last card.
+</li>
+</ul>
+<p>(I don’t know if joker sizes are standard terminology. Usually the colored one is considered “big”.)</p>
+<h3 id="quibbles">
+Quibbles
+</h3>
+<p>Some corner cases in the rules that are not spelled out:</p>
+<ul>
+<li>
+Can you target yourself with a 5? (Example where this is strategically useful: the battle is down to two players; you know the other player has a hand with only one card, an Ace; you don’t have a 7 or A. Then your only hope is to draw a 7 or A as the replacement for the 5 and play it.)
+</li>
+<li>
+Can you play a 10 or Q to decrease the number below zero? Is such a move illegal or does the total “bounce back” to zero if it goes negative?
+</li>
+<li>
+In the bloody variant, can the <strong>Ace of Spades</strong> still be used to set the running total directly to 0, instead of trading hands? (Conceivable if you think your hand is really good.)
+</li>
+<li>
+What happens if you play the “big” joker and the number of cards you can draw without taking anybody’s last card is less than 5?
+</li>
+</ul></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/arithmetic"><span class="tag">Arithmetic</span></a></li>
+			
+			<li><a href="/tag/card-games"><span class="tag">Card Games</span></a></li>
+			
+			<li><a href="/tag/games"><span class="tag">Games</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/commitment">← A Commitment</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/college-emails">College Emails →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Utilities on Bounded-Error Log</title>
+    <link>//blog.vero.site/util</link>
+    <description>Recent content in Utilities on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="//blog.vero.site/util/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Factorize</title>
+      <link>//blog.vero.site/util/factorize</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/util/factorize</guid>
+      <description>A basic JavaScript factorizer. Warning: it uses extremely dumb trial division, so numbers with large prime factors will quite likely hang your browser, and big numbers will overflow or lose precision. If you want to factor the big fish, use Alpertron’s ECM applet or something.
+factor! append? fancy?   </description>
+    </item>
+    
+    <item>
+      <title>Poker Formatter</title>
+      <link>//blog.vero.site/util/poker</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/util/poker</guid>
+      <description>&lt;p&gt;Format poker cards for forum games and whatever without reaching for Unicode input methods.&lt;/p&gt;
+&lt;p&gt;The regex employed is essentially &lt;code&gt;/\b([A2-9TJQK]|10)([CDHS])\b/g&lt;/code&gt;. You have to type in uppercase (otherwise even “as” would be filtered).&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

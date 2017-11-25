@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>whoosh</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="betaveros" />
+  <meta name="description" content="I finally did it.
+I was on-site for the 2016 MIT Mystery Hunt. I even solved a metapuzzle. This year I hunted with ✈✈✈ Galactic Trendsetters ✈✈✈, the team primarily but not overwhelmingly formed from floorpi, my dorm floor. (Perhaps somewhat regrettably, I didn’t contribute to any events or runarounds or things given to HQ, unless you count attending a “recitation” for Student Simulator (round King Arthur, second from left).)
+(Also, I made this post. Has it been two weeks already? Okay, that’s not an unusual timeframe.)
+But wow, I got to touch so many puzzles.
+Non-spoilery comments on particularly memorable puzzles I did, which are disproportionately programming-related, if anybody wants to look at them (I am describing how to get to the puzzle from the round instead of linking because I’m lazy and links might rot but the instructions will hopefully survive archival (although turns out there’s actually a table of contents so I don’t know what I’m doing)):
+
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/whoosh" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">whoosh</h1>
+		
+		<p class="post-meta">
+		
+		2016-02-01
+		(2681 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>I finally did it.</p>
+<p>I was on-site for the 2016 MIT Mystery Hunt. I even <em>solved a metapuzzle</em>. This year I hunted with ✈✈✈ Galactic Trendsetters ✈✈✈, the team primarily but not overwhelmingly formed from floorpi, my dorm floor. (Perhaps somewhat regrettably, I didn’t contribute to any events or runarounds or things given to HQ, unless you count attending a “recitation” for Student Simulator (round King Arthur, second from left).)</p>
+<p>(Also, I made this post. Has it been two weeks already? Okay, that’s not an unusual timeframe.)</p>
+<p>But wow, I got to touch so many puzzles.</p>
+<p>Non-spoilery comments on particularly memorable puzzles I did, which are disproportionately programming-related, if anybody wants to look at them (I am describing how to get to the puzzle from the round instead of linking because I’m lazy and links might rot but the instructions will hopefully survive archival (although turns out there’s actually a <a href="http://huntception.com/toc.html">table of contents</a> so I don’t know what I’m doing)):</p>
+<p></p>
+<ul>
+<li>
+<strong>identify, SORT, index, solve</strong> (round Sleeping Beauty, bottom-right) is my favorite puzzle. Since I probably have a lot of readers in that direction, I should mention it’s also math-related!
+</li>
+<li>
+<strong>Time Suck</strong> (round Endymion, second from left in bottom row) is hilarious and pretty fun, too. Programming/scripting/hacking-things-together ability helps, but I suppose you can do this the long titular way if you want…
+</li>
+<li>
+<strong>ASCII Characters</strong> (round Rip Van Winkle, top pin behind the center one): I enjoyed the first part, but am pretty dissatisfied with the second, even though we managed to get it eventually (more precisely, while some of us working on it had gotten stuck and left our hunt room to get burritos, phenomist guessed it remotely).
+</li>
+<li>
+<strong>Luminance Shift</strong> (round Ysera, rightmost in Your Hand) was fun. I guess I might only complain that it’s not quite as cohesive as I like my puzzles to be.
+</li>
+<li>
+<strong>Unimaginably Twisted Files</strong> (round Sleeping Beauty, one below top-center) was fun but we got stuck several times.
+</li>
+<li>
+I did the <strong>Sleeping Gypsy meta</strong>! I even managed to backsolve one and a half answers from it! It was exhilarating!
+</li>
+</ul>
+<p>Non-spoilery comments on cool puzzles I looked at but didn’t solve much of:</p>
+<ul>
+<li>
+<strong>CLICK TO WIN!!!</strong> (round King Arthur, center): Cute use of the medium.
+</li>
+<li>
+<strong>Replication</strong> (round Ysera, second from left in Enemy Side): Just look at this thing. Seriously, just look at it.
+</li>
+<li>
+<strong>Quantum Minesweeper</strong> (round Pam Ewing, bottom-left): Also cute to behold.
+</li>
+</ul>
+<p>And non-puzzly final observations:</p>
+<ul>
+<li>
+I also got to meet quite a few friends who flew in for hunt! Perhaps most notably, I thought very hard and discussed with lots of people in order to come up with an interesting and robust protocol for meeting and recognizing Yoshiap, which we didn’t end up using, I ended up just visibly sending a chat over Hangouts saying “!!!”; even though I don’t know how often I’ll be in a similar situation again, suggestions for cooler protocols would be much appreciated, if only for mental gratification. Also unfortunately there were a few other people I only got to wave at. Oh well, there are probably still quite a few more next times.
+</li>
+<li>
+The first morning, I got 4 hours of sleep. No regrets. I think sleep deprivation really only set in a few days later, but boy, that was quite the experience and totally worth it.
+</li>
+<li>
+I got to look at somebody’s screen and ask somebody “What Flight are you on?”
+</li>
+<li>
+Verbally following up to the title is so fun.
+</li>
+<li>
+Does Holden Lee read my blog????????
+</li>
+</ul>
+<p>Oh well, back to normal life…</p>
+<ins>
+edit: Spoilery comments are below. Cool, I can keep everything in one post now.
+</ins>
+<button class="unhide" data-unhide="spoiler" data-rehide="Hide spoilers">
+Show spoilers
+</button>
+<div id="spoiler" class="hidden">
+<p>First, ones I contributed anything notable to:</p>
+<ul>
+<li>
+<strong>Ladder Dogs</strong> (Dog Show, Obstacles, bottom unsolved): got a few clues and noticed the alphabet to sort by for the final step. Pretty standard puzzle, but with an impressive number of dog-themed cryptic clues.
+</li>
+<li>
+<strong>Before and After</strong> (Dog Show, Obedience, bottom unsolved): got a few clues, failed to extract, although somebody else found the solution quickly. I guess the idea of reading letters independently after classifying is something to learn.
+</li>
+<li>
+<strong>Meshed Together</strong> (Dog Show, Tracking, third from top): got a few clues via regexing. Made several realizations, including how the final cluephrase produced an answer, independently after others had already made those realizations. Called in the correct answer after somebody else already did. Oops. Online cooperation is hard. That was pretty cute, though.
+</li>
+<li>
+<strong>Off The Leash</strong> (Dog Show, Obstacles, fourth from top): Wow. We were super stuck on this until I regexed the trigrams in a insane (that’s literally the adjective the documentation describes it with) SCOWL word list to find <code>GUILDENSTERN</code> and somebody recognized it. I stayed on this puzzle as primary regexer, contributing roughly nothing else. I guess SOWPODS isn’t good enough sometimes.
+</li>
+<li>
+<p><strong>ASCII Characters</strong> (round Rip Van Winkle, top pin behind the center one): I did primary scripting and visual selecting on this one. I have to thank whoever factored the numbers right away onto our Google sheet for cutting out a lot of trial and error on my part. <ins datetime="2016-02-01T04:33:41+00:00">(edit: Turns out this was also phenomist.)</ins></p>
+<p>We debated who would script this for a bit. After I thought about it I realized that with Haskell and the <code>split</code> package, it’s really a single line, <code>interact $ unlines . chunksOf n . filter (not . isSpace)</code>, modulo command-line argument reading. So I did that and cut out the images with Vim’s visual block selection (which is amazing) and produced all twelve images.</p>
+<p>We got very stuck after getting the four groups of three images and making sketchy guesses for two and a half of the groups, though. While our local group was getting burritos (perhaps the only legitimate meal I ate during hunt), phenomist miraculously guessed the final answer remotely.</p>
+I enjoyed the starting text-handling mechanic, but am quite dissatisfied with the way the pictures cluing things; it felt unrelated to the previous step and hacky, with two clues being perfect substring removals and two being in the uncanny valley of being <em>just a little bit</em> fiddly to make work. Also, the answer length was such that each set could have neatly clued two letters; that’s another reason to think there could have been a much better second stage to this puzzle. Oh well.
+</li>
+<li>
+<strong>identify, SORT, index, solve</strong>: This is just great. I learned that WolframAlpha can calculate power towers. I don’t know if I actually helped mathematically; I might have been net negative utility here. Still, I provided the code for computing the lexicographical ranking since I had it pretty much ready, and I also figured out what we were identifying and provided some sheets magic. I think this is my favorite puzzle of the hunt, in no small part also due to the theme subverting classic puzzle tropes. I also appreciated what I considered the well-calibrated difficulty of the “identify” step — not obvious, but suitably easy when compared to how hard SORTing was, mostly due to the unambiguous nature of the first picture, while <em>also</em> being fair and thematic.
+</li>
+<li>
+<strong>Unimaginably Twisted Files</strong>: jakobw did most of the encoding parsing at first. Afterwards I did the second stage and extracted a bunch of bits. Afterwards, I got stuck again; I recognized that a definitely statistically significant number of the resulting bytes had a second bit set, but couldn’t get anything out of it. The next morning somebody picked up where I had left and solved it accidentally by missing the first bit in his selection when copy-pasting, turning it into parseable text. It turns out the first bit came from a byte order mark at the start of the file that was supposed to verify that it was UTF-8 and then discarded, but which we kept, and which I guess I actually came close to discovering but failed — I had seen that somehow the first line of the first resulting paragraph had one more character than the other first lines, and the other lines corresponded perfectly with regards to length, before giving up. Gah. Follow through observations next time, self.
+</li>
+<li>
+<p><strong>Luminance Shift</strong>: Fun. I did most of the coding. A Python script using <code>requests</code> pumped the POST into a textfile and a whole bunch of other Python scripts parsed things out of it in weird ways. It was done in such an edge-of-the-seat manner that I ended up with some exception-terminated loops with stderr silenced and a Perl script repeatedly invoking the other Python scripts through <code>system</code>.</p>
+Like I wrote, though, I feel like poking at the color components, working out their structure, and then realizing that the components spelled out letters in a 2D grid felt somewhat unrelated. It was kind of unsatisfying to see all in the same puzzle without any obvious thematic link. It was still enjoyable, though I can imagine it not being enjoyable if we didn’t manage to solve it.
+</li>
+<li>
+<strong>Trail Goods</strong>: Fairly standard, but the process of identifying stuff with pizens was fun. I did this on floorpi instead of our hunting classroom because I was tired.
+</li>
+<li>
+<p><strong>Student Simulator</strong>: An interesting puzzle model in which we had to attend “office hours”, at which a “TA” would show us how to solve example problems and we had to apply the same process to things in the pset. After attending and discussing with the first guy, we got P for the first part, I and Q for the second part, and D,A,T,H for the third part. I implored our team to solve it before I woke up the third day. They did; apparently you were supposed to keep all the punctuation in the third part. Eh, not entirely unfair, but not too satisfying to me; it feels like a step with a lot of degrees of freedom even in addition to that (where do you cut the strings, actually? do you keep spaces?) and keeping punctuation does not feel like what puzzle conventions would point to for me.</p>
+I didn’t follow how we eventually solved this puzzle, but we got PIQAD and it clued the answer.
+</li>
+<li>
+<p><strong>Sleeping Gypsy meta</strong>: I noticed this a few times but thought the other programmers had it taken care of, failing to communicate my experience with Piet. After wandering around more, it seems I was the one most familiar with it. So I manually figured out what the Piet was doing, hacking my way through <strong>Jackson Pollock</strong> by guessing that the “subtract 2” below it called for a 9 squared. After I worked things out up to the fourth clue, I watched as our team got Cubism next to me (also, the sight of Yoshiap colorfully constructing the figure in Minecraft); I finally guessed my way through the seventh clue and allowed our team to call in the answer based on BITE OFF E*. Afterwards I even managed to guess the last five letters of the final answer, for <strong>Sculptural Disassembly</strong>, and get it backsolved.</p>
+<p>That was a really, really awesome experience.</p>
+I feel like the meta design itself was a bit odd, though, since the leap to Piet, clued by red blocks in the second to sixth words, was not too unreasonable even without seeing those words (our team suspected it even before seeing the red blocks; once I tried simulating the first row, I was 100% certain), and the meta disproportionately required the first puzzle answer to give the entire first word of the meta answer. So I guess the state of the meta might have been pretty sad if we got everything except that first puzzle, <strong>Disappointment</strong>, which sounds undesirable for meta principles? I guess Disappointment was an advantageous puzzle for our team, so it would be unlikely to happen to us, but it might happen to somebody else. This is getting overly speculative though.
+</li>
+<li>
+<p><strong>Jackson Pollock</strong> (round Sleeping Beauty, fourth from top), while we’re on the subject: with my progress, we backsolved this eventually, very late.</p>
+<p>I am annoyed at this puzzle because another solver and I found surprising equal patterns in the frequencies of component values periods and were convinced we were onto something.</p>
+The value 0 occurred the most often as a component. They got rarer, but with significant jumpy irregularities that matched perfectly across the three color channels. Value 7 occurred significantly more rarely than 6 or 8; 10 occurred more rarely than 9 or 11; and so on. 32 is the first value that doesn’t occur at all, next to components that appear at least 0.5% of the time. The next values that don’t occur are 37, 41, 45, 48, 51, and so on. After finding this, we tried fitting the sequence of to some integer division or logarithmic function. But it was all a big red herring. Sigh.
+</li>
+<li>
+<p><strong>Time Suck</strong> (round Endymion, second from left in bottom row): As I said, a hilarious puzzle. Some people tried watching the whole thing on 25x speed or something as I managed to get ffmpeg to spit out 35,998 .png files — I guess it was <code>ffmpeg -i time.3gp -r 1/1 $filename%03d.png</code>? — and hacked some old Scala programs of mine to look for whiteness and find the frames with letters. Apparently I’m a better scripter than I thought?</p>
+I also got us unstuck by suggesting we concatenate the timestamp components to get a number, instead of converting to number of seconds. It was really exciting when one of us circled back to listening to the video, figuring out first that a voice was saying something, and then, after a lot of strained interpretations by various people, that the voice was actually saying numbers that were perfect for indexing (not more letters).
+</li>
+</ul>
+<p>And now for puzzles I just looked at:</p>
+<ul>
+<li>
+<strong>A Quick Sudoku</strong> (round Dreamtime, 5.2): what
+</li>
+<li>
+<strong>CLICK TO WIN!!!</strong> (round King Arthur, center): I don’t know how well it solved, but it seems to be an impressive and creative use of the medium.
+</li>
+<li>
+<strong>Everything You Read</strong> (round Vote for Opus): A nice thing to make a puzzle about, but, like, what even is this extraction method?
+</li>
+<li>
+<strong>Haddock Walk</strong> (round Ysera, rightmost card on Your Side): I confess, I was narcissistic enough that the first thing I did was ctrl-F the three puzzles I wrote last time. This actually gave a break-in because one of them was actually used, and being the author let me know right away it wasn’t about laddergrams, so that was pretty cool. We didn’t end up solving this, though. In the post-mortem we decided that if we summed the enumerations, we would have been able to realize we wanted to extract three letters from each incorrect puzzle, and since I had actually thought about the puzzle depths enough to include them in the spreadsheet, the solution would have been within our reach. Oh well, that’s a lesson for next time.
+</li>
+<li>
+<strong>Is That Even Music?</strong> (round Vote for Opus): I don’t actually know what this was, but I managed to translate a few letters to Morse code on sight, so yay.
+</li>
+<li>
+<strong>Quantum Minesweeper</strong> (round Pam Ewing, bottom-left): Unfortunately, because I was asleep, I only got to hear about Yoshiap’s overpoweredness on this puzzle secondhand. But wow.
+</li>
+<li>
+<strong>Reaching For The Stars</strong> (round King Arthur, just right of center): Darn, we didn’t manage to extract and so missed the obligatory fun video making part of the hunt. At least this extraction method kind of made sense.
+</li>
+<li>
+<strong>Replication</strong> (round Ysera, second from left in Enemy Side): I think we worked on this for hours before abandoning it, which is sad, but hey, it’s one of those puzzles that’s just amazing to behold and read the solution to. (I guess I wouldn’t have this nice feeling about it if I had actually unsuccessfully worked on it a lot during the hunt though.)
+</li>
+<li>
+<strong>The White House Or Bust!</strong> (round Vote for Opus): “This puzzle is about boobs. That’s all you need to know.”
+</li>
+<li>
+<strong>To Serve and Protect</strong> (round King Arthur, rightmost): Slitherlinks make me happy, but turns out I’m now extremely rusty at them. Anyway, somebody else solved this quickly. I may stop listing logic puzzles as one of my specialties.
+</li>
+</ul>
+</div></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/mit"><span class="tag">MIT</span></a></li>
+			
+			<li><a href="/tag/puzzle"><span class="tag">Puzzle</span></a></li>
+			
+			<li><a href="/tag/puzzlehunt"><span class="tag">Puzzlehunt</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/ascension">← Ascension</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/brand-new">Brand New →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Haskell Stash</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="betaveros" />
+  <meta name="description" content="" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/ref/hs" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Haskell Stash</h1>
+		
+		<p class="post-meta">
+		
+		
+		(1764 words)
+		
+		</p>
+	</header>
+	<article><h2 id="installation-notes">Installation Notes</h2>
+<p>Personal list of Hackage packages to install, in approximate decreasing order of priority.</p>
+<h3 id="in-haskell-platform">In Haskell Platform</h3>
+<p><a href="https://www.haskell.org/platform/changelog.html">Changelog</a> (in case there was any doubt)</p>
+<p>GHC notably has <code>array</code>, <code>bytestring</code>, <code>template-haskell</code>, <code>transformers</code>.</p>
+<p>Additional libraries notably include <code>attoparsec</code>, <code>HTTP</code>, <code>HUnit</code>, <code>mtl</code>, <code>parsec</code>, <code>QuickCheck</code>, <code>text</code>, <code>vector</code>.</p>
+<p>Still, come to think of it, these libraries may well have updated since the platform release…</p>
+<p>I’m too lazy to reinstall <em>all</em> of them, so here are the ones I recognize that I care about, minus <code>containers</code> because it mysteriously threatens to break <code>ghc-7.8.3</code> itself, plus the <code>update</code> that I always forget:</p>
+<pre><code>cabal update
+cabal install HTTP HUnit QuickCheck array attoparsec bytestring mtl parsec random split text transformers unordered-containers vector</code></pre>
+<p>Of those, I’d say these are particularly important:</p>
+<ul>
+<li><code>vector</code> (better than <code>array</code>…?)</li>
+<li><code>parsec</code> (parsing with Haskell is awesome)</li>
+</ul>
+<h3 id="bare-ghc">Bare GHC?</h3>
+<p>After asking around on #haskell, I learned <a href="https://ghcformacosx.github.io/" class="uri">https://ghcformacosx.github.io/</a>, which is easy to relocate doesn’t come with those default extra slightly-out-of-date packages, only the basic GHC and cabal-install.</p>
+<h3 id="cabal-preparation">Cabal Preparation</h3>
+<p>Go to <code>~/.cabal/config</code> and change these settings:</p>
+<pre><code>verbose: 3
+documentation: True
+require-sandbox: True</code></pre>
+<p>Verbosity helps keep me sane when Cabal seems screwy or lagging.</p>
+<p>Sometimes Cabal generates Haddock documentation explicitly without me saying so, sometimes it doesn’t. Better safe than sorry.</p>
+<p>And I’ve been holding out on requiring Cabal to install into sandboxes because I feel like global installs are still <em>sometimes</em> useful, but I am <em>constantly</em> being bitten by forgetting to install in a sandbox, and haven’t wanted to install something globally for a long time. Should you ever really want to install something globally, <code>cabal</code> will tell you how to override that option when you try: use <code>--no-require-sandbox</code>. But it <strong>won’t</strong> tell you <em>where</em> to use <code>--no-require-sandbox</code>: you should put it as your first flag, right after <code>cabal</code> and before even the subcommand, according to <a href="https://stackoverflow.com/questions/23544266/cabal-and-no-require-sandbox">this StackOverflow answer</a> and personal experience.</p>
+<p><code>cabal install cabal-install</code> for the newest version.</p>
+<p>Then, <strong>restart your terminal</strong>. Make sure <code>cabal --version</code> says what it should.</p>
+<p>Also, apparently you should install <code>happy</code> and <code>alex</code> unsandboxed.</p>
+<h2 id="cabal-sandbox">cabal sandbox</h2>
+<p>I took too long to figure this out.</p>
+<p>Pick a nice folder or create one, <code>cd</code> there, and then:</p>
+<p>{% highlight sh %} $ cabal sandbox init $ cabal install whatever {% endhighlight %}</p>
+<p>Now <code>cabal</code> will use packages in the sandbox for everything. But for my use case, I only want access to certain libraries for quick scripts without bringing the rest of my installation crashing down into dependency hell.</p>
+<p>That means I’ll <code>ghc</code> or <code>runhaskell</code> them, which does <em>not</em> automatically use the sandbox. Instead, I can:</p>
+<p>{% highlight sh %} $ cabal exec runhaskell myscript.hs {% endhighlight %}</p>
+<p>Or even do this to get a brand-new shell where <code>ghc</code> and <code>runhaskell</code> all know about the sandbox:</p>
+<p>{% highlight sh %} $ cabal exec sh {% endhighlight %}</p>
+<p>More full-blown:</p>
+<p>{% highlight sh %} $ cabal exec sh – –login {% endhighlight %}</p>
+<p>Somewhat strangely, however, <code>cabal install</code> doesn’t work inside the <code>cabal exec sh</code>. Oh well.</p>
+<p>So, I think I’ll try to avoid entering a shell. It took a little searching but finally I found <a href="https://ro-che.info/articles/2014-03-05-cabal-sandbox-tips">cabal sandbox tips</a> for some ways to get cabal to “stay with you”. The weird <code>${a+b}</code> syntax is one of various <a href="http://tldp.org/LDP/abs/html/parameter-substitution.html">parameter substitution</a> syntaxes. Eventually I cobbled this together:</p>
+<p>{% highlight sh %} export PS1=‘${sandbox_name+[}[\e[1;32m]@ [\e[0;34m][\e[0m]$’</p>
+<p>function uncabalize() { echo “uncabalizing…” unset sandbox_name unset CABAL_SANDBOX_CONFIG } function cabalize() { if [[ -e cabal.sandbox.config ]]; then echo “cabalizing to <code>basename $PWD</code>…” export sandbox_name=<code>basename $PWD</code> export CABAL_SANDBOX_CONFIG=$PWD/cabal.sandbox.config else uncabalize fi } {% endhighlight %}</p>
+<p>(Note that this has to be like a function in <code>.profile</code> because scripts can’t set environment variables seen by the parent shell.)</p>
+<p>Now all that’s necessary is to make aliases for <code>cabal exec ghc</code> or <code>cabal exec runhaskell</code>.</p>
+<p>Alternatively, if you want a shell script or alias or whatever for a specific setup for <code>ghci</code>:</p>
+<p>{% highlight sh %} ghci -package-db=/path/to/sandbox/whatever-packages.conf.d -ghci-script=/path/to/ghci/script/whatever.ghci {% endhighlight %}</p>
+<h3 id="vim-interface-haxx">Vim interface haxx</h3>
+<p>Incohesive and undocumented. Use at your own risk.</p>
+<pre class="vim"><code>function! s:get_cabal_sandbox_g_option()
+    let l:config_file = &quot;&quot;
+    if !empty($CABAL_SANDBOX_CONFIG)
+        let l:config_file = $CABAL_SANDBOX_CONFIG
+    elseif filereadable(&#39;cabal.sandbox.config&#39;)
+        let l:config_file = &#39;cabal.sandbox.config&#39;
+    endif
+    if !empty(l:config_file)
+        let l:output = system(&quot;grep package-db &lt; &#39;&quot; . l:config_file . &quot;&#39;&quot;)
+        let l:dir = matchstr(substitute(l:output, &#39;\n&#39;, &#39; &#39;, &#39;g&#39;), &#39;package-db: \zs\S\+\ze&#39;)
+        return &quot;-g-package-db=&#39;&quot; . l:dir . &quot;&#39;&quot;
+    else
+        return &#39;&#39;
+    endif
+endfunction
+let g:syntastic_haskell_ghc_mod_args = s:get_cabal_sandbox_g_option() . &quot; check --boundary=&#39; &#39;&quot;
+let g:syntastic_haskell_hdevtools_args = s:get_cabal_sandbox_g_option() . &quot; -g-Wall&quot;</code></pre>
+<p>Note that <code>ghc-mod</code> and <code>hdevtools</code> actually kind of fill the same niche, so I think you only need one of them. Pick whichever one you get working. <code>hdevtools</code>’s advantage is its client-server architecture means it can keep a background process alive and reload more quickly.</p>
+<h2 id="my-sandboxes">My Sandboxes</h2>
+<p>Link: <a href="http://softwaresimply.blogspot.tw/2014/07/haskell-best-practices-for-avoiding.html">Haskell Best Practices for Avoiding “Cabal Hell”</a></p>
+<h3 id="preparatory-checklist">Preparatory Checklist</h3>
+<p>For paranoid triple-checking, before you install anything:</p>
+<ul>
+<li>Is the <code>cabal</code> version new enough? (or <code>cabal install cabal-install</code>)</li>
+<li>Have you <code>cabal update</code>d sufficiently recently?</li>
+<li><strong>Did you actually run <code>cabal sandbox init</code></strong>? (although if you put <code>require-sandbox: True</code> the computer will remember this for you)</li>
+</ul>
+<h3 id="installation-troubleshooting">Installation Troubleshooting</h3>
+<p>Useful commands:</p>
+<ul>
+<li><code>cabal get</code>?</li>
+<li><code>cabal sandbox add-source path/to/folder/with/module</code>, if you need to make cabal install from a local folder, instead of from something uploaded to hackage. In the most common case, this means you find a git repo, clone it, and put the path of the cloned folder. Maybe you need it because the old maintainer disappeared and you need a third-party fix, or maybe you just happen to be messing with it in the interim between when a fix is committed and when it’s uploaded, or maybe you want to fix it yourself.</li>
+<li><code>cabal install some-package --allow-newer</code> to give upper bounds the middle finger and try to install anyway</li>
+<li><code>--dry-run</code> to see what cabal will try to install</li>
+</ul>
+<h3 id="actually-sandboxes">Actually, Sandboxes</h3>
+<ul>
+<li><p><strong>ghc-mod-box</strong>: <code>ghc-mod</code> (big package! pulls in <code>hlint</code>) &amp;&amp; <code>hdevtools</code> &amp;&amp; <code>hoogle</code>, for editor integration and command-line tools.</p>
+If you want “midpoints” to install parts of the dependencies, consider <code>haskell-src-exts</code> then <code>hlint</code> then <code>ghc-mod</code>.</li>
+<li><p><strong>wreq-box</strong>: <code>wreq</code> (snappy high-level HTTP awesomeness with lenses) &amp;&amp; <code>haskeline</code> (pretty much solely for <code>getPassword</code>)</p>
+<p>Midpoints: <code>semigroupoids</code>, then <code>lens</code>. I should really rigorously time this at some point.</p>
+<p>Things this pulls in:</p>
+<ul>
+<li><code>cryptohash</code> and <code>base16-bytestring</code> (and <code>base64-bytestring</code>), so I think this can also be my messing-with-cryptography box</li>
+<li><code>attoparsec</code>, <code>lens</code> (duh), <code>semigroups</code>, <code>semigroupoids</code>…</li>
+</ul>
+<p>I may also add <code>JuicyPixels</code> here, to generalize it to being the master web-interaction exploitation capture-the-flag box.</p></li>
+<li><p><strong>eulerbox</strong>: <code>data-memocombinators</code> &amp;&amp; <code>base-unicode-symbols</code> &amp;&amp; <code>arithmoi</code> (hey, look, number-theoretic stuff, why reinvent the wheel? (Although I already have and in a certain sense it’s part of the point of Project Euler)) &amp;&amp; possibly <code>hspec-expectations</code></p>
+<del>
+<em>As of time of writing</em>, <code>arithmoi</code> appears to have an overly harsh upper bound on <code>random</code>. There are even two pull request <a href="https://bitbucket.org/dafis/arithmoi/pull-request/5/bump-random-upper-version-bounds/diff">#5</a> <a href="https://bitbucket.org/dafis/arithmoi/pull-request/6/allow-random-11/diff">#6</a> trying to rectify this, but they’re three months old and haven’t been pulled, sadly. In the meantime, there is a nice <a href="https://github.com/mietek/arithmoi">bugfix fork</a> that you can <code>git pull</code> and <code>cabal install</code> from.
+</del>
+<p>(resolved!)</p>
+<code>hspec-expectations</code> puts combinators like <code>shouldBe</code> in <code>Test.Hspec.Expectations</code> for drop-dead simple testing when you need it. This depends on <code>HUnit</code> but that’s somehow already in the sandbox.</li>
+<li><p><strong><code>idris</code></strong> (dependent typing FTW)</p></li>
+</ul>
+<p>I guess <code>hspec</code> (colorful tests FTW) should go in a project-local sandbox.</p>
+<h3 id="packages-pending-investigation">Packages Pending Investigation</h3>
+<ul>
+<li><code>classy-prelude</code> (I’m quite ambivalent right now because the dependencies are huge for something I want in quick-and-dirty scripts)</li>
+<li><code>pointfree</code> (I don’t actually use this, although come to think of it, there are probably times when I would have benefited but brushed it off)</li>
+<li><code>criterion</code> (benchmarking. I should learn this some day)</li>
+</ul>
+<h2 id="exec-vs-eval">exec vs eval</h2>
+<p>A silly mnemonic paragraph. A lot of monad usages end with a “return”. Somebody who “turn”s is an evil disloyal person.</p>
+<ul>
+<li>Use <code>evalState</code> if you want the evil re“turn”er.</li>
+<li>Use <code>execState</code> if you want to “execute” the criminal and just leave the state of his destruction.</li>
+<li>Obviously, the person’s life is still more important than destruction he/she caused, so <code>runState</code> returns the person and then the state.</li>
+</ul>
+<p>This also applies to many monads similar to <code>State</code>.</p>
+<h2 id="template">template</h2>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="co">-- @betaveros :: vim:set fdm=marker:</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="ot">{-# LANGUAGE LambdaCase, NPlusKPatterns, TupleSections #-}</span></div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3"><span class="ot">{-# OPTIONS_GHC -fno-warn-unused-imports -fno-warn-missing-signatures #-}</span></div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4"><span class="co">-- import ALL the things! {{{</span></div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5"><span class="co">-- hiding clauses are to allow Data.Foldable&#39;s generalizations</span></div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6"><span class="kw">import</span> <span class="dt">Prelude</span> <span class="kw">hiding</span> (mapM, mapM_, sequence, sequence_, foldl, foldl1, foldr, foldr1, and, or, any, all, sum, product, concat, concatMap, maximum, minimum, elem, notElem)</div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7"><span class="kw">import</span> <span class="dt">Control.Applicative</span></div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8"><span class="kw">import</span> <span class="dt">Control.Arrow</span></div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9"><span class="kw">import</span> <span class="dt">Control.Exception</span></div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10"><span class="kw">import</span> <span class="dt">Control.Monad</span> <span class="kw">hiding</span> (mapM, mapM_, forM, forM_, sequence, sequence_, msum)</div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11"><span class="kw">import</span> <span class="dt">Control.Monad.ST</span></div>
+<div class="sourceLine" id="12" href="#12" data-line-number="12"></div>
+<div class="sourceLine" id="13" href="#13" data-line-number="13"><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.ByteString.Char8</span> <span class="kw">as</span> <span class="dt">BS</span></div>
+<div class="sourceLine" id="14" href="#14" data-line-number="14"><span class="kw">import</span> <span class="dt">Data.ByteString.Char8</span> (<span class="dt">ByteString</span>)</div>
+<div class="sourceLine" id="15" href="#15" data-line-number="15"><span class="kw">import</span> <span class="dt">Data.Bits</span></div>
+<div class="sourceLine" id="16" href="#16" data-line-number="16"><span class="kw">import</span> <span class="dt">Data.Char</span></div>
+<div class="sourceLine" id="17" href="#17" data-line-number="17"><span class="kw">import</span> <span class="dt">Data.Either</span></div>
+<div class="sourceLine" id="18" href="#18" data-line-number="18"><span class="kw">import</span> <span class="dt">Data.Foldable</span></div>
+<div class="sourceLine" id="19" href="#19" data-line-number="19"><span class="kw">import</span> <span class="dt">Data.Function</span></div>
+<div class="sourceLine" id="20" href="#20" data-line-number="20"><span class="kw">import</span> <span class="dt">Data.IORef</span></div>
+<div class="sourceLine" id="21" href="#21" data-line-number="21"><span class="kw">import</span> <span class="dt">Data.List</span> <span class="kw">hiding</span> (foldl, foldl&#39;, foldl1, foldl1&#39;, foldr, foldr1, concat, concatMap, and, or, any, all, sum, product, maximum, minimum, elem, notElem, find)</div>
+<div class="sourceLine" id="22" href="#22" data-line-number="22"><span class="kw">import</span> <span class="dt">Data.Maybe</span></div>
+<div class="sourceLine" id="23" href="#23" data-line-number="23"><span class="kw">import</span> <span class="dt">Data.Monoid</span></div>
+<div class="sourceLine" id="24" href="#24" data-line-number="24"><span class="kw">import</span> <span class="dt">Data.Ord</span></div>
+<div class="sourceLine" id="25" href="#25" data-line-number="25"><span class="kw">import</span> <span class="dt">Data.STRef</span></div>
+<div class="sourceLine" id="26" href="#26" data-line-number="26"><span class="kw">import</span> <span class="dt">Data.String</span></div>
+<div class="sourceLine" id="27" href="#27" data-line-number="27"><span class="kw">import</span> <span class="dt">Data.Traversable</span></div>
+<div class="sourceLine" id="28" href="#28" data-line-number="28"><span class="kw">import</span> <span class="dt">Data.Tuple</span></div>
+<div class="sourceLine" id="29" href="#29" data-line-number="29"></div>
+<div class="sourceLine" id="30" href="#30" data-line-number="30"><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Map</span> <span class="kw">as</span> <span class="dt">Map</span></div>
+<div class="sourceLine" id="31" href="#31" data-line-number="31"><span class="kw">import</span> <span class="dt">Data.Map</span> (<span class="dt">Map</span>)</div>
+<div class="sourceLine" id="32" href="#32" data-line-number="32"><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Set</span> <span class="kw">as</span> <span class="dt">Set</span></div>
+<div class="sourceLine" id="33" href="#33" data-line-number="33"><span class="kw">import</span> <span class="dt">Data.Set</span> (<span class="dt">Set</span>)</div>
+<div class="sourceLine" id="34" href="#34" data-line-number="34"><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Sequence</span> <span class="kw">as</span> <span class="dt">Seq</span></div>
+<div class="sourceLine" id="35" href="#35" data-line-number="35"><span class="kw">import</span> <span class="dt">Data.Sequence</span> (<span class="dt">Seq</span>, (&lt;|), (|&gt;), (&gt;&lt;))</div>
+<div class="sourceLine" id="36" href="#36" data-line-number="36"></div>
+<div class="sourceLine" id="37" href="#37" data-line-number="37"><span class="kw">import</span> <span class="dt">Debug.Trace</span></div>
+<div class="sourceLine" id="38" href="#38" data-line-number="38"><span class="kw">import</span> <span class="dt">Text.Printf</span></div>
+<div class="sourceLine" id="39" href="#39" data-line-number="39"><span class="kw">import</span> <span class="dt">System.IO</span></div>
+<div class="sourceLine" id="40" href="#40" data-line-number="40"><span class="co">-- }}}</span></div>
+<div class="sourceLine" id="41" href="#41" data-line-number="41"><span class="co">-- silly utilities {{{</span></div>
+<div class="sourceLine" id="42" href="#42" data-line-number="42"><span class="co">-- stolen from lens (note (&amp;) is in Data.Function in 7.10):</span></div>
+<div class="sourceLine" id="43" href="#43" data-line-number="43">a <span class="fu">&amp;</span> f <span class="fu">=</span> f a</div>
+<div class="sourceLine" id="44" href="#44" data-line-number="44">a <span class="fu">&lt;&amp;&gt;</span> f <span class="fu">=</span> fmap f a</div>
+<div class="sourceLine" id="45" href="#45" data-line-number="45"><span class="kw">infixl</span> <span class="dv">1</span> <span class="fu">&amp;</span>, <span class="fu">&lt;&amp;&gt;</span></div>
+<div class="sourceLine" id="46" href="#46" data-line-number="46"></div>
+<div class="sourceLine" id="47" href="#47" data-line-number="47"><span class="ot">fI ::</span> (<span class="dt">Integral</span> a, <span class="dt">Num</span> b) <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> b</div>
+<div class="sourceLine" id="48" href="#48" data-line-number="48">fI <span class="fu">=</span> fromIntegral</div>
+<div class="sourceLine" id="49" href="#49" data-line-number="49"><span class="ot">gLen ::</span> (<span class="dt">Num</span> b) <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> b</div>
+<div class="sourceLine" id="50" href="#50" data-line-number="50">gLen <span class="fu">=</span> genericLength</div>
+<div class="sourceLine" id="51" href="#51" data-line-number="51"></div>
+<div class="sourceLine" id="52" href="#52" data-line-number="52">readInt     <span class="fu">=</span><span class="ot"> read ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></div>
+<div class="sourceLine" id="53" href="#53" data-line-number="53">readInteger <span class="fu">=</span><span class="ot"> read ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span></div>
+<div class="sourceLine" id="54" href="#54" data-line-number="54"><span class="co">-- (!?) :: (Ord k) =&gt; Map k v -&gt; k -&gt; Maybe v</span></div>
+<div class="sourceLine" id="55" href="#55" data-line-number="55"><span class="co">-- (!?) = flip Map.lookup</span></div>
+<div class="sourceLine" id="56" href="#56" data-line-number="56"><span class="ot">histogram ::</span> (<span class="dt">Ord</span> a, <span class="dt">Num</span> b) <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Map</span> a b</div>
+<div class="sourceLine" id="57" href="#57" data-line-number="57">histogram <span class="fu">=</span> Map.fromListWith (<span class="fu">+</span>) <span class="fu">.</span> map (,<span class="dv">1</span>)</div>
+<div class="sourceLine" id="58" href="#58" data-line-number="58"><span class="co">-- }}}</span></div>
+<div class="sourceLine" id="59" href="#59" data-line-number="59"><span class="co">-- input and output {{{</span></div>
+<div class="sourceLine" id="60" href="#60" data-line-number="60"><span class="ot">bsGetLine ::</span> <span class="dt">IO</span> <span class="dt">ByteString</span></div>
+<div class="sourceLine" id="61" href="#61" data-line-number="61">bsGetLine <span class="fu">=</span> fst <span class="fu">.</span> BS.spanEnd isSpace <span class="fu">&lt;$&gt;</span> BS.getLine</div>
+<div class="sourceLine" id="62" href="#62" data-line-number="62"></div>
+<div class="sourceLine" id="63" href="#63" data-line-number="63">inputInt     <span class="fu">=</span> (read <span class="fu">&lt;$&gt;</span> getLine)<span class="ot"> ::</span> <span class="dt">IO</span> <span class="dt">Int</span></div>
+<div class="sourceLine" id="64" href="#64" data-line-number="64">inputInteger <span class="fu">=</span> (read <span class="fu">&lt;$&gt;</span> getLine)<span class="ot"> ::</span> <span class="dt">IO</span> <span class="dt">Integer</span></div>
+<div class="sourceLine" id="65" href="#65" data-line-number="65">inputDouble  <span class="fu">=</span> (read <span class="fu">&lt;$&gt;</span> getLine)<span class="ot"> ::</span> <span class="dt">IO</span> <span class="dt">Double</span></div>
+<div class="sourceLine" id="66" href="#66" data-line-number="66"></div>
+<div class="sourceLine" id="67" href="#67" data-line-number="67"><span class="ot">inputRow ::</span> (<span class="dt">Read</span> a) <span class="ot">=&gt;</span> <span class="dt">IO</span> [a]</div>
+<div class="sourceLine" id="68" href="#68" data-line-number="68">inputRow <span class="fu">=</span> map read <span class="fu">.</span> words <span class="fu">&lt;$&gt;</span> getLine</div>
+<div class="sourceLine" id="69" href="#69" data-line-number="69">inputInts     <span class="fu">=</span><span class="ot"> inputRow ::</span> <span class="dt">IO</span> [<span class="dt">Int</span>]</div>
+<div class="sourceLine" id="70" href="#70" data-line-number="70">inputIntegers <span class="fu">=</span><span class="ot"> inputRow ::</span> <span class="dt">IO</span> [<span class="dt">Integer</span>]</div>
+<div class="sourceLine" id="71" href="#71" data-line-number="71">inputDoubles  <span class="fu">=</span><span class="ot"> inputRow ::</span> <span class="dt">IO</span> [<span class="dt">Double</span>]</div>
+<div class="sourceLine" id="72" href="#72" data-line-number="72"></div>
+<div class="sourceLine" id="73" href="#73" data-line-number="73"><span class="ot">ssUnwords ::</span> [<span class="dt">ShowS</span>] <span class="ot">-&gt;</span> <span class="dt">ShowS</span></div>
+<div class="sourceLine" id="74" href="#74" data-line-number="74">ssUnwords [] <span class="fu">=</span> id</div>
+<div class="sourceLine" id="75" href="#75" data-line-number="75">ssUnwords (x<span class="fu">:</span>xs) <span class="fu">=</span> x <span class="fu">.</span> (<span class="ch">&#39; &#39;</span><span class="fu">:</span>) <span class="fu">.</span> ssUnwords xs</div>
+<div class="sourceLine" id="76" href="#76" data-line-number="76"></div>
+<div class="sourceLine" id="77" href="#77" data-line-number="77"><span class="ot">ssUnlines ::</span> [<span class="dt">ShowS</span>] <span class="ot">-&gt;</span> <span class="dt">ShowS</span></div>
+<div class="sourceLine" id="78" href="#78" data-line-number="78">ssUnlines [] <span class="fu">=</span> id</div>
+<div class="sourceLine" id="79" href="#79" data-line-number="79">ssUnlines (x<span class="fu">:</span>xs) <span class="fu">=</span> x <span class="fu">.</span> (<span class="ch">&#39;\n&#39;</span><span class="fu">:</span>) <span class="fu">.</span> ssUnlines xs</div>
+<div class="sourceLine" id="80" href="#80" data-line-number="80"></div>
+<div class="sourceLine" id="81" href="#81" data-line-number="81"><span class="ot">showMany ::</span> (<span class="dt">Show</span> a) <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">String</span></div>
+<div class="sourceLine" id="82" href="#82" data-line-number="82">showMany xs <span class="fu">=</span> ssUnwords (map shows xs) <span class="st">&quot;&quot;</span></div>
+<div class="sourceLine" id="83" href="#83" data-line-number="83"><span class="ot">showMatrix ::</span> (<span class="dt">Show</span> a) <span class="ot">=&gt;</span> [[a]] <span class="ot">-&gt;</span> <span class="dt">String</span></div>
+<div class="sourceLine" id="84" href="#84" data-line-number="84">showMatrix xs <span class="fu">=</span> ssUnlines (map (ssUnwords <span class="fu">.</span> map shows) xs) <span class="st">&quot;&quot;</span></div>
+<div class="sourceLine" id="85" href="#85" data-line-number="85"></div>
+<div class="sourceLine" id="86" href="#86" data-line-number="86"><span class="ot">printMany ::</span> (<span class="dt">Show</span> a) <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">IO</span> ()</div>
+<div class="sourceLine" id="87" href="#87" data-line-number="87">printMany xs <span class="fu">=</span> putStrLn (showMany xs)</div>
+<div class="sourceLine" id="88" href="#88" data-line-number="88"><span class="ot">printMatrix ::</span> (<span class="dt">Show</span> a) <span class="ot">=&gt;</span> [[a]] <span class="ot">-&gt;</span> <span class="dt">IO</span> ()</div>
+<div class="sourceLine" id="89" href="#89" data-line-number="89">printMatrix xs <span class="fu">=</span> putStr (showMatrix xs)</div>
+<div class="sourceLine" id="90" href="#90" data-line-number="90"><span class="co">-- }}}</span></div></code></pre>
+</article>
+	<footer class="post-footer">
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/ref/java-clipboards">← Java Clipboards and Data Transfer</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/ref/iverson">Iverson Bracket →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

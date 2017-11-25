@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Algebra on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/algebra</link>
+    <description>Recent content in Algebra on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 05 Jul 2015 10:09:29 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/algebra/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>(8,9,7)</title>
+      <link>//blog.vero.site/post/897</link>
+      <pubDate>Sun, 05 Jul 2015 10:09:29 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/897</guid>
+      <description>&lt;p&gt;(&lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;streak&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;I always tell myself, okay, I will actually just draw something facetiously and get it over with, nobody comes to this blog to admire my GIMP mouse doodles, but then perfectionist tendencies kick in and I get &lt;a href=&#34;//blog.vero.site/post/1024&#34;&gt;car&lt;/a&gt;ried away and it ends up taking more than an hour or so.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/linear.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/linear.png?w=652&#34; alt=&#34;linear&#34; width=&#34;652&#34; height=&#34;489&#34; class=&#34;aligncenter size-large wp-image-3074&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Matrix Intuition</title>
+      <link>//blog.vero.site/post/matrix</link>
+      <pubDate>Sun, 14 Oct 2012 17:01:29 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/matrix</guid>
+      <description>&lt;p&gt;Stopped by a friend’s house a few days ago to do homework, which somehow devolved into me analyzing what programming language I should try to learn next in a corner, which is completely irrelevant to the rest of this post. Oops.&lt;/p&gt;
+&lt;p&gt;Anyway, in normal-math-curriculum-land, my classmates are now learning about matrices. How to add them, how to multiply them, how to calculate the determinant and stuff. Being a nice person, and feeling somewhat guilty for my grade stability despite the number of study hours I siphoned off to puzzles and the like, I was eager to help confront the monster. Said classmate basically asked me what they were for.&lt;/p&gt;
+&lt;p&gt;Well, what a hard question. But of course given the curriculum it’s the only interesting problem I think could be asked.&lt;/p&gt;
+&lt;p&gt;When I was hurrying through the high-school curriculum I remember having to learn the same thing and not having any idea what the heck was happening. Matrices appeared in that section as a messy, burdensome way to solve equations and never again, at least not in an interesting enough way to make me remember. I don’t have my precalc textbook, but a supplementary precalc book completely confirms my impressions and “matrix” doesn’t even appear in my calculus textbook index. They virtually failed to show up in olympiad training too. I learned that Po-Shen Loh knew how to &lt;a href=&#34;http://www.math.cmu.edu/~ploh/docs/math/mop2009/alg-comb.pdf&#34;&gt;kill a bunch of combinatorics problems with them (PDF)&lt;/a&gt;, but not in the slightest how to do that myself.&lt;/p&gt;
+&lt;p&gt;Somewhere else, during what I’m guessing was random independent exploration, I happened upon the signed-permutation-rule (a.k.a. &lt;a href=&#34;https://en.wikipedia.org/wiki/Leibniz_formula_for_determinants&#34;&gt;Leibniz formula&lt;/a&gt;) for evaluating determinants, which made a lot more sense for me and looked more beautiful and symmetric&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\det(A) = \sum_{\sigma \in S_n} \text{sgn}(\sigma) \prod_{i=1}^n A_{i,\sigma_i}\]&lt;/span&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

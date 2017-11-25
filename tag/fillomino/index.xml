@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fillomino on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/fillomino</link>
+    <description>Recent content in Fillomino on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Mar 2015 20:01:26 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/fillomino/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Puzzle 47 / Fillomino [LITS &#43; Walls]</title>
+      <link>//blog.vero.site/post/puzzle-47</link>
+      <pubDate>Mon, 30 Mar 2015 20:01:26 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-47</guid>
+      <description>CLICKBAIT PERSONALITY TEST THAT YOU CAN DO WITHOUT SOLVING THE PUZZLE: What do you see in the puzzle image below? I have my own thoughts but I won’t bias you by posting them yet. Sound out your thoughts in the comments below! (I don’t expect this to work but I’d love to be proven wrong)
+Okay so apparently how puzzles work is I go nearly a year without posting one and then when I post a terrible one, I feel guilty and obligated to post a legitimate one soon after.</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 46 / Fillomino [LITS &#43; Extra Region &#43; Walls &#43; Anti-Walls &#43; Inequality &#43; Tapa &#43; Masyu]</title>
+      <link>//blog.vero.site/post/puzzle-46</link>
+      <pubDate>Sun, 29 Mar 2015 13:01:08 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-46</guid>
+      <description>5:27 PM phenomist: do you use gridderface to make pretty puzzles?
+…
+5:52 PM phenomist: actually nvm excel is probably easier lol  Okay I’m sorry this is a horrible puzzle where the rules don’t make sense and I didn’t even get it testsolved. I just wanted an image to concisely demonstrate the capabilities of gridderface, my puzzle marking and creation program, for the project homepage, after somebody expressed interest in using the program to write a puzzle.</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 45 / Fillomino [No-Path]</title>
+      <link>//blog.vero.site/post/puzzle-45</link>
+      <pubDate>Tue, 15 Apr 2014 08:15:37 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-45</guid>
+      <description>As requested, a puzzle post! Straight from the WTF-variant department. Quite hard.
+This is a Fillomino, with the additional constraint that for each polyomino, there must not exist a path (i.e. a sequence of cells, each orthogonally adjacent to the next) that includes each of the polyomino’s cells exactly once (and does not include cells outside the polyomino).
+As a degenerate case, 1-ominoes are banned as well.</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 43 / Fillomino [Nonrectangular &#43; Walls]</title>
+      <link>//blog.vero.site/post/puzzle-43</link>
+      <pubDate>Mon, 30 Sep 2013 20:52:46 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-43</guid>
+      <description>I’m extremely satisfied — a little incredulous, in fact — with how this puzzle came out. chaotic_iak labels it the “most ridiculous fillomino ever in history”. Apparently, it’s rather tricky.
+ETA: Journalistic responsibility compels me to mention that chaotic_iak also added, “might be beaten later”. Oops?  This is a Fillomino combining the Nonrectangular (polyominoes can’t be rectangles) and Walls (polyominoes can’t span thick lines) variant rules. I think the first variant first came from mathgrant; I’m not as sure about the second, but they both appeared in Fillomino-Fillia 2, at least.</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 36 / Fillomino [LITS]</title>
+      <link>//blog.vero.site/post/puzzle-36</link>
+      <pubDate>Wed, 23 Jan 2013 18:29:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-36</guid>
+      <description>mathgrant’s hybrid type: a Fillomino (write a number in every empty cell so that every group of cells with the same number that is connected through its edges has that number of cells) where each tetromino has had their 4s replaced by one of L, I, T, or S describing their shape, and they obey the rules of LITS — they can touch if they are not congruent, they must all be connected, and their squares cannot form a 2x2 block.</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 31 / Fillomino [Sashigane]</title>
+      <link>//blog.vero.site/post/puzzle-31</link>
+      <pubDate>Fri, 09 Nov 2012 17:03:16 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-31</guid>
+      <description>This is a Fillomino puzzle where every polyomino is required to be an L-shape, as in Sashigane. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.
+My second, and now symmetric, attempt at this crazy self-invented mutant; puzzle 22 was the first.</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 22 / Fillomino [Sashigane]</title>
+      <link>//blog.vero.site/post/puzzle-22</link>
+      <pubDate>Mon, 10 Sep 2012 21:07:31 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-22</guid>
+      <description>This is a Fillomino puzzle where every polyomino is required to be an L-shape, as in Sashigane. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.
+May be slightly reminiscent of no-rectangle Fillominoes. Slightly… (Has anybody done this before? It seems so interesting that I feel like I couldn’t be first.</description>
+    </item>
+    
+  </channel>
+</rss>

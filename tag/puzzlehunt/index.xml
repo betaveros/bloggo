@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Puzzlehunt on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/puzzlehunt</link>
+    <description>Recent content in Puzzlehunt on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 04 Feb 2017 14:27:18 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/puzzlehunt/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>I guess January is puzzles month</title>
+      <link>//blog.vero.site/post/january</link>
+      <pubDate>Sat, 04 Feb 2017 14:27:18 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/january</guid>
+      <description>&lt;p&gt;And it’s not even January any more.&lt;/p&gt;
+&lt;p&gt;(Thing negative two: Thing zero, which is at the bottom of this post, contains two puzzles by me. Skip there if that sounds interesting and text walls don’t.)&lt;/p&gt;
+&lt;p&gt;Thing negative one: I abandoned this blog (again). The last month has been a mess and much of it is political stuff of the sort that I’m the worst/slowest at writing about.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Thing one: I was on-site for a second MIT Mystery Hunt.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>whoosh</title>
+      <link>//blog.vero.site/post/whoosh</link>
+      <pubDate>Mon, 01 Feb 2016 08:19:46 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/whoosh</guid>
+      <description>&lt;p&gt;I finally did it.&lt;/p&gt;
+&lt;p&gt;I was on-site for the 2016 MIT Mystery Hunt. I even &lt;em&gt;solved a metapuzzle&lt;/em&gt;. This year I hunted with ✈✈✈ Galactic Trendsetters ✈✈✈, the team primarily but not overwhelmingly formed from floorpi, my dorm floor. (Perhaps somewhat regrettably, I didn’t contribute to any events or runarounds or things given to HQ, unless you count attending a “recitation” for Student Simulator (round King Arthur, second from left).)&lt;/p&gt;
+&lt;p&gt;(Also, I made this post. Has it been two weeks already? Okay, that’s not an unusual timeframe.)&lt;/p&gt;
+&lt;p&gt;But wow, I got to touch so many puzzles.&lt;/p&gt;
+&lt;p&gt;Non-spoilery comments on particularly memorable puzzles I did, which are disproportionately programming-related, if anybody wants to look at them (I am describing how to get to the puzzle from the round instead of linking because I’m lazy and links might rot but the instructions will hopefully survive archival (although turns out there’s actually a &lt;a href=&#34;http://huntception.com/toc.html&#34;&gt;table of contents&lt;/a&gt; so I don’t know what I’m doing)):&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Three for the Price of One (Meta)</title>
+      <link>//blog.vero.site/post/three-for-one</link>
+      <pubDate>Fri, 20 Nov 2015 13:00:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/three-for-one</guid>
+      <description>And that’s another year!
+As usual, you can check your answers here. Text above this horizontal rule is not part of the puzzle.
+Solvers:
+Yoshiap @ 11-20 13:31:56  </description>
+    </item>
+    
+    <item>
+      <title>When Is My Birthday Again?</title>
+      <link>//blog.vero.site/post/birthday-again</link>
+      <pubDate>Thu, 19 Nov 2015 13:00:25 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/birthday-again</guid>
+      <description>As usual, you can check your answers here. Text above this horizontal rule is not part of the puzzle.
+Solvers (in my local UTC−5 because I’m lazy):
+Lewis Chen (phenomist) @ 11-19 05:03:07 Jack Lance @ 11-19 10:39:11 Yoshiap @ 11-20 03:29:54  No, it’s not July 16 any more. “July” doesn’t even have 16 letters.
+January 4, January 6, January 9, February 6, February 10, July 16, July 25, September 4, September 10, September 16 April 3, April 5, June 17, June 24, August 2, August 5, August 18, November 2, November 3, November 17 April 5, April 9, May 1, May 5, May 8, July 6, July 24, December 1, December 6, December 9 March 7, March 24, April 1, April 2, April 7, November 1, November 5, November 13, December 2, December 5 February 8, February 11, February 13, March 11, March 23, April 4, April 8, April 15, October 4, October 13 January 5, January 20, March 1, March 4, March 10, October 2, October 4, October 5, December 1, December 2 March 6, March 8, March 18, April 10, April 25, September 6, September 15, November 8, November 10, November 15 March 11, March 23, June 3, June 4, June 17, July 1, July 4, August 1, August 3, August 11 January 1, January 2, April 1, April 4, April 8, September 2, September 4, September 13, October 8, October 21 February 1, February 11, February 12, July 1, July 3, July 16, August 3, August 12, September 11, September 22 January 5, January 6, January 17, August 1, August 6, August 18, September 5, September 18, November 1, November 24  </description>
+    </item>
+    
+    <item>
+      <title>Anticron</title>
+      <link>//blog.vero.site/post/anticron</link>
+      <pubDate>Wed, 18 Nov 2015 13:00:59 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/anticron</guid>
+      <description>&lt;p&gt;Unfortunately, I did not get this successfully testsolved, although, for whatever comfort it may provide, I did engage in several interactive rounds of nerfing it.&lt;/p&gt;
+&lt;p&gt;As usual, &lt;a href=&#34;http://bpchen.scripts.mit.edu/2015/&#34;&gt;you can check your answers here.&lt;/a&gt; Text above this horizontal rule is not part of the puzzle.&lt;/p&gt;
+&lt;p&gt;Solvers:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>A Signature Puzzle</title>
+      <link>//blog.vero.site/post/signature-puzzle</link>
+      <pubDate>Tue, 17 Nov 2015 13:00:06 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/signature-puzzle</guid>
+      <description>As usual, there had to be something here. In fact, this year, there are several somethings. Hype!
+This is based on an idea by chaotic_iak. You can check your answers here. Text above this horizontal rule is not part of the puzzle.
+ETA 11/17 16:15 UTC−5: Adjusted spacing between the bottom numbers after feedback. The puzzle is otherwise the same, and solving should not be significantly impacted.  Solvers (in my local UTC−5 because I’m lazy):</description>
+    </item>
+    
+    <item>
+      <title>2015 MIT Mystery Hunt (spoiler-free version)</title>
+      <link>//blog.vero.site/post/hunt</link>
+      <pubDate>Tue, 27 Jan 2015 11:45:50 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/hunt</guid>
+      <description>&lt;p&gt;Well, it’s been over a week, which is a long time for blog posts to be delayed after the event they’re documenting in probably all of the world except my blog. So.&lt;/p&gt;
+&lt;p&gt;I guess this post should start with a bit of background. I’ve been puzzlehunting for… wow, three and a half years now. I was introduced to puzzlehunts from AoPS, when some fellow members got together a team for &lt;a href=&#34;http://puzzle.cisra.com.au/2011/teamstats_AoPS.html&#34;&gt;CiSRA 2011&lt;/a&gt;, and I think I’ve participated to some degree in every known internet Australian puzzlehunt since.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MUMS Puzzle Hunt 2013</title>
+      <link>//blog.vero.site/post/mums</link>
+      <pubDate>Fri, 24 May 2013 21:44:24 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/mums</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/informatix.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/informatix.jpg?w=300&#34; alt=&#34;Informatix [MUMS Puzzle Hunt 2013]&#34;/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;So, I somehow managed to &lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/teamstats.html?team=not+AoPS&#34;&gt;get 25 points all by myself&lt;/a&gt; in &lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/&#34;&gt;MUMS Puzzle Hunt 2013&lt;/a&gt;. Well, I pestered chaotic_iak a little with &lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/2013/puzzles/3.3_Diagnosus_ghQ3AcbJ.html&#34;&gt;3.3 Diagnosus (.html with animated .gif)&lt;/a&gt; but we still didn’t recognize all the Pokémon until hint 3, at which point Google sufficed for me.&lt;/p&gt;
+&lt;p&gt;This is nowhere near the top, but compared to the usual results of whatever AoPS team I form, it’s amazing. By far the best result of AoPS was on CiSRA in 2010 (46th with 58 points), before I discovered puzzle hunts in AoPS; unfortunately due to people getting older and the influx of younger and younger people to the fora, there are less possible teammates each year and they have less time, so here I am by myself. (Also I could have accepted an invitation from a guy in the some-form-of-Elephant team, but I figure if you can win two MUMS hunts in a row you don’t need any more people.)&lt;/p&gt;
+&lt;p&gt;All in all: Yay!&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hunter on Vacation</title>
+      <link>//blog.vero.site/post/hunter</link>
+      <pubDate>Wed, 23 Jan 2013 16:18:58 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/hunter</guid>
+      <description>&lt;figure&gt;
+&lt;a href=&#34;//blog.vero.site/img/rainbow.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/rainbow.jpg?w=300&#34; alt=&#34;Very faint rainbow&#34; /&gt;&lt;/a&gt;
+&lt;figcaption&gt;
+Faint rainbow
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;So winter vacation started and parents had planned a trip to southern Taiwan, to get closer to nature and walk around and stuff.&lt;/p&gt;
+&lt;p&gt;Also, the MIT Mystery Hunt, the absolute granddaddy of all the other puzzlehunts in terms of age, structure, and size, happened this weekend. Originally, I didn’t have a team and just planned to look at the puzzles after they got archived and &lt;s&gt;try solving some puzzles&lt;/s&gt; read the solutions while constantly thinking, “How could anybody ever solve that?” Because of that, I wasn’t planning to even bring my laptop at first; then I could force myself to study some long-overdue ring theory during the nights. I was taken aback by a private message on Saturday morning from somebody with many different names inviting me to remote-solve for Random Thymes.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

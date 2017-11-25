@@ -1,0 +1,1702 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Bounded-Error Log</title>
+    <link>//blog.vero.site/post</link>
+    <description>Recent content in Posts on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Nov 2017 00:27:42 -0500</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hello, Again</title>
+      <link>//blog.vero.site/post/hello-again</link>
+      <pubDate>Tue, 07 Nov 2017 00:27:42 -0500</pubDate>
+      
+      <guid>//blog.vero.site/post/hello-again</guid>
+      <description>&lt;p&gt;And here we are.&lt;/p&gt;
+&lt;p&gt;This is the first post on this blog after I migrated off WordPress for a static solution.&lt;/p&gt;
+&lt;p&gt;At first, I wanted to set things up on Amazon Web Services (AWS), which was an adventure. There are lots of online posts about how to do this, but Amazon’s services change quickly and there was often outdated information. For instance, Amazon had a wizard that led you through setting up a static site, which I clicked on. It helpfully handled a lot of grunt work, but now I was out of sync with all of the guides. Oh well.&lt;/p&gt;
+&lt;p&gt;I think things are confusing partly because there are four AWS components all interacting to make a static site happen:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Remigration</title>
+      <link>//blog.vero.site/post/remigration</link>
+      <pubDate>Sun, 05 Nov 2017 01:56:42 -0500</pubDate>
+      
+      <guid>//blog.vero.site/post/remigration</guid>
+      <description>&lt;p&gt;I guess I lied in my penultimate post.&lt;/p&gt;
+&lt;p&gt;I’m planning on migrating my primary blog (again), off WordPress to a static site hosted somewhere. I might just throw everything onto GitHub Pages, or might follow any of the zillions of tutorials on how to host static sites off a cheap Amazon S3 bucket — I haven’t decided yet, but no longer having to rely on the free part of freemium services is fairly liberating.&lt;/p&gt;
+&lt;p&gt;Why? Lots of small reasons.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Me and Facebook</title>
+      <link>//blog.vero.site/post/me-and-facebook</link>
+      <pubDate>Wed, 27 Sep 2017 15:00:20 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/me-and-facebook</guid>
+      <description>&lt;p&gt;&lt;strong&gt;tl;dr: I don’t use Facebook much. If you want to contact me, I would prefer nearly any other mode of communication. I am also going to stop autosharing posts from this blog onto Facebook. RSS readers are great; get yours today.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Recently I checked Facebook and it said something like “You’ve added N friends this past T units of time! Thanks for making the world more connected!” and I just couldn’t any more. Facebook friends are not friends. &lt;a href=&#34;https://en.wikipedia.org/wiki/Dunbar&#39;s_number&#34;&gt;Dunbar’s number&lt;/a&gt; is around 150, maybe double that if you want to stretch it; humans cannot handle that many human relationships. Facebook’s siloed ecosystem is the opposite of connected with the rest of the Internet.&lt;/p&gt;
+&lt;p&gt;That is one of many reasons I pretty much don’t use Facebook any more. This is not new, but I’ve never formalized it. Also, I figure others might assume otherwise since I still do have an account and still accept friend requests and post sometimes. Thus, I’m writing this post.&lt;/p&gt;
+&lt;p&gt;Here are all of the reasons:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Taking a Step Back</title>
+      <link>//blog.vero.site/post/step-back</link>
+      <pubDate>Wed, 17 May 2017 22:17:26 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/step-back</guid>
+      <description>&lt;p&gt;There’s some point in the decline of a blog’s activity at which you just can’t apologize with a straight face for not posting any more. Only ironically.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;I brainstormed reasons why I’m not blogging. It took a while for me to find a reason that felt right, but I think it’s mostly the concern that I don’t have anything important to say, and I’m just spamming people’s inboxes or Facebook feeds. I make fun of my perfectonist tendencies, but they haven’t gone away and have been exacerbated by how public this blog feels now. There’s also a general feeling permeating life that I should be trying to present myself professionally to people, because like a diamond, the Internet is forever.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>I guess January is puzzles month</title>
+      <link>//blog.vero.site/post/january</link>
+      <pubDate>Sat, 04 Feb 2017 14:27:18 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/january</guid>
+      <description>&lt;p&gt;And it’s not even January any more.&lt;/p&gt;
+&lt;p&gt;(Thing negative two: Thing zero, which is at the bottom of this post, contains two puzzles by me. Skip there if that sounds interesting and text walls don’t.)&lt;/p&gt;
+&lt;p&gt;Thing negative one: I abandoned this blog (again). The last month has been a mess and much of it is political stuff of the sort that I’m the worst/slowest at writing about.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Thing one: I was on-site for a second MIT Mystery Hunt.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>The More Things Change</title>
+      <link>//blog.vero.site/post/change</link>
+      <pubDate>Sat, 31 Dec 2016 23:59:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/change</guid>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/LRP8d7hhpoQ&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34; title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
+&lt;p&gt;It seems to me like lots of people want this year to be over. Among all the other things, 2016 is also apparently the year I totally abandon this blog and put off certain planned posts by several months.&lt;/p&gt;
+&lt;p&gt;I guess this is what happens when you take five technical classes at MIT. The extracurriculars aren’t helping. And the fastest and most confident writing I do is still reactive, when there’s an externally-imposed deadline or when “somebody is wrong on the internet”. This blog isn’t.&lt;/p&gt;
+&lt;p&gt;Oh well, time to make up for it in 2017.&lt;/p&gt;
+&lt;p&gt;What happened this year? I’ll start with some serious categories:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>oblig</title>
+      <link>//blog.vero.site/post/oblig</link>
+      <pubDate>Mon, 21 Nov 2016 14:53:37 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/oblig</guid>
+      <description>&lt;p&gt;This is two days late and it’s not even the post that was supposed to be here. That will have to wait until I’m less hosed. &lt;a href=&#34;https://esp.mit.edu/&#34;&gt;ESP&lt;/a&gt; just finished running Splash, our largest annual event in which thousands of high school students come to MIT’s campus, and MIT community members (mostly) teach whatever they want to the students. This was the first big program I participated really deeply in as an ESP admin, and it has this way of eating you alive and spitting you out full of joy and immersion in life but devoid of energy and buffer zones for finishing other things by their deadlines.&lt;/p&gt;
+&lt;p&gt;On a similar note, thanks for all the birthday wishes from everyone everywhere. I’m sorry I haven’t found the time to respond or sometimes reciprocate. This made my day, and probably last couple of weeks too.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>It&#39;s Complicated</title>
+      <link>//blog.vero.site/post/complicated</link>
+      <pubDate>Sat, 12 Nov 2016 12:26:52 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/complicated</guid>
+      <description>&lt;p&gt;On November 8th, 2016, Donald Trump was elected the 45th President of the United States. Along with a Republican House and Senate majority, to boot.&lt;/p&gt;
+&lt;p&gt;The world around me is still hurting and reeling from the shock.&lt;/p&gt;
+&lt;p&gt;Make no mistake, I am scared. I am scared of the policies and executive orders and legal decisions to come that may strip away many civil rights and send the environment down a worse track faster than anyone expected, and I’m barely in any of the groups that have the most to lose. I have no idea what it’s like to go through this as any of you. I am sorry.&lt;/p&gt;
+&lt;p&gt;But I am also scared that this fear is driving my friends and my community away from talking to the people we need to talk to if we want to make sure this doesn’t happen again.&lt;/p&gt;
+&lt;p&gt;I’ve heard a lot of people vilify Trump and Trump supporters. &lt;a href=&#34;https://nmnnmnnmmnnnmnrnmnmnnmn.wordpress.com/2016/11/09/1067/&#34;&gt;Anecdotally, so have others&lt;/a&gt;. It’s an understandable reaction, but a fragile one. 60 million people voted for Trump. &lt;a href=&#34;http://waitbutwhy.com/2016/11/its-going-to-be-okay.html&#34;&gt;Quoting &lt;em&gt;Wait But Why&lt;/em&gt;&lt;/a&gt;, “[P]eople with kids and parents and jobs and dogs and calendars on their wall with piano lessons and doctors appointments and birthday parties written in the squares. Full, three-dimensional people who voted for what they hope will be a better future for themselves and their family.”&lt;/p&gt;
+&lt;p&gt;People voted for Trump. Why?&lt;/p&gt;
+&lt;p&gt;Here’s &lt;a href=&#34;http://fivethirtyeight.com/features/trumps-base-is-blue-collar-his-voters-looking-for-a-return-to-better-times/&#34;&gt;FiveThirtyEight profiling a few blue-collar voters&lt;/a&gt;. &lt;a href=&#34;https://www.washingtonpost.com/news/wonk/wp/2016/11/08/a-new-theory-for-why-trump-voters-are-so-angry-that-actually-makes-sense/&#34;&gt;The Washington Post interviewing an author who spent a lot of time in rural Wisconsin&lt;/a&gt;. &lt;a href=&#34;http://www.nytimes.com/2016/11/11/us/politics/the-women-who-helped-donald-trump-to-victory.html?smid=fb-nytimes&amp;amp;smtyp=cur&#34;&gt;The New York Times on women&lt;/a&gt;. If the articles’ reasons for voting Trump could be summarized in one word, it would certainly be “economy”.&lt;/p&gt;
+&lt;p&gt;But then FiveThirtyEight tempers it a little bit with this reminder that &lt;a href=&#34;http://fivethirtyeight.com/features/the-mythology-of-trumps-working-class-support/&#34;&gt;Trump’s supporters are on average more well-off than others&lt;/a&gt;. Here’s &lt;a href=&#34;http://www.newyorker.com/magazine/2016/07/11/george-saunders-goes-to-trump-rallies&#34;&gt;The New Yorker visiting a bunch of Trump rallies&lt;/a&gt;. SupChina discusses &lt;a href=&#34;http://supchina.com/2016/11/03/many-first-generation-chinese-immigrants-supporting-donald-trump/&#34;&gt;first-generation Chinese immigrants supporting Trump&lt;/a&gt; and racism is a bullet point there, but apparently it’s partly rallied around rap lyrics about robbery that advise to “find a Chinese neighborhood” to steal from, so…? I am not going to go any deeper into this rabbit hole. Then here’s &lt;a href=&#34;http://www.motherjones.com/kevin-drum/2016/03/trump-voters-are-not-angry-about-economy-really&#34;&gt;Mother Jones arguing against the economy being a big factor at all&lt;/a&gt;, and &lt;a href=&#34;http://www.vox.com/policy-and-politics/2016/10/15/13286498/donald-trump-voters-race-economic-anxiety&#34;&gt;Vox saying it &lt;em&gt;is&lt;/em&gt; about racial resentment&lt;/a&gt;. Here’s &lt;a href=&#34;https://www.bloomberg.com/view/articles/2016-11-11/revenge-of-the-deplorables&#34;&gt;Bloomberg on the Clinton campaign’s failure to persuade&lt;/a&gt; and &lt;a href=&#34;http://thefederalist.com/2016/11/11/how-jon-stewart-and-the-daily-show-elected-donald-trump/&#34;&gt;The Federalist on “hyper-liberal late-night comedy”&lt;/a&gt; and &lt;a href=&#34;http://www.washingtontimes.com/news/2016/nov/9/donald-trump-and-the-new-american-revolution/&#34;&gt;The Washington Times on Trump’s optimism&lt;/a&gt;. I could find hundreds more out there just by Googling, and so could you; and chances are if you’re enough of a voracious reader to be reading my humble blog, you’ve already read some of these.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Time, Money, and All That Good Stuff: Part 1 of ∞</title>
+      <link>//blog.vero.site/post/time-money-1</link>
+      <pubDate>Mon, 22 Aug 2016 15:38:29 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/time-money-1</guid>
+      <description>I had this 5,000-word draft, but I half-abandoned it for being sappy, boring, pointless, and impossible to rewrite to be satisfactorily un-cringeworthy. Instead, let me just tell you a couple random stories and anecdotes that went somewhere near the start. Maybe posting them will motivate me to salvage something from the 4,500 words that go after it and post it. Eventually.
+Some time ago, Namecheap had a discount, so I bought a domain name for 88¢.</description>
+    </item>
+    
+    <item>
+      <title>Musings on Time Pressure</title>
+      <link>//blog.vero.site/post/musings-pressure</link>
+      <pubDate>Mon, 15 Aug 2016 15:44:20 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/musings-pressure</guid>
+      <description>&lt;p&gt;I hate doing things under time pressure, but I have to admit I do a lot more things when time pressure exists. One of the things is writing. Another is posting the things I write. They aren’t very good, but they’re better than writing that doesn’t exist.&lt;/p&gt;
+&lt;p&gt;(in case you forgot, I’m still posting this pretty much only because &lt;a href=&#34;//blog.vero.site/post/no-excuses&#34;&gt;I made myself post once every weekend&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;It’s interesting that I can impose time pressure on myself by declaring commitment devices by fiat and it works. Other people have developed other methods of doing this — I recently discovered &lt;a href=&#34;http://www.themostdangerouswritingapp.com/&#34;&gt;The Most Dangerous Writing App&lt;/a&gt;, which puts time pressure on you to type every five seconds or it deletes everything you wrote. There are many other ways it’s done.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>020315040524</title>
+      <link>//blog.vero.site/post/bcodex</link>
+      <pubDate>Mon, 08 Aug 2016 13:54:22 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/bcodex</guid>
+      <description>&lt;p&gt;&lt;code&gt;--... ---.. ....- ..... ..--- ----- ....- ....- ...-- -.... ...-- -.... ...-- . ....- ....- ..--- ----- ....- ..... ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -.... ....- ....- ..--- ----- ...-- ..-. ....- ----- ..--- ----- ...-- ..--- ...-- ..-. ....- ..... ...-- .- ...-- ..... ....- ----- ....- ..... ...-- -.... ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ...-- ..-. ...-- ---.. ....- ....- ....- ..... ..--- ----- ...-- -.. ...-- .- ...-- -.-. ...-- -.... ..--- ----- ...-- --... ...-- .- ...-- ..-. ...-- ..... ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ....- ....- ....- ----- ...-- . ...-- -.... ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- ....- ....- ----- ....- ----- ...-- -.. ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ....- ---.. ...-- ..-. ..... -.-. ....- ..... ....- ----- ..... -.-. ...-- -.... ...-- ..--- ....- ...-- ....- ..... ...-- ----. ..... -... ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- .- ....- ..... ..... -..&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Pangs</title>
+      <link>//blog.vero.site/post/pangs</link>
+      <pubDate>Mon, 01 Aug 2016 15:22:19 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/pangs</guid>
+      <description>&lt;p&gt;I have this memory —&lt;/p&gt;
+&lt;p&gt;I was a tiny kid, lying in bed and trying to fall asleep, and I started thinking about death and nonexistence, and I thought about how one day I wouldn’t exist any more, that there wouldn’t &lt;em&gt;be&lt;/em&gt; a me thinking my thoughts and perceiving my perspective, and suddenly I was terrified.&lt;/p&gt;
+&lt;p&gt;I got up and knocked on my parents’ bedroom door and asked them about this. Maybe. Or maybe I didn’t because the fear was less crippling than the social awkwardness of randomly knocking on my parents’ door in the middle of the night to ask them a question like that; I don’t remember. It was a long time ago, okay?&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Music II</title>
+      <link>//blog.vero.site/post/music-ii</link>
+      <pubDate>Mon, 25 Jul 2016 15:50:43 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/music-ii</guid>
+      <description>&lt;p&gt;When I first made myself commit to posting weekly, I was trying to make myself spend a little time every day of the week thinking and writing and whittling away at old drafts. Instead I’m here at 10:40 PM basically starting a brand-new post. Oh well.&lt;/p&gt;
+&lt;p&gt;I last &lt;a href=&#34;//blog.vero.site/post/music&#34;&gt;blogged about music in 2013&lt;/a&gt;. I tagged two other posts with “music” since then, but neither is particularly deep: &lt;a href=&#34;//blog.vero.site/post/8-songs&#34;&gt;8 Songs for 18 Years&lt;/a&gt; and &lt;a href=&#34;//blog.vero.site/post/drop-in&#34;&gt;Drop-In Filler&lt;/a&gt;. Let’s continue the tradition of self-analysis part IIs from nowhere…&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;I meditated a little bit in &lt;a href=&#34;//blog.vero.site/post/conversations&#34;&gt;Conversations&lt;/a&gt; about “lacking experience or interest in a lot of the commonly discussed culture.” I think this applies to me and music as well, although not as fully. Back in Taiwan, when mentally bracing myself for coming to the U.S. for college, I sometimes worried about not knowing enough about pop music and bands and not listening enough to popular albums, and having trouble integrating into the culture for this.&lt;/p&gt;
+&lt;p&gt;Turns out, among the communities I wandered into and friends I made, it was a more frequent obstacle that I didn’t know enough about classical music and composers. Whoops. Some of the names rang faint bells from either music class or conversations with high school friends who did do classical music, but I could not identify or remember any styles or eras, and would remember composers only by unreliable first letters or unusual substrings of their names.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Gaming</title>
+      <link>//blog.vero.site/post/gaming</link>
+      <pubDate>Mon, 18 Jul 2016 16:55:32 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/gaming</guid>
+      <description>&lt;p&gt;It’s another weekend, isn’t it.&lt;/p&gt;
+&lt;p&gt;I’m out of deep things to say. I don’t usually have deep things to say. Sorry to anybody who subscribed hoping for more things like the last post. This is basically going to be a personal stream of consciousness post. But it’s a stream with a long ancestry, since I apparently wrote 400 words about it in a WordPress draft four years ago. This was way back before I even started writing post drafts in Markdown on my computer instead of directly in WordPress, so I guess it must be an interesting topic.&lt;/p&gt;
+&lt;p&gt;Four years ago, Brian&lt;sub&gt;2012&lt;/sub&gt; was suddenly struck by how many of the people he knew were such serious gamers. But let’s go back even earlier, shall we?&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;A long long time ago, when I was in elementary school or so, my parents had some sort of reward system where I had to do productive things, like study or do chores or write diary entries or practice the piano or something, to earn time on the computer for games. “Gaming time” was a currency. I enjoyed saving up lots of thirty-minute increments and knowing I had the freedom to using them slowly.&lt;/p&gt;
+&lt;p&gt;That much I remember; the details of how it worked are very fuzzy and I’m not sure what I played in those thirty-minute increments either. I think there was Neopets and Runescape and Club Penguin. (My Neopets account still sees sporadic activity, because I get really really bored sometimes…)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>On Islam, Headlines, and Definitions</title>
+      <link>//blog.vero.site/post/islam-headlines</link>
+      <pubDate>Mon, 11 Jul 2016 15:29:43 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/islam-headlines</guid>
+      <description>&lt;p&gt;This post’s topic might be the most controversial thing I’ve posted here ever. I hope the points I want to make aren’t.&lt;/p&gt;
+&lt;p&gt;One of the excuses for not blogging I came up with and then deleted while &lt;a href=&#34;//blog.vero.site/post/no-excuses&#34;&gt;rambling about not blogging&lt;/a&gt; was that I’m getting more feelings about real-world real-person issues, things that people take heated positions on — it’s not topics like what food I ate or what games I’m playing in fourth grade any more — and my identity is pretty public here, so who knows what’ll happen. Oh well. I’m probably just paranoid.&lt;/p&gt;
+&lt;p&gt;It’s also delayed, as the articles I’m talking about are old; the latest two news items are the shootings of Alton Sterling and Philando Castile and then the police shooting at the Dallas rally. That was also really sad, but I don’t think I have anything insightful to say about it. Let me point you to the &lt;a href=&#34;http://mitadmissions.org/blogs/entry/black-lives-matter&#34;&gt;MIT Admissions post, “Black Lives Matter”&lt;/a&gt;, and then for something a bit more optimistic out of a huge range of possible choices, &lt;a href=&#34;https://medium.com/@Mandela/my-white-boss-talked-about-race-in-america-and-this-is-what-happened-fe10f1a00726#.wtnr99lp1&#34;&gt;this Medium article&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Although after I started writing this post, the story about &lt;a href=&#34;http://www.indiatimes.com/news/world/muslim-man-hugs-isis-militant-armed-wearing-suicide-vest-before-explosion-saves-hundreds-of-lives-258126.html&#34;&gt;a Muslim man preventing an ISIS suicide bomber&lt;/a&gt; came out, so now this is mildly relevant again. Anyway, I guess the delay is no different from how I put up life posts weeks after the life event happens. So today, I bring you two old news articles about Islam that my friends shared and discussed:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+Green: &lt;a href=&#34;http://www.huffingtonpost.com/todd-green-phd/is-islam-responsible-for-_b_10449060.html&#34;&gt;Is Islam Responsible For The Orlando Nightclub Shooting?&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+King: &lt;a href=&#34;http://www.nydailynews.com/news/world/king-isis-terrorists-aren-muslims-evil-men-article-1.2699463&#34;&gt;ISIS terrorists aren’t Muslims — they’re just evil men hell-bent on carnage and destruction&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+The second one first, whose argument is, to be frank, weak. I think this piece from &lt;cite&gt;The Atlantic&lt;/cite&gt; by Wood, &lt;a href=&#34;http://www.theatlantic.com/magazine/archive/2015/03/what-isis-really-wants/384980/&#34;&gt;“What ISIS Really Wants”&lt;/a&gt;, is a better-researched overview of ISIS while still being pretty readable. One caveat is that it’s somewhat old. But its central claim is quite the opposite: 
+&lt;blockquote&gt;
+[The] Islamic State is Islamic. &lt;em&gt;Very&lt;/em&gt; Islamic. … [T]he religion preached by its most ardent followers derives from coherent and even learned interpretations of Islam.
+&lt;/blockquote&gt;
+&lt;p&gt;This is a long, long piece, so to get a feel for the evidence, here are some key quotes:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Conversations</title>
+      <link>//blog.vero.site/post/conversations</link>
+      <pubDate>Mon, 04 Jul 2016 13:10:21 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/conversations</guid>
+      <description>&lt;p&gt;One of the most unexpectedly different facets of life during my internship has been the meals.&lt;/p&gt;
+&lt;p&gt;I’m not talking about the food; it’s certainly different in a fantastic way (&lt;a href=&#34;https://www.facebook.com/DropboxTuckShop/?fref=ts&#34;&gt;Dropbox’s food (link to Facebook page)&lt;/a&gt; is like something out of a high-end restaurant), but I knew that before coming already. Also of note is the way I started eating ∞% more ramen over the weekends than I did over the entire school year at MIT, because here I can’t buy that many groceries without them spoiling and am amazingly lazy in this new environment.&lt;/p&gt;
+&lt;p&gt;No, this (deadlined, so not that well-thought-out, but whatever) post is about conversations at meals, which happen basically every lunch and some dinners when my team eats together.&lt;/p&gt;
+&lt;p&gt;I’ve never had any regular experience like it. Of course I’ve had many meals at home with family, but they feel different because, well, it’s family and we have so many topics in common. I went to the same school for twelve years and we didn’t generally use a cafeteria; we just ate at our desks in our classrooms, or while doing things like attending club meetings or taking makeup tests. Sometimes if people felt like it they would push desks together to eat, but eating by oneself was totally normal. (At last, I feel like that was what it was. It seems so far away now that I don’t trust my memory, which is pretty sad… I faintly suspect I would have this experience in a more stereotypical American high school. But this is mostly just based off the cafeteria in &lt;cite&gt;Mean Girls&lt;/cite&gt;, a movie I only watched in its entirety on the flight here, which is weird because I know I’ve seen the “The limit does not exist!” part much much earlier. /aside)&lt;/p&gt;
+&lt;p&gt;And at MIT? “Time is an illusion. Lunchtime doubly so.”&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>No Excuses</title>
+      <link>//blog.vero.site/post/no-excuses</link>
+      <pubDate>Mon, 27 Jun 2016 14:08:54 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/no-excuses</guid>
+      <description>&lt;p&gt;Wow, this has been the longest silence on this blog in a long time.&lt;/p&gt;
+&lt;p&gt;I can’t justify it with lack of time either. Interning at Dropbox takes up all of my weekdays, but my weekends are much freer than I’m used to. I carelessly let two weeks at home in Taiwan pass by without doing much about blogging, and once again a lot of my few blog drafts have drifted into the temporally awkward zone, being too far away from the events they are about.&lt;/p&gt;
+&lt;p&gt;Neither is it for lack of things happening. At MIT, there was the &lt;a href=&#34;http://thetech.com/2016/06/10/senior-house-turnaround-announced&#34;&gt;Senior House turnaround and freshman moratorium&lt;/a&gt;. I can’t even begin to sum up the discussion around this issue, but I think &lt;a href=&#34;https://medium.com/@hollyhaney/an-open-letter-to-chancellor-barnhart-from-a-senior-house-resident-efc107e789ab#.a1psbheao&#34;&gt;the best response I’ve read is this open letter&lt;/a&gt;. Then there’s the &lt;a href=&#34;http://seniorhouse.mit.edu/&#34;&gt;official Senior House response&lt;/a&gt;. But that’s enough links, since I imagine the chances that this issue is relevant to you &lt;em&gt;and&lt;/em&gt; you’d need this blog to link you to them if you’re reading this are pretty low. (Then again, the chances that you’re reading this are already pretty low. Although the chances &lt;em&gt;you&lt;/em&gt; are reading this right now is 100%.)&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[insert name here]</title>
+      <link>//blog.vero.site/post/insert-name-here</link>
+      <pubDate>Wed, 23 Mar 2016 15:31:22 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/insert-name-here</guid>
+      <description>&lt;p&gt;(I’m making random short posts to entertain certain people during spring break.)&lt;/p&gt;
+&lt;p&gt;Since air-dropping into this crazy cultural salad bowl of a place, I’ve met a lot of people whose names get mispronounced. All sorts of long vowels and short vowels and consonants and word boundaries that jump across languages unpredictably. As a result, people often acquire nicknames or alternative names to get called by, whether actively, passively, or somewhere in between.&lt;/p&gt;
+&lt;p&gt;In contrast, my name is easy and boring. Now, I rather doubt I’d want an exciting name, in the sense of a name that everybody mangles in excitingly different ways. I’m not exactly dissatisfied with people calling me “Brian”. It just strikes me that I think I’ve gone my entire life without a meaningful nickname or even meaningful derivative of my name.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Zootopia</title>
+      <link>//blog.vero.site/post/zootopia</link>
+      <pubDate>Mon, 21 Mar 2016 14:27:21 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/zootopia</guid>
+      <description>&lt;p&gt;(So. It’s spring break. Two-week-late post, and somehow by the end it’s all aboard the angst train again?)&lt;/p&gt;
+&lt;p&gt;Two Sundays ago, I mobbed with a small group of MIT furries to watch &lt;cite&gt;Zootopia&lt;/cite&gt;, the recent highly-reputed Disney movie.&lt;/p&gt;
+&lt;p&gt;(Before anything else, first there were the previews. I was impressed that every single one of them — there were six or so — was about an upcoming movie featuring anthropomorphic animals front and center. Let me see if I can remember all of them… in no particular order, &lt;cite&gt;Teenage Mutant Ninja Turtles&lt;/cite&gt;, &lt;cite&gt;The Secret Life of Pets&lt;/cite&gt;, &lt;cite&gt;The Jungle Book&lt;/cite&gt;, &lt;cite&gt;Storks&lt;/cite&gt;, &lt;cite&gt;Finding Dory&lt;/cite&gt;, and &lt;cite&gt;Ice Age: Collision Course&lt;/cite&gt;. &lt;ins datetime=&#34;2016-04-09T05:10:42+00:00&#34;&gt;edit: Oh, also &lt;cite&gt;Angry Birds&lt;/cite&gt;.&lt;/ins&gt; Wow, I said, they know their audience.)&lt;/p&gt;
+&lt;p&gt;I went into the movie with a vague impression that &lt;cite&gt;Zootopia&lt;/cite&gt; was more adult-oriented than most Disney films — not in the naughty way, but in general making a lot of jokes and invoking a lot of parallels that I think only adults might have the experience to get. My suspicions were confirmed a few lines into the movie, where there was a joke about taxes I cracked up at but can’t imagine that children a few years younger would have found funny. If you the reader haven’t watched it, I hope that was vague enough not to ruin the start for you.&lt;/p&gt;
+&lt;p&gt;(To be fair — and, uh, some parts of the internet are kind of big on this fact — the film also at one point enters a nudist colony. Fortunately (?), &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/Main/AnimalsLackAttributes&#34;&gt;Animals Lack Attributes&lt;/a&gt;.)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Brand New</title>
+      <link>//blog.vero.site/post/brand-new</link>
+      <pubDate>Wed, 03 Feb 2016 14:26:13 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/brand-new</guid>
+      <description>&lt;p&gt;&lt;em&gt;(all the times that you beat me unconscious I forgive)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;angst [&lt;span style=&#34;color:#c00;&#34;&gt;████████&lt;/span&gt;  ] &lt;span style=&#34;color:#c00;&#34;&gt;(8/10)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We’re overdue for one of these posts, I guess.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;(all the crimes incomplete – listen, honestly I’ll live)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Last-ditch feeble attempts at cleaning and reorganizing my desk and shelf before I figuratively drowned in academics led to me finding&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+the Google physical linked puzzle, which I placed in the Kitchen Lounge to nerd-snipe people, successfully
+&lt;/li&gt;
+&lt;li&gt;
+a Burger King crown from the previous career fair
+&lt;/li&gt;
+&lt;li&gt;
+ID stickers from the Putnam, one of which is now on my keyboard cover cover (← not a typo), just because
+&lt;/li&gt;
+&lt;li&gt;
+assorted edibles, like candies and jellies, which I ate; as well as the half-finished Ziploc bag of candy from my FPOP, six months ago, which I just tossed in the trash
+&lt;/li&gt;
+&lt;li&gt;
+a box. It’s just, like, a box. I don’t know what goes or went into it
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I feel more in control of my living quarters. Marginally. Guess I’ll be fine.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;(mr. cool, mr. right, mr. know-it-all is through)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Pros and cons of having a departmental advisor in your area of interest:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+Pro: the advisor knows something about the classes you want to take and can help you choose classes
+&lt;/li&gt;
+&lt;li&gt;
+Con: the advisor knows something about the classes you want to take and can help you choose classes
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>whoosh</title>
+      <link>//blog.vero.site/post/whoosh</link>
+      <pubDate>Mon, 01 Feb 2016 08:19:46 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/whoosh</guid>
+      <description>&lt;p&gt;I finally did it.&lt;/p&gt;
+&lt;p&gt;I was on-site for the 2016 MIT Mystery Hunt. I even &lt;em&gt;solved a metapuzzle&lt;/em&gt;. This year I hunted with ✈✈✈ Galactic Trendsetters ✈✈✈, the team primarily but not overwhelmingly formed from floorpi, my dorm floor. (Perhaps somewhat regrettably, I didn’t contribute to any events or runarounds or things given to HQ, unless you count attending a “recitation” for Student Simulator (round King Arthur, second from left).)&lt;/p&gt;
+&lt;p&gt;(Also, I made this post. Has it been two weeks already? Okay, that’s not an unusual timeframe.)&lt;/p&gt;
+&lt;p&gt;But wow, I got to touch so many puzzles.&lt;/p&gt;
+&lt;p&gt;Non-spoilery comments on particularly memorable puzzles I did, which are disproportionately programming-related, if anybody wants to look at them (I am describing how to get to the puzzle from the round instead of linking because I’m lazy and links might rot but the instructions will hopefully survive archival (although turns out there’s actually a &lt;a href=&#34;http://huntception.com/toc.html&#34;&gt;table of contents&lt;/a&gt; so I don’t know what I’m doing)):&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ascension</title>
+      <link>//blog.vero.site/post/ascension</link>
+      <pubDate>Thu, 31 Dec 2015 23:57:31 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/ascension</guid>
+      <description>&lt;p&gt;I wasn’t sure what would be the right song for 2015 until I set foot on MIT. Then it was a no-brainer.&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/KThlYHfIVa8&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34; title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
+&lt;p&gt;Where do I even begin?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+I thought cooking was hard. Then I ended up in the kitchen on the third floor of the west parallel of East Campus and had to produce something edible. So I figured out how to acquire chicken and put it in a pan with some onions and heat the whole thing up. It wasn’t even that bad! A few weeks later, I graduated to cooking in a rotation for six people. All this from a guy whose culinary abilities only went as far as frying eggs a few months ago. It’s incredible where life takes you sometimes.
+&lt;/li&gt;
+&lt;li&gt;
+I thought I couldn’t productively listen to lyrical music while doing homework, because I get distracted and/or bogged down by the feels. Turns out there’s a category of metal songs with great atmosphere and terrible lyrics that does the trick.
+&lt;/li&gt;
+&lt;li&gt;
+I had planned to suffer through introductory chemistry my freshman fall and introductory biology my freshman spring, and thereafter be done with required classes. Well, I took chemistry, but there was barely any suffering involved, and now biology fits nowhere on my freshman spring schedule.
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;I had some outlandish hopes I’d walk into college and be able to become mildly financially independent because people would throw high-paying jobs at me that I could learn from, but I didn’t expect it to happen. Life isn’t &lt;em&gt;that&lt;/em&gt; easy!&lt;/p&gt;
+Well… it happened.
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;An &lt;em&gt;incredible&lt;/em&gt; number of redacted things.&lt;/p&gt;
+&lt;p&gt;I’ve never been that kind of guy. Honest and innocent to a fault, no secrets except those arising from paranoid self-assigned concern about others’ privacy: that’s me. Until this year.&lt;/p&gt;
+&lt;p&gt;Oh well, I can’t blog about it.&lt;/p&gt;
+[redacted]
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;But mostly, of course, I actually graduated. The teacher-appreciation dinner happened (6/4), where I debuted my graduation song (woo!) and ate some good cake (double woo!); senior prom happened (6/7), with some awesome photos; and then, actually, the graduation ceremony. (6/10, same day I realized I had recently passed 100 starred things on GitHub.)&lt;/p&gt;
+&lt;p&gt;::looks at self:: I’m actually a college student now.&lt;/p&gt;
+&lt;p&gt;Every one of these stages of life seems like it should be a big deal, like I should pass through and suddenly know all the things about maturity and aspirations and life that are expected of college students, but it never happens that way.&lt;/p&gt;
+At least, all things considered, I think this transition was very successful at taking my mind off the angsty side of things. This post is actually surprisingly unangsty. Sorry to disappoint if that’s what you’re here for!
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Three for the Price of One (Meta)</title>
+      <link>//blog.vero.site/post/three-for-one</link>
+      <pubDate>Fri, 20 Nov 2015 13:00:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/three-for-one</guid>
+      <description>And that’s another year!
+As usual, you can check your answers here. Text above this horizontal rule is not part of the puzzle.
+Solvers:
+Yoshiap @ 11-20 13:31:56  </description>
+    </item>
+    
+    <item>
+      <title>When Is My Birthday Again?</title>
+      <link>//blog.vero.site/post/birthday-again</link>
+      <pubDate>Thu, 19 Nov 2015 13:00:25 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/birthday-again</guid>
+      <description>As usual, you can check your answers here. Text above this horizontal rule is not part of the puzzle.
+Solvers (in my local UTC−5 because I’m lazy):
+Lewis Chen (phenomist) @ 11-19 05:03:07 Jack Lance @ 11-19 10:39:11 Yoshiap @ 11-20 03:29:54  No, it’s not July 16 any more. “July” doesn’t even have 16 letters.
+January 4, January 6, January 9, February 6, February 10, July 16, July 25, September 4, September 10, September 16 April 3, April 5, June 17, June 24, August 2, August 5, August 18, November 2, November 3, November 17 April 5, April 9, May 1, May 5, May 8, July 6, July 24, December 1, December 6, December 9 March 7, March 24, April 1, April 2, April 7, November 1, November 5, November 13, December 2, December 5 February 8, February 11, February 13, March 11, March 23, April 4, April 8, April 15, October 4, October 13 January 5, January 20, March 1, March 4, March 10, October 2, October 4, October 5, December 1, December 2 March 6, March 8, March 18, April 10, April 25, September 6, September 15, November 8, November 10, November 15 March 11, March 23, June 3, June 4, June 17, July 1, July 4, August 1, August 3, August 11 January 1, January 2, April 1, April 4, April 8, September 2, September 4, September 13, October 8, October 21 February 1, February 11, February 12, July 1, July 3, July 16, August 3, August 12, September 11, September 22 January 5, January 6, January 17, August 1, August 6, August 18, September 5, September 18, November 1, November 24  </description>
+    </item>
+    
+    <item>
+      <title>Anticron</title>
+      <link>//blog.vero.site/post/anticron</link>
+      <pubDate>Wed, 18 Nov 2015 13:00:59 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/anticron</guid>
+      <description>&lt;p&gt;Unfortunately, I did not get this successfully testsolved, although, for whatever comfort it may provide, I did engage in several interactive rounds of nerfing it.&lt;/p&gt;
+&lt;p&gt;As usual, &lt;a href=&#34;http://bpchen.scripts.mit.edu/2015/&#34;&gt;you can check your answers here.&lt;/a&gt; Text above this horizontal rule is not part of the puzzle.&lt;/p&gt;
+&lt;p&gt;Solvers:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>A Signature Puzzle</title>
+      <link>//blog.vero.site/post/signature-puzzle</link>
+      <pubDate>Tue, 17 Nov 2015 13:00:06 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/signature-puzzle</guid>
+      <description>As usual, there had to be something here. In fact, this year, there are several somethings. Hype!
+This is based on an idea by chaotic_iak. You can check your answers here. Text above this horizontal rule is not part of the puzzle.
+ETA 11/17 16:15 UTC−5: Adjusted spacing between the bottom numbers after feedback. The puzzle is otherwise the same, and solving should not be significantly impacted.  Solvers (in my local UTC−5 because I’m lazy):</description>
+    </item>
+    
+    <item>
+      <title>[CIMC 2015 Part 3] Monsters and Pandas and Tigers, Oh My!</title>
+      <link>//blog.vero.site/post/cimc-2015-part-3</link>
+      <pubDate>Tue, 11 Aug 2015 23:32:37 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/cimc-2015-part-3</guid>
+      <description>&lt;p&gt;My inner perfectionist is crying that I have to post this, in particular over my pathetic &lt;a href=&#34;http://snowclones.org/2007/05/22/x-y-and-z-oh-my/&#34;&gt;snowclone&lt;/a&gt; title, but my inner pragmatist knows that, judging by my old blogging patterns, it’s now or never.&lt;/p&gt;
+&lt;p&gt;18.06: 56%, haven’t touched it in a while, but I think I can do lots more on the plane.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;As a non-contestant, I confess I feel totally uninvested in the results and find the Closing Ceremony boring. All contestants go up, country by country, and have their awards read off. No effort is made to make any sort of buildup to a climax. But maybe this is for the best; we don’t want anybody feeling shafted or discouraged from continuing to do math due to a mere elementary-/middle-school competition. Meanwhile, though, I’m browsing reddit on my phone.&lt;/p&gt;
+&lt;p&gt;After this ceremony, the entire Taiwan delegation spends some time walking around outside while the guides make confused phone calls trying to decide where we eat lunch. My parents offer me some potato chips they bought somewhere, which are (as the label is really eager to point out) baked, not fried. Some time passes this way; eventually, the guides figure it out and we go through amazingly long queues to eat at the cafeteria, as usual. Then we are sent to a massive shopping mall for the afternoon, a place so large that its exits have number labels that go up into the double digits so that people don’t get lost.&lt;/p&gt;
+&lt;p&gt;I take trippy failed panorama photos from the bus windows. &lt;a href=&#34;//blog.vero.site/img/trippy-panorama.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/trippy-panorama.jpg?w=652&#34; alt=&#34;[trippy panorama of a shopping mall]&#34; width=&#34;652&#34; height=&#34;427&#34; class=&#34;aligncenter size-large wp-image-3321&#34; /&gt;&lt;/a&gt;  The exit our group is supposed to use and remember is number 9. However, since just about everybody else from the competition is clustered around that exit, we choose to enter through a neighboring one, which is somewhat surprisingly numbered 5.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[CIMC 2015 Part 2] Journey of the Blue-White Slippers</title>
+      <link>//blog.vero.site/post/cimc-2015-part-2</link>
+      <pubDate>Fri, 07 Aug 2015 12:04:30 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/cimc-2015-part-2</guid>
+      <description>&lt;p&gt;(Nontopical life update: Current 18.06 homework status: 34% (mildly screwed, probably won’t finish before I leave my cozy home for the U.S. and I usually struggle to get into the mood for homework while traveling, but I guess I’ll have to)) &lt;a href=&#34;//blog.vero.site/img/18-06-1.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/18-06-1.png?w=296&#34; alt=&#34;[18.06 status panel: 34%]&#34; /&gt;&lt;/a&gt; (I’ve been spending most of my uptime doing said homework and running errands, and my downtime catching up on &lt;cite&gt;Last Week Tonight with John Oliver&lt;/cite&gt; while farming the Flight Rising Coliseum. And, okay, making the above status panel. &lt;a href=&#34;https://dl.dropboxusercontent.com/u/5295912/status.html&#34;&gt;Live version here&lt;/a&gt; courtesy of Dropbox’s Public folder. No regrets.)&lt;/p&gt;
+&lt;h3 id=&#34;day-3-excursions&#34;&gt;
+Day 3 (Excursions)
+&lt;/h3&gt;
+&lt;p&gt;Morning routine snipped. We come to the middle school again to eat breakfast and gather; the contestants will be taking their tests here (accompanied by one bottle of “Buff” energy drink each) while the rest of us will be going on an excursion. Before this happens, though, two Taiwanese contestants ask me and Hsin-Po some math problems. There’s a geometry problem, which I fail to solve:&lt;/p&gt;
+&lt;blockquote&gt;
+(paraphrased) In triangle △ABC, ∠A is 40° and ∠B is 60°. The angle bisector of ∠A meets BC at D; E is on AB such that ∠ADE is 30°. Find ∠DEC.
+&lt;/blockquote&gt;
+&lt;p&gt;Hsin-Po figures out that, once you guess (ROT13) gur bgure boivbhf privna vf nyfb na natyr ovfrpgbe naq gurl vagrefrpg ng gur vapragre, lbh pna cebir vg ol pbafgehpgvat gur vapragre naq fubjvat sebz gur tvira natyr gung gurl vaqrrq pbvapvqr.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; Then, there’s a combinatorics problem in a book with a solution that they’re not sure about:&lt;/p&gt;
+&lt;blockquote&gt;
+(paraphrased) 15 rays starting at the same point are drawn. What is the maximum number of pairs of rays that form obtuse angles?
+&lt;/blockquote&gt;
+&lt;p&gt;This happens really close to the test starts and although I have this feeling it’s isomorphic to a notable combinatorial problem, I don’t manage to articulate the isomorphism until it’s too late and they have to go. Indeed, this is more or less equivalent to (ROT13) Ghena: gur tencu unf ab sbhe-pyvdhr naq n pbzcyrgr guerr-cnegvgr tencu vf pbafgehpgvoyr. After thinking though the solution on their book, though, I realize I’ve never seen this proof of said theorem before! (But later I realize it’s actually the just very first proof that &lt;cite&gt;Proofs from the BOOK&lt;/cite&gt; offers. I probably skipped it because it involved induction as well as some algebraic manipulations that looked much less intuitive and natural than they really were, so it didn’t look as cool as the later proofs. Oooooops.)&lt;/p&gt;
+&lt;p&gt;I suspect I wouldn’t do too well if I had to participate in that contest right then. But anyway, excursion.&lt;/p&gt;
+&lt;p&gt;After a long bus ride, we arrive at our first destination, Jingyuetan (淨月潭 lit. Clear Moon Lake&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;), allegedly the sister lake to Taiwan’s own famous&lt;sup&gt;[citation needed]&lt;/sup&gt; &lt;a href=&#34;https://en.wikipedia.org/wiki/Sun_Moon_Lake&#34;&gt;Sun Moon Lake&lt;/a&gt;. We tour the place on a wall-less car and look at the lake and lots of trees. During a stop, I take some pictures of sunflowers and bees, as well as a stand selling Taiwanese sausages.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/lake-1.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/lake-1.jpg?w=652&#34; alt=&#34;[Lake and ferry]&#34; width=&#34;652&#34; height=&#34;369&#34; class=&#34;aligncenter size-large wp-image-3294&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/lake-2.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/lake-2.jpg?w=652&#34; width=&#34;652&#34; height=&#34;369&#34; class=&#34;aligncenter size-large wp-image-3295&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/bee.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/bee.jpg?w=170&#34; alt=&#34;[Bee and sunflower]&#34; width=&#34;170&#34; height=&#34;300&#34; class=&#34;aligncenter size-medium wp-image-3296&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/sausages.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/sausages.jpg?w=652&#34; alt=&#34;[Sausages advertised as from Taiwan!]&#34; width=&#34;652&#34; height=&#34;369&#34; class=&#34;aligncenter size-large wp-image-3297&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The car blares weird music during the tour, such as a version of Für Elise with all the accents on different beats and a disjointed remix of the viral Chinese song &lt;a href=&#34;https://zh.wikipedia.org/zh-tw/%E5%B0%8F%E8%8B%B9%E6%9E%9C_%28%E6%AD%8C%E6%9B%B2%29&#34;&gt;小蘋果&lt;/a&gt; (&lt;a href=&#34;https://en.wikipedia.org/wiki/Little_Apple_%28song%29&#34;&gt;Little Apple&lt;/a&gt;)&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; with two other Chinese songs, connected with mumbling English rap segues. We also eat boxed lunches here while sitting on tiny, cramped foam mattresses on the dirt floor.&lt;/p&gt;
+&lt;p&gt;Our next stop is a museum, where there are lots of ancient historical artifacts I’m not very interested in. I find a collection of certificates involving or quoting Chairman Mao more intriguing:  &lt;a href=&#34;//blog.vero.site/img/mao.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/mao.jpg?w=652&#34; alt=&#34;[Certificates with quotes and/or pictures of Chairman Mao]&#34; width=&#34;652&#34; height=&#34;369&#34; class=&#34;aligncenter size-large wp-image-3298&#34; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[CIMC 2015 Part 1] Rainy Days in July (and Other Months)</title>
+      <link>//blog.vero.site/post/cimc-2015-part-1</link>
+      <pubDate>Tue, 04 Aug 2015 13:48:45 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/cimc-2015-part-1</guid>
+      <description>&lt;p&gt;We get up at 3:40 AM. By 4 AM we have left our house, speeding like a bullet into the dark.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;(Ohai. Somehow it slipped my mind that I was ending my streak by leaving the country for a competition that would likely be highly bloggable, like my last two international olympiads, both of which led to notable post sequences on this blog. (Admittedly, the first one was never really completed…) My only excuse was that I was worried I might not be able to access my blog from inside the Great Firewall, but I did (via vpn.mit.edu) and even if I hadn’t, I could still have drafted posts locally in Markdown as I usually do, so I don’t know what I was thinking.)&lt;/p&gt;
+&lt;p&gt;(Also: because, as I’ve said way too many times recently, I need to do linear algebra homework, these posts aren’t going to be as complete or as perfect as I’d like them to be. Although I’m probably just saying this to persuade myself; I tend to include many of the boring parts as well as the interesting parts of the trip, which maybe benefits my future self at the expense of other readers. I probably need to get out of this habit more if I want to blog for a wider audience, though. Oh well.)&lt;/p&gt;
+&lt;h3 id=&#34;backstory&#34;&gt;
+Backstory
+&lt;/h3&gt;
+&lt;p&gt;The &lt;a href=&#34;http://www.imc-official.org/&#34;&gt;International Mathematics Competition&lt;/a&gt; (IMC) is, &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/Main/ExactlyWhatItSaysOnTheTin&#34;&gt;as it says&lt;/a&gt;, an international mathematics competition. But I should add that it is for elementary and middle-school students (in other words, I am not competing, okay??). (edit: Also, one or two letters are often prefixed to indicate the host country, for whatever reason. This year it would be CIMC, C for China.) I am tagging along because I am a student of Dr. Sun, one of the chief organizers, and have been slotted to give a talk and possibly help with grading the papers and translating. My father is coming to help arrange a side event, a &lt;a href=&#34;http://dominosolver.com/&#34;&gt;domino puzzle game&lt;/a&gt; competition, which he programmed the system for; and my mom and sister are also coming to help with translation and other duties. Other people in our group: Dr. Sun himself, his longtime assistant slash fellow teacher Mr. Li (wow I’m sorry I forgot you while first writing this), my friend and fellow math student Hsin-Po, who is an expert at making polyhedra from origami or binder clips (and at Deemo); Chin-Ling, my father’s student/employee who also programmed lots of the domino puzzle server and possesses a professional camera; and, of course, all the elementary- and middle-school contestants, as well as most of their parents.&lt;/p&gt;
+&lt;p&gt;I don’t think I’ve ever given this amount of background exposition about any event I’ve attended to my not-so-imaginary audience before. It feels weird. Some part of me is worried about breaking these people’s privacy by posting this, which makes a little bit of sense but not enough for me to think that it’s actually a valid reason to avoid or procrastinate blogging. I think it’s a rationalization.&lt;/p&gt;
+&lt;p&gt;Here we go.&lt;/p&gt;
+&lt;h3 id=&#34;day-1&#34;&gt;
+Day 1
+&lt;/h3&gt;
+&lt;p&gt;The only interesting thing that happens at the airport is a short loud argument in the queues for luggage check-in, perhaps partly fueled by our high number of people and of heavy boxes (gifts for other countries and raw materials for Hsin-Po’s polyhedra). I don’t know whose fault it is.&lt;/p&gt;
+&lt;p&gt;In case I fail to scale the firewall, I attempt to download Facebook on my phone for one last look before boarding, but it fails during installation twice and I give up.&lt;/p&gt;
+&lt;p&gt;Our plane is not fancy enough to offer personal screens and entertainment centers for everybody, but thankfully the ride lasts only three hours, so this is tolerable. Instead, the plane plays the second &lt;cite&gt;Divergence&lt;/cite&gt; movie on overhead screens, which I watch half-heartedly. The plot setup seems interesting but the ending seems to me to involve two Ass Pulls™, although since I haven’t been paying much attention I am not confident if I just missed some foreshadowing or character development. On the flight, I also read the proof of the irrationality of powers of &lt;i&gt;e&lt;/i&gt; in &lt;cite&gt;Proofs from THE BOOK&lt;/cite&gt; and leaf through the magazines.&lt;/p&gt;
+&lt;p&gt;I don’t hear any good music on-board, except maybe “Space Oddity”, which is a little freaky to be listening to while cruising at so may kilometers in the sky. Perhaps because of this, I find myself singing and humming “Space Oddity” unexpectedly often over the next few days.&lt;/p&gt;
+&lt;h3 id=&#34;arrival&#34;&gt;
+Arrival
+&lt;/h3&gt;
+&lt;p&gt;The very first sign we see after alighting the plane consists entirely of characters that are the same in Simplified and Traditional Chinese — if I remember correctly, 「前有坡道，小心慢走」&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;. The Changchun airport looks like any other airport, coolly blue-themed with moving platforms. The restrooms have fancy bright purple soap. Even though I consciously think about how I have suddenly arrived in a country that places notable restrictions on freedom of speech and Internet access, I don’t feel it. Eep, what an anticlimax.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/gravel.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/gravel.jpg?w=652&#34; alt=&#34;[People dragging luggage boxes over gravelly ground outdoors.]&#34; width=&#34;652&#34; height=&#34;369&#34; class=&#34;aligncenter size-large wp-image-3267&#34; /&gt;&lt;/a&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C-c-c-Combo Breaker!</title>
+      <link>//blog.vero.site/post/combo</link>
+      <pubDate>Mon, 27 Jul 2015 07:10:20 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/combo</guid>
+      <description>&lt;p&gt;I made it!&lt;/p&gt;
+&lt;p&gt;After a &lt;a href=&#34;//blog.vero.site/post/rekt&#34;&gt;misstep on the fourth day&lt;/a&gt; I managed to post one post every day, completing the rest of the &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;streak&lt;/a&gt;! This post is scheduled to go out around the time my plane takes off.&lt;/p&gt;
+&lt;p&gt;I’m free!&lt;/p&gt;
+&lt;p&gt;I’d insert a &lt;cite&gt;Frozen&lt;/cite&gt; gif here if I could find a good one, but I don’t like any of the ones I found and besides, copyright is an issue. So instead:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;figure&gt;
+&lt;a href=&#34;//blog.vero.site/img/cliques.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/cliques.png&#34; alt=&#34;source: Wikimedia Commons, public domain&#34; width=&#34;585&#34; height=&#34;468&#34; class=&#34;size-full wp-image-3257&#34; /&gt;&lt;/a&gt;
+&lt;figcaption&gt;
+source: &lt;a href=&#34;https://commons.wikimedia.org/wiki/File:VR_complex.svg&#34;&gt;Wikimedia Commons&lt;/a&gt;, public domain
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;IMO2007.C6. In a mathematical competition some competitors are friends. Friendship is always mutual. Call a group of competitors a clique if each two of them are friends. (In particular, any group of fewer than two competitiors is a clique.) The number of members of a clique is called its size.&lt;/p&gt;
+&lt;p&gt;Given that, in this competition, the largest size of a clique is even, prove that the competitors can be arranged into two rooms such that the largest size of a clique contained in one room is the same as the largest size of a clique contained in the other room.&lt;/p&gt;
+Author: Vasily Astakhov, Russia
+&lt;/blockquote&gt;
+&lt;p&gt;If you remember where I first posted this to break a combo, you have an excellent memory and/or spend too much time stalking me. If you remember the &lt;em&gt;context&lt;/em&gt; under which I posted this to break a combo, you have a better memory than I do.&lt;/p&gt;
+&lt;p&gt;Was my streak a success? On the bright side, I definitely generated lots of posts, many of which were radical departures from my old blogging habits:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;//blog.vero.site/post/99&#34;&gt;card game documentation&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;//blog.vero.site/post/nuclear&#34;&gt;weird short stories&lt;/a&gt; and &lt;a href=&#34;//blog.vero.site/post/nuclear-ii&#34;&gt;sequels to weird short stories&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+an essay (liberally defined) with &lt;a href=&#34;//blog.vero.site/post/quixotic-1&#34;&gt;two&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/quixotic-2&#34;&gt;parts&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+an essay with &lt;a href=&#34;//blog.vero.site/post/more-fiction-1&#34;&gt;two&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/more-fiction-2&#34;&gt;parts&lt;/a&gt; and a &lt;a href=&#34;//blog.vero.site/post/more-fiction-part-2-5&#34;&gt;half&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+another &lt;a href=&#34;//blog.vero.site/post/college-emails&#34;&gt;bar graph&lt;/a&gt; that is actually documented,
+&lt;/li&gt;
+&lt;li&gt;
+a ridiculous &lt;a href=&#34;//blog.vero.site/post/phone&#34;&gt;literate Haskell post&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+numerous &lt;a href=&#34;//blog.vero.site/post/1024&#34;&gt;facetious&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/zzz&#34;&gt;Paintbrush&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/double-post&#34;&gt;dragons&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a side blog&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;//blog.vero.site/post/index-txt&#34;&gt;and&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/897&#34;&gt;of&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/drop-in&#34;&gt;course&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/a-list&#34;&gt;metric&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/sheep&#34;&gt;zarktons&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/2857&#34;&gt;of&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/numbers-bmp&#34;&gt;shameless&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/clicker&#34;&gt;filler&lt;/a&gt;.
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I also had lots of fun conversations about my posts, such as:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[warp]clicker.html</title>
+      <link>//blog.vero.site/post/clicker</link>
+      <pubDate>Sun, 26 Jul 2015 11:46:04 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/clicker</guid>
+      <description>&lt;p&gt;Okay, just one more post for the &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;streak&lt;/a&gt; milking the stuff uncovered in my old hard drive, and then it’s over, I promise. Here is a &lt;a href=&#34;https://betaveros.github.io/clicker.html&#34;&gt;silly three-button idle game&lt;/a&gt; I discovered, which I apparently made in 2010 when I was a bored eighth-grader and the most recent jQuery version was 1.4.x. Instead of enjoying a text wall, please enjoy trying to get 16,384 clicks in the non-warp version. (There’s no victory message or anything; it’s just a nice round number that I reached while writing this post. And yes, I know you can call JavaScript from your developer console, or edit the source or DOM. That’s cheating.)&lt;/p&gt;
+&lt;p&gt;And I realize this is short even for filler posts, so if you don’t want to play an idle game, here is a remix of &lt;a href=&#34;//blog.vero.site/post/numbers-bmp&#34;&gt;numbers.bmp&lt;/a&gt; to stare at and feel inspired by. Or disgusted with, or indignant at. Your choice.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>More Fiction (Part 2.5)</title>
+      <link>//blog.vero.site/post/more-fiction-part-2-5</link>
+      <pubDate>Fri, 24 Jul 2015 20:27:44 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/more-fiction-part-2-5</guid>
+      <description>&lt;p&gt;This is not Part 3. It’s just two things I thought of tacking on to &lt;a href=&#34;https://betaveros.wordpress.com/2015/07/04/more-fiction-2/&#34;&gt;part 2&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;What can I say? Part 2s are easy blog post fodder; Part 2 appendixes are even easier.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;One, there’s one other wall I run into often during those rare attempts when I get motivated enough to try to write a story: naming characters is hard. At least, it provides an excellent motivational roadblock whenever I even consider committing a story to paper, a point before I’ve actually written anything at which I think “maybe I should give up and go on Facebook instead” and proceed to do so. Aggh. And I think there’s more than one reason for this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+I have trouble coming up with names to some degree. Sure, it’s easy to browse BabyNames.com and look for choices, but a lot of the names there are really weird and contemplating them for every unimportant character kind of rips me out of the immersed mindset.
+&lt;/li&gt;
+&lt;li&gt;
+Reading great stories in English class and elsewhere may have gotten me feeling like every name ought to be a deep meaningful allusion, or at least pun fodder. I feel like I will regret it if I write a story and, a few months and/or chapters down the road, realize I missed a better name or the name I chose has some undesirable connotations in context or provides an atmosphere-ruining coincidence.
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;But I think the real kicker is simply that some part of me is terrified of the awkwardness of giving a character the same name as anybody I know, because then they might read the story and wonder if the character is somehow based on them. And too many of the names that I consider common enough to not lure readers off into looking for hidden meanings are used up that way. This is obviously worst if the character is an antagonist. But it seems just as awkward if the character is a protagonist in accord with everything I’ve written, i.e. a paper-thin character blatantly created for escapist purposes. I am already kind of terrified I might ever meet anybody with the same name as one of my mentally established characters even though I haven’t actually written anything about him. And there’s a well-established convention of &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/Main/OneSteveLimit&#34;&gt;not reusing a first name in a work&lt;/a&gt;, so this gets even harder with every work; I’m just as worried, what if somebody thinks this character is related to the other character in that story I wrote in second grade? Oh no!!&lt;/p&gt;
+&lt;p&gt;It’s like not reusing variable names in a programming language where everything is in the same scope. Positively nightmarish.&lt;/p&gt;
+And I actually discovered some evidence this is a thing in my past: I found some stories I wrote in 2004. They are possibly the most extreme exemplification of &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/Main/WriteWhatYouKnow&#34;&gt;Write What You Know&lt;/a&gt; imaginable: the main character, Michael, goes to school and makes friends. That’s all.
+&lt;figure&gt;
+&lt;a href=&#34;//blog.vero.site/img/illustration.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/illustration.png&#34; alt=&#34;Illustration courtesy Brian2004&#34; width=&#34;540&#34; height=&#34;543&#34; class=&#34;size-full wp-image-3223&#34; /&gt;&lt;/a&gt;
+&lt;figcaption&gt;
+Illustration courtesy Brian&lt;sub&gt;2004&lt;/sub&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;I kind of want to share these stories, but fast-forward a few years and you’ll see that a classmate named Michael entered my grade and we stayed in the same grade until we graduated.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>numbers.bmp</title>
+      <link>//blog.vero.site/post/numbers-bmp</link>
+      <pubDate>Wed, 22 Jul 2015 14:06:09 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/numbers-bmp</guid>
+      <description>Mom dug up an old hard drive for me to find photos of my elementary-school self participating in the same math competition I’m presenting at in a week. I discovered a lot of other interesting old stuff there. So today’s filler post image for the streak is courtesy of Brian2003/03/23. I don’t think it means anything, but sorry, I really really need to work on that presentation.
+
+To be clear, I didn’t actually upload the original .</description>
+    </item>
+    
+    <item>
+      <title>Phone</title>
+      <link>//blog.vero.site/post/phone</link>
+      <pubDate>Wed, 15 Jul 2015 23:58:02 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/phone</guid>
+      <description>&lt;p&gt;&lt;strong&gt;tl;dr: anybody want to add me on Line or tell/remind me about other phone chat apps? betaveros as always.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Wow, talk about uninspired post titles.&lt;/p&gt;
+&lt;p&gt;I got a new phone today. Or, well, it’s second-hand, actually. I try to make electronics last a long time, but I think this was justified given the state of my last phone’s screen:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/screen.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/screen.jpg?w=269&#34; alt=&#34;old phone screen, with a visibly malfunctioning black patch&#34; width=&#34;269&#34; height=&#34;300&#34; class=&#34;aligncenter size-medium wp-image-3142&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Besides, I’m going off to college and all. Anyway, the phone is pretty cool. It’s a slick shade of red, it came with a cover and everything, and it has one of those fancy 3x3-grid locks. How secure are those again?&lt;/p&gt;
+&lt;p&gt;Well, we could just &lt;a href=&#34;https://stackoverflow.com/questions/6979524/android-lock-password-combinations&#34;&gt;find the answer on StackOverflow&lt;/a&gt;, but that’s boring.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>US$2,857</title>
+      <link>//blog.vero.site/post/2857</link>
+      <pubDate>Mon, 13 Jul 2015 23:20:09 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/2857</guid>
+      <description>&lt;p&gt;= within 15 cents of $20,000/7&lt;br /&gt; = NT$88,661, by Google’s current exchange rate&lt;/p&gt;
+&lt;p&gt;= 739 hours of Taiwan’s hourly minimum wage or 4.43 months of Taiwan’s monthly minimum wage&lt;br /&gt; = 317 hours of Massachusetts’s minimum wage (7.94 weeks or 1.85 months assuming a 40-hour work week)&lt;br /&gt; = 1.2~1.7 weeks of &lt;a href=&#34;https://twitter.com/tzhongg/status/536565474041937921/photo/1&#34;&gt;a list of high tech internship salaries&lt;/a&gt; as &lt;a href=&#34;http://www.slate.com/blogs/moneybox/2014/11/24/tech_internship_salaries_they_will_destroy_your_sense_of_self_worth.html&#34;&gt;featured on Slate&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;= 2,955 plates of Sushi Express&lt;br /&gt; = 1,478 cheap boxed lunches (at NT$60 each), which would last one person 1.35 years at 3 per day&lt;br /&gt; = 1,122 &lt;a href=&#34;http://www.economist.com/content/big-mac-index/&#34;&gt;Big Macs&lt;/a&gt;, price in Taiwan, or 596 Big Macs, average price in U.S. (January 2015)&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Sheep</title>
+      <link>//blog.vero.site/post/sheep</link>
+      <pubDate>Sat, 11 Jul 2015 22:42:57 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/sheep</guid>
+      <description>Ok I give up I don’t have any material and don’t feel like preparing any because the influx of IMO problems, including the shortlist, is too fascinating. Instead, here is a joke quoted verbatim from TVTropes (CC-NC-SA).
+ An American anthropologist has been studying a tribe in Africa by living with them for a year. One day, the chief called him into the chief’s hut. The chief sighed. “Well, my friend, it seems that we must ask you to leave.</description>
+    </item>
+    
+    <item>
+      <title>Nuclear II</title>
+      <link>//blog.vero.site/post/nuclear-ii</link>
+      <pubDate>Fri, 10 Jul 2015 11:40:47 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/nuclear-ii</guid>
+      <description>&lt;p&gt;(&lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;streak&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;This is not any better than the &lt;a href=&#34;//blog.vero.site/post/nuclear&#34;&gt;first installment&lt;/a&gt;, but I need to post. And then, you know, do homework and presentations and stuff.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Dr. Carver had just managed to drill past Dr. Perkins’s cranium when she heard the door behind her creak open.&lt;/p&gt;
+&lt;p&gt;“Ha! You walked right into my trap!”&lt;/p&gt;
+&lt;p&gt;She turned around. Dr. Perkins was standing in the doorway.&lt;/p&gt;
+&lt;p&gt;She looked down. Yes, they were both Dr. Perkins, she’d know that pair of glasses and spiky hair anywhere.&lt;/p&gt;
+&lt;p&gt;She looked up. Well, the guy in the doorway was wearing a set of black robes outside his white lab coat, but other than that, they really looked completely identical.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Bilingualism II</title>
+      <link>//blog.vero.site/post/bilingualism-ii</link>
+      <pubDate>Wed, 08 Jul 2015 23:16:46 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/bilingualism-ii</guid>
+      <description>&lt;p&gt;我本來還想把這一篇用英文跟中文各打一次來實際比較看看，但這已經被困在草稿匣夠久了。一直做重複、吹毛求疵、沒有效率的修改本來就是我寫心情文時的弊病，如果再要求修改時要保持兩種語言版本的同步的話，大概寫到天荒地老都寫不完。（如果讀者沒有讀過我最近亂發的文章，故事都是這樣的：我覺得我在草稿匣累積了太多寫一半的文章，所以在畢業後，我&lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;在六月十一號決定從那天開始每天發文，直到我出國&lt;/a&gt;，目的是強迫自己把那些草稿寫完，中間還亂發很多其他我本來大概不會寫下來的東西。其實還滿有成就感的。另外，如果你的中文沒有很爛的話，如果你在任何地方認為我寫的中文不流暢或是可以寫得更好，請毫不留情的留言批評。這也是一件我發現我在寫中文方面很缺乏的經驗，我會很感謝。當然，根據以往經驗，懇求讀者留言沒什麼機會成功。）&lt;/p&gt;
+&lt;p&gt;If you came to this blog or this post hoping to read English, sorry not sorry. It’s only fair, really, given how many people on Facebook can’t read the massive English textwall posts I’ve spammed them with for so long.&lt;/p&gt;
+&lt;p&gt;常常有人訝異我的英文這麼好。有時候這些人還會問我怎麼學的－－碰到這種問題我都不知道要怎麼回答。喔，很簡單啊，只要選擇在一個主要說英文的國家出生，然後跟一群從國外回來的同學一起讀有80%的課是用英文上的學校連續讀十二年就好了。&lt;/p&gt;
+&lt;p&gt;偶爾也有人知道我是雙語部的或在不同的情況下認識我，反而會覺得我的中文比他們預期的好，例如我的駕訓班教練。其實我在雙語部還是上了十二年的國文課，進度理論上跟其他學校一樣（「理論上」三個字要強調），我也跟身旁很多親戚朋友用中文溝通了更久。比奧林匹亞競賽的經驗應該也讓我認識的上普通國語教學學校的學生，比其他雙語部同學認識的多。所以這應該也不奇怪吧。&lt;/p&gt;
+&lt;p&gt;但是。其實我對這兩個語言的精熟度其實還是差很多。日常對話沒問題，不過我對英文細枝末節的部分瞭解的比中文多太多太多了。家裡有不止一本「常見英語錯誤」類的書，我小時候會當小說讀－－我是一個很奇怪的人。在學校課程中，我編輯自己或他人的英文文章是一天到晚的事情，什麼奇怪的句子跟構造都碰過、想過、修理過。還有些時候，我會很自然的寫出一個英文單字，然後發現我不知道為什麼自己會知道這個單字的意思，但就是有一種感覺告訴我，對，subsist的意思就是「存活於只有最基本的需求被滿足的情況」。跟中文比較：有時候，直覺也會告訴我有某一個成語是可以用的，但我只能清楚想到這個成語的兩、三個字。聽起來很「對」，不過我就是想不到第四個字是什麼，或是怕前三個字換成錯別字，再加上懷疑整個成語意思根本不是我模糊腦袋裡現在浮現的，因為我認得這些字字面上的意思，但無法說服自己為什麼它們合在一起可以解釋成這種意思，最後只好放棄，用國小白話文的措詞就好了。&lt;/p&gt;
+&lt;blockquote&gt;
+「總覺得，我在用任何偏離國小程度的白話文的詞彙的時候都是假裝的。」
+&lt;/blockquote&gt;
+&lt;p&gt;我在舊一點的草稿寫出了這個句子，不過那一串「的」字讓我覺得怪怪的，現在想想，沒有人跟我討論過寫出這種或其他奇怪的句子時應該怎麼辦。哪一些「的」可以省略？有辦法把句子重寫（recast）避開嗎？還是不管它，我覺得它聽起來很奇怪純粹是錯覺，多讀一點中文就會發現根本沒什麼大不了的？&lt;/p&gt;
+&lt;p&gt;使用兩種語言的方法也差很多。看看這個部落格就知道了。我相信我在學校雙語部外的大部分台灣朋友不會試著去理解我關於自己長篇大論的英文作文，但長篇大論的文章還是我最認真表達自己的地方。反觀我的中文短文，都通常是那種搞笑、釣讚、裝弱的文。（不，我真的很弱。）我不時會發現自己在網上逛到一個陌生人的心情文，看得津津有味。我們之間的關係頂多是朋友的朋友的朋友，我只知道我跟他應該都喜歡數學這個共同點罷了，但因為語言，我在那些瞬間覺得自己瞭解他勝於瞭解幾乎所有在我身邊講中文的朋友。我自己怎麼看這件事都覺得不合理，有點慚愧。&lt;/p&gt;
+我回去讀了&lt;a href=&#34;//blog.vero.site/post/bilingualism&#34;&gt;我第一次寫的關於雙語的文章&lt;/a&gt;，可能有一點過火：後來證實，在我的朋友中似乎真的有會純粹為了抒發感情而寫七言律詩的人。而且，我講中文的朋友圈裡，文學類佔的比例本來就應該比他們在整個社會裡佔的比例少很多。在學校跟在生活裡，吸收英文多於中文（而且數學多於英文）是我做的選擇，只是我自己不知道選擇的中介點好不好罷了。是否，我花在跟講中文的親戚朋友互動的力氣不夠？ 
+&lt;hr /&gt;
+&lt;p&gt;想寫這一堆字的靈感有一部分來自一次返校活動（九月，可以算出這篇文章停滯在草稿期的時間的下界）。我跟同學在玩一些返校活動的遊戲，我在同學之間嘴裡不停的蹦出笑話，開玩笑的挑逗人。有可能有一點過火，沒有很嚴重不過我的確覺得說了一些我希望我沒說的話。之後，我又跟同學坐在教室暢談了一段時間，聊各種高三、準畢業生的事情。可能有一個小時吧，細節不重要，重點是這引發我想到我說中文的時候好像只會有想說的話沒有說，而好像幾乎沒有過類似的交談。我跟家人、親戚、其他學校的同學沒有辦法以同樣自然的方式交談。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>A List</title>
+      <link>//blog.vero.site/post/a-list</link>
+      <pubDate>Tue, 07 Jul 2015 20:56:53 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/a-list</guid>
+      <description>(streak)
+≥1 of you should know what is being referred to.
+  Oh yeah, I love being first. Of course the approximate price is that I have to expose the world to the innocent naïveté of my fourth-grade self. So far nobody mean has ventured there yet, but who knows.   Darn, two years. Darn, Cards Against Humanity. I need more of that in my life. I don’t know what else is happening but music is good.</description>
+    </item>
+    
+    <item>
+      <title>Drop-In Filler</title>
+      <link>//blog.vero.site/post/drop-in</link>
+      <pubDate>Mon, 06 Jul 2015 21:50:05 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/drop-in</guid>
+      <description>(streak)
+I’ll probably be making filler posts for a while until I make decent progress on linear algebra and programming work, including another presentation.
+Let’s listen to some more music.
+  This is a Deemo song and even though there are a lot of things I could snark about in the grammar, scansion, and execution of the video (less flashy lyric video here), I kind of want to forgive all that for the (really really dark) poetic image.</description>
+    </item>
+    
+    <item>
+      <title>(8,9,7)</title>
+      <link>//blog.vero.site/post/897</link>
+      <pubDate>Sun, 05 Jul 2015 10:09:29 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/897</guid>
+      <description>&lt;p&gt;(&lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;streak&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;I always tell myself, okay, I will actually just draw something facetiously and get it over with, nobody comes to this blog to admire my GIMP mouse doodles, but then perfectionist tendencies kick in and I get &lt;a href=&#34;//blog.vero.site/post/1024&#34;&gt;car&lt;/a&gt;ried away and it ends up taking more than an hour or so.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/linear.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/linear.png?w=652&#34; alt=&#34;linear&#34; width=&#34;652&#34; height=&#34;489&#34; class=&#34;aligncenter size-large wp-image-3074&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>More Fiction (Part 2)</title>
+      <link>//blog.vero.site/post/more-fiction-2</link>
+      <pubDate>Sat, 04 Jul 2015 23:47:49 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/more-fiction-2</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;//blog.vero.site/post/more-fiction-1&#34;&gt;Part 1 was here&lt;/a&gt;. This is still part of the &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly committed to&lt;/a&gt; and standard disclaimers still apply. Just as in &lt;a href=&#34;//blog.vero.site/post/fiction&#34;&gt;my original post&lt;/a&gt;, back to the flip side — let’s see what I have to do to &lt;em&gt;write&lt;/em&gt; fiction to my own satisfaction. And this time I have a guide: the list I made in the first part of this post. Could I create fiction I would enjoy reading?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1: I enjoy calling things before they happen…&lt;/p&gt;
+2: …I also enjoy the Reveal for questions when the author has done something clever I didn’t catch…
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>More Fiction (Part 1)</title>
+      <link>//blog.vero.site/post/more-fiction-1</link>
+      <pubDate>Thu, 02 Jul 2015 13:41:12 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/more-fiction-1</guid>
+      <description>&lt;p&gt;I’m going to do it again! I’m going to break a post into parts to milk it for the &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak&lt;/a&gt;. Desperate times call for desperate measures.&lt;/p&gt;
+&lt;p&gt;This is mostly a self-analysis post though.&lt;/p&gt;
+&lt;p&gt;WARNING: &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/JustForFun/TVTropesWillRuinYourVocabulary&#34;&gt;This post contains many, many TVTropes links.&lt;/a&gt; If you are like me and need to be productive but are &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/Main/TVTropesWillRuinYourLife&#34;&gt;liable to being sucked into TVTropes&lt;/a&gt;, maybe you should find a way to commit to not clicking on any of these links, or just stop reading. The &lt;a href=&#34;https://xkcd.com/609/&#34;&gt;obligatory xkcd&lt;/a&gt; is kind of long and also featured on one of the TVTropes links I’ve already made, so I’m not going to embed it.&lt;/p&gt;
+&lt;p&gt;I &lt;a href=&#34;//blog.vero.site/post/fiction&#34;&gt;blogged about this before in 2013&lt;/a&gt; — how I felt that the analysis trained into me by English class was dulling my ability to appreciate and write the types of fiction I really enjoyed. After thinking about it I realized the mismatch goes deeper than that. Because the things I seek the most in fiction are escapism and entertainment. I like simple fiction with obvious (though maybe not &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/Main/Anvilicious&#34;&gt;that obvious&lt;/a&gt;) &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/Main/AnAesop&#34;&gt;Aesops&lt;/a&gt; and extreme economy of characters via making all the reveals being of the form “X and Y are the same person” (which does not quite seem to be a trope but may be an occurrence of &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/Main/ConnectedAllAlong&#34;&gt;Connected All Along&lt;/a&gt;, with the most famous subtrope being &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/Main/LukeIAmYourFather&#34;&gt;Luke, I Am Your Father&lt;/a&gt; (which is &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/Main/BeamMeUpScotty&#34;&gt;a misquote&lt;/a&gt;!), and is also one common &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/Main/StockEpilepticTrees&#34;&gt;Stock Epileptic Tree&lt;/a&gt;, so maybe this isn’t the best example), because not only are such reveals fun, they make the plot simpler. What can I say, it works.&lt;/p&gt;
+&lt;p&gt;The qualities of being thought-provoking or heartwarming are only bonuses for me; needless &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/Main/JigsawPuzzlePlot&#34;&gt;complexity in the number of characters or plots&lt;/a&gt; is a strict negative. Sorry, I don’t want to spend effort trying to remember which person is which and how a hundred different storylines relate to each other if they don’t build to a convincing, cohesive, and &lt;em&gt;awesome&lt;/em&gt; &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/Main/TheReveal&#34;&gt;Reveal&lt;/a&gt;, and often not even then. And I like closure, so I feel pretty miserable when writers &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/Main/KudzuPlot&#34;&gt;resolve a long-awaited plot point just to add a bunch more&lt;/a&gt;. Because of this I am ambivalent about long book series; most of my favorite works of fiction have come in long series but starting a new one always gives me &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/Main/CommitmentAnxiety&#34;&gt;Commitment Anxiety&lt;/a&gt;. Even when there’s closure, when I finish an immersive movie or book I’m always left kind of disoriented, like I’ve just been lifted out of a deep pool and have to readjust to breathing and seeing the world from the perspective of a normal person on land. I like when I’m reading good fiction, but I don’t like going through withdrawal symptoms. If I want to read complicated open-ended events, I’ll go read a history textbook, because at least the trivia might come up useful some day; if I want tough problems I’ll just look at real life and think about the possibility of college debt and having to find a job and everything. (If it wasn’t obvious yet, this is why I hyperbolically hate on &lt;cite&gt;Game of Thrones&lt;/cite&gt; often.) Even worse than all of this is multiple paragraphs full of scenery and nothing else, unless of course parts or maybe all of the scenery are &lt;a href=&#34;http://tvtropes.org/pmwiki/pmwiki.php/Main/ChekhovsGun&#34;&gt;Chekhov’s Guns&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Some part of me is embarrassed to admit this because I’ve been educated for so long about deep literature that makes social commentary or reveals an inner evil of humanity or whatever. But then again, I don’t really need an education to appreciate the simple, fun fiction I apparently do.&lt;/p&gt;
+&lt;p&gt;So: there are a lot of famous classics or mainstream works I can’t really enjoy too much, or in some cases, at all. And yet, sometimes a random story or webcomic will appear and I just won’t be able to stop reading. Why? I decided to try making a list of things I like in fiction: &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>DOUBLE POST</title>
+      <link>//blog.vero.site/post/double-post</link>
+      <pubDate>Wed, 01 Jul 2015 01:05:52 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/double-post</guid>
+      <description>20 posts so far in my daily streak, ignoring the time I posted after midnight but including exactly one of this post and the commitment-starting post. You pick which one. The arithmetic works out either way. My last four posts have been made with less than two minutes to spare before midnight, and my last post in particular made it by just seven seconds. This is working as intended in that I’ve knocked out nine drafts that I’m pretty sure would have rotted in my draft folder for at least a few more months otherwise, and I’ve also jotted down more spontaneous thoughts and posted them instead of postponing them until they was too late to be applicable.</description>
+    </item>
+    
+    <item>
+      <title>Quixotic Reimagining of Standardized Tests (Part 2)</title>
+      <link>//blog.vero.site/post/quixotic-2</link>
+      <pubDate>Tue, 30 Jun 2015 23:59:53 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/quixotic-2</guid>
+      <description>&lt;p&gt;If you remember, &lt;a href=&#34;//blog.vero.site/post/quixotic-1&#34;&gt;Part 1 was here&lt;/a&gt; and my goal is to construct a theoretical system of standardized tests that I would be satisfied by. Here’s what I’ve got. As usual, because of the &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly committed to&lt;/a&gt;, standard disclaimers apply.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;We’d have a first-tier test like the SAT, except this will be &lt;em&gt;explicitly designed&lt;/em&gt; &lt;strong&gt;not&lt;/strong&gt; to distinguish among the high performers.&lt;/p&gt;
+&lt;p&gt;The goal of the test is to assess &lt;em&gt;basic&lt;/em&gt; proficiency in reading, writing, and mathematics. Nothing else. Most good students, those who have a shot at “good colleges” and know it, will be able to ace this test with minimal effort and can spend their time studying for other things or engaging in other pursuits. Students who don’t will still have to study and it will probably be boring, but the hope is that, especially if you’re motivated to get into a good college, there won’t be much of that studying.&lt;/p&gt;
+&lt;p&gt;For colleges, the intention of this test is to allow them to require this test score from everybody without having to &lt;a href=&#34;http://mitadmissions.org/blogs/entry/the-difficulty-with-data&#34;&gt;put up disclaimers&lt;/a&gt; that go like,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;there is really not a difference in our process between someone who scores, say, a 740 on the SAT math, and someone who scores an 800 on the SAT math. So why, as the commentor asks, is there such a difference in the admit rate? &lt;em&gt;Aha! Clearly we DO prefer higher SAT scores!&lt;/em&gt;&lt;/p&gt;
+Well no, we don’t. What we prefer are things which &lt;em&gt;may coincide&lt;/em&gt; with higher SAT scores…
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>zzz</title>
+      <link>//blog.vero.site/post/zzz</link>
+      <pubDate>Sun, 28 Jun 2015 23:58:37 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/zzz</guid>
+      <description>&lt;p&gt;(&lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;Facetious paintbrush dragon filler is best filler!&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Quixotic Reimagining of Standardized Tests (Part 1)</title>
+      <link>//blog.vero.site/post/quixotic-1</link>
+      <pubDate>Thu, 25 Jun 2015 23:19:42 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/quixotic-1</guid>
+      <description>&lt;p&gt;Life update: I got my driver’s license from the place where I learned to drive. Then I drove home from there with my mom, and it was zarking &lt;em&gt;terrifying&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Also, WordPress says it has protected my blog from 3&lt;sup&gt;8&lt;/sup&gt; spam comments.&lt;/p&gt;
+&lt;p&gt;Early in the morning tomorrow, I have a small surgical operation, so I can’t sleep too late. (Well, it ended up being pretty late anyway. Darn.) Therefore I think I’m going to do something unprecedented on this blog for the &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak&lt;/a&gt;: I’m going to post an incomplete non-expository post.&lt;/p&gt;
+&lt;p&gt;Yes, the only purpose of the title is to get initials that are four consecutive letters of the alphabet..&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;One of the more argumentative post sequences on my blog involved ranting against standardized tests.&lt;/p&gt;
+&lt;p&gt;My very first stab was probably the &lt;a href=&#34;//blog.vero.site/post/test&#34;&gt;silly satire&lt;/a&gt; directed at the test everybody has to take that takes up two hours per day of an entire week. Once college became a thing in my life, I wrote a &lt;a href=&#34;//blog.vero.site/post/2400&#34;&gt;humblebrag rant&lt;/a&gt; after I took the SAT and then a &lt;a href=&#34;//blog.vero.site/post/sat&#34;&gt;summary post&lt;/a&gt; after I snagged this subject for an English class research paper and finished said paper.&lt;/p&gt;
+&lt;p&gt;It should be plenty clear that I am not ranting against this part of the system because it’s disadvantageous to me.&lt;/p&gt;
+&lt;p&gt;But it should also be said that I’ve read some convincing arguments for using standardized tests &lt;em&gt;more&lt;/em&gt; in college admissions (&lt;a href=&#34;http://www.newrepublic.com/article/119321/harvard-ivy-league-should-judge-students-standardized-tests&#34;&gt;Pinker&lt;/a&gt;, then &lt;a href=&#34;http://www.scottaaronson.com/blog/?p=2003&#34;&gt;Aaronson&lt;/a&gt;). Despite the imperfections of tests, they argue, the alternatives are likely to be less fair and more easily gamed. The fear that selecting only high test-scorers will yield a class of one-dimensional boring thinkers is unfounded. And the idea that standardized tests “reduce a human being to a number” may be uncomfortable for some, but it makes no sense to prioritize avoiding a vague feeling of discomfort over trusting reliable social science studies. Neither article, you will note, advocates selecting &lt;em&gt;all&lt;/em&gt; of one’s college admits based on highest score. Just a certain unspecified proportion, one that’s probably a lot larger than it is today.&lt;/p&gt;
+&lt;p&gt;And although I wish the first article linked its studies, I mostly agree with their arguments. So this puts me in a tricky position. These positions I’ve expressed seem hard to reconcile! So, after arguing about all this with a friend who told me things like&lt;/p&gt;
+&lt;blockquote&gt;
+I think you fail to understand how anti-intellectual american society is
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>2^10 Words</title>
+      <link>//blog.vero.site/post/1024</link>
+      <pubDate>Tue, 23 Jun 2015 15:31:12 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/1024</guid>
+      <description>&lt;p&gt;Vacuous content for &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;posting streak&lt;/a&gt;. Disclaimers apply, particularly “entirely unlike anything previously on this blog”.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/post/cars&#34;&gt;Like I said&lt;/a&gt;, studying. Furiously.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Scary Cars</title>
+      <link>//blog.vero.site/post/cars</link>
+      <pubDate>Mon, 22 Jun 2015 22:27:14 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/cars</guid>
+      <description>&lt;p&gt;(Part of a &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak&lt;/a&gt; but for once I don’t think I need to apply the disclaimers to this. If you thought for even one second that the title was a palindrome, I’ve succeeded. It’s not. I don’t have a good title. Okay, maybe slap the disclaimers onto that part.)&lt;/p&gt;
+&lt;p&gt;The first time I drove a car was on 5/18. I think. I might be off by a day or so. Most of that day’s lesson was spent learning to go forward and backward, accelerate and decelerate smoothly, and turn the wheel without getting my hands tangled up. My coach made me count out loud how many circles I was turning: 一圈半圈半圈一圈etc. It felt kind of stupid when I was doing it, but I guess in the end it helped, and eventually once I got the hang of turning the wheel, I just subvocalized it and my coach also tacitly stopped bothering me about it.&lt;/p&gt;
+&lt;p&gt;The first time I activated a turn signal light was probably on 5/26. That was the day I wrote in my TIL log that, when you turn the steering wheel back from the direction you were turning, the turn signal lights turn off automatically. After you think about it, this is a pretty sensible thing for turn signal lights to do, but when I first learned this my mind was utterly blown. Wow!&lt;/p&gt;
+&lt;p&gt;It’s like when you’re turning and you turn on the turn signal and it starts clicking this steady beat to increase the dramatic tension, like you’re doing a trick in a sports driving game and you have to quickly hit the right sequence of buttons on the controller. Then you actually turn the corner and then turn the wheel back, and as the wheel makes its smooth sliding sound back to its upright position, the beat stops like a resounding V7 to I resolution, as if to congratulate you on executing a beautiful turn without crashing into another car or driving off the side of the road.&lt;/p&gt;
+&lt;p&gt;That’s what it feels like, anyway.&lt;/p&gt;
+&lt;p&gt;On slow days, when you’re halfway through a turn but the drivers ahead of you are waiting in a queue that stretches on forever on the practice track, you can shift to the parking gear and use the turn signal’s beat as a metronome and sing along to it too. I do.&lt;/p&gt;
+&lt;p&gt;Or, of course, there’s the obligatory xkcd:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://imgs.xkcd.com/comics/turn_signals.png&#34; alt=&#34;xkcd&#34; /&gt;&lt;/p&gt;
+&lt;hr /&gt;</description>
+    </item>
+    
+    <item>
+      <title>index.txt</title>
+      <link>//blog.vero.site/post/index-txt</link>
+      <pubDate>Sun, 21 Jun 2015 20:52:45 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/index-txt</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>My DNSE Story</title>
+      <link>//blog.vero.site/post/nuclear</link>
+      <pubDate>Sat, 20 Jun 2015 17:12:13 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/nuclear</guid>
+      <description>&lt;p&gt;(Something something something &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak&lt;/a&gt; something something standard disclaimers. My schedule is tighter than usual because IPSC is tonight and runs right up until midnight. Anyway, here’s my logic with posting this: given how long I’ve committed to posting, I’m probably going to have to dig deeply enough into my reserves to include it, and to be authentic I can’t edit the story more anyway, so I might as well do it now. (Also maybe this will pressure me into finishing and posting one of the real short stories in my blog draft folder, the same way I feel pressured to make a good puzzle after posting a bad one.) I’m not even going to reread my story because I don’t like cringing at my own writing without being able to edit it, but hopefully that makes it bad enough to be entertaining. If you didn’t know, this was for an MIT preorientation program application. Tell me if it’s bad to repost application stuff. I hope not.)&lt;/p&gt;
+&lt;p&gt;(Oops this introduction is about as long as the actual story now.)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol type=&#34;1&#34;&gt;
+&lt;li&gt;Tell us a short story in the available space below. Your inspiration is only one word: nuclear. Go!
+&lt;/blockquote&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>8 Songs for 18 Years</title>
+      <link>//blog.vero.site/post/8-songs</link>
+      <pubDate>Fri, 19 Jun 2015 13:40:30 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/8-songs</guid>
+      <description>&lt;p&gt;At some point I thought, hmm, maybe this blog would benefit from some more sentimental, memory-capturing music/videos, like I chose for my &lt;a href=&#34;//blog.vero.site/post/time&#34;&gt;end of 2013 post&lt;/a&gt; or my &lt;a href=&#34;//blog.vero.site/post/rewind&#34;&gt;end of 2014 post&lt;/a&gt;. (Yeah, I link to my own posts alarmingly often. I think that’s kind of weird. I don’t know.)&lt;/p&gt;
+&lt;p&gt;Obviously, because you’re reading this already, I decided to follow through with that idea. There’s no particular significance for posting this now — it’s not my birthday or anything, as the title might suggest; it just has a nice ring to it — except of course that I’m starting to get mildly desperate for content for my &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak exercise&lt;/a&gt;. Standard disclaimers apply.&lt;/p&gt;
+&lt;p&gt;This is mostly for my future self. I should note that, although I like these songs, this is not a list of my absolute most favorite songs ever. You can tell because there isn’t any Coldplay or fun. (the band.) Instead, each of these songs was chosen to be meaningful to myself and my life in at least two different ways that generally don’t overlap with the other songs. This was difficult but I think I managed it — you know, how constraint breeds creativity and everything? Also, they’re arranged by approximate chronological order of impact. But it also means that this list isn’t going to be that meaningful to anybody other than myself.&lt;/p&gt;
+&lt;p&gt;Also, I have a long list of class-of-2015 sentimental songs, which I’m not including here because I think there are so many that they deserve a separate post. Will I avoid procrastinating and feeling awkward for long enough to make such a post? Stay tuned!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;shrugs&lt;/em&gt; Whatever, enjoy the music or stop reading now if you want.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1: Simon &amp;amp; Garfunkel - Scarborough Fair/Canticle&lt;/strong&gt; 
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/-Jj4s9I-53g&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34; title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+  Not only is Scarborough Fair one of my mom’s favorite songs, I’ve bumped into it three entirely separate times while solving puzzles. I always love counterpoint and I find the effect here especially haunting.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Signal Boost</title>
+      <link>//blog.vero.site/post/signal</link>
+      <pubDate>Wed, 17 Jun 2015 21:59:18 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/signal</guid>
+      <description>&lt;p&gt;(Short blog content, posted as part of a &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly committed to&lt;/a&gt;; standard disclaimers apply)&lt;/p&gt;
+&lt;p&gt;For the interested, I wrote a &lt;a href=&#34;https://ibshgin.wordpress.com/2015/06/17/copyright/&#34;&gt;&lt;strong&gt;post summarizing issues in copyright and patent law&lt;/strong&gt;&lt;/a&gt; on a new blog for a school club. Actually, if you’re reading this post, you’re probably already interested enough / bored enough to read that post, so go read it. I think the videos are worth watching despite their length, but I tried to summarize the key points in text, so decide how much to read or watch depending on how much spare time you have.&lt;/p&gt;
+&lt;p&gt;I don’t know if that blog will work out, but anyway WordPress tells me I have 8500% more followers on this blog than the other one, even though I have doubts about how many of those followers actually read anything I post at all, so I thought I should link to that post here. Also, by publicizing the blog, I get to shame my friends and fellow club members into posting so that it doesn’t look so empty. Social media expertise, you know?&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>rekt</title>
+      <link>//blog.vero.site/post/rekt</link>
+      <pubDate>Tue, 16 Jun 2015 00:36:06 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/rekt</guid>
+      <description>&lt;p&gt;Darn, I only lasted four days. That’s pretty bad.&lt;/p&gt;
+&lt;p&gt;And I broke like 90% of my HabitRPG streaks too. I was busy running Monte-Carlo calculations to estimate the number of domino logic puzzles, and forgot about midnight. Okay, before that I spent twice as much time on &lt;a href=&#34;http://www1.flightrising.com/&#34;&gt;Flight Rising&lt;/a&gt; for whatever reason. Bad life decisions.&lt;/p&gt;
+&lt;p&gt;I guess that means today I have to post one now, before going to sleep, and one later. Eh, time to harvest really weird mini-posts from nowhere.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mortality</title>
+      <link>//blog.vero.site/post/mortality</link>
+      <pubDate>Sun, 14 Jun 2015 21:00:51 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/mortality</guid>
+      <description>&lt;p&gt;(Faux-philosophical blog content, posted as part of a &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly committed to&lt;/a&gt;; standard disclaimers apply)&lt;/p&gt;
+&lt;p&gt;This is a hard essay to write because (1) it’s very irrational and I should (and I do) know better — death by car accident is much more likely than death by an airplane crash, but the latter is scarier because it’s more vivid and we have less control over it, and (2) people don’t like talking about it. When I tried writing it, though, I realized I already burned through most of the down-to-earth worries in the posts I made between April and August of 2010. They still coherently and accurately sum up my current thoughts surprisingly well. And most of the irrational, overly philosophical fears appeared in &lt;a href=&#34;//blog.vero.site/post/midnight&#34;&gt;Thoughts at Midnight&lt;/a&gt;. So there used to be a lot of fluff here like this, which was inducing procrastination because I don’t know what to include and what to cut, but now that I have a daily deadline, I cut most of it. Here’s what’s left.&lt;/p&gt;
+&lt;p&gt;One, xkcd:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>College Emails</title>
+      <link>//blog.vero.site/post/college-emails</link>
+      <pubDate>Sat, 13 Jun 2015 09:08:33 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/college-emails</guid>
+      <description>&lt;p&gt;(Frivolous blog content, posted as part of a &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly committed to&lt;/a&gt;; standard disclaimers apply)&lt;/p&gt;
+&lt;p&gt;Out of boredom and curiosity, I &lt;a href=&#34;https://betaveros.github.io/bars-college.html&#34;&gt;graphed how many emails colleges sent me&lt;/a&gt;, excluding the colleges I actually applied to. I am being extremely polite and just calling them emails. I’ve wanted to make this for a long time, but it wasn’t until I saw this &lt;a href=&#34;https://medium.com/message/my-failed-experiment-in-time-travel-3aa2240a6bc0&#34;&gt;post about an email experiment&lt;/a&gt; on &lt;a href=&#34;http://waxy.org/links/&#34;&gt;waxy.org/links&lt;/a&gt; that I understood which tools I could use to quantify my emails. (And then I actually made it and procrastinated posting it here for two months. If you look at my GitHub page or activity you might have seen it already, though. Oops.)&lt;/p&gt;
+&lt;p&gt;I don’t think the results were expected. Other than saying that, I leave the interpretation up to the reader because I’m on a tight blogging schedule. Cool? Cool.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ninety-nine (card game)</title>
+      <link>//blog.vero.site/post/99</link>
+      <pubDate>Fri, 12 Jun 2015 08:00:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/99</guid>
+      <description>&lt;p&gt;(Frivolous blog content, posted as part of a &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly committed to&lt;/a&gt;; standard disclaimers apply)&lt;/p&gt;
+&lt;p&gt;It is quite interesting that Wikipedia’s article on &lt;a href=&#34;https://en.wikipedia.org/wiki/Ninety-nine_%28addition_card_game%29&#34;&gt;Ninety-nine (addition card game)&lt;/a&gt;, plus many of the following search results (ignoring the identically-named trick-taking game that is guaranteed to show up), have the same basic idea but wildly differing assignment of special cards from the one I’m familiar with, which everybody I can recall having played with agrees on. (Admittedly I’ve only ever played this among Taiwanese friends.) The only special-card assignment method that came close was a certain person’s &lt;a href=&#34;https://nmnnmnnmmnnnmnrnmnmnnmn.wordpress.com/2012/09/27/concatenation/&#34;&gt;“stuff from my old blog” dumping post&lt;/a&gt; I bumped into very accidentally. (His 5 is our 4; our 5 skips to an arbitrary player. The post also clarifies that negative totals bounce back to zero, and includes a clause whereby players must state the running total after playing and lose if they’re wrong. Interesting.)&lt;/p&gt;
+&lt;p&gt;Anyway, yes, I am documenting the rules to a card game on this blog. I think this deserves to exist online.&lt;/p&gt;
+&lt;p&gt;These rules are not completely rigorous because I don’t know them completely rigorously. You can use common sense to reach a consensus in corner cases.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Use a normal deck of playing cards, or two or more identical decks if you want. Deal five cards to each player and set the rest aside to form a draw pile. Cards are played into a discard pile in the center. Players sit in an approximate circle and take turns along the circle, playing one card and then, usually, drawing one replacement card from the draw pile, so in normal 99, hands stay at five cards. When the draw pile runs out, shuffle the discard pile to become the new draw pile.  There is a “running total” in the game, an integer that starts at 0. Normal cards add their value to the running total when played. The total cannot become greater than 99, hence the name. If you have no cards that could keep it less than or equal to 99, you lose. In that case, the turn passes to the next player and the game continues until only one player remains, or until players get bored and decide to play something else.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>A Commitment</title>
+      <link>//blog.vero.site/post/commitment</link>
+      <pubDate>Thu, 11 Jun 2015 08:43:25 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/commitment</guid>
+      <description>&lt;p&gt;Obligatory life update: I have graduated &lt;a href=&#34;https://motivatedgrammar.wordpress.com/2012/01/24/a-brief-history-of-speaking-about-graduation/&#34;&gt;[from]&lt;/a&gt; high school.&lt;/p&gt;
+&lt;p&gt;But that’s not what this post is about. I &lt;a href=&#34;//blog.vero.site/post/scheduled-blogging&#34;&gt;contemplated setting up a schedule for my blogging&lt;/a&gt; three long years ago, and decided against it, because I didn’t think writing was a high enough priority for me. Well, I am setting up a schedule now: &lt;strong&gt;I am going to post something on this blog every day&lt;/strong&gt; until I have to leave the country (which is happening once before college, so it’s not for as long as you think; but I might decide to continue the schedule anyway after I get back. We’ll see when the time comes.)&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Sylow</title>
+      <link>//blog.vero.site/post/sylow</link>
+      <pubDate>Sat, 16 May 2015 00:00:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/sylow</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.artofproblemsolving.com/community/c1285h1035830&#34;&gt;original sillier post&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Note on notation: I’m going to use &lt;span class=&#34;math inline&#34;&gt;\(\text{Stab}(x)\)&lt;/span&gt; instead of &lt;span class=&#34;math inline&#34;&gt;\(G_x\)&lt;/span&gt; for the stabilizer subgroup and &lt;span class=&#34;math inline&#34;&gt;\(\text{Cl}(x)\)&lt;/span&gt; instead of &lt;span class=&#34;math inline&#34;&gt;\(^Gx\)&lt;/span&gt; for the conjugacy classes. For the orbit of &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; I’ll stick with the norm and use &lt;span class=&#34;math inline&#34;&gt;\(Gx\)&lt;/span&gt;, although it’s only used in confusing summation notation that I’ll explain with words too.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;We keep using this silly counting argument which I thought was something like Burnside’s lemma but actually is a lot simpler, just partitioning the set into orbits and slapping the orbit-stabilizer theorem on.&lt;/p&gt;
+&lt;p&gt;If &lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt; is the group and &lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt; is the set then&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>|Wedge|</title>
+      <link>//blog.vero.site/post/wedge</link>
+      <pubDate>Wed, 13 May 2015 00:00:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/wedge</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.artofproblemsolving.com/community/c1285h1033032&#34;&gt;original sillier post&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Note on notation: to be maximally clear, I have bolded all my vectors and put tiny arrows on them. Normal letters are usually reals, uppercase letters are usually bigger matrices. Also, &lt;span class=&#34;math inline&#34;&gt;\(\cdot^T\)&lt;/span&gt; denotes the transpose of a matrix.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m\)&lt;/span&gt; be elements of &lt;span class=&#34;math inline&#34;&gt;\(\mathbb{R}^n\)&lt;/span&gt; where &lt;span class=&#34;math inline&#34;&gt;\(m \leq n\)&lt;/span&gt;, i.e. column vectors with &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; real elements. Let &lt;span class=&#34;math inline&#34;&gt;\(V = [\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m]\)&lt;/span&gt;. This means pasting the column vectors together to make an &lt;span class=&#34;math inline&#34;&gt;\(n \times m\)&lt;/span&gt; matrix (&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; rows &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; columns).&lt;/p&gt;
+&lt;p&gt;Consider the thing &lt;span class=&#34;math inline&#34;&gt;\(\vec{\textbf{v}}_1 \wedge \vec{\textbf{v}}_2 \wedge \cdots \wedge \vec{\textbf{v}}_m\)&lt;/span&gt;, which can be visualized as the hyperparallelogram &lt;span class=&#34;math inline&#34;&gt;\(\left\{\sum_{i=1}^{m} t_i\vec{\textbf{v}}_i \,\middle\vert\, t_i \in [0,1], i = 1, 2, \ldots, m \right\}\)&lt;/span&gt; but is apparently a different thing in a different vector space of things. We wonder how to compute &lt;strong&gt;the hyperarea of this hyperparallelogram&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 47 / Fillomino [LITS &#43; Walls]</title>
+      <link>//blog.vero.site/post/puzzle-47</link>
+      <pubDate>Mon, 30 Mar 2015 20:01:26 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-47</guid>
+      <description>CLICKBAIT PERSONALITY TEST THAT YOU CAN DO WITHOUT SOLVING THE PUZZLE: What do you see in the puzzle image below? I have my own thoughts but I won’t bias you by posting them yet. Sound out your thoughts in the comments below! (I don’t expect this to work but I’d love to be proven wrong)
+Okay so apparently how puzzles work is I go nearly a year without posting one and then when I post a terrible one, I feel guilty and obligated to post a legitimate one soon after.</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 46 / Fillomino [LITS &#43; Extra Region &#43; Walls &#43; Anti-Walls &#43; Inequality &#43; Tapa &#43; Masyu]</title>
+      <link>//blog.vero.site/post/puzzle-46</link>
+      <pubDate>Sun, 29 Mar 2015 13:01:08 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-46</guid>
+      <description>5:27 PM phenomist: do you use gridderface to make pretty puzzles?
+…
+5:52 PM phenomist: actually nvm excel is probably easier lol  Okay I’m sorry this is a horrible puzzle where the rules don’t make sense and I didn’t even get it testsolved. I just wanted an image to concisely demonstrate the capabilities of gridderface, my puzzle marking and creation program, for the project homepage, after somebody expressed interest in using the program to write a puzzle.</description>
+    </item>
+    
+    <item>
+      <title>Thoughts at Midnight</title>
+      <link>//blog.vero.site/post/midnight</link>
+      <pubDate>Sat, 07 Feb 2015 00:49:18 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/midnight</guid>
+      <description>&lt;p&gt;These are the thoughts that sometimes keep me awake at night.&lt;/p&gt;
+&lt;p&gt;These are things I don’t want to think about. These are things I’ve spent hours thinking about, never productively. They are worrying, but unlike typical worries in my life, it is fundamentally impractical to take steps to resolve or mitigate them, after which I may rest assured that I’ve done my best. The reason is that they also happen to be either untestable/unfalsifiable or only testable if one incurs absurd and irreversible costs, mainly dying.&lt;/p&gt;
+&lt;p&gt;Sometimes I explain them away to myself successfully and move on. Sometimes I read what I’ve written and think about these thoughts and do the cognitive equivalent of looking at them funny, as I’m expecting most readers to feel if they get that far — why would anybody be bothered, or afraid, or soul-crushingly panicked about these things? Life is so busy, there are literally more than sixty-four items on my HabitRPG to-do list, and besides, there are so many serious global issues humanity is actually facing right now, and people who are actually deprived of basic rights and resources and have to struggle to stay alive. How can I possibly be bothered by these absurd remote thoughts?&lt;/p&gt;
+&lt;p&gt;But I know that other times I do feel those emotions exactly. And if I stare &lt;em&gt;just right&lt;/em&gt;, I can feel those emotions bubbling beneath the surface in me. Sometimes I can’t explain the issues away to myself, and a deep soul-sucking pang grows in my stomach. I’m irrational — I’m afraid of some of these thoughts — and I have submitted to the fact that there are some edges of my irrationality that would not be worth the effort to fix if just not thinking about them is better.&lt;/p&gt;
+&lt;p&gt;Sometimes these thoughts make me wish I were not so rational. Sometimes they even make me wish I were religious; it would be easier if (I believed) consciousness were, somehow, special. I suspect if I tried really hard, I could make myself believe something like that sincerely. But I think that’s a betrayal of myself I’m not willing to take. I think there are better ways to remain happy.&lt;/p&gt;
+&lt;p&gt;I want to maximize happiness. Thinking about more general moral principles will help with that, but the remoteness of these particular thoughts is such that I doubt I’ll ever have to make a choice that would benefit from me having thought about them. At least, I think the chance is small enough to not be worth the negative utility spent thinking about them.&lt;/p&gt;
+&lt;p&gt;So: “There is nothing to fear but fear itself.”&lt;/p&gt;
+&lt;p&gt;But I feel frustrated: not thinking about something just doesn’t seem like a solution. I don’t know how to come to terms with just how irrational happiness fundamentally is. And I still can’t resist thinking about them sometimes…&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2015 MIT Mystery Hunt (spoiler-free version)</title>
+      <link>//blog.vero.site/post/hunt</link>
+      <pubDate>Tue, 27 Jan 2015 11:45:50 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/hunt</guid>
+      <description>&lt;p&gt;Well, it’s been over a week, which is a long time for blog posts to be delayed after the event they’re documenting in probably all of the world except my blog. So.&lt;/p&gt;
+&lt;p&gt;I guess this post should start with a bit of background. I’ve been puzzlehunting for… wow, three and a half years now. I was introduced to puzzlehunts from AoPS, when some fellow members got together a team for &lt;a href=&#34;http://puzzle.cisra.com.au/2011/teamstats_AoPS.html&#34;&gt;CiSRA 2011&lt;/a&gt;, and I think I’ve participated to some degree in every known internet Australian puzzlehunt since.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C/C&#43;&#43; to D</title>
+      <link>//blog.vero.site/post/c-to-d</link>
+      <pubDate>Wed, 14 Jan 2015 00:00:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/c-to-d</guid>
+      <description>&lt;p&gt;Some notes.&lt;/p&gt;
+&lt;p&gt;I’m assuming you want to use D largely, but not entirely, for competitive programming. That’s me right now.&lt;/p&gt;
+&lt;h3 id=&#34;basics&#34;&gt;Basics&lt;/h3&gt;
+&lt;p&gt;Syntax is very similar. Function definitions, semicolon-terminated statements, variable declarations, and so on. You can declare &lt;code&gt;int main() {...}&lt;/code&gt; or &lt;code&gt;void main() {...}&lt;/code&gt; or something with arguments.&lt;/p&gt;
+&lt;p&gt;Basic types like &lt;code&gt;bool&lt;/code&gt; and &lt;code&gt;int&lt;/code&gt; and &lt;code&gt;double&lt;/code&gt; are all there. Wonderfully, &lt;code&gt;long&lt;/code&gt; is 64 bits. Instead of &lt;code&gt;unsigned&lt;/code&gt; whatever, just prefix a &lt;code&gt;u&lt;/code&gt;, e.g. &lt;code&gt;uint&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Arithmetic operators and bit operators are all there too, including unsigned right shift &lt;code&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/code&gt;. Although &lt;code&gt;^&lt;/code&gt; is still xor, D has exponentiation as &lt;code&gt;^^&lt;/code&gt;. Sadly, &lt;code&gt;%&lt;/code&gt; is still same-sign remainder; there’s no true mod.&lt;/p&gt;
+&lt;pre class=&#34;sourceCode d&#34;&gt;&lt;code class=&#34;sourceCode d&#34;&gt;&lt;div class=&#34;sourceLine&#34; id=&#34;1&#34; href=&#34;#1&#34; data-line-number=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;import&lt;/span&gt; std.stdio;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Casts look like &lt;code&gt;cast(int) x;&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;control-flow&#34;&gt;Control Flow&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;if&lt;/code&gt;, &lt;code&gt;while&lt;/code&gt;, &lt;code&gt;for&lt;/code&gt;, &lt;code&gt;do&lt;/code&gt;, and even &lt;code&gt;switch&lt;/code&gt; all work as you’d expect, along with &lt;code&gt;break&lt;/code&gt; and &lt;code&gt;continue&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;foreach&lt;/code&gt; is the nice addition though. Not only can you iterate over arrays and stuff, but range loops go like:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rewind</title>
+      <link>//blog.vero.site/post/rewind</link>
+      <pubDate>Wed, 31 Dec 2014 23:59:38 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/rewind</guid>
+      <description>&lt;p&gt;As per &lt;a href=&#34;http://mitadmissions.org/blogs/entry/50_things&#34;&gt;item 3 of 50&lt;/a&gt;:&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/zAC_teyfrHU&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34; title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.infinitelooper.com/?v=zAC_teyfrHU&#34;&gt;InfiniteLooper version&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Well, there are better memory-triggering songs but I think this pretty much sums up how I feel about blogging right now (possibly including the very act of choosing that song.) And college apps. And life. Plus, the music video is silly in its own incredible way.&lt;/p&gt;
+&lt;p&gt;Anyway. Around this time a year ago, I made &lt;a href=&#34;//blog.vero.site/post/time&#34;&gt;a post&lt;/a&gt; talking about how around a year before that,&lt;/p&gt;
+&lt;blockquote&gt;
+I paused my participation in big high-school competitions, for a variety of reasons.
+&lt;/blockquote&gt;
+&lt;p&gt;And then I rambled on life and programming competitions.&lt;/p&gt;
+&lt;p&gt;If you didn’t get it yet, this post so far has been written to meaningfully echo the last one. Nothing so abrupt has happened this year, but I just realized how nice it was to have a paragraph humorously listing the weird stuff I had gotten myself into over the course of 2013, so I’m going to do so again, even more completely.  (Broken into headers for easy skipping by people who don’t care for reading about certain categories.)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>College Questions (unprotected ver.)</title>
+      <link>//blog.vero.site/post/college-qs</link>
+      <pubDate>Mon, 29 Dec 2014 19:54:05 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/college-qs</guid>
+      <description>&lt;p&gt;This post, or most of it, was published password-protected once because… well, I explain that below. (To the one person who actually bothered asking me for the password, just so you know, I did add and rewrite parts. More than a few.) I forgot how distinctly powerful a disincentive a large 2300-word block of text is to the average person, especially when the subject of half of those 2300 words is teenage angst (I’ve already linked to &lt;a href=&#34;https://xkcd.com/1370/&#34;&gt;xkcd 1370&lt;/a&gt; in enough places so I’m not even going to embed it here) interweaved with an insufferable amount of rationalist jargon. This will probably filter my readership more than sufficiently already.&lt;/p&gt;
+&lt;p&gt;I have still decided to protect one detail of the thought process, though. But even after that, I guess I do care more about how many people read this than I do for most of my other posts, so here’s a primitive attempt to gauge interest; if you choose anything beyond the first choice, I would also appreciate if you leave a comment, even if you don’t think you have anything to add:&lt;/p&gt;
+&lt;ins datetime=&#34;2017-11-24T18:33:34-0500&#34;&gt;
+edit: This poll has been removed, it wasn’t very interesting anyway.
+&lt;/ins&gt;
+&lt;hr /&gt;
+&lt;p&gt;I haven’t posted for a long period again, but I don’t feel too bad about it.&lt;/p&gt;
+&lt;p&gt;Well, until I look carefully at my blog draft folder and remember that I have 90%-finished drafts about the two debate competitions I went to (November 2013 and March 2014), and winning the previous Mystery Hunt (January 2014), and my summer trip to Penghu (July 2013). Which will probably never get posted out of awkwardness.&lt;/p&gt;
+&lt;p&gt;Oops.&lt;/p&gt;
+&lt;p&gt;But I’ve been busy, completely righteously busy, with college apps to write and algorithm classes to teach and speeches to write and a math club to sort-of lead and all the typical homework besides.&lt;/p&gt;
+&lt;p&gt;And then (for those of you who don’t have me as a friend on Facebook) I got accepted to MIT and Caltech early.&lt;/p&gt;
+&lt;p&gt;And for a few days after that, I checked Facebook about sixteen times a day for the Class of 2019 group discussion, except for one day when I really needed not to, thanks to the power of committing to my HabitRPG party to do something. I am increasingly learning that procrastination is something that has to be actively and strategically fought. But that’s not what this post is about.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HOJ 226: CP (中)</title>
+      <link>//blog.vero.site/post/hoj-cp</link>
+      <pubDate>Mon, 15 Dec 2014 00:00:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/hoj-cp</guid>
+      <description>&lt;p&gt;This post was written in Traditional Mandarin Chinese for my fellow competitive programmers in Taiwan.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://hoj.twbbs.org/judge/problem/view/226&#34;&gt;題目在這裡，HOJ 226&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;有關的題目出現於NPSC 2014 高中組決賽pD。&lt;/p&gt;
+&lt;p&gt;前置要求：treap (split, merge)跟在上面實作區段操作（請參考資訊枝幹）。&lt;/p&gt;
+&lt;p&gt;這裡沒有完整的解答code，因為AC是要用血汗換來的才值得 :-)&lt;/p&gt;
+&lt;h2 id=&#34;treap&#34;&gt;Treap&lt;/h2&gt;
+&lt;p&gt;我討厭單字母&lt;code&gt;l&lt;/code&gt;的變數名稱（跟&lt;code&gt;1&lt;/code&gt;太像了。我沒有被這個雷過，這只是自己對自己程式碼可讀性的要求），所以我的子樹叫做&lt;code&gt;lc&lt;/code&gt;(left child)，&lt;code&gt;rc&lt;/code&gt;(right child)。&lt;/p&gt;
+&lt;pre class=&#34;sourceCode cpp&#34;&gt;&lt;code class=&#34;sourceCode cpp&#34;&gt;&lt;div class=&#34;sourceLine&#34; id=&#34;1&#34; href=&#34;#1&#34; data-line-number=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;struct&lt;/span&gt; Treap {&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;2&#34; href=&#34;#2&#34; data-line-number=&#34;2&#34;&gt;    Treap * lc;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;3&#34; href=&#34;#3&#34; data-line-number=&#34;3&#34;&gt;    Treap * rc;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;4&#34; href=&#34;#4&#34; data-line-number=&#34;4&#34;&gt;    &lt;span class=&#34;dt&#34;&gt;unsigned&lt;/span&gt; pri;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;5&#34; href=&#34;#5&#34; data-line-number=&#34;5&#34;&gt;    &lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; val;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;6&#34; href=&#34;#6&#34; data-line-number=&#34;6&#34;&gt;    &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; size;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;7&#34; href=&#34;#7&#34; data-line-number=&#34;7&#34;&gt;};&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;8&#34; href=&#34;#8&#34; data-line-number=&#34;8&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;9&#34; href=&#34;#9&#34; data-line-number=&#34;9&#34;&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; size(Treap * a) { &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; a ? a-&amp;gt;size : &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;; }&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;10&#34; href=&#34;#10&#34; data-line-number=&#34;10&#34;&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; pull(Treap * a) {&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;11&#34; href=&#34;#11&#34; data-line-number=&#34;11&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; (a) a-&amp;gt;size = &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; + size(a-&amp;gt;lc) + size(a-&amp;gt;rc);&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;12&#34; href=&#34;#12&#34; data-line-number=&#34;12&#34;&gt;}&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Commemorating Obvious Milestones Involving Chronological Sustenance</title>
+      <link>//blog.vero.site/post/comics</link>
+      <pubDate>Wed, 19 Nov 2014 00:00:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/comics</guid>
+      <description>&lt;p&gt;Well, there had to be something here.&lt;/p&gt;
+&lt;p&gt;Unfortunately I don’t have time for anything more complex, so here’s a low-effort illogical puzzle for the occasion. (It &lt;em&gt;has&lt;/em&gt; been testsolved, at least. Thanks, Yoshiap.) It also features a brand new category, so as not to distract the people on LMI.&lt;/p&gt;
+&lt;p&gt;If you don’t already know what occasion it is, it’s easy to find out by looking through my archives or possibly anywhere else I’ve left a trail online. Or you could solve the puzzle! (Or you could &lt;ins datetime=&#34;2014-11-20T12:29:52+00:00&#34;&gt;scroll down to read the solution!&lt;/ins&gt;) If this puzzle had an answer, it would be a nine-letter word, although like most of mathematics, it’s less about the answer than about the path you take to get there…&lt;/p&gt;
+&lt;ins datetime=&#34;2017-11-24T18:36:41-0500&#34;&gt;
+2017 edit: A warning that this has somewhat linkrotted and is harder to solve, but theoretically still possible.
+&lt;/ins&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Extreme Value Theorem</title>
+      <link>//blog.vero.site/post/evt</link>
+      <pubDate>Wed, 22 Oct 2014 00:00:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/evt</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.artofproblemsolving.com/community/c1285h1042959&#34;&gt;original sillier post&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The “Extreme Value Theorem”, according to my old calculus textbook (Larson, Hostetler, Edwards, 8th ed.), is “A continuous function defined on a closed interval attains a minimum and a maximum on the interval.” The calculus textbook continues,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Although [it] is intuitively plausible, a proof of this theorem is not within the scope of this text.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Of course Rudin proves this, but coming from an unrigorous calculus background, the required deductions span three chapters and are very hard to motivate. That’s probably because it proves things for extremely general objects.&lt;/p&gt;
+&lt;p&gt;In particular, I have no idea why the definition of “compact” is what it is: “a set for which every open cover has a finite subcovering”. Therefore, here’s a less general but more motivated proof, from the grounds-up.&lt;/p&gt;
+&lt;h3 id=&#34;definitions&#34;&gt;Definitions&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Real numbers&lt;/strong&gt; are hard to define. We only need to know that we can add, subtract, multiply, divide, and compare them, i.e. they’re an ordered field, and that they have the &lt;strong&gt;least-upper-bound property&lt;/strong&gt;. That is, if we have a set of real numbers that are bounded above, then the set has a &lt;em&gt;least upper bound&lt;/em&gt;, a bound that “perfectly fits” the set. Precisely, the bound must be such that every element of the set is less than or equal to it, and no smaller value satisfies the same property.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Operation Exchange</title>
+      <link>//blog.vero.site/post/exchange</link>
+      <pubDate>Tue, 21 Oct 2014 01:00:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/exchange</guid>
+      <description>&lt;h3 id=&#34;limit-limit&#34;&gt;Limit + Limit&lt;/h3&gt;
+&lt;p&gt;Cheaply, using an &lt;a href=&#34;%7B%%20post_url%202014-10-21-iverson-bracket%20%%7D&#34;&gt;Iverson bracket&lt;/a&gt; expression:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\lim_{a \to \infty} \lim_{b \to \infty} [a &amp;gt; b] &amp;amp;= 0 \\
+\lim_{b \to \infty} \lim_{a \to \infty} [a &amp;gt; b] &amp;amp;= 1
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For more continuity, use &lt;span class=&#34;math inline&#34;&gt;\(\frac{a}{a + b}\)&lt;/span&gt; instead (Rudin Example 7.2).&lt;/p&gt;
+&lt;p&gt;Uniform convergence on one limit suffices to allow this exchange, almost by definition.&lt;/p&gt;
+&lt;h3 id=&#34;limit-continuity&#34;&gt;Limit + Continuity&lt;/h3&gt;
+&lt;p&gt;Let&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+f_\epsilon(x) = \begin{cases} 0 &amp;amp; \text{if } |x| \geq \epsilon \\ 1 - \left|\frac{x}{\epsilon}\right| &amp;amp;\text{if } |x| &amp;lt; \epsilon \end{cases}.
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Numbers</title>
+      <link>//blog.vero.site/post/numbers</link>
+      <pubDate>Mon, 20 Oct 2014 00:00:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/numbers</guid>
+      <description>Continuing the porting of stuff from betaveros.stash, and adding more stuff.
+Mnemonic Here’s my mnemonic table for digits, inspired by an old Martin Gardner column. I wrote from memory the first 132 digits of 2012! correctly at IMO 2012 with this table. I had remembered more, but unfortunately, if I recall correctly, I confused myself over whether I had encoded a 5 or a 2 by the S of “nose”, because this is supposed to be more of a phonetic code than a spelling one — otherwise double letters would be confusing and lots of randomly appearing digraphs would be wasted, because English is weird.</description>
+    </item>
+    
+    <item>
+      <title>[IOI 2014 Outtakes]</title>
+      <link>//blog.vero.site/post/outtakes</link>
+      <pubDate>Sun, 07 Sep 2014 16:01:28 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/outtakes</guid>
+      <description>Miscellaneous observations that didn’t make it into a compelling narrative, sometimes because I have forgotten exactly when they happened, sometimes because I only remembered when they happened after blogging about it, sometimes because it just seemed too tangential, sometimes just because of the circumference of the mooooooooooooooooon! (That made no sense and I’m not going to remember what I’m alluding to in a few months.)   During the first day a guy came into the secret computer room that the Taiwan team had concealed themselves in, saw us watching anime (SAO 2 among others), and innocently asked, “Are you the Japanese team?</description>
+    </item>
+    
+    <item>
+      <title>[IOI 2014 Part 4] Shades of Xanthous</title>
+      <link>//blog.vero.site/post/xanthous</link>
+      <pubDate>Sat, 06 Sep 2014 13:04:16 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/xanthous</guid>
+      <description>&lt;p&gt;No, I didn’t forget. Not for one minute. I was doing homework. I am very happy because that means I was actually carrying out my priorities as I envisioned them. I’ve probably edited this post too many times, though. Meh. But it’s the first weekend after finishing summer homework, so here we go again!&lt;/p&gt;
+&lt;p&gt;Fun fact: This is by far my favorite post title in the entire series. Possibly in the entire history of this blog.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;In the morning of the last day of official IOI activities, there were a bunch of cultural activities, e.g. writing Chinese characters calligraphically, doing tricks with the diabolo, or picking up beans with chopsticks, and noncultural activities, e.g. getting somebody to pour water into a cup on your head while he or she was blindfolded. Due to the last activity I got wet, but my shirt dried really quickly. And alas, even though I had taken calligraphy summer classes a long time ago, my calligraphy was awful — robotic, lifeless strokes without the right aesthetic proportions to make up for it. Blargh.&lt;/p&gt;
+&lt;p&gt;Anyway, lunch followed, and then it was time for the closing ceremony, in the same building as the other ceremonies and contests. Our team caught the ending song of in a Chinese musical being rehearsed as we walked into the auditorium. While we waited for everybody, we milled about waving flags that our various teachers had brought, including not only Taiwan’s flag but also flags of my school, thoughtfully brought by teachers who had volunteered. A little later our leader told us that all the leaders had discussed the matter during a meeting and decided that we shouldn’t bring any flags to the stage while receiving our medals, so we were going to have to make do with being patriotic and school-respecting off stage.&lt;/p&gt;
+&lt;p&gt;There were a few performances, including two aboriginal music performances and the musical we had seen rehearsed ealier, which was a fun rock musical rendition of some Chinese tale that seemed to have been sharply abridged, giving it the plot depth of a Wikipedia stub-article synopsis — a conflict, boy-meets-girl-and-falls-in-love, and a lamenting Aesop song conclusion with thrillingly vague general applicability. But the singing and counterpointing and atmosphere were good. I guess it was proportional to the relative importance of the performance to the closing ceremony. The program interleaved them with the long-awaited medal presentations: one round of bronze medalists, one round of silver, one round of gold.&lt;/p&gt;
+&lt;p&gt;Dum-dum-dum-dum, medals! The home team advantage was really obvious here; the cheering and the medal-presenter handshakes were both significantly more forceful for Taiwan’s medalists.&lt;/p&gt;
+&lt;figure&gt;
+&lt;a href=&#34;//blog.vero.site/img/gold.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/gold.jpg&#34; alt=&#34;I think our leader made this. Thanks.&#34; /&gt;&lt;/a&gt;
+&lt;figcaption&gt;
+I think our leader made this. Thanks.
+&lt;/figcaption&gt;
+&lt;/figure&gt;</description>
+    </item>
+    
+    <item>
+      <title>[IOI 2014 Part 2] One Line to Solve Them All</title>
+      <link>//blog.vero.site/post/one-line</link>
+      <pubDate>Sat, 26 Jul 2014 23:49:14 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/one-line</guid>
+      <description>&lt;p&gt;I started trying to sleep at 9 the night before the contest, tossed and turned in bed until 10, then fell asleep and got up at 3:35 in the morning. Blah. At that point, I went to the bathroom and applied some chapstick before trying to go back to sleep until 6. After breakfast, I grabbed a few minutes of sleep on the bus to the convention center where our contest would be, then slept on a sofa outside the actual contest hall alongside most of the rest of our team as we waited for a very long time until it was okay for us to enter. Competitions really mess with one’s sleep schedule.&lt;/p&gt;
+&lt;p&gt;Then, much too soon, we could enter. Day 1 of the contest was about to start.&lt;/p&gt;
+&lt;p&gt;The laptops were as yesterday, although they were protected with a white screensaver that indicated my name and ID as well as a countdown to the start of the contest. I was glad to see that my mousepad and all my writing utensils had survived without me. Somebody had the sense of humor to project an online stopwatch with an animated bomb fuse onto the screens to indicate the remaining time, which, once again, there was a lot of.&lt;/p&gt;
+&lt;p&gt;I conferred briefly with Paul (TZW (alphaveros (?))) about vim settings for a bit, but there were still fifteen minutes left or so. I idly stretched, practiced typing my &lt;code&gt;.vimrc&lt;/code&gt; on an imaginary keyboard, and watched as the US dude two tables to my left unplugged his laptop’s mouse and rearranged absolutely everything on his table using the surface under his chair as swap space. (Well, that was how I mentally described it at the time, pending further revelations. (hint hint))&lt;/p&gt;
+&lt;p&gt;Then it began. &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[IOI 2014 Part 0] Waiting</title>
+      <link>//blog.vero.site/post/waiting</link>
+      <pubDate>Tue, 15 Jul 2014 21:30:53 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/waiting</guid>
+      <description>&lt;p&gt;Yes, I know day 1 of the contest already ended and is probably a more interesting topic to blog about, but I finished writing this last night just before the internet was cut off to quarantine the contestants from the leaders, who received the problems and began translating them. I didn’t know about this until it was too late, which is why I’ve been waiting since yesterday to post this.&lt;/p&gt;
+&lt;p&gt;To provide a counterpoint to the last post, one of the many, &lt;em&gt;many&lt;/em&gt; advantages of entering an international competition is that you get to meet a lot more people you already know, so there’s less time spent being socially awkward. While waiting for stuff to happen, aside from all the expected time spent with the Taiwan team, I also talked to, played games with, and otherwise entertained a whole lot of people I already knew, including my schoolmates (no less than fourteen of them were volunteers) and some of the college students who had shepherded us around during olympiad training.&lt;/p&gt;
+&lt;p&gt;Which is a good thing, too, because there was a lot of waiting.&lt;/p&gt;
+&lt;p&gt;First I waited for my teammates; my parents had decided to take me to the hotel (Fullon Shenkeng) directly, since I had a lot of stuff, and I had arrived early. This took about an hour, after which we had lunch. Then I waited for the hotel to give us our room cards, which took about five hours, after which we had dinner. Finally, at night, I waited for the Codeforces system tests. Very nerve-wracking. But I’m getting ahead of myself.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>#pyconapac2014</title>
+      <link>//blog.vero.site/post/pycon</link>
+      <pubDate>Tue, 20 May 2014 22:26:53 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/pycon</guid>
+      <description>&lt;p&gt;Late post. As usual.&lt;/p&gt;
+&lt;p&gt;It started with an online competition — write programs, solve problems, get points. I wouldn’t call the problems easy, but they weren’t hard either. So I solved all of them. To make it even less impressive, only about twenty people submitted anything at all.&lt;/p&gt;
+&lt;p&gt;But the result was just what it was: I ended up with a free ticket to &lt;a href=&#34;https://tw.pycon.org/2014apac/en/&#34;&gt;PyCon APAC 2014&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rise from the Ashes</title>
+      <link>//blog.vero.site/post/rise</link>
+      <pubDate>Tue, 29 Apr 2014 19:27:33 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/rise</guid>
+      <description>&lt;p&gt;After the first stage of selection camp, I was very nervous because I was fifth place in a selection sequence that would finally result in a team of four.&lt;/p&gt;
+&lt;p&gt;I screwed myself over on the first mock test by committing to a bad implementation method on a problem that was hard to get points on. My method seemed simple, but the memory usage leaked out in a way that was confusing and hard to patch; unfortunately, I tried to patch it in increasingly desperate and convoluted ways rather than scrapping the method, and thus missed out on many of the points elsewhere.&lt;/p&gt;
+&lt;p&gt;During the second test I failed to read the last problem carefully and spent too much of my time on the second problem, once again missing out on a lot of relatively easy points. I had optimized and optimized and pushed my quadratic runtime down to linearithmic, which would allow me to get the points for the last subtask — or so I thought. But with 10 minutes left I had all but one testcase right, and after desperately rereading my code, I realized that I had a string comparison stuck in an inner loop that could make my runtime degenerate to quadratic if the input string had lots of the same digit. In order to have a solidly linearithmic algorithm, I would have to implement a &lt;a href=&#34;https://en.wikipedia.org/wiki/Suffix_array&#34;&gt;suffix array&lt;/a&gt;. Ten minutes? I gave up. (The problem setters told me afterwards that hashing would have worked too; I didn’t think of that at all. Oops.) I spent the 10 minutes reading the last problem and still failed to read it carefully. So that did not go very well.&lt;/p&gt;
+&lt;p&gt;But, as the title probably gave away, during the third and fourth mock tests everything went much better than expected. :)  There are two good reasons:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 45 / Fillomino [No-Path]</title>
+      <link>//blog.vero.site/post/puzzle-45</link>
+      <pubDate>Tue, 15 Apr 2014 08:15:37 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-45</guid>
+      <description>As requested, a puzzle post! Straight from the WTF-variant department. Quite hard.
+This is a Fillomino, with the additional constraint that for each polyomino, there must not exist a path (i.e. a sequence of cells, each orthogonally adjacent to the next) that includes each of the polyomino’s cells exactly once (and does not include cells outside the polyomino).
+As a degenerate case, 1-ominoes are banned as well.</description>
+    </item>
+    
+    <item>
+      <title>Adventures in Cabal Installations</title>
+      <link>//blog.vero.site/post/cabal</link>
+      <pubDate>Sun, 13 Apr 2014 15:51:16 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/cabal</guid>
+      <description>&lt;p&gt;First Google Code Jam!&lt;/p&gt;
+&lt;p&gt;The format of this competition, allowing us to run programs on our own machines, brought up a very interesting issue for me: what programming language should I be using? (I had had similar considerations for IPSC 2013, but GCJ’s problems are closer to the traditional ACM-ICPC style.)&lt;/p&gt;
+&lt;p&gt;The obvious choice is C++, the language I use for roughly every other competition, but its safety (or lack thereof) is not very appealing. I need speed, but not &lt;em&gt;that much&lt;/em&gt; speed. Unfortunately I still haven’t gotten around to learning any other friendlier mid-level languages (on the list: D, Go, or Rust), so I have no close substitutes for C++ right now.&lt;/p&gt;
+&lt;p&gt;Python is certainly available for a reliable arbitrary-length integer type, if nothing else.&lt;/p&gt;
+&lt;p&gt;As for non-candidates, Java has &lt;code&gt;BigInteger&lt;/code&gt; and memory safety, but all in all I decided the benefits are too minor and it’s too ugly without operator overloading. Scala is probably way too slow. So I don’t expect to be writing either language.&lt;/p&gt;
+&lt;p&gt;The only difficult choice I have to make is, of course, Haskell — which can be quite fast, even while it’s ridiculously type-safe and expressive and referentially transparent and easy to reason about, once you’ve:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;figured out how to do the problem&lt;/li&gt;
+&lt;li&gt;scrapped step 1 and &lt;em&gt;actually&lt;/em&gt; figured out how to do the problem &lt;em&gt;functionally&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;gotten the thing to compile&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Even if I can handle step 1, step 2 is by no means a simple task, as my struggle to implement a mere &lt;a href=&#34;//blog.vero.site/post/haskell&#34;&gt;Sieve of Eratosthenes&lt;/a&gt; efficiently shows. That is fun, but not at all intuitive; I am doubtful I can do this under contest conditions. It is extremely difficult to transfer my skills in learning how to implement, say, a segment tree or treap into this language.&lt;/p&gt;
+&lt;p&gt;But! Google links to the &lt;a href=&#34;http://www.go-hero.net/jam/10/round/0&#34;&gt;programming language breakdown for 2010 Qualification Round&lt;/a&gt; as an example, and much to my surprise, Haskell ranks somewhere between sixth and tenth place in popularity (depending on what you sort by), so there are functional superprogrammers who can presumably do something like this.&lt;/p&gt;
+&lt;p&gt;As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it. &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Re-Re-Revisiting the SAT</title>
+      <link>//blog.vero.site/post/sat</link>
+      <pubDate>Sat, 08 Feb 2014 00:54:03 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/sat</guid>
+      <description>&lt;p&gt;First, I got worked up about the test. Then I got a score and ranted about it on this blog. (I’m still uncertainly hoping that didn’t come off as arrogant. Let me add, I did not get a perfect PSAT.) Then a friend pitched to me the idea that I write an article about it for my school newspaper, which I did. It was far too long. As if that weren’t enough, I then decided to examine whether the SAT was an accurate prediction of “academic ability and success” for my English research paper. Now I’ve come full circle to this blog, where I’m going to try to synthesize and conclude everything, free of the shackles of the research paper format, to allow me to move on with my life. This post contains bits lifted from all three essays and lots of new stuff; I’ve been editing it for so long that I feel like I have it memorized. Its word count is around that of the newspaper article &lt;em&gt;plus&lt;/em&gt; the research paper, i.e. far far far too long.&lt;/p&gt;
+&lt;p&gt;But whatever, nobody reads this blog anyway and I have to get this out of my system. When I said I wanted to “move on with my life”, I really meant my winter homework. Oops!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I am not an admissions officer. I have not yet even been accepted to a prestigious university (despite rumors to the contrary…), for whatever definition of “prestigious”, unlike some of the bloggers I’m referencing. So some of this is pure speculation. On the other hand, some of it is researched and referenced, and I think the pure speculation still makes sense. That’s why I’m posting it.&lt;/p&gt;
+&lt;p&gt;Okay, here we go…&lt;/p&gt;
+&lt;p&gt;Let’s start with the question of accurate prediction. The SAT is a useful predictor, but not as useful as one might assume. Intuitively, it ought to be more accurate than other metrics because it’s a &lt;em&gt;standardized&lt;/em&gt; test, whereas GPAs other awards vary by habits of teacher and region and are hard to compare objectively. But as a &lt;a href=&#34;http://research.collegeboard.org/sites/default/files/publications/2012/7/researchreport-2008-5-validity-sat-predicting-first-year-college-grade-point-average.pdf&#34;&gt;study from the College Board &lt;em&gt;itself&lt;/em&gt; (PDF)&lt;/a&gt; found:&lt;/p&gt;
+&lt;blockquote&gt;
+the correlation of HSGPA [high-school GPA] and FYGPA [first-year GPA in college] is 0.36 (Adj. r = 0.54), which is slightly higher than the multiple correlation of the SAT (critical reading, math, and writing combined) with FYGPA (r = 0.35, Adj. r = 0.53).
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>The Sands of Time</title>
+      <link>//blog.vero.site/post/time</link>
+      <pubDate>Tue, 31 Dec 2013 18:33:17 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/time</guid>
+      <description>&lt;p&gt;Random video! Although I feel that I’ve heard it earlier, my first conscious memory of getting linked to it is from &lt;a href=&#34;http://usamoarchive.wordpress.com/2012/03/01/youre-older-than-youve-ever-been/&#34;&gt;this post&lt;/a&gt;. At first I thought it would be the right background music for this post, but upon further reflection I think it mainly suited me while I was writing this post. Well, it’s topical if you mentally replace “day” with “year”.&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/q2bo_u_YmW8&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34; title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
+&lt;p&gt;Anyway. Around this time a year ago, I paused my participation in big high-school competitions, for a variety of reasons.&lt;/p&gt;
+&lt;p&gt;Firstly, I stopped attempting to make IMO both because I wouldn’t get that much from the training and because other people ought to have the opportunity. I was concerned that I might condition myself to only be able to do math with the short-term motivation of contests. Better to focus on college math and maybe some original research, I thought. During the year, I did lots of the former and very little of the latter. Meh.&lt;/p&gt;
+&lt;p&gt;As for the IOI, my obvious next target: I was tired of training and going abroad while paranoid about whether my immune system would hold up. I didn’t feel that the IOI was worth that. To some degree, I also felt burned out about programming. Long story short, my treatment should end soon, and learning Haskell completely resolved the burnout problem.&lt;/p&gt;
+&lt;p&gt;But the most important reason, I think, was that “high school was too short”. I started math competitions ridiculously early and didn’t spend much time exploring other interests. I thought I knew myself well enough that I could say I didn’t have many more interests at all, but I was completely wrong (psych nerds will reflexively note this to be the &lt;a href=&#34;https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect&#34;&gt;Dunning-Kruger effect&lt;/a&gt;). I coded lots in weird languages — Haskell, as mentioned previously, plus Scala, plus all manner of other magical command line tools. I wrote my first math problem and submitted it officially, picked up a new instrument, went to a debate competition, served as an unimportant tech guy for MUN, discovered and became hooked on Pentatonix, participated in three puzzle hunts in Australia and one in Massachusetts, figured out my rough political stance, rode a boat, got retweeted by &lt;span class=&#34;citation&#34; data-cites=&#34;eevee&#34;&gt;@eevee&lt;/span&gt; and &lt;span class=&#34;citation&#34; data-cites=&#34;Kyrgyzstan_News&#34;&gt;@Kyrgyzstan_News&lt;/span&gt;, increased my Neopets™ fortune by over 3400%, and lurked on FurAffinity a little too much.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>74 Days</title>
+      <link>//blog.vero.site/post/74-days</link>
+      <pubDate>Fri, 27 Dec 2013 18:14:21 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/74-days</guid>
+      <description>&lt;p&gt;I did it!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Okay, I got a 2400. Happy now?</title>
+      <link>//blog.vero.site/post/2400</link>
+      <pubDate>Thu, 21 Nov 2013 22:59:07 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/2400</guid>
+      <description>&lt;ins datetime=&#34;2017-11-25T01:23:34-0500&#34;&gt;
+Note from the future, 2017: I am fairly unhappy with this rant as it stands — it makes many points I still agree with, but it just sounds sooo pretentious — but it is one of very few posts to actually receive a link from an external post I’m aware of, so I guess I should let it stand for historical interest. I wrote this years ago; please don’t take it out of context.
+&lt;/ins&gt;
+&lt;p&gt;I have to admit, I got unhealthily worked up about getting this score.&lt;/p&gt;
+&lt;p&gt;For the purposes of college, I only ever wanted a score that wouldn’t be a deal-breaker — anything above 2300 would be enough. Any other time I had left would be better spent in other endeavors. Such endeavors might help on the college app, but more importantly, I’d also get to enjoy them.&lt;/p&gt;
+So why am I here? Partly it’s because my classmates got worked up about it. Somebody specifically requested me to post my score somewhere. And partly it’s because there couldn’t be a better way at the moment to establish my authority to (yet again) rant against standardized tests here. 
+&lt;blockquote&gt;
+“Everyone is a genius. But if you judge a fish by its ability to climb a tree, it will live its whole life believing that it is stupid.”
+&lt;p class=&#34;source&#34;&gt;
+— &lt;a href=&#34;http://quoteinvestigator.com/2013/04/06/fish-climb/&#34;&gt;not actually Albert Einstein&lt;/a&gt;
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Fiction</title>
+      <link>//blog.vero.site/post/fiction</link>
+      <pubDate>Sun, 20 Oct 2013 11:54:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/fiction</guid>
+      <description>&lt;p&gt;“I like fantasy books! I used to read a lot of Eoin Colfer.”&lt;/p&gt;
+&lt;p&gt;“What does that mean, &lt;em&gt;used to&lt;/em&gt;? You don’t read anymore? That’s so &lt;em&gt;sa-a-a-ad&lt;/em&gt;…”&lt;/p&gt;
+&lt;p&gt;Our teacher and I had this conversation during our first English class, and I realized I agreed with her. Well, no, of course I still read: news articles, r/AskReddit threads, and the books we get assigned in class. But not fiction, almost. As I later mentioned to my teacher, I followed Sam Hughes’ &lt;a href=&#34;http://qntm.org/ra&#34;&gt;Ra&lt;/a&gt; avidly (something I highly recommend). That was it.&lt;/p&gt;
+&lt;p&gt;What does my present self still think of Eoin Colfer? Although I adored the &lt;i&gt;Artemis Fowl&lt;/i&gt; books when I was younger, my interest faded, but not before I had recommended it to my sister. The conversation spurred me to get out the seventh &lt;i&gt;Artemis Fowl&lt;/i&gt; book, which I had stopped reading halfway through a year ago, and finish it. It was still true that I didn’t like it as much, because I couldn’t feel the high stakes strongly in the book and I found that the joking asides compounded the problem. But a few days later, when we took a trip to the Taipei library, I found the eighth book and borrowed it, plowing through nine-tenths of the book before we left. The ending seemed to be happy but still felt counterintuitively poignant for me. In any case, I had closure.&lt;/p&gt;
+&lt;p&gt;So what’s the lesson? Authors vary in output too. I was naïve to suppose that because I found this book boring, I had outgrown all books that were even vaguely similar. In the same trip, I also borrowed a bunch of other random fantasy books, plus a realistic fiction book about a teenage pregnancy, just for kicks. It turned out to be surprisingly good. In a week, I read four books, cover to cover, despite a typical load of homework and chemo.&lt;/p&gt;
+Any excuses I made before about not having enough time simply don’t hold water. Still, I have yet to figure out if this sort of reading is sustainable, because not every book is so engrossing. Far from it… 
+&lt;hr /&gt;
+&lt;p&gt;There’s a flip side, of course — writing.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 43 / Fillomino [Nonrectangular &#43; Walls]</title>
+      <link>//blog.vero.site/post/puzzle-43</link>
+      <pubDate>Mon, 30 Sep 2013 20:52:46 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-43</guid>
+      <description>I’m extremely satisfied — a little incredulous, in fact — with how this puzzle came out. chaotic_iak labels it the “most ridiculous fillomino ever in history”. Apparently, it’s rather tricky.
+ETA: Journalistic responsibility compels me to mention that chaotic_iak also added, “might be beaten later”. Oops?  This is a Fillomino combining the Nonrectangular (polyominoes can’t be rectangles) and Walls (polyominoes can’t span thick lines) variant rules. I think the first variant first came from mathgrant; I’m not as sure about the second, but they both appeared in Fillomino-Fillia 2, at least.</description>
+    </item>
+    
+    <item>
+      <title>Music</title>
+      <link>//blog.vero.site/post/music</link>
+      <pubDate>Sat, 22 Jun 2013 23:13:54 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/music</guid>
+      <description>&lt;p&gt;Isn’t it weird to suddenly talk about this topic?&lt;/p&gt;
+&lt;p&gt;I don’t think that I have ever talked about music any more than briefly in passing. It might be confusing to my &lt;em&gt;finger quotes&lt;/em&gt; &lt;em&gt;audience&lt;/em&gt;, and I worry I’ll seem inconsistent.&lt;/p&gt;
+Well, a foolish consistency is the hobgoblin of little minds. If you wonder, “I didn’t know that you sang and played the piano, or you liked music in that way — or, at all…” please note that I didn’t know either. 
+&lt;hr /&gt;
+&lt;p&gt;For most of my life, I was just a shower singer to myself.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Test</title>
+      <link>//blog.vero.site/post/test</link>
+      <pubDate>Sun, 09 Jun 2013 21:58:01 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/test</guid>
+      <description>&lt;p&gt;Parts of this (a majority of questions, I hope) are intended as satire. Other parts of this are silliness created to blow off steam from being coerced into spending nine unproductive hours. Still other parts exist simply because I wanted to have equally many questions per test. Also, 256th post w00t.&lt;/p&gt;
+&lt;h3&gt;
+“Verbal Reasoning”
+&lt;/h3&gt;
+&lt;em&gt;Directions:&lt;/em&gt; The questions in this test are multiple-choice. Each question has four possible choices. Read each question and decide which answer is the best answer. Find the row in your answer sheet that matches the number of the question. In that row, fill in the oval corresponding to the answer you selected. 
+&lt;ol&gt;
+&lt;li&gt;
+height : tall :: size :
+&lt;ol style=&#34;list-style-type:upper-alpha;&#34;&gt;
+&lt;li&gt;
+big
+&lt;/li&gt;
+&lt;li&gt;
+hot
+&lt;/li&gt;
+&lt;li&gt;
+random
+&lt;/li&gt;
+&lt;li&gt;
+soft
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;malapert : effrontery :: argute :&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Haskell and Primes</title>
+      <link>//blog.vero.site/post/haskell</link>
+      <pubDate>Sat, 25 May 2013 23:03:05 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/haskell</guid>
+      <description>&lt;blockquote&gt;
+“I have been told that any encryption becomes safer if the underlying algorithm is maximally obscured, what is most conveniently done by coding it in Haskell.” – rankk
+&lt;/blockquote&gt;
+&lt;p&gt;Functional programming is terribly addicting! Partly I think the completely different way of thinking makes it feel like learning programming, and falling in love with it, all over again. Partly there’s this evil sense of satisfaction from using &lt;code&gt;$&lt;/code&gt;s (and later &lt;code&gt;&amp;lt;$&amp;gt;&lt;/code&gt;s and &lt;code&gt;=&amp;lt;&amp;lt;&lt;/code&gt;s and &lt;code&gt;&amp;amp;&amp;amp;&amp;amp;&lt;/code&gt;s) to improve readability for initiated Haskellers and worsen it for everybody else. Partly it’s because &lt;a href=&#34;http://learnyouahaskell.com/&#34;&gt;&lt;i&gt;Learn You a Haskell for Great Good!&lt;/i&gt;&lt;/a&gt; is such a fun read — there are too many funny bits to list but my favorite so far is when the author analyzes the first verse of Avril Lavigne’s &lt;em&gt;Girlfriend&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Although I think my code in Haskell tends to be more readable than in other languages, code obfuscation in Haskell is almost natural: all you have to do is refactor the wrong function to be “pointfree”, which means that even though it’s a function that takes arguments, you define it without parameters by manipulating and joining a bunch of other functions. Example (plus a few other tiny obfuscations):&lt;/p&gt;
+&lt;pre class=&#34;sourceCode haskell&#34;&gt;&lt;code class=&#34;sourceCode haskell&#34;&gt;&lt;div class=&#34;sourceLine&#34; id=&#34;1&#34; href=&#34;#1&#34; data-line-number=&#34;1&#34;&gt;isPrime &lt;span class=&#34;fu&#34;&gt;=&lt;/span&gt; liftA2 (&lt;span class=&#34;fu&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;) (liftA2 (&lt;span class=&#34;fu&#34;&gt;$&lt;/span&gt;) (all &lt;span class=&#34;fu&#34;&gt;.&lt;/span&gt; ((&lt;span class=&#34;fu&#34;&gt;.&lt;/span&gt;) (&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;fu&#34;&gt;/=&lt;/span&gt;)) &lt;span class=&#34;fu&#34;&gt;.&lt;/span&gt; rem) (flip&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;2&#34; href=&#34;#2&#34; data-line-number=&#34;2&#34;&gt;    takeWhile [&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;..&lt;/span&gt;] &lt;span class=&#34;fu&#34;&gt;.&lt;/span&gt; (flip (&lt;span class=&#34;fu&#34;&gt;.&lt;/span&gt;) &lt;span class=&#34;fu&#34;&gt;$&lt;/span&gt; liftA2 (&lt;span class=&#34;fu&#34;&gt;*&lt;/span&gt;) id id) &lt;span class=&#34;fu&#34;&gt;.&lt;/span&gt; (&lt;span class=&#34;fu&#34;&gt;&amp;gt;=&lt;/span&gt;))) ((&lt;span class=&#34;fu&#34;&gt;&amp;lt;&lt;/span&gt;) &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;QQ wordpress why no Haskell highlighting &lt;ins&gt;(Editor’s note from 2017: The migration should highlight this now!)&lt;/ins&gt;&lt;/p&gt;
+&lt;p&gt;Also, for some reason, you can do this in Haskell:&lt;/p&gt;
+&lt;pre class=&#34;sourceCode haskell&#34;&gt;&lt;code class=&#34;sourceCode haskell&#34;&gt;&lt;div class=&#34;sourceLine&#34; id=&#34;1&#34; href=&#34;#1&#34; data-line-number=&#34;1&#34;&gt;ghci&lt;span class=&#34;fu&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;fu&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;fu&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;fu&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;2&#34; href=&#34;#2&#34; data-line-number=&#34;2&#34;&gt;&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;(via &lt;a href=&#34;http://www.yellosoft.us/evilgenius/&#34;&gt;Haskell for the Evil Genius&lt;/a&gt;)&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Okay, but seriously now. I wrote this about my journey to learn functional programming in the &lt;a href=&#34;//blog.vero.site/post/programming&#34;&gt;programming babble post&lt;/a&gt; half a year ago:&lt;/p&gt;
+&lt;blockquote&gt;
+The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes).
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>MUMS Puzzle Hunt 2013</title>
+      <link>//blog.vero.site/post/mums</link>
+      <pubDate>Fri, 24 May 2013 21:44:24 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/mums</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/informatix.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/informatix.jpg?w=300&#34; alt=&#34;Informatix [MUMS Puzzle Hunt 2013]&#34;/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;So, I somehow managed to &lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/teamstats.html?team=not+AoPS&#34;&gt;get 25 points all by myself&lt;/a&gt; in &lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/&#34;&gt;MUMS Puzzle Hunt 2013&lt;/a&gt;. Well, I pestered chaotic_iak a little with &lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/2013/puzzles/3.3_Diagnosus_ghQ3AcbJ.html&#34;&gt;3.3 Diagnosus (.html with animated .gif)&lt;/a&gt; but we still didn’t recognize all the Pokémon until hint 3, at which point Google sufficed for me.&lt;/p&gt;
+&lt;p&gt;This is nowhere near the top, but compared to the usual results of whatever AoPS team I form, it’s amazing. By far the best result of AoPS was on CiSRA in 2010 (46th with 58 points), before I discovered puzzle hunts in AoPS; unfortunately due to people getting older and the influx of younger and younger people to the fora, there are less possible teammates each year and they have less time, so here I am by myself. (Also I could have accepted an invitation from a guy in the some-form-of-Elephant team, but I figure if you can win two MUMS hunts in a row you don’t need any more people.)&lt;/p&gt;
+&lt;p&gt;All in all: Yay!&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Google Reader Powering Down</title>
+      <link>//blog.vero.site/post/google-reader-powering-down</link>
+      <pubDate>Thu, 14 Mar 2013 20:35:09 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/google-reader-powering-down</guid>
+      <description>Google just announced it’s shutting down Google Reader in three and a half months… I am participating in the friendly Reddit DDoS-hug of all the alternatives (list, but scroll around in the thread for a few more). Darn.
+It’s very early to pick an RSS replacement, but I think I’m going for The Old Reader. It’s mainly a process of elimination: I don’t want to pay money or get my own server, Pentadactyl doesn’t seem to like Feedly (extension for the Fox), and I don’t think I want to create any accounts or link anything to Facebook, so there was my choice.</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 36 / Fillomino [LITS]</title>
+      <link>//blog.vero.site/post/puzzle-36</link>
+      <pubDate>Wed, 23 Jan 2013 18:29:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-36</guid>
+      <description>mathgrant’s hybrid type: a Fillomino (write a number in every empty cell so that every group of cells with the same number that is connected through its edges has that number of cells) where each tetromino has had their 4s replaced by one of L, I, T, or S describing their shape, and they obey the rules of LITS — they can touch if they are not congruent, they must all be connected, and their squares cannot form a 2x2 block.</description>
+    </item>
+    
+    <item>
+      <title>Hunter on Vacation</title>
+      <link>//blog.vero.site/post/hunter</link>
+      <pubDate>Wed, 23 Jan 2013 16:18:58 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/hunter</guid>
+      <description>&lt;figure&gt;
+&lt;a href=&#34;//blog.vero.site/img/rainbow.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/rainbow.jpg?w=300&#34; alt=&#34;Very faint rainbow&#34; /&gt;&lt;/a&gt;
+&lt;figcaption&gt;
+Faint rainbow
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;So winter vacation started and parents had planned a trip to southern Taiwan, to get closer to nature and walk around and stuff.&lt;/p&gt;
+&lt;p&gt;Also, the MIT Mystery Hunt, the absolute granddaddy of all the other puzzlehunts in terms of age, structure, and size, happened this weekend. Originally, I didn’t have a team and just planned to look at the puzzles after they got archived and &lt;s&gt;try solving some puzzles&lt;/s&gt; read the solutions while constantly thinking, “How could anybody ever solve that?” Because of that, I wasn’t planning to even bring my laptop at first; then I could force myself to study some long-overdue ring theory during the nights. I was taken aback by a private message on Saturday morning from somebody with many different names inviting me to remote-solve for Random Thymes.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>(Similarity)</title>
+      <link>//blog.vero.site/post/similarity</link>
+      <pubDate>Wed, 16 Jan 2013 22:57:48 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/similarity</guid>
+      <description>&lt;p&gt;Sometimes, a sentiment randomly appears in my brain. I wonder about it. There’s a draft I’ve worked on because I’m trying to get something out of my bubble. My emotions are confusing and they need to be released.&lt;/p&gt;
+&lt;p&gt;And after a few sentences, they’ve been released, but the post’s not out there because I want to polish it. First it’s just a look-over for typoes or grammar, then maybe I want to get the flow of the sentences right or cut down the embarrassing bits.&lt;/p&gt;
+&lt;p&gt;Then, on the third read-over, I don’t know why I’m writing it anymore.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ridiculously Long-Winded Programming Babble</title>
+      <link>//blog.vero.site/post/programming</link>
+      <pubDate>Sun, 16 Dec 2012 22:08:28 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/programming</guid>
+      <description>&lt;p&gt;Okay I don’t actually know how this pointless rambling got so long. I know the longer it is the more people will just tend to skim, because I do that all the time. So I went back and refactored—er, rewrote all the somewhat tangential bits (wow these puns are too easy) into footnotes. Manually. Obviously if I have to do this again I’ll write a script for it. But the post is still really long, and I bet nobody will read the whole thing. Oh well.&lt;/p&gt;
+&lt;p&gt;Life updates: I got out of the hospital Friday two-and-a-half weeks ago, went to the preliminaries of NPSC (a national team programming contest) with classmates, threw up a lot, went back into the hospital, and came out again. I wrote a lot of stuff about the experience and how much it sucked (hint: &lt;em&gt;a lot&lt;/em&gt;) when I started this draft around that time, but now putting so much detail in this post feels weird. I’m mostly good now.&lt;/p&gt;
+&lt;p&gt;Three years ago NPSC was the only programming contest I really knew of; now I’ve participated in quite a few more, both online and locally, but it’s still the only contest I’ve entered that gives you real-time verdicts. I believe it inherits this from being modeled after ACM-ICPC, but that’s for college people and I’m less clear on how it works. All the other contests, namely &lt;a href=&#34;https://www.topcoder.com/&#34;&gt;TopCoder&lt;/a&gt;, &lt;a href=&#34;http://www.codeforces.com/&#34;&gt;CodeForces&lt;/a&gt;, &lt;a href=&#34;http://usaco.org/&#34;&gt;USACO&lt;/a&gt;, and the other local individual competition (there doesn’t appear to be an English name so for the purpose of this post I’ll just call it “Nameless Local”; there’s a nation-wide competition in one-and-a-half weeks!), have system tests after the contest that don’t allow you to resubmit afterwards.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; They all give pretests that you get to know about right away, just to catch super-silly non-algorithmic mistakes like failing to remove the debug statements or reading input from the wrong place, but these contain weak test cases and don’t guarantee that the solution will pass the system tests and get full score.  After roughly parsing the rules on the IOI’s website, I believe the IOI (at least this year; I don’t know if it has evolved or anything) allows real-time testing and feedback with a confusing bunch of restrictions: how it apparently works is there are free “public tests”, and you can get results for a “release test” using the official test cases by using a “release token”, which you get two of every half hour. Additionally, there is apparently a cap of 64 submissions per problem, but I’m pretty sure it’s the kind of cap that honest competitors can safely ignore, like the 100-per-group in Australian puzzlehunts. Well, at least it tells us the organizers think in binary. Or octal.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Gridderface 0.5</title>
+      <link>//blog.vero.site/post/gridderface-0-5</link>
+      <pubDate>Tue, 27 Nov 2012 17:53:13 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/gridderface-0-5</guid>
+      <description>Okay, I give up. Here it is: Gridderface is a (quoting the project description, which I wrote anyway so whatever) “keyboard inferface for marking grid-based puzzles in Java” that I’ve been working on for too long. It is open-source under the GPL v3.
+Basically, it’s a thing you can paste logic puzzle images into to solve them in, like people do in Paint, when you can’t or don’t want to print them.</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 31 / Fillomino [Sashigane]</title>
+      <link>//blog.vero.site/post/puzzle-31</link>
+      <pubDate>Fri, 09 Nov 2012 17:03:16 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-31</guid>
+      <description>This is a Fillomino puzzle where every polyomino is required to be an L-shape, as in Sashigane. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.
+My second, and now symmetric, attempt at this crazy self-invented mutant; puzzle 22 was the first.</description>
+    </item>
+    
+    <item>
+      <title>Matrix Intuition</title>
+      <link>//blog.vero.site/post/matrix</link>
+      <pubDate>Sun, 14 Oct 2012 17:01:29 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/matrix</guid>
+      <description>&lt;p&gt;Stopped by a friend’s house a few days ago to do homework, which somehow devolved into me analyzing what programming language I should try to learn next in a corner, which is completely irrelevant to the rest of this post. Oops.&lt;/p&gt;
+&lt;p&gt;Anyway, in normal-math-curriculum-land, my classmates are now learning about matrices. How to add them, how to multiply them, how to calculate the determinant and stuff. Being a nice person, and feeling somewhat guilty for my grade stability despite the number of study hours I siphoned off to puzzles and the like, I was eager to help confront the monster. Said classmate basically asked me what they were for.&lt;/p&gt;
+&lt;p&gt;Well, what a hard question. But of course given the curriculum it’s the only interesting problem I think could be asked.&lt;/p&gt;
+&lt;p&gt;When I was hurrying through the high-school curriculum I remember having to learn the same thing and not having any idea what the heck was happening. Matrices appeared in that section as a messy, burdensome way to solve equations and never again, at least not in an interesting enough way to make me remember. I don’t have my precalc textbook, but a supplementary precalc book completely confirms my impressions and “matrix” doesn’t even appear in my calculus textbook index. They virtually failed to show up in olympiad training too. I learned that Po-Shen Loh knew how to &lt;a href=&#34;http://www.math.cmu.edu/~ploh/docs/math/mop2009/alg-comb.pdf&#34;&gt;kill a bunch of combinatorics problems with them (PDF)&lt;/a&gt;, but not in the slightest how to do that myself.&lt;/p&gt;
+&lt;p&gt;Somewhere else, during what I’m guessing was random independent exploration, I happened upon the signed-permutation-rule (a.k.a. &lt;a href=&#34;https://en.wikipedia.org/wiki/Leibniz_formula_for_determinants&#34;&gt;Leibniz formula&lt;/a&gt;) for evaluating determinants, which made a lot more sense for me and looked more beautiful and symmetric&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\det(A) = \sum_{\sigma \in S_n} \text{sgn}(\sigma) \prod_{i=1}^n A_{i,\sigma_i}\]&lt;/span&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 22 / Fillomino [Sashigane]</title>
+      <link>//blog.vero.site/post/puzzle-22</link>
+      <pubDate>Mon, 10 Sep 2012 21:07:31 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-22</guid>
+      <description>This is a Fillomino puzzle where every polyomino is required to be an L-shape, as in Sashigane. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.
+May be slightly reminiscent of no-rectangle Fillominoes. Slightly… (Has anybody done this before? It seems so interesting that I feel like I couldn’t be first.</description>
+    </item>
+    
+    <item>
+      <title>[IMO 2012 Part 6] Mostly Not About Excursions</title>
+      <link>//blog.vero.site/post/not-excursions</link>
+      <pubDate>Mon, 27 Aug 2012 08:40:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/not-excursions</guid>
+      <description>&lt;p&gt;Yes. I know it’s been more than a month. Blogging motivation decreases, but the responsibility of that &lt;em&gt;stay tuned&lt;/em&gt; doesn’t go away.&lt;/p&gt;
+&lt;p&gt;It’s okay. It’s all worth it because the stuff in the games room is absolutely ridiculous. Warning: huge post.&lt;/p&gt;
+&lt;figure&gt;
+&lt;a href=&#34;//blog.vero.site/img/p4.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/p4.jpg&#34; alt=&#34;[IMO 2012 Problem 4 on a cake.&#34; title=&#34;Problem 4 Cake&#34; width=&#34;474&#34; height=&#34;252&#34; class=&#34;size-full wp-image-1317&#34; /&gt;&lt;/a&gt;
+&lt;figcaption&gt;
+Our old friend, the monster of a functional equation, in edible form. In the games room. Did I mention abso-zarking-lutely ridiculous?
+&lt;/figcaption&gt;
+&lt;/figure&gt;</description>
+    </item>
+    
+    <item>
+      <title>[IMO 2012 Part 5] Unlucky Fours</title>
+      <link>//blog.vero.site/post/fours</link>
+      <pubDate>Thu, 02 Aug 2012 23:03:41 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/fours</guid>
+      <description>&lt;ins datetime=&#34;2012-12-03T13:52:25+00:00&#34;&gt;
+[edit: okay guys I’m surprised at many people come here with search queries looking for solutions. If you want IMO solutions, &lt;a href=&#34;http://www.artofproblemsolving.com/Forum/viewforum.php?f=834&#34;&gt;the corresponding AoPS forum&lt;/a&gt; invariably has many of them. This is probably late-ish, but just in case.]
+&lt;/ins&gt;
+&lt;p&gt;Day 2 of the contest.&lt;/p&gt;
+&lt;p&gt;Did you know that in Chinese [or Mandarin, whatever] “four” is unlucky because it’s a homophone for “death”, and hospitals tend to skip it in floors or ward numbers?&lt;/p&gt;
+&lt;p&gt;Did you know that there was going to be an anecdote involving the seventh Artemis Fowl book but I couldn’t make it work so instead you have a weird and utterly disconnected metareference to something deleted?&lt;/p&gt;
+&lt;p&gt;I don’t know, it sounded cool at the time.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problem 4.&lt;/strong&gt; Find all functions f: Z -&amp;gt; Z such that, for all integers a,b,c that satisfy a+b+c = 0, the following equality holds: &lt;span class=&#34;math display&#34;&gt;\[f(a)^2+f(b)^2+f(c)^2=2f(a)f(b)+2f(b)f(c)+2f(c)f(a).\]&lt;/span&gt; (Here Z denotes the set of integers.)&lt;/p&gt;
+&lt;p&gt;An innocent-looking functional equation, but once you start trying it you discover that there’s quite some depth to it. Random guessing can yield that &lt;span class=&#34;math inline&#34;&gt;\(f(x) = x^2\)&lt;/span&gt; is a solution, so I proved inductively that after dividing out a constant f(1) then the remaining part of f is a perfect square. Letting &lt;span class=&#34;math inline&#34;&gt;\(f(x) = f(1)g(x)^2\)&lt;/span&gt; with g(x) a nonnegative integer and factorizing the original equation, I got an auxiliary functional equation equivalent to the original equation.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[IMO 2012 Part 4] The Inequality of Broken Dreams</title>
+      <link>//blog.vero.site/post/inequality</link>
+      <pubDate>Thu, 02 Aug 2012 11:07:33 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/inequality</guid>
+      <description>&lt;p&gt;I could spend all day coming up with post titles like this one. Really, I could. Anyway, after receiving the letter gently reminding me to turn in the official IMO report in Chinese, I finished that first and turned it in. This, plus the fact that I don’t have any way to do any of my summer homework yet, should make continued blogging much easier.&lt;/p&gt;
+&lt;p&gt;These months of preparation and anticipation, and in just over two days it will be behind us forever.&lt;/p&gt;
+&lt;p&gt;Thus were my thoughts at 3:30 in the morning, which were a much worse method of preparation than that which I used for the APMO, which involved trying for the first time to put my compass in its box and staring at a cryptic crossword. Twisted thoughts as I lay innocently in bed, trying to preserve my spirit and mathematical function. I got up at 6:30 and ate a breakfast nervously with the team.&lt;/p&gt;
+&lt;p&gt;We dispersed into the contest hall. Flat squarish white tables in orderly rows greeted us. They were considerably smaller than the arm-span tables we had last year in the Netherlands’ stadium, but the space was still ample compared to the ones we took our practice tests on at home. I floundered a bit looking for whoever was supposed to check our stuff for forbidden items, but none of the proctors paid any attention to that, so I flipped through my own jacket pockets paranoidly.&lt;/p&gt;
+&lt;p&gt;But preparation was too brief, and there were at least fifteen minutes left with nothing to do except try not to panic. I managed to fill these fifteen minutes by doing elaborate breathing exercises, raising and flapping my arms, counting down seconds, focusing on a color word, meditating badly, clearing out everything nonmathematical from my mind with a symbolic gesture. This is not a very coherent description, but I wasn’t feeling very coherent.&lt;/p&gt;
+&lt;p&gt;I opened an eye halfway and watched as the clock ticked down the last few seconds. The starting signal sounded. I opened up the problem envelope…  (nonessential expressions deLaTeXed; you’re welcome)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[IMO 2012 Part 3] Luggage Carriers and Language Barriers</title>
+      <link>//blog.vero.site/post/luggage-language</link>
+      <pubDate>Wed, 25 Jul 2012 09:32:45 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/luggage-language</guid>
+      <description>&lt;p&gt;Who knew coming up with strangely cryptic and illogical but nice-sounding post titles was so much fun!?&lt;/p&gt;
+&lt;p&gt;Okay, this break in storytelling is mainly brought to you by generic summer laziness, as well as possibly a tiny bit of chemotherapy adverse effect. There is only a little perfectionism involved, and that’s because this post contains a long awkward situation (you might have guessed already). I guess this is what it feels like to have oodles of stuff to blog about, but not enough motivation. Heck, these few days with running the TAIMC have long filled my list of rant topics with juicy stories until it’s near-bursting. But I need to end this self-pity party before I get carried away, so… back to the action.&lt;/p&gt;
+&lt;p&gt;Stranded in a foreign country at least 20 degrees Celsius below our comfort zone, having worn the same clothes for 36 hours of airplane travel, and still with less than 48 hours until the contest and &lt;em&gt;zero out of six compasses&lt;/em&gt;, we were running out of options.&lt;/p&gt;
+&lt;p&gt;A quick inventory of clothes showed that, after including the vests and caps in the backpacks we got, we probably had just enough clothes to survive the cruel frigid environment. So, reluctantly, we left the games room and hit the street to hunt down some underwear and socks to change into. Not to mention toothbrushes and some T-shirts and jackets for good measure, because the inside of the hotel was not the right temperature for full cold-resistance gear.&lt;/p&gt;
+&lt;p&gt;Some haphazard wandering up and down the streets later, we found a store that suited our needs and picked up some clothes. The underwear came in two sizes: too loose and too tight. We picked the latter. Oh well, it would only be for a day or so… right?  And so that was our first day without our luggage. We survived. My iPod finally ran out of battery the second day while furiously refreshing my email, trying to stay connected and update everybody. The schedule marched ahead without us.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[IMO 2012 Part 2] The Hotel of Deception</title>
+      <link>//blog.vero.site/post/hotel</link>
+      <pubDate>Fri, 20 Jul 2012 12:45:41 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/hotel</guid>
+      <description>&lt;p&gt;We finally arrived at the hotel at 3:30, meeting another local from Taiwan, Mr. Chen, who helped us carry some of our stuff off the bus. Po-Chiang, our guide, was waiting inside. We took more pictures and finally lugged the meager stuff we had off to our hotel rooms.&lt;/p&gt;
+&lt;p&gt;At least, we tried. I started to realize that there was much more to this hotel than it seemed.&lt;/p&gt;
+&lt;p&gt;Firstly, of course, was the confusing placement of rooms with numbers starting with 4 and 5 on the fourth floor (which would be the fifth floor by our numbering system, where the lobby is floor 1; but here the lobby was assigned 0. Off-by-one errors just waiting to happen here.) Secondly were the completely indecipherable signs. I don’t remember the details, but the first signs we saw read something like “560 ~ 540: left; 520 ~ 540: right”. Occasionally there would be weird slashes or half-slashes between the numbers instead (later I finally realized they were slanted, Comic-Sans-style capital Ys, or “and” in Spanish). Are these closed, open, or half-open intervals? And why the heck are their upper and lower bounds in a different order!?&lt;/p&gt;
+&lt;p&gt;We wandered through the corridors, peeking down each one, trying to figure out whether the numbers were increasing or decreasing and whether a parity argument (for those of you not fluent in math lingo, that means odds and evens) allowed for the existence of our room. Who knew the simple act of finding one’s living quarters could be so mathematically tasking? In the end, our rooms were in the last corridor, just about diametrically opposite to the elevators on the half of our floor. Oh well.&lt;/p&gt;
+&lt;p&gt;The room was pretty nice overall. The furniture and basic facilities were quite complete, with a sparkly bathroom and a couple tables and chairs of various shapes. The closet was big and had a safe, which was rather important because just about everybody we had met had warned us over and over again about all the incredibly skilled thieves, muggers, and pickpockets in Argentina. It was probably much safer (no pun intended) in the hotel, but with all of these warnings (later we would even find a notice from the hotel warning us to lock our doors) I was never entirely certain. There were lots of lights controlled by a set of confusing switches on either side of our beds. There was at least one white immovable divider cunningly disguised as a switch, one switch that didn’t ever seem to do anything, and one that turned everything off. The last one made a little sense after a while because it had pictures of stars and a moon on it, but the whole setup was still pretty non-user-friendly in my opinion.  The awesome part was that our room was connected with the one next door with a tiny midway corridor, so by keeping the connecting doors unlocked, the four of us (me, WL, CPT, KYL) could share one room key and just hang out really conveniently. The other two had a room connected to one with two guys from Cyprus. I don’t think they interacted that much, although I know we got an inequality from them one of the days before the contest. We observed that Jensen didn’t work on it and didn’t really touch it afterwards, still living under the mistaken and highly deluded assumption that there was no way the PSC would choose an inequality now that they finally realized that everybody knew Muirhead.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[IMO 2012 Part 1] Dangerous Metal Chopsticks</title>
+      <link>//blog.vero.site/post/metal-chopsticks</link>
+      <pubDate>Fri, 20 Jul 2012 07:44:51 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/metal-chopsticks</guid>
+      <description>&lt;p&gt;It’s time to begin the epic blogging journey. The detailed version of this year’s amazing IMO, because I decided that a perfectionist guy like myself could not possibly liveblog and be satisfied with both the quality of the posts and being able to fully enjoy the actual event.&lt;/p&gt;
+&lt;p&gt;Our story begins in a hotel in Taiwan.&lt;/p&gt;
+&lt;p&gt;The night before departure, us six contestants and Prof. Lin gathered in a hotel. This was entirely necessary because our flight left at something like five o’clock in the morning. After checking over the flight plans and relevant phone numbers in a conference room, we enjoyed a pretty extensive buffet dinner, what would easily be the best meal we would get to have for at least a week, the highlight of which was a fish steak that looked and tasted exactly like fried egg. Afterwards we did some emergency shopping and prepared a convenience-store breakfast for consumption three o’clock the next day.&lt;/p&gt;
+&lt;p&gt;As I’ve complained before, we have an 11-hour difference to get used to, and that morning I had gotten myself to sleep as late as 6 AM trying (successfully, much to my amazement) to complete an iPod OS system update. I didn’t think I could pass airport security with the sort of consciousness I had when I finally slept that morning, so I reverted with the rest of the team to an 11 PM curfew. Oh well. The seven of us left the hotel after 3 AM, setting off in a huge 30-person bus for the airport.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Glowstick Memories</title>
+      <link>//blog.vero.site/post/glowstick</link>
+      <pubDate>Thu, 28 Jun 2012 22:37:50 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/glowstick</guid>
+      <description>&lt;p&gt;So. It looks like I’ve officially graduated.&lt;/p&gt;
+&lt;p&gt;I have to wonder whether it really means anything. Taiwan’s system classifies the grades neatly into 6/3/3 sections, but then our bilingual department also uses the somewhat illogical and faintly sexist freshman-sophomore-junior-senior naming thing, in which the big jump happened last year.&lt;/p&gt;
+&lt;p&gt;Neither of these naming issues, of course, really matter. Shakespeare says, “A rose by any other name would smell as sweet.” Nor, I would think, do the different color of uniforms we have to wear (pink, if you didn’t know.) But AP classes probably count for something.&lt;/p&gt;
+&lt;p&gt;I am going to take AP Biology. Why did I pick AP Biology anyway? It seemed like a reasonable default choice. I guess I would like to know something more about the mysteries of life and consciousness to guide my philosophical side, and many of the other courses looked too murderously intense. The perfect stepping stones into the giant hamster wheel of overachievement that everybody is crazy about here. But then I learned I still received eight chapters to study by myself during summer vacation, alongside the English reading assignment. Oh well, so much for relaxation.&lt;/p&gt;
+&lt;p&gt;You know, I used to think of this issue, about all the academic work we students pile onto ourselves and all the ensuing stress and chaos, from a strange detached third-person viewpoint. Not everybody has a mind that is fit for all that brainwork. Some people have to do the artistic, imaginative things. Some people cannot function optimally in our intense learning environment. Somehow, imperceptibly, according to my apparently not-all-that-bad grades, I put myself in the crazy book-grinding category, and I am having second thoughts.&lt;/p&gt;
+&lt;p&gt;I don’t feel the energy for all this intense future yet… The past is still so close, so vivid, so attractive. Our graduation trip, for instance.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Scheduled Blogging</title>
+      <link>//blog.vero.site/post/scheduled-blogging</link>
+      <pubDate>Fri, 20 Apr 2012 11:43:31 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/scheduled-blogging</guid>
+      <description>Some bloggers have a regular schedule for posting and forcing themselves to meet the deadlines. In essence, something like &amp;quot; updates every Thursday.&amp;quot;
+For me, I think this is a bad idea, because it forces me to write. If my day is boring and uneventful as it quite often is and I still have to crank out a post, it would not be a post that readers would enjoy. Better once-a-month enthusiastic, interesting posts then an ugly stream of tedious drudgery for the visitor to wade through every time, stuff like (quoting one random ancient post):</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 10 / Nurikabe 3</title>
+      <link>//blog.vero.site/post/puzzle-10</link>
+      <pubDate>Sat, 03 Mar 2012 18:00:11 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-10</guid>
+      <description>A ratio-preserving enlargement of the janko.at sample invocation puzzle, perhaps. I wanted to try using smaller clues. Finally a grid too large for full-size displaying! Is that even supposed to be an achievement?</description>
+    </item>
+    
+    <item>
+      <title>Bilingualism</title>
+      <link>//blog.vero.site/post/bilingualism</link>
+      <pubDate>Sun, 12 Feb 2012 22:11:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/bilingualism</guid>
+      <description>So, as triggered by my confrontation with the Chinese book report (remember? whatever the answer is, it’s okay): a reflection on my incompetence at dealing with two languages, and why this matters, or not.
+I can think in both languages. It’s a natural product of our school environment. The two languages often have to complement each other; most of the nerdy terms or globally relevant allusions are English-exclusive (I couldn’t talk coherently about SOPA in any language other than English!</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 2 / Slitherlink</title>
+      <link>//blog.vero.site/post/puzzle-2</link>
+      <pubDate>Sun, 01 Jan 2012 00:01:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-2</guid>
+      <description>Written for the new year of 2012.
+
+(janko.at applet)</description>
+    </item>
+    
+    <item>
+      <title>Hello</title>
+      <link>//blog.vero.site/post/hello</link>
+      <pubDate>Sun, 01 Jan 2012 00:00:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/hello</guid>
+      <description>A new year. A new start. And just a chance to abuse the phrase “See you next year!” It’s hard to get tired of using it once every 365.24 days.
+So, I have decided to open up my other blog to people.
+There are a few reasons for not doing so previously. Firstly, there’s a lot of silly writing with unexplained LOLs and exclamations all over the place in the archives, not to mention the countless other sorts of weirdness linked to the handle I’m using here that’s spread over the rest of the interwebz.</description>
+    </item>
+    
+  </channel>
+</rss>

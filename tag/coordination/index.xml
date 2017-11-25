@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Coordination on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/coordination</link>
+    <description>Recent content in Coordination on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 07 Aug 2015 12:04:30 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/coordination/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[CIMC 2015 Part 2] Journey of the Blue-White Slippers</title>
+      <link>//blog.vero.site/post/cimc-2015-part-2</link>
+      <pubDate>Fri, 07 Aug 2015 12:04:30 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/cimc-2015-part-2</guid>
+      <description>&lt;p&gt;(Nontopical life update: Current 18.06 homework status: 34% (mildly screwed, probably won’t finish before I leave my cozy home for the U.S. and I usually struggle to get into the mood for homework while traveling, but I guess I’ll have to)) &lt;a href=&#34;//blog.vero.site/img/18-06-1.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/18-06-1.png?w=296&#34; alt=&#34;[18.06 status panel: 34%]&#34; /&gt;&lt;/a&gt; (I’ve been spending most of my uptime doing said homework and running errands, and my downtime catching up on &lt;cite&gt;Last Week Tonight with John Oliver&lt;/cite&gt; while farming the Flight Rising Coliseum. And, okay, making the above status panel. &lt;a href=&#34;https://dl.dropboxusercontent.com/u/5295912/status.html&#34;&gt;Live version here&lt;/a&gt; courtesy of Dropbox’s Public folder. No regrets.)&lt;/p&gt;
+&lt;h3 id=&#34;day-3-excursions&#34;&gt;
+Day 3 (Excursions)
+&lt;/h3&gt;
+&lt;p&gt;Morning routine snipped. We come to the middle school again to eat breakfast and gather; the contestants will be taking their tests here (accompanied by one bottle of “Buff” energy drink each) while the rest of us will be going on an excursion. Before this happens, though, two Taiwanese contestants ask me and Hsin-Po some math problems. There’s a geometry problem, which I fail to solve:&lt;/p&gt;
+&lt;blockquote&gt;
+(paraphrased) In triangle △ABC, ∠A is 40° and ∠B is 60°. The angle bisector of ∠A meets BC at D; E is on AB such that ∠ADE is 30°. Find ∠DEC.
+&lt;/blockquote&gt;
+&lt;p&gt;Hsin-Po figures out that, once you guess (ROT13) gur bgure boivbhf privna vf nyfb na natyr ovfrpgbe naq gurl vagrefrpg ng gur vapragre, lbh pna cebir vg ol pbafgehpgvat gur vapragre naq fubjvat sebz gur tvira natyr gung gurl vaqrrq pbvapvqr.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; Then, there’s a combinatorics problem in a book with a solution that they’re not sure about:&lt;/p&gt;
+&lt;blockquote&gt;
+(paraphrased) 15 rays starting at the same point are drawn. What is the maximum number of pairs of rays that form obtuse angles?
+&lt;/blockquote&gt;
+&lt;p&gt;This happens really close to the test starts and although I have this feeling it’s isomorphic to a notable combinatorial problem, I don’t manage to articulate the isomorphism until it’s too late and they have to go. Indeed, this is more or less equivalent to (ROT13) Ghena: gur tencu unf ab sbhe-pyvdhr naq n pbzcyrgr guerr-cnegvgr tencu vf pbafgehpgvoyr. After thinking though the solution on their book, though, I realize I’ve never seen this proof of said theorem before! (But later I realize it’s actually the just very first proof that &lt;cite&gt;Proofs from the BOOK&lt;/cite&gt; offers. I probably skipped it because it involved induction as well as some algebraic manipulations that looked much less intuitive and natural than they really were, so it didn’t look as cool as the later proofs. Oooooops.)&lt;/p&gt;
+&lt;p&gt;I suspect I wouldn’t do too well if I had to participate in that contest right then. But anyway, excursion.&lt;/p&gt;
+&lt;p&gt;After a long bus ride, we arrive at our first destination, Jingyuetan (淨月潭 lit. Clear Moon Lake&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;), allegedly the sister lake to Taiwan’s own famous&lt;sup&gt;[citation needed]&lt;/sup&gt; &lt;a href=&#34;https://en.wikipedia.org/wiki/Sun_Moon_Lake&#34;&gt;Sun Moon Lake&lt;/a&gt;. We tour the place on a wall-less car and look at the lake and lots of trees. During a stop, I take some pictures of sunflowers and bees, as well as a stand selling Taiwanese sausages.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/lake-1.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/lake-1.jpg?w=652&#34; alt=&#34;[Lake and ferry]&#34; width=&#34;652&#34; height=&#34;369&#34; class=&#34;aligncenter size-large wp-image-3294&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/lake-2.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/lake-2.jpg?w=652&#34; width=&#34;652&#34; height=&#34;369&#34; class=&#34;aligncenter size-large wp-image-3295&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/bee.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/bee.jpg?w=170&#34; alt=&#34;[Bee and sunflower]&#34; width=&#34;170&#34; height=&#34;300&#34; class=&#34;aligncenter size-medium wp-image-3296&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/sausages.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/sausages.jpg?w=652&#34; alt=&#34;[Sausages advertised as from Taiwan!]&#34; width=&#34;652&#34; height=&#34;369&#34; class=&#34;aligncenter size-large wp-image-3297&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The car blares weird music during the tour, such as a version of Für Elise with all the accents on different beats and a disjointed remix of the viral Chinese song &lt;a href=&#34;https://zh.wikipedia.org/zh-tw/%E5%B0%8F%E8%8B%B9%E6%9E%9C_%28%E6%AD%8C%E6%9B%B2%29&#34;&gt;小蘋果&lt;/a&gt; (&lt;a href=&#34;https://en.wikipedia.org/wiki/Little_Apple_%28song%29&#34;&gt;Little Apple&lt;/a&gt;)&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; with two other Chinese songs, connected with mumbling English rap segues. We also eat boxed lunches here while sitting on tiny, cramped foam mattresses on the dirt floor.&lt;/p&gt;
+&lt;p&gt;Our next stop is a museum, where there are lots of ancient historical artifacts I’m not very interested in. I find a collection of certificates involving or quoting Chairman Mao more intriguing:  &lt;a href=&#34;//blog.vero.site/img/mao.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/mao.jpg?w=652&#34; alt=&#34;[Certificates with quotes and/or pictures of Chairman Mao]&#34; width=&#34;652&#34; height=&#34;369&#34; class=&#34;aligncenter size-large wp-image-3298&#34; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

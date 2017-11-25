@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>|Wedge|</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="betaveros" />
+  <meta name="description" content="original sillier post
+Note on notation: to be maximally clear, I have bolded all my vectors and put tiny arrows on them. Normal letters are usually reals, uppercase letters are usually bigger matrices. Also, \(\cdot^T\) denotes the transpose of a matrix.
+Let \(\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m\) be elements of \(\mathbb{R}^n\) where \(m \leq n\), i.e. column vectors with \(n\) real elements. Let \(V = [\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m]\). This means pasting the column vectors together to make an \(n \times m\) matrix (\(n\) rows \(m\) columns).
+Consider the thing \(\vec{\textbf{v}}_1 \wedge \vec{\textbf{v}}_2 \wedge \cdots \wedge \vec{\textbf{v}}_m\), which can be visualized as the hyperparallelogram \(\left\{\sum_{i=1}^{m} t_i\vec{\textbf{v}}_i \,\middle\vert\, t_i \in [0,1], i = 1, 2, \ldots, m \right\}\) but is apparently a different thing in a different vector space of things. We wonder how to compute the hyperarea of this hyperparallelogram.
+
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/wedge" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">|Wedge|</h1>
+		
+		<p class="post-meta">
+		
+		2015-05-13
+		(983 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p><a href="http://www.artofproblemsolving.com/community/c1285h1033032">original sillier post</a></p>
+<p>Note on notation: to be maximally clear, I have bolded all my vectors and put tiny arrows on them. Normal letters are usually reals, uppercase letters are usually bigger matrices. Also, <span class="math inline">\(\cdot^T\)</span> denotes the transpose of a matrix.</p>
+<hr />
+<p>Let <span class="math inline">\(\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m\)</span> be elements of <span class="math inline">\(\mathbb{R}^n\)</span> where <span class="math inline">\(m \leq n\)</span>, i.e. column vectors with <span class="math inline">\(n\)</span> real elements. Let <span class="math inline">\(V = [\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m]\)</span>. This means pasting the column vectors together to make an <span class="math inline">\(n \times m\)</span> matrix (<span class="math inline">\(n\)</span> rows <span class="math inline">\(m\)</span> columns).</p>
+<p>Consider the thing <span class="math inline">\(\vec{\textbf{v}}_1 \wedge \vec{\textbf{v}}_2 \wedge \cdots \wedge \vec{\textbf{v}}_m\)</span>, which can be visualized as the hyperparallelogram <span class="math inline">\(\left\{\sum_{i=1}^{m} t_i\vec{\textbf{v}}_i \,\middle\vert\, t_i \in [0,1], i = 1, 2, \ldots, m \right\}\)</span> but is apparently a different thing in a different vector space of things. We wonder how to compute <strong>the hyperarea of this hyperparallelogram</strong>.</p>
+<p></p>
+<p>To get a simple idea of what we’re trying to do, we start with the <span class="math inline">\(m = 2\)</span> case without any advanced stuff.</p>
+<h3 id="m-2">m = 2</h3>
+<p>We have two <span class="math inline">\(n\)</span>-dimensional vectors <span class="math inline">\(\vec{\textbf{v}}_1\)</span> and <span class="math inline">\(\vec{\textbf{v}}_2\)</span>, and we want to consider the area of the parallelogram they bound. Well, geometrically this can be computed as <span class="math display">\[ \vert\vec{\textbf{v}}_1\vert \vert\vec{\textbf{v}}_2\vert\sin \theta \]</span> where <span class="math inline">\(\theta\)</span> is the angle between the two vectors. And we can get at that angle because we know that the vectors’ dot product</p>
+<p><span class="math display">\[
+\vec{\textbf{v}}_1 \cdot \vec{\textbf{v}}_2 = \vert\vec{\textbf{v}}_1\vert \vert\vec{\textbf{v}}_2\vert\cos \theta.
+\]</span></p>
+<p>So. Let the vectors’ coordinates be <span class="math inline">\(\vec{\textbf{v}}_1 = \langle x_1, \ldots, x_n \rangle\)</span> and <span class="math inline">\(\vec{\textbf{v}}_2 = \langle y_1, \ldots, y_n \rangle\)</span>.</p>
+<p><span class="math display">\[
+\begin{aligned} A &amp;= \vert\vec{\textbf{v}}_1\vert \vert\vec{\textbf{v}}_2\vert\sin \theta
+\\ &amp;= \vert\vec{\textbf{v}}_1\vert \vert\vec{\textbf{v}}_2\vert\sqrt{1 - \cos^2 \theta}
+\\ &amp;= \sqrt{\vert\vec{\textbf{v}}_1\vert^2\vert\vec{\textbf{v}}_2\vert^2 - (\vert\vec{\textbf{v}}_1\vert \vert\vec{\textbf{v}}_2\vert\cos \theta)^2} 
+\\ &amp;= \sqrt{\sum x_i^2 \sum y_i^2 - (\sum x_i y_i)^2} \end{aligned}
+\]</span></p>
+<p>This should look familiar if you’ve done a nontrivial inequality: it’s equivalent to</p>
+<p><span class="math display">\[ \sqrt{\sum_{i&lt;j} (x_i y_j - x_j y_i)^2} \]</span></p>
+<p>which is, interestingly,</p>
+<p><span class="math display">\[ \sqrt{\sum_{i&lt;j} \begin{vmatrix} x_i &amp; y_i \\ x_j &amp; y_j \end{vmatrix}^2 } \]</span></p>
+<p>This is interesting because it suggests a general formula that even works in the other cases. Maybe we just take all combinations of <span class="math inline">\(m\)</span> rows and compute the squares of these determinants, sum them up, and take the square root of everything. Compare with <span class="math inline">\(m = 1\)</span>:</p>
+<p><span class="math display">\[ \sqrt{\sum_{i} \vert x_i\vert^2} \]</span></p>
+<p>and <span class="math inline">\(m = 3\)</span></p>
+<p><span class="math display">\[
+\sqrt{\begin{vmatrix} x_i &amp; y_i &amp; z_i \\ x_j &amp; y_j &amp; z_j \\ x_k &amp; y_k &amp; z_k \end{vmatrix}^2 }
+\]</span></p>
+<p>where the square root of the square of course just works out to be taking the absolute value.</p>
+<h3 id="general-case">General Case</h3>
+<p>Anyway, the only way we know how to compute hyperarea of hyperparallelograms at this stage turns out to be the determinant, except we can only take determinants of hyperparallelograms that are stuck in the Euclidean space equal to their own dimension. Our vectors form an <span class="math inline">\(n \times m\)</span> matrix, unfortunately.</p>
+<p>So instead let’s take the <span class="math inline">\(m\)</span>-dimensional subspace <span class="math inline">\(\mathcal{S} \subset \mathbb{R}^n\)</span> that our vectors span (assuming they don’t have any linear dependencies, because if they did then the hyperparallelogram is degenerate and has area trivially <span class="math inline">\(0\)</span>) and try to pretend it’s the normal <span class="math inline">\(\mathbb{R}^m\)</span> we’re used to. We can do this by taking a random orthonormal basis <span class="math inline">\(\{\vec{\textbf{w}}_1, \vec{\textbf{w}}_2, \ldots, \vec{\textbf{w}}_m\} \subset \mathcal{S}\)</span> of it, and express each of our vectors <span class="math inline">\(\vec{\textbf{v}}_i\)</span> as a linear combination of the basis vectors.</p>
+<p>In other words, <span class="math inline">\(\vec{\textbf{v}}_i = [\vec{\textbf{w}}_1, \vec{\textbf{w}}_2, \ldots, \vec{\textbf{w}}_m]\vec{\textbf{c}}_i\)</span> for some <span class="math inline">\(\vec{\textbf{c}}_i \in \mathbb{R}^m\)</span> for each <span class="math inline">\(i = 1, \ldots, n\)</span>. And since the basis is orthonormal, the hyperarea we want to compute can be computed as the determinant of the matrix with the coordinate vectors <span class="math inline">\(\vec{\textbf{c}}_i\)</span>.</p>
+<p>Our task is now to compute <span class="math inline">\(\det(C := [\vec{\textbf{c}}_1, \ldots, \vec{\textbf{c}}_m])\)</span>. This is hard, but it can be LaTeXed, which means now we have something to work on. Our only lead on these <span class="math inline">\(\vec{\textbf{c}}_i\)</span> is the way we defined it: we have <span class="math inline">\(V = [\vec{\textbf{w}}_1, \ldots, \vec{\textbf{w}}_m]C\)</span>, but it’s not useful because we have to somehow get rid of the <span class="math inline">\([\vec{\textbf{w}}_1, \vec{\textbf{w}}_2, \ldots, \vec{\textbf{w}}_m]\)</span> next to it, and that’s not even a square matrix.</p>
+<p>We like working in <span class="math inline">\(\mathbb{R}^n\)</span> more. Luckily, there’s an obvious way to create an <span class="math inline">\(n \times n\)</span> determinant that’s equal to what we want: augment an <span class="math inline">\((n-m)\times(n-m)\)</span> identity matrix diagonally onto it. So we want to compute the determinant of</p>
+<p><span class="math display">\[
+D = \det\left( \begin{bmatrix} C &amp; \textbf{0} \\ \textbf{0} &amp; I_{n-m} \end{bmatrix} \right)
+\]</span></p>
+<p>(<span class="math inline">\(I_{n-m}\)</span> being the <span class="math inline">\((n-m)\times(n-m)\)</span> identity matrix)</p>
+<p>We can <strong>“<strong>obviously</strong>”</strong> find an orthonormal basis <span class="math inline">\(\{\vec{\textbf{w}}_1, \vec{\textbf{w}}_2, \ldots, \vec{\textbf{w}}_n\}\)</span> of the whole <span class="math inline">\(\mathbb{R}^n\)</span> that includes our orthonormal basis of <span class="math inline">\(\mathcal{S}\)</span>. So let <span class="math inline">\(W = [\vec{\textbf{w}}_1, \vec{\textbf{w}}_2, \ldots, \vec{\textbf{w}}_n]\)</span>.</p>
+<p>How does the property of orthonormal-basis-ness translate into in matrix language? We have <span class="math inline">\(\vec{\textbf{w}}_i \cdot \vec{\textbf{w}}_i = 1\)</span> and <span class="math inline">\(\vec{\textbf{w}}_i \cdot \vec{\textbf{w}}_j = 0\)</span> for <span class="math inline">\(i \neq j\)</span>. The matrix multiplication that will involve these dot products is <span class="math inline">\(W^T W\)</span>. This is not the notation either of my textbooks uses but <span class="math inline">\(W^T\)</span> is <span class="math inline">\(W\)</span>’s transpose.</p>
+<p>Entry-by-entry, <span class="math inline">\(W^T W = I_n\)</span>. So <span class="math inline">\(W^{-1} = W\)</span>. Since determinants are multiplicative, we immediately have <span class="math inline">\(\det(W) = \det(W^T) = \pm 1\)</span>. Also, we know <span class="math inline">\(WC\)</span> and we can compute <span class="math inline">\(WD\)</span> from that: <span class="math inline">\(WD = [\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m, \vec{\textbf{w}}_{m+1}, \ldots, \vec{\textbf{w}}_n]\)</span>. Let this matrix be <span class="math inline">\(G\)</span>. The area we want is <span class="math inline">\(\det(G)\)</span>.</p>
+<p>Okay so we’ve gotten rid of the mysterious coordinate vectors <span class="math inline">\(\vec{\textbf{c}}_i\)</span>; unfortunately we really don’t know much more about the remnants of our orthonormal basis. However since we really only want the determinant of <span class="math inline">\(G\)</span> we can make the matrix smash with itself this way.</p>
+<p>Consider <span class="math inline">\(G^T G\)</span>. The elements of this are the dot products of <span class="math inline">\(G\)</span>’s column vectors with themselves. Since the <span class="math inline">\(\vec{\textbf{w}}_{m+1}, \ldots, \vec{\textbf{w}}_n\)</span> are orthogonal to each other and to each of the <span class="math inline">\(\vec{\textbf{v}}_i\)</span>…</p>
+<p><span class="math inline">\(G^T G = \begin{vmatrix}V^T V &amp; \textbf{0} \\ \textbf{0} &amp; I_{n-m}\end{vmatrix}\)</span></p>
+<p>Taking the determinant one final time, remembering that transposing keeps it invariant, we see <span class="math inline">\(\det(G)^2 = \det(V^T V)\)</span> so a way to compute our final solution is <span class="math inline">\(\boxed{\sqrt{\det(V^T V)}}\)</span>.</p></article>
+	<footer class="post-footer">
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/puzzle-47">← Puzzle 47 / Fillomino [LITS &#43; Walls]</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/sylow">Sylow →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

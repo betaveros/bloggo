@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Internet on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/internet</link>
+    <description>Recent content in Internet on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 14 Mar 2013 20:35:09 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/internet/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Google Reader Powering Down</title>
+      <link>//blog.vero.site/post/google-reader-powering-down</link>
+      <pubDate>Thu, 14 Mar 2013 20:35:09 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/google-reader-powering-down</guid>
+      <description>Google just announced it’s shutting down Google Reader in three and a half months… I am participating in the friendly Reddit DDoS-hug of all the alternatives (list, but scroll around in the thread for a few more). Darn.
+It’s very early to pick an RSS replacement, but I think I’m going for The Old Reader. It’s mainly a process of elimination: I don’t want to pay money or get my own server, Pentadactyl doesn’t seem to like Feedly (extension for the Fox), and I don’t think I want to create any accounts or link anything to Facebook, so there was my choice.</description>
+    </item>
+    
+  </channel>
+</rss>

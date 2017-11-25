@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/python</link>
+    <description>Recent content in Python on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 20 May 2014 22:26:53 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>#pyconapac2014</title>
+      <link>//blog.vero.site/post/pycon</link>
+      <pubDate>Tue, 20 May 2014 22:26:53 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/pycon</guid>
+      <description>&lt;p&gt;Late post. As usual.&lt;/p&gt;
+&lt;p&gt;It started with an online competition — write programs, solve problems, get points. I wouldn’t call the problems easy, but they weren’t hard either. So I solved all of them. To make it even less impressive, only about twenty people submitted anything at all.&lt;/p&gt;
+&lt;p&gt;But the result was just what it was: I ended up with a free ticket to &lt;a href=&#34;https://tw.pycon.org/2014apac/en/&#34;&gt;PyCon APAC 2014&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Haskell and Primes</title>
+      <link>//blog.vero.site/post/haskell</link>
+      <pubDate>Sat, 25 May 2013 23:03:05 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/haskell</guid>
+      <description>&lt;blockquote&gt;
+“I have been told that any encryption becomes safer if the underlying algorithm is maximally obscured, what is most conveniently done by coding it in Haskell.” – rankk
+&lt;/blockquote&gt;
+&lt;p&gt;Functional programming is terribly addicting! Partly I think the completely different way of thinking makes it feel like learning programming, and falling in love with it, all over again. Partly there’s this evil sense of satisfaction from using &lt;code&gt;$&lt;/code&gt;s (and later &lt;code&gt;&amp;lt;$&amp;gt;&lt;/code&gt;s and &lt;code&gt;=&amp;lt;&amp;lt;&lt;/code&gt;s and &lt;code&gt;&amp;amp;&amp;amp;&amp;amp;&lt;/code&gt;s) to improve readability for initiated Haskellers and worsen it for everybody else. Partly it’s because &lt;a href=&#34;http://learnyouahaskell.com/&#34;&gt;&lt;i&gt;Learn You a Haskell for Great Good!&lt;/i&gt;&lt;/a&gt; is such a fun read — there are too many funny bits to list but my favorite so far is when the author analyzes the first verse of Avril Lavigne’s &lt;em&gt;Girlfriend&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Although I think my code in Haskell tends to be more readable than in other languages, code obfuscation in Haskell is almost natural: all you have to do is refactor the wrong function to be “pointfree”, which means that even though it’s a function that takes arguments, you define it without parameters by manipulating and joining a bunch of other functions. Example (plus a few other tiny obfuscations):&lt;/p&gt;
+&lt;pre class=&#34;sourceCode haskell&#34;&gt;&lt;code class=&#34;sourceCode haskell&#34;&gt;&lt;div class=&#34;sourceLine&#34; id=&#34;1&#34; href=&#34;#1&#34; data-line-number=&#34;1&#34;&gt;isPrime &lt;span class=&#34;fu&#34;&gt;=&lt;/span&gt; liftA2 (&lt;span class=&#34;fu&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;) (liftA2 (&lt;span class=&#34;fu&#34;&gt;$&lt;/span&gt;) (all &lt;span class=&#34;fu&#34;&gt;.&lt;/span&gt; ((&lt;span class=&#34;fu&#34;&gt;.&lt;/span&gt;) (&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;fu&#34;&gt;/=&lt;/span&gt;)) &lt;span class=&#34;fu&#34;&gt;.&lt;/span&gt; rem) (flip&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;2&#34; href=&#34;#2&#34; data-line-number=&#34;2&#34;&gt;    takeWhile [&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;..&lt;/span&gt;] &lt;span class=&#34;fu&#34;&gt;.&lt;/span&gt; (flip (&lt;span class=&#34;fu&#34;&gt;.&lt;/span&gt;) &lt;span class=&#34;fu&#34;&gt;$&lt;/span&gt; liftA2 (&lt;span class=&#34;fu&#34;&gt;*&lt;/span&gt;) id id) &lt;span class=&#34;fu&#34;&gt;.&lt;/span&gt; (&lt;span class=&#34;fu&#34;&gt;&amp;gt;=&lt;/span&gt;))) ((&lt;span class=&#34;fu&#34;&gt;&amp;lt;&lt;/span&gt;) &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;QQ wordpress why no Haskell highlighting &lt;ins&gt;(Editor’s note from 2017: The migration should highlight this now!)&lt;/ins&gt;&lt;/p&gt;
+&lt;p&gt;Also, for some reason, you can do this in Haskell:&lt;/p&gt;
+&lt;pre class=&#34;sourceCode haskell&#34;&gt;&lt;code class=&#34;sourceCode haskell&#34;&gt;&lt;div class=&#34;sourceLine&#34; id=&#34;1&#34; href=&#34;#1&#34; data-line-number=&#34;1&#34;&gt;ghci&lt;span class=&#34;fu&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;fu&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;fu&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;fu&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;2&#34; href=&#34;#2&#34; data-line-number=&#34;2&#34;&gt;&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;(via &lt;a href=&#34;http://www.yellosoft.us/evilgenius/&#34;&gt;Haskell for the Evil Genius&lt;/a&gt;)&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Okay, but seriously now. I wrote this about my journey to learn functional programming in the &lt;a href=&#34;//blog.vero.site/post/programming&#34;&gt;programming babble post&lt;/a&gt; half a year ago:&lt;/p&gt;
+&lt;blockquote&gt;
+The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes).
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

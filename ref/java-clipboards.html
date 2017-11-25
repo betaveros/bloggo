@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Java Clipboards and Data Transfer</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="betaveros" />
+  <meta name="description" content="" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/ref/java-clipboards" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Java Clipboards and Data Transfer</h1>
+		
+		<p class="post-meta">
+		
+		
+		(551 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>(Ported from betaveros.stash. Wow, I get syntax highlighting and footnotes!)</p>
+<p>A quick brief guide. At least, that’s how I planned it.</p>
+<p>A lot of stuff is in the package <code>java.awt.datatransfer</code>. Class <code>Toolkit</code> is in <code>java.awt</code>.</p>
+<p>Some basic classes. The class <code>Clipboard</code> is a clipboard, obviously. Its content is/will be an instance of the class <code>Transferable</code>. Some content can be read as different types of objects depending on what you want; to choose which type you use an instance of <code>DataFlavor</code>. It provides three basic ones: <code>DataFlavor.imageFlavor</code>, <code>DataFlavor.javaFileListFlavor</code>, and <code>DataFlavor.stringFlavor</code>.</p>
+<p>Okay, now step by step. This is the low-level method.</p>
+<ol type="1">
+<li>Get the default clipboard with <code>Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();</code></li>
+<li>Get a transferable with <code>Transferable content = clipboard.getContents(null);</code> <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></li>
+<li>Check if <code>content</code> can be read as the kind of object you want with <code>(content != null) &amp;&amp; content.isDataFlavorSupported(someFlavor)</code></li>
+<li>If it does, get the object with <code>content.getTransferData(someFlavor)</code> <a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>.</li>
+</ol>
+<p>If you just want a quick-and-dirty function:</p>
+<pre class="sourceCode java"><code class="sourceCode java"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="dt">static</span> <span class="bu">String</span> <span class="fu">getClipboard</span>()</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">        <span class="kw">throws</span> java.<span class="fu">awt</span>.<span class="fu">datatransfer</span>.<span class="fu">UnsupportedFlavorException</span>, <span class="bu">IOException</span> {</div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">    <span class="kw">return</span> (<span class="bu">String</span>) java.<span class="fu">awt</span>.<span class="fu">Toolkit</span>.<span class="fu">getDefaultToolkit</span>()</div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">        .<span class="fu">getSystemClipboard</span>()</div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">        .<span class="fu">getData</span>(java.<span class="fu">awt</span>.<span class="fu">datatransfer</span>.<span class="fu">DataFlavor</span>.<span class="fu">stringFlavor</span>);</div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">}</div></code></pre>
+<p>For designing a Swing component, however, there are more integrated ways. This also allows drag-and-drop as well as cut-copy-paste, the conventional UI ideas. For many components (ex. <code>JTextField</code>) the mechanisms are pretty much in place, and you can call <code>setDragEnabled(true)</code> on them and be done. Further customizations are possible, particularly for complex things <code>JList, JTable, JTree</code>; I’ll just skip them today. The first thing is defining/subclassing a <code>TransferHandler</code>, which will be asked to handle all of this stuff by Swing internals:</p>
+<pre class="sourceCode java"><code class="sourceCode java"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">class</span> SomeTransferHandler <span class="kw">extends</span> <span class="bu">TransferHandler</span> {</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">    <span class="co">// Export actions: drag, cut/copy, callback</span></div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">    <span class="dt">int</span> <span class="fu">getSourceActions</span>(<span class="bu">JComponent</span> c) {</div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">        <span class="kw">return</span> COPY_OR_MOVE;</div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">        <span class="co">// choose from COPY, MOVE, COPY_OR_MOVE, LINK, NONE</span></div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">    }</div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">    <span class="bu">Transferable</span> <span class="fu">createTransferable</span>(<span class="bu">JComponent</span> c) { <span class="co">/* ... */</span> }</div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">    <span class="dt">void</span> <span class="fu">exportDone</span>(<span class="bu">JComponent</span> c, <span class="bu">Transferable</span> t, <span class="dt">int</span> action) { <span class="co">/* ... */</span> }</div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9"></div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10">    <span class="co">// Import actions: drop, paste</span></div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11">    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">canImport</span>(TransferSupport supp) { <span class="co">/* ... */</span> }</div>
+<div class="sourceLine" id="12" href="#12" data-line-number="12">    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">importData</span>(TransferSupport supp) { <span class="co">/* ... */</span> }</div>
+<div class="sourceLine" id="13" href="#13" data-line-number="13">}</div></code></pre>
+<p>Note that you do not have to define all of the methods, only the ones you need. <code>TransferHandler</code> is not abstract, although directly instantiating one is probably not a good idea.</p>
+<p><a href="http://docs.oracle.com/javase/6/docs/api/javax/swing/TransferHandler.TransferSupport.html"><code>TransferHandler.TransferSupport</code></a> is<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> a wrapper around <code>Transferable</code> containing also where the transfer is coming from and of what type it is. The transferable is extracted with <code>getTransferable()</code>, but the wrapper also directly has data-flavor compatibility checking methods<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>. Go look its methods up.</p>
+<p>Okay, now that you have a handler set up, how do you get it used? <code>someJComponent.setTransferHandler(someTransferHandler)</code> will allow the handler to handle the transfer events. For cc&amp;p, you can get corresponding <code>Action</code>s from <code>TransferHandler.get[Cut|Copy|Paste]Action()</code> (yes, static method).</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>The argument is a handler of type <code>ClipboardOwner</code> which needs one method <code>lostOwnership(Clipboard c, Transferable t)</code> that is called when the clipboard no longer contains your content. I guess you use it to free resources? I don’t need it though.<a href="#fnref1" class="footnoteBack">↩</a></p></li>
+<li id="fn2"><p>It throws checked exceptions <code>UnsupportedFlavorException</code> and <code>IOException</code>. My former self would hope that you have an IDE that would tell you that and salutes you if you don’t. Now, I just think whatever, if you’re writing Scala like me then you don’t even care.<a href="#fnref2" class="footnoteBack">↩</a></p></li>
+<li id="fn3"><p>At least I think of it as one, but I don’t know if everybody’s definition of “wrapper” matches mine. Oh well.<a href="#fnref3" class="footnoteBack">↩</a></p></li>
+<li id="fn4"><p><code>isDataFlavorSupported(DataFlavor)</code> and <code>getDataFlavors()</code>; the latter returns an array. The documentation says these are faster than extracting the <code>Transferable</code> and querying it.<a href="#fnref4" class="footnoteBack">↩</a></p></li>
+</ol>
+</section>
+</article>
+	<footer class="post-footer">
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/ref/paper">← Paper Size</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/ref/hs">Haskell Stash →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

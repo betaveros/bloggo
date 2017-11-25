@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>[IOI 2014 Part 2] One Line to Solve Them All</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="betaveros" />
+  <meta name="description" content="I started trying to sleep at 9 the night before the contest, tossed and turned in bed until 10, then fell asleep and got up at 3:35 in the morning. Blah. At that point, I went to the bathroom and applied some chapstick before trying to go back to sleep until 6. After breakfast, I grabbed a few minutes of sleep on the bus to the convention center where our contest would be, then slept on a sofa outside the actual contest hall alongside most of the rest of our team as we waited for a very long time until it was okay for us to enter. Competitions really mess with one’s sleep schedule.
+Then, much too soon, we could enter. Day 1 of the contest was about to start.
+The laptops were as yesterday, although they were protected with a white screensaver that indicated my name and ID as well as a countdown to the start of the contest. I was glad to see that my mousepad and all my writing utensils had survived without me. Somebody had the sense of humor to project an online stopwatch with an animated bomb fuse onto the screens to indicate the remaining time, which, once again, there was a lot of.
+I conferred briefly with Paul (TZW (alphaveros (?))) about vim settings for a bit, but there were still fifteen minutes left or so. I idly stretched, practiced typing my .vimrc on an imaginary keyboard, and watched as the US dude two tables to my left unplugged his laptop’s mouse and rearranged absolutely everything on his table using the surface under his chair as swap space. (Well, that was how I mentally described it at the time, pending further revelations. (hint hint))
+Then it began. " />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/one-line" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">[IOI 2014 Part 2] One Line to Solve Them All</h1>
+		
+		<p class="post-meta">
+		
+		2014-07-26
+		(3911 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/programming">Programming</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>I started trying to sleep at 9 the night before the contest, tossed and turned in bed until 10, then fell asleep and got up at 3:35 in the morning. Blah. At that point, I went to the bathroom and applied some chapstick before trying to go back to sleep until 6. After breakfast, I grabbed a few minutes of sleep on the bus to the convention center where our contest would be, then slept on a sofa outside the actual contest hall alongside most of the rest of our team as we waited for a very long time until it was okay for us to enter. Competitions really mess with one’s sleep schedule.</p>
+<p>Then, much too soon, we could enter. Day 1 of the contest was about to start.</p>
+<p>The laptops were as yesterday, although they were protected with a white screensaver that indicated my name and ID as well as a countdown to the start of the contest. I was glad to see that my mousepad and all my writing utensils had survived without me. Somebody had the sense of humor to project an online stopwatch with an animated bomb fuse onto the screens to indicate the remaining time, which, once again, there was a lot of.</p>
+<p>I conferred briefly with Paul (TZW (alphaveros (?))) about vim settings for a bit, but there were still fifteen minutes left or so. I idly stretched, practiced typing my <code>.vimrc</code> on an imaginary keyboard, and watched as the US dude two tables to my left unplugged his laptop’s mouse and rearranged absolutely everything on his table using the surface under his chair as swap space. (Well, that was how I mentally described it at the time, pending further revelations. (hint hint))</p>
+<p>Then it began. </p>
+<p>(Disadvantage of IOI over IMO: I can’t copy-paste the whole problem into my post, so I’m paraphrasing only the interesting problems and there may be loss of rigor.)</p>
+<p>Problem 1 — <code>rail</code> — was this really weird interactive problem about determining a configuration of railway blocks with queries. There are two types of stations, C and D, and each station is in a distinct integer position between two infinite linear one-way rails, the top of which only allows you to go left, the bottom of which only allows you to go right. You can go from the top rail to the bottom rail at C stations, and from the bottom to the top at D stations. However, except for the fact that station 0 is at a specified position and is type C, you don’t know where each station is or what type it is; by querying the “distance” between two stations, i.e. the length of the shortest path by which one can go from one station to another, you must determine the position and type of every other station (of which there are at most 5000). It is given that it is possible to get from any station to any other.</p>
+<p>Problem 2 — <code>wall</code> — was a blatant range-update segment tree problem that I’m not going to describe.</p>
+<p>Problem 3 — <code>game</code> — was an interesting interactive graph-theoretic problem: on a graph with <i>n</i> vertices, you are asked whether each of the <i>n</i>(<i>n</i> − 1)/2 edges exist in some order, and you must answer the questions in a way such that your questioner cannot be certain whether the graph is connected until the very last question. You can (in fact, have to) make up the graph as you go along.</p>
+<hr />
+<p>I started work on 1. After a good deal of thought and hundreds of C’s and D’s scrawled onto the scratch paper, I decided that I had no idea how to do the fourth subtask (3(<i>n</i> − 1) queries, no restrictions), so I decided just to aim for the third (<i>n</i>(<i>n</i> − 1)/2 queries, which is just the general case with total freedom over queries; subtasks 1 and 2 were much weaker). It was still a bit tricky, but just finding the closest railway station to each station allowed me to arrange the stations in chunks and put things together. I got a three-subtask solution in 50 minutes.</p>
+<p>Next, <code>wall</code>. I typed out an outline of the segment tree, but after a bit of confused fumbling over which fields I actually needed in each node, I decided to look at <code>game</code> first.</p>
+<p>More scribbling, more guessing. I realized that I only really had to connect an edge when the graph would otherwise be disconnected by non-edges already specified, i.e. the edge would complete a complete bipartite graph of non-edges. I wrote a disjoint-set thing and compiled it before realizing from its output to the sample input that that was not at all the algorithm I had imagined. So I deleted, oblivious to how ridiculously close I had come to John’s solution.</p>
+<p>After a lot more struggling and drawing graphs and complements of graphs, I realized I truly did not know how to actually maintain this bipartite-graph thing, so I just ran a DFS for every query and submitted a quartic-time solution for two subtasks at 1:40 from start. Then I went back to <code>wall</code>.</p>
+<p>My head was clearer as I came back; I realized that two fields per node, an upper and lower bound, per node was enough with a few extra checks while updating and propagating, so I wrote that, and lo and behold it was easy. I submitted at 2:00. The point distribution made me expect that this would only fetch three of the four subtasks and that I’d need to discretize or something for the fourth, but that didn’t happen. <span style="color:black;background-color:#DFF0D8;">100/100</span>. Darn, this is a pretty boring IOI problem.</p>
+<p>And so I had exhausted the things I knew how to code. Now what? I looked at the two problems I had left, spent a few minutes deliberating, and decided, for better or worse, that I felt more likely to be able to do <code>rail</code>. So I started packing my paper with C’s and D’s…</p>
+<ul>
+<li>The first step, I was convinced, was finding the closest station to station 0; it had to be a D.</li>
+<li>I realized I had to use a faraway C or D to have any chance of unambiguously parsing all stations.</li>
+<li>Somewhere along the line I came up with the idea that the parts left and right of the center C-D group that station 0 belonged to could be handled separately.</li>
+<li>The natural way to apply this, I thought, was that I’d find the furthest away station from 0 to the right and query its distance from everybody else. Unfortunately I then realized that there were still stations that could never be distinguished: if blocks <code>CD...C.1.D.2</code> are in a row and the second <code>C</code> is the furthest away, then a <code>C</code> on the <code>1</code> is indistinguishable from a <code>D</code> on the <code>2</code> using only the distances from the two known <code>C</code>s.</li>
+<li>After much, much more fiddling, I finally came up with the idea to sort the stations on each side by distance and scan across, keeping track of the rightmost <code>D</code> on the right or leftmost <code>C</code> on the left, and using the distances from those stations in addition to the ones from <code>0</code> to locate each next station. All I had to do was check if each new station was a <code>C</code> or a <code>D</code>.</li>
+</ul>
+<p>I wrote up an algorithm, got the grader to print “Correct.” for some random numbers I typed into an input file, and submitted it.</p>
+<p>It didn’t work.</p>
+<p>I added some more random numbers to my input file and got an “Incorrect.” message, but nothing else. I was very annoyed and quickly edited the grader to print the incorrect stations. Okay, now I had something to work with…</p>
+<p>I realized my method for checking if new stations were <code>C</code> or <code>D</code> didn’t work, because e.g. on the right side of station 0, it was still possible to encounter <code>C</code>s whose closest distance to 0 used a nearby <code>D</code> after encountering a <code>D</code> that was further away, if the stations were sorted by query distance. For a while I tried to maintain the nearest <code>C</code> to that furthest <code>D</code> or something along those lines, but I realized that it wasn’t going to be enough, at least not with the tight query restriction given by the problem. I had no idea what to do next. How did I fix this? Was my method doomed?</p>
+<p>I grabbed a pen and scribbled some algebra to figure out how to deal with it. I verified, thankfully, that it would always be possible to disambiguate between <code>C</code>s and <code>D</code>s using the information I planned to get. Then I realized that if I could determine whether there was a <code>C</code> or <code>D</code> at a certain magic position, I could determine whether the new station was a <code>C</code> or <code>D</code>. This wasn’t very hard; I just stashed every <code>C</code> and <code>D</code> I had already seen by location in a <code>map&amp;lt;int,int&amp;gt;</code>, which was doubly easy because I had written a lambda for recording the positions and types of stations. Go lambdas!</p>
+<p><code>int magic = first + (zd[rd] + zd[i] - curd) / 2;</code></p>
+<p>So now I had an algorithm that seemed to work. With trembling hands, I navigated to the workspace with Firefox and uploaded the file.</p>
+<p><span style="color:black;background-color:#FCF8E3;">30/100</span>.</p>
+<p>Great. Time to debug.</p>
+<p>I redid the algebra; things seemed to check out. I modified the condition slightly to avoid needing to rely on a station that would only be seen in the future. I handled the stations between station 0 and its closest <code>D</code> earlier. I realized I had mistyped my infinity as <code>1000 &amp;lt;&amp;lt; 10</code> rather than <code>1000 &amp;lt;&amp;lt; 20</code>, and submitted a fixed version before realizing that the former infinity was actually big enough. I made my arrays five times larger than necessary. No cigar; my submission page became clogged with <span style="color:black;background-color:#FCF8E3;">30/100</span>s.</p>
+<p>Panic was beginning to set in; I don’t remember how much time was left then.</p>
+<p>I wrote a random test-data generator in Python to put down 2000 random stations with station 0 in the middle (darn, Python’s random module should have been on my list of things to study just before the contest), and ran the sample grader on the data. <code>Correct.</code> Everything seemed fine on my laptop.</p>
+<p>How about a test case 5000 stations, the limit?</p>
+<p>Still <code>Correct.</code></p>
+<p>Great.</p>
+<p>Could it be some corner case I had missed? Hmm, I supposed that if there’s only one station then it’s vacuously true that one can get from any station to any other, although I didn’t think IOI contestants were expected to deal with vacuous truths very much. I wrote a check for the <i>n</i> = 1 case. Hah, nice try. The 30 points remained.</p>
+<p>In frustration, I piped the test-data generator straight into my program, over and over again. <code>Correct.</code> <code>Correct.</code> <code>Correct.</code> Wait, what’s this?</p>
+<p>On the fourth try, my generator had produced data that made my program incorrect! Now I had something solid to debug!</p>
+<p>Oh, except because I had just piped the data in and I lacked a master’s degree in computer forensics, I could not recover it. Darn. Still, it was something to work on; I ran the generator a few more times, this time putting my test data into a file before running my solution on it, and managed to get a usable test data file that made my program fail.</p>
+<p>Wow, my program was misclassifying every single <code>C</code> to the right of station 0. Several minutes of printf-debugging later, I found the bug — my way of testing whether a station was to the left or right of the central <code>C-D</code> group that included station 0 broke when there was another <code>C</code> really close to the <code>D</code>. Despite my heart hammering impossibly fast (what if I couldn’t fix this?), I tweaked the test into something that worked and re-ran the test data.</p>
+<p>After clearing up the printf-debugging (the IOI rules prohibit submissions from using I/O and I hadn’t gotten my usual un<code>#define</code>able debugging to work with the grader), I got a simple client-side <code>Correct.</code> on the test data I had previously failed. I submitted, and clasped my hands together. And waited. And waited.</p>
+<p>I have never been so happy to see that <span style="color:black;background-color:#DFF0D8;">100/100</span> green background.</p>
+<p>I let out a long breath.</p>
+<p>With half an hour left, I didn’t really know what to do, so I printed a copy of my <code>rail</code> solution for kicks and went back to <code>game</code>. I had sort of given up already; I really thought there was some algorithm involved that I had failed to learn, or that it was some contrived optimization of my straightforward DFS-per-query, which I tried to do, not very seriously, with some arbitrary vector reallocating. I didn’t expect it to work. It didn’t, and the online system was not being responsive, so I had essentially given up. There were only a few minutes left, anyway.</p>
+<p>Then the contest was over, and everybody applauded, and I rushed over to my teammates, and I understood how terribly wrong my idea of what the solution to <code>game</code> was like.</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">double ouch <a href="http://t.co/3Uu23QaJwD">pic.twitter.com/3Uu23QaJwD</a></p>&mdash; Brian Chen (@betaveros) <a href="https://twitter.com/betaveros/status/489040849200635904?ref_src=twsrc%5Etfw">July 15, 2014</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>Still, I’m resigned to the fact that I didn’t know how to solve it. I guess I had committed too early to the idea that “provide an edge only when not going so would disconnect the graph” was the only valid strategy, as simple and easily motivated as it was.</p>
+<p>I think Paul said he actually optimized that strategy enough to work by maintaining something on groups of 40 vertices, which is about as contrived as I expected and is not something I could code in half an hour. But my other teammates came up with two different solutions to it, one of which was a disjoint-set thing that I already somewhat described and one that was equivalent to the one-liner.</p>
+<p>But whatever the correct solutions, Day 1 was over, and my score was right below a gigantic 19-way tie that spanned the gold cutoff. At a power-of-two score, no less.</p>
+<hr />
+<p>I’m going to ignore chronology for a while and skip directly to Contest Day 2 because it’s more important to the story and that’s how everything got arranged together in my blogging folder.</p>
+<p>I don’t remember much about my sleep schedule that day; it was probably similar. But after Day 1 I was pretty darned nervous. Two other things of note happened between waking up and starting the contest.</p>
+<p>Firstly, under the leadership of Rilak, we talked to the Japanese team and exchanged emails and internet handles. I learned that Twitter is really, really, really popular in Japan. Maybe I should tweet more.</p>
+<p>Secondly, after we had all settled into the contest halls and there were 14 minutes and 50 seconds to the contest start, I finally worked up the guts to ask the guy two seats to my left, “Are you AceOfDiamonds?”</p>
+<p>Yeah, it took me about three days to work up the nerve to do it. I had even tried to plan out a few possible responses before convincing myself that there was no way I could adequately predict what was going to happen. After we exchanged usernames, I was surprised, although not surprised to find that I was surprised, to learn that AceOfDiamonds remembered things like playing mafia on AoPS with me. I was mildly embarrassed because all I remember about mafia is being a terrible player who immaturely got myself jestered for no reason in one of my first games.</p>
+<p>But I had no time to dwell on the conversation before the contest began. I took a few more deep breaths, mouthed the lyrics to a happy song, and opened the envelope.</p>
+<p>I had actually expected some sort of output-only or linearly-scored problem to finally surface, but that didn’t happen. Problem 4 — <code>gondola</code> — was a silly long-winded counting problem with lots of subtasks that amounted to some simple sorting and modular exponentiation. It took me forty minutes; I made lots of intermediate submissions for the people watching at home. Reportedly this made me first on the leaderboard for some time and caught the attention of the people who were livestreaming.</p>
+<p>Problem 5 — <code>friend</code> — was about finding an independent set with a maximal total weight on a graph with weighted vertices that was built with a certain extremely suspicious procedure.</p>
+<ol>
+<li>
+<code>IAmYourFriend</code>: add a vertex that is adjacent to exactly one other existent vertex <i>v</i>
+</li>
+<li>
+<code>MyFriendsAreYourFriends</code>: add a vertex that is adjacent to the exact same set of vertices as some other existent vertex
+</li>
+<li>
+<code>WeAreYourFriends</code>: add a vertex that is adjacent to the exact same set of vertices as some other existent vertex <i>v</i> plus <i>v</i> itself
+</li>
+</ol>
+<p>There were lots of subtasks with weird restrictions on the procedure. I realized I knew how to induct away the last vertex for the latter two procedure steps (just delete it and either take the maximum or sum of the weight between it and the vertex <i>v</i> it’s based on, and assign the resulting weight to <i>v</i>), which I quickly implemented for 16 points, even though those two subtasks were much more trivial. Some more head-scratching later, I added an auxiliary field to the vertices, namely a score gained when the vertex doesn’t get included in the independent set, and then managed to induct in the third case too. Beautiful. So I submitted and got a second <span style="color:black;background-color:#DFF0D8;">100/100</span> again.</p>
+<p>Wow. Ninety minutes in and I had two problems down.</p>
+<p>But this actually made me more nervous; after all, if everybody found the problems as easy as I had, there would be lots of 300s and I’d stay under the gold cutoff.</p>
+<p>So I had three and a half hours left, and it was time to face Problem 6 — <code>holiday</code> — a deceptively simple-looking question about visiting as many attractions as possible on a one-dimensional line in limited time. There are 100,000 cities in a row, with up to 1,000,000,000 attractions in each city, you start from some specified city, and you take 1 day to either move to an adjacent city or to visit all attractions in the city you’re at; you must determine the maximum number of different attractions you can visit in a given number of days.</p>
+<p>I was confident I could see, and write, a quadratic-times-polylog-in-<i>n</i> solution (subtasks 1 and 3) as well as a linearithmic solution where the starting city was zero (subtask 2). But I held off on coding these; there were no alternative ways to distributing my time, so I wanted a real solution. Every neuron in my brain recognized this problem as a classic one, in other words, one that I <em>should be able to solve</em>, especially given the problem yesterday.</p>
+<p>But I had no idea. I spent the next three hours confounded. I drew terrible diagram after terrible diagram, looking for some sort of monotonicity. I noted I could binary search on the maximal number of attractions for the trip in one particular direction, which I implemented to solve subtask 2 even though directly scanning over it with a multiset made much more sense, because it seemed contrived enough to be a component of the general case. I could totally imagine reading the solution for this one. “First, we solve the special case with binary search. Next, without a single word on where in Zarquon’s name we found the motivation to use binary search at all in the first place when a slightly tweaked brute-force would have sufficed, we apply this solution to the general case as follows: …”</p>
+<p>But I couldn’t find any way to extend the binary search to the general problem, so that was the end of that road. Metagaming is not all-powerful.</p>
+<p>With thirty minutes left, I finally had a shadow of an idea… maybe I could enumerate all possible leftmost points of the trip a logarithmic number of times, repeatedly bisecting ranges of optimal right endpoints. But it was a very vague idea and I kept running into walls when I tried to implement it. I was pretty sure from experience that it was useless for me to try writing code when I couldn’t even describe the algorithm coherently in my head, but given the lesson of Day 1 I decided I would at least keep trying until the contest ended so I had no regrets.</p>
+<p>So I did so, but no miracle happened.</p>
+<p>It would be an exaggeration to say I was holding back tears, but not by much; after all, I had used my last three and a half hours with no increase in expected score, three and a half hours for everybody else to catch up on, nullify, and maybe even overtake whatever advantage I had gotten on the first two problems. Oh well, I thought, maybe I really was only a silver-medal level programmer…</p>
+<p>And the bell rang, and everybody applauded again, and I rushed over to my teammates, fully prepared to receive the worst possible news, presumably that <code>holiday</code> was a textbook problem that also admitted a one-liner solution I had inexplicably missed, causing me to fall further in the ranking. Well, it was a really long way down to the silver-bronze cutoff, so I didn’t have to worry about that, right?</p>
+<p>When I heard a bunch of scores beginning with the digit 1, the little homunculus of arrogance and schadenfreude and all things dastardly in my head did a little victory dance. The rest of me just sort of depressurized. <code>friends</code> was actually hard; it almost made up for my tragic result on <code>game</code>, and after that I still had my <code>rails</code> score. It only took a few more seconds until I found a teacher with a scoreboard and confirmed my standing was where I had extrapolated from our team’s scores.</p>
+<p>Gold.</p>
+<p>Yay.</p>
+<p>I mean <em>(takes deep breath)</em> holy Farmer John’s cows, I had done it again.</p>
+<p>I realized a problem analysis belongs just about here after rereading my IMO 2012 posts, but I also think I don’t have much to say here that I haven’t said above, except maybe for <code>holiday</code>: I still don’t know how to solve it legitimately. The official solution included doing totally gross things with a segment tree that I couldn’t stomach. On the other hand, there were only four test cases that didn’t fit into the previous subtasks (apparently only three if you checked whether the tour started at the rightmost city) and I know smarter people than I have hacked their way through. I suppose that’s something future contestants should remember, but I don’t expect to be an element of that set.</p>
+<p>A little bit of egotistical number-twisting about my weird score distribution and placement:</p>
+<ul>
+<li>The only contestants who did at least as well as me on every problem were the full scorers.</li>
+<li>I was one of only six people to fully solve both <code>rail</code> and <code>friend</code>.</li>
+<li>I am the highest scorer who did not fully solve <code>game</code>.</li>
+<li>Not only was my placement it a component of my seat number (T13), but it’s also one form of 1337 for my initial, so that’s nice. I’d prefer a power of two though.</li>
+</ul>
+<p>Anyway, I’m stopping here and calling it a day again, although I hope to post at least one more time (about fun stuff!) before the next period of limited access, during which I leave for Russia. Till next time!</p></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/competitions"><span class="tag">Competitions</span></a></li>
+			
+			<li><a href="/tag/ioi-2014"><span class="tag">IOI 2014</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/waiting">← [IOI 2014 Part 0] Waiting</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/xanthous">[IOI 2014 Part 4] Shades of Xanthous →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

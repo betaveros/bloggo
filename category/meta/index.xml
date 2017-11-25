@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Meta on Bounded-Error Log</title>
+    <link>//blog.vero.site/category/meta</link>
+    <description>Recent content in Meta on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Nov 2017 00:27:42 -0500</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/category/meta/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hello, Again</title>
+      <link>//blog.vero.site/post/hello-again</link>
+      <pubDate>Tue, 07 Nov 2017 00:27:42 -0500</pubDate>
+      
+      <guid>//blog.vero.site/post/hello-again</guid>
+      <description>&lt;p&gt;And here we are.&lt;/p&gt;
+&lt;p&gt;This is the first post on this blog after I migrated off WordPress for a static solution.&lt;/p&gt;
+&lt;p&gt;At first, I wanted to set things up on Amazon Web Services (AWS), which was an adventure. There are lots of online posts about how to do this, but Amazon’s services change quickly and there was often outdated information. For instance, Amazon had a wizard that led you through setting up a static site, which I clicked on. It helpfully handled a lot of grunt work, but now I was out of sync with all of the guides. Oh well.&lt;/p&gt;
+&lt;p&gt;I think things are confusing partly because there are four AWS components all interacting to make a static site happen:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Me and Facebook</title>
+      <link>//blog.vero.site/post/me-and-facebook</link>
+      <pubDate>Wed, 27 Sep 2017 15:00:20 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/me-and-facebook</guid>
+      <description>&lt;p&gt;&lt;strong&gt;tl;dr: I don’t use Facebook much. If you want to contact me, I would prefer nearly any other mode of communication. I am also going to stop autosharing posts from this blog onto Facebook. RSS readers are great; get yours today.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Recently I checked Facebook and it said something like “You’ve added N friends this past T units of time! Thanks for making the world more connected!” and I just couldn’t any more. Facebook friends are not friends. &lt;a href=&#34;https://en.wikipedia.org/wiki/Dunbar&#39;s_number&#34;&gt;Dunbar’s number&lt;/a&gt; is around 150, maybe double that if you want to stretch it; humans cannot handle that many human relationships. Facebook’s siloed ecosystem is the opposite of connected with the rest of the Internet.&lt;/p&gt;
+&lt;p&gt;That is one of many reasons I pretty much don’t use Facebook any more. This is not new, but I’ve never formalized it. Also, I figure others might assume otherwise since I still do have an account and still accept friend requests and post sometimes. Thus, I’m writing this post.&lt;/p&gt;
+&lt;p&gt;Here are all of the reasons:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Taking a Step Back</title>
+      <link>//blog.vero.site/post/step-back</link>
+      <pubDate>Wed, 17 May 2017 22:17:26 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/step-back</guid>
+      <description>&lt;p&gt;There’s some point in the decline of a blog’s activity at which you just can’t apologize with a straight face for not posting any more. Only ironically.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;I brainstormed reasons why I’m not blogging. It took a while for me to find a reason that felt right, but I think it’s mostly the concern that I don’t have anything important to say, and I’m just spamming people’s inboxes or Facebook feeds. I make fun of my perfectonist tendencies, but they haven’t gone away and have been exacerbated by how public this blog feels now. There’s also a general feeling permeating life that I should be trying to present myself professionally to people, because like a diamond, the Internet is forever.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Musings on Time Pressure</title>
+      <link>//blog.vero.site/post/musings-pressure</link>
+      <pubDate>Mon, 15 Aug 2016 15:44:20 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/musings-pressure</guid>
+      <description>&lt;p&gt;I hate doing things under time pressure, but I have to admit I do a lot more things when time pressure exists. One of the things is writing. Another is posting the things I write. They aren’t very good, but they’re better than writing that doesn’t exist.&lt;/p&gt;
+&lt;p&gt;(in case you forgot, I’m still posting this pretty much only because &lt;a href=&#34;//blog.vero.site/post/no-excuses&#34;&gt;I made myself post once every weekend&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;It’s interesting that I can impose time pressure on myself by declaring commitment devices by fiat and it works. Other people have developed other methods of doing this — I recently discovered &lt;a href=&#34;http://www.themostdangerouswritingapp.com/&#34;&gt;The Most Dangerous Writing App&lt;/a&gt;, which puts time pressure on you to type every five seconds or it deletes everything you wrote. There are many other ways it’s done.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>No Excuses</title>
+      <link>//blog.vero.site/post/no-excuses</link>
+      <pubDate>Mon, 27 Jun 2016 14:08:54 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/no-excuses</guid>
+      <description>&lt;p&gt;Wow, this has been the longest silence on this blog in a long time.&lt;/p&gt;
+&lt;p&gt;I can’t justify it with lack of time either. Interning at Dropbox takes up all of my weekdays, but my weekends are much freer than I’m used to. I carelessly let two weeks at home in Taiwan pass by without doing much about blogging, and once again a lot of my few blog drafts have drifted into the temporally awkward zone, being too far away from the events they are about.&lt;/p&gt;
+&lt;p&gt;Neither is it for lack of things happening. At MIT, there was the &lt;a href=&#34;http://thetech.com/2016/06/10/senior-house-turnaround-announced&#34;&gt;Senior House turnaround and freshman moratorium&lt;/a&gt;. I can’t even begin to sum up the discussion around this issue, but I think &lt;a href=&#34;https://medium.com/@hollyhaney/an-open-letter-to-chancellor-barnhart-from-a-senior-house-resident-efc107e789ab#.a1psbheao&#34;&gt;the best response I’ve read is this open letter&lt;/a&gt;. Then there’s the &lt;a href=&#34;http://seniorhouse.mit.edu/&#34;&gt;official Senior House response&lt;/a&gt;. But that’s enough links, since I imagine the chances that this issue is relevant to you &lt;em&gt;and&lt;/em&gt; you’d need this blog to link you to them if you’re reading this are pretty low. (Then again, the chances that you’re reading this are already pretty low. Although the chances &lt;em&gt;you&lt;/em&gt; are reading this right now is 100%.)&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C-c-c-Combo Breaker!</title>
+      <link>//blog.vero.site/post/combo</link>
+      <pubDate>Mon, 27 Jul 2015 07:10:20 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/combo</guid>
+      <description>&lt;p&gt;I made it!&lt;/p&gt;
+&lt;p&gt;After a &lt;a href=&#34;//blog.vero.site/post/rekt&#34;&gt;misstep on the fourth day&lt;/a&gt; I managed to post one post every day, completing the rest of the &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;streak&lt;/a&gt;! This post is scheduled to go out around the time my plane takes off.&lt;/p&gt;
+&lt;p&gt;I’m free!&lt;/p&gt;
+&lt;p&gt;I’d insert a &lt;cite&gt;Frozen&lt;/cite&gt; gif here if I could find a good one, but I don’t like any of the ones I found and besides, copyright is an issue. So instead:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;figure&gt;
+&lt;a href=&#34;//blog.vero.site/img/cliques.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/cliques.png&#34; alt=&#34;source: Wikimedia Commons, public domain&#34; width=&#34;585&#34; height=&#34;468&#34; class=&#34;size-full wp-image-3257&#34; /&gt;&lt;/a&gt;
+&lt;figcaption&gt;
+source: &lt;a href=&#34;https://commons.wikimedia.org/wiki/File:VR_complex.svg&#34;&gt;Wikimedia Commons&lt;/a&gt;, public domain
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;IMO2007.C6. In a mathematical competition some competitors are friends. Friendship is always mutual. Call a group of competitors a clique if each two of them are friends. (In particular, any group of fewer than two competitiors is a clique.) The number of members of a clique is called its size.&lt;/p&gt;
+&lt;p&gt;Given that, in this competition, the largest size of a clique is even, prove that the competitors can be arranged into two rooms such that the largest size of a clique contained in one room is the same as the largest size of a clique contained in the other room.&lt;/p&gt;
+Author: Vasily Astakhov, Russia
+&lt;/blockquote&gt;
+&lt;p&gt;If you remember where I first posted this to break a combo, you have an excellent memory and/or spend too much time stalking me. If you remember the &lt;em&gt;context&lt;/em&gt; under which I posted this to break a combo, you have a better memory than I do.&lt;/p&gt;
+&lt;p&gt;Was my streak a success? On the bright side, I definitely generated lots of posts, many of which were radical departures from my old blogging habits:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;//blog.vero.site/post/99&#34;&gt;card game documentation&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;//blog.vero.site/post/nuclear&#34;&gt;weird short stories&lt;/a&gt; and &lt;a href=&#34;//blog.vero.site/post/nuclear-ii&#34;&gt;sequels to weird short stories&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+an essay (liberally defined) with &lt;a href=&#34;//blog.vero.site/post/quixotic-1&#34;&gt;two&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/quixotic-2&#34;&gt;parts&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+an essay with &lt;a href=&#34;//blog.vero.site/post/more-fiction-1&#34;&gt;two&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/more-fiction-2&#34;&gt;parts&lt;/a&gt; and a &lt;a href=&#34;//blog.vero.site/post/more-fiction-part-2-5&#34;&gt;half&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+another &lt;a href=&#34;//blog.vero.site/post/college-emails&#34;&gt;bar graph&lt;/a&gt; that is actually documented,
+&lt;/li&gt;
+&lt;li&gt;
+a ridiculous &lt;a href=&#34;//blog.vero.site/post/phone&#34;&gt;literate Haskell post&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+numerous &lt;a href=&#34;//blog.vero.site/post/1024&#34;&gt;facetious&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/zzz&#34;&gt;Paintbrush&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/double-post&#34;&gt;dragons&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a side blog&lt;/a&gt;,
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;//blog.vero.site/post/index-txt&#34;&gt;and&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/897&#34;&gt;of&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/drop-in&#34;&gt;course&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/a-list&#34;&gt;metric&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/sheep&#34;&gt;zarktons&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/2857&#34;&gt;of&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/numbers-bmp&#34;&gt;shameless&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/clicker&#34;&gt;filler&lt;/a&gt;.
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I also had lots of fun conversations about my posts, such as:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Signal Boost</title>
+      <link>//blog.vero.site/post/signal</link>
+      <pubDate>Wed, 17 Jun 2015 21:59:18 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/signal</guid>
+      <description>&lt;p&gt;(Short blog content, posted as part of a &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly committed to&lt;/a&gt;; standard disclaimers apply)&lt;/p&gt;
+&lt;p&gt;For the interested, I wrote a &lt;a href=&#34;https://ibshgin.wordpress.com/2015/06/17/copyright/&#34;&gt;&lt;strong&gt;post summarizing issues in copyright and patent law&lt;/strong&gt;&lt;/a&gt; on a new blog for a school club. Actually, if you’re reading this post, you’re probably already interested enough / bored enough to read that post, so go read it. I think the videos are worth watching despite their length, but I tried to summarize the key points in text, so decide how much to read or watch depending on how much spare time you have.&lt;/p&gt;
+&lt;p&gt;I don’t know if that blog will work out, but anyway WordPress tells me I have 8500% more followers on this blog than the other one, even though I have doubts about how many of those followers actually read anything I post at all, so I thought I should link to that post here. Also, by publicizing the blog, I get to shame my friends and fellow club members into posting so that it doesn’t look so empty. Social media expertise, you know?&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>A Commitment</title>
+      <link>//blog.vero.site/post/commitment</link>
+      <pubDate>Thu, 11 Jun 2015 08:43:25 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/commitment</guid>
+      <description>&lt;p&gt;Obligatory life update: I have graduated &lt;a href=&#34;https://motivatedgrammar.wordpress.com/2012/01/24/a-brief-history-of-speaking-about-graduation/&#34;&gt;[from]&lt;/a&gt; high school.&lt;/p&gt;
+&lt;p&gt;But that’s not what this post is about. I &lt;a href=&#34;//blog.vero.site/post/scheduled-blogging&#34;&gt;contemplated setting up a schedule for my blogging&lt;/a&gt; three long years ago, and decided against it, because I didn’t think writing was a high enough priority for me. Well, I am setting up a schedule now: &lt;strong&gt;I am going to post something on this blog every day&lt;/strong&gt; until I have to leave the country (which is happening once before college, so it’s not for as long as you think; but I might decide to continue the schedule anyway after I get back. We’ll see when the time comes.)&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Scheduled Blogging</title>
+      <link>//blog.vero.site/post/scheduled-blogging</link>
+      <pubDate>Fri, 20 Apr 2012 11:43:31 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/scheduled-blogging</guid>
+      <description>Some bloggers have a regular schedule for posting and forcing themselves to meet the deadlines. In essence, something like &amp;quot; updates every Thursday.&amp;quot;
+For me, I think this is a bad idea, because it forces me to write. If my day is boring and uneventful as it quite often is and I still have to crank out a post, it would not be a post that readers would enjoy. Better once-a-month enthusiastic, interesting posts then an ugly stream of tedious drudgery for the visitor to wade through every time, stuff like (quoting one random ancient post):</description>
+    </item>
+    
+    <item>
+      <title>Hello</title>
+      <link>//blog.vero.site/post/hello</link>
+      <pubDate>Sun, 01 Jan 2012 00:00:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/hello</guid>
+      <description>A new year. A new start. And just a chance to abuse the phrase “See you next year!” It’s hard to get tired of using it once every 365.24 days.
+So, I have decided to open up my other blog to people.
+There are a few reasons for not doing so previously. Firstly, there’s a lot of silly writing with unexplained LOLs and exclamations all over the place in the archives, not to mention the countless other sorts of weirdness linked to the handle I’m using here that’s spread over the rest of the interwebz.</description>
+    </item>
+    
+  </channel>
+</rss>
