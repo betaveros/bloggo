@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Akrasia on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/akrasia</link>
+    <description>Recent content in Akrasia on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Jul 2014 22:34:59 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/akrasia/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[IOI 2014 Part -1] Prelude.hs</title>
+      <link>//blog.vero.site/post/prelude</link>
+      <pubDate>Sat, 12 Jul 2014 22:34:59 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/prelude</guid>
+      <description>Indexing debates are boring. Especially when you can just flagrantly disregard all concerns about memory safety (because C++ never had any in the first place) and write int _array[100008], array = _array + 2; I do this alarmingly often; hence, the title. Hashtag firstworldanarchists. Three ± 1 cheers for Haskell arrays.
+Anyway. One of the disadvantages of entering an international competition as the home team is a lack of time to completely absorb the idea that what is about to happen is a Big Thing.</description>
+    </item>
+    
+  </channel>
+</rss>

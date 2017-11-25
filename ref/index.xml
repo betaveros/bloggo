@@ -39,6 +39,30 @@ Vectors are like columns of matrices, or matrices with one column. Except row ve
     </item>
     
     <item>
+      <title>Operation Exchange</title>
+      <link>//blog.vero.site/ref/exchange</link>
+      <pubDate>Tue, 21 Oct 2014 01:00:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/ref/exchange</guid>
+      <description>&lt;h3 id=&#34;limit-limit&#34;&gt;Limit + Limit&lt;/h3&gt;
+&lt;p&gt;Cheaply, using an &lt;a href=&#34;%7B%%20post_url%202014-10-21-iverson-bracket%20%%7D&#34;&gt;Iverson bracket&lt;/a&gt; expression:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\lim_{a \to \infty} \lim_{b \to \infty} [a &amp;gt; b] &amp;amp;= 0 \\
+\lim_{b \to \infty} \lim_{a \to \infty} [a &amp;gt; b] &amp;amp;= 1
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For more continuity, use &lt;span class=&#34;math inline&#34;&gt;\(\frac{a}{a + b}\)&lt;/span&gt; instead (Rudin Example 7.2).&lt;/p&gt;
+&lt;p&gt;Uniform convergence on one limit suffices to allow this exchange, almost by definition.&lt;/p&gt;
+&lt;h3 id=&#34;limit-continuity&#34;&gt;Limit + Continuity&lt;/h3&gt;
+&lt;p&gt;Let&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+f_\epsilon(x) = \begin{cases} 0 &amp;amp; \text{if } |x| \geq \epsilon \\ 1 - \left|\frac{x}{\epsilon}\right| &amp;amp;\text{if } |x| &amp;lt; \epsilon \end{cases}.
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Iverson Bracket</title>
       <link>//blog.vero.site/ref/iverson</link>
       <pubDate>Tue, 21 Oct 2014 00:00:00 +0800</pubDate>

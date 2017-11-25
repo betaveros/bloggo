@@ -13,9 +13,9 @@
 
 
 
-  
-  <meta name="author" content="betaveros" />
-  <meta name="description" content="I could spend all day coming up with post titles like this one. Really, I could. Anyway, after receiving the letter gently reminding me to turn in the official IMO report in Chinese, I finished that first and turned it in. This, plus the fact that I don’t have any way to do any of my summer homework yet, should make continued blogging much easier.
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="I could spend all day coming up with post titles like this one. Really, I could. Anyway, after receiving the letter gently reminding me to turn in the official IMO report in Chinese, I finished that first and turned it in. This, plus the fact that I don’t have any way to do any of my summer homework yet, should make continued blogging much easier.
 These months of preparation and anticipation, and in just over two days it will be behind us forever.
 Thus were my thoughts at 3:30 in the morning, which were a much worse method of preparation than that which I used for the APMO, which involved trying for the first time to put my compass in its box and staring at a cryptic crossword. Twisted thoughts as I lay innocently in bed, trying to preserve my spirit and mathematical function. I got up at 6:30 and ate a breakfast nervously with the team.
 We dispersed into the contest hall. Flat squarish white tables in orderly rows greeted us. They were considerably smaller than the arm-span tables we had last year in the Netherlands’ stadium, but the space was still ample compared to the ones we took our practice tests on at home. I floundered a bit looking for whoever was supposed to check our stuff for forbidden items, but none of the proctors paid any attention to that, so I flipped through my own jacket pockets paranoidly.
@@ -48,6 +48,7 @@ I opened an eye halfway and watched as the clock ticked down the last few second
 <link rel="icon" href="/favicon.ico" />
 
 
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
 
@@ -155,14 +156,15 @@ I opened an eye halfway and watched as the clock ticked down the last few second
 <p>(The <em>excircle</em> of ABC opposite the vertex A is the circle that is tangent to the line segment BC, to the ray AB beyond B, and to the ray AC beyond C.)</p>
 <p>Point, point, point, segment, segment, segment. Pretty unremarkable G1 fare is all I have to say about it: not too clean and not too ugly, not too simple and not too complicated. For a couple moments while solving I thought M was actually defined as the midpoint of BC because of its name. But the solution was smooth: chase angles, find the inevitable miraculous concyclicity, and patch it all up with two applications of Menelaus with lots of equal tangents that canceled nicely, plus two parallel line ratios for good measure. Thirty-five minutes. No problem. There do seem to be shorter, clearer ways to the destination, but I doubt that any more intuitive paths would have been significantly more time-efficient for me.</p>
 <p>Time to face the nightmare.</p>
-<p><strong>Problem 2.</strong> Let <span class="math inline">\(n\ge 3\)</span> be an integer, and let <span class="math inline">\(a_2,a_3,\ldots ,a_n\)</span> be positive real numbers such that <span class="math inline">\(a_{2}a_{3}\cdots a_{n}=1\)</span>. Prove that $(1 + a_2)^2 (1 + a_3)^3 (1 + a_n)^n &gt; n^n. $</p>
+<p><strong>Problem 2.</strong> Let <span class="math inline">\(n\ge 3\)</span> be an integer, and let <span class="math inline">\(a_2,a_3,\ldots ,a_n\)</span> be positive real numbers such that <span class="math inline">\(a_{2}a_{3}\cdots a_{n}=1\)</span>. Prove that</p>
+<p><span class="math display">\[(1 + a_2)^2 (1 + a_3)^3 \cdots (1 + a_n)^n &gt; n^n.\]</span></p>
 <p>Alas, all of our begging and pleading beforehand with our leader and OAs was not enough to save us from facing the first IMO inequality in years. I was no longer as hopelessly unequipped against inequalities as I might have been a year ago, but I still only had the same bag of mindless manipulations: expand, clear the denominator, complete the square; rearrangement, AM-GM, Jensen; in extremely lucky cases, maybe a Cauchy-Schwarz, Schur, or (yeah, right) Muirhead. And here I was facing an asymmetric <span class="math inline">\(n-1\)</span>-variable inequality without an equality case and a typically inscrutable condition as the second problem of the IMO. Seven points that looked like they would cost me all hopes of getting another silver. The horror!</p>
 <p>With fingers crossed, I took a look at the combinatorics.</p>
 <p><strong>Problem 3.</strong> The <em>liar’s guessing game</em> is a game played between two players A and B. The rules of the game depend on two positive integers k and n which are known to both players.</p>
 <p>At the start of the game A chooses integers x and N with <span class="math inline">\(1 \le x \le N.\)</span> Player A keeps x secret, and truthfully tells N to player B. Player B now tries to obtain information about x by asking player A questions as follows: each question consists of B specifying an arbitrary set S of positive integers (possibly one specified in some previous question), and asking A whether x belongs to S. Player B may ask as many questions as he wishes. After each question, player A must immediately answer it with <em>yes</em> or <em>no</em>, but is allowed to lie as many times as she wants; the only restriction is that, among any k+1 consecutive answers, at least one answer must be truthful.</p>
 <p>After B has asked as many questions as he wants, he must specify a set X of at most n positive integers. If x belongs to X, then B wins; otherwise, he loses. Prove that:</p>
 <ol type="1">
-<li>If <span class="math inline">\(n \ge 2^k,\)</span> then B can guarantee a win.</li>
+<li>If <span class="math inline">\(n \ge 2^k\)</span>, then B can guarantee a win.</li>
 <li>For all sufficiently large k, there exists an integer <span class="math inline">\(n \ge (1.99)^k\)</span> such that B cannot guarantee a win.</li>
 </ol>
 <p>It was a massive text wall, the unique trademark of combinatorics problems, but I had no trouble grasping the essence after copying it down and getting rid of all the technical-issue wording. I tackled it right after crashing through #1. If there was one thing I learned from last year, it was not to trust the committee at determining relative difficulty.</p>
@@ -182,12 +184,15 @@ I opened an eye halfway and watched as the clock ticked down the last few second
 <p>I met up with WL and CPT and we discovered that we were now faced with a real-time <a href="https://en.wikipedia.org/wiki/Coordination_game">coordination game</a>: how, without any strategizing beforehand, do we go about finding the other three people in the team? Most of the contestants were standing about doing the same thing, and some had already sat down in the chairs (I thought they said we weren’t supposed to sit there…) and were discussing the problems fervently. It would be hard to find anybody in the crowd. We found the professors after walking up and down the balcony a few times, and then, after a long while, learned that the rest of the team had returned to their rooms, thinking we would do the same.</p>
 <p>Game theory is <em>hard</em>.</p>
 <p>Problem analysis (yet again!) I’m not going to comment specifically on my teammates’ performances, only roughly, just FYI.</p>
-<p>#1. Easy, unremarkable geometry. Some people say it was too easy. Last year’s #1 was “too easy”. Or I just continue to suck at geometry; who knows? Our team had no problem, obviously, because I’m probably the worst at geometry in it. #2. Okay so there are a zillion people who repeat that this is too easy for an IMO #2 because a complete solution consists of five lines at the absolute maximum. I mean. Okay, AM-GM is an easy technique, term-splitting is a little harder but perfectly familiar, but why would you want to apply that to this problem? I received an AoPS comment that says you can think of it when you try to overcome the asymmetry. I still can’t make it seem justified to myself. And there is a calculus solution, but it’s not straightforward.</p>
+<ul>
+<li><p>#1. Easy, unremarkable geometry. Some people say it was too easy. Last year’s #1 was “too easy”. Or I just continue to suck at geometry; who knows? Our team had no problem, obviously, because I’m probably the worst at geometry in it.</p></li>
+<li><p>#2. Okay so there are a zillion people who repeat that this is too easy for an IMO #2 because a complete solution consists of five lines at the absolute maximum. I mean. Okay, AM-GM is an easy technique, term-splitting is a little harder but perfectly familiar, but why would you want to apply that to this problem? I received an AoPS comment that says you can think of it when you try to overcome the asymmetry. I still can’t make it seem justified to myself. And there is a calculus solution, but it’s not straightforward.</p>
 <p>Even now, supposing I were cloned before the test, I would not bet on my clone solving #2 under test conditions. I don’t know how I thought of it. Too much metagaming?</p>
 <p>Also, if you don’t think of using AM-GM and aren’t smashingly excellent at calculus, partial credit is nearly impossible no matter how much time you use. So, all in all, does this remind you of any problem from last year? It does to me.</p>
-<p>It didn’t break my dreams, somehow, but overall it hurt our team a lot.</p>
-<p>P3. Alright, it’s a pretty cool combinatorics problem. The sad thing is that there are two parts, each takes a whole lot of time to think through, and the help they give to solving each other is virtually nonexistent (I think there’s a little shared intuition at most). The point-efficiency of this problem is therefore rather low, even though, in my humble opinion, it’s not <em>that</em> difficult for a P3. This seems to be an overall theme for the entire test.</p>
-<p>All the basic strategies I went through in our cross-training (largely a very, very brief cover of Engel) were pretty much useless here. The closest thing I can think of that I mentioned is the idea of corresponding to 01-strings. But the followup is just found through exploration and the 1.995 weighting probably requires a little experience with problems where you prove asymptotics. So the number of points our team got here is also very small, including one fakesolve with a sadly broken induction. I don’t get how they can apply the probabilistic method after citing a bunch of scary college-level-sounding names. So even if I learned the probabilistic method carefully I don’t think I could possibly have gotten that solution.</p>
+<p>It didn’t break my dreams, somehow, but overall it hurt our team a lot.</p></li>
+<li><p>P3. Alright, it’s a pretty cool combinatorics problem. The sad thing is that there are two parts, each takes a whole lot of time to think through, and the help they give to solving each other is virtually nonexistent (I think there’s a little shared intuition at most). The point-efficiency of this problem is therefore rather low, even though, in my humble opinion, it’s not <em>that</em> difficult for a P3. This seems to be an overall theme for the entire test.</p>
+<p>All the basic strategies I went through in our cross-training (largely a very, very brief cover of Engel) were pretty much useless here. The closest thing I can think of that I mentioned is the idea of corresponding to 01-strings. But the followup is just found through exploration and the 1.995 weighting probably requires a little experience with problems where you prove asymptotics. So the number of points our team got here is also very small, including one fakesolve with a sadly broken induction. I don’t get how they can apply the probabilistic method after citing a bunch of scary college-level-sounding names. So even if I learned the probabilistic method carefully I don’t think I could possibly have gotten that solution.</p></li>
+</ul>
 <p>I do not remember much of what we did that afternoon; maybe a few more problems, maybe a few games of the ripoff of the ripoff of Bang! we brought. That’s Day 1 for you.</p></article>
 	<footer class="post-footer">
 		
@@ -213,7 +218,7 @@ I opened an eye halfway and watched as the clock ticked down the last few second
 	</footer>
 </section>
 <footer class="site-footer">
-	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://pages.github.com/">GitHub Pages</a>, and

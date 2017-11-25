@@ -16,9 +16,9 @@ Posts
 
 
 
-  
-  <meta name="author" content="betaveros" />
-  <meta name="description" content="" />
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="" />
 
 
 
@@ -45,6 +45,7 @@ Posts
 <link rel="icon" href="/favicon.ico" />
 
 
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
 
@@ -193,6 +194,45 @@ Vectors are like columns of matrices, or matrices with one column. Except row ve
 	
 	<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/ref/exchange" class="post-link">Operation Exchange</a></h3>
+		
+		<p class="post-meta">
+		
+		
+		(457 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<h3 id="limit-limit">Limit + Limit</h3>
+<p>Cheaply, using an <a href="%7B%%20post_url%202014-10-21-iverson-bracket%20%%7D">Iverson bracket</a> expression:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\lim_{a \to \infty} \lim_{b \to \infty} [a &gt; b] &amp;= 0 \\
+\lim_{b \to \infty} \lim_{a \to \infty} [a &gt; b] &amp;= 1
+\end{aligned}
+\]</span></p>
+<p>For more continuity, use <span class="math inline">\(\frac{a}{a + b}\)</span> instead (Rudin Example 7.2).</p>
+<p>Uniform convergence on one limit suffices to allow this exchange, almost by definition.</p>
+<h3 id="limit-continuity">Limit + Continuity</h3>
+<p>Let</p>
+<p><span class="math display">\[
+f_\epsilon(x) = \begin{cases} 0 &amp; \text{if } |x| \geq \epsilon \\ 1 - \left|\frac{x}{\epsilon}\right| &amp;\text{if } |x| &lt; \epsilon \end{cases}.
+\]</span></p>
+<p></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/ref/exchange">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/ref/iverson" class="post-link">Iverson Bracket</a></h3>
 		
 		<p class="post-meta">
@@ -332,7 +372,7 @@ I’m too lazy to reinstall all of them, so here are the ones I recognize that I
 	
 </section>
 <footer class="site-footer">
-	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://pages.github.com/">GitHub Pages</a>, and

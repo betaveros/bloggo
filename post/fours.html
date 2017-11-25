@@ -13,13 +13,13 @@
 
 
 
-  
-  <meta name="author" content="betaveros" />
-  <meta name="description" content="[edit: okay guys I’m surprised at many people come here with search queries looking for solutions. If you want IMO solutions, the corresponding AoPS forum invariably has many of them. This is probably late-ish, but just in case.]  Day 2 of the contest.
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="[edit: okay guys I’m surprised at many people come here with search queries looking for solutions. If you want IMO solutions, the corresponding AoPS forum invariably has many of them. This is probably late-ish, but just in case.]  Day 2 of the contest.
 Did you know that in Chinese [or Mandarin, whatever] “four” is unlucky because it’s a homophone for “death”, and hospitals tend to skip it in floors or ward numbers?
 Did you know that there was going to be an anecdote involving the seventh Artemis Fowl book but I couldn’t make it work so instead you have a weird and utterly disconnected metareference to something deleted?
 I don’t know, it sounded cool at the time.
-Problem 4. Find all functions f: Z -&amp;gt; Z such that, for all integers a,b,c that satisfy a&#43;b&#43;c = 0, the following equality holds: \[f(a)^2&#43;f(b)^2&#43;f(c)^2=2f(a)f(b)&#43;2f(b)f(c)&#43;2f(c)f(a).\] (Here Z denotes the set of integers.)
+Problem 4. Find all functions f: Z → Z such that, for all integers a,b,c that satisfy a&#43;b&#43;c = 0, the following equality holds: \[f(a)^2&#43;f(b)^2&#43;f(c)^2=2f(a)f(b)&#43;2f(b)f(c)&#43;2f(c)f(a).\] (Here Z denotes the set of integers.)
 An innocent-looking functional equation, but once you start trying it you discover that there’s quite some depth to it. Random guessing can yield that \(f(x) = x^2\) is a solution, so I proved inductively that after dividing out a constant f(1) then the remaining part of f is a perfect square. Letting \(f(x) = f(1)g(x)^2\) with g(x) a nonnegative integer and factorizing the original equation, I got an auxiliary functional equation equivalent to the original equation.
 " />
 
@@ -48,6 +48,7 @@ An innocent-looking functional equation, but once you start trying it you discov
 <link rel="icon" href="/favicon.ico" />
 
 
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
 
@@ -152,7 +153,7 @@ An innocent-looking functional equation, but once you start trying it you discov
 <p>Did you know that in Chinese [or Mandarin, whatever] “four” is unlucky because it’s a homophone for “death”, and hospitals tend to skip it in floors or ward numbers?</p>
 <p>Did you know that there was going to be an anecdote involving the seventh Artemis Fowl book but I couldn’t make it work so instead you have a weird and utterly disconnected metareference to something deleted?</p>
 <p>I don’t know, it sounded cool at the time.</p>
-<p><strong>Problem 4.</strong> Find all functions f: Z -&gt; Z such that, for all integers a,b,c that satisfy a+b+c = 0, the following equality holds: <span class="math display">\[f(a)^2+f(b)^2+f(c)^2=2f(a)f(b)+2f(b)f(c)+2f(c)f(a).\]</span> (Here Z denotes the set of integers.)</p>
+<p><strong>Problem 4.</strong> Find all functions f: Z → Z such that, for all integers a,b,c that satisfy a+b+c = 0, the following equality holds: <span class="math display">\[f(a)^2+f(b)^2+f(c)^2=2f(a)f(b)+2f(b)f(c)+2f(c)f(a).\]</span> (Here Z denotes the set of integers.)</p>
 <p>An innocent-looking functional equation, but once you start trying it you discover that there’s quite some depth to it. Random guessing can yield that <span class="math inline">\(f(x) = x^2\)</span> is a solution, so I proved inductively that after dividing out a constant f(1) then the remaining part of f is a perfect square. Letting <span class="math inline">\(f(x) = f(1)g(x)^2\)</span> with g(x) a nonnegative integer and factorizing the original equation, I got an auxiliary functional equation equivalent to the original equation.</p>
 <p>Casework on small values of g, and the surprises started coming hard and fast. First: wow there’s an extra odd-even solution! Then: woah there’s another mod 4 solution! What is this madness?  For a while I did wonder if there would be a solution for any even modulus, but I checked them and discovered that no, the periods were restricted to 2 and 4. Such a simple symmetric problem statement, and such a ridiculous set of solutions. I checked the validity again, just to be sure.</p>
 <p>Wow. 1:35 finish. Embarrassingly this is about the same amount of time I spent on last year’s #1/A1, which was basically listing alarmingly trivial equations automatically. I don’t think all of the steps were trivial for this one, particularly the factorization, even though I feel like I should have known it.</p>
@@ -166,10 +167,10 @@ An innocent-looking functional equation, but once you start trying it you discov
 <p><strong>Problem 6.</strong> Find all positive integers n for which there exist non-negative integers <span class="math inline">\(a_1, a_2, \ldots, a_n\)</span> such that <span class="math display">\[\frac{1}{2^{a_1}} + \frac{1}{2^{a_2}} + \cdots + \frac{1}{2^{a_n}} = \frac{1}{3^{a_1}} + \frac{2}{3^{a_2}} + \cdots + \frac{n}{3^{a_n}} = 1\]</span></p>
 <p>Er okay this is number theory? It had to be number theory because number theory hadn’t shown up yet. But my instinct was that I could get a contradiction for large n by bounding or something.</p>
 <p>For some reason I started behaving rather unnaturally around the large problem number. First I randomly assumed there would only be trivial solutions for n = 1 or 2 and tried stuff. Next I started looking for prime factors of something. Because #6 had to have a scary solution, of course.</p>
-<p>After a while I started seriously trying to construct examples. I had to reach something like n = 7 to see the parity argument. D’oh! Why was I working so slowly? I continued constructing and saw the 4k+1 -&gt; 4k+2 induction at n = 10. Alright, induction is the way to go; let’s list all the cases for 4k+2 -&gt; 4k+5.</p>
-<p>Nope… doesn’t work; on to 4k+1 -&gt; 4k+5.</p>
+<p>After a while I started seriously trying to construct examples. I had to reach something like n = 7 to see the parity argument. D’oh! Why was I working so slowly? I continued constructing and saw the 4k+1 → 4k+2 induction at n = 10. Alright, induction is the way to go; let’s list all the cases for 4k+2 → 4k+5.</p>
+<p>Nope… doesn’t work; on to 4k+1 → 4k+5.</p>
 <p>Nope… check work and header information, and actually write down that Ceva… wait, where did that Ceva go!? I spent twenty minutes finding it again. Urk.</p>
-<p>And finally, desperately, test 4k+1 -&gt; 4k+9 until the time is up. The end.</p>
+<p>And finally, desperately, test 4k+1 → 4k+9 until the time is up. The end.</p>
 <p>I walked out of the test and worked myself into a slightly sad mood, because judging by our team’s performance, Problem 5 was a typically but not excessively difficult Problem 5, perfectly bashable, and I didn’t get it. This haunted me for a while because I didn’t think I had much (threshold for “much” being approximately 2 or 3 per problem) partial on #5 or #6 and thus probably no gold, something I had left Day 1 with an excellent chance for. What I was expecting was that the Ceva had introduced another point and an extra concurrence that was moving further away from the problem, and that most of the points on #6 would be allocated to the huge inductive jump. I was wrong on all of these counts, of course.</p>
 <p>Analysis:</p>
 <p>#4. It’s been repeated many times on AoPS, so I’ll keep it brief. There were figuratively countless ways to fall into a trap somewhere along the way and miss a solution, or check sloppily and get extra solutions, or just miss points for rigor for not checking the blasted solutions. I was careful and walked away with all 7 intact, but the number of points our team dropped is kind of scary.</p>
@@ -177,8 +178,17 @@ An innocent-looking functional equation, but once you start trying it you discov
 <p>#5. Typically hard as a normal geometry problem, but according to some people on AoPS, way too conveniently coordinate-bashable. As I’ve said already, I can’t do bash and therefore can’t say anything meaningful on this issue. Two teammates did a synthetic approach that I had noticed the auxiliary points for, but I never wrote down anything about their construction, only a diagram, which obviously wouldn’t get any points.</p>
 <p>#6. So yes, you have to reach +12 induction, and if you don’t have the right stroke of genius, you need a bunch of cases. I don’t know if another 4h30m would be enough for me. Blargh.</p>
 <p>All on the same day, #4 and #6 were both epically time-consuming, and if one tried to bash #5 then things would become even worse. Not advantageous for me, but hey, I survived. The process of score-discovery would stretch over a long period, but I think I’ll just point everything out now. The same day during dinner, Prof. Liu (deputy) told me I had partial for #5, which I was already surprised by (I had been firmly expecting 0 because I thought introducing T led me further away from the solution and the only other thing on my paper was a thoroughly cheap concyclicity). The next day, during dinner conversation with the whole team and leader and observers hosted by some local Taiwanese immigrants, I more or less figured out my full score.</p>
-<p>#1. complete, 7 pts #2. complete, 7 pts #3.1. complete, 3 pts #3.2. 1 pt for summation of correct exponentially-weighted values (not necessarily correctly ranged base exponent, which would be 1 more point; personally I thought that putting 1.995 would be the obvious value, but it seems 2 is conceivable yet wrong) (aside: #3.2 was worth 4 pts but there was a bonus 1 pt if you solved it fully and didn’t get any points on #3.1, for some weird reason) #4. complete, 7 pts #5. 2 pts for Ceva shown equivalent to some ratios or Menelaus in official solution #6. (1 pt for parity argument) + (1 pt for all cases below approx. n = 10) + (1 pt for 4k+1 -&gt; 4k+2 induction) + (1 pt for ???)</p>
-<p>I think that during coordination our initial proposal for my #6 was 3 points but the coordinators gave 4 for something they found in my scratchwork. It might have been the 8k-2 -&gt; 8k+1 induction, if they had constructed a solution where it was useful. I’m not sure, actually.</p>
+<ul>
+<li><p>#1. complete, 7 pts</p></li>
+<li><p>#2. complete, 7 pts</p></li>
+<li><p>#3.1. complete, 3 pts</p></li>
+<li><p>#3.2. 1 pt for summation of correct exponentially-weighted values (not necessarily correctly ranged base exponent, which would be 1 more point; personally I thought that putting 1.995 would be the obvious value, but it seems 2 is conceivable yet wrong)</p>
+<p>(aside: #3.2 was worth 4 pts but there was a bonus 1 pt if you solved it fully and didn’t get any points on #3.1, for some weird reason)</p></li>
+<li><p>#4. complete, 7 pts</p></li>
+<li><p>#5. 2 pts for Ceva shown equivalent to some ratios or Menelaus in official solution</p></li>
+<li><p>#6. (1 pt for parity argument) + (1 pt for all cases below approx. n = 10) + (1 pt for 4k+1 → 4k+2 induction) + (1 pt for ???)</p></li>
+</ul>
+<p>I think that during coordination our initial proposal for my #6 was 3 points but the coordinators gave 4 for something they found in my scratchwork. It might have been the 8k-2 → 8k+1 induction, if they had constructed a solution where it was useful. I’m not sure, actually.</p>
 <p>But that’s enough of that. Finally, I can start on the fun parts of the trip! <em>Stay tuned…</em></p></article>
 	<footer class="post-footer">
 		
@@ -204,7 +214,7 @@ An innocent-looking functional equation, but once you start trying it you discov
 	</footer>
 </section>
 <footer class="site-footer">
-	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://pages.github.com/">GitHub Pages</a>, and

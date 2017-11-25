@@ -6,10 +6,22 @@
     <description>Recent content in Puzzles on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 Feb 2017 14:27:18 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jan 2018 19:39:22 -0500</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/category/puzzles/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>2018 MIT Mystery Hunt</title>
+      <link>//blog.vero.site/post/2018-hunt</link>
+      <pubDate>Tue, 16 Jan 2018 19:39:22 -0500</pubDate>
+      
+      <guid>//blog.vero.site/post/2018-hunt</guid>
+      <description>&lt;p&gt;My third MIT Mystery Hunt with ✈✈✈ Galactic Trendsetters ✈✈✈ (also see: &lt;a href=&#34;//blog.vero.site/post/january&#34;&gt;2017&lt;/a&gt; and &lt;a href=&#34;//blog.vero.site/post/whoosh&#34;&gt;2016&lt;/a&gt;, writing with Random in &lt;a href=&#34;//blog.vero.site/post/hunt&#34;&gt;2015&lt;/a&gt;). It was a good hunt with a fun theme, solid puzzles, and extraordinary production quality, marred only by a fickle unlock structure and a handful of unnecessarily involved extractions.&lt;/p&gt;
+&lt;p&gt;Since we had been told the hunt would be smaller than past years’ (now a controversial statement since the coin was &lt;em&gt;not&lt;/em&gt; found particularly early) and we didn’t particularly want to win (yet), part of our team temporarily split off this year to hunt as Teammate. Based on our Discord channel, ✈✈✈ Galactic Trendsetters ✈✈✈ had 75 people this year, including remote solvers and people who dropped in and out.&lt;/p&gt;
+&lt;p&gt;A short description of the hunt structure: This year’s hunt theme was &lt;em&gt;Inside Out&lt;/em&gt;, the Disney movie about anthropomorphized emotions. This was revealed through a kickoff that demonstrated the hunt’s extraordinary production quality, in which we watched the unveiling of the Health &amp;amp; Safety hunt, first directly, then in the Control Room with the emotions of a distraught hunter (Miss Terry Hunter) and a lot of beautiful memory orbs and scenery. After Terry’s emotions became overwhelmed in response to the theme, we had to help her emotions to allow her to complete the Health &amp;amp; Safety hunt. The intro round took place in the Control Room; we had to solve 34 regular puzzles and five metapuzzles (somewhat overlapping, with some regular puzzles belonging to more than one metapuzzle) to help each of the five emotions get back to the Control Room. The rest of the hunt consisted of recovering memory orbs from each of four Islands of Personality, each of which had its own theme and meta structure, and which we could choose the unlock order of.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>I guess January is puzzles month</title>
@@ -117,7 +129,7 @@ Okay so apparently how puzzles work is I go nearly a year without posting one an
     </item>
     
     <item>
-      <title>2015 MIT Mystery Hunt (spoiler-free version)</title>
+      <title>2015 MIT Mystery Hunt</title>
       <link>//blog.vero.site/post/hunt</link>
       <pubDate>Tue, 27 Jan 2015 11:45:50 +0800</pubDate>
       
@@ -163,6 +175,16 @@ ETA: Journalistic responsibility compels me to mention that chaotic_iak also add
     </item>
     
     <item>
+      <title>Puzzle 39 / Contact &#43; Slitherlink [Antisymmetric]</title>
+      <link>//blog.vero.site/post/puzzle-39</link>
+      <pubDate>Thu, 28 Feb 2013 21:38:54 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-39</guid>
+      <description>Yay crazy hybrids! I guess this one is kind of hard.
+Draw a loop through adjacent vertices that cannot intersect itself. For each pair of symmetrically placed numbers, one is a Slitherlink clue which indicates how many of the four edges around it are drawn, and one is a Contact clue which indicates the total length of all straight segments adjacent to it where segment length is always measured up to the nearest turns in the loop.</description>
+    </item>
+    
+    <item>
       <title>Puzzle 36 / Fillomino [LITS]</title>
       <link>//blog.vero.site/post/puzzle-36</link>
       <pubDate>Wed, 23 Jan 2013 18:29:00 +0800</pubDate>
@@ -189,6 +211,17 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       <guid>//blog.vero.site/post/puzzle-31</guid>
       <description>This is a Fillomino puzzle where every polyomino is required to be an L-shape, as in Sashigane. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.
 My second, and now symmetric, attempt at this crazy self-invented mutant; puzzle 22 was the first.</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 29 / Corral [Antisymmetric Multiplicative]</title>
+      <link>//blog.vero.site/post/puzzle-29</link>
+      <pubDate>Thu, 08 Nov 2012 17:35:43 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-29</guid>
+      <description>This is a Corral puzzle in which half the clues are multiplicative. For each symmetric pair of clues, one is normal and one is multiplicative.
+
+Hooray for crazy puzzle mutations! As you can probably tell I tried more to put in as many equal symmetric pairs of clues as I could than to play with the logic.</description>
     </item>
     
     <item>

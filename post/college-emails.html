@@ -13,9 +13,9 @@
 
 
 
-  
-  <meta name="author" content="betaveros" />
-  <meta name="description" content="(Frivolous blog content, posted as part of a daily posting streak I have openly committed to; standard disclaimers apply)
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="(Frivolous blog content, posted as part of a daily posting streak I have openly committed to; standard disclaimers apply)
 Out of boredom and curiosity, I graphed how many emails colleges sent me, excluding the colleges I actually applied to. I am being extremely polite and just calling them emails. I’ve wanted to make this for a long time, but it wasn’t until I saw this post about an email experiment on waxy.org/links that I understood which tools I could use to quantify my emails. (And then I actually made it and procrastinated posting it here for two months. If you look at my GitHub page or activity you might have seen it already, though. Oops.)
 I don’t think the results were expected. Other than saying that, I leave the interpretation up to the reader because I’m on a tight blogging schedule. Cool? Cool.
 " />
@@ -45,6 +45,7 @@ I don’t think the results were expected. Other than saying that, I leave the i
 <link rel="icon" href="/favicon.ico" />
 
 
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
 
@@ -169,7 +170,7 @@ folderfilter = lambda x: x == &#39;foobar&#39;</code></pre>
 <p>If you just want emails under certain tags or folders, write a Python lambda under <code>folderfilter</code> that tests the tag string.</p>
 <p>You may also need to <a href="https://www.google.com/settings/security/lesssecureapps">enable less secure apps</a> on your Gmail account to let it allow offlineimap. You can change it back later once offlineimap is done syncing. To sync, just put <code>offlineimap</code>.</p>
 <p>Step 3. Get <code>mu</code>. Also available on Homebrew. Run <code>mu index --maildir ~/email</code></p>
-<p>Step 4. Get the data out of <code>mu</code> and process it into a usable form. In my case, I mimicked the Medium post and composed a command-line one-liner to extract the domains from which the emails were sent and turn them into usable comma-separated data that can be thrown into things such as this random <a href="http://www.d3-generator.com/">d3.js bar chart generator</a> I found online: <code>mu find maildir:/collegespam --fields f | perl -ne '/&amp;lt;.*?@(.*?)&amp;gt;/; print &quot;$1\n&quot;;' | sort | uniq -c | awk '{ print $2 &quot;,&quot; $1 }'</code></p>
+<p>Step 4. Get the data out of <code>mu</code> and process it into a usable form. In my case, I mimicked the Medium post and composed a command-line one-liner to extract the domains from which the emails were sent and turn them into usable comma-separated data that can be thrown into things such as this random <a href="http://www.d3-generator.com/">d3.js bar chart generator</a> I found online: <code>mu find maildir:/collegespam --fields f | perl -ne '/&lt;.*?@(.*?)&gt;/; print &quot;$1\n&quot;;' | sort | uniq -c | awk '{ print $2 &quot;,&quot; $1 }'</code></p>
 <p>Step 5. Label. I manually labeled the domain names with their colleges where it wasn’t obvious and sprinkled lots of other annotations onto the list because I was too lazy to automate this. I also added the ordinal scale coloring by top-level domain by myself.</p>
 <p>Step 6. Avoid procrastination. Whoops. I procrastinated posting this, so I had to manually adjust the numbers while preserving the labels several times; I regret this. So don’t procrastinate, kids!</p></article>
 	<footer class="post-footer">
@@ -202,7 +203,7 @@ folderfilter = lambda x: x == &#39;foobar&#39;</code></pre>
 	</footer>
 </section>
 <footer class="site-footer">
-	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://pages.github.com/">GitHub Pages</a>, and

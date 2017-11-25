@@ -42,6 +42,27 @@ I think our leader made this. Thanks.
     </item>
     
     <item>
+      <title>[IOI 2014 Part 3] Games of Luck and Strategy and Really Weird Noises</title>
+      <link>//blog.vero.site/post/games</link>
+      <pubDate>Sun, 17 Aug 2014 22:11:28 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/games</guid>
+      <description>&lt;p&gt;Shamelessly getting unfinished business out of the way. Yup, that’s me.&lt;/p&gt;
+&lt;p&gt;Excursion Day 1. We traveled down to Yilan on a bus. I played guess-it with Paul.&lt;/p&gt;
+I was quite surprised at myself for remembering this game, but I think it’s simple and little-known enough to be worth mentioning. Guess-it is a remarkably pure game of luck and bluffing from one of Martin Gardner’s columns, played with a small odd number of cards, e.g. the 13 cards of one poker suit. The cards are dealt evenly to players (who can look at them) with one card left over, which is kept face down; players take turns choosing one of two actions:
+&lt;ol&gt;
+&lt;li&gt;
+Name a card and ask the other player if he or she has it. These questions must be answered honestly.
+&lt;/li&gt;
+&lt;li&gt;
+Guess the left-over card. The guesser wins if correct; the other player wins if not.
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Guess-it is not trivial because sometimes you should ask the other player if he or she has a card that you already see in your hand; otherwise whenever you answered “no” to a query you’d immediately guess that the asked card is the hidden one. It is actually a solved game in the sense that the probabilities of the Nash equilibrium strategy for when to guess and when to bluff have been worked out already, but they’re not simple probabilities by any means and humans are terrible randomizers anyway. A few rounds of it sure beats rock-paper-scissors. I was very amused to lose almost all our games with 11 cards but win almost all of our games with 13.&lt;/p&gt;
+&lt;p&gt;Okay, no more gratuitous narrative excursions into game-theory. The first stop, National Center for Traditional Arts, was a very laid-back culture place with old-fashioned retro shops and streets.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>[IOI 2014 Part 2] One Line to Solve Them All</title>
       <link>//blog.vero.site/post/one-line</link>
       <pubDate>Sat, 26 Jul 2014 23:49:14 +0800</pubDate>
@@ -55,6 +76,19 @@ I think our leader made this. Thanks.
     </item>
     
     <item>
+      <title>[IOI 2014 Part 1] Everything is More Exciting with Lightsabers</title>
+      <link>//blog.vero.site/post/lightsabers</link>
+      <pubDate>Mon, 21 Jul 2014 17:31:10 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/lightsabers</guid>
+      <description>&lt;p&gt;Okay, I guess it was really naïve of me to suppose that I could get any considerable amount of blogging done before the IOI ended. Onward…&lt;/p&gt;
+&lt;p&gt;We left off at the end of the practice session. As if somebody were taking revenge against us for not having to suffer through any airplane trips, we were served a cold airplane meal for lunch.&lt;/p&gt;
+&lt;p&gt;Seriously, the box had a sticker that noted its manufacturer as something something Air Kitchen and another translucent sticker that badly covered an inscription saying the same thing in much bigger letters. It contained a cold apple salad, a cold chicken bun, a cold flat plastic cylinder of orange juice, and a package of plastic utensils that was exactly like the utensils that came with every airplane meal ever. I was disappointed, but at least the salad tasted okay, and I ate an extra one because two of my teammates volunteered theirs.&lt;/p&gt;
+&lt;p&gt;To pass the time, we played an extra-evil &lt;a href=&#34;https://en.wikipedia.org/wiki/Ninety-nine_(addition_card_game)&#34;&gt;ninety-nine&lt;/a&gt; variant. Apparently this is a very Taiwanese game because lots of student guides were teaching their teams the game, although our special cards differ from the ones Wikipedia lists in a lot of ways and our evil variant created more opportunity for sabotage and counter-sabotage and bluffing. 7s are used to draw your replacement card from somebody else’s hand, and that person cannot draw again and will have one less card; aces are used to swap your entire hand with somebody else, who also cannot draw a card; small-value cards can be combined to form special values (e.g. play a 2 and 5 for the effect of a 7) but after playing a combination you can only draw one replacement card; and later, to speed up the game, we added a rule where all 9s had to be unconditionally discarded without replacement but would still get shuffled back into the draw pile. Players lose if it’s their turn and they have no playable cards, including no cards at all.&lt;/p&gt;
+&lt;p&gt;While we were playing and repeatedly reveling in everybody ganging up to beat the winner from the last round, an instrumental version of “You Are My Sunshine” played on repeat in the background for literally the entire time. It wasn’t a very good version either. If you didn’t listen carefully for the fade-out and few seconds of silence at the end of each loop, you’d think that the loop was only one verse long.  After the miserable excuse for lunch, we entered the place the opening ceremony, and an orchestra played a few songs that I can finally hope gave the contestants a feeling of Taiwanese culture. I recognized &lt;a href=&#34;https://zh.wikipedia.org/zh-tw/%E6%9C%9B%E6%98%A5%E9%A2%A8&#34;&gt;「望春風」&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>[IOI 2014 Part 0] Waiting</title>
       <link>//blog.vero.site/post/waiting</link>
       <pubDate>Tue, 15 Jul 2014 21:30:53 +0800</pubDate>
@@ -64,6 +98,16 @@ I think our leader made this. Thanks.
 &lt;p&gt;To provide a counterpoint to the last post, one of the many, &lt;em&gt;many&lt;/em&gt; advantages of entering an international competition is that you get to meet a lot more people you already know, so there’s less time spent being socially awkward. While waiting for stuff to happen, aside from all the expected time spent with the Taiwan team, I also talked to, played games with, and otherwise entertained a whole lot of people I already knew, including my schoolmates (no less than fourteen of them were volunteers) and some of the college students who had shepherded us around during olympiad training.&lt;/p&gt;
 &lt;p&gt;Which is a good thing, too, because there was a lot of waiting.&lt;/p&gt;
 &lt;p&gt;First I waited for my teammates; my parents had decided to take me to the hotel (Fullon Shenkeng) directly, since I had a lot of stuff, and I had arrived early. This took about an hour, after which we had lunch. Then I waited for the hotel to give us our room cards, which took about five hours, after which we had dinner. Finally, at night, I waited for the Codeforces system tests. Very nerve-wracking. But I’m getting ahead of myself.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[IOI 2014 Part -1] Prelude.hs</title>
+      <link>//blog.vero.site/post/prelude</link>
+      <pubDate>Sat, 12 Jul 2014 22:34:59 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/prelude</guid>
+      <description>Indexing debates are boring. Especially when you can just flagrantly disregard all concerns about memory safety (because C++ never had any in the first place) and write int _array[100008], array = _array + 2; I do this alarmingly often; hence, the title. Hashtag firstworldanarchists. Three ± 1 cheers for Haskell arrays.
+Anyway. One of the disadvantages of entering an international competition as the home team is a lack of time to completely absorb the idea that what is about to happen is a Big Thing.</description>
     </item>
     
     <item>

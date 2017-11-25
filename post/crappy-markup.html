@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Adventures in Crappy Markup</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="There are two big elementary and middle school competitions around this part of the globe. Well, “big” according to “I’ve heard of it”, which is by no means an accurate measure of, well, anything. I don’t go out of my way to look for them any more, even though… hold on, am I still eligible? Whatever. But in any case, diverting any unnecessary energy from the olympiad-proof-training is probably not a good idea now." />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/crappy-markup" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Adventures in Crappy Markup</h1>
+		
+		<p class="post-meta">
+		
+		2012-02-10
+		(1188 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/programming">Programming</a>, <a href="/category/rant">Rant</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>There are two big elementary and middle school competitions around this part of the globe. Well, “big” according to “I’ve heard of it”, which is by no means an accurate measure of, well, anything. I don’t go out of my way to look for them any more, even though… hold on, am I still eligible? Whatever. But in any case, diverting any unnecessary energy from the olympiad-proof-training is probably not a good idea now. Blah blah blah boilerplate introduction.</p>
+<p>Okay, so from an old draft of the very site I’m working on: there’s the Invitational World Youth Mathematics Intercity Competition (IWYMIC) and the Elementary Mathematics International Contest (EMIC), they were partly merged, and somebody decided to call the result the International Mathematics Competition (IMC), which is a terrible idea because it’s word-for-word the same name they call the university-level competition and holy Zarquon they’re holding it at the same time this year!</p>
+<p>Then later it seems they’re prefixing it with a TA (which apparently stands for Taiwan because we need to disambiguate from Thailand). That does not make it all better particularly as the new logo reverts to three letters. I don’t have any idea which version is going to win out in the end.</p>
+<p>Well, Dr. Sun needs lots of helpers, so my *hyperbolic finger quote* <em>volunteer</em> job is on the informatics team, i.e. I have to edit the website. Seriously, enough background information; let me rant.</p>
+<p>First thing is that we only have FTP access and the server’s scripting language is Visual Basic ASP with SSI and stuff (I’m not even feeling pedantic enough to research the “correct” way to refer to this miserable excuse for a system). So I have to learn a new (infamous, from what little discussion I’ve caught) language or treat the old code like black magic. So far it’s been the latter; I’m not <em>that</em> bored. How does this testing for equality and assignment with the same “<code>=</code>” work!?</p>
+<p>Anyway, there are also a bunch of mysterious archives and stuff on the FTP server when access was handed to me, so downloading everything was confusing (did I mention I have only basic grasp of using FTP clients?) And I am sure as hell not going through the trouble to set up a local server to test things, because (1) I don’t have the faintest idea how (2) it will take too much time. This means I’m making the website in deploy-without-testing mode. Oh well.</p>
+<p>When I first looked at the HTML code I almost threw up. Here, a small sampling. Showing is better than telling. (Names removed, natch.)</p>
+<pre class="sourceCode html"><code class="sourceCode html"><div class="sourceLine" id="1" href="#1" data-line-number="1">  <span class="kw">&lt;tr</span><span class="ot"> style=</span><span class="st">&quot;height: 17.4pt&quot;</span><span class="kw">&gt;</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">    <span class="kw">&lt;td</span><span class="ot"> nowrap style=</span><span class="st">&quot;padding-left:1.4pt; padding-right:1.4pt; padding-top:0cm; padding-bottom:0cm&quot;</span><span class="ot"> bgcolor=</span><span class="st">&quot;#CCFFCC&quot;</span><span class="kw">&gt;</span></div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">    <span class="kw">&lt;p</span><span class="ot"> style=</span><span class="st">&quot;margin: 0 10px&quot;</span><span class="kw">&gt;&lt;font</span><span class="ot"> face=</span><span class="st">&quot;Arial&quot;</span><span class="ot"> size=</span><span class="st">&quot;2&quot;</span><span class="kw">&gt;</span>(country name)<span class="dv">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</span><span class="kw">&lt;/font&gt;&lt;/td&gt;</span></div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">    <span class="kw">&lt;td</span><span class="ot"> nowrap style=</span><span class="st">&quot;padding-left:1.4pt; padding-right:1.4pt; padding-top:0cm; padding-bottom:0cm&quot;</span><span class="ot"> bgcolor=</span><span class="st">&quot;#CCCCFF&quot;</span><span class="kw">&gt;</span></div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">    <span class="kw">&lt;p</span><span class="ot"> style=</span><span class="st">&quot;margin: 0 10px&quot;</span><span class="kw">&gt;&lt;font</span><span class="ot"> face=</span><span class="st">&quot;Arial&quot;</span><span class="ot"> size=</span><span class="st">&quot;2&quot;</span><span class="kw">&gt;</span>(person name)<span class="kw">&lt;/font&gt;&lt;/td&gt;</span></div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">    <span class="kw">&lt;td</span><span class="ot"> nowrap style=</span><span class="st">&quot;padding-left:1.4pt; padding-right:1.4pt; padding-top:0cm; padding-bottom:0cm&quot;</span><span class="ot"> bgcolor=</span><span class="st">&quot;#FFFFCC&quot;</span><span class="kw">&gt;</span></div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">    <span class="kw">&lt;p</span><span class="ot"> style=</span><span class="st">&quot;margin: 0 10px&quot;</span><span class="kw">&gt;&lt;font</span><span class="ot"> face=</span><span class="st">&quot;Arial&quot;</span><span class="ot"> size=</span><span class="st">&quot;2&quot;</span><span class="kw">&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;mailto:(email)&quot;</span><span class="kw">&gt;</span></div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">    (email)<span class="kw">&lt;/a&gt;&lt;/u&gt;&lt;/font&gt;&lt;/td&gt;</span></div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9"><span class="kw">&lt;/tr&gt;</span></div></code></pre>
+<p>Yes. Take a minute for everything wrong with this to sink in. Inline styles with three different units of length, a bunch of non-breaking spaces in the middle of nowhere (no, those aren’t problems with my escaping), and of course, the insane number of deprecated attributes and tags. <strong><code>&lt;font&gt;</code> tags were deprecated in 1998</strong> when HTML 4 came out. I don’t think I knew how to walk in 1998.</p>
+<p>A little sleuthing noted the opening stylesheet tag “<code>&lt;style fprolloverstyle&gt;</code>” in the head, rapidly followed by a bunch of image-rollover JavaScript functions with names like “<code>MM_swapImgRestore</code>” (seriously? <em>image rollovers?</em> do these people have even a modicum of professionalism?). Revolting artifacts from FrontPage and Macromedia, respectively, living right next to each other on the same page. I cannot understand this. I need to repeat the previous sentence because of its supreme undeniable truth. I cannot understand this.</p>
+Push comes to shove, I did a quick Vim pattern substitution to strip out the deprecated tags. Actually, no, it wasn’t quick at all; I had to go through three language versions of roughly a dozen pages in three different folders. It wasn’t that insane with <code>:args *.asp</code>, but still only barely stomachable grudge work. After the tags were out of the way I had to go back and carefully put back
+<p>
+<p>s and <br/>s so the pages looked right. Not fun at all.</p>
+<p>And this, of course, was just the visible part, the page content. I can’t use custom slugs in the URL or anything (qntm.org is so cool), so I had to follow their mechanisms of choosing the subpage through a GET parameter, which gets passed down three or four includes before finally directing to the right include file through conditionals. Of course I can easily copy the ASP ifs and end-ifs around to add pages without knowing any of how the comparisons work.</p>
+<p>Sounds good, right? The GET parameters are numbers. Like <code>?Page=5020</code> was the page about Taipei. Oh, and the file to be included was called <code>Page_5020.asp</code>. I cringed every time I saw it. The fastest way to figure out which file I wanted to open when I had some content was to mouseover the link on the actual website in a Firefox tab and note the URL.</p>
+<p>Finally I thought, enough is enough, and renamed everything. Another amazing thirty-odd repetition substitution flurry made extra frustrating by the fact that one page had “2010” as its parameter and one page had “2010” in its title. Well what do you expect, the competition has been around for plenty more than two years. (And who came up with this deranged numbering scheme anyway which has one extraneous zero digit for each one that actually matters!?)</p>
+<p>Finally, having refactored the directory system to something I could work in without shuddering every three seconds, I had a bunch of YouTube vids from previous competitions I was supposed to ‘post’. Guess what! YouTube’s embed code contains an undefined bare attribute! I just about fell out of my chair. This is the software giant, you know, not some obscure company living under a rock. And they want you to embed videos with INVALID CODE. Bring up all the omitted shudders! And more!</p>
+<p>I give up. Okay, it’s all in the name of cross-browser compatibility (read: Internet Explorer (actually, that’s not even true; there’s something about Firefox’s HTML5 capabilities, which makes me very, very sad ): ):</p>
+<p>Not to mention the variety of other serious redundancy errors which I repeatedly tried to ignore before finally, painfully realizing I would have to update them more than once… three tables with about a hundred rows between them with all the committee members were replicated verbatim (no language changes either; somebody was too lazy and so am I) in the three versions. Refactoring that out was awful.</p>
+<p>Oh, and I still do not understand how to get Vim to play nice with character encodings, even though I think I understand encodings themselves pretty well.</p>
+<p>And, just a couple of days ago, the super-duper punchline: that server is shutting down and we are more or less starting over. Dad is saying I should use Java Servlet Pages. No experience with this servlet coding whatsoever, but at least the language is pretty darn comfortable for me. And I continue to not have any idea what’s happening.</p>
+</article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/accessibility"><span class="tag">Accessibility</span></a></li>
+			
+			<li><a href="/tag/competitions"><span class="tag">Competitions</span></a></li>
+			
+			<li><a href="/tag/markup"><span class="tag">Markup</span></a></li>
+			
+			<li><a href="/tag/semantics"><span class="tag">Semantics</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/puzzle-2">← Puzzle 2 / Slitherlink</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/bilingualism">Bilingualism →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

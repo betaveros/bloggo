@@ -85,6 +85,37 @@ Arrival
     </item>
     
     <item>
+      <title>[IOI 2014 Part 3] Games of Luck and Strategy and Really Weird Noises</title>
+      <link>//blog.vero.site/post/games</link>
+      <pubDate>Sun, 17 Aug 2014 22:11:28 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/games</guid>
+      <description>&lt;p&gt;Shamelessly getting unfinished business out of the way. Yup, that’s me.&lt;/p&gt;
+&lt;p&gt;Excursion Day 1. We traveled down to Yilan on a bus. I played guess-it with Paul.&lt;/p&gt;
+I was quite surprised at myself for remembering this game, but I think it’s simple and little-known enough to be worth mentioning. Guess-it is a remarkably pure game of luck and bluffing from one of Martin Gardner’s columns, played with a small odd number of cards, e.g. the 13 cards of one poker suit. The cards are dealt evenly to players (who can look at them) with one card left over, which is kept face down; players take turns choosing one of two actions:
+&lt;ol&gt;
+&lt;li&gt;
+Name a card and ask the other player if he or she has it. These questions must be answered honestly.
+&lt;/li&gt;
+&lt;li&gt;
+Guess the left-over card. The guesser wins if correct; the other player wins if not.
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Guess-it is not trivial because sometimes you should ask the other player if he or she has a card that you already see in your hand; otherwise whenever you answered “no” to a query you’d immediately guess that the asked card is the hidden one. It is actually a solved game in the sense that the probabilities of the Nash equilibrium strategy for when to guess and when to bluff have been worked out already, but they’re not simple probabilities by any means and humans are terrible randomizers anyway. A few rounds of it sure beats rock-paper-scissors. I was very amused to lose almost all our games with 11 cards but win almost all of our games with 13.&lt;/p&gt;
+&lt;p&gt;Okay, no more gratuitous narrative excursions into game-theory. The first stop, National Center for Traditional Arts, was a very laid-back culture place with old-fashioned retro shops and streets.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[IOI 2014 Part -1] Prelude.hs</title>
+      <link>//blog.vero.site/post/prelude</link>
+      <pubDate>Sat, 12 Jul 2014 22:34:59 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/prelude</guid>
+      <description>Indexing debates are boring. Especially when you can just flagrantly disregard all concerns about memory safety (because C++ never had any in the first place) and write int _array[100008], array = _array + 2; I do this alarmingly often; hence, the title. Hashtag firstworldanarchists. Three ± 1 cheers for Haskell arrays.
+Anyway. One of the disadvantages of entering an international competition as the home team is a lack of time to completely absorb the idea that what is about to happen is a Big Thing.</description>
+    </item>
+    
+    <item>
       <title>[IMO 2012 Part 6] Mostly Not About Excursions</title>
       <link>//blog.vero.site/post/not-excursions</link>
       <pubDate>Mon, 27 Aug 2012 08:40:00 +0800</pubDate>
@@ -113,7 +144,7 @@ Our old friend, the monster of a functional equation, in edible form. In the gam
 &lt;p&gt;Did you know that in Chinese [or Mandarin, whatever] “four” is unlucky because it’s a homophone for “death”, and hospitals tend to skip it in floors or ward numbers?&lt;/p&gt;
 &lt;p&gt;Did you know that there was going to be an anecdote involving the seventh Artemis Fowl book but I couldn’t make it work so instead you have a weird and utterly disconnected metareference to something deleted?&lt;/p&gt;
 &lt;p&gt;I don’t know, it sounded cool at the time.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Problem 4.&lt;/strong&gt; Find all functions f: Z -&amp;gt; Z such that, for all integers a,b,c that satisfy a+b+c = 0, the following equality holds: &lt;span class=&#34;math display&#34;&gt;\[f(a)^2+f(b)^2+f(c)^2=2f(a)f(b)+2f(b)f(c)+2f(c)f(a).\]&lt;/span&gt; (Here Z denotes the set of integers.)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problem 4.&lt;/strong&gt; Find all functions f: Z → Z such that, for all integers a,b,c that satisfy a+b+c = 0, the following equality holds: &lt;span class=&#34;math display&#34;&gt;\[f(a)^2+f(b)^2+f(c)^2=2f(a)f(b)+2f(b)f(c)+2f(c)f(a).\]&lt;/span&gt; (Here Z denotes the set of integers.)&lt;/p&gt;
 &lt;p&gt;An innocent-looking functional equation, but once you start trying it you discover that there’s quite some depth to it. Random guessing can yield that &lt;span class=&#34;math inline&#34;&gt;\(f(x) = x^2\)&lt;/span&gt; is a solution, so I proved inductively that after dividing out a constant f(1) then the remaining part of f is a perfect square. Letting &lt;span class=&#34;math inline&#34;&gt;\(f(x) = f(1)g(x)^2\)&lt;/span&gt; with g(x) a nonnegative integer and factorizing the original equation, I got an auxiliary functional equation equivalent to the original equation.&lt;/p&gt;</description>
     </item>
     

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Contact on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/contact</link>
+    <description>Recent content in Contact on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 28 Feb 2013 21:38:54 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/contact/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Puzzle 39 / Contact &#43; Slitherlink [Antisymmetric]</title>
+      <link>//blog.vero.site/post/puzzle-39</link>
+      <pubDate>Thu, 28 Feb 2013 21:38:54 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-39</guid>
+      <description>Yay crazy hybrids! I guess this one is kind of hard.
+Draw a loop through adjacent vertices that cannot intersect itself. For each pair of symmetrically placed numbers, one is a Slitherlink clue which indicates how many of the four edges around it are drawn, and one is a Contact clue which indicates the total length of all straight segments adjacent to it where segment length is always measured up to the nearest turns in the loop.</description>
+    </item>
+    
+  </channel>
+</rss>

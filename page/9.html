@@ -13,9 +13,9 @@
 
 
 
-  
-  <meta name="author" content="betaveros" />
-  <meta name="description" content="" />
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="" />
 
 
 
@@ -42,6 +42,7 @@
 <link rel="icon" href="/favicon.ico" />
 
 
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
 
@@ -129,6 +130,174 @@
 	</header>
 	
 	
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/waiting" class="post-link">[IOI 2014 Part 0] Waiting</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-07-15
+		(1337 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/programming">Programming</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Yes, I know day 1 of the contest already ended and is probably a more interesting topic to blog about, but I finished writing this last night just before the internet was cut off to quarantine the contestants from the leaders, who received the problems and began translating them. I didn’t know about this until it was too late, which is why I’ve been waiting since yesterday to post this.</p>
+<p>To provide a counterpoint to the last post, one of the many, <em>many</em> advantages of entering an international competition is that you get to meet a lot more people you already know, so there’s less time spent being socially awkward. While waiting for stuff to happen, aside from all the expected time spent with the Taiwan team, I also talked to, played games with, and otherwise entertained a whole lot of people I already knew, including my schoolmates (no less than fourteen of them were volunteers) and some of the college students who had shepherded us around during olympiad training.</p>
+<p>Which is a good thing, too, because there was a lot of waiting.</p>
+<p>First I waited for my teammates; my parents had decided to take me to the hotel (Fullon Shenkeng) directly, since I had a lot of stuff, and I had arrived early. This took about an hour, after which we had lunch. Then I waited for the hotel to give us our room cards, which took about five hours, after which we had dinner. Finally, at night, I waited for the Codeforces system tests. Very nerve-wracking. But I’m getting ahead of myself.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/waiting">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/prelude" class="post-link">[IOI 2014 Part -1] Prelude.hs</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-07-12
+		(331 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/competitions">Competitions</a>, <a href="/category/meta">Meta</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	Indexing debates are boring. Especially when you can just flagrantly disregard all concerns about memory safety (because C++ never had any in the first place) and write int _array[100008], array = _array + 2; I do this alarmingly often; hence, the title. Hashtag firstworldanarchists. Three ± 1 cheers for Haskell arrays.
+Anyway. One of the disadvantages of entering an international competition as the home team is a lack of time to completely absorb the idea that what is about to happen is a Big Thing.
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/prelude">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/pycon" class="post-link">#pyconapac2014</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-05-20
+		(747 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>, <a href="/category/programming">Programming</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Late post. As usual.</p>
+<p>It started with an online competition — write programs, solve problems, get points. I wouldn’t call the problems easy, but they weren’t hard either. So I solved all of them. To make it even less impressive, only about twenty people submitted anything at all.</p>
+<p>But the result was just what it was: I ended up with a free ticket to <a href="https://tw.pycon.org/2014apac/en/">PyCon APAC 2014</a>.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/pycon">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/rise" class="post-link">Rise from the Ashes</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-04-29
+		(1625 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>, <a href="/category/programming">Programming</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>After the first stage of selection camp, I was very nervous because I was fifth place in a selection sequence that would finally result in a team of four.</p>
+<p>I screwed myself over on the first mock test by committing to a bad implementation method on a problem that was hard to get points on. My method seemed simple, but the memory usage leaked out in a way that was confusing and hard to patch; unfortunately, I tried to patch it in increasingly desperate and convoluted ways rather than scrapping the method, and thus missed out on many of the points elsewhere.</p>
+<p>During the second test I failed to read the last problem carefully and spent too much of my time on the second problem, once again missing out on a lot of relatively easy points. I had optimized and optimized and pushed my quadratic runtime down to linearithmic, which would allow me to get the points for the last subtask — or so I thought. But with 10 minutes left I had all but one testcase right, and after desperately rereading my code, I realized that I had a string comparison stuck in an inner loop that could make my runtime degenerate to quadratic if the input string had lots of the same digit. In order to have a solidly linearithmic algorithm, I would have to implement a <a href="https://en.wikipedia.org/wiki/Suffix_array">suffix array</a>. Ten minutes? I gave up. (The problem setters told me afterwards that hashing would have worked too; I didn’t think of that at all. Oops.) I spent the 10 minutes reading the last problem and still failed to read it carefully. So that did not go very well.</p>
+<p>But, as the title probably gave away, during the third and fourth mock tests everything went much better than expected. :)  There are two good reasons:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/rise">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-45" class="post-link">Puzzle 45 / Fillomino [No-Path]</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-04-15
+		(67 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	As requested, a puzzle post! Straight from the WTF-variant department. Quite hard.
+This is a Fillomino, with the additional constraint that for each polyomino, there must not exist a path (i.e. a sequence of cells, each orthogonally adjacent to the next) that includes each of the polyomino’s cells exactly once (and does not include cells outside the polyomino).
+As a degenerate case, 1-ominoes are banned as well.
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/puzzle-45">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/cabal" class="post-link">Adventures in Cabal Installations</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-04-13
+		(1550 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/programming">Programming</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>First Google Code Jam!</p>
+<p>The format of this competition, allowing us to run programs on our own machines, brought up a very interesting issue for me: what programming language should I be using? (I had had similar considerations for IPSC 2013, but GCJ’s problems are closer to the traditional ACM-ICPC style.)</p>
+<p>The obvious choice is C++, the language I use for roughly every other competition, but its safety (or lack thereof) is not very appealing. I need speed, but not <em>that much</em> speed. Unfortunately I still haven’t gotten around to learning any other friendlier mid-level languages (on the list: D, Go, or Rust), so I have no close substitutes for C++ right now.</p>
+<p>Python is certainly available for a reliable arbitrary-length integer type, if nothing else.</p>
+<p>As for non-candidates, Java has <code>BigInteger</code> and memory safety, but all in all I decided the benefits are too minor and it’s too ugly without operator overloading. Scala is probably way too slow. So I don’t expect to be writing either language.</p>
+<p>The only difficult choice I have to make is, of course, Haskell — which can be quite fast, even while it’s ridiculously type-safe and expressive and referentially transparent and easy to reason about, once you’ve:</p>
+<ul>
+<li>figured out how to do the problem</li>
+<li>scrapped step 1 and <em>actually</em> figured out how to do the problem <em>functionally</em></li>
+<li>gotten the thing to compile</li>
+</ul>
+<p>Even if I can handle step 1, step 2 is by no means a simple task, as my struggle to implement a mere <a href="//blog.vero.site/post/haskell">Sieve of Eratosthenes</a> efficiently shows. That is fun, but not at all intuitive; I am doubtful I can do this under contest conditions. It is extremely difficult to transfer my skills in learning how to implement, say, a segment tree or treap into this language.</p>
+<p>But! Google links to the <a href="http://www.go-hero.net/jam/10/round/0">programming language breakdown for 2010 Qualification Round</a> as an example, and much to my surprise, Haskell ranks somewhere between sixth and tenth place in popularity (depending on what you sort by), so there are functional superprogrammers who can presumably do something like this.</p>
+<p>As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it. </p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/cabal">→ read more</a>
+	</footer>
+</article>
+
 		
 			<article class="post-entry">
 	<header class="post-header">
@@ -252,206 +421,6 @@ So why am I here? Partly it’s because my classmates got worked up about it. So
 </article>
 
 		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/fiction" class="post-link">Fiction</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-10-20
-		(1758 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/self-analysis">Self-Analysis</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>“I like fantasy books! I used to read a lot of Eoin Colfer.”</p>
-<p>“What does that mean, <em>used to</em>? You don’t read anymore? That’s so <em>sa-a-a-ad</em>…”</p>
-<p>Our teacher and I had this conversation during our first English class, and I realized I agreed with her. Well, no, of course I still read: news articles, r/AskReddit threads, and the books we get assigned in class. But not fiction, almost. As I later mentioned to my teacher, I followed Sam Hughes’ <a href="http://qntm.org/ra">Ra</a> avidly (something I highly recommend). That was it.</p>
-<p>What does my present self still think of Eoin Colfer? Although I adored the <i>Artemis Fowl</i> books when I was younger, my interest faded, but not before I had recommended it to my sister. The conversation spurred me to get out the seventh <i>Artemis Fowl</i> book, which I had stopped reading halfway through a year ago, and finish it. It was still true that I didn’t like it as much, because I couldn’t feel the high stakes strongly in the book and I found that the joking asides compounded the problem. But a few days later, when we took a trip to the Taipei library, I found the eighth book and borrowed it, plowing through nine-tenths of the book before we left. The ending seemed to be happy but still felt counterintuitively poignant for me. In any case, I had closure.</p>
-<p>So what’s the lesson? Authors vary in output too. I was naïve to suppose that because I found this book boring, I had outgrown all books that were even vaguely similar. In the same trip, I also borrowed a bunch of other random fantasy books, plus a realistic fiction book about a teenage pregnancy, just for kicks. It turned out to be surprisingly good. In a week, I read four books, cover to cover, despite a typical load of homework and chemo.</p>
-Any excuses I made before about not having enough time simply don’t hold water. Still, I have yet to figure out if this sort of reading is sustainable, because not every book is so engrossing. Far from it… 
-<hr />
-<p>There’s a flip side, of course — writing.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/fiction">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-43" class="post-link">Puzzle 43 / Fillomino [Nonrectangular &#43; Walls]</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-09-30
-		(140 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	I’m extremely satisfied — a little incredulous, in fact — with how this puzzle came out. chaotic_iak labels it the “most ridiculous fillomino ever in history”. Apparently, it’s rather tricky.
-ETA: Journalistic responsibility compels me to mention that chaotic_iak also added, “might be beaten later”. Oops?  This is a Fillomino combining the Nonrectangular (polyominoes can’t be rectangles) and Walls (polyominoes can’t span thick lines) variant rules. I think the first variant first came from mathgrant; I’m not as sure about the second, but they both appeared in Fillomino-Fillia 2, at least.
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/puzzle-43">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/music" class="post-link">Music</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-06-22
-		(983 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>, <a href="/category/school">School</a>, <a href="/category/self-analysis">Self-Analysis</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Isn’t it weird to suddenly talk about this topic?</p>
-<p>I don’t think that I have ever talked about music any more than briefly in passing. It might be confusing to my <em>finger quotes</em> <em>audience</em>, and I worry I’ll seem inconsistent.</p>
-Well, a foolish consistency is the hobgoblin of little minds. If you wonder, “I didn’t know that you sang and played the piano, or you liked music in that way — or, at all…” please note that I didn’t know either. 
-<hr />
-<p>For most of my life, I was just a shower singer to myself.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/music">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/test" class="post-link">Test</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-06-09
-		(3093 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/procrastination">Procrastination</a>, <a href="/category/school">School</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Parts of this (a majority of questions, I hope) are intended as satire. Other parts of this are silliness created to blow off steam from being coerced into spending nine unproductive hours. Still other parts exist simply because I wanted to have equally many questions per test. Also, 256th post w00t.</p>
-<h3>
-“Verbal Reasoning”
-</h3>
-<em>Directions:</em> The questions in this test are multiple-choice. Each question has four possible choices. Read each question and decide which answer is the best answer. Find the row in your answer sheet that matches the number of the question. In that row, fill in the oval corresponding to the answer you selected. 
-<ol>
-<li>
-height : tall :: size :
-<ol style="list-style-type:upper-alpha;">
-<li>
-big
-</li>
-<li>
-hot
-</li>
-<li>
-random
-</li>
-<li>
-soft
-</li>
-</ol>
-</li>
-<li>
-<p>malapert : effrontery :: argute :</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/test">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/haskell" class="post-link">Haskell and Primes</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-05-25
-		(682 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/math">Math</a>, <a href="/category/programming">Programming</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-“I have been told that any encryption becomes safer if the underlying algorithm is maximally obscured, what is most conveniently done by coding it in Haskell.” – rankk
-</blockquote>
-<p>Functional programming is terribly addicting! Partly I think the completely different way of thinking makes it feel like learning programming, and falling in love with it, all over again. Partly there’s this evil sense of satisfaction from using <code>$</code>s (and later <code>&lt;$&gt;</code>s and <code>=&lt;&lt;</code>s and <code>&amp;&amp;&amp;</code>s) to improve readability for initiated Haskellers and worsen it for everybody else. Partly it’s because <a href="http://learnyouahaskell.com/"><i>Learn You a Haskell for Great Good!</i></a> is such a fun read — there are too many funny bits to list but my favorite so far is when the author analyzes the first verse of Avril Lavigne’s <em>Girlfriend</em>.</p>
-<p>Although I think my code in Haskell tends to be more readable than in other languages, code obfuscation in Haskell is almost natural: all you have to do is refactor the wrong function to be “pointfree”, which means that even though it’s a function that takes arguments, you define it without parameters by manipulating and joining a bunch of other functions. Example (plus a few other tiny obfuscations):</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><div class="sourceLine" id="1" href="#1" data-line-number="1">isPrime <span class="fu">=</span> liftA2 (<span class="fu">&amp;&amp;</span>) (liftA2 (<span class="fu">$</span>) (all <span class="fu">.</span> ((<span class="fu">.</span>) (<span class="dv">0</span> <span class="fu">/=</span>)) <span class="fu">.</span> rem) (flip</div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">    takeWhile [<span class="dv">2</span><span class="fu">..</span>] <span class="fu">.</span> (flip (<span class="fu">.</span>) <span class="fu">$</span> liftA2 (<span class="fu">*</span>) id id) <span class="fu">.</span> (<span class="fu">&gt;=</span>))) ((<span class="fu">&lt;</span>) <span class="dv">1</span>)</div></code></pre>
-<p>QQ wordpress why no Haskell highlighting <ins>(Editor’s note from 2017: The migration should highlight this now!)</ins></p>
-<p>Also, for some reason, you can do this in Haskell:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><div class="sourceLine" id="1" href="#1" data-line-number="1">ghci<span class="fu">&gt;</span> <span class="kw">let</span> <span class="dv">2</span> <span class="fu">+</span> <span class="dv">2</span> <span class="fu">=</span> <span class="dv">5</span> <span class="kw">in</span> <span class="dv">2</span> <span class="fu">+</span> <span class="dv">2</span></div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="dv">5</span></div></code></pre>
-<p>(via <a href="http://www.yellosoft.us/evilgenius/">Haskell for the Evil Genius</a>)</p>
-<hr />
-<p>Okay, but seriously now. I wrote this about my journey to learn functional programming in the <a href="//blog.vero.site/post/programming">programming babble post</a> half a year ago:</p>
-<blockquote>
-The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes).
-</blockquote>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/haskell">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/mums" class="post-link">MUMS Puzzle Hunt 2013</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-05-24
-		(290 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>, <a href="/category/nerdship">Nerdship</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p><a href="/img/informatix.jpg"><img src="/img/informatix.jpg?w=300" alt="Informatix [MUMS Puzzle Hunt 2013]"/></a></p>
-<p>So, I somehow managed to <a href="http://www.ms.unimelb.edu.au/~mums/puzzlehunt/teamstats.html?team=not+AoPS">get 25 points all by myself</a> in <a href="http://www.ms.unimelb.edu.au/~mums/puzzlehunt/">MUMS Puzzle Hunt 2013</a>. Well, I pestered chaotic_iak a little with <a href="http://www.ms.unimelb.edu.au/~mums/puzzlehunt/2013/puzzles/3.3_Diagnosus_ghQ3AcbJ.html">3.3 Diagnosus (.html with animated .gif)</a> but we still didn’t recognize all the Pokémon until hint 3, at which point Google sufficed for me.</p>
-<p>This is nowhere near the top, but compared to the usual results of whatever AoPS team I form, it’s amazing. By far the best result of AoPS was on CiSRA in 2010 (46th with 58 points), before I discovered puzzle hunts in AoPS; unfortunately due to people getting older and the influx of younger and younger people to the fora, there are less possible teammates each year and they have less time, so here I am by myself. (Also I could have accepted an invitation from a guy in the some-form-of-Elephant team, but I figure if you can win two MUMS hunts in a row you don’t need any more people.)</p>
-<p>All in all: Yay!</p>
-<p></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/mums">→ read more</a>
-	</footer>
-</article>
-
-		
 	
 	
 	<footer class="list-footer">
@@ -468,7 +437,7 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
 	
 </section>
 <footer class="site-footer">
-	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://pages.github.com/">GitHub Pages</a>, and

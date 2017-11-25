@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Adventures in Scala Pseudo-Abuse</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="So, what have I been doing with programming recently?
+Scala is an amazing multiparadigm programming language that runs on the Java Virtual Machine and interoperates with Java. I learned about it last time reading random articles on Twitter.
+When I say “amazing” I mean “This is a language in which my code gives me nerdgasms every time I read it.” Wheeee.
+Okay, it’s not perfect. People say it’s too academic. It has a notoriously complicated type system (which is Turing-Complete at compile time). Its documentation is a bit patchy too. For a serious introduction, the Scala website has plenty of links under documentation, and a tour of features. Somebody wrote another tour that explains things a bit more. So here, instead of introducing it seriously, I’m just going to screw with its features.
+Example of freedom. Scala lets names consist of symbols, and treats one-parameter methods and infix operators exactly the same. The full tokenization rules are a bit detailed and I put them at the bottom of this post for the interested. This lets you create classes with arithmetic and domain-specific languages easily, but it also creates some silly opportunities:
+scala&amp;gt; val * = 12 *: Int = 12 scala&amp;gt; * * * * * res0: Int = 1728" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/scala" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Adventures in Scala Pseudo-Abuse</h1>
+		
+		<p class="post-meta">
+		
+		2013-02-21
+		(1624 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/programming">Programming</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>So, what have I been doing with programming recently?</p>
+<p><a href="http://www.scala-lang.org/">Scala</a> is an amazing multiparadigm programming language that runs on the Java Virtual Machine and interoperates with Java. I learned about it last time reading random articles on Twitter.</p>
+<p>When I say “amazing” I mean “This is a language in which my code gives me nerdgasms every time I read it.” Wheeee.</p>
+<p>Okay, it’s not perfect. People say it’s too academic. It has a notoriously complicated type system (which is <a href="http://scientopia.org/blogs/goodmath/2013/01/21/types-gone-wild-ski-at-compile-time/"><em>Turing-Complete</em> at compile time</a>). Its documentation is a bit patchy too. For a serious introduction, the Scala website has plenty of links under documentation, and a <a href="http://www.scala-lang.org/node/104">tour of features</a>. Somebody wrote <a href="http://www.naildrivin5.com/scalatour">another tour</a> that explains things a bit more. So here, instead of introducing it seriously, I’m just going to screw with its features.</p>
+<p>Example of freedom. Scala lets names consist of symbols, and treats one-parameter methods and infix operators exactly the same. The full tokenization rules are a bit detailed and I put them at the bottom of this post for the interested. This lets you create classes with arithmetic and domain-specific languages easily, but it also creates some silly opportunities:</p>
+<pre><code>scala&gt; val * = 12
+*: Int = 12
+
+scala&gt; * * * * *
+res0: Int = 1728</code></pre>
+<p> If you’re in a code-golf mood, this lets you shave a few characters by sticking variable names right next to keywords. Here’s a 52-character quine in script mode. (Adapted from <a href="http://www.codecommit.com/blog/scala/useless-hackery-a-scala-quine">this post from Code Commit</a>)</p>
+<pre class="sourceCode scala"><code class="sourceCode scala"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">val</span>^ =<span class="st">&quot;val^ =%c%s%1$c;printf(^,34,^)&quot;</span>;<span class="fu">printf</span>(^,<span class="dv">34</span>,^)</div></code></pre>
+<p>Functions are first-class objects! All the folding and mapping of functional programming (not to mention monadic operations) of functional programming are there! No more five-line boilerplate anonymous ActionListeners! Applied (no pun intended) to quines again, here’s one that doesn’t use <code>printf</code>:</p>
+<pre class="sourceCode scala"><code class="sourceCode scala"><div class="sourceLine" id="1" href="#1" data-line-number="1">{s:String=&gt;<span class="fu">println</span>((s<span class="fl">+34.</span>toChar)*<span class="dv">2</span>)}apply <span class="st">&quot;{s:String=&gt;println((s+34.toChar)*2)}apply &quot;</span>;</div></code></pre>
+<p>…Okay, on to serious programming, sort of. While coding I was trying to figure out how to run my Scala program from a shell script outside Eclipse for convenience, which was failing because apparently its classpath for the basic Scala stuff is confused. Out of curiosity and concern for the unlikely hypothetical in which somebody else wants to use my program, I decided to try using <a href="https://github.com/sbt/sbt">Simple Build Tool (SBT)</a>.</p>
+<p>Well, it’s in Scala and it helps you build your code. Previously I wrote mostly single-file scripts and left it to Eclipse to abstract everything away from big projects until there’s only a button called “Run”, and now it’s taking its toll — I looked up “build” on Wikipedia, just to be sure. “The process of converting source code files into standalone software artifact(s) that can be run on a computer, or the result of doing so.” Okay, I guess it’s more than compiling because of the “standalone” bit, maybe because you can add resources like images or whatever? Well, I can try to use it anyway.</p>
+<p>The install page suggests a Homebrew install. Ooh. I installed <a href="http://mxcl.github.com/homebrew/">Homebrew</a> (“The missing package manager for OS X”) after some blogger whom I linked to <a href="//blog.vero.site/post/debug">last time I was debugging C++</a> commented about it, but then I never brewed anything because I didn’t dare try to disentangle my <code>gdb</code> from the rest of my system and reinstall it and I didn’t have anything to install. Partly it was also due to stray library files that Homebrew didn’t like, but I decided it was too risky to delete them, so after finding enough support on StackOverflow I forged ahead.</p>
+<p><code>$ brew install sbt</code></p>
+<p><a href="/img/beer1.png"><img src="/img/beer1.png?w=474" alt="beer" width="474" height="236" class="aligncenter size-large wp-image-1743" /></a></p>
+<p>What the heck is that!? How the heck did it get into my terminal!? Okay, a little research reveals it’s actually a Unicode character, <a href="http://www.fileformat.info/info/unicode/char/1f37a/index.htm"><code>U+1F37A BEER MUG</code></a>. What a useful character. /sarc</p>
+<p>Onwards… I had already gotten a Scala installation, but I didn’t know where to put it so it had been living under <code>~/scala</code>, linked up with a PATH setting in my <code>.profile</code>. Wait, if Homebrew could do SBT then surely I could make it responsible for my Scala too. Yes, it can. Yay now I don’t have to keep anything under my home folder!</p>
+<p>Then, the errors. Commence the error-message-pasting-into-Google!</p>
+<p><em>My code won’t compile.</em> For a long time it couldn’t find a main class, but that was because I got confused about the SBT directory structure. The Scala sources should be placed three directories deep, at <code>src/main/scala/whatever.scala</code>. Fixed! But then…</p>
+<p><em>60 compile errors!</em> More testing showed that it was not finding any of the <code>scala.swing</code> libraries.</p>
+<p>Trying to diagnose the problem, I cut-and-paste a Scala GUI example into a single file and tried to compile it outside manually without SBT… yup, it couldn’t find <code>SimpleGUIApplication</code>, so it wasn’t finding swing… right? Nope, the sample code I had chosen was too old. The Scala folks deprecated <code>SimpleGUIApplication</code> in 2.8.0 and removed it in 2.10.0; I had to use <code>SimpleSwingApplication</code> in 2.10. Luckily, basic usage of the two are the same.</p>
+<p>Okay. Therefore, it’s not Scala’s problem but SBT’s. What is it doing, grabbing its own installation and not knowing where anything else lives? Gah. Poking around in the <code>Cellar</code> revealed that there were symlinks everywhere, and all the libraries and binaries were under their respective folders one level deeper, under another odd little folder called <code>libexec</code>. I couldn’t really figure out what <code>libexec</code> meant, but quoth the <a href="https://github.com/mxcl/homebrew/wiki/Formula-Cookbook">Homebrew Cookbook</a>:</p>
+<blockquote>
+Note that in the context of Homebrew, libexec is reserved for private use by the formula and therefore is not symlinked into HOMEBREW_PREFIX.
+</blockquote>
+<p>So, I’m still not sure what it means, but it would probably be shady to feed <code>libexec</code> into SBT as the default build path and I’d break something else later.</p>
+<p>Then I realized I was being stupid. <strong><code>scala.swing</code> is an extra library</strong>; it’s not part of the “base classes” although it comes by default with installations. The whole <em>point</em> of using SBT was to organize things like these dependencies. Blargh.</p>
+<p>Flipping through the SBT docs to figure out what to add was pretty nasty, so I ended up Googling. This extra line in <code>build.sbt</code> will do the trick:</p>
+<pre><code>libraryDependencies += &amp;quot;org.scala-lang&amp;quot; % &amp;quot;scala-swing&amp;quot; % &amp;quot;2.10.0&amp;quot;</code></pre>
+<p>Okay, here goes…</p>
+<pre><code>glacier:gfb glacier$ sbt run
+[info] Set current project to gridderface (in build file:/Users/glacier/gfb/)
+[info] Updating {file:/Users/glacier/gfb/}default-32fcf2...
+[info] Resolving org.scala-lang#scala-swing;2.10.0 ...
+[info] downloading http://repo1.maven.org/maven2/org/scala-lang/scala-swing/2.10.0/scala-swing-2.10.0.jar ...
+[info]  [SUCCESSFUL ] org.scala-lang#scala-swing;2.10.0!scala-swing.jar (3969ms)
+[info] Done updating.
+[info] Compiling 60 Scala sources to /Users/glacier/gfb/target/scala-2.10/classes...
+[error] java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: PermGen space
+[error] Use &#39;last&#39; for the full log.</code></pre>
+<p>BOOM!</p>
+<p><em>OutOfMemoryError. “PermGen Space.”</em> What?</p>
+<p>I ran it again. This time, my GUI popped up but it had no grid, and the terminal started <em>hexdumping</em> frantically. Same mysterious error. <a href="/img/hexdump.png"><img src="/img/hexdump.png?w=474" alt="hexdump" width="474" height="296" class="aligncenter size-large wp-image-1736" /></a> Okay, what the heck is PermGen space? Apparently it has to do with Java’s garbage collection. Objects are divided into a bunch of levels based on how often they’re used; the block where objects are created frequently is also garbage-collected more frequently. There’s a special “permament” block set aside for classes or something that’s never garbage collected, and the size of the block is itself limited so if you have too many classes, bad things happen.</p>
+<p>Of course others have bumped into this error, although most seem to be doing web apps, and it can (probably) be fixed by <a href="http://suhinini.me/2012/07/16/error-during-sbt-execution-java-lang-outofmemoryerror-permgen-space/">increasing the heap size as here</a>. The post suggests that it’s due to SBT not knowing it can garbage-collect certain closures. Oh well, so Scala creates even more overhead on top of the JVM; too bad but I can live with that because, as I’ve said before, <em>functions are first-class objects omgwtfbbq</em>.</p>
+<ins datetime="2014-12-30T11:54:58+00:00">
+Edit 2014/12/30: While clicking random links I noted that that domain has expired. The post is still accessible at <a href="http://isuhinin.wordpress.com/2012/07/16/error-during-sbt-execution-java-lang-outofmemoryerror-permgen-space/">wordpress.com</a>, but to be safe, the fix is to put this line in the file <code>~/.sbtconfig</code> :
+</ins>
+<pre><code>SBT_OPTS=&quot;-XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:PermSize=256M -XX:MaxPermSize=512M&quot;</code></pre>
+<p>What I ended up doing, though, was just running it for the third time. The heisenbug vanished.</p>
+<p>A few from-scratch recompiles later (to get <code>git</code> to recognize what I did to the files — <code>git mv src/gridderface src/main/scala</code> — instead of deleting and readding dozens of files), I ended up always having the first <code>sbt compile</code> throwing this error, while the second one succeeds. I’m not sure why that should be; I guess some closures or classes or whatever are compiled the first time and cached for the second, so then they don’t take up space.</p>
+<p>What this means is, it is now apparently possible to clone <a href="https://github.com/betaveros/gridderface">my Gridderface repo</a> and let <code>sbt</code> run it by itself. Yay. Of course, now the set of people who would consider using this program is the intersection of the sets of (a) people interested in logic puzzles (b) people who solve them on computer (c) people who like vi-style keyboarding (d) people who are willing to install Scala and mess with the command line. I think the cardinality of this set is most likely one.</p>
+<p>Oh well, programming this was fun enough by itself. :D</p>
+<hr />
+<p>Because I’m bored, here are the Scala identifier parsing rules! (from <a href="http://www.scala-lang.org/sites/default/files/linuxsoft_archives/docu/files/ScalaReference.pdf">the spec (PDF)</a>)</p>
+<p>“Letters” are the normal lowercase letters and uppercase letters, as well as <code>$</code> and <code>_</code> which are considered uppercase letters, and lots of Unicode letters. “Digits” are the normal ten digits. “Parentheses” are <code>()[]{}</code>; “Delimiter characters” are <code>`'&quot;.;,</code> (backquote, single quote, double quote, period, semicolon, comma). Every other printable non-whitespace ASCII character is an “operator character”, as are Unicode mathematical symbols and other symbols.</p>
+<p>An identifier may consist of 1. a nonempty sequence of operator characters 2. a nonempty sequence of letters and digits which starts with a letter 3. a nonempty sequence of letters and digits which starts with a letter, then an underscore, then a sequence of operator characters 4. virtually anything surrounded by backquotes (needed to call a Java library method named with a Scala keyword, e.g. <code>`Thread.yield`</code>)</p>
+<p>Variable identifiers are those which start with a lowercase letter. Others are constant identifiers.</p></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/command-line"><span class="tag">Command Line</span></a></li>
+			
+			<li><a href="/tag/hexdump"><span class="tag">Hexdump</span></a></li>
+			
+			<li><a href="/tag/scala"><span class="tag">Scala</span></a></li>
+			
+			<li><a href="/tag/unicode"><span class="tag">Unicode</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/puzzle-36">← Puzzle 36 / Fillomino [LITS]</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/puzzle-39">Puzzle 39 / Contact &#43; Slitherlink [Antisymmetric] →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

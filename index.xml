@@ -6,10 +6,53 @@
     <description>Recent content on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Nov 2017 00:27:42 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jan 2018 19:39:22 -0500</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>2018 MIT Mystery Hunt</title>
+      <link>//blog.vero.site/post/2018-hunt</link>
+      <pubDate>Tue, 16 Jan 2018 19:39:22 -0500</pubDate>
+      
+      <guid>//blog.vero.site/post/2018-hunt</guid>
+      <description>&lt;p&gt;My third MIT Mystery Hunt with ✈✈✈ Galactic Trendsetters ✈✈✈ (also see: &lt;a href=&#34;//blog.vero.site/post/january&#34;&gt;2017&lt;/a&gt; and &lt;a href=&#34;//blog.vero.site/post/whoosh&#34;&gt;2016&lt;/a&gt;, writing with Random in &lt;a href=&#34;//blog.vero.site/post/hunt&#34;&gt;2015&lt;/a&gt;). It was a good hunt with a fun theme, solid puzzles, and extraordinary production quality, marred only by a fickle unlock structure and a handful of unnecessarily involved extractions.&lt;/p&gt;
+&lt;p&gt;Since we had been told the hunt would be smaller than past years’ (now a controversial statement since the coin was &lt;em&gt;not&lt;/em&gt; found particularly early) and we didn’t particularly want to win (yet), part of our team temporarily split off this year to hunt as Teammate. Based on our Discord channel, ✈✈✈ Galactic Trendsetters ✈✈✈ had 75 people this year, including remote solvers and people who dropped in and out.&lt;/p&gt;
+&lt;p&gt;A short description of the hunt structure: This year’s hunt theme was &lt;em&gt;Inside Out&lt;/em&gt;, the Disney movie about anthropomorphized emotions. This was revealed through a kickoff that demonstrated the hunt’s extraordinary production quality, in which we watched the unveiling of the Health &amp;amp; Safety hunt, first directly, then in the Control Room with the emotions of a distraught hunter (Miss Terry Hunter) and a lot of beautiful memory orbs and scenery. After Terry’s emotions became overwhelmed in response to the theme, we had to help her emotions to allow her to complete the Health &amp;amp; Safety hunt. The intro round took place in the Control Room; we had to solve 34 regular puzzles and five metapuzzles (somewhat overlapping, with some regular puzzles belonging to more than one metapuzzle) to help each of the five emotions get back to the Control Room. The rest of the hunt consisted of recovering memory orbs from each of four Islands of Personality, each of which had its own theme and meta structure, and which we could choose the unlock order of.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Transformation</title>
+      <link>//blog.vero.site/post/transformation</link>
+      <pubDate>Sun, 31 Dec 2017 23:59:59 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/transformation</guid>
+      <description>&lt;p&gt;I think this is the right video for this year.&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/lX44CAz-JhU&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34; title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
+&lt;p&gt;I love the music and the animation. The music video spells out the central conceit somewhat explicitly, but I think the lyrics by themselves have a hint of ambiguity — is it a harmful addiction that you just can’t escape from, or an essential part of your identity that you just can’t deny?&lt;/p&gt;
+&lt;p&gt;What parts of me can I just not deny, huh? Unfortunately 2017 is also the year I decide my online presence should probably be a little more professional, so you might have to read between the lines a bit. &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Thoroughly Stripped</title>
+      <link>//blog.vero.site/post/thoroughly-stripped</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 -0500</pubDate>
+      
+      <guid>//blog.vero.site/post/thoroughly-stripped</guid>
+      <description>&lt;p&gt;Woo, first CTF writeup. I got the opportunity to participate in the 2017 CSAW CTF finals with Don’t Hack Alone.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.&lt;/p&gt;
+&lt;p&gt;Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from &lt;a href=&#34;https://github.com/betaveros/xxb&#34;&gt;&lt;code&gt;xxb&lt;/code&gt;&lt;/a&gt; but &lt;code&gt;xxd -c 20 thoroughlyStripped&lt;/code&gt; is quite sufficient.)&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Hello, Again</title>
@@ -530,7 +573,7 @@ Author: Vasily Astakhov, Russia
 an essay (liberally defined) with &lt;a href=&#34;//blog.vero.site/post/quixotic-1&#34;&gt;two&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/quixotic-2&#34;&gt;parts&lt;/a&gt;,
 &lt;/li&gt;
 &lt;li&gt;
-an essay with &lt;a href=&#34;//blog.vero.site/post/more-fiction-1&#34;&gt;two&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/more-fiction-2&#34;&gt;parts&lt;/a&gt; and a &lt;a href=&#34;//blog.vero.site/post/more-fiction-part-2-5&#34;&gt;half&lt;/a&gt;,
+an essay with &lt;a href=&#34;//blog.vero.site/post/more-fiction-1&#34;&gt;two&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/more-fiction-2&#34;&gt;parts&lt;/a&gt; and a &lt;a href=&#34;//blog.vero.site/post/more-fiction-2-5&#34;&gt;half&lt;/a&gt;,
 &lt;/li&gt;
 &lt;li&gt;
 another &lt;a href=&#34;//blog.vero.site/post/college-emails&#34;&gt;bar graph&lt;/a&gt; that is actually documented,
@@ -565,11 +608,11 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
     
     <item>
       <title>More Fiction (Part 2.5)</title>
-      <link>//blog.vero.site/post/more-fiction-part-2-5</link>
+      <link>//blog.vero.site/post/more-fiction-2-5</link>
       <pubDate>Fri, 24 Jul 2015 20:27:44 +0800</pubDate>
       
-      <guid>//blog.vero.site/post/more-fiction-part-2-5</guid>
-      <description>&lt;p&gt;This is not Part 3. It’s just two things I thought of tacking on to &lt;a href=&#34;https://betaveros.wordpress.com/2015/07/04/more-fiction-2/&#34;&gt;part 2&lt;/a&gt;.&lt;/p&gt;
+      <guid>//blog.vero.site/post/more-fiction-2-5</guid>
+      <description>&lt;p&gt;This is not Part 3. It’s just two things I thought of tacking on to &lt;a href=&#34;//blog.vero.site/post/more-fiction-2&#34;&gt;part 2&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;What can I say? Part 2s are easy blog post fodder; Part 2 appendixes are even easier.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -873,6 +916,22 @@ I think you fail to understand how anti-intellectual american society is
     </item>
     
     <item>
+      <title>Two Points on Photography</title>
+      <link>//blog.vero.site/post/photography</link>
+      <pubDate>Thu, 18 Jun 2015 23:55:52 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/photography</guid>
+      <description>&lt;p&gt;(Uncohesive blog content, posted as part of a &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly committed to&lt;/a&gt;; standard disclaimers apply. Whew, made it by a few minutes…)&lt;/p&gt;
+&lt;p&gt;This essay was partly inspired by but mostly orthogonal in purpose to dzaefn’s essay on a similar subject, &lt;a href=&#34;https://zyxyvy.wordpress.com/2012/04/09/humans-photographs-and-names/&#34;&gt;Humans, Photographs, and Names&lt;/a&gt;. I agree with many of its points, although I deviate in that I think it’s more important for my Facebook picture to identify me than to inform about me (there’s the rest of Facebook, plus my maybe half a dozen other sites, for doing so). Part of the problem for me there, and part of the reason I hang on to my nine-letter random handle from fourth grade, is that my names, first and last, are so commonplace. Among the people who share them (according to DuckDuckGo) are a New York Times tech writer, more than one computer science professor, a photographer, a couple doctors, and some guy who did some sort of graphics work for a short clip and two movies. This means that, to somebody not already in my social circles trying to match me to my account, my Facebook photo is my primary tool for disambiguating myself from all these other people, and I don’t think there is anything that could do that job quite as precisely as a picture of my actual face and body.&lt;/p&gt;
+&lt;p&gt;Still, I agree enough to be bothered by having a profile picture suffering from “the whole extent of photographic informational void”. I always planned to add some GIMP layers to the photo to indicate context and content more precisely. Except I procrastinated and it got more and more awkward to do this as time went by, since as far as I know, normal people update their profile pictures only to reflect more recent events, especially when they’re important. Like, you know, &lt;em&gt;graduating from high school&lt;/em&gt;? So yes, I’ve been waiting to do this for an entire year now.&lt;/p&gt;
+&lt;p&gt;Eh, to hell with awkwardness. That’s the spirit of this daily-posting exercise.&lt;/p&gt;
+&lt;p&gt;(Fun fact: The code in what I’m about to set as my profile picture, if I don’t procrastinate even more, is real IOI 2014 code I submitted successfully (for &lt;a href=&#34;https://betaveros.wordpress.com/2014/07/26/one-line/&#34;&gt;&lt;code&gt;rail&lt;/code&gt;, as previously featured&lt;/a&gt;; the visually selected fragment was the key fix for the final bug I fixed). Except I actually had to manually retype my code printout to get the picture because I lacked the foresight (sound familiar?) to save an electronic copy of my IOI submissions.)&lt;/p&gt;
+&lt;p&gt;Also, I’m glad this isn’t a smiling photo because I feel like it’s easier to appreciate happy posts from a person whom one associates with a serious face, than serious posts from a person whom one associates with a happy face, and I want both types of posts to impact people when I post them. I could be overgeneralizing from my own feelings though. If you are reading this and want to chat me feedback (as way more than one of you has been doing), I’d welcome more data points on this issue.&lt;/p&gt;
+&lt;p&gt;That’s not what I &lt;em&gt;really&lt;/em&gt; wanted to rant about in this post, though.&lt;/p&gt;
+&lt;hr /&gt;</description>
+    </item>
+    
+    <item>
       <title>Signal Boost</title>
       <link>//blog.vero.site/post/signal</link>
       <pubDate>Wed, 17 Jun 2015 21:59:18 +0800</pubDate>
@@ -1010,7 +1069,7 @@ Okay so apparently how puzzles work is I go nearly a year without posting one an
     </item>
     
     <item>
-      <title>2015 MIT Mystery Hunt (spoiler-free version)</title>
+      <title>2015 MIT Mystery Hunt</title>
       <link>//blog.vero.site/post/hunt</link>
       <pubDate>Tue, 27 Jan 2015 11:45:50 +0800</pubDate>
       
@@ -1158,10 +1217,10 @@ edit: This poll has been removed, it wasn’t very interesting anyway.
     
     <item>
       <title>Operation Exchange</title>
-      <link>//blog.vero.site/post/exchange</link>
+      <link>//blog.vero.site/ref/exchange</link>
       <pubDate>Tue, 21 Oct 2014 01:00:00 +0800</pubDate>
       
-      <guid>//blog.vero.site/post/exchange</guid>
+      <guid>//blog.vero.site/ref/exchange</guid>
       <description>&lt;h3 id=&#34;limit-limit&#34;&gt;Limit + Limit&lt;/h3&gt;
 &lt;p&gt;Cheaply, using an &lt;a href=&#34;%7B%%20post_url%202014-10-21-iverson-bracket%20%%7D&#34;&gt;Iverson bracket&lt;/a&gt; expression:&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
@@ -1233,6 +1292,27 @@ I think our leader made this. Thanks.
     </item>
     
     <item>
+      <title>[IOI 2014 Part 3] Games of Luck and Strategy and Really Weird Noises</title>
+      <link>//blog.vero.site/post/games</link>
+      <pubDate>Sun, 17 Aug 2014 22:11:28 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/games</guid>
+      <description>&lt;p&gt;Shamelessly getting unfinished business out of the way. Yup, that’s me.&lt;/p&gt;
+&lt;p&gt;Excursion Day 1. We traveled down to Yilan on a bus. I played guess-it with Paul.&lt;/p&gt;
+I was quite surprised at myself for remembering this game, but I think it’s simple and little-known enough to be worth mentioning. Guess-it is a remarkably pure game of luck and bluffing from one of Martin Gardner’s columns, played with a small odd number of cards, e.g. the 13 cards of one poker suit. The cards are dealt evenly to players (who can look at them) with one card left over, which is kept face down; players take turns choosing one of two actions:
+&lt;ol&gt;
+&lt;li&gt;
+Name a card and ask the other player if he or she has it. These questions must be answered honestly.
+&lt;/li&gt;
+&lt;li&gt;
+Guess the left-over card. The guesser wins if correct; the other player wins if not.
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Guess-it is not trivial because sometimes you should ask the other player if he or she has a card that you already see in your hand; otherwise whenever you answered “no” to a query you’d immediately guess that the asked card is the hidden one. It is actually a solved game in the sense that the probabilities of the Nash equilibrium strategy for when to guess and when to bluff have been worked out already, but they’re not simple probabilities by any means and humans are terrible randomizers anyway. A few rounds of it sure beats rock-paper-scissors. I was very amused to lose almost all our games with 11 cards but win almost all of our games with 13.&lt;/p&gt;
+&lt;p&gt;Okay, no more gratuitous narrative excursions into game-theory. The first stop, National Center for Traditional Arts, was a very laid-back culture place with old-fashioned retro shops and streets.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>[IOI 2014 Part 2] One Line to Solve Them All</title>
       <link>//blog.vero.site/post/one-line</link>
       <pubDate>Sat, 26 Jul 2014 23:49:14 +0800</pubDate>
@@ -1246,6 +1326,19 @@ I think our leader made this. Thanks.
     </item>
     
     <item>
+      <title>[IOI 2014 Part 1] Everything is More Exciting with Lightsabers</title>
+      <link>//blog.vero.site/post/lightsabers</link>
+      <pubDate>Mon, 21 Jul 2014 17:31:10 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/lightsabers</guid>
+      <description>&lt;p&gt;Okay, I guess it was really naïve of me to suppose that I could get any considerable amount of blogging done before the IOI ended. Onward…&lt;/p&gt;
+&lt;p&gt;We left off at the end of the practice session. As if somebody were taking revenge against us for not having to suffer through any airplane trips, we were served a cold airplane meal for lunch.&lt;/p&gt;
+&lt;p&gt;Seriously, the box had a sticker that noted its manufacturer as something something Air Kitchen and another translucent sticker that badly covered an inscription saying the same thing in much bigger letters. It contained a cold apple salad, a cold chicken bun, a cold flat plastic cylinder of orange juice, and a package of plastic utensils that was exactly like the utensils that came with every airplane meal ever. I was disappointed, but at least the salad tasted okay, and I ate an extra one because two of my teammates volunteered theirs.&lt;/p&gt;
+&lt;p&gt;To pass the time, we played an extra-evil &lt;a href=&#34;https://en.wikipedia.org/wiki/Ninety-nine_(addition_card_game)&#34;&gt;ninety-nine&lt;/a&gt; variant. Apparently this is a very Taiwanese game because lots of student guides were teaching their teams the game, although our special cards differ from the ones Wikipedia lists in a lot of ways and our evil variant created more opportunity for sabotage and counter-sabotage and bluffing. 7s are used to draw your replacement card from somebody else’s hand, and that person cannot draw again and will have one less card; aces are used to swap your entire hand with somebody else, who also cannot draw a card; small-value cards can be combined to form special values (e.g. play a 2 and 5 for the effect of a 7) but after playing a combination you can only draw one replacement card; and later, to speed up the game, we added a rule where all 9s had to be unconditionally discarded without replacement but would still get shuffled back into the draw pile. Players lose if it’s their turn and they have no playable cards, including no cards at all.&lt;/p&gt;
+&lt;p&gt;While we were playing and repeatedly reveling in everybody ganging up to beat the winner from the last round, an instrumental version of “You Are My Sunshine” played on repeat in the background for literally the entire time. It wasn’t a very good version either. If you didn’t listen carefully for the fade-out and few seconds of silence at the end of each loop, you’d think that the loop was only one verse long.  After the miserable excuse for lunch, we entered the place the opening ceremony, and an orchestra played a few songs that I can finally hope gave the contestants a feeling of Taiwanese culture. I recognized &lt;a href=&#34;https://zh.wikipedia.org/zh-tw/%E6%9C%9B%E6%98%A5%E9%A2%A8&#34;&gt;「望春風」&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>[IOI 2014 Part 0] Waiting</title>
       <link>//blog.vero.site/post/waiting</link>
       <pubDate>Tue, 15 Jul 2014 21:30:53 +0800</pubDate>
@@ -1255,6 +1348,16 @@ I think our leader made this. Thanks.
 &lt;p&gt;To provide a counterpoint to the last post, one of the many, &lt;em&gt;many&lt;/em&gt; advantages of entering an international competition is that you get to meet a lot more people you already know, so there’s less time spent being socially awkward. While waiting for stuff to happen, aside from all the expected time spent with the Taiwan team, I also talked to, played games with, and otherwise entertained a whole lot of people I already knew, including my schoolmates (no less than fourteen of them were volunteers) and some of the college students who had shepherded us around during olympiad training.&lt;/p&gt;
 &lt;p&gt;Which is a good thing, too, because there was a lot of waiting.&lt;/p&gt;
 &lt;p&gt;First I waited for my teammates; my parents had decided to take me to the hotel (Fullon Shenkeng) directly, since I had a lot of stuff, and I had arrived early. This took about an hour, after which we had lunch. Then I waited for the hotel to give us our room cards, which took about five hours, after which we had dinner. Finally, at night, I waited for the Codeforces system tests. Very nerve-wracking. But I’m getting ahead of myself.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[IOI 2014 Part -1] Prelude.hs</title>
+      <link>//blog.vero.site/post/prelude</link>
+      <pubDate>Sat, 12 Jul 2014 22:34:59 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/prelude</guid>
+      <description>Indexing debates are boring. Especially when you can just flagrantly disregard all concerns about memory safety (because C++ never had any in the first place) and write int _array[100008], array = _array + 2; I do this alarmingly often; hence, the title. Hashtag firstworldanarchists. Three ± 1 cheers for Haskell arrays.
+Anyway. One of the disadvantages of entering an international competition as the home team is a lack of time to completely absorb the idea that what is about to happen is a Big Thing.</description>
     </item>
     
     <item>
@@ -1496,6 +1599,34 @@ It’s very early to pick an RSS replacement, but I think I’m going for The Ol
     </item>
     
     <item>
+      <title>Puzzle 39 / Contact &#43; Slitherlink [Antisymmetric]</title>
+      <link>//blog.vero.site/post/puzzle-39</link>
+      <pubDate>Thu, 28 Feb 2013 21:38:54 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-39</guid>
+      <description>Yay crazy hybrids! I guess this one is kind of hard.
+Draw a loop through adjacent vertices that cannot intersect itself. For each pair of symmetrically placed numbers, one is a Slitherlink clue which indicates how many of the four edges around it are drawn, and one is a Contact clue which indicates the total length of all straight segments adjacent to it where segment length is always measured up to the nearest turns in the loop.</description>
+    </item>
+    
+    <item>
+      <title>Adventures in Scala Pseudo-Abuse</title>
+      <link>//blog.vero.site/post/scala</link>
+      <pubDate>Thu, 21 Feb 2013 22:01:25 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/scala</guid>
+      <description>&lt;p&gt;So, what have I been doing with programming recently?&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.scala-lang.org/&#34;&gt;Scala&lt;/a&gt; is an amazing multiparadigm programming language that runs on the Java Virtual Machine and interoperates with Java. I learned about it last time reading random articles on Twitter.&lt;/p&gt;
+&lt;p&gt;When I say “amazing” I mean “This is a language in which my code gives me nerdgasms every time I read it.” Wheeee.&lt;/p&gt;
+&lt;p&gt;Okay, it’s not perfect. People say it’s too academic. It has a notoriously complicated type system (which is &lt;a href=&#34;http://scientopia.org/blogs/goodmath/2013/01/21/types-gone-wild-ski-at-compile-time/&#34;&gt;&lt;em&gt;Turing-Complete&lt;/em&gt; at compile time&lt;/a&gt;). Its documentation is a bit patchy too. For a serious introduction, the Scala website has plenty of links under documentation, and a &lt;a href=&#34;http://www.scala-lang.org/node/104&#34;&gt;tour of features&lt;/a&gt;. Somebody wrote &lt;a href=&#34;http://www.naildrivin5.com/scalatour&#34;&gt;another tour&lt;/a&gt; that explains things a bit more. So here, instead of introducing it seriously, I’m just going to screw with its features.&lt;/p&gt;
+&lt;p&gt;Example of freedom. Scala lets names consist of symbols, and treats one-parameter methods and infix operators exactly the same. The full tokenization rules are a bit detailed and I put them at the bottom of this post for the interested. This lets you create classes with arithmetic and domain-specific languages easily, but it also creates some silly opportunities:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;scala&amp;gt; val * = 12
+*: Int = 12
+
+scala&amp;gt; * * * * *
+res0: Int = 1728&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
       <title>Puzzle 36 / Fillomino [LITS]</title>
       <link>//blog.vero.site/post/puzzle-36</link>
       <pubDate>Wed, 23 Jan 2013 18:29:00 +0800</pubDate>
@@ -1564,6 +1695,27 @@ My second, and now symmetric, attempt at this crazy self-invented mutant; puzzle
     </item>
     
     <item>
+      <title>Puzzle 29 / Corral [Antisymmetric Multiplicative]</title>
+      <link>//blog.vero.site/post/puzzle-29</link>
+      <pubDate>Thu, 08 Nov 2012 17:35:43 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-29</guid>
+      <description>This is a Corral puzzle in which half the clues are multiplicative. For each symmetric pair of clues, one is normal and one is multiplicative.
+
+Hooray for crazy puzzle mutations! As you can probably tell I tried more to put in as many equal symmetric pairs of clues as I could than to play with the logic.</description>
+    </item>
+    
+    <item>
+      <title>Adventures in Meta-Debugging</title>
+      <link>//blog.vero.site/post/debug</link>
+      <pubDate>Mon, 05 Nov 2012 22:28:39 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/debug</guid>
+      <description>&lt;p&gt;Okay did I mention how I sucked at the command line? This is part of the journey towards stopping. Yes, I’m on a Mac and it’s not very *nix-y in some ways but it’s enough for me for now.&lt;/p&gt;
+&lt;p&gt;Today’s story starts when I learned about &lt;a href=&#34;https://www.gnu.org/software/gdb/&#34;&gt;&lt;code&gt;gdb&lt;/code&gt;&lt;/a&gt;, the pure-command-line GNU Debugger, which is incredibly cool. I have tried and failed to learn how to use the debug function on many of my IDEs; I found shotgunning &lt;code&gt;printf&lt;/code&gt; statements as needed faster. This may well be the first time I found a command-line tool so much more intuitive than the GUI-equipped programs. Wow.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Matrix Intuition</title>
       <link>//blog.vero.site/post/matrix</link>
       <pubDate>Sun, 14 Oct 2012 17:01:29 +0800</pubDate>
@@ -1616,7 +1768,7 @@ Our old friend, the monster of a functional equation, in edible form. In the gam
 &lt;p&gt;Did you know that in Chinese [or Mandarin, whatever] “four” is unlucky because it’s a homophone for “death”, and hospitals tend to skip it in floors or ward numbers?&lt;/p&gt;
 &lt;p&gt;Did you know that there was going to be an anecdote involving the seventh Artemis Fowl book but I couldn’t make it work so instead you have a weird and utterly disconnected metareference to something deleted?&lt;/p&gt;
 &lt;p&gt;I don’t know, it sounded cool at the time.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Problem 4.&lt;/strong&gt; Find all functions f: Z -&amp;gt; Z such that, for all integers a,b,c that satisfy a+b+c = 0, the following equality holds: &lt;span class=&#34;math display&#34;&gt;\[f(a)^2+f(b)^2+f(c)^2=2f(a)f(b)+2f(b)f(c)+2f(c)f(a).\]&lt;/span&gt; (Here Z denotes the set of integers.)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problem 4.&lt;/strong&gt; Find all functions f: Z → Z such that, for all integers a,b,c that satisfy a+b+c = 0, the following equality holds: &lt;span class=&#34;math display&#34;&gt;\[f(a)^2+f(b)^2+f(c)^2=2f(a)f(b)+2f(b)f(c)+2f(c)f(a).\]&lt;/span&gt; (Here Z denotes the set of integers.)&lt;/p&gt;
 &lt;p&gt;An innocent-looking functional equation, but once you start trying it you discover that there’s quite some depth to it. Random guessing can yield that &lt;span class=&#34;math inline&#34;&gt;\(f(x) = x^2\)&lt;/span&gt; is a solution, so I proved inductively that after dividing out a constant f(1) then the remaining part of f is a perfect square. Letting &lt;span class=&#34;math inline&#34;&gt;\(f(x) = f(1)g(x)^2\)&lt;/span&gt; with g(x) a nonnegative integer and factorizing the original equation, I got an auxiliary functional equation equivalent to the original equation.&lt;/p&gt;</description>
     </item>
     
@@ -1713,6 +1865,15 @@ For me, I think this is a bad idea, because it forces me to write. If my day is 
       <guid>//blog.vero.site/post/bilingualism</guid>
       <description>So, as triggered by my confrontation with the Chinese book report (remember? whatever the answer is, it’s okay): a reflection on my incompetence at dealing with two languages, and why this matters, or not.
 I can think in both languages. It’s a natural product of our school environment. The two languages often have to complement each other; most of the nerdy terms or globally relevant allusions are English-exclusive (I couldn’t talk coherently about SOPA in any language other than English!</description>
+    </item>
+    
+    <item>
+      <title>Adventures in Crappy Markup</title>
+      <link>//blog.vero.site/post/crappy-markup</link>
+      <pubDate>Fri, 10 Feb 2012 21:39:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/crappy-markup</guid>
+      <description>There are two big elementary and middle school competitions around this part of the globe. Well, “big” according to “I’ve heard of it”, which is by no means an accurate measure of, well, anything. I don’t go out of my way to look for them any more, even though… hold on, am I still eligible? Whatever. But in any case, diverting any unnecessary energy from the olympiad-proof-training is probably not a good idea now.</description>
     </item>
     
     <item>

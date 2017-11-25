@@ -54,6 +54,16 @@ ETA: Journalistic responsibility compels me to mention that chaotic_iak also add
     </item>
     
     <item>
+      <title>Puzzle 39 / Contact &#43; Slitherlink [Antisymmetric]</title>
+      <link>//blog.vero.site/post/puzzle-39</link>
+      <pubDate>Thu, 28 Feb 2013 21:38:54 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-39</guid>
+      <description>Yay crazy hybrids! I guess this one is kind of hard.
+Draw a loop through adjacent vertices that cannot intersect itself. For each pair of symmetrically placed numbers, one is a Slitherlink clue which indicates how many of the four edges around it are drawn, and one is a Contact clue which indicates the total length of all straight segments adjacent to it where segment length is always measured up to the nearest turns in the loop.</description>
+    </item>
+    
+    <item>
       <title>Puzzle 36 / Fillomino [LITS]</title>
       <link>//blog.vero.site/post/puzzle-36</link>
       <pubDate>Wed, 23 Jan 2013 18:29:00 +0800</pubDate>
@@ -70,6 +80,17 @@ ETA: Journalistic responsibility compels me to mention that chaotic_iak also add
       <guid>//blog.vero.site/post/puzzle-31</guid>
       <description>This is a Fillomino puzzle where every polyomino is required to be an L-shape, as in Sashigane. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.
 My second, and now symmetric, attempt at this crazy self-invented mutant; puzzle 22 was the first.</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 29 / Corral [Antisymmetric Multiplicative]</title>
+      <link>//blog.vero.site/post/puzzle-29</link>
+      <pubDate>Thu, 08 Nov 2012 17:35:43 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-29</guid>
+      <description>This is a Corral puzzle in which half the clues are multiplicative. For each symmetric pair of clues, one is normal and one is multiplicative.
+
+Hooray for crazy puzzle mutations! As you can probably tell I tried more to put in as many equal symmetric pairs of clues as I could than to play with the logic.</description>
     </item>
     
     <item>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>[IOI 2014 Part 3] Games of Luck and Strategy and Really Weird Noises</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="Shamelessly getting unfinished business out of the way. Yup, that’s me.
+Excursion Day 1. We traveled down to Yilan on a bus. I played guess-it with Paul.
+I was quite surprised at myself for remembering this game, but I think it’s simple and little-known enough to be worth mentioning. Guess-it is a remarkably pure game of luck and bluffing from one of Martin Gardner’s columns, played with a small odd number of cards, e.g. the 13 cards of one poker suit. The cards are dealt evenly to players (who can look at them) with one card left over, which is kept face down; players take turns choosing one of two actions:   Name a card and ask the other player if he or she has it. These questions must be answered honestly.   Guess the left-over card. The guesser wins if correct; the other player wins if not.   Guess-it is not trivial because sometimes you should ask the other player if he or she has a card that you already see in your hand; otherwise whenever you answered “no” to a query you’d immediately guess that the asked card is the hidden one. It is actually a solved game in the sense that the probabilities of the Nash equilibrium strategy for when to guess and when to bluff have been worked out already, but they’re not simple probabilities by any means and humans are terrible randomizers anyway. A few rounds of it sure beats rock-paper-scissors. I was very amused to lose almost all our games with 11 cards but win almost all of our games with 13.
+Okay, no more gratuitous narrative excursions into game-theory. The first stop, National Center for Traditional Arts, was a very laid-back culture place with old-fashioned retro shops and streets.
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/games" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">[IOI 2014 Part 3] Games of Luck and Strategy and Really Weird Noises</h1>
+		
+		<p class="post-meta">
+		
+		2014-08-17
+		(2954 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/competitions">Competitions</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>Shamelessly getting unfinished business out of the way. Yup, that’s me.</p>
+<p>Excursion Day 1. We traveled down to Yilan on a bus. I played guess-it with Paul.</p>
+I was quite surprised at myself for remembering this game, but I think it’s simple and little-known enough to be worth mentioning. Guess-it is a remarkably pure game of luck and bluffing from one of Martin Gardner’s columns, played with a small odd number of cards, e.g. the 13 cards of one poker suit. The cards are dealt evenly to players (who can look at them) with one card left over, which is kept face down; players take turns choosing one of two actions:
+<ol>
+<li>
+Name a card and ask the other player if he or she has it. These questions must be answered honestly.
+</li>
+<li>
+Guess the left-over card. The guesser wins if correct; the other player wins if not.
+</li>
+</ol>
+<p>Guess-it is not trivial because sometimes you should ask the other player if he or she has a card that you already see in your hand; otherwise whenever you answered “no” to a query you’d immediately guess that the asked card is the hidden one. It is actually a solved game in the sense that the probabilities of the Nash equilibrium strategy for when to guess and when to bluff have been worked out already, but they’re not simple probabilities by any means and humans are terrible randomizers anyway. A few rounds of it sure beats rock-paper-scissors. I was very amused to lose almost all our games with 11 cards but win almost all of our games with 13.</p>
+<p>Okay, no more gratuitous narrative excursions into game-theory. The first stop, National Center for Traditional Arts, was a very laid-back culture place with old-fashioned retro shops and streets.</p>
+<p>We watched a 3D glove puppetry (布袋戲) video, in the same session as a lot of the leaders.</p>
+<a href="/img/519.jpg"><img class="aligncenter size-medium wp-image-2521" src="/img/519.jpg?w=225" alt="519" width="225" height="300" /></a>  I think the audio was in Taiwanese Hokkien, and I could barely follow along watching the Chinese subtitles; I have no idea how the leaders fared. The basic plotline followed a group of people on a quest for a legendary sword in a post-apocalyptic world that didn’t look post-apocalyptic at all when it wasn’t being deliberately described that way. People were partying and snarking each other in decked-out interiors as if nothing had happened. Observations and scenes of interest:
+<ul>
+<li>
+It’s very easy to make puppets do implausibly cool break-dance moves.
+</li>
+<li>
+It’s not as easy to get puppets to pour drinks into proportionally tiny cups, but somehow they did it.
+</li>
+<li>
+Midway through the movie, a mangled version of the Pythagorean trigonometric identity popped up on screen as the bookworm stock character jumped over some predator. That was the most English that appeared anywhere in the film. No, it doesn’t make more sense in context.
+</li>
+<li>
+A completely unintroduced friendly robot bird randomly violated the law of conservation of mass while making numeric puns that weren’t funny.
+</li>
+<li>
+At the end none of the plot was resolved, and the screen said it was to be continued in 2015. Oops, troll. I should have known twenty minutes wasn’t enough to get very far.
+</li>
+</ul>
+<p>Other things we did included eating <i>tanghulu</i>, making colored glass bead keychains and sunny-weather dolls (<a href="https://en.wikipedia.org/wiki/Teru_teru_bozu"><i>teru teru bozu</i></a>, which are actually Japanese, haha), and visiting a mini museum for a convenience store brand of tea. Ahh, capitalism.</p>
+<p>[caption id=“attachment_2522” align=“aligncenter” width=“225”]<a href="/img/delta.jpg"><img class="size-medium wp-image-2522" src="/img/delta.jpg?w=225" alt="[keychain]" width="225" height="300" /></a> I expect maybe two readers who fully understand the keychain’s significance, but whatever.[/caption]After all this we went to the Lanyang Museum and looked at lots of exhibitions of nature and aborigines and stuff, which, to be completely honest, I don’t remember anything about except that I learned (and then forgot, and then looked up again) the word <a href="https://en.wikipedia.org/wiki/Phytoncide">phytoncide</a>. Also, there was air conditioning, which made us very happy.</p>
+<p>Instead of actually looking at exhibitions, we tried playing The Resistance twice (I had brought the board game) and were twice interrupted by a staff member or organizer telling us that we weren’t supposed to be doing so. The first time the staff guy said we could play in the lobby, just not in the exhibition area proper, but the second time the organizer said the entire museum was off limits. Oh well. Disadvantage of being the home team: the organizers can yell at you directly instead of having to go through a student guide as mediator.</p>
+<p>After the second interruption, we joined in on the merry sign-swapping party, where teams went around trading the signs that bore their country names as well as taking photos with each other while pretending to be from all the blatantly wrong countries, before we were also stopped from doing this. Only then did we know that this activity was started by a volunteer a day ago without being officially sanctioned, and the organizers were not happy, because logistics.</p>
+<p>Also, we saw a few contestants from what I remember as a Scandinavian country juggling. But given the state of the signs and the faraway time, I’m not sure anymore.</p>
+<p>After we went back to the hotel and ate dinner, there was a <a href="https://en.wikipedia.org/wiki/Poe_divination"><i>poe</i>-throwing</a> contest: a line-up of prizes was presented on the table, for each prize, everybody would repeatedly throw and whoever didn’t receive the fortuitous configuration 聖杯 was elimiated, until there was only one survivor. If all remaining players failed while there were still two or more, then everything restarted and everybody was in the game again.</p>
+<p>I managed to win the first round (the easiest round to win, since there were the fewest participants then who had any idea what was going on) and received a small top, which I never managed to get spinning.</p>
+<p>There were lots of prizes and they were queued up in what might well have been a maximally suspenseful irregular sequence, so the game dragged out for quite a while. One of the volunteers managed to win <em>three</em> prizes, including an ocarina, from among nearly a hundred contestants (so it’s not just the birthday paradox). He was then banned from the game to keep the crowd from rioting. The very last prize was a pair of Beats headphones, which are apparently very high-quality and expensive; I don’t know who donated them. A lot of people were particularly invested in winning this round, of course, which meant that everybody would chant “TIE! TIE! TIE!” when the number of survivors was small enough to gather in a circle at the center of the basement and throw their poe together. And indeed, there were three ties where all survivors failed on the same throw, each one followed with increasingly vigorous cheering and jumping from the onlookers. We restarted three times before <del datetime="2014-09-21T04:45:52+00:00">a Mongolian contestant (??)</del> <ins datetime="2014-09-21T04:45:52+00:00">edit: after corroboration, I think it was one Taiwanese volunteer</ins> won the earphones and my classmate kamikaze-hugged him.</p>
+<p>I must say, with good announcer skills, one can make any game of pure luck seem super fun.</p>
+<hr />
+<p>Contest Day 2 followed, as you know, leading to the afternoon of the second day of the contest, with me in the wake of one of the most nerve-wracking episodes in recent memory. The Taiwan team split up; some of us went exploring the metro with the Japanese team and some of us stayed at the convention center to relish its internet. I chose the internet. There was no way I would have seen anything new on the metro, I thought.</p>
+<p>Although I had to admit, the internet was poor enough that I couldn’t stay occupied for very long, so I started wandering restlessly around the convention center. I bumped into a huge crowd of Taiwanese teachers, at IOI for educational seminars and discussions, who came to the convention center to look around. I was pulled into talking with them for a little bit with a loudspeaker. They were evidently very happy.</p>
+<p>After a few hours of this, it was time to go to Taipei 101 for the afternoon excursion. For our dinner, each contestant and guide had been given a mildly ludicrous NT$500 of vouchers to use freely, which could only be spent in the food court before 9 PM.</p>
+<p>The branch of our team that had stayed at the convention center ate dinner. I was stuffed after spending one-fourth of my quota. We stayed to use the weak internet there for a bit, then wandered to the bookstore a few floors above to look at really expensive books while waiting for our turn to visit the 101 observatory. Not knowing what to do, I leafed through a fun intuitive-math-for-the-layperson book as usual.</p>
+<p>Our wait was over in a while, whereupon it was time to actually visit that observatory, located on the eigthty-somethingth-floor of Taipei 101. I actually hadn’t done this before because it was expensive and queues were always really long. The whole business of being part of an international competition took care of the first concern, but we still had to wait in line for a very long time, so we took pictures and teased each other as usual. One of the jokes was all about how the entire floor we had been queueing on was part of the transportation system and had been imperceptibly moving upward; as our queue got to the elevator, I pointed to the “5F” sign and said, “Look, we’re on the ninety-fifth floor!” I was disappointed that nobody seemed to get the joke.</p>
+<p>Anyway, we got into the real super-fast elevator (a plaque described it as the world’s fastest, which seems to have been true <a href="http://www.independent.co.uk/life-style/gadgets-and-tech/worlds-fastest-lift-climbs-95-floors-in-43-seconds-at-speeds-of-up-to-45mph-9275347.html">up to April 2014</a>, alas), had our ears pop, watched the display flash our speed and location.</p>
+<p><a href="/img/elevator.jpg"><img class="aligncenter size-medium wp-image-2523" src="/img/elevator.jpg?w=225" alt="elevator" width="225" height="300" /></a></p>
+<p>Then we got off and looked around on the top of the building. The floor included a lot of 101 mascots, spherically-headed figures in a few colors with simple rectangles (1s) as eyes and a simple circle (0) as mouth. I could have said they were IOI mascots and nobody would know from the pictures. Quite a nice coincidence. The floor also featured great views of the beautiful city landscape and of the engineering masterpiece of a mass damper at the center of the building that kept it from toppling.</p>
+<p><a href="/img/red.jpg"><img class="aligncenter size-medium wp-image-2524" src="/img/red.jpg?w=225" alt="red" width="225" height="300" /></a></p>
+<p>[caption id=“attachment_2522” align=“aligncenter” width=“300”]<a href="/img/view.jpg"><img class="aligncenter size-medium wp-image-2525" src="/img/view.jpg?w=300" alt="view" width="300" height="225" /></a> I know this picture is really bad. The ones of the poe throwing contest are worse, so I didn’t post them. Use your imagination. Sorry.[/caption]</p>
+<p><a href="/img/mass.jpg"><img class="aligncenter size-medium wp-image-2526" src="/img/mass.jpg?w=225" alt="mass" width="225" height="300" /></a></p>
+<p>Audio guides were provided on that floor, phone-like machines that spouted a description of the history and view from certain points if you entered the corresponding numbers into them, but we didn’t listen to them much because they were long and boring and we didn’t have much time.</p>
+<p>Finally, there was a souvenir shop for rich people. Not being rich, I didn’t buy anything. I couldn’t believe they sold their flashy 101-shaped bottled water for NT$100 and not NT$101, though.</p>
+<p>After some circling and lots of pictures, we realized that it was uncomfortably close to the expiry time of our vouchers, so we dashed back down the building to spend them on exorbitant Cold Stone ice cream. Then we dashed back up to retrieve the country sign we had left upstairs, and then back down again. The day ended as we boarded the bus back to the hotel while playing with the lightsabers that had mysteriously reappeared.</p>
+<hr />
+<p>Excursion, day 2.</p>
+<p>We went to an amusement park, under a blazing hot sun, with only a spartan boxed breakfast to keep us company for the long trip. I was glad I had sunscreen. Near the entrance we saw the beginning of a press conference for a building, decked out with old-fashioned gold letters that said “Chamber of Secrete”. Upon further examination, we determined that the building housed several physical room escape games.</p>
+<p><a href="/img/secrete.jpg"><img class="aligncenter size-medium wp-image-2527" src="/img/secrete.jpg?w=300" alt="secrete" width="300" height="225" /></a></p>
+<p>For some reason, it took me a minute or so before realizing that the simplest interpretation of “Secrete” wasn’t mock Olde Englishe for “secret”.</p>
+<p>We spent the morning going around the amusement park doing amusement park things, riding bumper cars and round kayaks and a 4.5 G roller coaster (I was somewhat miffed because the two teammates with me had taken the two seats in the first row and I had taken one in the second before the operator told me to sit further in the back), which is fun but not that interesting to describe, as well as eating overpriced food.</p>
+<p>What was more interesting was when five of us — four contestants and the main team guide — finally decided to return to the “Chamber of Secrete” to play a room escape game.</p>
+<p>It cost NT$350 per person and wasn’t covered by the passes, but that price was still cheaper than the price we saw on the amusement park flyers we had received at the start of the day. In addition, we had to wait for an hour until the next empty session, but it was absolutely worth it.</p>
+<p>While we waited, we met the Hong Kong team (their sign said “Hong Kong, China” with a strikethrough composed of stickers through “China”) and my teammates inquired about LoL expletives. We also played many, many more games of 99.</p>
+<p>And then it was time. This was my first physical room escape game; all I knew were Flash room escapes, and I doubted I had solved more than two or three without peeking at walkthroughs, so I was very nervous and excited. All of us were, and we asked lots of questions — no, we couldn’t bring any phones or backpacks; no, this wasn’t a haunted house and no people or surprises would pop up to scare us while we were solving.</p>
+<p>A staff member led us into the room and gave us a toolbox with everything we needed to play. There were some instructions for operating the combination locks, a flashlight for searching dark rooms, three hint coins and a panic button to call for assistance, and a timer counting down from 60 minutes, our time limit to beat the game. We all already knew it, of course, because we had seen the advertisements for the room escape playing on repeat in front of some of the rides.</p>
+<p>Imagine really big letters, white on black:</p>
+<p>你</p>
+<p><em>dramatic flash</em></p>
+<p>只有</p>
+<p><em>dramatic flash</em></p>
+<p><strong>60</strong></p>
+<p><em>dramatic flash</em></p>
+<p>分鐘</p>
+<p><em>dramatic flash</em></p>
+<p>Yeah, that was how it went. Anyway, I won’t go into spoilery detail about the room escape itself, but it contained three rooms, each unlocking into the next. The first room had three parallel puzzles; we spent over half our time there, having solved two puzzles and getting stuck on the third one due to lack of historical trivia knowledge and a board with too many dimensions. When we realized we only had half the time left, we called for help. The staff guy took a long time to arrive, but he explained the puzzle quickly and enabled us to proceed, albeit with one fewer hint coin.</p>
+<p>The second room featured a lot of grisly [spoilery prop]s, as part of the suddenly obvious plot; although the plot was completely orthogonal to the puzzle solving, I still appreciate that they achieved closure there. I think from talking to the staff afterwards that one puzzle here physically malfunctioned: although we solved the puzzle without a hitch, we didn’t get any useful information or progress from the thing behind the lock. But we still managed to crack the other puzzle without using any hint coins, allowing us to move to the third and last room.</p>
+<p>As we rearranged the puzzle components there, we started hearing a series of thumps from the room we had just left behind. All five of us.</p>
+<p>Wait, er, there weren’t supposed to be any other people. That meant it was supposed to be empty, right?</p>
+<p>The room with all the [spoilery prop]s…?</p>
+<p>Highly freaked out, we started shouting vaguely in the direction of the second room.</p>
+<p>“Hello?”</p>
+<p>“Hello!?”</p>
+<p>There was no answer. No answer in human language, at least. We debated picking straws to send somebody to crawl back to investigate. Simultaneously we discovered that our timer had stopped when we called for help and nobody had restarted it, with the consequence that we didn’t know how much time we had left.</p>
+<p>Then, the thumps got louder.</p>
+<p>Whoa, whoa, whoa. We glanced at each other, our concern growing. It was probably best that we <em>get out of here as soon as possible.</em></p>
+<p>The unidentified thumps were a much better motivator than the 60-minute time limit; we solved the last few puzzles in a panicked frenzy, unlocked a few buttons that didn’t have any visible effect, mashed the buttons repeatedly, fiddled with the lock, and somehow, in a fit of desperation, got the final door to open and crashed outward into the hallway.</p>
+<p>We had won!</p>
+<p>We got to take a cool picture with some thematic props and a big board saying WINNER. (Unfortunately I don’t think the room escape team have released this photo yet, so I can’t post it.) When we asked the staff about the thumps, they said the sounds were probably made by somebody setting up the room behind us for the next round of solvers. Nice to know. We also learned that the Hong Kong team thought the game they had chosen, with an official difficulty of five out of five stars, was too easy.</p>
+<p>The rest of the amusement park trip was uneventful. But after the end, we had the best buffet dinner of the entire IOI that night, at another Fullon hotel next to the amusement park (they were all subsidiaries or branches of the same company, I think). I don’t have anything to say except that sashimi is still super yummy.</p>
+<p>And then, once again, the long bus trip home, with which we neared the end of our journey…</p></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/board-games"><span class="tag">Board Games</span></a></li>
+			
+			<li><a href="/tag/games"><span class="tag">Games</span></a></li>
+			
+			<li><a href="/tag/ioi-2014"><span class="tag">IOI 2014</span></a></li>
+			
+			<li><a href="/tag/museums"><span class="tag">Museums</span></a></li>
+			
+			<li><a href="/tag/room-escape"><span class="tag">Room Escape</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/one-line">← [IOI 2014 Part 2] One Line to Solve Them All</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/xanthous">[IOI 2014 Part 4] Shades of Xanthous →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

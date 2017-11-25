@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Adventures in Meta-Debugging</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="Okay did I mention how I sucked at the command line? This is part of the journey towards stopping. Yes, I’m on a Mac and it’s not very *nix-y in some ways but it’s enough for me for now.
+Today’s story starts when I learned about gdb, the pure-command-line GNU Debugger, which is incredibly cool. I have tried and failed to learn how to use the debug function on many of my IDEs; I found shotgunning printf statements as needed faster. This may well be the first time I found a command-line tool so much more intuitive than the GUI-equipped programs. Wow.
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/debug" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Adventures in Meta-Debugging</h1>
+		
+		<p class="post-meta">
+		
+		2012-11-05
+		(807 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/programming">Programming</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>Okay did I mention how I sucked at the command line? This is part of the journey towards stopping. Yes, I’m on a Mac and it’s not very *nix-y in some ways but it’s enough for me for now.</p>
+<p>Today’s story starts when I learned about <a href="https://www.gnu.org/software/gdb/"><code>gdb</code></a>, the pure-command-line GNU Debugger, which is incredibly cool. I have tried and failed to learn how to use the debug function on many of my IDEs; I found shotgunning <code>printf</code> statements as needed faster. This may well be the first time I found a command-line tool so much more intuitive than the GUI-equipped programs. Wow.</p>
+<p>Then I learned that for some reason the <code>gdb</code> on this computer was 6.3, which is 1.2~1.5 major versions behind (depending on how you count) and missing a frustrating amount of features. (The one that the current Code::Blocks installer installs is also something like 6.4. Blech.)  Okay, great. Well, I can download <code>gdb</code>… I can change to the right directory and type <code>make</code>, even though I don’t think I’ve ever done so without being destroyed by weird dependencies… I can wait through the resulting explosion of unreadable computer-y text (this would be a lot more authentic background image for the news on “hackers” compared to whatever they’re showing)… I can <code>make install</code> which will, as the readme file says, install by default into <code>/usr/bin/local</code>…</p>
+<p>Hmm, permission denied? That’s right, I need to <code>sudo make install</code>! I have just blown myself away with my expertise.</p>
+<p>Darn, <code>gdb --version</code> still gives me 6.4.</p>
+<p>Lesson number two: Mac OS X has this really complicated routine for deciding what your <code>$PATH</code> environment variable is, which is from what I know just where the computer looks for each program name (e.g. <code>gdb</code>) you attempt to run. The list appears to be:</p>
+<ol type="1">
+<li><code>/etc/paths</code>, text file with one directory per line</li>
+<li><code>/etc/manpaths</code>, ditto above</li>
+<li><code>/etc/paths.d/</code>, directory with text files, parsed alphabetically, that work as above</li>
+<li><code>/etc/manpaths.d/</code>, directory … ditto above</li>
+<li><code>~/.bashrc</code>, shell script with lots of commands if it does something like <code>export PATH</code></li>
+<li><code>~/.bash_profile</code>, ditto under some confusing conditions</li>
+<li><code>~/.bash_login</code>, ditto</li>
+<li><code>~/.profile</code>, ditto</li>
+</ol>
+<p>(This is my <a href="http://www.semioticpixels.com/crib-notes/mac-10-7-path-settings-and-environment-variables/">source</a> and I’m going to scream if you ask me what feline species that version corresponds to because it’s too much and it <em>probably</em> doesn’t matter)</p>
+<p>Now. The fundamental Mac default <code>$PATH</code> (which you can see by viewing <code>/etc/paths</code>) puts <code>/usr/bin</code> before <code>/usr/local/bin</code>, which is why my first <code>make install</code> didn’t change the version. So, question: why?</p>
+<p>I figured it out from <a href="http://unixmages.com/">Unix Mages</a>, which has this ebook full of stuff that was mostly explained by all the *nix tutorials ever except for this part about the directory structure of the whole system around page 40. The book uses a thoroughly-extended but perfectly apt metaphor (we call it a “conceit” in literature class) comparing the command-line to magic. Anyway, the important bit is:</p>
+<blockquote>
+At the top of <code>local</code>, we, once again, see rooms [folders] with the same names [stuff like <code>bin</code>, <code>etc</code>, <code>lib</code>, <code>sbin</code>] as the first and second floors [<code>/</code> and <code>/usr/</code>]. The <code>local</code> rooms are usually customized for the Tower [computer system] itself – the archmages [people who don’t suck at the command line] can create whatever they want here. It’s an unwritten mage rule that says you should try to keep your Towers [sic] first two floors similar, but you can use the third floor however you want. So don’t be surprised if you ever visit another Tower and see that the third floor looks completely different!
+</blockquote>
+<p>So logically <code>/usr/local/bin</code> should indeed take precedence since the user installs stuff there instead of it being more-or-less built-in, and searching says it does on other *nix systems. The answer to “why?” is “I don’t know, but I think Apple did something dumb.”</p>
+<p>Well, you can <code>sudo</code> <em>(favorite editor)</em> <code>/etc/paths</code> to move it if you’re brave, but the safe solution is apparently just throwing</p>
+<pre><code>PATH=/usr/local/bin:$PATH
+export PATH</code></pre>
+<p>or combining it with whatever’s in whichever of items 5 to 8 above you’re using. I’m going to gently suggest <code>.profile</code> because it’s the only file I have that exists and some automated Python thing I did a while ago added something there. There’s a difference related to whether the shell is a login shell that I haven’t figured out yet.</p>
+<p>Still clueless, but at least I have the debugging <code>skip</code> command working now.</p>
+<p>Why all this now? Tomorrow is the local informatics competition which I got into somehow, and it appears they want us to bring our own programming software on a USB, which is… weird. I half-expect that we don’t actually need to do it, but I brought a copy of Vim, the basic MinGW library, and one of every version of installer of Dev-C++ and Code::Blocks I could find. Serendipitously, it means I get to postpone two of my midterms. Well, we’ll see what happens.</p></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/command-line"><span class="tag">Command Line</span></a></li>
+			
+			<li><a href="/tag/debugging"><span class="tag">Debugging</span></a></li>
+			
+			<li><a href="/tag/mac"><span class="tag">Mac</span></a></li>
+			
+			<li><a href="/tag/unix"><span class="tag">Unix</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/matrix">← Matrix Intuition</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/puzzle-29">Puzzle 29 / Corral [Antisymmetric Multiplicative] →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

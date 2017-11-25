@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>//blog.vero.site/post/2018-hunt</loc>
+    <lastmod>2018-01-16T19:39:22-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post/transformation</loc>
+    <lastmod>2017-12-31T23:59:59+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post/thoroughly-stripped</loc>
+    <lastmod>2017-11-12T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/post/hello-again</loc>
     <lastmod>2017-11-07T00:27:42-05:00</lastmod>
   </url>
@@ -163,7 +178,7 @@
   </url>
   
   <url>
-    <loc>//blog.vero.site/post/more-fiction-part-2-5</loc>
+    <loc>//blog.vero.site/post/more-fiction-2-5</loc>
     <lastmod>2015-07-24T20:27:44+08:00</lastmod>
   </url>
   
@@ -268,6 +283,11 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/post/photography</loc>
+    <lastmod>2015-06-18T23:55:52+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/post/signal</loc>
     <lastmod>2015-06-17T21:59:18+08:00</lastmod>
   </url>
@@ -363,7 +383,7 @@
   </url>
   
   <url>
-    <loc>//blog.vero.site/post/exchange</loc>
+    <loc>//blog.vero.site/ref/exchange</loc>
     <lastmod>2014-10-21T01:00:00+08:00</lastmod>
   </url>
   
@@ -388,13 +408,28 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/post/games</loc>
+    <lastmod>2014-08-17T22:11:28+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/post/one-line</loc>
     <lastmod>2014-07-26T23:49:14+08:00</lastmod>
   </url>
   
   <url>
+    <loc>//blog.vero.site/post/lightsabers</loc>
+    <lastmod>2014-07-21T17:31:10+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/post/waiting</loc>
     <lastmod>2014-07-15T21:30:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post/prelude</loc>
+    <lastmod>2014-07-12T22:34:59+08:00</lastmod>
   </url>
   
   <url>
@@ -473,6 +508,16 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/post/puzzle-39</loc>
+    <lastmod>2013-02-28T21:38:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post/scala</loc>
+    <lastmod>2013-02-21T22:01:25+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/post/puzzle-36</loc>
     <lastmod>2013-01-23T18:29:00+08:00</lastmod>
   </url>
@@ -500,6 +545,16 @@
   <url>
     <loc>//blog.vero.site/post/puzzle-31</loc>
     <lastmod>2012-11-09T17:03:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post/puzzle-29</loc>
+    <lastmod>2012-11-08T17:35:43+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post/debug</loc>
+    <lastmod>2012-11-05T22:28:39+08:00</lastmod>
   </url>
   
   <url>
@@ -563,6 +618,11 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/post/crappy-markup</loc>
+    <lastmod>2012-02-10T21:39:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/post/puzzle-2</loc>
     <lastmod>2012-01-01T00:01:00+08:00</lastmod>
   </url>
@@ -583,6 +643,12 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/tag/accessibility</loc>
+    <lastmod>2012-02-10T21:39:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/tag/airplanes</loc>
     <lastmod>2012-07-20T07:44:51+08:00</lastmod>
     <priority>0</priority>
@@ -591,6 +657,12 @@
   <url>
     <loc>//blog.vero.site/tag/airports</loc>
     <lastmod>2012-07-20T07:44:51+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/akrasia</loc>
+    <lastmod>2014-07-12T22:34:59+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -638,13 +710,13 @@
   
   <url>
     <loc>//blog.vero.site/tag/board-games</loc>
-    <lastmod>2012-07-20T12:45:41+08:00</lastmod>
+    <lastmod>2014-08-17T22:11:28+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/</loc>
-    <lastmod>2017-11-07T00:27:42-05:00</lastmod>
+    <lastmod>2018-01-16T19:39:22-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -762,14 +834,14 @@
   </url>
   
   <url>
-    <loc>//blog.vero.site/category/competitions</loc>
-    <lastmod>2015-08-11T23:32:37+08:00</lastmod>
+    <loc>//blog.vero.site/tag/competitions</loc>
+    <lastmod>2014-09-07T16:01:28+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//blog.vero.site/tag/competitions</loc>
-    <lastmod>2014-09-07T16:01:28+08:00</lastmod>
+    <loc>//blog.vero.site/category/competitions</loc>
+    <lastmod>2015-08-11T23:32:37+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -786,6 +858,12 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/tag/contact</loc>
+    <lastmod>2013-02-28T21:38:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/tag/conversations</loc>
     <lastmod>2016-07-04T13:10:21+08:00</lastmod>
     <priority>0</priority>
@@ -798,6 +876,12 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/tag/corral</loc>
+    <lastmod>2012-11-08T17:35:43+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/tag/counting</loc>
     <lastmod>2015-07-15T23:58:02+08:00</lastmod>
     <priority>0</priority>
@@ -805,13 +889,25 @@
   
   <url>
     <loc>//blog.vero.site/category/cs</loc>
-    <lastmod>2016-08-08T13:54:22+08:00</lastmod>
+    <lastmod>2017-11-12T00:00:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/ctf</loc>
+    <lastmod>2017-11-12T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/tag/culture</loc>
     <lastmod>2016-07-04T13:10:21+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/dancing</loc>
+    <lastmod>2014-07-21T17:31:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -824,6 +920,12 @@
   <url>
     <loc>//blog.vero.site/tag/death</loc>
     <lastmod>2016-08-01T15:22:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/debugging</loc>
+    <lastmod>2012-11-05T22:28:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1022,6 +1124,12 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/tag/hexdump</loc>
+    <lastmod>2013-02-21T22:01:25+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/tag/hotels</loc>
     <lastmod>2014-07-15T21:30:53+08:00</lastmod>
     <priority>0</priority>
@@ -1105,7 +1213,13 @@
   
   <url>
     <loc>//blog.vero.site/category/life</loc>
-    <lastmod>2016-12-31T23:59:00+08:00</lastmod>
+    <lastmod>2017-12-31T23:59:59+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/lightsabers</loc>
+    <lastmod>2014-07-21T17:31:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1134,6 +1248,18 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/tag/mac</loc>
+    <lastmod>2012-11-05T22:28:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/markup</loc>
+    <lastmod>2012-02-10T21:39:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/category/math</loc>
     <lastmod>2016-11-01T00:00:00+08:00</lastmod>
     <priority>0</priority>
@@ -1158,20 +1284,20 @@
   </url>
   
   <url>
-    <loc>//blog.vero.site/category/meta</loc>
-    <lastmod>2017-11-07T00:27:42-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>//blog.vero.site/tag/meta</loc>
     <lastmod>2012-01-01T00:00:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>//blog.vero.site/category/meta</loc>
+    <lastmod>2017-11-07T00:27:42-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/tag/mit</loc>
-    <lastmod>2017-02-04T14:27:18+08:00</lastmod>
+    <lastmod>2018-01-16T19:39:22-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1324,8 +1450,20 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/tag/photography</loc>
+    <lastmod>2015-06-18T23:55:52+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/tag/piano</loc>
     <lastmod>2013-06-22T23:13:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/pictures</loc>
+    <lastmod>2015-06-18T23:55:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1359,7 +1497,7 @@
   
   <url>
     <loc>//blog.vero.site/post</loc>
-    <lastmod>2017-11-07T00:27:42-05:00</lastmod>
+    <lastmod>2018-01-16T19:39:22-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1401,19 +1539,19 @@
   
   <url>
     <loc>//blog.vero.site/tag/puzzle</loc>
-    <lastmod>2017-02-04T14:27:18+08:00</lastmod>
+    <lastmod>2018-01-16T19:39:22-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/tag/puzzlehunt</loc>
-    <lastmod>2017-02-04T14:27:18+08:00</lastmod>
+    <lastmod>2018-01-16T19:39:22-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/category/puzzles</loc>
-    <lastmod>2017-02-04T14:27:18+08:00</lastmod>
+    <lastmod>2018-01-16T19:39:22-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1437,7 +1575,7 @@
   
   <url>
     <loc>//blog.vero.site/category/rant</loc>
-    <lastmod>2012-02-12T22:11:00+08:00</lastmod>
+    <lastmod>2015-06-18T23:55:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1456,6 +1594,12 @@
   <url>
     <loc>//blog.vero.site/ref</loc>
     <lastmod>2016-11-01T00:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/room-escape</loc>
+    <lastmod>2014-08-17T22:11:28+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1502,6 +1646,12 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/tag/semantics</loc>
+    <lastmod>2012-02-10T21:39:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/tag/sieve-of-eratosthenes</loc>
     <lastmod>2013-05-25T23:03:05+08:00</lastmod>
     <priority>0</priority>
@@ -1515,7 +1665,7 @@
   
   <url>
     <loc>//blog.vero.site/tag/slitherlink</loc>
-    <lastmod>2012-01-01T00:01:00+08:00</lastmod>
+    <lastmod>2013-02-28T21:38:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1644,6 +1794,18 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/tag/unicode</loc>
+    <lastmod>2013-02-21T22:01:25+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/unix</loc>
+    <lastmod>2012-11-05T22:28:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/util</loc>
   </url>
   
@@ -1690,6 +1852,12 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/tag/x86</loc>
+    <lastmod>2017-11-12T00:00:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/tag/xkcd</loc>
     <lastmod>2015-06-14T21:00:51+08:00</lastmod>
     <priority>0</priority>
@@ -1697,7 +1865,7 @@
   
   <url>
     <loc>//blog.vero.site/tag/year-end-post</loc>
-    <lastmod>2016-12-31T23:59:00+08:00</lastmod>
+    <lastmod>2017-12-31T23:59:59+08:00</lastmod>
     <priority>0</priority>
   </url>
   

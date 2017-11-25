@@ -13,9 +13,9 @@
 
 
 
-  
-  <meta name="author" content="betaveros" />
-  <meta name="description" content="I started trying to sleep at 9 the night before the contest, tossed and turned in bed until 10, then fell asleep and got up at 3:35 in the morning. Blah. At that point, I went to the bathroom and applied some chapstick before trying to go back to sleep until 6. After breakfast, I grabbed a few minutes of sleep on the bus to the convention center where our contest would be, then slept on a sofa outside the actual contest hall alongside most of the rest of our team as we waited for a very long time until it was okay for us to enter. Competitions really mess with one’s sleep schedule.
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="I started trying to sleep at 9 the night before the contest, tossed and turned in bed until 10, then fell asleep and got up at 3:35 in the morning. Blah. At that point, I went to the bathroom and applied some chapstick before trying to go back to sleep until 6. After breakfast, I grabbed a few minutes of sleep on the bus to the convention center where our contest would be, then slept on a sofa outside the actual contest hall alongside most of the rest of our team as we waited for a very long time until it was okay for us to enter. Competitions really mess with one’s sleep schedule.
 Then, much too soon, we could enter. Day 1 of the contest was about to start.
 The laptops were as yesterday, although they were protected with a white screensaver that indicated my name and ID as well as a countdown to the start of the contest. I was glad to see that my mousepad and all my writing utensils had survived without me. Somebody had the sense of humor to project an online stopwatch with an animated bomb fuse onto the screens to indicate the remaining time, which, once again, there was a lot of.
 I conferred briefly with Paul (TZW (alphaveros (?))) about vim settings for a bit, but there were still fifteen minutes left or so. I idly stretched, practiced typing my .vimrc on an imaginary keyboard, and watched as the US dude two tables to my left unplugged his laptop’s mouse and rearranged absolutely everything on his table using the surface under his chair as swap space. (Well, that was how I mentally described it at the time, pending further revelations. (hint hint))
@@ -46,6 +46,7 @@ Then it began. " />
 <link rel="icon" href="/favicon.ico" />
 
 
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
 
@@ -170,12 +171,12 @@ Then it began. " />
 <p>It didn’t work.</p>
 <p>I added some more random numbers to my input file and got an “Incorrect.” message, but nothing else. I was very annoyed and quickly edited the grader to print the incorrect stations. Okay, now I had something to work with…</p>
 <p>I realized my method for checking if new stations were <code>C</code> or <code>D</code> didn’t work, because e.g. on the right side of station 0, it was still possible to encounter <code>C</code>s whose closest distance to 0 used a nearby <code>D</code> after encountering a <code>D</code> that was further away, if the stations were sorted by query distance. For a while I tried to maintain the nearest <code>C</code> to that furthest <code>D</code> or something along those lines, but I realized that it wasn’t going to be enough, at least not with the tight query restriction given by the problem. I had no idea what to do next. How did I fix this? Was my method doomed?</p>
-<p>I grabbed a pen and scribbled some algebra to figure out how to deal with it. I verified, thankfully, that it would always be possible to disambiguate between <code>C</code>s and <code>D</code>s using the information I planned to get. Then I realized that if I could determine whether there was a <code>C</code> or <code>D</code> at a certain magic position, I could determine whether the new station was a <code>C</code> or <code>D</code>. This wasn’t very hard; I just stashed every <code>C</code> and <code>D</code> I had already seen by location in a <code>map&amp;lt;int,int&amp;gt;</code>, which was doubly easy because I had written a lambda for recording the positions and types of stations. Go lambdas!</p>
-<p><code>int magic = first + (zd[rd] + zd[i] - curd) / 2;</code></p>
+<p>I grabbed a pen and scribbled some algebra to figure out how to deal with it. I verified, thankfully, that it would always be possible to disambiguate between <code>C</code>s and <code>D</code>s using the information I planned to get. Then I realized that if I could determine whether there was a <code>C</code> or <code>D</code> at a certain magic position, I could determine whether the new station was a <code>C</code> or <code>D</code>. This wasn’t very hard; I just stashed every <code>C</code> and <code>D</code> I had already seen by location in a <code>map&lt;int,int&gt;</code>, which was doubly easy because I had written a lambda for recording the positions and types of stations. Go lambdas!</p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="dt">int</span> magic = first + (zd[rd] + zd[i] - curd) / <span class="dv">2</span>;</div></code></pre>
 <p>So now I had an algorithm that seemed to work. With trembling hands, I navigated to the workspace with Firefox and uploaded the file.</p>
 <p><span style="color:black;background-color:#FCF8E3;">30/100</span>.</p>
 <p>Great. Time to debug.</p>
-<p>I redid the algebra; things seemed to check out. I modified the condition slightly to avoid needing to rely on a station that would only be seen in the future. I handled the stations between station 0 and its closest <code>D</code> earlier. I realized I had mistyped my infinity as <code>1000 &amp;lt;&amp;lt; 10</code> rather than <code>1000 &amp;lt;&amp;lt; 20</code>, and submitted a fixed version before realizing that the former infinity was actually big enough. I made my arrays five times larger than necessary. No cigar; my submission page became clogged with <span style="color:black;background-color:#FCF8E3;">30/100</span>s.</p>
+<p>I redid the algebra; things seemed to check out. I modified the condition slightly to avoid needing to rely on a station that would only be seen in the future. I handled the stations between station 0 and its closest <code>D</code> earlier. I realized I had mistyped my infinity as <code>1000 &lt;&lt; 10</code> rather than <code>1000 &lt;&lt; 20</code>, and submitted a fixed version before realizing that the former infinity was actually big enough. I made my arrays five times larger than necessary. No cigar; my submission page became clogged with <span style="color:black;background-color:#FCF8E3;">30/100</span>s.</p>
 <p>Panic was beginning to set in; I don’t remember how much time was left then.</p>
 <p>I wrote a random test-data generator in Python to put down 2000 random stations with station 0 in the middle (darn, Python’s random module should have been on my list of things to study just before the contest), and ran the sample grader on the data. <code>Correct.</code> Everything seemed fine on my laptop.</p>
 <p>How about a test case 5000 stations, the limit?</p>
@@ -206,16 +207,10 @@ Then it began. " />
 <p>But I had no time to dwell on the conversation before the contest began. I took a few more deep breaths, mouthed the lyrics to a happy song, and opened the envelope.</p>
 <p>I had actually expected some sort of output-only or linearly-scored problem to finally surface, but that didn’t happen. Problem 4 — <code>gondola</code> — was a silly long-winded counting problem with lots of subtasks that amounted to some simple sorting and modular exponentiation. It took me forty minutes; I made lots of intermediate submissions for the people watching at home. Reportedly this made me first on the leaderboard for some time and caught the attention of the people who were livestreaming.</p>
 <p>Problem 5 — <code>friend</code> — was about finding an independent set with a maximal total weight on a graph with weighted vertices that was built with a certain extremely suspicious procedure.</p>
-<ol>
-<li>
-<code>IAmYourFriend</code>: add a vertex that is adjacent to exactly one other existent vertex <i>v</i>
-</li>
-<li>
-<code>MyFriendsAreYourFriends</code>: add a vertex that is adjacent to the exact same set of vertices as some other existent vertex
-</li>
-<li>
-<code>WeAreYourFriends</code>: add a vertex that is adjacent to the exact same set of vertices as some other existent vertex <i>v</i> plus <i>v</i> itself
-</li>
+<ol type="1">
+<li><code>IAmYourFriend</code>: add a vertex that is adjacent to exactly one other existent vertex <i>v</i></li>
+<li><code>MyFriendsAreYourFriends</code>: add a vertex that is adjacent to the exact same set of vertices as some other existent vertex</li>
+<li><code>WeAreYourFriends</code>: add a vertex that is adjacent to the exact same set of vertices as some other existent vertex <i>v</i> plus <i>v</i> itself</li>
 </ol>
 <p>There were lots of subtasks with weird restrictions on the procedure. I realized I knew how to induct away the last vertex for the latter two procedure steps (just delete it and either take the maximum or sum of the weight between it and the vertex <i>v</i> it’s based on, and assign the resulting weight to <i>v</i>), which I quickly implemented for 16 points, even though those two subtasks were much more trivial. Some more head-scratching later, I added an auxiliary field to the vertices, namely a score gained when the vertex doesn’t get included in the independent set, and then managed to induct in the third case too. Beautiful. So I submitted and got a second <span style="color:black;background-color:#DFF0D8;">100/100</span> again.</p>
 <p>Wow. Ninety minutes in and I had two problems down.</p>
@@ -258,16 +253,16 @@ Then it began. " />
 	<footer class="post-footer">
 		<nav class="pagination">
 			
-			<a class="pagination-previous" href="//blog.vero.site/post/waiting">← [IOI 2014 Part 0] Waiting</a>
+			<a class="pagination-previous" href="//blog.vero.site/post/lightsabers">← [IOI 2014 Part 1] Everything is More Exciting with Lightsabers</a>
 			
 			
-			<a class="pagination-next" href="//blog.vero.site/post/xanthous">[IOI 2014 Part 4] Shades of Xanthous →</a>
+			<a class="pagination-next" href="//blog.vero.site/post/games">[IOI 2014 Part 3] Games of Luck and Strategy and Really Weird Noises →</a>
 			
 		</nav>
 	</footer>
 </section>
 <footer class="site-footer">
-	<p>© 2017 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://pages.github.com/">GitHub Pages</a>, and

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>[IOI 2014 Part -1] Prelude.hs</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="Indexing debates are boring. Especially when you can just flagrantly disregard all concerns about memory safety (because C&#43;&#43; never had any in the first place) and write int _array[100008], array = _array &#43; 2; I do this alarmingly often; hence, the title. Hashtag firstworldanarchists. Three ± 1 cheers for Haskell arrays.
+Anyway. One of the disadvantages of entering an international competition as the home team is a lack of time to completely absorb the idea that what is about to happen is a Big Thing." />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/prelude" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">[IOI 2014 Part -1] Prelude.hs</h1>
+		
+		<p class="post-meta">
+		
+		2014-07-12
+		(331 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/competitions">Competitions</a>, <a href="/category/meta">Meta</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>Indexing debates are boring. Especially when you can just flagrantly disregard all concerns about memory safety (because C++ never had any in the first place) and write <code>int _array[100008], array = _array + 2;</code> I do this alarmingly often; hence, the title. Hashtag firstworldanarchists. Three ± 1 cheers for <a href="http://www.haskell.org/ghc/docs/7.6-latest/html/libraries/array-0.4.0.1/Data-Array.html#v:array">Haskell arrays</a>.</p>
+<p>Anyway. One of the disadvantages of entering an international competition as the home team is a lack of time to completely absorb the idea that what is about to happen is a Big Thing. There was lots of time before the other international competitions I went to to spend uncomfortably on airplanes trying to adjust for the timezone difference.</p>
+<p>Not so for a competition in one’s own country. Right up to the night before entering the hotel that marks the beginning of everything, I’m still at home, furiously refreshing the AoPS IMO fora and Facebook for news (!!!), lazily solving trivial Codeforces Div II problems with <del>pointless</del> point-free Haskell one-liners, and blogging. (There’s more, but I kind of want it to be a surprise.)</p>
+<p>Anyway, let’s set the rules. Well, there’s only one, honestly:</p>
+<ul>
+<li>While I blog this thing, I will be totally fine with small spelling and grammatical errors, small lapses in logic and flow, and the like, so I will not feel compelled to reread every post two hundred and fifty-six times before deciding that it’s not good enough and I shall publish it later, much later. I can always stealthily fix such issues and pretend they never happened. I mean, I derive more utility from posting after events as immediately as possible than from repeatedly editing a post, even if my future self suffers from akrasia with regards to the matter.</li>
+</ul>
+<p>That’s all I’d like to say; I’m already editing it far more than I hoped to. Here is a <a href="http://www.timeanddate.com/countdown/generic?iso=20140715T09&amp;p0=241&amp;msg=IOI+2014+Contest+Day+1">countdown</a> to Day 1 of the actual contest, because given the schedule, the opening ceremony seems to me a rather arbitrary reference point. Let the suspense begin.</p>
+</article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/akrasia"><span class="tag">Akrasia</span></a></li>
+			
+			<li><a href="/tag/ioi-2014"><span class="tag">IOI 2014</span></a></li>
+			
+			<li><a href="/tag/writing"><span class="tag">Writing</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/pycon">← #pyconapac2014</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/waiting">[IOI 2014 Part 0] Waiting →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

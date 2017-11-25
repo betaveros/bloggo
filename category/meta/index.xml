@@ -107,7 +107,7 @@ Author: Vasily Astakhov, Russia
 an essay (liberally defined) with &lt;a href=&#34;//blog.vero.site/post/quixotic-1&#34;&gt;two&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/quixotic-2&#34;&gt;parts&lt;/a&gt;,
 &lt;/li&gt;
 &lt;li&gt;
-an essay with &lt;a href=&#34;//blog.vero.site/post/more-fiction-1&#34;&gt;two&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/more-fiction-2&#34;&gt;parts&lt;/a&gt; and a &lt;a href=&#34;//blog.vero.site/post/more-fiction-part-2-5&#34;&gt;half&lt;/a&gt;,
+an essay with &lt;a href=&#34;//blog.vero.site/post/more-fiction-1&#34;&gt;two&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/more-fiction-2&#34;&gt;parts&lt;/a&gt; and a &lt;a href=&#34;//blog.vero.site/post/more-fiction-2-5&#34;&gt;half&lt;/a&gt;,
 &lt;/li&gt;
 &lt;li&gt;
 another &lt;a href=&#34;//blog.vero.site/post/college-emails&#34;&gt;bar graph&lt;/a&gt; that is actually documented,
@@ -150,6 +150,16 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
       <description>&lt;p&gt;Obligatory life update: I have graduated &lt;a href=&#34;https://motivatedgrammar.wordpress.com/2012/01/24/a-brief-history-of-speaking-about-graduation/&#34;&gt;[from]&lt;/a&gt; high school.&lt;/p&gt;
 &lt;p&gt;But that’s not what this post is about. I &lt;a href=&#34;//blog.vero.site/post/scheduled-blogging&#34;&gt;contemplated setting up a schedule for my blogging&lt;/a&gt; three long years ago, and decided against it, because I didn’t think writing was a high enough priority for me. Well, I am setting up a schedule now: &lt;strong&gt;I am going to post something on this blog every day&lt;/strong&gt; until I have to leave the country (which is happening once before college, so it’s not for as long as you think; but I might decide to continue the schedule anyway after I get back. We’ll see when the time comes.)&lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[IOI 2014 Part -1] Prelude.hs</title>
+      <link>//blog.vero.site/post/prelude</link>
+      <pubDate>Sat, 12 Jul 2014 22:34:59 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/prelude</guid>
+      <description>Indexing debates are boring. Especially when you can just flagrantly disregard all concerns about memory safety (because C++ never had any in the first place) and write int _array[100008], array = _array + 2; I do this alarmingly often; hence, the title. Hashtag firstworldanarchists. Three ± 1 cheers for Haskell arrays.
+Anyway. One of the disadvantages of entering an international competition as the home team is a lack of time to completely absorb the idea that what is about to happen is a Big Thing.</description>
     </item>
     
     <item>

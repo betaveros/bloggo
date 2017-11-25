@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Unicode on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/unicode</link>
+    <description>Recent content in Unicode on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 21 Feb 2013 22:01:25 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/unicode/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Adventures in Scala Pseudo-Abuse</title>
+      <link>//blog.vero.site/post/scala</link>
+      <pubDate>Thu, 21 Feb 2013 22:01:25 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/scala</guid>
+      <description>&lt;p&gt;So, what have I been doing with programming recently?&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.scala-lang.org/&#34;&gt;Scala&lt;/a&gt; is an amazing multiparadigm programming language that runs on the Java Virtual Machine and interoperates with Java. I learned about it last time reading random articles on Twitter.&lt;/p&gt;
+&lt;p&gt;When I say “amazing” I mean “This is a language in which my code gives me nerdgasms every time I read it.” Wheeee.&lt;/p&gt;
+&lt;p&gt;Okay, it’s not perfect. People say it’s too academic. It has a notoriously complicated type system (which is &lt;a href=&#34;http://scientopia.org/blogs/goodmath/2013/01/21/types-gone-wild-ski-at-compile-time/&#34;&gt;&lt;em&gt;Turing-Complete&lt;/em&gt; at compile time&lt;/a&gt;). Its documentation is a bit patchy too. For a serious introduction, the Scala website has plenty of links under documentation, and a &lt;a href=&#34;http://www.scala-lang.org/node/104&#34;&gt;tour of features&lt;/a&gt;. Somebody wrote &lt;a href=&#34;http://www.naildrivin5.com/scalatour&#34;&gt;another tour&lt;/a&gt; that explains things a bit more. So here, instead of introducing it seriously, I’m just going to screw with its features.&lt;/p&gt;
+&lt;p&gt;Example of freedom. Scala lets names consist of symbols, and treats one-parameter methods and infix operators exactly the same. The full tokenization rules are a bit detailed and I put them at the bottom of this post for the interested. This lets you create classes with arithmetic and domain-specific languages easily, but it also creates some silly opportunities:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;scala&amp;gt; val * = 12
+*: Int = 12
+
+scala&amp;gt; * * * * *
+res0: Int = 1728&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

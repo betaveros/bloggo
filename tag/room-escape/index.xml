@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Room Escape on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/room-escape</link>
+    <description>Recent content in Room Escape on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Aug 2014 22:11:28 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/room-escape/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[IOI 2014 Part 3] Games of Luck and Strategy and Really Weird Noises</title>
+      <link>//blog.vero.site/post/games</link>
+      <pubDate>Sun, 17 Aug 2014 22:11:28 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/games</guid>
+      <description>&lt;p&gt;Shamelessly getting unfinished business out of the way. Yup, that’s me.&lt;/p&gt;
+&lt;p&gt;Excursion Day 1. We traveled down to Yilan on a bus. I played guess-it with Paul.&lt;/p&gt;
+I was quite surprised at myself for remembering this game, but I think it’s simple and little-known enough to be worth mentioning. Guess-it is a remarkably pure game of luck and bluffing from one of Martin Gardner’s columns, played with a small odd number of cards, e.g. the 13 cards of one poker suit. The cards are dealt evenly to players (who can look at them) with one card left over, which is kept face down; players take turns choosing one of two actions:
+&lt;ol&gt;
+&lt;li&gt;
+Name a card and ask the other player if he or she has it. These questions must be answered honestly.
+&lt;/li&gt;
+&lt;li&gt;
+Guess the left-over card. The guesser wins if correct; the other player wins if not.
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Guess-it is not trivial because sometimes you should ask the other player if he or she has a card that you already see in your hand; otherwise whenever you answered “no” to a query you’d immediately guess that the asked card is the hidden one. It is actually a solved game in the sense that the probabilities of the Nash equilibrium strategy for when to guess and when to bluff have been worked out already, but they’re not simple probabilities by any means and humans are terrible randomizers anyway. A few rounds of it sure beats rock-paper-scissors. I was very amused to lose almost all our games with 11 cards but win almost all of our games with 13.&lt;/p&gt;
+&lt;p&gt;Okay, no more gratuitous narrative excursions into game-theory. The first stop, National Center for Traditional Arts, was a very laid-back culture place with old-fashioned retro shops and streets.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
