@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Starbucks on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/starbucks</link>
+    <description>Recent content in Starbucks on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 21 Sep 2015 00:45:43 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/starbucks/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Jam-Packed Fun and Games</title>
+      <link>//blog.vero.site/post/jam</link>
+      <pubDate>Mon, 21 Sep 2015 00:45:43 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/jam</guid>
+      <description>&lt;p&gt;Did I say “fun”? That was short for function calls. Which are fun too, admittedly. Blah, I always go to such lengths to come up with snappy yet justified post titles and end up achieving neither.&lt;/p&gt;
+&lt;p&gt;One more complimentary breakfast later:&lt;/p&gt;
+&lt;p&gt;This is it.&lt;/p&gt;
+&lt;p&gt;Google Code Jam World Finals. &lt;a href=&#34;//blog.vero.site/img/nametag.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/nametag.jpg?w=170&#34; alt=&#34;[Google Code Jam 2015 name tag with my name and handle and country]&#34; width=&#34;170&#34; height=&#34;300&#34; class=&#34;aligncenter size-medium wp-image-3374&#34; /&gt;&lt;/a&gt; Let me take a moment to reflect. Seriously. I do not know how I made it this far this year. I guess I might be a top-500-ish competitive programmer globally, maybe even top-150-ish, but definitely not top-25-ish. And &lt;a href=&#34;https://code.google.com/codejam/contest/4254486/dashboard#s=p3&#34;&gt;Log Set&lt;/a&gt;, the hard problem that got me through Round 3, doesn’t seem like it plays to my forte particularly either. It’s a bit mathy, but the math bits aren’t the hard part; I think it’s largely implementation, with one psychological hurdle where you have to realize that, because of how few distinct integers there are in S′, you can efficiently solve the subset-sum instances you need to produce the lexicographically earliest answer. I’m actually kind of impressed I got that. It seems like the sort of hurdle I usually get stuck on. How did this happen?&lt;/p&gt;
+&lt;p&gt;Maybe randomness. Maybe I was just particularly clear-minded during the round and wrote less buggy code than usual, because I had no expectation of making it whatsoever and so could look at the contest detachedly (until midway through the contest I accidentally noticed that my rank was under 20, and even then I tried very very hard not to think about it, and it kind of worked).&lt;/p&gt;
+&lt;p&gt;But it happened, and now I’m here. Time to roll.&lt;/p&gt;
+&lt;p&gt;In some emails much earlier in the Code Jam logistical process, Google had asked for “requests for changes and/or additions” to the software that would be installed on our competition computers, and I had sent them a long list:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Hi,&lt;br /&gt; Here are some things I’d like if they were installed, in decreasing order of priority:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+The Vim plugin syntastic ( https://github.com/scrooloose/syntastic )
+&lt;/li&gt;
+&lt;li&gt;
+a Haskell compiler (probably Haskell Platform 2014.2.0.0 https://www.haskell.org/platform/ even though it’s a year old)
+&lt;/li&gt;
+&lt;li&gt;
+the Haskell package hdevtools ( https://hackage.haskell.org/package/hdevtools ) so that the above two may be integrated
+&lt;/li&gt;
+&lt;li&gt;
+(I don’t have enough Linux experience to name a specific thing to install, but command-line utilities that are the equivalent of pbcopy and pbpaste on Mac OS X, which allow me to redirect text into or out of the clipboard from the command line easily)
+&lt;/li&gt;
+&lt;/ol&gt;
+Of course, this is my first Code Jam and I don’t know how reasonable these requests are. Any nontrivial subset would be appreciated.
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

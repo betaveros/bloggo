@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Jam-Packed Fun and Games</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="Did I say “fun”? That was short for function calls. Which are fun too, admittedly. Blah, I always go to such lengths to come up with snappy yet justified post titles and end up achieving neither.
+One more complimentary breakfast later:
+This is it.
+Google Code Jam World Finals.  Let me take a moment to reflect. Seriously. I do not know how I made it this far this year. I guess I might be a top-500-ish competitive programmer globally, maybe even top-150-ish, but definitely not top-25-ish. And Log Set, the hard problem that got me through Round 3, doesn’t seem like it plays to my forte particularly either. It’s a bit mathy, but the math bits aren’t the hard part; I think it’s largely implementation, with one psychological hurdle where you have to realize that, because of how few distinct integers there are in S′, you can efficiently solve the subset-sum instances you need to produce the lexicographically earliest answer. I’m actually kind of impressed I got that. It seems like the sort of hurdle I usually get stuck on. How did this happen?
+Maybe randomness. Maybe I was just particularly clear-minded during the round and wrote less buggy code than usual, because I had no expectation of making it whatsoever and so could look at the contest detachedly (until midway through the contest I accidentally noticed that my rank was under 20, and even then I tried very very hard not to think about it, and it kind of worked).
+But it happened, and now I’m here. Time to roll.
+In some emails much earlier in the Code Jam logistical process, Google had asked for “requests for changes and/or additions” to the software that would be installed on our competition computers, and I had sent them a long list:
+ Hi,
+Here are some things I’d like if they were installed, in decreasing order of priority:
+  The Vim plugin syntastic ( https://github.com/scrooloose/syntastic )   a Haskell compiler (probably Haskell Platform 2014.2.0.0 https://www.haskell.org/platform/ even though it’s a year old)   the Haskell package hdevtools ( https://hackage.haskell.org/package/hdevtools ) so that the above two may be integrated   (I don’t have enough Linux experience to name a specific thing to install, but command-line utilities that are the equivalent of pbcopy and pbpaste on Mac OS X, which allow me to redirect text into or out of the clipboard from the command line easily)   Of course, this is my first Code Jam and I don’t know how reasonable these requests are. Any nontrivial subset would be appreciated. " />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/jam" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Jam-Packed Fun and Games</h1>
+		
+		<p class="post-meta">
+		
+		2015-09-21
+		(4772 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>, <a href="/category/programming">Programming</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>Did I say “fun”? That was short for function calls. Which are fun too, admittedly. Blah, I always go to such lengths to come up with snappy yet justified post titles and end up achieving neither.</p>
+<p>One more complimentary breakfast later:</p>
+<p>This is it.</p>
+<p>Google Code Jam World Finals. <a href="/img/nametag.jpg"><img src="/img/nametag.jpg?w=170" alt="[Google Code Jam 2015 name tag with my name and handle and country]" width="170" height="300" class="aligncenter size-medium wp-image-3374" /></a> Let me take a moment to reflect. Seriously. I do not know how I made it this far this year. I guess I might be a top-500-ish competitive programmer globally, maybe even top-150-ish, but definitely not top-25-ish. And <a href="https://code.google.com/codejam/contest/4254486/dashboard#s=p3">Log Set</a>, the hard problem that got me through Round 3, doesn’t seem like it plays to my forte particularly either. It’s a bit mathy, but the math bits aren’t the hard part; I think it’s largely implementation, with one psychological hurdle where you have to realize that, because of how few distinct integers there are in S′, you can efficiently solve the subset-sum instances you need to produce the lexicographically earliest answer. I’m actually kind of impressed I got that. It seems like the sort of hurdle I usually get stuck on. How did this happen?</p>
+<p>Maybe randomness. Maybe I was just particularly clear-minded during the round and wrote less buggy code than usual, because I had no expectation of making it whatsoever and so could look at the contest detachedly (until midway through the contest I accidentally noticed that my rank was under 20, and even then I tried very very hard not to think about it, and it kind of worked).</p>
+<p>But it happened, and now I’m here. Time to roll.</p>
+<p>In some emails much earlier in the Code Jam logistical process, Google had asked for “requests for changes and/or additions” to the software that would be installed on our competition computers, and I had sent them a long list:</p>
+<blockquote>
+<p>Hi,<br /> Here are some things I’d like if they were installed, in decreasing order of priority:</p>
+<ol>
+<li>
+The Vim plugin syntastic ( https://github.com/scrooloose/syntastic )
+</li>
+<li>
+a Haskell compiler (probably Haskell Platform 2014.2.0.0 https://www.haskell.org/platform/ even though it’s a year old)
+</li>
+<li>
+the Haskell package hdevtools ( https://hackage.haskell.org/package/hdevtools ) so that the above two may be integrated
+</li>
+<li>
+(I don’t have enough Linux experience to name a specific thing to install, but command-line utilities that are the equivalent of pbcopy and pbpaste on Mac OS X, which allow me to redirect text into or out of the clipboard from the command line easily)
+</li>
+</ol>
+Of course, this is my first Code Jam and I don’t know how reasonable these requests are. Any nontrivial subset would be appreciated.
+</blockquote>
+<p> (That was about a week before Haskell Platform 7.10.4 came out; once that news got to me, I sent another email to them, and it worked even though the deadline had passed by then.) I didn’t expect everything I listed to be installed because they weren’t on the updated list I received later and because honestly, getting the Haskell environment to work can be such a pain sometimes. But most of them were. They had given me my Haskell Platform, a Vim installation with <code>pathogen</code> and <code>syntastic</code>, as well as <code>xsel</code>. (I don’t <em>think</em> they installed hdevtools. Don’t remember. It was easy for me to install it, anyway.)</p>
+<p>But it turns out that all this hadn’t really been necessary because, unlike IOI or ACM-ICPC, Google is totally fine with us bringing our own USBs or disks or any computer-readable material for code templates and/or tools, and even gives us some internet time before the contest to install things.</p>
+<p>My contest nerves had caused me to spend the night before cramming code and other stuff into my USB, producing a much more extensive bunch of environment files. So from this USB, I copy in my <code>dotvim</code> directory, which contains <code>pathogen</code> managing <code>jellybeans.vim</code>, <code>syntastic</code>, <code>supertab</code>, <code>vim-hdevtools</code>, and my hacky <code>cppc.vim</code> syntax file to highlight my macro keywords. Then I brainstorm and install lots more random tools: <code>ack</code>, <code>tmux</code>, and graphical <code>vim</code>, which turns out to not be installed with the rest of <code>vim</code> by default (an unpleasant surprise when I first realized it, mostly because I am pretty bad at getting clipboards to work with the terminal).</p>
+<p>Finally I spend the most time figuring out how to properly copy my <code>cr</code> script for quickly compiling and running C++ programs. I had spent a particularly great amount of time on this script the night before, learning Bash scripting while updating it with all sorts of features and error detection clauses. Who would have known? Bash has these interpolations <code><span class="math inline">\({a#foo}&lt;/code&gt;, which strips “foo” from the front of &lt;code&gt;\)</span>a</code>, and <code><span class="math inline">\({b%foo}&lt;/code&gt;, which strips “foo” from the back of &lt;code&gt;\)</span>b</code>. (No, I still haven’t switched to zsh because I haven’t been convinced I’ll get enough benefits out of it. Persuasion attempts welcome.)</p>
+<p>For some reason, I can’t add any directories to <code>$PATH</code> through putting commands in any of the dotfiles (<code>.profile</code>, <code>.bashrc</code> etc.) I expect the terminal to read — I can’t even get <code>echo</code> statements in those files to display (any UNIX/shell experts want to retroactively debug this vague description?) — so eventually I just <code>sudo</code> copy it into <code>/usr/local/bin</code>, and it works.</p>
+<p>The <code>cr</code> script was very useful. On the other hand, despite all the time and effort I spent requesting and setting up Haskell stuff, and how I put it as my favorite language in the GCJ publicity information form (which they talked about <a href="https://youtu.be/rh_EYIu7Ztc?t=25m30s">starting 25:30 in the livestream omg!!!</a>; it still is, but probably not on the difficult end of coding competitions), I didn’t touch Haskell at all during the competition. Sigh. I didn’t find a problem in which I decided I liked it better than C++. (In hindsight, doing Campinatorics with Haskell would probably have been smooth, or maybe making more random stabs at solving the small Merlin QA. But I only put a C++ modular inverse snippet in an easy-to-access location while cramming the night before. And combined with the nontriviality of precomputing the factorials and their inverses mod 10<sup>9</sup> + 7 and putting them somewhere easy to access randomly (in both the Θ(1)-by-linear-offset and the totally arbitrary sense of “random”) (something I’d probably have to leave to Data.MemoCombinators), I don’t think I’d code either one of these <em>faster</em> in Haskell than in C++.)</p>
+<p>Also, I send a tweet from my computer just because I can.</p>
+<p>So that’s the software preparation. There is less I have to say about the hardware:</p>
+<ul>
+<li>
+I brought my own headphones just in case — a wired set that had been a gift from my uncle and aunt, bought during a vacation to Japan — but I am not and have never been the type of programmer who likes listening to music while coding, or is even able to listen to music while doing serious mental work without getting distracted and spending a lot of time play-acting the drummer. If I were to listen to anything it would have been along the lines of <a href="http://simplynoise.com/">SimplyNoise</a>, but I didn’t.
+</li>
+<li>
+Unlike what I had seen in livestreams from previous years, the folks at Google have provided a black privacy screen for everybody that blocks three sides of my computer monitor, which is a little disappointing because I brought Pyrion the nanoblock Charizard all the way from home and now I don’t have any spot to show him off :(
+</li>
+</ul>
+<a href="/img/privacy-screen.jpg"><img src="/img/privacy-screen.jpg?w=660" alt="[Outside of my privacy screen]" width="660" height="373" class="aligncenter size-large wp-image-3375" /></a>
+<hr />
+<p>Interlude: For lunch, one of the Chinese/Taiwanese board members or something gathers all the Chinese/Taiwanese contestants for lunch, so we sit together. (Enjoy the political discomfort in the previous sentence.) He is quite impressed when I tell him I’ve only graduated from high school. We talk about contestants who spend obscene amounts of time training for college programming competitions.</p>
+<p>For today’s lunch I build my own sandwich from Google-provided materials. There’s also a curious sandwich-grilling machine, which I attempt to use under the guidance of an organizer, but I don’t get it to work. Even without grilling, though, the sandwich is still very good. <a href="/img/sandwich.jpg"><img src="/img/sandwich.jpg?w=660" alt="[My custom-built sandwich in a griller that doesn&#039;t seem to work]" width="660" height="373" class="aligncenter size-large wp-image-3376" /></a> Wow, that was a short interlude.</p>
+<hr />
+<p>[caption id=“attachment_3377” align=“aligncenter” width=“660”]<a href="/img/workstation.jpg"><img src="/img/workstation.jpg?w=660" alt="[Inside of my workstation, with a countdown to the World Finals on the screen]" width="660" height="373" class="size-large wp-image-3377" /></a> I guess this Pyrion cameo will have to do[/caption]</p>
+<p>And so the actual finals happen.</p>
+<p>I struggled hard enough to maximize my score that I don’t have a lucid, chronologically arranged narrative to give. You can piece it together from my submission times (just note that I opened A-large in the last few minutes of the competition for lulz — I never had a program with a serious chance of solving it), and maybe my screencast if that ever gets posted. Instead, an atemporal overview:</p>
+<p>Alas, I was nowhere as clear-minded at the finals as I was in Round 3. I’m pretty bad under pressure. Having my desktop being recorded probably also worsened it a little, though not enough that I’d blame it for anything. While doing <a href="https://code.google.com/codejam/contest/5224486/dashboard#s=p1">B. Campinatorics</a>, I fumbled with rederiving the recursive formula for derangements for way too long. I also think that strategically, I spread myself too thin at the end, changing between thinking about different problems too frequently.</p>
+<p>Still, placing at the exact same rank as <a href="http://www.go-hero.net/jam/15/multilang">my language count</a> this year is a nice coincidence.</p>
+<p>And I learned a lot. Unfortunately I probably won’t get a chance to apply them for a long while (I’m more miffed about this than about not placing too highly), so I better write them down.</p>
+<p>(Interruption from future me: not so fast, cowboy… ACM preliminaries are today!)</p>
+<ul>
+<li>
+<p>Lesson of <a href="https://code.google.com/codejam/contest/5224486/dashboard#s=p0">A. Costly Binary Search</a>: Look for low dimensions to brute force or enumerate against.</p>
+<p>Darn, I spent so much time on this just to get the small input. It should be clear that the standard DP in this problem has Θ(n²) states with Θ(n) calculation per state. At first, I thought the index chosen as the root would be monotonic for a while, which would reduce each calculation to amortized Θ(1), as explained in the IOICamp book I brought with me. So I coded and submitted this naïvely; it was incorrect. Then after lots of thinking, I wondered if it was bitonic and I could sort-of binary search for the correct roots of each range, but midway through coding a solution using that, I figured out that it wasn’t true either. Consider, for instance, the segment 9,1,4,2,5:</p>
+<ul>
+<li>
+9 as root: height 16
+</li>
+<li>
+1 as root: height 10
+</li>
+<li>
+4 as root: height 14
+</li>
+<li>
+2 as root: height 12
+</li>
+<li>
+5 as root: height 15
+</li>
+</ul>
+<p>Bloody awful. And even if computing each state could be O(1) or amortized to be such, merely having Θ(n²) states is too many for the large input anyway.</p>
+<p>I considered binary-searching the answer somehow, but it didn’t work. It took me a really long time to start looking for other ways to define the DP states. I felt really clever when I realized the second index could be the worst-case cost (dimension Θ(d log n), d = the maximum element of the array, or 9; in practice, about 120 for small and 180 for large) instead of an index into the array. Even with Θ(n) calculation per state (trying each possible root), this was fast enough to do the small input: Θ(nd log n). So, at 2h50m into the competition, I finally solved the small input this way.</p>
+Alas, I didn’t carry this line of reasoning through to its finish to get Θ(d) calculation. Pity; in hindsight, this step from the small input to the large input seems easier than the insight to get from the naive Θ(n³) to the small input, but it’s worth so many more points.
+</li>
+<li>
+<p>Lesson of <a href="https://code.google.com/codejam/contest/5224486/dashboard#s=p2">C. Pretty Good Proportion</a>: Comparing against 0 is much easier than comparing against other numbers. (To a lesser extent, the lesson is also that prefix sums are good, but I definitely considered those and by themselves they didn’t get me anywhere. I’m not sure if this makes missing the insight more or less justified.) In hindsight I feel even more foolish here because this was a lesson I thought I learned from <a href="http://usaco.org/index.php?page=viewproblem2&amp;cpid=419">Sabotage (USACO 2014 March Gold)</a>, which is similar to this problem in some respects.</p>
+<p>I think this problem would have been pretty much trivialized if I had had this thought — instead of comparing the actual proportion to the desired one, you compare the actual proportion minus the desired one to zero, which sounds stupid but is actually perfect because “actual proportion minus desired” is the average of an additive quantity on ranges, so you un-average it and take prefix sums and you’re done! Compared to this, Sabotage still requires an additional binary search to be solved.</p>
+<p>I only listed two always-fire triggers for programming competition problems when I wrote <a href="//blog.vero.site/post/rise">Rise from the Ashes</a>, so I think this ought to be the third.</p>
+<ol>
+<li>
+Binary search the answer!
+</li>
+<li>
+Use a scan line!
+</li>
+<li>
+Comparing against 0 is much easier than comparing against other numbers!
+</li>
+</ol>
+</li>
+<li>
+<p>Lesson of <a href="https://code.google.com/codejam/contest/5224486/dashboard#s=p3">D. Taking Over The World</a>: I’m not in IOI-syllabus-restricted lands any more; I need to get more comfortable with reducing problems to max-flow.</p>
+<p>I actually max-flowed the small input using a template from IOICamp 2014. It worked. I was fortunate to have copied my competitive programming folder onto my USB. (The reduction is straightforward: you want the min-cut on the graph from the entrance to the goal where vertices have capacity 1, so you use the well-known vertex-splitting trick, converting each vertex into an incoming and an outgoing vertex between which there’s an edge of capacity 1. This usually works because the min-cut usually only needs edges between two vertices we split from one, as cutting an edge between two split-vertex pairs is usually no better than cutting the edge between either the split-vertex pair before or after it. But emphasis on “usually”: you can’t obstruct the entrance or goal vertices (or rather, you <em>always</em> want to obstruct the entrance vertex, so you might as well already count the delay from including it and then ignore said obstruction), so if there’s an edge directly from the entrance to the goal, the min-cut will include it even though you don’t want that edge to be cuttable. That was the bug causing my wrong tries. I was fortunate that it was a special case that was very easy to handle and that the first test input I randomly typed revealed it.)</p>
+Conclusion: I should write and test my own max-flow for my own codebook for more comfort. (In fact, as of the day after the contest, I have already done this.)
+</li>
+<li>
+<p>Lesson of <a href="https://code.google.com/codejam/contest/5224486/dashboard#s=p4">E. Merlin QA</a>: um… I have no idea. GG this is too hard. The only thing I can honestly claim to have learned is that I should be more creative with small input submissions when I am out of ideas. That palindrome problem I unexpectedly solved at the last NPSC comes to mind.</p>
+<p>There is a stupid solution for small input: put the recipes into 4 categories, depending on the signs of x and y (picking a side to put 0), and always use all the recipes in one category together. Then you only need to test 4! ways to arrange the categories. Actually, you really only need 2! cases since it’s always optimal to use the all-negative recipes first and the all-positive recipes last.</p>
+<p>I tried this during the contest. It was wrong.</p>
+<p>Less stupid solution, submitted by peter50216, that somehow works: put the recipes into 8 categories, this time considering the signs of x, y, and x + y. Test 8! or just 6! cases.</p>
+<p>What?</p>
+(Exercise for the reader: this algorithm passes the small input, but does it <em>actually</em> work? I think we discussed it after the contest and arrived at a conclusion, but I don’t remember what the conclusion was.)
+</li>
+<li>
+Lesson of <a href="https://code.google.com/codejam/contest/5224486/dashboard#s=p5">F. Crane Truck</a>: I have no idea again. This is easy to explain conceptually and handwave some good asymptotics for, but I am skeptical I could implement it correctly even if you gave me 24 hours. I guess I’d have to practice implementing tricky things under time pressure, although this seems difficult to learn efficiently for competitive coding. Darn.
+</li>
+</ul>
+<p>So the contest ends, and we are escorted to a cafe in Google a few corridors away, featuring weird food and drinks like tooth-meltingly sour lemonade. There, I discuss the problems with the other contestants from Taiwan and learn how to solve A-large, C-large, and D-small. We use the Internet, eat weird food, and wander around. I get to see tourist play ping-pong for a little bit.</p>
+<p>Then we are back to the competition room for the explanation of problems and revealing of the final leaderboard. tourist so OP. Well, at least I solved enough to spend a fraction of a second on top; this was not true of everybody. (I didn’t expect to get higher than 24th place at all. My penalty was large, and it seems really hard to get B-small and fail B-large, so there were barely any contestants who could conceivably fall below me from the optimistic scores. It was a pleasant surprise just to move up one rank.)</p>
+<p>Also, at some point, one of the staff members remarked on how during the last few minutes of the competition, everybody else seemed so tense but I was just sitting there laughing my (insert body part here) off. :) I think this is my defense mechanism. Don’t take life too seriously and all that.</p>
+<p>The awards were given out, and we had a group picture where I totally leapt out of rank at the wrong moment because somebody said the trophy, a plaque on the bottom supporting LEGO on the top that said “code jam”, had broken — amazingly, not the LEGO part.</p>
+<p>Then it was time to pack up and leave. I asked one of the staff members how much of the stuff on my desk I could take; he said I could take everything non-electronic, as well as the earphones. Thanks to this, I now have an extra pencil, an extra pen, an extra notebook, a whole lot of graph paper, a Code Jam mousepad, an extra pair of earphones that features a microphone and play/pause button, and a cool black plastic strip with my handle in clean white Roboto letters on the front and two Velcro patches on the back (which had been attached to the privacy screen during the competition).</p>
+<p>Huh. The more of this stuff I get, the more I feel like the $100 cash prize for finalists below third place is completely negligible in Google’s expenses in holding this competition.</p>
+<p>The night is spent at Hard Rock Cafe. A table of contestants from Taiwan naturally forms, and we get to eat dinner and fiddle with a tricky Rubik’s Cube and play checkers. <a href="/img/silver-cube.jpg"><img src="/img/silver-cube.jpg?w=660" alt="silver-cube" width="660" height="373" class="aligncenter size-large wp-image-3378" /></a> [caption id=“attachment_3379” align=“aligncenter” width=“660”]<a href="/img/bad-checkers.jpg"><img src="/img/bad-checkers.jpg?w=660" alt="[Badly setup checkerboard]" width="660" height="373" class="size-large wp-image-3379" /></a> wait a sec, I don’t think this is how checkers work ._.[/caption]</p>
+<p>Then there are s’mores, which we get the ingredients for and somehow make over a pot of glowy firey stuff. I don’t really know what’s happening but it’s cool.</p>
+<p>And that’s another day.</p>
+<h3 id="distributed-code-jam-seattle-tour">Distributed Code Jam / Seattle Tour</h3>
+<p>Yet another complimentary breakfast later:</p>
+<p>Since Google isn’t livestreaming the Distributed Code Jam, Code Jam contestants aren’t allowed to tag along, so we get the whole day to ourselves, ostensibly to tour Seattle.</p>
+<p>That leaves me with two other people from Taiwan as possible candidates for tagging along with non-awkwardly. I consider staying at the hotel just doing 18.06, but decide not to after Kai-Chi contacts me. As far as we can tell, Peter has disappeared so it’s just the two of us. We look at our <a href="http://www.citypass.com/seattle">CityPass™s</a> (linked, by request of a Community Manager who sent me an email, because I’m just that nice) and at his phone’s map, and walk to the area with lots of attractions; it’s not too far. On the way, we enter a Walgreens and see an automatic bike rental stand that also has a bin with helmets. (Taiwan has automatic bike rental stands, but they don’t come with any helmets, and most people, including me, bike without them. Hmm…) <a href="/img/space-needle.jpg"><img src="/img/space-needle.jpg?w=170" alt="[Space Needle]" width="170" height="300" class="aligncenter size-medium wp-image-3380" /></a> The first thing we see is the Space Needle, but there are long queues to go up so we decide to eat lunch first. After scouting around and comparing our options we choose Mod Pizza and look at the Distributed Code Jam questions on his phone. <a href="/img/mod-pizza.jpg"><img src="/img/mod-pizza.jpg?w=660" alt="[Two Mod Pizzas or something]" width="660" height="373" class="aligncenter size-large wp-image-3381" /></a> After lunch we see the Space Needle queues are even longer so we give up and look for the other CityPass™ attractions, nearly all of which have long queues. Trying to use a CityPass on a Saturday isn’t such a good idea.</p>
+<p>Eventually, though, we end up at EMP, a cool museum of sorts that doesn’t have intolerable queues, or indeed any queues at all.</p>
+<p>There are lots of cool exhibits. In fact, even before we get to the exhibits, there are lots of cool things outside the museum, like a series of tubes with pool balls on elastic strings that you can pull to make the tubes sound. And before we get to the place where a staff member looks at our tickets, there are a bunch of Wii Us without a corresponding crowd of people who want to play one. I’ve never played one before. The controls are pretty cool, but in the game I cannot figure out how Kirby is supposed to damage King Dedede at all; there doesn’t seem to be anything I can suck up and spit back at him. Darn. <a href="/img/dedede.jpg"><img src="/img/dedede.jpg?w=660" alt="[Kirby game on a Wii U]" width="660" height="373" class="aligncenter size-large wp-image-3382" /></a> Inside EMP, there are three exhibits we spend the most time on. First, there’s an exhibit on the horror genre with, among other things, a screen that adds various monstrous effects to your shadow: [caption id=“attachment_3383” align=“aligncenter” width=“170”]<a href="/img/shadow-fx.jpg"><img src="/img/shadow-fx.jpg?w=170" alt="[A silhouette of me with spooky addons]" width="170" height="300" class="size-medium wp-image-3383" /></a> 3spooky5me[/caption] There’s an Indie Games exhibit sponsored by Nintendo, with lots of games. Cool! The first (functioning) game I play is a two-player cooperative game where we are neon-colored things in a neon-colored spaceship and have to walk and climb around the spaceship to control its thrusters or its turrets or its shield, each of which is some distance from the others, so one player can only control one at a time and cooperation is really important. The first player I have to cooperate with is a child that I’d guess to be a pre-schooler or thereabouts. We spend a lot of time doing nothing in empty space because I have no idea how the game works; then I wander into the seat controlling the ship’s boosters and realize there are critters (sheep? I can’t really remember) highlighted on the radar that we have to rescue, so I fire up the thrusters and we move around the map and enemies appear and nobody is controlling the turrets and, despite my best efforts thrusting about panickedly, we are promptly slaughtered.</p>
+<ins datetime="2015-09-21T01:59:40+00:00">
+(edit: if you are curious, chaotic_iak has identified this game as <a href="http://www.loversinadangerousspacetime.com/">Lovers in a Dangerous Spacetime</a>. Also, according to the Steam description, the critters are space-bunnies.)
+</ins>
+<p>The kid’s mom suggests to him that they play something else, so now it’s me and another player and this time we survive a bit longer and actually save some of the things-that-might-be-sheep before dying. Yay.</p>
+<p>(It’s so exciting that I don’t get any pictures. Oh well.)</p>
+<p>We watch somebody else play some sort of vaguely hacking/programming-related game for a while. I only watch one scene, where the kid has to type something like <code>open(3)</code> into the terminal to open a door. As an instruction manual in the room says, <code>open(3)</code> opens the door for 3 seconds, so under the guidance of his father, the kid types it into the terminal. The door opens and the kid turns his character to jump towards the door. Unfortunately, his maneuvers are too slow; the door closes before he gets there. Undeterred, he goes back to the terminal and types <code>open(99999999)</code>. Ha. Future QA material right there.</p>
+<p>The door opens, the kid leaps through it calmly, and then an alarm sounds, closing a second, previously open door beyond it. It’s an alarm that activates if the first door opens for more than 3 seconds, apparently. So the player really is supposed to open the door for 3 seconds and quickly jump through, which the kid does, this time successfully.</p>
+<p>And there’s this weird game I don’t even: <a href="/img/watgame.jpg"><img src="/img/watgame.jpg?w=660" alt="[A really weird video game I don&#039;t know how to write alt text for, sorry]" width="660" height="373" class="aligncenter size-large wp-image-3384" /></a> But the game we spend the most time on mostly is this interesting puzzle game with dexterity elements called Blek. How it works is you’re supposed to draw a path that doesn’t hit any dots. When you release your finger or hit a dot, this path gets repeated: a copy of the path you drew starts animating, translated to start at the point your path ended; when that path ends, another translated copy starts; and so on. The periodic sequence of copies stops when it hits any black dots or the top or bottom edges of the screen. (It reflects off the left and right edges, although I don’t think we got any puzzles where this was necessary or even helpful.) The goal is to make the periodic path pass through all the colored dots before hitting any black dots. It is quite interesting once we figure out what’s happening. <a href="/img/blek-h.jpg"><img src="/img/blek-h.jpg?w=660" alt="[Photo of a level of this puzzle game called Blek]" width="660" height="373" class="aligncenter size-large wp-image-3385" /></a> Finally, upstairs we find a bunch of music interactives that teach you how to play keyboard or guitar, or how to mix music, or how to do the DJ disk-scratching thing. There are even recording rooms with legitimate soundproof walls. I play a few songs on the guitar. At first I do this facetiously because I am thinking I can always play all the guitar I want at home, but then I remember I’m heading to college and I did not bring my guitar.</p>
+<p>Thus ends our tour. To go back, we take an electric rail. By the time we get off, I am quite thirsty, and we see an ideal-looking vending machine the instant we get out of the carriage, but after trying and failing to make it accept half a dozen different one-dollar bills, we give up.</p>
+<p>Kai-Chi says he wants to visit the Starbucks that started the franchise. I decide to follow on the condition we find something to drink first. Eventually we stumble into a 7-Eleven (!), in which I find a shelf full of Gatorade with creepy colors. I pick out what might be the single normal-looking flavor, Lemon Ice, and we each get one bottle, since there’s a big discount for buying two at once.</p>
+<p>After more wandering, we get to the Starbucks, where there is… an intolerable queue. [caption id=“attachment_3386” align=“aligncenter” width=“660”]<a href="/img/1912-starbucks.jpg"><img src="/img/1912-starbucks.jpg?w=660" alt="[The original Starbucks]" width="660" height="373" class="size-large wp-image-3386" /></a> (to be clear, this photo was taken from the side of the front of the queue; the queue contains on the order of a hundred people to the left of this photo)[/caption] After taking a few pictures I decide I feel too tired and unmotivated to wait, so I say goodbye to Kai-Chi and we split up. I get a few moments to relax in my hotel room.</p>
+<p>Finally, at 7 PM we head to Gameworks, which is really right across from the Sheraton, and form another table of people from Taiwan. This time the <cite>Settlers of Catan</cite> board game is on our table but the other Taiwanese guys don’t seem very interested in playing. Dinner consists of salad, pasta, weird appetizers, and really good brownies. But this isn’t really about the food, of course; it’s about the games — as you might have guessed from the title, GameWorks has lots and lots and lots of arcade games. And we each get one-hour passes, cards that allow us to play whatever arcade games we want for sixty minutes after we first swipe the card (excepting games that offer prizes such as claw cranes, for obvious reasons).</p>
+<p>At first we pool our cards together and try to strategically stagger when we start using them for maximal effect, but at some point while I’m wandering around the big game complex, the organizer bumps into me and says “Do you want any more passes?” Then she stuffs three more passes into my hand. So we throw the conservation plan out the window and just play all we want. We spend the most time playing rhythm games, particularly Dance Dance Revolution. Wow. DDR is exhausting. DDR involves capital-S Serious cardiac activity. I had no idea. <a href="/img/rhythm.jpg"><img src="/img/rhythm.jpg?w=660" alt="[Kai-Chi plays a rhythm game]" width="660" height="373" class="aligncenter size-large wp-image-3388" /></a> <a href="/img/ddr.jpg"><img src="/img/ddr.jpg?w=170" alt="[Taiwan Code Jammers furiously DDRing]" width="170" height="300" class="aligncenter size-medium wp-image-3387" /></a> It seems an anticlimactic place to end the narrative, and I even said as much in the feedback survey they gave us, but this is actually how the Google Code Jam events end. I chat a little with the rest of the Taiwanese group while walking back to the hotel; the next day, I eat my fourth and final complimentary breakfast, pack up my stuff, and call Eddy to pick me up. Thus one chapter ends and the next begins.</p></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/arcade-games"><span class="tag">Arcade Games</span></a></li>
+			
+			<li><a href="/tag/competitions"><span class="tag">Competitions</span></a></li>
+			
+			<li><a href="/tag/games"><span class="tag">Games</span></a></li>
+			
+			<li><a href="/tag/google-code-jam"><span class="tag">Google Code Jam</span></a></li>
+			
+			<li><a href="/tag/starbucks"><span class="tag">Starbucks</span></a></li>
+			
+			<li><a href="/tag/video-games"><span class="tag">Video Games</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/puzzle-48">← Puzzle 48 / Double Back</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/signature-puzzle">A Signature Puzzle →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ice Barns on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/ice-barns</link>
+    <description>Recent content in Ice Barns on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 22 Nov 2012 20:59:38 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/ice-barns/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Puzzle 33 / Ice Barns</title>
+      <link>//blog.vero.site/post/puzzle-33</link>
+      <pubDate>Thu, 22 Nov 2012 20:59:38 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-33</guid>
+      <description>&lt;p&gt;Noticed this at &lt;a href=&#34;http://meanderlawn.blogspot.tw/&#34;&gt;meander lawn&lt;/a&gt; who has a really broad puzzle blogroll… I don’t really know what I’m doing and may have misinterpreted something, but here goes. (Ahahaha puzzle 33 on 11/22… I wish it was intentional :P)&lt;/p&gt;
+&lt;p&gt;Draw a path through square centers which enters and exits through the given places. Outside the “ice barns” (the gray things), the path may turn freely but may not self-intersect; inside “ice barns” the path may self-intersect but may not turn. Each ice barn (not necessarily every cell but every region, I think) must be passed over. The path must pass through each given arrow in the given direction.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

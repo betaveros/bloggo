@@ -6,10 +6,19 @@
     <description>Recent content in Algorithms on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Dec 2012 22:08:28 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2015 23:22:35 +0800</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/tag/algorithms/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A*</title>
+      <link>//blog.vero.site/post/a-star</link>
+      <pubDate>Mon, 20 Jul 2015 23:22:35 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/a-star</guid>
+      <description>Nope, still no meaningful post today. Instead here is a pretty diagram of the A* search algorithm (A-star in English, for my search crawler overlords). At least, I hope it is; I spent more time fiddling with the pretty colors than making sure the algorithm I implemented was actually A*. It looks right, though? In the background, red component measures traversed distance from start, (inverted) green component measures difference between the traversed distance plus heuristic distance and the theoretically optimal heuristic distance from the start, blue component measures heuristic distance to goal.</description>
+    </item>
     
     <item>
       <title>Ridiculously Long-Winded Programming Babble</title>

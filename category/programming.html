@@ -141,12 +141,84 @@ Category → programming
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/jam" class="post-link">Jam-Packed Fun and Games</a></h3>
+		
+		<p class="post-meta">
+		
+		2015-09-21
+		(4772 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>, <a href="/category/programming">Programming</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Did I say “fun”? That was short for function calls. Which are fun too, admittedly. Blah, I always go to such lengths to come up with snappy yet justified post titles and end up achieving neither.</p>
+<p>One more complimentary breakfast later:</p>
+<p>This is it.</p>
+<p>Google Code Jam World Finals. <a href="/img/nametag.jpg"><img src="/img/nametag.jpg?w=170" alt="[Google Code Jam 2015 name tag with my name and handle and country]" width="170" height="300" class="aligncenter size-medium wp-image-3374" /></a> Let me take a moment to reflect. Seriously. I do not know how I made it this far this year. I guess I might be a top-500-ish competitive programmer globally, maybe even top-150-ish, but definitely not top-25-ish. And <a href="https://code.google.com/codejam/contest/4254486/dashboard#s=p3">Log Set</a>, the hard problem that got me through Round 3, doesn’t seem like it plays to my forte particularly either. It’s a bit mathy, but the math bits aren’t the hard part; I think it’s largely implementation, with one psychological hurdle where you have to realize that, because of how few distinct integers there are in S′, you can efficiently solve the subset-sum instances you need to produce the lexicographically earliest answer. I’m actually kind of impressed I got that. It seems like the sort of hurdle I usually get stuck on. How did this happen?</p>
+<p>Maybe randomness. Maybe I was just particularly clear-minded during the round and wrote less buggy code than usual, because I had no expectation of making it whatsoever and so could look at the contest detachedly (until midway through the contest I accidentally noticed that my rank was under 20, and even then I tried very very hard not to think about it, and it kind of worked).</p>
+<p>But it happened, and now I’m here. Time to roll.</p>
+<p>In some emails much earlier in the Code Jam logistical process, Google had asked for “requests for changes and/or additions” to the software that would be installed on our competition computers, and I had sent them a long list:</p>
+<blockquote>
+<p>Hi,<br /> Here are some things I’d like if they were installed, in decreasing order of priority:</p>
+<ol>
+<li>
+The Vim plugin syntastic ( https://github.com/scrooloose/syntastic )
+</li>
+<li>
+a Haskell compiler (probably Haskell Platform 2014.2.0.0 https://www.haskell.org/platform/ even though it’s a year old)
+</li>
+<li>
+the Haskell package hdevtools ( https://hackage.haskell.org/package/hdevtools ) so that the above two may be integrated
+</li>
+<li>
+(I don’t have enough Linux experience to name a specific thing to install, but command-line utilities that are the equivalent of pbcopy and pbpaste on Mac OS X, which allow me to redirect text into or out of the clipboard from the command line easily)
+</li>
+</ol>
+Of course, this is my first Code Jam and I don’t know how reasonable these requests are. Any nontrivial subset would be appreciated.
+</blockquote>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/jam">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/a-star" class="post-link">A*</a></h3>
+		
+		<p class="post-meta">
+		
+		2015-07-20
+		(144 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/programming">Programming</a>, <a href="/category/randomness">Randomness</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	Nope, still no meaningful post today. Instead here is a pretty diagram of the A* search algorithm (A-star in English, for my search crawler overlords). At least, I hope it is; I spent more time fiddling with the pretty colors than making sure the algorithm I implemented was actually A*. It looks right, though? In the background, red component measures traversed distance from start, (inverted) green component measures difference between the traversed distance plus heuristic distance and the theoretically optimal heuristic distance from the start, blue component measures heuristic distance to goal.
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/a-star">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/phone" class="post-link">Phone</a></h3>
 		
 		<p class="post-meta">
 		
 		2015-07-15
-		(1428 words)
+		(1413 words)
 		
 		<span class="post-categories">
 			filed under
@@ -165,6 +237,31 @@ Category → programming
 <p></p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/phone">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/chi-banner" class="post-link">Chi Banner</a></h3>
+		
+		<p class="post-meta">
+		
+		2015-07-14
+		(318 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/programming">Programming</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	Okay, I think I’m figuring this out. When I make a filler post for the streak, it should be an unabashed filler post, so I can accumulate some of the blogging time I find each day to work on a serious post (and for doing the other important stuff I should be doing!) instead of wasting it right away.
+Life. I’m programming something for Dad involving a parser using Jison, and one of the tasks involved stuffing a custom lexer into the parser.
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/chi-banner">→ read more</a>
 	</footer>
 </article>
 
@@ -336,112 +433,6 @@ Category → programming
 <p>As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it. </p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/cabal">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/time" class="post-link">The Sands of Time</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-12-31
-		(1489 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>, <a href="/category/programming">Programming</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Random video! Although I feel that I’ve heard it earlier, my first conscious memory of getting linked to it is from <a href="http://usamoarchive.wordpress.com/2012/03/01/youre-older-than-youve-ever-been/">this post</a>. At first I thought it would be the right background music for this post, but upon further reflection I think it mainly suited me while I was writing this post. Well, it’s topical if you mentally replace “day” with “year”.</p>
-
-<div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
-  <iframe src="//www.youtube.com/embed/q2bo_u_YmW8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="YouTube Video"></iframe>
- </div>
-
-<p>Anyway. Around this time a year ago, I paused my participation in big high-school competitions, for a variety of reasons.</p>
-<p>Firstly, I stopped attempting to make IMO both because I wouldn’t get that much from the training and because other people ought to have the opportunity. I was concerned that I might condition myself to only be able to do math with the short-term motivation of contests. Better to focus on college math and maybe some original research, I thought. During the year, I did lots of the former and very little of the latter. Meh.</p>
-<p>As for the IOI, my obvious next target: I was tired of training and going abroad while paranoid about whether my immune system would hold up. I didn’t feel that the IOI was worth that. To some degree, I also felt burned out about programming. Long story short, my treatment should end soon, and learning Haskell completely resolved the burnout problem.</p>
-<p>But the most important reason, I think, was that “high school was too short”. I started math competitions ridiculously early and didn’t spend much time exploring other interests. I thought I knew myself well enough that I could say I didn’t have many more interests at all, but I was completely wrong (psych nerds will reflexively note this to be the <a href="https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect">Dunning-Kruger effect</a>). I coded lots in weird languages — Haskell, as mentioned previously, plus Scala, plus all manner of other magical command line tools. I wrote my first math problem and submitted it officially, picked up a new instrument, went to a debate competition, served as an unimportant tech guy for MUN, discovered and became hooked on Pentatonix, participated in three puzzle hunts in Australia and one in Massachusetts, figured out my rough political stance, rode a boat, got retweeted by <span class="citation" data-cites="eevee">@eevee</span> and <span class="citation" data-cites="Kyrgyzstan_News">@Kyrgyzstan_News</span>, increased my Neopets™ fortune by over 3400%, and lurked on FurAffinity a little too much.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/time">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/haskell" class="post-link">Haskell and Primes</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-05-25
-		(682 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/math">Math</a>, <a href="/category/programming">Programming</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-“I have been told that any encryption becomes safer if the underlying algorithm is maximally obscured, what is most conveniently done by coding it in Haskell.” – rankk
-</blockquote>
-<p>Functional programming is terribly addicting! Partly I think the completely different way of thinking makes it feel like learning programming, and falling in love with it, all over again. Partly there’s this evil sense of satisfaction from using <code>$</code>s (and later <code>&lt;$&gt;</code>s and <code>=&lt;&lt;</code>s and <code>&amp;&amp;&amp;</code>s) to improve readability for initiated Haskellers and worsen it for everybody else. Partly it’s because <a href="http://learnyouahaskell.com/"><i>Learn You a Haskell for Great Good!</i></a> is such a fun read — there are too many funny bits to list but my favorite so far is when the author analyzes the first verse of Avril Lavigne’s <em>Girlfriend</em>.</p>
-<p>Although I think my code in Haskell tends to be more readable than in other languages, code obfuscation in Haskell is almost natural: all you have to do is refactor the wrong function to be “pointfree”, which means that even though it’s a function that takes arguments, you define it without parameters by manipulating and joining a bunch of other functions. Example (plus a few other tiny obfuscations):</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><div class="sourceLine" id="1" href="#1" data-line-number="1">isPrime <span class="fu">=</span> liftA2 (<span class="fu">&amp;&amp;</span>) (liftA2 (<span class="fu">$</span>) (all <span class="fu">.</span> ((<span class="fu">.</span>) (<span class="dv">0</span> <span class="fu">/=</span>)) <span class="fu">.</span> rem) (flip</div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">    takeWhile [<span class="dv">2</span><span class="fu">..</span>] <span class="fu">.</span> (flip (<span class="fu">.</span>) <span class="fu">$</span> liftA2 (<span class="fu">*</span>) id id) <span class="fu">.</span> (<span class="fu">&gt;=</span>))) ((<span class="fu">&lt;</span>) <span class="dv">1</span>)</div></code></pre>
-<p>QQ wordpress why no Haskell highlighting <ins>(Editor’s note from 2017: The migration should highlight this now!)</ins></p>
-<p>Also, for some reason, you can do this in Haskell:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><div class="sourceLine" id="1" href="#1" data-line-number="1">ghci<span class="fu">&gt;</span> <span class="kw">let</span> <span class="dv">2</span> <span class="fu">+</span> <span class="dv">2</span> <span class="fu">=</span> <span class="dv">5</span> <span class="kw">in</span> <span class="dv">2</span> <span class="fu">+</span> <span class="dv">2</span></div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="dv">5</span></div></code></pre>
-<p>(via <a href="http://www.yellosoft.us/evilgenius/">Haskell for the Evil Genius</a>)</p>
-<hr />
-<p>Okay, but seriously now. I wrote this about my journey to learn functional programming in the <a href="//blog.vero.site/post/programming">programming babble post</a> half a year ago:</p>
-<blockquote>
-The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes).
-</blockquote>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/haskell">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/scala" class="post-link">Adventures in Scala Pseudo-Abuse</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-02-21
-		(1624 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/programming">Programming</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>So, what have I been doing with programming recently?</p>
-<p><a href="http://www.scala-lang.org/">Scala</a> is an amazing multiparadigm programming language that runs on the Java Virtual Machine and interoperates with Java. I learned about it last time reading random articles on Twitter.</p>
-<p>When I say “amazing” I mean “This is a language in which my code gives me nerdgasms every time I read it.” Wheeee.</p>
-<p>Okay, it’s not perfect. People say it’s too academic. It has a notoriously complicated type system (which is <a href="http://scientopia.org/blogs/goodmath/2013/01/21/types-gone-wild-ski-at-compile-time/"><em>Turing-Complete</em> at compile time</a>). Its documentation is a bit patchy too. For a serious introduction, the Scala website has plenty of links under documentation, and a <a href="http://www.scala-lang.org/node/104">tour of features</a>. Somebody wrote <a href="http://www.naildrivin5.com/scalatour">another tour</a> that explains things a bit more. So here, instead of introducing it seriously, I’m just going to screw with its features.</p>
-<p>Example of freedom. Scala lets names consist of symbols, and treats one-parameter methods and infix operators exactly the same. The full tokenization rules are a bit detailed and I put them at the bottom of this post for the interested. This lets you create classes with arithmetic and domain-specific languages easily, but it also creates some silly opportunities:</p>
-<pre><code>scala&gt; val * = 12
-*: Int = 12
-
-scala&gt; * * * * *
-res0: Int = 1728</code></pre>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/scala">→ read more</a>
 	</footer>
 </article>
 

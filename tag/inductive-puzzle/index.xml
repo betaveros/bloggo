@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Inductive Puzzle on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/inductive-puzzle</link>
+    <description>Recent content in Inductive Puzzle on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 19 Nov 2013 00:00:26 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/inductive-puzzle/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Puzzle 44 / ???</title>
+      <link>//blog.vero.site/post/puzzle-44</link>
+      <pubDate>Tue, 19 Nov 2013 00:00:26 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-44</guid>
+      <description>&lt;ins datetime=&#34;2013-11-18T23:20:18+00:00&#34;&gt;
+Edit 11/19 7:23 AM UTC+8: Fixed some transcription errors on right: &lt;strong&gt;R4C17 is D instead of N, and R15C17 is G instead of E.&lt;/strong&gt; Neither change should greatly impact solvability. Thanks to ksun for pointing out an error.
+&lt;/ins&gt;
+&lt;p&gt;Logic puzzles are easy to construct if one doesn’t have some specific pattern or theme in mind. It’s just that, given the increasing number of constructors and puzzles with amazing themes, I don’t think it’s very meaningful for me to just construct more puzzles of the same genres by putting down clues randomly. That’s why, for my seventeenth birthday, I took the puzzlehunt route and made something without instructions that is not completely solved by logical deduction. Still, I’ve provided all the information needed to do this puzzle initially, so I hope my not getting the inductive bits test-solved can be excused.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

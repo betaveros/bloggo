@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Back from Math-Camp Post...</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="Note: My 2009 self wrote this. It is preserved for historical interest and amusement, and as a testament to how far I’d go to typeset math equations in ASCII art.
+ I have just come back from a week of continuous mathematics, board gaming, and hitting people with sticks to ensure that they get up in time. Yippee! Those problems sure do get around.
+Sample problem: This problem rocks!
+
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/back-from-math-camp" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Back from Math-Camp Post...</h1>
+		
+		<p class="post-meta">
+		
+		2009-08-13
+		(534 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><div class="warning">
+<p><strong>Note</strong>: My 2009 self wrote this. It is preserved for historical interest and amusement, and as a testament to how far I’d go to typeset math equations in ASCII art.</p>
+</div>
+<p>I have just come back from a week of continuous mathematics, board gaming, and hitting people with sticks to ensure that they get up in time. Yippee! Those problems sure do get around.</p>
+<p>Sample problem: This problem rocks!</p>
+<p></p>
+<p>You have a bunch of positive fractions (more than one, otherwise this problem would be stupid.) When you add them all up, you get the same result as when you multiply them all together, and that result is an integer, natural number, whole number, positive integer, whatever. Which positive integers could the result be?</p>
+<p>Note that integers are included in the fractions.</p>
+<p>Example: 2 + 5 + 1 + 1 + 1 = 2 x 5 x 1 x 1 x 1 = 10<br />so for the number 10, the answer is YES.</p>
+<p>Example proof of impossibility of 2:<br />
+Let the positive fractions be denoted as a1, a2, a3, …, an.<br />
+Then, (a1+a2+…+an)/n = 2n</p>
+<pre><code>a1+a2+a3+...+an    2
+--------------- = ---
+       n           n</code></pre>
+<p>Using AM-GM (colloquially known as 算幾, for some culturally esoteric reason),</p>
+<pre><code>   _____________________    2
+n /                      &lt; ---
+\/ a1 x a2 x a3 x...x an =  n
+
+                         / 2 \ n
+a1 x a2 x a3 x...x an &lt; | --- |
+                      =  \ n /
+     / 2 \ n
+2 &lt; | --- |
+  =  \ n /</code></pre>
+<p>If n is 3 or larger, the fraction is less than 1; raising it to a power only makes it less. Plugging in 2 is no use. So, 2 can’t be done. The rest is left to the reader, who I assume is not mathematically astute.</p>
+<p>A couple minutes ago I learned about microblogging. I think that might suit me better. Or not. I like typing, playing with Ascii art inside <code>&lt;pre&gt;</code> tags. I like rambling and trying to crack a joke out of about 1,000 that will make somebody out there laugh. The problem? There’s nobody out there. Particularly, nobody who would be interested in my blog and have a good enough vocabulary to manage to figure out what I mean.</p>
+<p>This post is going to be LONG…</p>
+<p>The first thing I did before writing this post was check Arstavia. Funny how people always say things to try and convince everybody they’ll do something, and the wrong people get convinced. Human nature, I suppose. Anyway, after one week of polite, socially beneficient, mathematical pwning in the general direction, it’s back to the classic life: doing major &amp;; minor variations of nothing. I remember somebody using Omegle, the ‘chat to a stranger’ thingy. We kept telling her to say “finland” or “russia” or all kinds of crazy stuff.</p>
+<p>Her: “I’m from Russia.”<br />
+Him: “cool”<br />
+Her: “u?”<br />
+Him: “california, LA”<br />
+Her: “cool”<br />
+Him: “yeah, nice place”<br />
+her: “i know”<br />
+him: “…”<br />
+her: “i was born there”<br />
+*disconnect*</p>
+<p>Something like that. There was a nice chat with a person from China. Apparently. I know that if I went on it I would look pathetic. At first I thought ‘asl’ was something ‘second language’. Urgh.</p>
+<p>Anyway, gotta go.</p></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/winter">← Winter</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/new-goal">New Goal: 10 Keepers →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

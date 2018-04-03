@@ -6,10 +6,52 @@
     <description>Recent content in Programming on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Jul 2015 23:58:02 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2015 00:45:43 +0800</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/category/programming/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Jam-Packed Fun and Games</title>
+      <link>//blog.vero.site/post/jam</link>
+      <pubDate>Mon, 21 Sep 2015 00:45:43 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/jam</guid>
+      <description>&lt;p&gt;Did I say “fun”? That was short for function calls. Which are fun too, admittedly. Blah, I always go to such lengths to come up with snappy yet justified post titles and end up achieving neither.&lt;/p&gt;
+&lt;p&gt;One more complimentary breakfast later:&lt;/p&gt;
+&lt;p&gt;This is it.&lt;/p&gt;
+&lt;p&gt;Google Code Jam World Finals. &lt;a href=&#34;//blog.vero.site/img/nametag.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/nametag.jpg?w=170&#34; alt=&#34;[Google Code Jam 2015 name tag with my name and handle and country]&#34; width=&#34;170&#34; height=&#34;300&#34; class=&#34;aligncenter size-medium wp-image-3374&#34; /&gt;&lt;/a&gt; Let me take a moment to reflect. Seriously. I do not know how I made it this far this year. I guess I might be a top-500-ish competitive programmer globally, maybe even top-150-ish, but definitely not top-25-ish. And &lt;a href=&#34;https://code.google.com/codejam/contest/4254486/dashboard#s=p3&#34;&gt;Log Set&lt;/a&gt;, the hard problem that got me through Round 3, doesn’t seem like it plays to my forte particularly either. It’s a bit mathy, but the math bits aren’t the hard part; I think it’s largely implementation, with one psychological hurdle where you have to realize that, because of how few distinct integers there are in S′, you can efficiently solve the subset-sum instances you need to produce the lexicographically earliest answer. I’m actually kind of impressed I got that. It seems like the sort of hurdle I usually get stuck on. How did this happen?&lt;/p&gt;
+&lt;p&gt;Maybe randomness. Maybe I was just particularly clear-minded during the round and wrote less buggy code than usual, because I had no expectation of making it whatsoever and so could look at the contest detachedly (until midway through the contest I accidentally noticed that my rank was under 20, and even then I tried very very hard not to think about it, and it kind of worked).&lt;/p&gt;
+&lt;p&gt;But it happened, and now I’m here. Time to roll.&lt;/p&gt;
+&lt;p&gt;In some emails much earlier in the Code Jam logistical process, Google had asked for “requests for changes and/or additions” to the software that would be installed on our competition computers, and I had sent them a long list:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Hi,&lt;br /&gt; Here are some things I’d like if they were installed, in decreasing order of priority:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+The Vim plugin syntastic ( https://github.com/scrooloose/syntastic )
+&lt;/li&gt;
+&lt;li&gt;
+a Haskell compiler (probably Haskell Platform 2014.2.0.0 https://www.haskell.org/platform/ even though it’s a year old)
+&lt;/li&gt;
+&lt;li&gt;
+the Haskell package hdevtools ( https://hackage.haskell.org/package/hdevtools ) so that the above two may be integrated
+&lt;/li&gt;
+&lt;li&gt;
+(I don’t have enough Linux experience to name a specific thing to install, but command-line utilities that are the equivalent of pbcopy and pbpaste on Mac OS X, which allow me to redirect text into or out of the clipboard from the command line easily)
+&lt;/li&gt;
+&lt;/ol&gt;
+Of course, this is my first Code Jam and I don’t know how reasonable these requests are. Any nontrivial subset would be appreciated.
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>A*</title>
+      <link>//blog.vero.site/post/a-star</link>
+      <pubDate>Mon, 20 Jul 2015 23:22:35 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/a-star</guid>
+      <description>Nope, still no meaningful post today. Instead here is a pretty diagram of the A* search algorithm (A-star in English, for my search crawler overlords). At least, I hope it is; I spent more time fiddling with the pretty colors than making sure the algorithm I implemented was actually A*. It looks right, though? In the background, red component measures traversed distance from start, (inverted) green component measures difference between the traversed distance plus heuristic distance and the theoretically optimal heuristic distance from the start, blue component measures heuristic distance to goal.</description>
+    </item>
     
     <item>
       <title>Phone</title>
@@ -24,6 +66,16 @@
 &lt;p&gt;Besides, I’m going off to college and all. Anyway, the phone is pretty cool. It’s a slick shade of red, it came with a cover and everything, and it has one of those fancy 3x3-grid locks. How secure are those again?&lt;/p&gt;
 &lt;p&gt;Well, we could just &lt;a href=&#34;https://stackoverflow.com/questions/6979524/android-lock-password-combinations&#34;&gt;find the answer on StackOverflow&lt;/a&gt;, but that’s boring.&lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Chi Banner</title>
+      <link>//blog.vero.site/post/chi-banner</link>
+      <pubDate>Tue, 14 Jul 2015 21:21:36 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/chi-banner</guid>
+      <description>Okay, I think I’m figuring this out. When I make a filler post for the streak, it should be an unabashed filler post, so I can accumulate some of the blogging time I find each day to work on a serious post (and for doing the other important stuff I should be doing!) instead of wasting it right away.
+Life. I’m programming something for Dad involving a parser using Jison, and one of the tasks involved stuffing a custom lexer into the parser.</description>
     </item>
     
     <item>
@@ -187,6 +239,21 @@ res0: Int = 1728&lt;/code&gt;&lt;/pre&gt;</description>
       <guid>//blog.vero.site/post/debug</guid>
       <description>&lt;p&gt;Okay did I mention how I sucked at the command line? This is part of the journey towards stopping. Yes, I’m on a Mac and it’s not very *nix-y in some ways but it’s enough for me for now.&lt;/p&gt;
 &lt;p&gt;Today’s story starts when I learned about &lt;a href=&#34;https://www.gnu.org/software/gdb/&#34;&gt;&lt;code&gt;gdb&lt;/code&gt;&lt;/a&gt;, the pure-command-line GNU Debugger, which is incredibly cool. I have tried and failed to learn how to use the debug function on many of my IDEs; I found shotgunning &lt;code&gt;printf&lt;/code&gt; statements as needed faster. This may well be the first time I found a command-line tool so much more intuitive than the GUI-equipped programs. Wow.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Technological Fails Continue</title>
+      <link>//blog.vero.site/post/technological-fails-continue</link>
+      <pubDate>Wed, 15 Feb 2012 22:11:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/technological-fails-continue</guid>
+      <description>&lt;div class=&#34;warning&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2012 self wrote this. It is preserved for historical interest and amusement, and does not reflect my current beliefs or attitudes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Hardware:&lt;/p&gt;
+&lt;p&gt;The laptop I’m typing this on is over two years old. This is not a lot by some measures, but weird spontaneous glitches are starting to accumulate to the point where they’re getting on my nerves. The internet card still needs an extra reset to start working half the time, and occasionally warrants a full reboot, which costs five minutes. The USB ports are loopy, some windows just show up black when they feel like it, and there’s a steadily climbing whir in the background. I’m kind of anticipating the moment the whole thing just drops dead.&lt;/p&gt;
+&lt;p&gt;Well, I’m not about to run out of computers to use (there’s a noisy XP desktop that also barely works despite handling all our print jobs, but also one spanking new eight-core CPU laptop, which Dad considered a valuable enough investment (?)) but such a loss is still not something to be dismissed lightly. And the externalized cost is far more important and chilling. Who knows how many kids in the Congo had to mine coltan, or how much conflict has occurred over the crude oil, or what awful conditions those sweatshop-assembly workers are going through? Annie Leonard’s words still resonate with me from when we were first shown the video a year ago. Which is more recent than this laptop, so that doesn’t mean that much. I think a couple months ago I would have absolutely no second thoughts about getting a new one, though. Yup, I’m in a quandary (ha ha vocabulary) on the balance between desensitization and compulsive hoarding of stuff.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>

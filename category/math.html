@@ -141,34 +141,6 @@ Category → math
 		
 			<article class="post-entry">
 	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/ref/linalg" class="post-link">Linear Algebra</a></h3>
-		
-		<p class="post-meta">
-		
-		
-		(315 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/math">Math</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	This is a matrix.
-\[\begin{bmatrix} 1 &amp; 2 &amp; 3 \\\\ 4 &amp; 5 &amp; 6 \end{bmatrix}\]
-It has 2 rows and 3 columns, so it is a \(2 \times 3\) matrix.
-Matrix addition and multiplication-by-a-scalar is done componentwise. Matrix multiplication is done trickily; it’s associative, distributive, commutative with scalars, linear, anticommutative-under-transposition.
-Vectors are like columns of matrices, or matrices with one column. Except row vectors are rows of matrices.
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/ref/linalg">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/cimc-2015-part-2" class="post-link">[CIMC 2015 Part 2] Journey of the Blue-White Slippers</a></h3>
 		
 		<p class="post-meta">
@@ -298,35 +270,6 @@ Day 3 (Excursions)
 		
 			<article class="post-entry">
 	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/ref/rudin" class="post-link">Rudin Crib Notes</a></h3>
-		
-		<p class="post-meta">
-		
-		
-		(522 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/math">Math</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Brevity has been chosen over accuracy because the whole point is that you should know this stuff already.</p>
-<h3 id="chapter-2-basic-topology-some-ch.-3">Chapter 2: Basic Topology (+ some Ch. 3)</h3>
-<p>An <strong>isolated point</strong> of E is in E but not a limit point of it. E is <strong>perfect</strong> if it is exactly equal to its set of limit points. Equivalently, it is closed and has no isolated points. Ex. 2.44: The Cantor set is perfect.</p>
-<p>A <strong>compact set</strong> is a set for which every open cover has a finite subcover.</p>
-<p>Compactness or compact sets have these properties (with made-up names):</p>
-<p></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/ref/rudin">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/evt" class="post-link">Extreme Value Theorem</a></h3>
 		
 		<p class="post-meta">
@@ -354,72 +297,6 @@ Day 3 (Excursions)
 <p></p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/evt">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/ref/exchange" class="post-link">Operation Exchange</a></h3>
-		
-		<p class="post-meta">
-		
-		
-		(457 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/math">Math</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<h3 id="limit-limit">Limit + Limit</h3>
-<p>Cheaply, using an <a href="%7B%%20post_url%202014-10-21-iverson-bracket%20%%7D">Iverson bracket</a> expression:</p>
-<p><span class="math display">\[
-\begin{aligned}
-\lim_{a \to \infty} \lim_{b \to \infty} [a &gt; b] &amp;= 0 \\
-\lim_{b \to \infty} \lim_{a \to \infty} [a &gt; b] &amp;= 1
-\end{aligned}
-\]</span></p>
-<p>For more continuity, use <span class="math inline">\(\frac{a}{a + b}\)</span> instead (Rudin Example 7.2).</p>
-<p>Uniform convergence on one limit suffices to allow this exchange, almost by definition.</p>
-<h3 id="limit-continuity">Limit + Continuity</h3>
-<p>Let</p>
-<p><span class="math display">\[
-f_\epsilon(x) = \begin{cases} 0 &amp; \text{if } |x| \geq \epsilon \\ 1 - \left|\frac{x}{\epsilon}\right| &amp;\text{if } |x| &lt; \epsilon \end{cases}.
-\]</span></p>
-<p></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/ref/exchange">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/ref/iverson" class="post-link">Iverson Bracket</a></h3>
-		
-		<p class="post-meta">
-		
-		
-		(86 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/math">Math</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	Very simple to explain: if \(P\) is a statement, \([P]\) is 1 if \(P\) is true and 0 if not. So for example
-\[\begin{aligned} \lbrack 1 &lt; 2\rbrack &amp;= 1 \\ \lbrack 1 &gt; 2\rbrack &amp;= 0 \end{aligned}\]
-It’s like using a boolean as an integer in C or Python.
-It’s useful to keep yourself organized when you’re writing summations, especially if you’re summing across terms with a weird condition or if you need to exchange two sums.
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/ref/iverson">→ read more</a>
 	</footer>
 </article>
 
@@ -460,6 +337,127 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
 </blockquote>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/haskell">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/matrix" class="post-link">Matrix Intuition</a></h3>
+		
+		<p class="post-meta">
+		
+		2012-10-14
+		(2974 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Stopped by a friend’s house a few days ago to do homework, which somehow devolved into me analyzing what programming language I should try to learn next in a corner, which is completely irrelevant to the rest of this post. Oops.</p>
+<p>Anyway, in normal-math-curriculum-land, my classmates are now learning about matrices. How to add them, how to multiply them, how to calculate the determinant and stuff. Being a nice person, and feeling somewhat guilty for my grade stability despite the number of study hours I siphoned off to puzzles and the like, I was eager to help confront the monster. Said classmate basically asked me what they were for.</p>
+<p>Well, what a hard question. But of course given the curriculum it’s the only interesting problem I think could be asked.</p>
+<p>When I was hurrying through the high-school curriculum I remember having to learn the same thing and not having any idea what the heck was happening. Matrices appeared in that section as a messy, burdensome way to solve equations and never again, at least not in an interesting enough way to make me remember. I don’t have my precalc textbook, but a supplementary precalc book completely confirms my impressions and “matrix” doesn’t even appear in my calculus textbook index. They virtually failed to show up in olympiad training too. I learned that Po-Shen Loh knew how to <a href="http://www.math.cmu.edu/~ploh/docs/math/mop2009/alg-comb.pdf">kill a bunch of combinatorics problems with them (PDF)</a>, but not in the slightest how to do that myself.</p>
+<p>Somewhere else, during what I’m guessing was random independent exploration, I happened upon the signed-permutation-rule (a.k.a. <a href="https://en.wikipedia.org/wiki/Leibniz_formula_for_determinants">Leibniz formula</a>) for evaluating determinants, which made a lot more sense for me and looked more beautiful and symmetric</p>
+<p><span class="math display">\[\det(A) = \sum_{\sigma \in S_n} \text{sgn}(\sigma) \prod_{i=1}^n A_{i,\sigma_i}\]</span></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/matrix">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/not-excursions" class="post-link">[IMO 2012 Part 6] Mostly Not About Excursions</a></h3>
+		
+		<p class="post-meta">
+		
+		2012-08-27
+		(2759 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/competitions">Competitions</a>, <a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Yes. I know it’s been more than a month. Blogging motivation decreases, but the responsibility of that <em>stay tuned</em> doesn’t go away.</p>
+<p>It’s okay. It’s all worth it because the stuff in the games room is absolutely ridiculous. Warning: huge post.</p>
+<figure>
+<a href="/img/p4.jpg"><img src="/img/p4.jpg" alt="[IMO 2012 Problem 4 on a cake." title="Problem 4 Cake" width="474" height="252" class="size-full wp-image-1317" /></a>
+<figcaption>
+Our old friend, the monster of a functional equation, in edible form. In the games room. Did I mention abso-zarking-lutely ridiculous?
+</figcaption>
+</figure>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/not-excursions">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/fours" class="post-link">[IMO 2012 Part 5] Unlucky Fours</a></h3>
+		
+		<p class="post-meta">
+		
+		2012-08-02
+		(1555 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/competitions">Competitions</a>, <a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<ins datetime="2012-12-03T13:52:25+00:00">
+[edit: okay guys I’m surprised at many people come here with search queries looking for solutions. If you want IMO solutions, <a href="http://www.artofproblemsolving.com/Forum/viewforum.php?f=834">the corresponding AoPS forum</a> invariably has many of them. This is probably late-ish, but just in case.]
+</ins>
+<p>Day 2 of the contest.</p>
+<p>Did you know that in Chinese [or Mandarin, whatever] “four” is unlucky because it’s a homophone for “death”, and hospitals tend to skip it in floors or ward numbers?</p>
+<p>Did you know that there was going to be an anecdote involving the seventh Artemis Fowl book but I couldn’t make it work so instead you have a weird and utterly disconnected metareference to something deleted?</p>
+<p>I don’t know, it sounded cool at the time.</p>
+<p><strong>Problem 4.</strong> Find all functions f: Z → Z such that, for all integers a,b,c that satisfy a+b+c = 0, the following equality holds: <span class="math display">\[f(a)^2+f(b)^2+f(c)^2=2f(a)f(b)+2f(b)f(c)+2f(c)f(a).\]</span> (Here Z denotes the set of integers.)</p>
+<p>An innocent-looking functional equation, but once you start trying it you discover that there’s quite some depth to it. Random guessing can yield that <span class="math inline">\(f(x) = x^2\)</span> is a solution, so I proved inductively that after dividing out a constant f(1) then the remaining part of f is a perfect square. Letting <span class="math inline">\(f(x) = f(1)g(x)^2\)</span> with g(x) a nonnegative integer and factorizing the original equation, I got an auxiliary functional equation equivalent to the original equation.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/fours">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/inequality" class="post-link">[IMO 2012 Part 4] The Inequality of Broken Dreams</a></h3>
+		
+		<p class="post-meta">
+		
+		2012-08-02
+		(2566 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/competitions">Competitions</a>, <a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>I could spend all day coming up with post titles like this one. Really, I could. Anyway, after receiving the letter gently reminding me to turn in the official IMO report in Chinese, I finished that first and turned it in. This, plus the fact that I don’t have any way to do any of my summer homework yet, should make continued blogging much easier.</p>
+<p>These months of preparation and anticipation, and in just over two days it will be behind us forever.</p>
+<p>Thus were my thoughts at 3:30 in the morning, which were a much worse method of preparation than that which I used for the APMO, which involved trying for the first time to put my compass in its box and staring at a cryptic crossword. Twisted thoughts as I lay innocently in bed, trying to preserve my spirit and mathematical function. I got up at 6:30 and ate a breakfast nervously with the team.</p>
+<p>We dispersed into the contest hall. Flat squarish white tables in orderly rows greeted us. They were considerably smaller than the arm-span tables we had last year in the Netherlands’ stadium, but the space was still ample compared to the ones we took our practice tests on at home. I floundered a bit looking for whoever was supposed to check our stuff for forbidden items, but none of the proctors paid any attention to that, so I flipped through my own jacket pockets paranoidly.</p>
+<p>But preparation was too brief, and there were at least fifteen minutes left with nothing to do except try not to panic. I managed to fill these fifteen minutes by doing elaborate breathing exercises, raising and flapping my arms, counting down seconds, focusing on a color word, meditating badly, clearing out everything nonmathematical from my mind with a symbolic gesture. This is not a very coherent description, but I wasn’t feeling very coherent.</p>
+<p>I opened an eye halfway and watched as the clock ticked down the last few seconds. The starting signal sounded. I opened up the problem envelope…  (nonessential expressions deLaTeXed; you’re welcome)</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/inequality">→ read more</a>
 	</footer>
 </article>
 

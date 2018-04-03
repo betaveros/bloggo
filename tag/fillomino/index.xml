@@ -17,8 +17,10 @@
       <pubDate>Mon, 30 Mar 2015 20:01:26 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-47</guid>
-      <description>CLICKBAIT PERSONALITY TEST THAT YOU CAN DO WITHOUT SOLVING THE PUZZLE: What do you see in the puzzle image below? I have my own thoughts but I won’t bias you by posting them yet. Sound out your thoughts in the comments below! (I don’t expect this to work but I’d love to be proven wrong)
-Okay so apparently how puzzles work is I go nearly a year without posting one and then when I post a terrible one, I feel guilty and obligated to post a legitimate one soon after.</description>
+      <description>&lt;p&gt;CLICKBAIT PERSONALITY TEST THAT YOU CAN DO WITHOUT SOLVING THE PUZZLE: What do you see in the puzzle image below? I have my own thoughts but I won’t bias you by posting them yet. Sound out your thoughts in the comments below! (I don’t expect this to work but I’d love to be proven wrong)&lt;/p&gt;
+&lt;p&gt;Okay so apparently how puzzles work is I go nearly a year without posting one and then when I post a terrible one, I feel guilty and obligated to post a legitimate one soon after. Testsolved by chaotic_iak.&lt;/p&gt;
+&lt;p&gt;This is a Fillomino (write a number in every empty cell so that every group of cells with the same number that is connected through its edges has that number of cells) where each tetromino has had their 4s replaced by one of L, I, T, or S describing their shape, and they obey the rules of LITS — they can touch if they are not congruent, they must all be connected, and their squares cannot form a 2×2 block. In addition, cells separated by a thick border may not contain the same number or letter.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -27,9 +29,13 @@ Okay so apparently how puzzles work is I go nearly a year without posting one an
       <pubDate>Sun, 29 Mar 2015 13:01:08 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-46</guid>
-      <description>5:27 PM phenomist: do you use gridderface to make pretty puzzles?
-…
-5:52 PM phenomist: actually nvm excel is probably easier lol  Okay I’m sorry this is a horrible puzzle where the rules don’t make sense and I didn’t even get it testsolved. I just wanted an image to concisely demonstrate the capabilities of gridderface, my puzzle marking and creation program, for the project homepage, after somebody expressed interest in using the program to write a puzzle.</description>
+      <description>&lt;blockquote&gt;
+5:27 PM &lt;strong&gt;phenomist&lt;/strong&gt;: do you use gridderface to make pretty puzzles?&lt;br /&gt;
+…&lt;br /&gt;
+5:52 PM &lt;strong&gt;phenomist&lt;/strong&gt;: actually nvm excel is probably easier lol
+&lt;/blockquote&gt;
+&lt;p&gt;Okay I’m sorry this is a horrible puzzle where the rules don’t make sense and I didn’t even get it testsolved. I just wanted an image to concisely demonstrate the capabilities of &lt;a href=&#34;https://github.com/betaveros/gridderface&#34;&gt;gridderface&lt;/a&gt;, my puzzle marking and creation program, for the project homepage, after somebody expressed interest in using the program to write a puzzle. Then I got tremendously carried away.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -38,9 +44,10 @@ Okay so apparently how puzzles work is I go nearly a year without posting one an
       <pubDate>Tue, 15 Apr 2014 08:15:37 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-45</guid>
-      <description>As requested, a puzzle post! Straight from the WTF-variant department. Quite hard.
-This is a Fillomino, with the additional constraint that for each polyomino, there must not exist a path (i.e. a sequence of cells, each orthogonally adjacent to the next) that includes each of the polyomino’s cells exactly once (and does not include cells outside the polyomino).
-As a degenerate case, 1-ominoes are banned as well.</description>
+      <description>&lt;p&gt;As requested, a puzzle post! Straight from the WTF-variant department. Quite hard.&lt;/p&gt;
+&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;, with the additional constraint that for each polyomino, there must &lt;em&gt;not&lt;/em&gt; exist a path (i.e. a sequence of cells, each orthogonally adjacent to the next) that includes each of the polyomino’s cells exactly once (and does not include cells outside the polyomino).&lt;/p&gt;
+&lt;p&gt;As a degenerate case, 1-ominoes are banned as well.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -49,8 +56,35 @@ As a degenerate case, 1-ominoes are banned as well.</description>
       <pubDate>Mon, 30 Sep 2013 20:52:46 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-43</guid>
-      <description>I’m extremely satisfied — a little incredulous, in fact — with how this puzzle came out. chaotic_iak labels it the “most ridiculous fillomino ever in history”. Apparently, it’s rather tricky.
-ETA: Journalistic responsibility compels me to mention that chaotic_iak also added, “might be beaten later”. Oops?  This is a Fillomino combining the Nonrectangular (polyominoes can’t be rectangles) and Walls (polyominoes can’t span thick lines) variant rules. I think the first variant first came from mathgrant; I’m not as sure about the second, but they both appeared in Fillomino-Fillia 2, at least.</description>
+      <description>&lt;p&gt;I’m extremely satisfied — a little incredulous, in fact — with how this puzzle came out. &lt;a href=&#34;https://chaosatthesky.wordpress.com/&#34;&gt;chaotic_iak&lt;/a&gt; labels it the “most ridiculous fillomino ever in history”. Apparently, it’s rather tricky.&lt;/p&gt;
+&lt;ins datetime=&#34;2013-09-30T13:05:57+00:00&#34;&gt;
+ETA: Journalistic responsibility compels me to mention that chaotic_iak also added, “might be beaten later”. Oops?
+&lt;/ins&gt;
+&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt; combining the &lt;a href=&#34;http://mathgrant.blogspot.tw/2011/09/monday-mutant-95-polyominous-no.html&#34;&gt;Nonrectangular&lt;/a&gt; (polyominoes can’t be rectangles) and &lt;a href=&#34;http://mathgrant.blogspot.tw/2012/10/fillomino-fillia-2-preview-series-walls.html&#34;&gt;Walls&lt;/a&gt; (polyominoes can’t span thick lines) variant rules. I think the first variant first came from mathgrant; I’m not as sure about the second, but they both appeared in &lt;a href=&#34;http://logicmastersindia.com/forum/forums/thread-view.asp?tid=525&amp;amp;posts=64&amp;amp;start=1&#34;&gt;Fillomino-Fillia 2&lt;/a&gt;, at least.&lt;/p&gt;
+&lt;p&gt;Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is a shape that’s not a rectangle with that number of cells. In addition, cells separated by a thick border may not contain the same number.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 42 / Fillomino [Greater-Than]</title>
+      <link>//blog.vero.site/post/puzzle-42</link>
+      <pubDate>Fri, 19 Jul 2013 08:57:13 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-42</guid>
+      <description>&lt;p&gt;Oops, I forgot the “puzzles” category was semi-reserved for puzzles I constructed/wrote, because among other things an LMI bot is following it. Anyway, if this makes up for anything, I have a puzzle that I’ve procrastinated posting for very, very long.&lt;/p&gt;
+&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt; puzzle. Inequality signs in the grid must be satisfied by the two numbers they touch.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 40 / Fillomino [Samurai]</title>
+      <link>//blog.vero.site/post/puzzle-40</link>
+      <pubDate>Sun, 24 Mar 2013 00:03:13 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-40</guid>
+      <description>&lt;p&gt;Yeah, and there’s this. chaotic_iak rejected this variant for his &lt;a href=&#34;https://chaosatthesky.wordpress.com/puzzles/#fff&#34;&gt;February sequence&lt;/a&gt; in order to get consistent 7x7 dimensions, so I made one. It’s been about a month. I have no idea why I procrastinated posting it until now.&lt;/p&gt;
+&lt;p&gt;This is a Samurai &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;, which means each grid satisfies the constraints on its own. Write a number in every empty cell so that, in each square grid, every group of cells with the same number that is connected through its edges has that number of cells. Note that the two grids must contain the same numbers where they overlap, but the grouping should be considered independently. I’d explain this really carefully if it weren’t the main gimmick of this puzzle.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -59,7 +93,8 @@ ETA: Journalistic responsibility compels me to mention that chaotic_iak also add
       <pubDate>Wed, 23 Jan 2013 18:29:00 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-36</guid>
-      <description>mathgrant’s hybrid type: a Fillomino (write a number in every empty cell so that every group of cells with the same number that is connected through its edges has that number of cells) where each tetromino has had their 4s replaced by one of L, I, T, or S describing their shape, and they obey the rules of LITS — they can touch if they are not congruent, they must all be connected, and their squares cannot form a 2x2 block.</description>
+      <description>&lt;p&gt;&lt;a href=&#34;http://mathgrant.blogspot.tw/2012/11/monday-mutant-119-polyominous-tetra.html&#34;&gt;mathgrant’s hybrid type&lt;/a&gt;: a Fillomino (write a number in every empty cell so that every group of cells with the same number that is connected through its edges has that number of cells) where each tetromino has had their 4s replaced by one of L, I, T, or S describing their shape, and they obey the rules of LITS — they can touch if they are not congruent, they must all be connected, and their squares cannot form a 2x2 block.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -68,8 +103,31 @@ ETA: Journalistic responsibility compels me to mention that chaotic_iak also add
       <pubDate>Fri, 09 Nov 2012 17:03:16 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-31</guid>
-      <description>This is a Fillomino puzzle where every polyomino is required to be an L-shape, as in Sashigane. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.
-My second, and now symmetric, attempt at this crazy self-invented mutant; puzzle 22 was the first.</description>
+      <description>&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt; puzzle where every polyomino is required to be an L-shape, as in &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/sashigane.html&#34;&gt;Sashigane&lt;/a&gt;. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.&lt;/p&gt;
+&lt;p&gt;My second, and now symmetric, attempt at this crazy self-invented mutant; &lt;a href=&#34;//blog.vero.site/post/puzzle-22&#34;&gt;puzzle 22&lt;/a&gt; was the first. A word of warning: I can’t solve this without bifurcating near the end, so logic purists may be disappointed, but I like the clue arrangement too much. In fact I suspect this puzzle could have many more clues removed without affecting uniqueness, so tight are the rule constraints in this type.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 30 / Fillomino [Skyscrapers]</title>
+      <link>//blog.vero.site/post/puzzle-30</link>
+      <pubDate>Fri, 09 Nov 2012 16:58:09 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-30</guid>
+      <description>&lt;p&gt;Haha, way-overdue &lt;a href=&#34;http://logicmastersindia.com/FF2/&#34;&gt;Fillomino-Fillia&lt;/a&gt; practice puzzle. This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt; puzzle; in addition to normal rules, treat numbers inside the grid as building heights. Numbers outside the grid indicate how many buildings can be seen from that direction, where a building blocks all buildings of lower or equal height behind it.&lt;/p&gt;
+&lt;p&gt;Edit: I should warn that the arithmetic here is pretty annoying.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 28 / Fillomino [Nonrectangular]</title>
+      <link>//blog.vero.site/post/puzzle-28</link>
+      <pubDate>Wed, 24 Oct 2012 20:39:47 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-28</guid>
+      <description>&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt; puzzle where every polyomino is required to be nonrectangular (which also bans squares). Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is a shape that’s not a rectangle with that number of cells.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://logicmastersindia.com/FF2/&#34;&gt;Fillomino-Fillia 2&lt;/a&gt; is coming! Anyway I don’t know how to judge difficulty but this is probably terrible practice. I should try a Skyscrapers if I can keep pretending USH homework doesn’t exist which I probably shouldn’t.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -78,8 +136,32 @@ My second, and now symmetric, attempt at this crazy self-invented mutant; puzzle
       <pubDate>Mon, 10 Sep 2012 21:07:31 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-22</guid>
-      <description>This is a Fillomino puzzle where every polyomino is required to be an L-shape, as in Sashigane. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.
-May be slightly reminiscent of no-rectangle Fillominoes. Slightly… (Has anybody done this before? It seems so interesting that I feel like I couldn’t be first.</description>
+      <description>&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt; puzzle where every polyomino is required to be an L-shape, as in &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/sashigane.html&#34;&gt;Sashigane&lt;/a&gt;. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.&lt;/p&gt;
+&lt;p&gt;May be slightly reminiscent of &lt;a href=&#34;http://mathgrant.blogspot.com/2011/09/monday-mutant-95-polyominous-no.html&#34;&gt;no-rectangle Fillominoes&lt;/a&gt;. &lt;em&gt;Slightly…&lt;/em&gt; (Has anybody done this before? It seems so interesting that I feel like I couldn’t be first.)&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 8 / Fillomino</title>
+      <link>//blog.vero.site/post/puzzle-8</link>
+      <pubDate>Sun, 26 Feb 2012 12:00:58 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-8</guid>
+      <description>Hey, a “theme” (look at the corners)!
+
+Honestly though I’m just spreading out my puzzle posts so there’s some illusion of regularity.</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 6 / Fillomino</title>
+      <link>//blog.vero.site/post/puzzle-6</link>
+      <pubDate>Tue, 21 Feb 2012 17:55:52 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-6</guid>
+      <description>Not actually my first try, but I guess I don’t need to resort to 6x6s to fill up my quota just yet, do I?
+
+Okay for the absolutely uninformed, this is a Fillomino (or see MellowMelon’s rule page).
+I’ve switched to 32x32 pixel cells because they seem a reasonable size and it’s possible to express all pixel sizes as an exact floating-point fraction of the cell side so my image generator can be used in a general way to get perfect stroke thicknesses without worrying about any rounding errors no matter how obviously numerically insignificant they would be in this case.</description>
     </item>
     
   </channel>

@@ -177,6 +177,39 @@ At least, all things considered, I think this transition was very successful at 
     </item>
     
     <item>
+      <title>Jam-Packed Fun and Games</title>
+      <link>//blog.vero.site/post/jam</link>
+      <pubDate>Mon, 21 Sep 2015 00:45:43 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/jam</guid>
+      <description>&lt;p&gt;Did I say “fun”? That was short for function calls. Which are fun too, admittedly. Blah, I always go to such lengths to come up with snappy yet justified post titles and end up achieving neither.&lt;/p&gt;
+&lt;p&gt;One more complimentary breakfast later:&lt;/p&gt;
+&lt;p&gt;This is it.&lt;/p&gt;
+&lt;p&gt;Google Code Jam World Finals. &lt;a href=&#34;//blog.vero.site/img/nametag.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/nametag.jpg?w=170&#34; alt=&#34;[Google Code Jam 2015 name tag with my name and handle and country]&#34; width=&#34;170&#34; height=&#34;300&#34; class=&#34;aligncenter size-medium wp-image-3374&#34; /&gt;&lt;/a&gt; Let me take a moment to reflect. Seriously. I do not know how I made it this far this year. I guess I might be a top-500-ish competitive programmer globally, maybe even top-150-ish, but definitely not top-25-ish. And &lt;a href=&#34;https://code.google.com/codejam/contest/4254486/dashboard#s=p3&#34;&gt;Log Set&lt;/a&gt;, the hard problem that got me through Round 3, doesn’t seem like it plays to my forte particularly either. It’s a bit mathy, but the math bits aren’t the hard part; I think it’s largely implementation, with one psychological hurdle where you have to realize that, because of how few distinct integers there are in S′, you can efficiently solve the subset-sum instances you need to produce the lexicographically earliest answer. I’m actually kind of impressed I got that. It seems like the sort of hurdle I usually get stuck on. How did this happen?&lt;/p&gt;
+&lt;p&gt;Maybe randomness. Maybe I was just particularly clear-minded during the round and wrote less buggy code than usual, because I had no expectation of making it whatsoever and so could look at the contest detachedly (until midway through the contest I accidentally noticed that my rank was under 20, and even then I tried very very hard not to think about it, and it kind of worked).&lt;/p&gt;
+&lt;p&gt;But it happened, and now I’m here. Time to roll.&lt;/p&gt;
+&lt;p&gt;In some emails much earlier in the Code Jam logistical process, Google had asked for “requests for changes and/or additions” to the software that would be installed on our competition computers, and I had sent them a long list:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Hi,&lt;br /&gt; Here are some things I’d like if they were installed, in decreasing order of priority:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+The Vim plugin syntastic ( https://github.com/scrooloose/syntastic )
+&lt;/li&gt;
+&lt;li&gt;
+a Haskell compiler (probably Haskell Platform 2014.2.0.0 https://www.haskell.org/platform/ even though it’s a year old)
+&lt;/li&gt;
+&lt;li&gt;
+the Haskell package hdevtools ( https://hackage.haskell.org/package/hdevtools ) so that the above two may be integrated
+&lt;/li&gt;
+&lt;li&gt;
+(I don’t have enough Linux experience to name a specific thing to install, but command-line utilities that are the equivalent of pbcopy and pbpaste on Mac OS X, which allow me to redirect text into or out of the clipboard from the command line easily)
+&lt;/li&gt;
+&lt;/ol&gt;
+Of course, this is my first Code Jam and I don’t know how reasonable these requests are. Any nontrivial subset would be appreciated.
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
       <title>[CIMC 2015 Part 3] Monsters and Pandas and Tigers, Oh My!</title>
       <link>//blog.vero.site/post/cimc-2015-part-3</link>
       <pubDate>Tue, 11 Aug 2015 23:32:37 +0800</pubDate>
@@ -451,6 +484,160 @@ Well, a foolish consistency is the hobgoblin of little minds. If you wonder, “
 &lt;p&gt;So, I somehow managed to &lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/teamstats.html?team=not+AoPS&#34;&gt;get 25 points all by myself&lt;/a&gt; in &lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/&#34;&gt;MUMS Puzzle Hunt 2013&lt;/a&gt;. Well, I pestered chaotic_iak a little with &lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/2013/puzzles/3.3_Diagnosus_ghQ3AcbJ.html&#34;&gt;3.3 Diagnosus (.html with animated .gif)&lt;/a&gt; but we still didn’t recognize all the Pokémon until hint 3, at which point Google sufficed for me.&lt;/p&gt;
 &lt;p&gt;This is nowhere near the top, but compared to the usual results of whatever AoPS team I form, it’s amazing. By far the best result of AoPS was on CiSRA in 2010 (46th with 58 points), before I discovered puzzle hunts in AoPS; unfortunately due to people getting older and the influx of younger and younger people to the fora, there are less possible teammates each year and they have less time, so here I am by myself. (Also I could have accepted an invitation from a guy in the some-form-of-Elephant team, but I figure if you can win two MUMS hunts in a row you don’t need any more people.)&lt;/p&gt;
 &lt;p&gt;All in all: Yay!&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>New Goal: 10 Keepers</title>
+      <link>//blog.vero.site/post/new-goal</link>
+      <pubDate>Sun, 16 Aug 2009 13:38:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/new-goal</guid>
+      <description>&lt;div class=&#34;warning&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2009 self wrote this. It is preserved for historical interest and amusement only, and does not reflect my current beliefs or attitudes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Now and then I find myself lapsing into a bunch of 42-related questions. The most recent occurrence was the day before yesterday, and I decided that the meaning of life is to find your meaning of life. Since that would tautologically entail that I had already completed my meaning of life, I decided to reject it, even though it has a pretty nice ring to it. Some goals:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Winter</title>
+      <link>//blog.vero.site/post/winter</link>
+      <pubDate>Tue, 27 Jan 2009 20:09:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/winter</guid>
+      <description>&lt;div class=&#34;warning&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2009 self wrote this. It is preserved for historical interest and amusement only, and does not reflect my current beliefs or attitudes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;I’m reconsidering. It’s not that boring. LOLZ. There it goes again.&lt;/p&gt;
+&lt;p&gt;Particulars… well, I got to play my cousin’s PSP. It was an instant like the instant when I saw the Krusty Kreme shop during our visit to Indonesia (shoot, my mouth is watering again), I found a very interesting game logo. A shining blue lowercase E. Most people would think of the Internet Explorer logo. But obviously, Microsoft is probably not affiliated with Nintendo or whatever company made PSPs; even then you can’t play Internet Explorer.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Lost</title>
+      <link>//blog.vero.site/post/lost</link>
+      <pubDate>Mon, 29 Dec 2008 20:09:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/lost</guid>
+      <description>&lt;div class=&#34;warning&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2008 self wrote this. It is selectively preserved for historical interest and amusement from a lot of similar, chronologically nearby posts. That’s all.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;I have a life and I still don’t know what to do with it. I like making powerpoints, programming, typing tests, made-up hyperbolic IQ tests, Gmail, and odd things.&lt;/p&gt;
+&lt;p&gt;All that animation has gone to my nerves. And Bookworm Adventures pining. Best word so far: VORACIOUS, which earned me a blue gem tile, which froze somebody. I want to design games for PopCap too, because then I get to play the ones they already have for free.&lt;/p&gt;
+&lt;p&gt;Lolcode:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Eternity Bus Ride</title>
+      <link>//blog.vero.site/post/eternity-bus-ride</link>
+      <pubDate>Sun, 14 Dec 2008 08:46:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/eternity-bus-ride</guid>
+      <description>&lt;div class=&#34;warning&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2008 self wrote this. It is selectively preserved for historical interest and amusement from a lot of similar, chronologically nearby posts. It is not representative of my current beliefs or attitudes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Yesterday I got to sit and vegetate on a bus for a total of four hours. My MP4 was already getting boring. In fact the time spent at the math lesson was less than that. Luckily the bus home had a TV that kind of worked, and showed a replay of the show that self-translates as “One Million Star”. I only watched a bit. The rest was highly tumultuous slumber. Dinner was spaghetti, which helped.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spanish, Music, and Doing the Wrong Thing</title>
+      <link>//blog.vero.site/post/spanish-music-and-doing-the-wrong-thing</link>
+      <pubDate>Thu, 16 Oct 2008 18:15:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/spanish-music-and-doing-the-wrong-thing</guid>
+      <description>&lt;div class=&#34;warning&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2008 self wrote this. It is preserved for historical interest and amusement, and is not representative of my current beliefs or attitudes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Yesterday I got persuaded by my mom to seriously use the LearnToSpeak Spanish CD we bought. I say “Hasta luego” into the mic and it says I selected “Estoy bien”. Still, the vocabulary it selects are far better than the ones I selected haphazardly. ¿Qué quiere decir “…”? Well, I’m stopping the finding of new vocabulary in Spanish madly.&lt;/p&gt;
+&lt;p&gt;Today I lost my Kitchen Midden rubric by clipping it into the questionnaires. I wasn’t sure until I found it there. I flipped through the questionnaires and found it in ten seconds. Wooooo! WHAT ARE THE ODDS? Luck.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Cold</title>
+      <link>//blog.vero.site/post/cold</link>
+      <pubDate>Mon, 13 Oct 2008 17:17:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/cold</guid>
+      <description>&lt;div class=&#34;warning&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2008 self wrote this. It is selectively preserved for historical interest and amusement from a lot of similar, chronologically nearby posts. That’s all.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Hooray! Something I ate today cured my cold! Well, they assuaged it for today at least. Perhaps by dinner I’ll be coughing like a donkey with terminal asthma again.&lt;/p&gt;
+&lt;p&gt;Okay, enough with horrible similes. Luckily or not, in P.E. class we didn’t do the lethal 100m dash timing. Instead we practiced jumping. Hooray! It’s not as exerting.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Sicknesses and Sundays</title>
+      <link>//blog.vero.site/post/sicknesses-and-sundays</link>
+      <pubDate>Sun, 12 Oct 2008 11:23:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/sicknesses-and-sundays</guid>
+      <description>&lt;div class=&#34;warning&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2008 self wrote this. It is selectively preserved for historical interest and amusement from a lot of similar, chronologically nearby posts. That’s all.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Today is Sunday. Tomorrow is when I go back to school. *sigh*&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Pearl Milk Tea Again</title>
+      <link>//blog.vero.site/post/pearl-milk-tea-again</link>
+      <pubDate>Sat, 11 Oct 2008 19:43:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/pearl-milk-tea-again</guid>
+      <description>&lt;div class=&#34;warning&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2008 self wrote this. It is selectively preserved for historical interest and amusement from a lot of similar, chronologically nearby posts. It is not representative of my current beliefs or attitudes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;After submitting my article onto my Magnum Opuses website section I got to drink some more pearl milk tea that wasn’t sweet at all.&lt;/p&gt;
+&lt;p&gt;When I was little I used to look at everybody drinking bitter things like tea, coffee, beer, wine, and all that. I simply couldn’t imagine growing up and liking them. Everything good at that time was sweet, sugary, sweet, and unhealthy. Then I realized that I hated candy.&lt;/p&gt;
+&lt;p&gt;Ah, whatever.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Yay! I&#39;m back!</title>
+      <link>//blog.vero.site/post/yay-im-back</link>
+      <pubDate>Mon, 25 Feb 2008 18:33:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/yay-im-back</guid>
+      <description>&lt;div class=&#34;warning&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2008 self wrote this. It is preserved for historical interest as a glimpse into the history of this blog.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Blog revival!!! Thanks to Jonathan for reminding me of the existence of Blogger.&lt;/p&gt;
+&lt;p&gt;Today was a good day all in all.&lt;/p&gt;
+&lt;p&gt;Accomplishments:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2006 Summary</title>
+      <link>//blog.vero.site/post/2006-summary</link>
+      <pubDate>Sun, 31 Dec 2006 23:59:59 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/2006-summary</guid>
+      <description>&lt;div class=&#34;warning&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This post is backdated. I am writing this post in 2018 because, as part of the &lt;a href=&#34;//blog.vero.site/post/remigration&#34;&gt;Big 2017 Remigration&lt;/a&gt;, I have decided to delete most of the posts because they were too embarrassing and sparse on information, but figured I might keep a rundown of the highlights.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;2006, on this blog:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Your Typical Friday</title>
+      <link>//blog.vero.site/post/your-typical-friday</link>
+      <pubDate>Fri, 08 Sep 2006 19:15:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/your-typical-friday</guid>
+      <description>&lt;div class=&#34;warning&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2006 self wrote this. It is preserved for historical interest (as the first post ever made on this blog) and amusement, and is not representative of my current beliefs or attitudes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Today was an… ordinary special day. Well, an ordinary day from all aspects, but a special day if you count the way everybody got hyperactive after lunch.&lt;/p&gt;
+&lt;p&gt;Well, duh!&lt;/p&gt;
+&lt;p&gt;Just your typical Friday. Typical Fridays, we get computer class. And I can repeat it again.&lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;</description>
     </item>
     

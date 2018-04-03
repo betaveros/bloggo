@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Sakura</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="(Okay, this post is backdated.)
+Disassembling the executable produces a huge amount of code. There are some basic obfuscations like a lot of trivial identity functions nested in each other, and a few functions that wrap around identity functions but just add some constant multiple of 16. Most of the meat is in one very large function, though. If you disassemble this function with IDA, you see a lot of variable initializations and then a lot of interesting loops that are quite similar:
+
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/sakura" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button">
+		<span class="icon icon-menu"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub"><span class="icon icon-github"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Sakura</h1>
+		
+		<h2 class="post-subtitle">HITCON CTF 2017</h2>
+		
+		<p class="post-meta">
+		
+		2017-11-12
+		(703 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>(Okay, this post is backdated.)</p>
+<p>Disassembling the executable produces a huge amount of code. There are some basic obfuscations like a lot of trivial identity functions nested in each other, and a few functions that wrap around identity functions but just add some constant multiple of 16. Most of the meat is in one very large function, though. If you disassemble this function with IDA, you see a lot of variable initializations and then a lot of interesting loops that are quite similar:</p>
+<p></p>
+<pre class="sourceCode c"><code class="sourceCode c"><div class="sourceLine" id="1" href="#1" data-line-number="1">flag = <span class="dv">1</span>;</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">sum = <span class="dv">0</span>;</div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">banned_mask = <span class="dv">0</span>;</div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">cur_ptr = (__int64 *)identity((__int64)&amp;v904);</div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">end_ptr = plus_16((__int64)&amp;v904);</div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6"><span class="cf">while</span> ( cur_ptr != (__int64 *)end_ptr )</div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">{</div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">    cval = *cur_ptr;</div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">    *(&amp;big_array[<span class="dv">20</span> * (<span class="dt">signed</span> <span class="dt">int</span>)cval] + SHIDWORD(cval)) = *(&amp;a1[<span class="dv">20</span> * (<span class="dt">signed</span> <span class="dt">int</span>)cval] + SHIDWORD(cval));</div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10">    digit = *(&amp;a1[<span class="dv">20</span> * (<span class="dt">signed</span> <span class="dt">int</span>)cval] + SHIDWORD(cval)) - <span class="ch">&#39;0&#39;</span>;</div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11">    <span class="cf">if</span> ( digit &lt;= <span class="dv">0</span> || digit &gt; <span class="dv">9</span> )</div>
+<div class="sourceLine" id="12" href="#12" data-line-number="12">        flag = <span class="dv">0</span>;</div>
+<div class="sourceLine" id="13" href="#13" data-line-number="13">    <span class="cf">if</span> ( (banned_mask &gt;&gt; digit) &amp; <span class="dv">1</span> )</div>
+<div class="sourceLine" id="14" href="#14" data-line-number="14">        flag = <span class="dv">0</span>;</div>
+<div class="sourceLine" id="15" href="#15" data-line-number="15">    banned_mask |= <span class="dv">1</span> &lt;&lt; digit;</div>
+<div class="sourceLine" id="16" href="#16" data-line-number="16">    sum += digit;</div>
+<div class="sourceLine" id="17" href="#17" data-line-number="17">    ++cur_ptr;</div>
+<div class="sourceLine" id="18" href="#18" data-line-number="18">}</div>
+<div class="sourceLine" id="19" href="#19" data-line-number="19"><span class="cf">if</span> ( sum != <span class="dv">17</span> )</div>
+<div class="sourceLine" id="20" href="#20" data-line-number="20">    flag = <span class="dv">0</span>;</div></code></pre>
+<p>So index pairs are read from <code>cur_ptr</code> and indexed into <code>a1</code>, which are copied into <code>big_array</code>. In order to succeed and give us the flag, the variable I’ve labeled <code>flag</code> has to stay <code>1</code> throughout the entire program. There are several checks:</p>
+<ul>
+<li>The characters extracted from <code>a1</code> must be ASCII nonzero digits, as seen from the check of failure if <code>digit &lt;= 0 || digit &gt; 9</code>.</li>
+<li>In each loop, the <code>digit</code>s encountered must be distinct, as each time through we check that <code>banned_mask</code> does not have the <code>digit</code>th bit indexed and then has that bit set to 1.</li>
+<li>Finally, the <code>sum</code> of the digits encountered must match some specific constant, here 17.</li>
+</ul>
+<p>This reveals the conceit: this is, to a first approximation, a <a href="https://en.wikipedia.org/wiki/Kakuro">Kakuro</a>, where cells are filled with digits from 1 to 9 and each constraint taken from <code>cur_ptr</code> specifies a row or column, which must contain no repeated digits and must sum to a given number. (Given the way the code is written, there is no requirement that the constrained sequences of cells are actually rows or columns, but from the final output they seem to be.) Realizing that this is an established logic puzzle genre is not particularly essential to solving the challenge, although it might help let you guess around some uncertainties about how things work without necessarily rigorously examining all the code. Kakuros aren’t solid rectangles of empty cells — some of the cells in the input correspond to black squares used only to delimit other rows and columns, and aren’t used in any clues, so the digits in those cells would be completely unconstrained, which explains why digits are copied to <code>big_array</code> only when they show up in a constraint.</p>
+<p>Now we just feed these constraints into z3 to get the answer. This is a fairly hacky Python script that processes the disassembled IDA code after a bunch of renames, but not too many so the <code>v</code>(number) variables were still in order, including each of the obfuscated identity functions to something including <code>identity</code> and each of the obfuscated functions that just added some number to <code>plus_&lt;number&gt;</code>.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="im">from</span> __future__ <span class="im">import</span> division, print_function</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">impot re</div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3"><span class="im">from</span> z3 <span class="im">import</span> <span class="op">*</span></div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4"></div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">vards <span class="op">=</span> <span class="bu">dict</span>()</div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6"></div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7"><span class="kw">def</span> between(left, right, s):</div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">    a, b <span class="op">=</span> s.split(left)</div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">    <span class="cf">return</span> b.split(right)[<span class="dv">0</span>]</div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10"></div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11">solver <span class="op">=</span> Solver()</div>
+<div class="sourceLine" id="12" href="#12" data-line-number="12">cells <span class="op">=</span> []</div>
+<div class="sourceLine" id="13" href="#13" data-line-number="13"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</div>
+<div class="sourceLine" id="14" href="#14" data-line-number="14">    row <span class="op">=</span> []</div>
+<div class="sourceLine" id="15" href="#15" data-line-number="15">    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</div>
+<div class="sourceLine" id="16" href="#16" data-line-number="16">        v <span class="op">=</span> Int(<span class="st">&#39;cell_</span><span class="sc">{}</span><span class="st">_</span><span class="sc">{}</span><span class="st">&#39;</span>.<span class="bu">format</span>(i, j))</div>
+<div class="sourceLine" id="17" href="#17" data-line-number="17">        solver.add(<span class="dv">1</span> <span class="op">&lt;=</span> v)</div>
+<div class="sourceLine" id="18" href="#18" data-line-number="18">        solver.add(v <span class="op">&lt;=</span> <span class="dv">9</span>)</div>
+<div class="sourceLine" id="19" href="#19" data-line-number="19">        row.append(v)</div>
+<div class="sourceLine" id="20" href="#20" data-line-number="20">    cells.append(row)</div>
+<div class="sourceLine" id="21" href="#21" data-line-number="21"></div>
+<div class="sourceLine" id="22" href="#22" data-line-number="22"><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;sakura-huge.txt&#39;</span>) <span class="im">as</span> infile:</div>
+<div class="sourceLine" id="23" href="#23" data-line-number="23">    <span class="cf">for</span> line <span class="kw">in</span> infile:</div>
+<div class="sourceLine" id="24" href="#24" data-line-number="24">        line <span class="op">=</span> line[:<span class="op">-</span><span class="dv">1</span>]</div>
+<div class="sourceLine" id="25" href="#25" data-line-number="25">        set_match <span class="op">=</span> re.match(<span class="vs">r&#39;  v(\d+) = (\d+);&#39;</span>, line)</div>
+<div class="sourceLine" id="26" href="#26" data-line-number="26">        <span class="cf">if</span> set_match:</div>
+<div class="sourceLine" id="27" href="#27" data-line-number="27">            vards[<span class="bu">int</span>(set_match.group(<span class="dv">1</span>))] <span class="op">=</span> <span class="bu">int</span>(set_match.group(<span class="dv">2</span>))</div>
+<div class="sourceLine" id="28" href="#28" data-line-number="28">        <span class="cf">elif</span> <span class="st">&#39;identity&#39;</span> <span class="kw">in</span> line:</div>
+<div class="sourceLine" id="29" href="#29" data-line-number="29">            v <span class="op">=</span> <span class="bu">int</span>(between(<span class="st">&#39;&amp;v&#39;</span>, <span class="st">&#39;)&#39;</span>, line))</div>
+<div class="sourceLine" id="30" href="#30" data-line-number="30">            <span class="co"># print(&#39;start:&#39;, v, vards.get(v))</span></div>
+<div class="sourceLine" id="31" href="#31" data-line-number="31">        <span class="cf">elif</span> <span class="st">&#39;plus&#39;</span> <span class="kw">in</span> line:</div>
+<div class="sourceLine" id="32" href="#32" data-line-number="32">            r <span class="op">=</span> <span class="bu">int</span>(between(<span class="st">&#39;plus_&#39;</span>, <span class="st">&#39;(&#39;</span>, line))</div>
+<div class="sourceLine" id="33" href="#33" data-line-number="33">            cur_vars <span class="op">=</span> []</div>
+<div class="sourceLine" id="34" href="#34" data-line-number="34">            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(r <span class="op">//</span> <span class="dv">8</span>):</div>
+<div class="sourceLine" id="35" href="#35" data-line-number="35">                row, col <span class="op">=</span> vards[v <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>i], vards[v <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>i <span class="op">+</span> <span class="dv">1</span>]</div>
+<div class="sourceLine" id="36" href="#36" data-line-number="36">                cur_vars.append(cells[row][col])</div>
+<div class="sourceLine" id="37" href="#37" data-line-number="37">            <span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(cur_vars):</div>
+<div class="sourceLine" id="38" href="#38" data-line-number="38">                <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i):</div>
+<div class="sourceLine" id="39" href="#39" data-line-number="39">                    solver.add(v <span class="op">!=</span> cur_vars[j])</div>
+<div class="sourceLine" id="40" href="#40" data-line-number="40">        <span class="cf">elif</span> <span class="st">&#39;if ( sum&#39;</span> <span class="kw">in</span> line:</div>
+<div class="sourceLine" id="41" href="#41" data-line-number="41">            target_sum <span class="op">=</span> <span class="bu">int</span>(between(<span class="st">&#39;!= &#39;</span>, <span class="st">&#39; )&#39;</span>, line))</div>
+<div class="sourceLine" id="42" href="#42" data-line-number="42">            solver.add(<span class="bu">sum</span>(cur_vars) <span class="op">==</span> target_sum)</div>
+<div class="sourceLine" id="43" href="#43" data-line-number="43"></div>
+<div class="sourceLine" id="44" href="#44" data-line-number="44">solver.check()</div>
+<div class="sourceLine" id="45" href="#45" data-line-number="45">solution <span class="op">=</span> solver.model()</div>
+<div class="sourceLine" id="46" href="#46" data-line-number="46"><span class="bu">print</span>()</div>
+<div class="sourceLine" id="47" href="#47" data-line-number="47"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</div>
+<div class="sourceLine" id="48" href="#48" data-line-number="48">    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">20</span>):</div>
+<div class="sourceLine" id="49" href="#49" data-line-number="49">        <span class="bu">print</span>(solution[cells[i][j]], end<span class="op">=</span><span class="st">&quot;&quot;</span>)</div>
+<div class="sourceLine" id="50" href="#50" data-line-number="50">    <span class="bu">print</span>()</div></code></pre>
+<p>Piping this into the executable gives us our flag:</p>
+<pre><code>hitcon{6c0d62189adfd27a12289890d5b89c0dc8098bc976ecc3f6d61ec0429cccae61}</code></pre></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/ctf"><span class="tag">CTF</span></a></li>
+			
+			<li><a href="/tag/reversing"><span class="tag">Reversing</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/thoroughly-stripped">← Thoroughly Stripped</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/transformation">Transformation →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

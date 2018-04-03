@@ -6,10 +6,21 @@
     <description>Recent content in Slitherlink on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Feb 2013 21:38:54 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 27 Apr 2013 17:27:26 +0800</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/tag/slitherlink/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Puzzle 41 / Slitherlink [Clones]</title>
+      <link>//blog.vero.site/post/puzzle-41</link>
+      <pubDate>Sat, 27 Apr 2013 17:27:26 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-41</guid>
+      <description>&lt;p&gt;I survived midterms.&lt;/p&gt;
+&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/slitherlink.html&#34;&gt;Slitherlink&lt;/a&gt; mutant. Draw a loop through adjacent vertices that cannot intersect itself. Each number indicates how many of the four edges around it are drawn. In addition, each pair of colored squares in corresponding positions (e.g. R1C1 and R6C6, R2C8 and R7C3) must have an equal number of edges drawn around them (i.e. if there were numbers placed there, they would be equal).&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Puzzle 39 / Contact &#43; Slitherlink [Antisymmetric]</title>
@@ -17,8 +28,79 @@
       <pubDate>Thu, 28 Feb 2013 21:38:54 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-39</guid>
-      <description>Yay crazy hybrids! I guess this one is kind of hard.
-Draw a loop through adjacent vertices that cannot intersect itself. For each pair of symmetrically placed numbers, one is a Slitherlink clue which indicates how many of the four edges around it are drawn, and one is a Contact clue which indicates the total length of all straight segments adjacent to it where segment length is always measured up to the nearest turns in the loop.</description>
+      <description>&lt;p&gt;Yay crazy hybrids! I guess this one is kind of hard.&lt;/p&gt;
+&lt;p&gt;Draw a loop through adjacent vertices that cannot intersect itself. For each pair of symmetrically placed numbers, one is a Slitherlink clue which indicates how many of the four edges around it are drawn, and one is a Contact clue which indicates the total length of all straight segments adjacent to it where segment length is always measured up to the nearest turns in the loop.&lt;/p&gt;
+&lt;del datetime=&#34;2017-11-25T16:26:24-0500&#34;&gt;
+Please click on the image if it looks weird, which it very likely will.
+&lt;/del&gt;
+&lt;p&gt;&lt;ins datetime=&#34;2017-11-25T16:26:37-0500&#34;&gt;(This was a WordPress bug that should no longer be relevant.)&lt;/ins&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 37 / Slitherlink &#43; Masyu</title>
+      <link>//blog.vero.site/post/puzzle-37</link>
+      <pubDate>Thu, 24 Jan 2013 15:16:51 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-37</guid>
+      <description>&lt;p&gt;Nikoli &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/slitherlink.html&#34;&gt;Slitherlink&lt;/a&gt; + &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/masyu.html&#34;&gt;Masyu&lt;/a&gt; hybrid; I don’t know who first put them together but combinations like this aren’t rare.&lt;/p&gt;
+&lt;p&gt;Draw a loop through vertices that cannot intersect itself; each number indicates how many of the four edges around it are drawn; the loop must pass through all large dots, and it must go straight through white dots while turning either before or after (or both), while it must turn on black dots without turning either before or after.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 32 / Slitherlink [Crosslink &#43; Liar]</title>
+      <link>//blog.vero.site/post/puzzle-32</link>
+      <pubDate>Mon, 19 Nov 2012 00:00:44 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-32</guid>
+      <description>&lt;p&gt;Yes, a “big” crazy mutant puzzle for a “milestone” &lt;a href=&#34;https://xkcd.com/1000/&#34;&gt;(as seen on xkcd)&lt;/a&gt;, both for this blog and for my life. Things are rough now, but I prepared this ridiculously ahead of time. It’s still not &lt;em&gt;really&lt;/em&gt; big, but I’m not so experienced and I don’t have the inspiration for something like &lt;a href=&#34;http://www.artofproblemsolving.com/Forum/viewtopic.php?f=535&amp;amp;t=506208&#34;&gt;an entire mini-puzzlehunt&lt;/a&gt;. Also, I think I should attempt more word-bank-based puzzles some day so I won’t fail as completely at them.&lt;/p&gt;
+&lt;p&gt;But anyway: This is a Slitherlink combining MellowMelon’s &lt;a href=&#34;https://mellowmelon.wordpress.com/slitherlink/crosslink/&#34;&gt;Crosslink&lt;/a&gt; and &lt;a href=&#34;https://mellowmelon.wordpress.com/category/puzzle-types/slitherlink/liar-slitherlink/&#34;&gt;Liar&lt;/a&gt; variations. Draw a loop through vertices that can intersect itself but must go straight both times if it does; each number normally indicates how many of the four edges around it are draw, but exactly one clue in each row and column is false. Have fun.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 16 / Slitherlink [Domino]</title>
+      <link>//blog.vero.site/post/puzzle-16</link>
+      <pubDate>Wed, 06 Jun 2012 19:57:09 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-16</guid>
+      <description>&lt;p&gt;Slitherlink with 20 clues taken out as dominoes and their original positions shaded. For more lucid rules please visit &lt;a href=&#34;https://mellowmelon.wordpress.com/2010/10/21/puzzle-263/&#34;&gt;MellowMelon’s puzzle 263&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Domino set is all possible dominoes exactly once each: &lt;strong&gt;{00,01,02,03,11,12,13,22,23,33}&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 14 / Slitherlink</title>
+      <link>//blog.vero.site/post/puzzle-14</link>
+      <pubDate>Thu, 22 Mar 2012 20:46:51 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-14</guid>
+      <description>&lt;p&gt;Just a normal one this time.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 7 / Slitherlink [All Twos]</title>
+      <link>//blog.vero.site/post/puzzle-7</link>
+      <pubDate>Wed, 22 Feb 2012 18:47:04 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-7</guid>
+      <description>It’s 2/22 and I have low standards.
+
+This is a normal Slitherlink, except all the 2s have been given to you. Thus, empty squares cannot have exactly two edges around them. Of course it’s been done before (guess who?)
+I appear to be drastically overshooting a monthly schedule :P</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 5 (Liar Slitherlink)</title>
+      <link>//blog.vero.site/post/puzzle-5</link>
+      <pubDate>Tue, 14 Feb 2012 12:19:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-5</guid>
+      <description>One puzzle a month! What a prolific schedule!
+
+A Liar Slitherlink as created by MellowMelon (probably). Normal Slitherlink rules except exactly one clue in each row and column is false; you figure out which. But I bet you knew that already.</description>
     </item>
     
     <item>
@@ -30,6 +112,15 @@ Draw a loop through adjacent vertices that cannot intersect itself. For each pai
       <description>Written for the new year of 2012.
 
 (janko.at applet)</description>
+    </item>
+    
+    <item>
+      <title>Puzzle 1 (Wild Slitherlink Appeared!)</title>
+      <link>//blog.vero.site/post/puzzle-1</link>
+      <pubDate>Mon, 28 Nov 2011 19:24:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-1</guid>
+      <description></description>
     </item>
     
   </channel>

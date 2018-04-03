@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reversing on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/reversing</link>
+    <description>Recent content in Reversing on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Nov 2017 00:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/reversing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sakura</title>
+      <link>//blog.vero.site/post/sakura</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 -0500</pubDate>
+      
+      <guid>//blog.vero.site/post/sakura</guid>
+      <description>&lt;p&gt;(Okay, this post is backdated.)&lt;/p&gt;
+&lt;p&gt;Disassembling the executable produces a huge amount of code. There are some basic obfuscations like a lot of trivial identity functions nested in each other, and a few functions that wrap around identity functions but just add some constant multiple of 16. Most of the meat is in one very large function, though. If you disassemble this function with IDA, you see a lot of variable initializations and then a lot of interesting loops that are quite similar:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

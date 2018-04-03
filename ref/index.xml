@@ -6,15 +6,52 @@
     <description>Recent content in Refs on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Nov 2016 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/ref/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Haskell Stash</title>
+      <link>//blog.vero.site/ref/hs</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/hs</guid>
+      <description>Installation Notes Personal list of Hackage packages to install, in approximate decreasing order of priority.
+In Haskell Platform Changelog (in case there was any doubt)
+GHC notably has array, bytestring, template-haskell, transformers.
+Additional libraries notably include attoparsec, HTTP, HUnit, mtl, parsec, QuickCheck, text, vector.
+Still, come to think of it, these libraries may well have updated since the platform release…
+I’m too lazy to reinstall all of them, so here are the ones I recognize that I care about, minus containers because it mysteriously threatens to break ghc-7.</description>
+    </item>
+    
+    <item>
+      <title>Iverson Bracket</title>
+      <link>//blog.vero.site/ref/iverson</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/iverson</guid>
+      <description>Very simple to explain: if \(P\) is a statement, \([P]\) is 1 if \(P\) is true and 0 if not. So for example
+\[\begin{aligned} \lbrack 1 &amp;lt; 2\rbrack &amp;amp;= 1 \\ \lbrack 1 &amp;gt; 2\rbrack &amp;amp;= 0 \end{aligned}\]
+It’s like using a boolean as an integer in C or Python.
+It’s useful to keep yourself organized when you’re writing summations, especially if you’re summing across terms with a weird condition or if you need to exchange two sums.</description>
+    </item>
+    
+    <item>
+      <title>Java Clipboards and Data Transfer</title>
+      <link>//blog.vero.site/ref/java-clipboards</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/java-clipboards</guid>
+      <description>(Ported from betaveros.stash. Wow, I get syntax highlighting and footnotes!)
+A quick brief guide. At least, that’s how I planned it.
+A lot of stuff is in the package java.awt.datatransfer. Class Toolkit is in java.awt.
+Some basic classes. The class Clipboard is a clipboard, obviously. Its content is/will be an instance of the class Transferable. Some content can be read as different types of objects depending on what you want; to choose which type you use an instance of DataFlavor.</description>
+    </item>
+    
+    <item>
       <title>Linear Algebra</title>
       <link>//blog.vero.site/ref/linalg</link>
-      <pubDate>Tue, 01 Nov 2016 00:00:00 +0800</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//blog.vero.site/ref/linalg</guid>
       <description>This is a matrix.
@@ -25,23 +62,9 @@ Vectors are like columns of matrices, or matrices with one column. Except row ve
     </item>
     
     <item>
-      <title>Rudin Crib Notes</title>
-      <link>//blog.vero.site/ref/rudin</link>
-      <pubDate>Thu, 04 Dec 2014 00:00:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/ref/rudin</guid>
-      <description>&lt;p&gt;Brevity has been chosen over accuracy because the whole point is that you should know this stuff already.&lt;/p&gt;
-&lt;h3 id=&#34;chapter-2-basic-topology-some-ch.-3&#34;&gt;Chapter 2: Basic Topology (+ some Ch. 3)&lt;/h3&gt;
-&lt;p&gt;An &lt;strong&gt;isolated point&lt;/strong&gt; of E is in E but not a limit point of it. E is &lt;strong&gt;perfect&lt;/strong&gt; if it is exactly equal to its set of limit points. Equivalently, it is closed and has no isolated points. Ex. 2.44: The Cantor set is perfect.&lt;/p&gt;
-&lt;p&gt;A &lt;strong&gt;compact set&lt;/strong&gt; is a set for which every open cover has a finite subcover.&lt;/p&gt;
-&lt;p&gt;Compactness or compact sets have these properties (with made-up names):&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>Operation Exchange</title>
       <link>//blog.vero.site/ref/exchange</link>
-      <pubDate>Tue, 21 Oct 2014 01:00:00 +0800</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//blog.vero.site/ref/exchange</guid>
       <description>&lt;h3 id=&#34;limit-limit&#34;&gt;Limit + Limit&lt;/h3&gt;
@@ -63,44 +86,6 @@ f_\epsilon(x) = \begin{cases} 0 &amp;amp; \text{if } |x| \geq \epsilon \\ 1 - \l
     </item>
     
     <item>
-      <title>Iverson Bracket</title>
-      <link>//blog.vero.site/ref/iverson</link>
-      <pubDate>Tue, 21 Oct 2014 00:00:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/ref/iverson</guid>
-      <description>Very simple to explain: if \(P\) is a statement, \([P]\) is 1 if \(P\) is true and 0 if not. So for example
-\[\begin{aligned} \lbrack 1 &amp;lt; 2\rbrack &amp;amp;= 1 \\ \lbrack 1 &amp;gt; 2\rbrack &amp;amp;= 0 \end{aligned}\]
-It’s like using a boolean as an integer in C or Python.
-It’s useful to keep yourself organized when you’re writing summations, especially if you’re summing across terms with a weird condition or if you need to exchange two sums.</description>
-    </item>
-    
-    <item>
-      <title>Haskell Stash</title>
-      <link>//blog.vero.site/ref/hs</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>//blog.vero.site/ref/hs</guid>
-      <description>Installation Notes Personal list of Hackage packages to install, in approximate decreasing order of priority.
-In Haskell Platform Changelog (in case there was any doubt)
-GHC notably has array, bytestring, template-haskell, transformers.
-Additional libraries notably include attoparsec, HTTP, HUnit, mtl, parsec, QuickCheck, text, vector.
-Still, come to think of it, these libraries may well have updated since the platform release…
-I’m too lazy to reinstall all of them, so here are the ones I recognize that I care about, minus containers because it mysteriously threatens to break ghc-7.</description>
-    </item>
-    
-    <item>
-      <title>Java Clipboards and Data Transfer</title>
-      <link>//blog.vero.site/ref/java-clipboards</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>//blog.vero.site/ref/java-clipboards</guid>
-      <description>(Ported from betaveros.stash. Wow, I get syntax highlighting and footnotes!)
-A quick brief guide. At least, that’s how I planned it.
-A lot of stuff is in the package java.awt.datatransfer. Class Toolkit is in java.awt.
-Some basic classes. The class Clipboard is a clipboard, obviously. Its content is/will be an instance of the class Transferable. Some content can be read as different types of objects depending on what you want; to choose which type you use an instance of DataFlavor.</description>
-    </item>
-    
-    <item>
       <title>Paper Size</title>
       <link>//blog.vero.site/ref/paper</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -108,6 +93,33 @@ Some basic classes. The class Clipboard is a clipboard, obviously. Its content i
       <guid>//blog.vero.site/ref/paper</guid>
       <description>1in = 2.54cm
  A4= 21.0cm × 29.7cm= 8.27in × 11.69in A4 &amp;minus; 1in margins= 15.92cm × 24.62cm= 6.27in × 9.69in Letter= 21.59cm × 27.94cm= 8.5in × 11in  </description>
+    </item>
+    
+    <item>
+      <title>Problem Reference</title>
+      <link>//blog.vero.site/ref/problem-ref</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/problem-ref</guid>
+      <description>(ported from wiki)
+Certain notable problems that I don’t want to look through a zillion pages to find.
+ Iran TST 1996, notoriously reposted at least 35 times on AoPS (okay, many of these are actually modifications):
+If \(x, y, z &amp;gt; 0\) then
+\[(xy+yz+zx)\left(\frac{1}{(x+y)^2} + \frac{1}{(y+z)^2} + \frac{1}{(z+x)^2}\right) \geq \frac{9}{4}\] ISL 1988 #4: if \(1, 2, \ldots, n^2\) are placed in a \(n \times n\) chessboard, some two adjacent numbers differ by at least \(n\) USAMO 1995.</description>
+    </item>
+    
+    <item>
+      <title>Rudin Crib Notes</title>
+      <link>//blog.vero.site/ref/rudin</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/rudin</guid>
+      <description>&lt;p&gt;Brevity has been chosen over accuracy because the whole point is that you should know this stuff already.&lt;/p&gt;
+&lt;h3 id=&#34;chapter-2-basic-topology-some-ch.-3&#34;&gt;Chapter 2: Basic Topology (+ some Ch. 3)&lt;/h3&gt;
+&lt;p&gt;An &lt;strong&gt;isolated point&lt;/strong&gt; of E is in E but not a limit point of it. E is &lt;strong&gt;perfect&lt;/strong&gt; if it is exactly equal to its set of limit points. Equivalently, it is closed and has no isolated points. Ex. 2.44: The Cantor set is perfect.&lt;/p&gt;
+&lt;p&gt;A &lt;strong&gt;compact set&lt;/strong&gt; is a set for which every open cover has a finite subcover.&lt;/p&gt;
+&lt;p&gt;Compactness or compact sets have these properties (with made-up names):&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>

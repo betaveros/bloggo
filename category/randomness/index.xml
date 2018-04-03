@@ -23,14 +23,38 @@
     </item>
     
     <item>
+      <title>Old Tests (and a Mysterious New Student)</title>
+      <link>//blog.vero.site/post/old-tests</link>
+      <pubDate>Sat, 25 Jul 2015 23:57:41 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/old-tests</guid>
+      <description>&lt;p&gt;(Short &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;streak&lt;/a&gt; post. And for the uninformed, I’m using &lt;a href=&#34;https://en.wikipedia.org/wiki/Spivak_pronoun&#34;&gt;Spivak pronouns&lt;/a&gt; for this post just because.)&lt;/p&gt;
+&lt;p&gt;Generally, when people I don’t already know through math competitions ask me or my parents about something like how to teach their intelligent child to make em really good at math, or even English or whatever, I am skeptical by default because there seem to be a lot of Taiwanese parents who have alarmingly rigid and largely baseless expectations or assumptions about what their children ought to be interested in and excel at.&lt;/p&gt;
+&lt;p&gt;You can lead a horse to water, and honestly I think you could find a way to force it to drink if you really wanted to, but you can’t make it enjoy the process of being force-fed. Um. &lt;a href=&#34;https://english.stackexchange.com/questions/36489/eat-is-to-feed-as-drink-is-to-what&#34;&gt;Force-watered? Force-hydrated?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You can teach your child math and English, and you could make em ace all eir tests, but you probably can’t make em enjoy the test so much that e decides to create more diabolical versions of these tests to give to eir fictional characters in eir stories for fun!&lt;/p&gt;
+&lt;p&gt;These are all &lt;strong&gt;&lt;em&gt;actual illustrations&lt;/em&gt;&lt;/strong&gt; from the old stories I mentioned in &lt;a href=&#34;https://betaveros.wordpress.com/2015/07/24/more-fiction-part-2-5/&#34;&gt;part 2.5 of “More Fiction”&lt;/a&gt;. Stories I wrote in 2004. As a first-grader.&lt;/p&gt;
+&lt;p&gt;This is kind of horrifying.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/test6blurred.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/test6blurred.png?w=652&#34; alt=&#34;test6blurred&#34; width=&#34;652&#34; height=&#34;458&#34; class=&#34;aligncenter size-large wp-image-3231&#34; /&gt;&lt;/a&gt;  &lt;a href=&#34;//blog.vero.site/img/test7.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/test7.png?w=652&#34; alt=&#34;test7&#34; width=&#34;652&#34; height=&#34;571&#34; class=&#34;aligncenter size-large wp-image-3232&#34; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>numbers.bmp</title>
       <link>//blog.vero.site/post/numbers-bmp</link>
       <pubDate>Wed, 22 Jul 2015 14:06:09 +0800</pubDate>
       
       <guid>//blog.vero.site/post/numbers-bmp</guid>
-      <description>Mom dug up an old hard drive for me to find photos of my elementary-school self participating in the same math competition I’m presenting at in a week. I discovered a lot of other interesting old stuff there. So today’s filler post image for the streak is courtesy of Brian2003/03/23. I don’t think it means anything, but sorry, I really really need to work on that presentation.
-
-To be clear, I didn’t actually upload the original .</description>
+      <description>&lt;p&gt;Mom dug up an old hard drive for me to find photos of my elementary-school self participating in the same math competition I’m presenting at in a week. I discovered a lot of other interesting old stuff there. So today’s filler post image for the &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;streak&lt;/a&gt; is courtesy of Brian&lt;sub&gt;2003/03/23&lt;/sub&gt;. I don’t think it means anything, but sorry, I really really need to work on that presentation.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/numbers.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/numbers.png?w=652&#34; alt=&#34;numbers&#34; width=&#34;652&#34; height=&#34;406&#34; class=&#34;aligncenter size-large wp-image-3201&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>A*</title>
+      <link>//blog.vero.site/post/a-star</link>
+      <pubDate>Mon, 20 Jul 2015 23:22:35 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/a-star</guid>
+      <description>Nope, still no meaningful post today. Instead here is a pretty diagram of the A* search algorithm (A-star in English, for my search crawler overlords). At least, I hope it is; I spent more time fiddling with the pretty colors than making sure the algorithm I implemented was actually A*. It looks right, though? In the background, red component measures traversed distance from start, (inverted) green component measures difference between the traversed distance plus heuristic distance and the theoretically optimal heuristic distance from the start, blue component measures heuristic distance to goal.</description>
     </item>
     
     <item>
@@ -193,6 +217,32 @@ Let’s listen to some more music.
 &lt;p&gt;These rules are not completely rigorous because I don’t know them completely rigorously. You can use common sense to reach a consensus in corner cases.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Use a normal deck of playing cards, or two or more identical decks if you want. Deal five cards to each player and set the rest aside to form a draw pile. Cards are played into a discard pile in the center. Players sit in an approximate circle and take turns along the circle, playing one card and then, usually, drawing one replacement card from the draw pile, so in normal 99, hands stay at five cards. When the draw pile runs out, shuffle the discard pile to become the new draw pile.  There is a “running total” in the game, an integer that starts at 0. Normal cards add their value to the running total when played. The total cannot become greater than 99, hence the name. If you have no cards that could keep it less than or equal to 99, you lose. In that case, the turn passes to the next player and the game continues until only one player remains, or until players get bored and decide to play something else.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>More Random Blathering</title>
+      <link>//blog.vero.site/post/more-random-blathering</link>
+      <pubDate>Sun, 16 Aug 2009 21:47:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/more-random-blathering</guid>
+      <description>&lt;div class=&#34;warning&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2009 self wrote this. It is preserved for historical interest and amusement only, and does not reflect my current beliefs or attitudes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Somehow my cousin deleted the Eragon game from his PSP. Ah well, it was fun while it lasted. Current project: get that secretary-problem paper done. It looks much nicer now, due to the references and big bold titles.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Peanut Butter Viscosity</title>
+      <link>//blog.vero.site/post/peanut-butter-viscosity</link>
+      <pubDate>Mon, 29 Sep 2008 08:44:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/peanut-butter-viscosity</guid>
+      <description>&lt;div class=&#34;warning&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2008 self wrote this. It is selectively preserved for historical interest and amusement from a lot of similar, chronologically nearby posts. That’s all.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Note to self: PB gets stickier when toasted. Slightly strange because under heat it should flow easier, but it’s probably the same principle as the way cement works.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

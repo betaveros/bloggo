@@ -6,23 +6,10 @@
     <description>Recent content in Math on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Nov 2016 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 07 Aug 2015 12:04:30 +0800</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/category/math/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Linear Algebra</title>
-      <link>//blog.vero.site/ref/linalg</link>
-      <pubDate>Tue, 01 Nov 2016 00:00:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/ref/linalg</guid>
-      <description>This is a matrix.
-\[\begin{bmatrix} 1 &amp;amp; 2 &amp;amp; 3 \\\\ 4 &amp;amp; 5 &amp;amp; 6 \end{bmatrix}\]
-It has 2 rows and 3 columns, so it is a \(2 \times 3\) matrix.
-Matrix addition and multiplication-by-a-scalar is done componentwise. Matrix multiplication is done trickily; it’s associative, distributive, commutative with scalars, linear, anticommutative-under-transposition.
-Vectors are like columns of matrices, or matrices with one column. Except row vectors are rows of matrices.</description>
-    </item>
     
     <item>
       <title>[CIMC 2015 Part 2] Journey of the Blue-White Slippers</title>
@@ -94,20 +81,6 @@ Day 3 (Excursions)
     </item>
     
     <item>
-      <title>Rudin Crib Notes</title>
-      <link>//blog.vero.site/ref/rudin</link>
-      <pubDate>Thu, 04 Dec 2014 00:00:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/ref/rudin</guid>
-      <description>&lt;p&gt;Brevity has been chosen over accuracy because the whole point is that you should know this stuff already.&lt;/p&gt;
-&lt;h3 id=&#34;chapter-2-basic-topology-some-ch.-3&#34;&gt;Chapter 2: Basic Topology (+ some Ch. 3)&lt;/h3&gt;
-&lt;p&gt;An &lt;strong&gt;isolated point&lt;/strong&gt; of E is in E but not a limit point of it. E is &lt;strong&gt;perfect&lt;/strong&gt; if it is exactly equal to its set of limit points. Equivalently, it is closed and has no isolated points. Ex. 2.44: The Cantor set is perfect.&lt;/p&gt;
-&lt;p&gt;A &lt;strong&gt;compact set&lt;/strong&gt; is a set for which every open cover has a finite subcover.&lt;/p&gt;
-&lt;p&gt;Compactness or compact sets have these properties (with made-up names):&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>Extreme Value Theorem</title>
       <link>//blog.vero.site/post/evt</link>
       <pubDate>Wed, 22 Oct 2014 00:00:00 +0800</pubDate>
@@ -123,42 +96,6 @@ Day 3 (Excursions)
 &lt;h3 id=&#34;definitions&#34;&gt;Definitions&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Real numbers&lt;/strong&gt; are hard to define. We only need to know that we can add, subtract, multiply, divide, and compare them, i.e. they’re an ordered field, and that they have the &lt;strong&gt;least-upper-bound property&lt;/strong&gt;. That is, if we have a set of real numbers that are bounded above, then the set has a &lt;em&gt;least upper bound&lt;/em&gt;, a bound that “perfectly fits” the set. Precisely, the bound must be such that every element of the set is less than or equal to it, and no smaller value satisfies the same property.&lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Operation Exchange</title>
-      <link>//blog.vero.site/ref/exchange</link>
-      <pubDate>Tue, 21 Oct 2014 01:00:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/ref/exchange</guid>
-      <description>&lt;h3 id=&#34;limit-limit&#34;&gt;Limit + Limit&lt;/h3&gt;
-&lt;p&gt;Cheaply, using an &lt;a href=&#34;%7B%%20post_url%202014-10-21-iverson-bracket%20%%7D&#34;&gt;Iverson bracket&lt;/a&gt; expression:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-\lim_{a \to \infty} \lim_{b \to \infty} [a &amp;gt; b] &amp;amp;= 0 \\
-\lim_{b \to \infty} \lim_{a \to \infty} [a &amp;gt; b] &amp;amp;= 1
-\end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;For more continuity, use &lt;span class=&#34;math inline&#34;&gt;\(\frac{a}{a + b}\)&lt;/span&gt; instead (Rudin Example 7.2).&lt;/p&gt;
-&lt;p&gt;Uniform convergence on one limit suffices to allow this exchange, almost by definition.&lt;/p&gt;
-&lt;h3 id=&#34;limit-continuity&#34;&gt;Limit + Continuity&lt;/h3&gt;
-&lt;p&gt;Let&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-f_\epsilon(x) = \begin{cases} 0 &amp;amp; \text{if } |x| \geq \epsilon \\ 1 - \left|\frac{x}{\epsilon}\right| &amp;amp;\text{if } |x| &amp;lt; \epsilon \end{cases}.
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Iverson Bracket</title>
-      <link>//blog.vero.site/ref/iverson</link>
-      <pubDate>Tue, 21 Oct 2014 00:00:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/ref/iverson</guid>
-      <description>Very simple to explain: if \(P\) is a statement, \([P]\) is 1 if \(P\) is true and 0 if not. So for example
-\[\begin{aligned} \lbrack 1 &amp;lt; 2\rbrack &amp;amp;= 1 \\ \lbrack 1 &amp;gt; 2\rbrack &amp;amp;= 0 \end{aligned}\]
-It’s like using a boolean as an integer in C or Python.
-It’s useful to keep yourself organized when you’re writing summations, especially if you’re summing across terms with a weird condition or if you need to exchange two sums.</description>
     </item>
     
     <item>
@@ -283,6 +220,125 @@ Our old friend, the monster of a functional equation, in edible form. In the gam
 &lt;p&gt;Our story begins in a hotel in Taiwan.&lt;/p&gt;
 &lt;p&gt;The night before departure, us six contestants and Prof. Lin gathered in a hotel. This was entirely necessary because our flight left at something like five o’clock in the morning. After checking over the flight plans and relevant phone numbers in a conference room, we enjoyed a pretty extensive buffet dinner, what would easily be the best meal we would get to have for at least a week, the highlight of which was a fish steak that looked and tasted exactly like fried egg. Afterwards we did some emergency shopping and prepared a convenience-store breakfast for consumption three o’clock the next day.&lt;/p&gt;
 &lt;p&gt;As I’ve complained before, we have an 11-hour difference to get used to, and that morning I had gotten myself to sleep as late as 6 AM trying (successfully, much to my amazement) to complete an iPod OS system update. I didn’t think I could pass airport security with the sort of consciousness I had when I finally slept that morning, so I reverted with the rest of the team to an 11 PM curfew. Oh well. The seven of us left the hotel after 3 AM, setting off in a huge 30-person bus for the airport.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Impact Minus Two Weeks</title>
+      <link>//blog.vero.site/post/impact-minus-two-weeks</link>
+      <pubDate>Mon, 25 Jun 2012 20:14:12 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/impact-minus-two-weeks</guid>
+      <description>&lt;p&gt;Wait, are you serious? Under two weeks left, is that what it’s come to?&lt;/p&gt;
+&lt;p&gt;What happened to my majestic plans to go over every functional equation I failed on, ever? Or to go through a super-intense geometry-immersion period and actually try to develop some of that crazy “intuition” thing? And I have &lt;em&gt;finals&lt;/em&gt; coming up too! I just finished a ludicrous deadline-extended geography project that I am absolutely confident is the crappiest paper of my entire school career so far! And despite a semester of (slacking) classes, my Spanish is still only barely at a usable level! Exclamation marks!&lt;/p&gt;
+&lt;p&gt;Don’t panic… let’s focus on the positive. I am absolutely prepared with my stationery. I bought three spanking new 0.4mm pens that say “Can write for 1000 meters!” because all of my current ones are annoyingly thick and constantly having almost-but-not-quite run out, plus three new mechanical pencils and enough matching 2B lead to last me through college. All the pencils and lead are Pentel. I haven’t done any research, so if something terrible happens in Argentina I know what company to blame, and I am writing it here so I won’t confuse the brands. Also, in view of what happened to SCH’s carry-on baggage last year (luckily there was no geo on Day 1), I got an extra compass I hope won’t be needed.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Coup de Grâce</title>
+      <link>//blog.vero.site/post/coup-de-grace</link>
+      <pubDate>Mon, 30 Apr 2012 19:22:49 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/coup-de-grace</guid>
+      <description>&lt;p&gt;Yes, it’s official now. I’m on the 2012 International Mathematical Olympiad team bound for Argentina, and if I didn’t make a post about this I would be ashamed to call myself a blogger. So, a little moment of smug self-satisfaction should be justified, I hope? And not to mention, last year’s title of youngest Taiwan contestant is not yet passed? Let’s cue the evil laughter!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://imgs.xkcd.com/comics/toot.png&#34; alt=&#34;Obligatory xkcd where a guy pops up and toots a literal air horn&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;…or maybe not.&lt;/p&gt;
+&lt;p&gt;Here is a simple tabulation of our selection problems:&lt;/p&gt;
+&lt;ol type=&#34;1&#34;&gt;
+&lt;li&gt;GA/GN/CG/GNC/NGA&lt;/li&gt;
+&lt;li&gt;AG/CA/NG/GCN/AGA&lt;/li&gt;
+&lt;li&gt;GA/GN/CA/GCN/AGC&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Algebra x9, Combinatorics x7, Geometry x12, Number Theory x8. In other words a distribution in perfect negative correlation with my estimated ability in each subject. At least, that’s how I’ve always estimated them before about a month ago. Ouch, the last stage was the only one of the three where problem distribution for combinatorics actually reached its fair share. (Alternative interpretation: 2011’s distribution was majorly f123ed up with only one real geometry problem, which just means that this year’s battle will probably be difficult for me. (Alternative alternative interpretation: the evil, nasty, wicked, depraved windmill was actually an outrageous negative for me. Gee, I don’t know how to feel. But I should actually do stuff instead of wildly speculating; let’s get back to the topic.))  The last stage of selection had a pretty steady “Individual Study” was steady. The first mock test had slightly easy problems as 1 and 2 and a completely insurmountable NT problem that was basically adding a zillion unrelated numbers up and having the result magically be divisible by a prime. I finished the first two problems in an hour and spent three and a half on the third, calculating over a hundred values modulo 19 trying to find a pattern. Nothing.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Back from Math-Camp Post...</title>
+      <link>//blog.vero.site/post/back-from-math-camp</link>
+      <pubDate>Thu, 13 Aug 2009 19:23:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/back-from-math-camp</guid>
+      <description>&lt;div class=&#34;warning&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2009 self wrote this. It is preserved for historical interest and amusement, and as a testament to how far I’d go to typeset math equations in ASCII art.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;I have just come back from a week of continuous mathematics, board gaming, and hitting people with sticks to ensure that they get up in time. Yippee! Those problems sure do get around.&lt;/p&gt;
+&lt;p&gt;Sample problem: This problem rocks!&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Iverson Bracket</title>
+      <link>//blog.vero.site/ref/iverson</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/iverson</guid>
+      <description>Very simple to explain: if \(P\) is a statement, \([P]\) is 1 if \(P\) is true and 0 if not. So for example
+\[\begin{aligned} \lbrack 1 &amp;lt; 2\rbrack &amp;amp;= 1 \\ \lbrack 1 &amp;gt; 2\rbrack &amp;amp;= 0 \end{aligned}\]
+It’s like using a boolean as an integer in C or Python.
+It’s useful to keep yourself organized when you’re writing summations, especially if you’re summing across terms with a weird condition or if you need to exchange two sums.</description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra</title>
+      <link>//blog.vero.site/ref/linalg</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/linalg</guid>
+      <description>This is a matrix.
+\[\begin{bmatrix} 1 &amp;amp; 2 &amp;amp; 3 \\\\ 4 &amp;amp; 5 &amp;amp; 6 \end{bmatrix}\]
+It has 2 rows and 3 columns, so it is a \(2 \times 3\) matrix.
+Matrix addition and multiplication-by-a-scalar is done componentwise. Matrix multiplication is done trickily; it’s associative, distributive, commutative with scalars, linear, anticommutative-under-transposition.
+Vectors are like columns of matrices, or matrices with one column. Except row vectors are rows of matrices.</description>
+    </item>
+    
+    <item>
+      <title>Operation Exchange</title>
+      <link>//blog.vero.site/ref/exchange</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/exchange</guid>
+      <description>&lt;h3 id=&#34;limit-limit&#34;&gt;Limit + Limit&lt;/h3&gt;
+&lt;p&gt;Cheaply, using an &lt;a href=&#34;%7B%%20post_url%202014-10-21-iverson-bracket%20%%7D&#34;&gt;Iverson bracket&lt;/a&gt; expression:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\lim_{a \to \infty} \lim_{b \to \infty} [a &amp;gt; b] &amp;amp;= 0 \\
+\lim_{b \to \infty} \lim_{a \to \infty} [a &amp;gt; b] &amp;amp;= 1
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For more continuity, use &lt;span class=&#34;math inline&#34;&gt;\(\frac{a}{a + b}\)&lt;/span&gt; instead (Rudin Example 7.2).&lt;/p&gt;
+&lt;p&gt;Uniform convergence on one limit suffices to allow this exchange, almost by definition.&lt;/p&gt;
+&lt;h3 id=&#34;limit-continuity&#34;&gt;Limit + Continuity&lt;/h3&gt;
+&lt;p&gt;Let&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+f_\epsilon(x) = \begin{cases} 0 &amp;amp; \text{if } |x| \geq \epsilon \\ 1 - \left|\frac{x}{\epsilon}\right| &amp;amp;\text{if } |x| &amp;lt; \epsilon \end{cases}.
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Problem Reference</title>
+      <link>//blog.vero.site/ref/problem-ref</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/problem-ref</guid>
+      <description>(ported from wiki)
+Certain notable problems that I don’t want to look through a zillion pages to find.
+ Iran TST 1996, notoriously reposted at least 35 times on AoPS (okay, many of these are actually modifications):
+If \(x, y, z &amp;gt; 0\) then
+\[(xy+yz+zx)\left(\frac{1}{(x+y)^2} + \frac{1}{(y+z)^2} + \frac{1}{(z+x)^2}\right) \geq \frac{9}{4}\] ISL 1988 #4: if \(1, 2, \ldots, n^2\) are placed in a \(n \times n\) chessboard, some two adjacent numbers differ by at least \(n\) USAMO 1995.</description>
+    </item>
+    
+    <item>
+      <title>Rudin Crib Notes</title>
+      <link>//blog.vero.site/ref/rudin</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/rudin</guid>
+      <description>&lt;p&gt;Brevity has been chosen over accuracy because the whole point is that you should know this stuff already.&lt;/p&gt;
+&lt;h3 id=&#34;chapter-2-basic-topology-some-ch.-3&#34;&gt;Chapter 2: Basic Topology (+ some Ch. 3)&lt;/h3&gt;
+&lt;p&gt;An &lt;strong&gt;isolated point&lt;/strong&gt; of E is in E but not a limit point of it. E is &lt;strong&gt;perfect&lt;/strong&gt; if it is exactly equal to its set of limit points. Equivalently, it is closed and has no isolated points. Ex. 2.44: The Cantor set is perfect.&lt;/p&gt;
+&lt;p&gt;A &lt;strong&gt;compact set&lt;/strong&gt; is a set for which every open cover has a finite subcover.&lt;/p&gt;
+&lt;p&gt;Compactness or compact sets have these properties (with made-up names):&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

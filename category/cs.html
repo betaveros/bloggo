@@ -173,6 +173,34 @@ Category → cs
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/sakura" class="post-link">Sakura</a></h3>
+		
+		<h4 class="post-subtitle">HITCON CTF 2017</h4>
+		
+		<p class="post-meta">
+		
+		2017-11-12
+		(703 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>(Okay, this post is backdated.)</p>
+<p>Disassembling the executable produces a huge amount of code. There are some basic obfuscations like a lot of trivial identity functions nested in each other, and a few functions that wrap around identity functions but just add some constant multiple of 16. Most of the meat is in one very large function, though. If you disassemble this function with IDA, you see a lot of variable initializations and then a lot of interesting loops that are quite similar:</p>
+<p></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/sakura">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/bcodex" class="post-link">020315040524</a></h3>
 		
 		<p class="post-meta">
@@ -212,9 +240,13 @@ Category → cs
 		</p>
 	</header>
 	
-	5:27 PM phenomist: do you use gridderface to make pretty puzzles?
-…
-5:52 PM phenomist: actually nvm excel is probably easier lol  Okay I’m sorry this is a horrible puzzle where the rules don’t make sense and I didn’t even get it testsolved. I just wanted an image to concisely demonstrate the capabilities of gridderface, my puzzle marking and creation program, for the project homepage, after somebody expressed interest in using the program to write a puzzle.
+	<blockquote>
+5:27 PM <strong>phenomist</strong>: do you use gridderface to make pretty puzzles?<br />
+…<br />
+5:52 PM <strong>phenomist</strong>: actually nvm excel is probably easier lol
+</blockquote>
+<p>Okay I’m sorry this is a horrible puzzle where the rules don’t make sense and I didn’t even get it testsolved. I just wanted an image to concisely demonstrate the capabilities of <a href="https://github.com/betaveros/gridderface">gridderface</a>, my puzzle marking and creation program, for the project homepage, after somebody expressed interest in using the program to write a puzzle. Then I got tremendously carried away.</p>
+<p></p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/puzzle-46">→ read more</a>
 	</footer>
@@ -326,6 +358,30 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/ref/stash" class="post-link">Stash</a></h3>
+		
+		<p class="post-meta">
+		
+		
+		(360 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	rustc -C prefer-dynamic .meter-text { white-space: pre-wrap; } launchctl stop com.apple.pboard launchctl start com.apple.pboard # requires ImageMagick functionimg() { identify -format &#39;&lt;img src=&quot;%f&quot; width=&quot;%w&quot; height=&quot;%h&quot; /&gt;&#39; $1 } :%s/\%xa0/ /ge :%s/\%u2019/&#39;/ge :%s/\%u201c/&quot;/ge :%s/\%u201d/&quot;/ge ifconfig en0 | grep ether sudo ifconfig en1 ether 12:34:56:78:9a:bc while [[ $(date +%Y) -ne 2015]];do figlet $(($(date -j 0101000015 +%s)-$(date +%s)));sleep 1;clear;done;figlet Happy New Year! javascript:(function(x){function%20f(n){return%20Math.round(n*1000)/1000;}alert(&quot;HP:%20&quot;+f(x.hp)+&quot;\nMP:%20&quot;+f(x.mp)+&quot;\nEXP:%20&quot;+f(x.exp)+&quot;\nGP:%20&quot;+f(x.gp));}(angular.element(document.querySelector(&#39;.hero-stats&#39;)).scope().user.stats)); alias kd=&#39;ruby --external-encoding UTF-8 -S kramdown&#39; alias please=&quot;sudo&quot; sage: R = PolynomialRing(QQ, &#39;x&#39;) sage: f = R.
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/ref/stash">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/ref/java-clipboards" class="post-link">Java Clipboards and Data Transfer</a></h3>
 		
 		<p class="post-meta">
@@ -351,7 +407,46 @@ Some basic classes. The class Clipboard is a clipboard, obviously. Its content i
 </article>
 
 		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/ref/hs" class="post-link">Haskell Stash</a></h3>
+		
+		<p class="post-meta">
+		
+		
+		(1764 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
 	
+	Installation Notes Personal list of Hackage packages to install, in approximate decreasing order of priority.
+In Haskell Platform Changelog (in case there was any doubt)
+GHC notably has array, bytestring, template-haskell, transformers.
+Additional libraries notably include attoparsec, HTTP, HUnit, mtl, parsec, QuickCheck, text, vector.
+Still, come to think of it, these libraries may well have updated since the platform release…
+I’m too lazy to reinstall all of them, so here are the ones I recognize that I care about, minus containers because it mysteriously threatens to break ghc-7.
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/ref/hs">→ read more</a>
+	</footer>
+</article>
+
+		
+	
+	
+	<footer class="list-footer">
+		<nav class="pagination">
+			<h3 class="offscreen">Pagination</h3>
+			
+			
+				<a class="pagination-next" href="/category/cs/page/2">older posts →</a>
+			
+		</nav>
+	</footer>
 	
 </section>
 <footer class="site-footer">

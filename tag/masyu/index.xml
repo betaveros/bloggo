@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Masyu on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/masyu</link>
+    <description>Recent content in Masyu on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Jan 2013 15:16:51 +0800</lastBuildDate>
+    
+	<atom:link href="//blog.vero.site/tag/masyu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Puzzle 37 / Slitherlink &#43; Masyu</title>
+      <link>//blog.vero.site/post/puzzle-37</link>
+      <pubDate>Thu, 24 Jan 2013 15:16:51 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzle-37</guid>
+      <description>&lt;p&gt;Nikoli &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/slitherlink.html&#34;&gt;Slitherlink&lt;/a&gt; + &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/masyu.html&#34;&gt;Masyu&lt;/a&gt; hybrid; I don’t know who first put them together but combinations like this aren’t rare.&lt;/p&gt;
+&lt;p&gt;Draw a loop through vertices that cannot intersect itself; each number indicates how many of the four edges around it are drawn; the loop must pass through all large dots, and it must go straight through white dots while turning either before or after (or both), while it must turn on black dots without turning either before or after.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
