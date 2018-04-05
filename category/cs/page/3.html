@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>
+Category → cs
+
+ | Bounded-Error Log
+</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/category/cs" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item  is-active"><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-list">
+	<header class="list-header">
+		<h2 class="list-label">
+			Category → cs
+			
+		</h2>
+	</header>
+	<article class="content"></article>
+	
+	
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/programming" class="post-link">Ridiculously Long-Winded Programming Babble</a></h3>
+		
+		<p class="post-meta">
+		
+		2012-12-16
+		(4320 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">Cs</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Okay I don’t actually know how this pointless rambling got so long. I know the longer it is the more people will just tend to skim, because I do that all the time. So I went back and refactored—er, rewrote all the somewhat tangential bits (wow these puns are too easy) into footnotes. Manually. Obviously if I have to do this again I’ll write a script for it. But the post is still really long, and I bet nobody will read the whole thing. Oh well.</p>
+<p>Life updates: I got out of the hospital Friday two-and-a-half weeks ago, went to the preliminaries of NPSC (a national team programming contest) with classmates, threw up a lot, went back into the hospital, and came out again. I wrote a lot of stuff about the experience and how much it sucked (hint: <em>a lot</em>) when I started this draft around that time, but now putting so much detail in this post feels weird. I’m mostly good now.</p>
+<p>Three years ago NPSC was the only programming contest I really knew of; now I’ve participated in quite a few more, both online and locally, but it’s still the only contest I’ve entered that gives you real-time verdicts. I believe it inherits this from being modeled after ACM-ICPC, but that’s for college people and I’m less clear on how it works. All the other contests, namely <a href="https://www.topcoder.com/">TopCoder</a>, <a href="http://www.codeforces.com/">CodeForces</a>, <a href="http://usaco.org/">USACO</a>, and the other local individual competition (there doesn’t appear to be an English name so for the purpose of this post I’ll just call it “Nameless Local”; there’s a nation-wide competition in one-and-a-half weeks!), have system tests after the contest that don’t allow you to resubmit afterwards.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> They all give pretests that you get to know about right away, just to catch super-silly non-algorithmic mistakes like failing to remove the debug statements or reading input from the wrong place, but these contain weak test cases and don’t guarantee that the solution will pass the system tests and get full score.  After roughly parsing the rules on the IOI’s website, I believe the IOI (at least this year; I don’t know if it has evolved or anything) allows real-time testing and feedback with a confusing bunch of restrictions: how it apparently works is there are free “public tests”, and you can get results for a “release test” using the official test cases by using a “release token”, which you get two of every half hour. Additionally, there is apparently a cap of 64 submissions per problem, but I’m pretty sure it’s the kind of cap that honest competitors can safely ignore, like the 100-per-group in Australian puzzlehunts. Well, at least it tells us the organizers think in binary. Or octal.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/programming">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/gridderface-0-5" class="post-link">Gridderface 0.5</a></h3>
+		
+		<p class="post-meta">
+		
+		2012-11-27
+		(237 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>, <a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	Okay, I give up. Here it is: Gridderface is a (quoting the project description, which I wrote anyway so whatever) “keyboard inferface for marking grid-based puzzles in Java” that I’ve been working on for too long. It is open-source under the GPL v3.
+Basically, it’s a thing you can paste logic puzzle images into to solve them in, like people do in Paint, when you can’t or don’t want to print them.
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/gridderface-0-5">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/debug" class="post-link">Adventures in Meta-Debugging</a></h3>
+		
+		<p class="post-meta">
+		
+		2012-11-05
+		(807 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">Cs</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Okay did I mention how I sucked at the command line? This is part of the journey towards stopping. Yes, I’m on a Mac and it’s not very *nix-y in some ways but it’s enough for me for now.</p>
+<p>Today’s story starts when I learned about <a href="https://www.gnu.org/software/gdb/"><code>gdb</code></a>, the pure-command-line GNU Debugger, which is incredibly cool. I have tried and failed to learn how to use the debug function on many of my IDEs; I found shotgunning <code>printf</code> statements as needed faster. This may well be the first time I found a command-line tool so much more intuitive than the GUI-equipped programs. Wow.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/debug">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/technological-fails-continue" class="post-link">Technological Fails Continue</a></h3>
+		
+		<p class="post-meta">
+		
+		2012-02-15
+		(733 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">Cs</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<div class="warning">
+<p><strong>Note</strong>: My 2012 self wrote this. It is preserved for historical interest and amusement, and does not reflect my current beliefs or attitudes.</p>
+</div>
+<p>Hardware:</p>
+<p>The laptop I’m typing this on is over two years old. This is not a lot by some measures, but weird spontaneous glitches are starting to accumulate to the point where they’re getting on my nerves. The internet card still needs an extra reset to start working half the time, and occasionally warrants a full reboot, which costs five minutes. The USB ports are loopy, some windows just show up black when they feel like it, and there’s a steadily climbing whir in the background. I’m kind of anticipating the moment the whole thing just drops dead.</p>
+<p>Well, I’m not about to run out of computers to use (there’s a noisy XP desktop that also barely works despite handling all our print jobs, but also one spanking new eight-core CPU laptop, which Dad considered a valuable enough investment (?)) but such a loss is still not something to be dismissed lightly. And the externalized cost is far more important and chilling. Who knows how many kids in the Congo had to mine coltan, or how much conflict has occurred over the crude oil, or what awful conditions those sweatshop-assembly workers are going through? Annie Leonard’s words still resonate with me from when we were first shown the video a year ago. Which is more recent than this laptop, so that doesn’t mean that much. I think a couple months ago I would have absolutely no second thoughts about getting a new one, though. Yup, I’m in a quandary (ha ha vocabulary) on the balance between desensitization and compulsive hoarding of stuff.</p>
+<p></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/technological-fails-continue">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/crappy-markup" class="post-link">Adventures in Crappy Markup</a></h3>
+		
+		<p class="post-meta">
+		
+		2012-02-10
+		(1188 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">Cs</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	There are two big elementary and middle school competitions around this part of the globe. Well, “big” according to “I’ve heard of it”, which is by no means an accurate measure of, well, anything. I don’t go out of my way to look for them any more, even though… hold on, am I still eligible? Whatever. But in any case, diverting any unnecessary energy from the olympiad-proof-training is probably not a good idea now.
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/crappy-markup">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/technological-fails" class="post-link">Technological Fails</a></h3>
+		
+		<p class="post-meta">
+		
+		2009-12-20
+		(387 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">Cs</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<div class="warning">
+<p><strong>Note</strong>: My 2009 self wrote this (except for the insertions by my 2013 self). It is preserved for historical interest and amusement, and does not reflect my current beliefs or attitudes.</p>
+</div>
+<p>Strange things:</p>
+<p></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/technological-fails">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/ref/init" class="post-link">init</a></h3>
+		
+		<p class="post-meta">
+		
+		
+		(214 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	1  Firefox  LeechBlock, Xmarks, HTTPS Everywhere, uBlock Origin Formerly: Pentadactyl (nightlies), LastPass, Disconnect, All-in-One Sidebar  Dropbox (db.tt) (g)Vim / MacVim  NeoBundle; jellybeans, syntastic, airline, fugitive, unite.vim, nerdtree, … Make sure you change your home folder and other paths in your .vimrc if necessary.  LaTeX VLC Anki Geogebra, CaRMetal osu! Gargoyle MuseScore μTorrent VeraCrypt Gyazo  h4xx0r Be aware of homebrew options.
+ git (clone my stuff) fish_shell languages: haskell (stash), scala python things: beautifulsoup4, fn, ipython, numpy, pwntools, requests, scipy, virtualenv docs: kramdown, pandoc command-line: mu, fasd, ack / the_silver_searcher, openssl, tmux, ffmpeg, heroku, binutils, coreutils, tiny-fugue command-line more for fun: cowsay, figlet, cloc, sloccount idk: ant, go, ruby, rust  Mac  Use bottom-right of track pad for right-click; disable natural scrolling Set Caps Lock to Control In Mission Control &gt; Hot Corners, set the lower-right corner to Mission Control  mkdir ~/bin ~/tmp
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/ref/init">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/ref/stash" class="post-link">Stash</a></h3>
+		
+		<p class="post-meta">
+		
+		
+		(360 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	rustc -C prefer-dynamic .meter-text { white-space: pre-wrap; } launchctl stop com.apple.pboard launchctl start com.apple.pboard # requires ImageMagick functionimg() { identify -format &#39;&lt;img src=&quot;%f&quot; width=&quot;%w&quot; height=&quot;%h&quot; /&gt;&#39; $1 } :%s/\%xa0/ /ge :%s/\%u2019/&#39;/ge :%s/\%u201c/&quot;/ge :%s/\%u201d/&quot;/ge ifconfig en0 | grep ether sudo ifconfig en1 ether 12:34:56:78:9a:bc while [[ $(date +%Y) -ne 2015]];do figlet $(($(date -j 0101000015 +%s)-$(date +%s)));sleep 1;clear;done;figlet Happy New Year! javascript:(function(x){function%20f(n){return%20Math.round(n*1000)/1000;}alert(&quot;HP:%20&quot;+f(x.hp)+&quot;\nMP:%20&quot;+f(x.mp)+&quot;\nEXP:%20&quot;+f(x.exp)+&quot;\nGP:%20&quot;+f(x.gp));}(angular.element(document.querySelector(&#39;.hero-stats&#39;)).scope().user.stats)); alias kd=&#39;ruby --external-encoding UTF-8 -S kramdown&#39; alias please=&quot;sudo&quot; sage: R = PolynomialRing(QQ, &#39;x&#39;) sage: f = R.
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/ref/stash">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/ref/java-clipboards" class="post-link">Java Clipboards and Data Transfer</a></h3>
+		
+		<p class="post-meta">
+		
+		
+		(551 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	(Ported from betaveros.stash. Wow, I get syntax highlighting and footnotes!)
+A quick brief guide. At least, that’s how I planned it.
+A lot of stuff is in the package java.awt.datatransfer. Class Toolkit is in java.awt.
+Some basic classes. The class Clipboard is a clipboard, obviously. Its content is/will be an instance of the class Transferable. Some content can be read as different types of objects depending on what you want; to choose which type you use an instance of DataFlavor.
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/ref/java-clipboards">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/ref/hs" class="post-link">Haskell Stash</a></h3>
+		
+		<p class="post-meta">
+		
+		
+		(1764 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	Installation Notes Personal list of Hackage packages to install, in approximate decreasing order of priority.
+In Haskell Platform Changelog (in case there was any doubt)
+GHC notably has array, bytestring, template-haskell, transformers.
+Additional libraries notably include attoparsec, HTTP, HUnit, mtl, parsec, QuickCheck, text, vector.
+Still, come to think of it, these libraries may well have updated since the platform release…
+I’m too lazy to reinstall all of them, so here are the ones I recognize that I care about, minus containers because it mysteriously threatens to break ghc-7.
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/ref/hs">→ read more</a>
+	</footer>
+</article>
+
+		
+	
+	
+	<footer class="list-footer">
+		<nav class="pagination">
+			<h3 class="offscreen">Pagination</h3>
+			
+				<a class="pagination-previous" href="/category/cs/page/2">← newer posts</a>
+			
+			
+		</nav>
+	</footer>
+	
+</section>
+<footer class="site-footer">
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>
