@@ -141,6 +141,39 @@ Category → cs
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/scala" class="post-link">Adventures in Scala Pseudo-Abuse</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-02-21
+		(1624 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">Cs</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>So, what have I been doing with programming recently?</p>
+<p><a href="http://www.scala-lang.org/">Scala</a> is an amazing multiparadigm programming language that runs on the Java Virtual Machine and interoperates with Java. I learned about it last time reading random articles on Twitter.</p>
+<p>When I say “amazing” I mean “This is a language in which my code gives me nerdgasms every time I read it.” Wheeee.</p>
+<p>Okay, it’s not perfect. People say it’s too academic. It has a notoriously complicated type system (which is <a href="http://scientopia.org/blogs/goodmath/2013/01/21/types-gone-wild-ski-at-compile-time/"><em>Turing-Complete</em> at compile time</a>). Its documentation is a bit patchy too. For a serious introduction, the Scala website has plenty of links under documentation, and a <a href="http://www.scala-lang.org/node/104">tour of features</a>. Somebody wrote <a href="http://www.naildrivin5.com/scalatour">another tour</a> that explains things a bit more. So here, instead of introducing it seriously, I’m just going to screw with its features.</p>
+<p>Example of freedom. Scala lets names consist of symbols, and treats one-parameter methods and infix operators exactly the same. The full tokenization rules are a bit detailed and I put them at the bottom of this post for the interested. This lets you create classes with arithmetic and domain-specific languages easily, but it also creates some silly opportunities:</p>
+<pre><code>scala&gt; val * = 12
+*: Int = 12
+
+scala&gt; * * * * *
+res0: Int = 1728</code></pre>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/scala">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/programming" class="post-link">Ridiculously Long-Winded Programming Babble</a></h3>
 		
 		<p class="post-meta">
@@ -299,31 +332,6 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
 		
 			<article class="post-entry">
 	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/ref/init" class="post-link">init</a></h3>
-		
-		<p class="post-meta">
-		
-		
-		(214 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	1  Firefox  LeechBlock, Xmarks, HTTPS Everywhere, uBlock Origin Formerly: Pentadactyl (nightlies), LastPass, Disconnect, All-in-One Sidebar  Dropbox (db.tt) (g)Vim / MacVim  NeoBundle; jellybeans, syntastic, airline, fugitive, unite.vim, nerdtree, … Make sure you change your home folder and other paths in your .vimrc if necessary.  LaTeX VLC Anki Geogebra, CaRMetal osu! Gargoyle MuseScore μTorrent VeraCrypt Gyazo  h4xx0r Be aware of homebrew options.
- git (clone my stuff) fish_shell languages: haskell (stash), scala python things: beautifulsoup4, fn, ipython, numpy, pwntools, requests, scipy, virtualenv docs: kramdown, pandoc command-line: mu, fasd, ack / the_silver_searcher, openssl, tmux, ffmpeg, heroku, binutils, coreutils, tiny-fugue command-line more for fun: cowsay, figlet, cloc, sloccount idk: ant, go, ruby, rust  Mac  Use bottom-right of track pad for right-click; disable natural scrolling Set Caps Lock to Control In Mission Control &gt; Hot Corners, set the lower-right corner to Mission Control  mkdir ~/bin ~/tmp
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/ref/init">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/ref/stash" class="post-link">Stash</a></h3>
 		
 		<p class="post-meta">
@@ -410,6 +418,8 @@ I’m too lazy to reinstall all of them, so here are the ones I recognize that I
 			
 				<a class="pagination-previous" href="/category/cs/page/2">← newer posts</a>
 			
+			
+				<a class="pagination-next" href="/category/cs/page/4">older posts →</a>
 			
 		</nav>
 	</footer>

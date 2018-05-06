@@ -6,10 +6,19 @@
     <description>Recent content on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Apr 2018 20:09:37 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 06 May 2018 13:52:52 -0400</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Pupper/Doggo</title>
+      <link>//blog.vero.site/post/doggo</link>
+      <pubDate>Sun, 06 May 2018 13:52:52 -0400</pubDate>
+      
+      <guid>//blog.vero.site/post/doggo</guid>
+      <description>We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called Wolf. Concretely, every type in Wolf’s type system has an associated secrecy: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.</description>
+    </item>
     
     <item>
       <title>On #DeleteFacebook</title>

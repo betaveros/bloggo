@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Pupper/Doggo</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called Wolf. Concretely, every type in Wolf’s type system has an associated secrecy: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result." />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/doggo" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Pupper/Doggo</h1>
+		
+		<h2 class="post-subtitle">PlaidCTF 2018</h2>
+		
+		<p class="post-meta">
+		
+		2018-05-06
+		(2660 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called <em>Wolf</em>. Concretely, every type in Wolf’s type system has an associated <em>secrecy</em>: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.</p>
+<p>Of course, this is a CTF, so the challenge is all about breaking the theoretical guarantees of the type system. When we submit code, it’s evaluated in a context with a private integer variable <code>flag</code>; our code is typechecked, executed, and printed, but only if its type is public. The goal is to break the type system and write code that produces a public value that depends on <code>flag</code>, so that we can exfiltrate <code>flag</code> itself.</p>
+<h3 id="wolf-overview">Wolf Overview</h3>
+<p>Let’s first go over the Wolf syntax and semantics. The <code>examples</code> folder has some examples of valid code:</p>
+<pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">let</span> x = (<span class="dv">5</span> :&gt; <span class="kw">private</span> <span class="dt">int</span>) <span class="kw">in</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="dv">6</span></div></code></pre>
+<pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">let</span> f = fn (x : <span class="dt">int</span>) =&gt; x + <span class="dv">1</span> <span class="kw">in</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">f <span class="dv">3</span></div></code></pre>
+<pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">if</span> (<span class="dv">1</span> + <span class="dv">1</span> = <span class="dv">2</span>) = <span class="kw">true</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">  <span class="kw">then</span> (<span class="dv">0-1337</span>)</div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">  <span class="kw">else</span> <span class="dv">1234</span></div></code></pre>
+<pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">let</span> r = <span class="dt">ref</span> <span class="dv">3</span> <span class="kw">in</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">r := <span class="dv">1</span>;</div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">r := !r + <span class="dv">1</span>;</div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">r</div></code></pre>
+<p>These poor attempts at exfiltrating the flag do not typecheck (that is, the typechecker notices that their type is private, so the interpreter refuses to run them):</p>
+<pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1">(flag :&gt; public <span class="dt">int</span>)</div></code></pre>
+<pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">let</span> totally_not_flag = flag <span class="kw">in</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">totally_not_flag</div></code></pre>
+<p><code>language.sml</code> might be the simplest place to intuit a more exhaustive description:</p>
+<pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1">infix @:</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">datatype term</div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">  = VarExp <span class="kw">of</span> Variable.t</div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">  | LetExp <span class="kw">of</span> {</div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">      dec : (Variable.t * term), <span class="co">(* declaration *)</span></div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">      body : term</div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">  }</div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">  | LamExp <span class="kw">of</span> {</div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">      param : Variable.t,</div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10">      paramType : tycon,</div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11">      body : term</div>
+<div class="sourceLine" id="12" href="#12" data-line-number="12">  }</div>
+<div class="sourceLine" id="13" href="#13" data-line-number="13">  | AppExp <span class="kw">of</span> { <span class="kw">function</span> : term, argument : term }</div>
+<div class="sourceLine" id="14" href="#14" data-line-number="14">  | PrimArith <span class="kw">of</span> Primitive.arith * (term * term)</div>
+<div class="sourceLine" id="15" href="#15" data-line-number="15">  | PrimCmp <span class="kw">of</span> Primitive.cmp * (term * term)</div>
+<div class="sourceLine" id="16" href="#16" data-line-number="16">  | IfExp <span class="kw">of</span> {cond : term, thenCase : term, elseCase : term}</div>
+<div class="sourceLine" id="17" href="#17" data-line-number="17">  | UnitExp</div>
+<div class="sourceLine" id="18" href="#18" data-line-number="18">  | IntExp <span class="kw">of</span> Primitive.<span class="dt">int</span></div>
+<div class="sourceLine" id="19" href="#19" data-line-number="19">  | BoolExp <span class="kw">of</span> <span class="dt">bool</span></div>
+<div class="sourceLine" id="20" href="#20" data-line-number="20">  | NewRefExp <span class="kw">of</span> term</div>
+<div class="sourceLine" id="21" href="#21" data-line-number="21">  | AssignExp <span class="kw">of</span> { target : term, value : term }</div>
+<div class="sourceLine" id="22" href="#22" data-line-number="22">  | DerefExp <span class="kw">of</span> term</div>
+<div class="sourceLine" id="23" href="#23" data-line-number="23">  | CoerceExp <span class="kw">of</span> term * tycon</div>
+<div class="sourceLine" id="24" href="#24" data-line-number="24">  | Reference <span class="kw">of</span> Assignable.assignable</div>
+<div class="sourceLine" id="25" href="#25" data-line-number="25"></div>
+<div class="sourceLine" id="26" href="#26" data-line-number="26"><span class="kw">and</span> tycon <span class="co">(* type constructors with secrecy *)</span></div>
+<div class="sourceLine" id="27" href="#27" data-line-number="27">    = @: <span class="kw">of</span> con * Secrecy.t</div>
+<div class="sourceLine" id="28" href="#28" data-line-number="28"></div>
+<div class="sourceLine" id="29" href="#29" data-line-number="29"><span class="kw">and</span> con <span class="co">(* type constructors *)</span></div>
+<div class="sourceLine" id="30" href="#30" data-line-number="30">    = Cint</div>
+<div class="sourceLine" id="31" href="#31" data-line-number="31">    | Cbool</div>
+<div class="sourceLine" id="32" href="#32" data-line-number="32">    | Carrow <span class="kw">of</span> tycon * tycon</div>
+<div class="sourceLine" id="33" href="#33" data-line-number="33">    | Cref <span class="kw">of</span> tycon</div>
+<div class="sourceLine" id="34" href="#34" data-line-number="34">    | Cunit</div></code></pre>
+<p>Wolf has three simple data types: <code>int</code>, <code>bool</code>, and <code>unit</code>. It also has two complex data types, a <code>ref T</code> type that holds a mutable reference to something of type <code>T</code>, and a function type <code>a -&gt; b</code> that is a function that takes one argument of type <code>a</code> and returns one argument of type <code>b</code>. Each of these data types can be directly used as a type (which makes them implicitly public) or modified by <code>private</code> to get a new type, except that <code>ref</code>s cannot be private.</p>
+<p>Wolf programs support the usual numeric and boolean literals, variable references, arithmetic, and comparisons; <code>let</code>-<code>in</code> statements, for binding a variable, e.g. <code>let x = 3 in x + 2</code>; function application; the usual arithmetic and comparisons; creating, assigning, and dereferencing mutable <code>ref</code>s, e.g. <code>let r = ref 3 in r := !r + 1; !r</code>; and type coercion, e.g. <code>(3 :&gt; private int)</code>.</p>
+<p>The flag variable is <code>flag</code>, which has type <code>private int</code>.</p>
+<p>Generally, computations with data that includes at least one private thing result in a private return value. So if you add a public and a private <code>int</code>, the type of the expression is a private <code>int</code>. The types of if statements have to match exactly. You can explicitly coerce subtypes to supertypes, even though there aren’t that many of them; you can coerce public X to private X, refs are invariant in what they contain (and can’t themselves be private), and function types are covariant in their return type and contravariant in their argument type, as expected.</p>
+<p>Secrecy is reperesented with this datatype. There are two possible values of Secrecy, <code>Private</code> and <code>Public</code>; you can compare them and take their min and max.</p>
+<pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1">datatype t</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">  = Private</div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">  | Public</div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4"></div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5"><span class="kw">fun</span> leq Private Public = <span class="kw">false</span></div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">  | leq _ _ = <span class="kw">true</span></div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7"></div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8"><span class="kw">fun</span> <span class="dt">max</span> (Public, Public) = Public</div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">  | <span class="dt">max</span> _ = Private</div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10"></div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11"><span class="kw">fun</span> <span class="dt">min</span> (Private, Private) = Private</div>
+<div class="sourceLine" id="12" href="#12" data-line-number="12">  | <span class="dt">min</span> _ = Public</div></code></pre>
+<p><code>typechecker.sml</code> defines some operators that are aliases for combining secrecies, and <code>@:</code> is the infix operator that attaches a Secrecy to a data type to get a full type for the type system.</p>
+<pre><code>infix 3 @:
+infix 4 +$
+val op +$ = Secrecy.max
+infix 5 *$
+val op *$ = Secrecy.min</code></pre>
+<p>Also worth mentioning is that side-channel timing attacks are eliminated because all of the interpreter’s arithmetic is implemented with a constant-time arithmetic library and the interpreter exhaustively executes every possible branch of if-else statements, so that any execution of your program will take the same time. See <code>computation.sml</code>.</p>
+<h3 id="pupper">Pupper</h3>
+<p>Most of the interesting code is in <code>typechecker.sml</code>. Things seem fine; secrecies are always combined with <code>+$</code>, so that the result of a computation is always the more secret of the operands, except in one case.</p>
+<p>When the typechecker tries to figure out the secrecy of an <code>if</code>-<code>then</code>-<code>else</code> statement, it simply throws away the secrecy of its condition:</p>
+<pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1">  | IfExp {cond, thenCase, elseCase} =&gt;</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">    <span class="kw">let</span> <span class="kw">val</span> thenT = checkTerm cxt thenCase</div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">        <span class="kw">val</span> elseT = checkTerm cxt elseCase</div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">    <span class="kw">in</span> case checkTerm cxt cond</div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">        <span class="kw">of</span> Cbool @: _ =&gt; <span class="co">(* &lt;- h4xxor3d! *)</span></div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">           <span class="kw">if</span> equiv (thenT, elseT)</div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">           <span class="kw">then</span> thenT</div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">           <span class="kw">else</span> <span class="dt">raise</span> TypeError.differentIfBranches (thenT, elseT)</div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">         | other =&gt;</div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10">           <span class="dt">raise</span> TypeError.nonBoolIfCondition other</div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11">    <span class="kw">end</span></div></code></pre>
+<p>This means that even some Wolf as simple as <code>if flag &gt; 1000000 then true else false</code> allows us to exfiltrate one bit of <code>flag</code> at a time. It’s now easy to write a script to binary search. A short version is presented:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="im">from</span> __future__ <span class="im">import</span> division, print_function</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3"><span class="im">import</span> sys</div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4"></div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5"><span class="kw">def</span> too_big(n):</div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">    conn <span class="op">=</span> remote(<span class="st">&#39;wolf.chal.pwning.xxx&#39;</span>, <span class="dv">6808</span>)</div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">    conn.sendline(<span class="st">&#39;if </span><span class="sc">{}</span><span class="st"> &gt; flag then 1 else 0&#39;</span>.<span class="bu">format</span>(n))</div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">    conn.shutdown()</div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">    msg <span class="op">=</span> conn.recvuntil(<span class="st">&#39;int&#39;</span>)</div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10">    <span class="bu">print</span>(<span class="bu">repr</span>(msg))</div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11">    <span class="cf">return</span> <span class="st">&#39;1&#39;</span> <span class="kw">in</span> msg</div>
+<div class="sourceLine" id="12" href="#12" data-line-number="12"></div>
+<div class="sourceLine" id="13" href="#13" data-line-number="13">lo, hi <span class="op">=</span> <span class="dv">0</span>, <span class="dv">1</span></div>
+<div class="sourceLine" id="14" href="#14" data-line-number="14"><span class="cf">while</span> <span class="kw">not</span> too_big(hi): hi <span class="op">*=</span> <span class="dv">2</span></div>
+<div class="sourceLine" id="15" href="#15" data-line-number="15"><span class="cf">while</span> hi <span class="op">-</span> lo <span class="op">&gt;</span> <span class="dv">1</span>:</div>
+<div class="sourceLine" id="16" href="#16" data-line-number="16">    mid <span class="op">=</span> (hi <span class="op">+</span> lo) <span class="op">//</span> <span class="dv">2</span></div>
+<div class="sourceLine" id="17" href="#17" data-line-number="17">    <span class="cf">if</span> too_big(mid):</div>
+<div class="sourceLine" id="18" href="#18" data-line-number="18">        hi <span class="op">=</span> mid</div>
+<div class="sourceLine" id="19" href="#19" data-line-number="19">    <span class="cf">else</span>:</div>
+<div class="sourceLine" id="20" href="#20" data-line-number="20">        lo <span class="op">=</span> mid</div>
+<div class="sourceLine" id="21" href="#21" data-line-number="21"></div>
+<div class="sourceLine" id="22" href="#22" data-line-number="22"><span class="bu">print</span>(lo)</div></code></pre>
+<p>Note that this makes a lot of network calls and errors may happen intermittently, so that in practice you’d print intermediate values to debug and to make recovering from those errors easier, but I chose a summarized version.</p>
+<p>The flag can be converted to hexadecimal and read off as bytes to get:</p>
+<pre><code>PCTF{0of_0uch_0wi3_my_IF_$t4t3m3n7s}</code></pre>
+<h3 id="doggo">Doggo</h3>
+<p>Wolf’s type system got an overhaul. Not only is the above issue with <code>if</code> statements fixed, but now the <em>purities</em> of expressions and functions are kept track of. An expression is impure if it ever writes to a <code>ref</code> to public data, so that it might have observable side effects.</p>
+<p>So the above solution for Pupper could also be solved with a binary search like <code>let r = ref 0 in (if flag &gt; 1000000 then r := 1 else ()); !r</code>, but this does not work for Doggo, not even if you coerce the <code>if</code> branches’ return values to <code>private unit</code>. The reson is that the typechecker notices that the <code>if</code> statement has a private condition, but one of its branches has an observable side effect, and rejects the <code>if</code> statement for being “leaky”.</p>
+<p>Here’s the full code for typechecking an <code>if</code> statement, which is worth examining in close detail:</p>
+<pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1">  | IfExp {cond, thenCase, elseCase} =&gt;</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">    <span class="kw">let</span> <span class="kw">val</span> pCond &lt;@&lt; condT = checkTerm cxt cond</div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">        <span class="kw">val</span> p1 &lt;@&lt; thenT = checkTerm cxt thenCase</div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">        <span class="kw">val</span> p2 &lt;@&lt; elseT = checkTerm cxt elseCase</div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">        <span class="kw">val</span> pbranches = p1 *$ p2</div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">    <span class="kw">in</span></div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">        case condT</div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">         <span class="kw">of</span> Cbool @: condSecrecy =&gt;</div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">            <span class="kw">if</span> equiv (thenT, elseT)</div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10">            <span class="kw">then</span> (case (condSecrecy, thenT)</div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11">                   <span class="kw">of</span> (Secrecy.Public, branchesT) =&gt; (pbranches *$ pCond) &lt;@&lt; branchesT</div>
+<div class="sourceLine" id="12" href="#12" data-line-number="12">                    | (Secrecy.Private, _ @: Secrecy.Public) =&gt; <span class="dt">raise</span> TypeError.publicIfBranches</div>
+<div class="sourceLine" id="13" href="#13" data-line-number="13">                    | (Secrecy.Private, _ @: Secrecy.Private) =&gt;</div>
+<div class="sourceLine" id="14" href="#14" data-line-number="14">                      case pbranches</div>
+<div class="sourceLine" id="15" href="#15" data-line-number="15">                       <span class="kw">of</span> Secrecy.Public =&gt; <span class="dt">raise</span> TypeError.leakyIfBranches</div>
+<div class="sourceLine" id="16" href="#16" data-line-number="16">                        | Secrecy.Private =&gt; pCond &lt;@&lt; thenT)</div>
+<div class="sourceLine" id="17" href="#17" data-line-number="17">            <span class="kw">else</span> <span class="dt">raise</span> TypeError.differentIfBranches (thenT, elseT)</div>
+<div class="sourceLine" id="18" href="#18" data-line-number="18">          | other =&gt;</div>
+<div class="sourceLine" id="19" href="#19" data-line-number="19">            <span class="dt">raise</span> TypeError.nonBoolIfCondition other</div>
+<div class="sourceLine" id="20" href="#20" data-line-number="20">    <span class="kw">end</span></div></code></pre>
+<p>Note: I have replaced <code>&lt;&lt;&lt;</code> with <code>&lt;@&lt;</code> to get syntax highlighting to not suck. Anyway, that infix symbol is what Doggo uses to keep track of the purities: all expressions now have an additional <em>purity</em> value tacked on. What’s confusing is that this purity is represented with the same SML type as the secrecy that was previously tacked onto data types, but has a different meaning. On the left-hand side of <code>&lt;@&lt;</code>, the value <code>Private</code> means pure and <code>Public</code> means impure, so that combining a pure and an impure computation result in an impure computation, which is the opposite of what you’d get when you combine a public and a private computation. So, <code>+$</code> is the operator for combining secrecies and <code>*$</code> is the operator for combining purities.</p>
+<p>So: If the condition is public, then anything goes. If the condition is private, then the <code>then</code> and <code>else</code> branches must have a private return value and must be pure. This seems solid, unfortunately for us.</p>
+<p>There is a lot of other code in <code>typechecker</code> that you can think about and try to break.</p>
+<ul>
+<li><p>Of course, there are all the basic variable expressions, literals, <code>let</code> expressions, comparisons, and arithmetic operations, but they all seem to combine all the necessary secrecies and purities correctly with the right operators, and never produce any impure side effects themselves (other than effects like timing, which we’ve already eliminated).</p></li>
+<li><p>In <code>NewRefExp</code> you see that creating a public reference (to either a public value or a private value, even <code>flag</code> itself) is considered pure. Also, you can compare references for equality (being the exact same memory) even if their contents are private. Unfortunately, references are not allowed to be private, so you can’t return them from anything depending on <code>flag</code>. If your goal is to get a public value, it seems that references to private data just act as symbols that you can observe the equality of and nothing else.</p></li>
+<li><p><code>AssignExp</code> seems to do its job with respect to computing and including the correct purity.</p></li>
+<li><p>Close examination of the code for <code>DerefExp</code> reveals that I lied about the description of impure expressions earlier: expressions that <em>read</em> from <code>ref</code>s public data are also marked impure. But this just makes our job harder, not easier.</p></li>
+</ul>
+<p>The remaining types of expressions are coercions, lambdas, and function application. The typechecking for coercions is just a thin wrapper around <code>subtype</code>:</p>
+<pre><code>  | CoerceExp (e, tnew) =&gt;
+    let val purity &lt;&lt;&lt; t = checkTerm cxt e
+    in
+        checkType tnew;
+        if subtype (tnew, t)
+        then purity &lt;&lt;&lt; tnew
+        else raise TypeError.cannotCoerce (t, tnew)
+    end</code></pre>
+<p>And here’s <code>subtype</code>.</p>
+<pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">fun</span> subtype ((t1 @: s1) : tycon, (t2 @: s2) : tycon) : <span class="dt">bool</span> =</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">  Secrecy.leq s2 s1 andalso</div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">  case (t1, t2)</div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">   <span class="kw">of</span> (Cunit, Cunit) =&gt; <span class="kw">true</span></div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">    | (Carrow (c1, c2), Carrow (c1&#39;, c2&#39;)) =&gt;</div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">      subtype (c1&#39;, c1) andalso subtype (c2, c2&#39;)</div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">    | (Cint, Cint) =&gt; <span class="kw">true</span></div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">    | (Cbool, Cbool) =&gt; <span class="kw">true</span></div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">    | (Cref c1, Cref c2) =&gt; equiv (c1, c2)</div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10">    | _ =&gt; <span class="kw">false</span></div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11"><span class="kw">and</span> equiv (t1, t2) : <span class="dt">bool</span> =</div>
+<div class="sourceLine" id="12" href="#12" data-line-number="12">    subtype (t1, t2) andalso subtype (t2, t1)</div></code></pre>
+<p>So, public X is a subtype of private X for all X, and <code>a -&gt; b</code> is a subtype of <code>c -&gt; d</code> if <code>c</code> is a subtype of <code>a</code> and <code>b</code> is a subtype of <code>d</code>, which make sense. This all seems fine, but we’ll put it on the back burner for now.</p>
+<p>The code for lambdas and function application reveals something stranger:</p>
+<pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1">  | LamExp {param, paramType, body} =&gt;</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">    <span class="kw">let</span> <span class="kw">val</span> cxt = Context.insert(cxt, param, paramType)</div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">        <span class="kw">val</span> purity &lt;@&lt; returnType  = checkTerm cxt body</div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">        <span class="kw">val</span> (_ @: returnSecrecy) = returnType</div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">    <span class="kw">in</span></div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">        checkType paramType;</div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">        doesn&#39;tWrite &lt;@&lt; Carrow(paramType, returnType) @: (returnSecrecy *$ purity)</div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">    <span class="kw">end</span></div></code></pre>
+<pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1">  | AppExp {<span class="kw">function</span>, argument} =&gt;</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">    <span class="kw">let</span> <span class="kw">val</span> argTermPurity &lt;@&lt; t = checkTerm cxt argument</div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">    <span class="kw">in</span></div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">        case checkTerm cxt <span class="kw">function</span></div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">         <span class="kw">of</span> funTermPurity &lt;@&lt; Carrow (t1, t2) @: funPurity =&gt;</div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">            <span class="kw">if</span> equiv (t, t1)</div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">            <span class="kw">then</span> (funPurity *$ funTermPurity *$ argTermPurity) &lt;@&lt; t2</div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">            <span class="kw">else</span> <span class="dt">raise</span> TypeError.appIncompatible ((t1, t2), t)</div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">          | _ &lt;@&lt; other =&gt; <span class="dt">raise</span> TypeError.appNotArrow other</div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10">    <span class="kw">end</span></div></code></pre>
+<p>Why is there a <code>*$</code> on the right-hand side of <code>@:</code>, where secrecies are usually stored? Does that mean there’s a bug in how secrecies are computed for lambdas that we can exploit, to create a public value from a public value and a private one?</p>
+<p>Not quite. From the variable names we can figure out the semantics of this strange different usage of <code>@:</code>: Doggo dispenses with keeping track of secrecies for functions, and instead stores the <em>purity of functions when they are called</em> on the right-hand side of <code>@:</code> for functions, where the secrecy of other values are stored. Now the code makes sense.</p>
+<p>You might note that, although the purity of the function application is meticulously calculated, the type of the function application is directly taken from the return type of the function itself; no secrecies are combined into it. This seems like a promising thing to exploit. You might want to smuggle private data into a function application via the function itself or its argument. For example, you might hope that we can, say, choose a function of type <code>private (int -&gt; int)</code> that depends on the flag, then call it on a public <code>int</code> and get a public <code>int</code>, which would let us exfiltrate the flag. But actually, the purity field of functions is a bit stricter: not only must pure (private) functions never write to a public ref when executed, they also cannot return a public value. This is checked when validating the type, so that you can never get a function of type <code>private (int -&gt; int)</code>, because the type <code>private (int -&gt; int)</code> is invalid and you won’t be allowed to write it down. So you’d be stuck with functions whose return types are <code>private</code>, which you can’t get anything out of by calling. And if you could write a function that produced a public result from private inputs with the goal of calling it, you could just use the body of that function in the first place.</p>
+<p>So there’s no bug here either. The type system is fine. Right?</p>
+<p>No, the type system is not fine, and we have all the puzzle pieces to figure it out. Recall the implementation of <code>subtype</code>, which checks when a type is coercible into another: for all X, you can coerce <code>X</code> into <code>private X</code> (except <code>ref</code>s, for which <code>private ref ...</code> is invalid). For normal data types, this just increases their secrecy, which is fine. But for for function types, this lets us <strong>coerce impure functions to pure functions</strong>, which is quite bad. This allows us to create an impure function, coerce it to a pure function, and then call it in one of the branches of an <code>if</code>-<code>then</code>-<code>else</code> statement whose condition depends on <code>flag</code>.</p>
+<p>The solution readily follows. There is a little extra typing involved in the solution because validly-typed <code>private</code> (pure) functions must also have a <code>private</code> return value, and the most convenient value is <code>flag</code> itself, even if we immediately throw that return value away. My solution during the CTF was as follows:</p>
+<pre><code>let m = ref 0 in
+let f = (fn (r : ref int) =&gt; r := 1; flag) :&gt; private (ref int -&gt; private int) in
+(if 1000000 &gt; flag then f m else flag); !m</code></pre>
+<p>A more verbose but possibly more essentialized version is as follows:</p>
+<pre><code>let m = ref 0 in
+let p = () :&gt; private unit in
+let f = (fn (x: private unit) =&gt; m := 1; x) :&gt; private (private unit -&gt; private unit) in
+(if 1000000 &gt; flag then f p else p); !m</code></pre>
+<p>Running the same binary-search script with this as a template and decoding in the same way gets us the flag.</p>
+<pre><code>PCTF{$h0u1d_h4v3_f0rma11y_v3r1fi3d!}</code></pre>
+</article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/ctf"><span class="tag">CTF</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/on-delete-facebook">← On #DeleteFacebook</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

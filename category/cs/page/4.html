@@ -6,7 +6,7 @@
 
   
   <title>
-Tag → ctf
+Category → cs
 
  | Bounded-Error Log
 </title>
@@ -27,7 +27,7 @@ Tag → ctf
 <meta name="generator" content="Hugo 0.31-DEV" />
 
 
-<link rel="canonical" href="//blog.vero.site/tag/ctf" />
+<link rel="canonical" href="//blog.vero.site/category/cs" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
 
 
@@ -97,7 +97,7 @@ Tag → ctf
 			
 			<li class="menu-item "><a href="/category/math">Math</a></li>
 			
-			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			<li class="menu-item  is-active"><a href="/category/cs">CS</a></li>
 			
 			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
 			
@@ -131,7 +131,7 @@ Tag → ctf
 <section class="main post-list">
 	<header class="list-header">
 		<h2 class="list-label">
-			Tag → ctf
+			Category → cs
 			
 		</h2>
 	</header>
@@ -141,14 +141,12 @@ Tag → ctf
 		
 			<article class="post-entry">
 	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/doggo" class="post-link">Pupper/Doggo</a></h3>
-		
-		<h4 class="post-subtitle">PlaidCTF 2018</h4>
+		<h3 class="post-title"><a href="//blog.vero.site/ref/init" class="post-link">init</a></h3>
 		
 		<p class="post-meta">
 		
-		2018-05-06
-		(2660 words)
+		
+		(214 words)
 		
 		<span class="post-categories">
 			filed under
@@ -158,74 +156,25 @@ Tag → ctf
 		</p>
 	</header>
 	
-	We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called Wolf. Concretely, every type in Wolf’s type system has an associated secrecy: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.
+	1  Firefox  LeechBlock, Xmarks, HTTPS Everywhere, uBlock Origin Formerly: Pentadactyl (nightlies), LastPass, Disconnect, All-in-One Sidebar  Dropbox (db.tt) (g)Vim / MacVim  NeoBundle; jellybeans, syntastic, airline, fugitive, unite.vim, nerdtree, … Make sure you change your home folder and other paths in your .vimrc if necessary.  LaTeX VLC Anki Geogebra, CaRMetal osu! Gargoyle MuseScore μTorrent VeraCrypt Gyazo  h4xx0r Be aware of homebrew options.
+ git (clone my stuff) fish_shell languages: haskell (stash), scala python things: beautifulsoup4, fn, ipython, numpy, pwntools, requests, scipy, virtualenv docs: kramdown, pandoc command-line: mu, fasd, ack / the_silver_searcher, openssl, tmux, ffmpeg, heroku, binutils, coreutils, tiny-fugue command-line more for fun: cowsay, figlet, cloc, sloccount idk: ant, go, ruby, rust  Mac  Use bottom-right of track pad for right-click; disable natural scrolling Set Caps Lock to Control In Mission Control &gt; Hot Corners, set the lower-right corner to Mission Control  mkdir ~/bin ~/tmp
 	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/doggo">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/thoroughly-stripped" class="post-link">Thoroughly Stripped</a></h3>
-		
-		<h4 class="post-subtitle">CSAW CTF 2017 Finals (Forensics, 200 pts)</h4>
-		
-		<p class="post-meta">
-		
-		2017-11-12
-		(1142 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Woo, first CTF writeup. I got the opportunity to participate in the 2017 CSAW CTF finals with Don’t Hack Alone.</p>
-<blockquote>
-<p>Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.</p>
-</blockquote>
-<p>We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.</p>
-<p>Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from <a href="https://github.com/betaveros/xxb"><code>xxb</code></a> but <code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
-<p></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/thoroughly-stripped">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/sakura" class="post-link">Sakura</a></h3>
-		
-		<h4 class="post-subtitle">HITCON CTF 2017</h4>
-		
-		<p class="post-meta">
-		
-		2017-11-12
-		(703 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>(Okay, this post is backdated.)</p>
-<p>Disassembling the executable produces a huge amount of code. There are some basic obfuscations like a lot of trivial identity functions nested in each other, and a few functions that wrap around identity functions but just add some constant multiple of 16. Most of the meat is in one very large function, though. If you disassemble this function with IDA, you see a lot of variable initializations and then a lot of interesting loops that are quite similar:</p>
-<p></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/sakura">→ read more</a>
+		<a class="read-more" href="//blog.vero.site/ref/init">→ read more</a>
 	</footer>
 </article>
 
 		
 	
+	
+	<footer class="list-footer">
+		<nav class="pagination">
+			<h3 class="offscreen">Pagination</h3>
+			
+				<a class="pagination-previous" href="/category/cs/page/3">← newer posts</a>
+			
+			
+		</nav>
+	</footer>
 	
 </section>
 <footer class="site-footer">
