@@ -15,7 +15,12 @@
 
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called Wolf. Concretely, every type in Wolf’s type system has an associated secrecy: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result." />
+<meta name="description" content="We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called Wolf. Concretely, every type in Wolf’s type system has an associated secrecy: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.
+Of course, this is a CTF, so the challenge is all about breaking the theoretical guarantees of the type system. When we submit code, it’s evaluated in a context with a private integer variable flag; our code is typechecked, executed, and printed, but only if its type is public. The goal is to break the type system and write code that produces a public value that depends on flag, so that we can exfiltrate flag itself.
+In all, there are three progressively harder Wolf problems, named Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the flag of the challenge before it, so that you need to solve them in order (unless you can somehow blindly exploit servers running SML programs).
+Wolf Overview Let’s first go over the Wolf syntax and semantics. (There are small differences between the three problems, but they’re syntactically identical and only semantically differ in cases that we’ll naturally get to.) The examples folder has some examples of valid code:
+let x = (5 :&amp;gt; private int) in 6 
+" />
 
 
 
@@ -133,7 +138,7 @@
 		<p class="post-meta">
 		
 		2018-05-06
-		(2660 words)
+		(2909 words)
 		
 		<span class="post-categories">
 			filed under
@@ -144,10 +149,12 @@
 	</header>
 	<article><p>We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called <em>Wolf</em>. Concretely, every type in Wolf’s type system has an associated <em>secrecy</em>: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.</p>
 <p>Of course, this is a CTF, so the challenge is all about breaking the theoretical guarantees of the type system. When we submit code, it’s evaluated in a context with a private integer variable <code>flag</code>; our code is typechecked, executed, and printed, but only if its type is public. The goal is to break the type system and write code that produces a public value that depends on <code>flag</code>, so that we can exfiltrate <code>flag</code> itself.</p>
+<p>In all, there are three progressively harder Wolf problems, named Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the flag of the challenge before it, so that you need to solve them in order (unless you can somehow blindly exploit servers running SML programs).</p>
 <h3 id="wolf-overview">Wolf Overview</h3>
-<p>Let’s first go over the Wolf syntax and semantics. The <code>examples</code> folder has some examples of valid code:</p>
+<p>Let’s first go over the Wolf syntax and semantics. (There are small differences between the three problems, but they’re syntactically identical and only semantically differ in cases that we’ll naturally get to.) The <code>examples</code> folder has some examples of valid code:</p>
 <pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">let</span> x = (<span class="dv">5</span> :&gt; <span class="kw">private</span> <span class="dt">int</span>) <span class="kw">in</span></div>
 <div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="dv">6</span></div></code></pre>
+<p></p>
 <pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">let</span> f = fn (x : <span class="dt">int</span>) =&gt; x + <span class="dv">1</span> <span class="kw">in</span></div>
 <div class="sourceLine" id="2" href="#2" data-line-number="2">f <span class="dv">3</span></div></code></pre>
 <pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">if</span> (<span class="dv">1</span> + <span class="dv">1</span> = <span class="dv">2</span>) = <span class="kw">true</span></div>
@@ -157,8 +164,9 @@
 <div class="sourceLine" id="2" href="#2" data-line-number="2">r := <span class="dv">1</span>;</div>
 <div class="sourceLine" id="3" href="#3" data-line-number="3">r := !r + <span class="dv">1</span>;</div>
 <div class="sourceLine" id="4" href="#4" data-line-number="4">r</div></code></pre>
-<p>These poor attempts at exfiltrating the flag do not typecheck (that is, the typechecker notices that their type is private, so the interpreter refuses to run them):</p>
+<p>These poor attempts at exfiltrating the flag do not typecheck. In the first example, the typechecker rejects the invalid coercion from a private int to a public int:</p>
 <pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1">(flag :&gt; public <span class="dt">int</span>)</div></code></pre>
+<p>In the second example, the typechecker notices that the program’s type is private, so the interpreter refuses to run it:</p>
 <pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">let</span> totally_not_flag = flag <span class="kw">in</span></div>
 <div class="sourceLine" id="2" href="#2" data-line-number="2">totally_not_flag</div></code></pre>
 <p><code>language.sml</code> might be the simplest place to intuit a more exhaustive description:</p>
@@ -261,7 +269,7 @@ val op *$ = Secrecy.min</code></pre>
 <p>The flag can be converted to hexadecimal and read off as bytes to get:</p>
 <pre><code>PCTF{0of_0uch_0wi3_my_IF_$t4t3m3n7s}</code></pre>
 <h3 id="doggo">Doggo</h3>
-<p>Wolf’s type system got an overhaul. Not only is the above issue with <code>if</code> statements fixed, but now the <em>purities</em> of expressions and functions are kept track of. An expression is impure if it ever writes to a <code>ref</code> to public data, so that it might have observable side effects.</p>
+<p>This challenge was another blob of SML that was encrypted with the flag to Pupper, but diffing the two codebases reveals that most of the code is the same. The big change is that Wolf’s type system got an overhaul. Not only is the above issue with <code>if</code> statements fixed, but now the <em>purities</em> of expressions and functions are kept track of. An expression is impure if it ever writes to a <code>ref</code> to public data, so that it might have observable side effects.</p>
 <p>So the above solution for Pupper could also be solved with a binary search like <code>let r = ref 0 in (if flag &gt; 1000000 then r := 1 else ()); !r</code>, but this does not work for Doggo, not even if you coerce the <code>if</code> branches’ return values to <code>private unit</code>. The reson is that the typechecker notices that the <code>if</code> statement has a private condition, but one of its branches has an observable side effect, and rejects the <code>if</code> statement for being “leaky”.</p>
 <p>Here’s the full code for typechecking an <code>if</code> statement, which is worth examining in close detail:</p>
 <pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1">  | IfExp {cond, thenCase, elseCase} =&gt;</div>
@@ -351,7 +359,9 @@ let f = (fn (x: private unit) =&gt; m := 1; x) :&gt; private (private unit -&gt;
 (if 1000000 &gt; flag then f p else p); !m</code></pre>
 <p>Running the same binary-search script with this as a template and decoding in the same way gets us the flag.</p>
 <pre><code>PCTF{$h0u1d_h4v3_f0rma11y_v3r1fi3d!}</code></pre>
-</article>
+<h3 id="woofer">Woofer</h3>
+<p>The final part of the trilogy, which I did not solve during the CTF (nobody did). This was another blob of SML code that reimplemented Wolf, encrypted with the Pupper flag, that was nearly identical to Pupper, just with the above issue patched. In Woofer, pure (private) functions are now a subtype of impure (public) functions, as they should be, instead of the other way round.</p>
+<p>The challenge author has <a href="https://ctftime.org/writeup/9980">posted a writeup</a>. The intended solution was to take advantage of the forking computation and heap hashing to write a program that would cause an out-of-memory error in some cases but not in others, and exfiltrate bits that way. It’s a pretty cool idea and shows just how clever side-channel attacks can be.</p></article>
 	<footer class="post-footer">
 		
 		<ul class="post-tags">

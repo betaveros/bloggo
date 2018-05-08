@@ -144,7 +144,7 @@ Posts
 		<p class="post-meta">
 		
 		2018-05-06
-		(2660 words)
+		(2909 words)
 		
 		<span class="post-categories">
 			filed under
@@ -154,7 +154,14 @@ Posts
 		</p>
 	</header>
 	
-	We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called Wolf. Concretely, every type in Wolf’s type system has an associated secrecy: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.
+	<p>We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called <em>Wolf</em>. Concretely, every type in Wolf’s type system has an associated <em>secrecy</em>: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.</p>
+<p>Of course, this is a CTF, so the challenge is all about breaking the theoretical guarantees of the type system. When we submit code, it’s evaluated in a context with a private integer variable <code>flag</code>; our code is typechecked, executed, and printed, but only if its type is public. The goal is to break the type system and write code that produces a public value that depends on <code>flag</code>, so that we can exfiltrate <code>flag</code> itself.</p>
+<p>In all, there are three progressively harder Wolf problems, named Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the flag of the challenge before it, so that you need to solve them in order (unless you can somehow blindly exploit servers running SML programs).</p>
+<h3 id="wolf-overview">Wolf Overview</h3>
+<p>Let’s first go over the Wolf syntax and semantics. (There are small differences between the three problems, but they’re syntactically identical and only semantically differ in cases that we’ll naturally get to.) The <code>examples</code> folder has some examples of valid code:</p>
+<pre class="sourceCode ml"><code class="sourceCode ocaml"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">let</span> x = (<span class="dv">5</span> :&gt; <span class="kw">private</span> <span class="dt">int</span>) <span class="kw">in</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="dv">6</span></div></code></pre>
+<p></p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/doggo">→ read more</a>
 	</footer>
