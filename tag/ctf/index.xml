@@ -6,10 +6,51 @@
     <description>Recent content in Ctf on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 06 May 2018 13:52:52 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 13 May 2018 15:07:38 -0400</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/tag/ctf/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>shellql</title>
+      <link>//blog.vero.site/post/shellql</link>
+      <pubDate>Sun, 13 May 2018 15:07:38 -0400</pubDate>
+      
+      <guid>//blog.vero.site/post/shellql</guid>
+      <description>&lt;p&gt;The hardest challenge of not very many I solved in this CTF. What a struggle! I have a long way to improve. It was pretty fun though. (I solved “You Already Know”, and got the essence of “ghettohackers: Throwback”, but didn’t guess the right flag format and believe I was asleep when they released the hint about it.)&lt;/p&gt;
+&lt;p&gt;The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension &lt;code&gt;shellme.so&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;sourceCode php&#34;&gt;&lt;code class=&#34;sourceCode php&#34;&gt;&lt;div class=&#34;sourceLine&#34; id=&#34;1&#34; href=&#34;#1&#34; data-line-number=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;$link&lt;/span&gt; = &lt;span class=&#34;fu&#34;&gt;mysqli_connect&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;#39;localhost&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;#39;shellql&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;#39;shellql&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;#39;shellql&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;);&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;2&#34; href=&#34;#2&#34; data-line-number=&#34;2&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;3&#34; href=&#34;#3&#34; data-line-number=&#34;3&#34;&gt;&lt;span class=&#34;kw&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;isset&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;$_POST&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;#39;shell&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;]))&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;4&#34; href=&#34;#4&#34; data-line-number=&#34;4&#34;&gt;{&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;5&#34; href=&#34;#5&#34; data-line-number=&#34;5&#34;&gt;   &lt;span class=&#34;kw&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;strlen&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;$_POST&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;#39;shell&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;])&lt;/span&gt; &amp;lt;= &lt;span class=&#34;dv&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;)&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;6&#34; href=&#34;#6&#34; data-line-number=&#34;6&#34;&gt;   {&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;7&#34; href=&#34;#7&#34; data-line-number=&#34;7&#34;&gt;      &lt;span class=&#34;kw&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;$_POST&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;#39;shell&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;];&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;8&#34; href=&#34;#8&#34; data-line-number=&#34;8&#34;&gt;      shellme&lt;span class=&#34;ot&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;$_POST&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;#39;shell&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;]);&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;9&#34; href=&#34;#9&#34; data-line-number=&#34;9&#34;&gt;   }&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;10&#34; href=&#34;#10&#34; data-line-number=&#34;10&#34;&gt;   &lt;span class=&#34;kw&#34;&gt;exit&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;();&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceLine&#34; id=&#34;11&#34; href=&#34;#11&#34; data-line-number=&#34;11&#34;&gt;}&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The extension basically just executes &lt;code&gt;$_POST[&#39;shell&#39;]&lt;/code&gt; as shellcode after a strict SECCOMP call, &lt;a href=&#34;http://man7.org/linux/man-pages/man2/prctl.2.html&#34;&gt;prctl&lt;/a&gt;(&lt;a href=&#34;https://elixir.bootlin.com/linux/v4.16.8/source/include/uapi/linux/prctl.h#L68&#34;&gt;22&lt;/a&gt;, &lt;a href=&#34;https://elixir.bootlin.com/linux/v4.1/source/include/uapi/linux/seccomp.h#L10&#34;&gt;1&lt;/a&gt;). This means that we can only use the four syscalls &lt;code&gt;read&lt;/code&gt;, &lt;code&gt;write&lt;/code&gt;, and &lt;code&gt;exit&lt;/code&gt;, and &lt;code&gt;sigreturn&lt;/code&gt;, where the latter two aren’t particularly useful.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&#34;//blog.vero.site/img/shell_this.png&#34; alt=&#34;Disassembled innermost function of interest in shellme.so&#34; /&gt;&lt;figcaption&gt;Disassembled innermost function of interest in &lt;code&gt;shellme.so&lt;/code&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;The goal is to read the flag from the open MySQL connection.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Messy Desk</title>
+      <link>//blog.vero.site/post/messy-desk</link>
+      <pubDate>Sun, 06 May 2018 13:52:52 -0400</pubDate>
+      
+      <guid>//blog.vero.site/post/messy-desk</guid>
+      <description>&lt;p&gt;This challenge is a video of somebody’s messy desk, with what is apparently the audio from a &lt;a href=&#34;https://www.youtube.com/watch?v=WwnI0RS6J5A&#34;&gt;Futurama clip&lt;/a&gt;. The desk is indeed extremely messy and full of things that aren’t particularly useful for us, but close examination reveals a QR code reflected in the globe in the middle.&lt;/p&gt;
+&lt;p&gt;The challenge is all about getting that QR code. After trying our best to clean up the image, we ended up with this:&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&#34;//blog.vero.site/img/messy-qr.png&#34; alt=&#34;Maximally enhanced image of the QR code&#34; /&gt;&lt;figcaption&gt;Maximally enhanced image of the QR code&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Pupper/Doggo</title>

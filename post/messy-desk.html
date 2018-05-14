@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Messy Desk</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="This challenge is a video of somebody’s messy desk, with what is apparently the audio from a Futurama clip. The desk is indeed extremely messy and full of things that aren’t particularly useful for us, but close examination reveals a QR code reflected in the globe in the middle.
+The challenge is all about getting that QR code. After trying our best to clean up the image, we ended up with this:
+ Maximally enhanced image of the QR code  
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/messy-desk" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Messy Desk</h1>
+		
+		<h2 class="post-subtitle">PlaidCTF 2018</h2>
+		
+		<p class="post-meta">
+		
+		2018-05-06
+		(1000 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>This challenge is a video of somebody’s messy desk, with what is apparently the audio from a <a href="https://www.youtube.com/watch?v=WwnI0RS6J5A">Futurama clip</a>. The desk is indeed extremely messy and full of things that aren’t particularly useful for us, but close examination reveals a QR code reflected in the globe in the middle.</p>
+<p>The challenge is all about getting that QR code. After trying our best to clean up the image, we ended up with this:</p>
+<figure>
+<img src="/img/messy-qr.png" alt="Maximally enhanced image of the QR code" /><figcaption>Maximally enhanced image of the QR code</figcaption>
+</figure>
+<p></p>
+<p>After rotating it tastefully, we spent a long time transcribing from this QR code to a Google Sheet as best we could. Some useful references were this post on <a href="https://medium.freecodecamp.org/lets-enhance-how-we-found-rogerkver-s-1000-wallet-obfuscated-private-key-8514e74a5433">deobfuscating a QR code for a bitcoin wallet</a> and <a href="https://www.thonky.com/qr-code-tutorial/introduction">Thonky’s QR Code Tutorial</a>, a step-by-step tutorial to producing a QR code featuring steps such as “Step 4: Understand Galois Field Arithmetic”. At some point, we realized we had transposed the entire thing, because our QR code was missing its Dark Module in its bottom-left and somebody had read a good Format Info string in reverse order without realizing. (The word “module” is the term for the smallest black-and-white blocks that make up QR codes; we don’t use the term “pixel” to avoid confusion, since QR codes will often be rendered on a screen with each module taking up many pixels.)</p>
+<figure>
+<img src="/img/thonky-function-patterns2.png" alt="Function Patterns (from thonky.com, CC BY-NC 4.0)" /><figcaption>Function Patterns (<a href="https://www.thonky.com/qr-code-tutorial/module-placement-matrix">from thonky.com</a>, CC BY-NC 4.0)</figcaption>
+</figure>
+<figure>
+<img src="/img/thonky-format-layout.png" alt="Format Info String placement (from thonky.com, CC BY-NC 4.0)" /><figcaption>Format Info String placement (<a href="https://www.thonky.com/qr-code-tutorial/format-version-information">from thonky.com</a>, CC BY-NC 4.0)</figcaption>
+</figure>
+<p>Counting the modules in our QR code told us that it was Version 2. (“Version” is the word for a size of a QR code; they start from Version 1 with 21×21 modules, and the side length increases in steps of 4.) Cross-referencing our blurry Format Info String against <a href="https://www.thonky.com/qr-code-tutorial/format-version-tables">Format Version Tables</a> indicated that it was most likely 011000001101000, which meant that the QR code used error correction level Q and <a href="https://www.thonky.com/qr-code-tutorial/mask-patterns">mask pattern</a> 1. Thus, we’d need to flip every even-indexed row of our QR code to get the original data back. With a little bit of spreadsheet magic, we set up our spreadsheet to apply the mask to the QR code automatically.</p>
+<figure>
+<img src="/img/messy-qr-formula.png" alt="A corner of our spreadsheet for (un)masking the QR code" /><figcaption>A corner of our spreadsheet for (un)masking the QR code</figcaption>
+</figure>
+<p>After the unmasking and reading up about the strange <a href="https://www.thonky.com/qr-code-tutorial/upward.png">zig</a>-<a href="https://www.thonky.com/qr-code-tutorial/data-bit-progression.png">zag</a> order in which <a href="https://www.thonky.com/qr-code-tutorial/module-placement-matrix">modules are placed on thonky.com</a>, we could finally start reading off bits from the lower-left corner, and applying our knowledge to reconstruct the QR code by fixing bits in the bottom-right corner until our unmasked QR code started with <code>PCTF{</code>. (Specifically whenever we found a bit in our that was wrong, we went to the other sheet with the transcribed QR code and flipped the modulle there, which would automatically update the unmasked sheet.)</p>
+<p>Soon, in accordance with the <a href="https://www.thonky.com/qr-code-tutorial/data-encoding">Data Encoding</a> procedure, the first few bits of our unmasked QR code read:</p>
+<pre><code>0100     Byte Mode encoding
+00010010 18-character message (?)
+01010000 P
+01000011 C
+01010100 T
+01000110 F
+01111011 {</code></pre>
+<p>In the small Version we’re working with, all error correction bytes are simply appended after all the raw data, so we could just read the raw message as the next 18 characters in the bitstream of the QR code without worrying about understanding the error correction.</p>
+<p>Our very first attempt to continue reading and finagling everything into ASCII range gave us something like <code>PCTF{50gf8nVLH,Ng}</code>. Unfortunately our fixed-up QR code still wouldn’t scan. (According to <a href="https://github.com/netsuso/ctf-writeups/tree/master/plaid-2018/messy-desk/">netsuso’s writeup, of Pandemic</a>, their QR code scanned at this point, so evidently our transcribed copy had more mistakes.) So we would need to dig deeper.</p>
+<p>The first thing I did was look more closely at the length field. We weren’t sure if it was 18 or 19, but Step 4 of <a href="https://www.thonky.com/qr-code-tutorial/data-encoding">Data Encoding</a> shed some light on the matter. After the data is encoded, it has to be padded with zero bits to a whole number of bytes, and then padded with the magic pad bytes <code>11101100 00010001</code> one at a time, repeating if necessary, to the right number of “raw data” bytes. In our case, consulting the <a href="https://www.thonky.com/qr-code-tutorial/error-correction-table">Error Correction Code Words Table</a> for Version 2 with error-correction level Q, we knew that the total number of raw data bytes must be 22.</p>
+<p>If the message length was 18, then after prepending the Byte Mode indicator and the length, it would be 19 bytes and a nybble. So it would have to have been padded with one nybble of zeroes followed by two magic pad bytes, and the last raw data byte before error correction would be <code>00010001</code>. On the other hand, if the message length were 19, then after the mode indicator and length, it would be 20 bytes and a nybble, so it would have to have been padded with one nybble of zeroes followed by one magic pad byte, so the last byte would be <code>11101100</code>.</p>
+<p>I looked at our QR code, and without needing to fix any bits, I saw that the last raw data byte (the 22nd byte from the start, the red region below) was <code>11101100</code>, and that it was even preceded by a zero nybble, which was very strong evidence that the QR code message was 19 characters long.</p>
+<figure>
+<img src="/img/messy-qr-unmasked.png" alt="Nearly final unmasked QR code" /><figcaption>Nearly final unmasked QR code</figcaption>
+</figure>
+<p>So I flipped the right bits, including the closing brace, until our QR code reflected this. After playing with more modules that looked ambiguous, I got the raw data bytes of our code to read something like <code>PCTF{z8gf8nWlH4fcY}</code>. Due to the theme, I decided to hope that the last few letters of the flag were “enhance”, so, squinting at the image, I flipped more bits until it read <code>PCTF{z8gf8nenH4nce}</code>. (Another hypothesis I had was that the start would be <code>zigzag</code> or something similar since I had just learned so much about the zigzag pattern of QR modules, but this was not the case.) I was still engrossed trying to flip more bits to get better English when another team member happened to retry scanning the QR code I was working on and discovered that it worked, so we ended up with the flag:</p>
+<pre><code>PCTF{z0oo0m_nh4nc3}</code></pre></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/ctf"><span class="tag">CTF</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/doggo">← Pupper/Doggo</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/shellql">shellql →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

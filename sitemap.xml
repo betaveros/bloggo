@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>//blog.vero.site/post/shellql</loc>
+    <lastmod>2018-05-13T15:07:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post/messy-desk</loc>
+    <lastmod>2018-05-06T13:52:52-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/post/doggo</loc>
     <lastmod>2018-05-06T13:52:52-04:00</lastmod>
   </url>
@@ -1157,7 +1167,7 @@
   
   <url>
     <loc>//blog.vero.site/</loc>
-    <lastmod>2018-05-06T13:52:52-04:00</lastmod>
+    <lastmod>2018-05-13T15:07:38-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1342,13 +1352,13 @@
   
   <url>
     <loc>//blog.vero.site/category/cs</loc>
-    <lastmod>2018-05-06T13:52:52-04:00</lastmod>
+    <lastmod>2018-05-13T15:07:38-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/tag/ctf</loc>
-    <lastmod>2018-05-06T13:52:52-04:00</lastmod>
+    <lastmod>2018-05-13T15:07:38-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1805,14 +1815,14 @@
   </url>
   
   <url>
-    <loc>//blog.vero.site/category/meta</loc>
-    <lastmod>2017-11-07T00:27:42-05:00</lastmod>
+    <loc>//blog.vero.site/tag/meta</loc>
+    <lastmod>2012-01-01T00:00:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//blog.vero.site/tag/meta</loc>
-    <lastmod>2012-01-01T00:00:00+08:00</lastmod>
+    <loc>//blog.vero.site/category/meta</loc>
+    <lastmod>2017-11-07T00:27:42-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -2040,7 +2050,7 @@
   
   <url>
     <loc>//blog.vero.site/post</loc>
-    <lastmod>2018-05-06T13:52:52-04:00</lastmod>
+    <lastmod>2018-05-13T15:07:38-04:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -137,6 +137,50 @@ Posts
 	
 	<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/shellql" class="post-link">shellql</a></h3>
+		
+		<h4 class="post-subtitle">DEF CON CTF Qualifiers 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-05-13
+		(1217 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>The hardest challenge of not very many I solved in this CTF. What a struggle! I have a long way to improve. It was pretty fun though. (I solved “You Already Know”, and got the essence of “ghettohackers: Throwback”, but didn’t guess the right flag format and believe I was asleep when they released the hint about it.)</p>
+<p>The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension <code>shellme.so</code>.</p>
+<pre class="sourceCode php"><code class="sourceCode php"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">$link</span> = <span class="fu">mysqli_connect</span><span class="ot">(</span><span class="st">&#39;localhost&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">);</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2"></div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3"><span class="kw">if</span> <span class="ot">(</span><span class="kw">isset</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]))</span></div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">{</div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">   <span class="kw">if</span> <span class="ot">(</span><span class="fu">strlen</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">])</span> &lt;= <span class="dv">1000</span><span class="ot">)</span></div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">   {</div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">      <span class="kw">echo</span> <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">];</span></div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">      shellme<span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]);</span></div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">   }</div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10">   <span class="kw">exit</span><span class="ot">();</span></div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11">}</div></code></pre>
+<p>The extension basically just executes <code>$_POST['shell']</code> as shellcode after a strict SECCOMP call, <a href="http://man7.org/linux/man-pages/man2/prctl.2.html">prctl</a>(<a href="https://elixir.bootlin.com/linux/v4.16.8/source/include/uapi/linux/prctl.h#L68">22</a>, <a href="https://elixir.bootlin.com/linux/v4.1/source/include/uapi/linux/seccomp.h#L10">1</a>). This means that we can only use the four syscalls <code>read</code>, <code>write</code>, and <code>exit</code>, and <code>sigreturn</code>, where the latter two aren’t particularly useful.</p>
+<figure>
+<img src="/img/shell_this.png" alt="Disassembled innermost function of interest in shellme.so" /><figcaption>Disassembled innermost function of interest in <code>shellme.so</code></figcaption>
+</figure>
+<p>The goal is to read the flag from the open MySQL connection.</p>
+<p></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/shellql">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/doggo" class="post-link">Pupper/Doggo</a></h3>
 		
 		<h4 class="post-subtitle">PlaidCTF 2018</h4>
@@ -164,6 +208,37 @@ Posts
 <p></p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/doggo">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/messy-desk" class="post-link">Messy Desk</a></h3>
+		
+		<h4 class="post-subtitle">PlaidCTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-05-06
+		(1000 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>This challenge is a video of somebody’s messy desk, with what is apparently the audio from a <a href="https://www.youtube.com/watch?v=WwnI0RS6J5A">Futurama clip</a>. The desk is indeed extremely messy and full of things that aren’t particularly useful for us, but close examination reveals a QR code reflected in the globe in the middle.</p>
+<p>The challenge is all about getting that QR code. After trying our best to clean up the image, we ended up with this:</p>
+<figure>
+<img src="/img/messy-qr.png" alt="Maximally enhanced image of the QR code" /><figcaption>Maximally enhanced image of the QR code</figcaption>
+</figure>
+<p></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/messy-desk">→ read more</a>
 	</footer>
 </article>
 
@@ -362,61 +437,6 @@ Posts
 <p></p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/remigration">→ read more</a>
-	</footer>
-</article>
-
-	
-	<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/me-and-facebook" class="post-link">Me and Facebook</a></h3>
-		
-		<p class="post-meta">
-		
-		2017-09-27
-		(1480 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/meta">Meta</a>, <a href="/category/thoughts">Thoughts</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p><strong>tl;dr: I don’t use Facebook much. If you want to contact me, I would prefer nearly any other mode of communication. I am also going to stop autosharing posts from this blog onto Facebook. RSS readers are great; get yours today.</strong></p>
-<p>Recently I checked Facebook and it said something like “You’ve added N friends this past T units of time! Thanks for making the world more connected!” and I just couldn’t any more. Facebook friends are not friends. <a href="https://en.wikipedia.org/wiki/Dunbar's_number">Dunbar’s number</a> is around 150, maybe double that if you want to stretch it; humans cannot handle that many human relationships. Facebook’s siloed ecosystem is the opposite of connected with the rest of the Internet.</p>
-<p>That is one of many reasons I pretty much don’t use Facebook any more. This is not new, but I’ve never formalized it. Also, I figure others might assume otherwise since I still do have an account and still accept friend requests and post sometimes. Thus, I’m writing this post.</p>
-<p>Here are all of the reasons:</p>
-<p></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/me-and-facebook">→ read more</a>
-	</footer>
-</article>
-
-	
-	<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/step-back" class="post-link">Taking a Step Back</a></h3>
-		
-		<p class="post-meta">
-		
-		2017-05-17
-		(509 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/meta">Meta</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>There’s some point in the decline of a blog’s activity at which you just can’t apologize with a straight face for not posting any more. Only ironically.</p>
-<hr />
-<p>I brainstormed reasons why I’m not blogging. It took a while for me to find a reason that felt right, but I think it’s mostly the concern that I don’t have anything important to say, and I’m just spamming people’s inboxes or Facebook feeds. I make fun of my perfectonist tendencies, but they haven’t gone away and have been exacerbated by how public this blog feels now. There’s also a general feeling permeating life that I should be trying to present myself professionally to people, because like a diamond, the Internet is forever.</p>
-<p></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/step-back">→ read more</a>
 	</footer>
 </article>
 
