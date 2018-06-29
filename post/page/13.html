@@ -137,6 +137,92 @@ Posts
 	
 	<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/scala" class="post-link">Adventures in Scala Pseudo-Abuse</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-02-21
+		(1624 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">Cs</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>So, what have I been doing with programming recently?</p>
+<p><a href="http://www.scala-lang.org/">Scala</a> is an amazing multiparadigm programming language that runs on the Java Virtual Machine and interoperates with Java. I learned about it last time reading random articles on Twitter.</p>
+<p>When I say “amazing” I mean “This is a language in which my code gives me nerdgasms every time I read it.” Wheeee.</p>
+<p>Okay, it’s not perfect. People say it’s too academic. It has a notoriously complicated type system (which is <a href="http://scientopia.org/blogs/goodmath/2013/01/21/types-gone-wild-ski-at-compile-time/"><em>Turing-Complete</em> at compile time</a>). Its documentation is a bit patchy too. For a serious introduction, the Scala website has plenty of links under documentation, and a <a href="http://www.scala-lang.org/node/104">tour of features</a>. Somebody wrote <a href="http://www.naildrivin5.com/scalatour">another tour</a> that explains things a bit more. So here, instead of introducing it seriously, I’m just going to screw with its features.</p>
+<p>Example of freedom. Scala lets names consist of symbols, and treats one-parameter methods and infix operators exactly the same. The full tokenization rules are a bit detailed and I put them at the bottom of this post for the interested. This lets you create classes with arithmetic and domain-specific languages easily, but it also creates some silly opportunities:</p>
+<pre><code>scala&gt; val * = 12
+*: Int = 12
+
+scala&gt; * * * * *
+res0: Int = 1728</code></pre>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/scala">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-38" class="post-link">Puzzle 38 / Contact</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-02-10
+		(75 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>A <a href="http://inabapuzzle.com/honkaku/contact.html">Naoki Inaba (JP)</a> type, as seen on <a href="http://puzzleparasite.blogspot.tw/2012/01/rules-contact.html">Para’s Puzzle Site</a>.</p>
+<p>Draw a loop through adjacent vertices that cannot intersect itself; each number indicates the total length of all straight segments adjacent to it, where segment length is always measured up to the nearest turns in the loop.</p>
+<p>Let’s see how well WordPress’s scheduling works again. Happy Chinese New Year!</p>
+<p></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/puzzle-38">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-37" class="post-link">Puzzle 37 / Slitherlink &#43; Masyu</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-01-24
+		(110 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Nikoli <a href="http://www.nikoli.co.jp/en/puzzles/slitherlink.html">Slitherlink</a> + <a href="http://www.nikoli.co.jp/en/puzzles/masyu.html">Masyu</a> hybrid; I don’t know who first put them together but combinations like this aren’t rare.</p>
+<p>Draw a loop through vertices that cannot intersect itself; each number indicates how many of the four edges around it are drawn; the loop must pass through all large dots, and it must go straight through white dots while turning either before or after (or both), while it must turn on black dots without turning either before or after.</p>
+<p></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/puzzle-37">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-36" class="post-link">Puzzle 36 / Fillomino [LITS]</a></h3>
 		
 		<p class="post-meta">
@@ -317,84 +403,6 @@ Faint rainbow
 Basically, it’s a thing you can paste logic puzzle images into to solve them in, like people do in Paint, when you can’t or don’t want to print them.
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/gridderface-0-5">→ read more</a>
-	</footer>
-</article>
-
-	
-	<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-33" class="post-link">Puzzle 33 / Ice Barns</a></h3>
-		
-		<p class="post-meta">
-		
-		2012-11-22
-		(227 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Noticed this at <a href="http://meanderlawn.blogspot.tw/">meander lawn</a> who has a really broad puzzle blogroll… I don’t really know what I’m doing and may have misinterpreted something, but here goes. (Ahahaha puzzle 33 on 11/22… I wish it was intentional :P)</p>
-<p>Draw a path through square centers which enters and exits through the given places. Outside the “ice barns” (the gray things), the path may turn freely but may not self-intersect; inside “ice barns” the path may self-intersect but may not turn. Each ice barn (not necessarily every cell but every region, I think) must be passed over. The path must pass through each given arrow in the given direction.</p>
-<p></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/puzzle-33">→ read more</a>
-	</footer>
-</article>
-
-	
-	<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-32" class="post-link">Puzzle 32 / Slitherlink [Crosslink &#43; Liar]</a></h3>
-		
-		<p class="post-meta">
-		
-		2012-11-19
-		(146 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Yes, a “big” crazy mutant puzzle for a “milestone” <a href="https://xkcd.com/1000/">(as seen on xkcd)</a>, both for this blog and for my life. Things are rough now, but I prepared this ridiculously ahead of time. It’s still not <em>really</em> big, but I’m not so experienced and I don’t have the inspiration for something like <a href="http://www.artofproblemsolving.com/Forum/viewtopic.php?f=535&amp;t=506208">an entire mini-puzzlehunt</a>. Also, I think I should attempt more word-bank-based puzzles some day so I won’t fail as completely at them.</p>
-<p>But anyway: This is a Slitherlink combining MellowMelon’s <a href="https://mellowmelon.wordpress.com/slitherlink/crosslink/">Crosslink</a> and <a href="https://mellowmelon.wordpress.com/category/puzzle-types/slitherlink/liar-slitherlink/">Liar</a> variations. Draw a loop through vertices that can intersect itself but must go straight both times if it does; each number normally indicates how many of the four edges around it are draw, but exactly one clue in each row and column is false. Have fun.</p>
-<p></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/puzzle-32">→ read more</a>
-	</footer>
-</article>
-
-	
-	<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-31" class="post-link">Puzzle 31 / Fillomino [Sashigane]</a></h3>
-		
-		<p class="post-meta">
-		
-		2012-11-09
-		(123 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>This is a <a href="http://www.nikoli.co.jp/en/puzzles/fillomino.html">Fillomino</a> puzzle where every polyomino is required to be an L-shape, as in <a href="http://www.nikoli.co.jp/en/puzzles/sashigane.html">Sashigane</a>. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.</p>
-<p>My second, and now symmetric, attempt at this crazy self-invented mutant; <a href="//blog.vero.site/post/puzzle-22">puzzle 22</a> was the first. A word of warning: I can’t solve this without bifurcating near the end, so logic purists may be disappointed, but I like the clue arrangement too much. In fact I suspect this puzzle could have many more clues removed without affecting uniqueness, so tight are the rule constraints in this type.</p>
-<p></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/puzzle-31">→ read more</a>
 	</footer>
 </article>
 

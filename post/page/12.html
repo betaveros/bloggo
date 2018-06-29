@@ -137,6 +137,90 @@ Posts
 	
 	<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/anesthesia" class="post-link">Anesthesia</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-08-19
+		(529 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>I couldn’t remember how long it had been since we entered the ninth floor. Somebody had covered the elevator area with cartoon animals and landscapes. Not surprising, since all the children’s wards were here.</p>
+<p>Funny idea, that: I am still a child for medical purposes.</p>
+<p>I was not sick. Not more than usually, anyway. I didn’t need to get an IV drip installed or even change into the patient uniform the first night. There was nothing to do or feel. No guilt or fear, unlike last time — this check-up had been scheduled for along time and served as a simple test to see how my bone marrow was doing. No annoyance, either, because I knew it mattered; but no apprehension of the results, or of the needles. You can never get used to the needles, but you learn to just accept them anyway. There is nothing to be done about them.</p>
+<p>Who knows? The result could be something bad. But I know enough not to take this hypothetical seriously before it was anything other than hypothetical.</p>
+I slept, and dreamt of vomiting carrots. 
+<hr />
+<p>Morning.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/anesthesia">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-42" class="post-link">Puzzle 42 / Fillomino [Greater-Than]</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-07-19
+		(60 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Oops, I forgot the “puzzles” category was semi-reserved for puzzles I constructed/wrote, because among other things an LMI bot is following it. Anyway, if this makes up for anything, I have a puzzle that I’ve procrastinated posting for very, very long.</p>
+<p>This is a <a href="http://www.nikoli.co.jp/en/puzzles/fillomino.html">Fillomino</a> puzzle. Inequality signs in the grid must be satisfied by the two numbers they touch.</p>
+<p></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/puzzle-42">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/music" class="post-link">Music</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-06-22
+		(983 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>, <a href="/category/school">School</a>, <a href="/category/self-analysis">Self-Analysis</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Isn’t it weird to suddenly talk about this topic?</p>
+<p>I don’t think that I have ever talked about music any more than briefly in passing. It might be confusing to my <em>finger quotes</em> <em>audience</em>, and I worry I’ll seem inconsistent.</p>
+Well, a foolish consistency is the hobgoblin of little minds. If you wonder, “I didn’t know that you sang and played the piano, or you liked music in that way — or, at all…” please note that I didn’t know either. 
+<hr />
+<p>For most of my life, I was just a shower singer to myself.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/music">→ read more</a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/test" class="post-link">Test</a></h3>
 		
 		<p class="post-meta">
@@ -354,92 +438,6 @@ Please click on the image if it looks weird, which it very likely will.
 <p></p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/puzzle-39">→ read more</a>
-	</footer>
-</article>
-
-	
-	<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/scala" class="post-link">Adventures in Scala Pseudo-Abuse</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-02-21
-		(1624 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">Cs</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>So, what have I been doing with programming recently?</p>
-<p><a href="http://www.scala-lang.org/">Scala</a> is an amazing multiparadigm programming language that runs on the Java Virtual Machine and interoperates with Java. I learned about it last time reading random articles on Twitter.</p>
-<p>When I say “amazing” I mean “This is a language in which my code gives me nerdgasms every time I read it.” Wheeee.</p>
-<p>Okay, it’s not perfect. People say it’s too academic. It has a notoriously complicated type system (which is <a href="http://scientopia.org/blogs/goodmath/2013/01/21/types-gone-wild-ski-at-compile-time/"><em>Turing-Complete</em> at compile time</a>). Its documentation is a bit patchy too. For a serious introduction, the Scala website has plenty of links under documentation, and a <a href="http://www.scala-lang.org/node/104">tour of features</a>. Somebody wrote <a href="http://www.naildrivin5.com/scalatour">another tour</a> that explains things a bit more. So here, instead of introducing it seriously, I’m just going to screw with its features.</p>
-<p>Example of freedom. Scala lets names consist of symbols, and treats one-parameter methods and infix operators exactly the same. The full tokenization rules are a bit detailed and I put them at the bottom of this post for the interested. This lets you create classes with arithmetic and domain-specific languages easily, but it also creates some silly opportunities:</p>
-<pre><code>scala&gt; val * = 12
-*: Int = 12
-
-scala&gt; * * * * *
-res0: Int = 1728</code></pre>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/scala">→ read more</a>
-	</footer>
-</article>
-
-	
-	<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-38" class="post-link">Puzzle 38 / Contact</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-02-10
-		(75 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>A <a href="http://inabapuzzle.com/honkaku/contact.html">Naoki Inaba (JP)</a> type, as seen on <a href="http://puzzleparasite.blogspot.tw/2012/01/rules-contact.html">Para’s Puzzle Site</a>.</p>
-<p>Draw a loop through adjacent vertices that cannot intersect itself; each number indicates the total length of all straight segments adjacent to it, where segment length is always measured up to the nearest turns in the loop.</p>
-<p>Let’s see how well WordPress’s scheduling works again. Happy Chinese New Year!</p>
-<p></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/puzzle-38">→ read more</a>
-	</footer>
-</article>
-
-	
-	<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-37" class="post-link">Puzzle 37 / Slitherlink &#43; Masyu</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-01-24
-		(110 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Nikoli <a href="http://www.nikoli.co.jp/en/puzzles/slitherlink.html">Slitherlink</a> + <a href="http://www.nikoli.co.jp/en/puzzles/masyu.html">Masyu</a> hybrid; I don’t know who first put them together but combinations like this aren’t rare.</p>
-<p>Draw a loop through vertices that cannot intersect itself; each number indicates how many of the four edges around it are drawn; the loop must pass through all large dots, and it must go straight through white dots while turning either before or after (or both), while it must turn on black dots without turning either before or after.</p>
-<p></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/puzzle-37">→ read more</a>
 	</footer>
 </article>
 

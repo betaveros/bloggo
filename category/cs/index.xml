@@ -6,10 +6,55 @@
     <description>Recent content in Cs on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 May 2018 15:07:38 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 28 Jun 2018 23:12:15 -0700</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/category/cs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Proprietary Format</title>
+      <link>//blog.vero.site/post/proprietary-format</link>
+      <pubDate>Thu, 28 Jun 2018 23:12:15 -0700</pubDate>
+      
+      <guid>//blog.vero.site/post/proprietary-format</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;The villains are communicating with their own proprietary file format. Figure out what it is.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ nc proprietary.ctfcompetition.com 1337&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We get a server that will talk to us on a port and a &lt;code&gt;flag.ctf&lt;/code&gt; file that’s definitely not a binary. It’s a &lt;a href=&#34;https://en.wikipedia.org/wiki/Black_box&#34;&gt;black-box&lt;/a&gt; reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.&lt;/p&gt;
+&lt;p&gt;For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not &lt;code&gt;P6&lt;/code&gt;, it complains:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Cat Chat</title>
+      <link>//blog.vero.site/post/cat-chat</link>
+      <pubDate>Thu, 28 Jun 2018 23:12:06 -0700</pubDate>
+      
+      <guid>//blog.vero.site/post/cat-chat</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;You discover this cat enthusiast chat app, but the annoying thing about it is that you’re always banned when you start talking about dogs. Maybe if you would somehow get to know the admin’s password, you could fix that.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This challenge is a simple chat app written in NodeJS. The home page redirects you to a chat room labeled with a random UUID. Anybody can join the same chat room with the URL.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;//blog.vero.site/img/cat-chat-0.png&#34; alt=&#34;Fresh Cat Chat room&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In a chat room, you can chat and issue two commands, &lt;code&gt;/name&lt;/code&gt; to set your name and &lt;code&gt;/report&lt;/code&gt; to report that somebody is talking about dogs. After anybody in the chat room issues &lt;code&gt;/report&lt;/code&gt;, the admin shows up, listens for a while, and bans anybody who mentions the word “dog”.&lt;/p&gt;
+&lt;p&gt;There are two more commands, &lt;code&gt;/secret&lt;/code&gt; and &lt;code&gt;/ban&lt;/code&gt;, which are in the server source code and also described in comments in the HTML source if you didn’t notice:&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JS Safe 2.0</title>
+      <link>//blog.vero.site/post/js-safe-2</link>
+      <pubDate>Thu, 28 Jun 2018 23:12:01 -0700</pubDate>
+      
+      <guid>//blog.vero.site/post/js-safe-2</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML file that can store secrets in the browser’s localStorage. This means that you won’t be able to extract any secret from it (the secrets are on the computer of the owner), but it looks like it was hand-crafted to work only with the password of the owner…&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The challenge consists of a fancy HTML file with a cute but irrelevant animated cube and some embedded JavaScript.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;//blog.vero.site/img/js-safe-2-empty.png&#34; alt=&#34;Screenshot of JS Safe 2.0 with a text box and a cube&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>shellql</title>

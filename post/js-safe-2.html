@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>JS Safe 2.0</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content=" You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML file that can store secrets in the browser’s localStorage. This means that you won’t be able to extract any secret from it (the secrets are on the computer of the owner), but it looks like it was hand-crafted to work only with the password of the owner…
+ The challenge consists of a fancy HTML file with a cute but irrelevant animated cube and some embedded JavaScript.
+
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/js-safe-2" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">JS Safe 2.0</h1>
+		
+		<h2 class="post-subtitle">Google CTF 2018</h2>
+		
+		<p class="post-meta">
+		
+		2018-06-28
+		(2640 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><blockquote>
+<p>You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML file that can store secrets in the browser’s localStorage. This means that you won’t be able to extract any secret from it (the secrets are on the computer of the owner), but it looks like it was hand-crafted to work only with the password of the owner…</p>
+</blockquote>
+<p>The challenge consists of a fancy HTML file with a cute but irrelevant animated cube and some embedded JavaScript.</p>
+<p><img src="/img/js-safe-2-empty.png" alt="Screenshot of JS Safe 2.0 with a text box and a cube" /></p>
+<p></p>
+<style>
+.cube-wrap {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 300px;
+  perspective: 800px;
+  perspective-origin: 50% 100px;
+}
+.cube {
+  position: relative;
+  width: 200px;
+  transform-style: preserve-3d;
+  margin: 0 auto;
+}
+.back {
+  transform: translateZ(-100px) rotateY(180deg);
+}
+.right {
+  transform: rotateY(-270deg) translateX(100px);
+  transform-origin: top right;
+}
+.left {
+  transform: rotateY(270deg) translateX(-100px);
+  transform-origin: center left;
+}
+.top {
+  transform: rotateX(-90deg) translateY(-100px);
+  transform-origin: top center;
+}
+.bottom {
+  transform: rotateX(90deg) translateY(100px);
+  transform-origin: bottom center;
+}
+.front {
+  transform: translateZ(100px);
+}
+@keyframes spin {
+  from { transform: rotateY(0); }
+  to { transform: rotateY(360deg); }
+}
+.cube {
+  animation: spin 20s infinite linear;
+}
+.cube div {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(0, 0, 0, 0.51);
+  box-shadow: inset 0 0 60px white;
+  font-size: 20px;
+  text-align: center;
+  line-height: 200px;
+  color: rgba(0,0,0,0.5);
+  font-family: sans-serif;
+  text-transform: uppercase;
+}
+</style>
+<div class="cube-wrap">
+<div class="cube">
+<div class="front">
+
+</div>
+<div class="back">
+
+</div>
+<div class="top">
+
+</div>
+<div class="bottom">
+
+</div>
+<div class="left">
+
+</div>
+<div class="right">
+
+</div>
+</div>
+</div>
+<p>Seriously, though, since when can you create a spinning 3D cube in your browser with only a few lines of CSS and HTML. I am behind on front-end technology.</p>
+<p>Above the cube there’s a simple <code>&lt;input&gt;</code> element with a cute “key” Unicode character. You can enter a random password into the box and watch your access get denied.</p>
+<p><img src="/img/js-safe-2-hunter2.png" /></p>
+<p>The <code>onchange</code> event handler of the <code>&lt;input&gt;</code> element is where everything begins:</p>
+<pre class="sourceCode html"><code class="sourceCode html"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">&lt;input</span><span class="ot"> id=</span><span class="st">&quot;keyhole&quot;</span><span class="ot"> autofocus onchange=</span><span class="st">&quot;open_safe()&quot;</span><span class="ot"> placeholder=</span><span class="st">&quot;🔑&quot;</span><span class="kw">&gt;</span></div></code></pre>
+<pre class="sourceCode js"><code class="sourceCode javascript"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">function</span> <span class="at">open_safe</span>() <span class="op">{</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">  <span class="va">keyhole</span>.<span class="at">disabled</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">  password <span class="op">=</span> <span class="ss">/</span><span class="sc">^</span><span class="ss">CTF{</span><span class="sc">([0-9a-zA-Z_@!?-]+)</span><span class="ss">}</span><span class="sc">$</span><span class="ss">/</span>.<span class="at">exec</span>(<span class="va">keyhole</span>.<span class="at">value</span>)<span class="op">;</span></div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">  <span class="cf">if</span> (<span class="op">!</span>password <span class="op">||</span> <span class="op">!</span><span class="at">x</span>(password[<span class="dv">1</span>])) <span class="cf">return</span> <span class="va">document</span>.<span class="va">body</span>.<span class="at">className</span> <span class="op">=</span> <span class="st">&#39;denied&#39;</span><span class="op">;</span></div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">  <span class="va">document</span>.<span class="va">body</span>.<span class="at">className</span> <span class="op">=</span> <span class="st">&#39;granted&#39;</span><span class="op">;</span></div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">  password <span class="op">=</span> <span class="va">Array</span>.<span class="at">from</span>(password[<span class="dv">1</span>]).<span class="at">map</span>(c <span class="op">=&gt;</span> <span class="va">c</span>.<span class="at">charCodeAt</span>())<span class="op">;</span></div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">  encrypted <span class="op">=</span> <span class="va">JSON</span>.<span class="at">parse</span>(<span class="va">localStorage</span>.<span class="at">content</span> <span class="op">||</span> <span class="st">&#39;&#39;</span>)<span class="op">;</span></div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">  <span class="va">content</span>.<span class="at">value</span> <span class="op">=</span> <span class="va">encrypted</span>.<span class="at">map</span>((c<span class="op">,</span>i) <span class="op">=&gt;</span> c <span class="op">^</span> password[i <span class="op">%</span> <span class="va">password</span>.<span class="at">length</span>]).<span class="at">map</span>(<span class="va">String</span>.<span class="at">fromCharCode</span>).<span class="at">join</span>(<span class="st">&#39;&#39;</span>)</div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9"><span class="op">}</span></div></code></pre>
+<p>For the challenge, the only relevant part of the <code>on_safe</code> function is that the safe will unlock if the password matches the regular expression <code>/^CTF{([0-9a-zA-Z_@!?-]+)}$/</code> and the function call <code>x(password[1])</code> is truthy. The rest of the code just decrypts the encrypted secret, which we don’t have since it’s on the safe owner’s localStorage. The regex is unremarkable, so we turn to the function <code>x</code>. It’s somewhat obfuscated by being all jammed into one line plus a few other gotchas we’ll see later, but it also declares a few friendly variable names that make the conversion between characters and their codepoints more familiar if you’re coming from Python. A lightly deobfuscated and commented version of the code is below:</p>
+<pre class="sourceCode js"><code class="sourceCode javascript"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">function</span> <span class="at">x</span>(х)<span class="op">{</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">    ord <span class="op">=</span> <span class="va">Function</span>.<span class="va">prototype</span>.<span class="va">call</span>.<span class="at">bind</span>(<span class="st">&#39;&#39;</span>.<span class="at">charCodeAt</span>)<span class="op">;</span></div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">    chr <span class="op">=</span> <span class="va">String</span>.<span class="at">fromCharCode</span><span class="op">;</span></div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">    str <span class="op">=</span> String<span class="op">;</span></div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">    <span class="kw">function</span> <span class="at">h</span>(s) <span class="op">{</span></div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">        <span class="co">// Simple hash function that converts an arbitrary nonempty</span></div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">        <span class="co">// string to a length-4 string of characters, each of which</span></div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">        <span class="co">// has codepoint &lt; 256.</span></div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">        <span class="cf">for</span> (i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">!=</span> <span class="va">s</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10">            a <span class="op">=</span> ((<span class="kw">typeof</span> a <span class="op">==</span> <span class="st">&#39;undefined&#39;</span> <span class="op">?</span> <span class="dv">1</span> : a) <span class="op">+</span> <span class="at">ord</span>(<span class="at">str</span>(s[i]))) <span class="op">%</span> <span class="dv">65521</span><span class="op">;</span></div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11">            b <span class="op">=</span> ((<span class="kw">typeof</span> b <span class="op">==</span> <span class="st">&#39;undefined&#39;</span> <span class="op">?</span> <span class="dv">0</span> : b) <span class="op">+</span> a) <span class="op">%</span> <span class="dv">65521</span><span class="op">;</span></div>
+<div class="sourceLine" id="12" href="#12" data-line-number="12">        <span class="op">}</span></div>
+<div class="sourceLine" id="13" href="#13" data-line-number="13">        <span class="cf">return</span> <span class="at">chr</span>(b<span class="op">&gt;&gt;</span><span class="dv">8</span>) <span class="op">+</span> <span class="at">chr</span>(b<span class="op">&amp;</span><span class="bn">0xFF</span>) <span class="op">+</span> <span class="at">chr</span>(a<span class="op">&gt;&gt;</span><span class="dv">8</span>) <span class="op">+</span> <span class="at">chr</span>(a<span class="op">&amp;</span><span class="bn">0xFF</span>)<span class="op">;</span></div>
+<div class="sourceLine" id="14" href="#14" data-line-number="14">    <span class="op">}</span></div>
+<div class="sourceLine" id="15" href="#15" data-line-number="15">    <span class="kw">function</span> <span class="at">c</span>(a<span class="op">,</span> b<span class="op">,</span> c)<span class="op">{</span></div>
+<div class="sourceLine" id="16" href="#16" data-line-number="16">        <span class="co">// xors strings a and b together, cycling b as necessary to the</span></div>
+<div class="sourceLine" id="17" href="#17" data-line-number="17">        <span class="co">// length of a (the third argument is never passed to this </span></div>
+<div class="sourceLine" id="18" href="#18" data-line-number="18">        <span class="co">// function and is just a mild obfuscation or code golf technique </span></div>
+<div class="sourceLine" id="19" href="#19" data-line-number="19">        <span class="co">// to introduce an extra local variable for &quot;free&quot;)</span></div>
+<div class="sourceLine" id="20" href="#20" data-line-number="20">        <span class="cf">for</span> (i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">!=</span> <span class="va">a</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>)</div>
+<div class="sourceLine" id="21" href="#21" data-line-number="21">            c <span class="op">=</span> (c <span class="op">||</span> <span class="st">&#39;&#39;</span>) <span class="op">+</span> <span class="at">chr</span>(<span class="at">ord</span>(<span class="at">str</span>(a[i])) <span class="op">^</span> <span class="at">ord</span>(<span class="at">str</span>(b[i <span class="op">%</span> <span class="va">b</span>.<span class="at">length</span>])))<span class="op">;</span></div>
+<div class="sourceLine" id="22" href="#22" data-line-number="22">        <span class="cf">return</span> c</div>
+<div class="sourceLine" id="23" href="#23" data-line-number="23">    <span class="op">}</span></div>
+<div class="sourceLine" id="24" href="#24" data-line-number="24">    <span class="co">// trigger the browser debugger to annoy anybody with their</span></div>
+<div class="sourceLine" id="25" href="#25" data-line-number="25">    <span class="co">// browser developer tools open.</span></div>
+<div class="sourceLine" id="26" href="#26" data-line-number="26">    <span class="cf">for</span> (a<span class="op">=</span><span class="dv">0</span><span class="op">;</span> a<span class="op">!=</span><span class="dv">1000</span><span class="op">;</span> a<span class="op">++</span>) <span class="cf">debugger</span><span class="op">;</span></div>
+<div class="sourceLine" id="27" href="#27" data-line-number="27">    x <span class="op">=</span> <span class="at">h</span>(<span class="at">str</span>(x))<span class="op">;</span></div>
+<div class="sourceLine" id="28" href="#28" data-line-number="28">    <span class="co">// what??</span></div>
+<div class="sourceLine" id="29" href="#29" data-line-number="29">    source <span class="op">=</span> <span class="ss">/Ӈ#7ùª9¨M¤À.áÔ¥6¦¨¹.ÿÓÂ.Ö£JºÓ¹WþÊmãÖÚG¤¢dÈ9&amp;òªћ#³­1᧨/</span><span class="op">;</span></div>
+<div class="sourceLine" id="30" href="#30" data-line-number="30">    <span class="va">source</span>.<span class="at">toString</span> <span class="op">=</span> <span class="kw">function</span>() <span class="op">{</span></div>
+<div class="sourceLine" id="31" href="#31" data-line-number="31">        <span class="cf">return</span> <span class="at">c</span>(source<span class="op">,</span>x)<span class="op">;</span></div>
+<div class="sourceLine" id="32" href="#32" data-line-number="32">    <span class="op">};</span></div>
+<div class="sourceLine" id="33" href="#33" data-line-number="33">    <span class="cf">try</span> <span class="op">{</span></div>
+<div class="sourceLine" id="34" href="#34" data-line-number="34">        <span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;debug&#39;</span><span class="op">,</span> source)<span class="op">;</span></div>
+<div class="sourceLine" id="35" href="#35" data-line-number="35">        <span class="cf">with</span> (source)</div>
+<div class="sourceLine" id="36" href="#36" data-line-number="36">            <span class="cf">return</span> <span class="at">eval</span>(<span class="st">&#39;eval(c(source,x))&#39;</span>)<span class="op">;</span></div>
+<div class="sourceLine" id="37" href="#37" data-line-number="37">    <span class="op">}</span> <span class="cf">catch</span> (e) <span class="op">{</span></div>
+<div class="sourceLine" id="38" href="#38" data-line-number="38">        <span class="co">// swallow all errors</span></div>
+<div class="sourceLine" id="39" href="#39" data-line-number="39">    <span class="op">}</span></div>
+<div class="sourceLine" id="40" href="#40" data-line-number="40">    <span class="co">// implicitly return undefined (which is falsy)</span></div>
+<div class="sourceLine" id="41" href="#41" data-line-number="41"><span class="op">}</span></div></code></pre>
+<p>There are three bamboozles in this function. The first bamboozle is in how <code>source</code>, a rather ugly regular expression, gets converted to a string. Following the code, <code>source.toString</code> calls <code>c(source, x)</code>, which calls <code>str</code> on its first argument, which calls <code>String</code> on that argument, which calls the <code>.toString()</code> method on that argument, creating an infinite recursion. In fact, if you try to call <code>source.toString()</code> from the debugger or by manually inserting it, you will indeed cause infinite recursion and your browser will complain. And yet, the <code>x</code> function runs fine, even though it seems to evaluate <code>c(source, x)</code>, which should enter the above infinite recursion.</p>
+<p>The reason the loop isn’t entered is due to the (rare and disrecommended) <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/with">with</a> (source)</code> statement. Any unqualified names (names that aren’t accessed by <code>.</code> from something else) inside a <code>with</code> statement will first be looked up as a property of the expression in parentheses after <code>with</code>. So, when the browser evaluates the unqualified variable <code>source</code> in <code>'eval(c(source,x))'</code>, it will first try to look up the <code>source</code> property of the regex that was provided to the <code>with</code> statement (and is also confusingly called <code>source</code>) before it tries anything else. Lo and behold, it just so happens that <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp">JavaScript regular expressions</a> have an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/source">attribute <code>source</code></a> that contains the string of their, well, source. Since the browser finds this property, it decides that that’s what <code>source</code> in the <code>with</code> statement refers to, and the regex-that-was-also-called-<code>source</code> and its <code>toString</code> method are no longer relevant.</p>
+<p>In any case, on a high level, the function <code>x</code> hashes its input to get a length-4 key, xors it with the body text of the regex, and evaluates the resulting string as JavaScript. We want this evaluation to succeed (notably, it has to be syntactically correct JavaScript) and return a truthy value.</p>
+<p>(If you solved the challenge, you will know that the above description is technically inaccurate because of the second bamboozle, but it is completely possible to finish this stage without realizing the inaccuracy, and it’s how I did it, so I will stick to this narrative.)</p>
+<p>There are 65521<sup>2</sup> possible hashes, which is basically 2<sup>32</sup>. If checking each hash were easy, this would be within brute-force reach, but evaluating a piece of JavaScript is expensive. Instead the best way is probably to use some smart intuition and wild guessing.</p>
+<p>The first thing to do is to extract the exact sequence of code points from the regex exactly as it appears on the page, partly so we can stop worrying about encodings getting us into trouble and partly just to see the characters:</p>
+<p>This gives the list:</p>
+<pre class="wrap"><strong>1223</strong>, 35, 55, 249, 170, 57, 168, 77, 164, 159, 192, 46, 225, 212, 165, 54, 166, 168, 185, 46, 255, 211, 194, 46, 214, 137, 163, 74, 186, 211, 185, 87, 254, 202, 150, 109, 227, 214, 218, 71, 164, 133, 162, 100, 200, 57, 38, 242, 170, <strong>1115</strong>, 35, 179, 173, 49, <strong>6632</strong></pre>
+<p>Surprisingly, the codepoints include two numbers over 1000 and one over 6000 (bolded), but the hash that we will xor it with only includes bytes up to 256, so there is no way for these code points to get xored into ASCII characters.</p>
+<p>In fact, we can conclude that no matter what the xor key is, the last character will appear exactly once in this code snippet. We can then make the intuitive leap that the easiest way for this to be valid and remotely reasonable JavaScript is for it to be commented out. (There are of course other ways. By choosing a byte, we can make this codepoint xor to a character from one of the Unicode blocks Tagalog, Hanunoo, Buhid, Tagbanwa, or Khmer, many of which are valid Unicode letters and could be used as JavaScript identifiers or parts thereof. Then if we accessed this identifier, we’d just get <code>undefined</code>. But that would be pretty inelegant, so let’s run with this one.)</p>
+<p>We can therefore guess that the first two bytes of the xor key are the bytes needed to make 173 and 49 xor to two forward slashes that will comment it out. To facilitate this checking process, I made a quick Google Sheet to automatically xor the code points with a number of my choice. This was harder than expected because apparently Google Sheets does not have the binary xor operator, so after more Googling for the answer I had to write a JavaScript function to implement this, and then call the function from the sheet.</p>
+<figure>
+<img src="/img/js-safe-2-xor.png" alt="Xoring numbers in Google Sheets" /><figcaption>Xoring numbers in Google Sheets</figcaption>
+</figure>
+<p>Promisingly, this makes the first two character xor to 1093 and 61, which are <code>х</code> and <code>=</code>, while it makes the sixth and seventh from last characters xor to 40 and 1093, which are <code>(</code> and <code>х</code>. So the other two large codepoints turn into the same character <code>х</code>, which makes the JavaScript much more reasonable.</p>
+<p>Still, this <code>х</code> should make you suspicious. Didn’t we just conclude that, as the xor of something over 1000 and something under 256, this character can’t be an ASCII character? Well, indeed, it is not; it is U+0445 CYRILLIC SMALL LETTER HA, one of those Latin character look-alikes that can be used for <a href="https://en.wikipedia.org/wiki/IDN_homograph_attack">homograph spoofing attacks</a>. And indeed, the second bamboozle of this challenge is that we’ve been tricked by a spoofing attack all along: although the function we’ve been analyzing this whole time is called <code>x</code>, or U+0078 LATIN SMALL LETTER X, its <em>parameter</em> is called U+0445 CYRILLIC SMALL LETTER HA.</p>
+<p>This means that the line</p>
+<pre class="sourceCode js"><code class="sourceCode javascript"><div class="sourceLine" id="1" href="#1" data-line-number="1">x <span class="op">=</span> <span class="at">h</span>(<span class="at">str</span>(x))<span class="op">;</span></div></code></pre>
+<p>(in which both <code>x</code>’s are the Latin <code>x</code>) is actually converting <em>the function itself</em> to a string. And <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toString">JavaScript functions’ toString</a> basically return the function’s source code, whitespace, comments, and all.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> This means that any deobfuscation of the function will change its hash and its behavior and cause the check to fail, even if you enter the right key. Whoops.</p>
+<p>All this means that the value of (the Latin) <code>x</code> that we xor with <code>source</code> doesn’t depend on the password we type at all! So we can extract the result of <code>c(source, x)</code> by logging it after copy-pasting the relevant definitions from <code>x</code> outside. Doing this correctly also requires you to realize the third bamboozle, which is that even outside the function <code>x</code> you can’t ignore the annoying loop <code>for (a=0; a!=1000; a++) debugger;</code>. The reason is that it sets <code>a</code> to 1000, and afterwards the hash function uses the variable <code>a</code> without declaring it in an inner scope. So despite appearances, the “initialization clause” in the line</p>
+<pre class="sourceCode js"><code class="sourceCode javascript"><div class="sourceLine" id="1" href="#1" data-line-number="1">a <span class="op">=</span> ((<span class="kw">typeof</span> a <span class="op">==</span> <span class="st">&#39;undefined&#39;</span> <span class="op">?</span> <span class="dv">1</span> : a) <span class="op">+</span> <span class="at">ord</span>(<span class="at">str</span>(s[i]))) <span class="op">%</span> <span class="dv">65521</span><span class="op">;</span></div></code></pre>
+<p>that purports to default <code>a</code> to 1 the first time through the loop never happens, because <code>a</code> is already set to 1000. (The same clause for <code>b</code> <em>does</em> occur, of course.)</p>
+<p>The end result is that this code, with some functions copy-pasted verbatim from the challenge file, will give you the correct string:</p>
+<pre class="sourceCode js"><code class="sourceCode javascript"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">function</span> <span class="at">x</span>(х)<span class="op">{</span><span class="co">/* copy-paste */</span><span class="op">}</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">a <span class="op">=</span> <span class="dv">1000</span><span class="op">;</span></div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">ord <span class="op">=</span> <span class="va">Function</span>.<span class="va">prototype</span>.<span class="va">call</span>.<span class="at">bind</span>(<span class="st">&#39;&#39;</span>.<span class="at">charCodeAt</span>)<span class="op">;</span></div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">chr <span class="op">=</span> <span class="va">String</span>.<span class="at">fromCharCode</span><span class="op">;</span></div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">str <span class="op">=</span> String<span class="op">;</span></div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6"><span class="kw">function</span> <span class="at">h</span>(s)<span class="op">{</span><span class="co">/* copy-paste */</span><span class="op">}</span></div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7"><span class="kw">function</span> <span class="at">c</span>(a<span class="op">,</span>b<span class="op">,</span>c)<span class="op">{</span><span class="co">/* copy-paste */</span><span class="op">}</span></div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">source <span class="op">=</span> <span class="ss">/Ӈ#7ùª9¨M¤À.áÔ¥6¦¨¹.ÿÓÂ.Ö£JºÓ¹WþÊmãÖÚG¤¢dÈ9&amp;òªћ#³­1᧨/</span><span class="op">;</span></div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9"><span class="va">console</span>.<span class="at">log</span>(<span class="at">c</span>(<span class="va">source</span>.<span class="at">source</span><span class="op">,</span> <span class="at">h</span>(<span class="va">x</span>.<span class="at">toString</span>())))<span class="op">;</span></div></code></pre>
+<p>Alternatively, if you are like me and somehow still failed to realize that <code>c(source, x)</code> doesn’t depend on the password even after discovering the homograph substitution, you can continue deducing the hash along the same lines. It’s actually doable, and guessing is fun! The seventh-to-last character is an open parenthesis, so it should likely be closed. So we set the other two characters of the xor key to the values that would cause the fourth- and fifth-to-last characters to be close parentheses, with the goal of seeing if either of these produce a promising column. It turns out that in fact both of them together produce a syntactically correct and very promising piece of code. That was easy. Of course, it would have been even easier for anybody who realized that one of the <code>х</code>’s in the code was Cyrillic earlier.</p>
+<figure>
+<img src="/img/js-safe-2-xored.png" alt="The final spreadsheet" /><figcaption>The final spreadsheet</figcaption>
+</figure>
+<p>Either way, we conclude that <code>c(source, x)</code> gives the following line of code, which has to evaluate to true:</p>
+<pre class="sourceCode js"><code class="sourceCode javascript"><div class="sourceLine" id="1" href="#1" data-line-number="1">х<span class="op">==</span><span class="at">c</span>(<span class="st">&#39;¢×&amp;Ê´cÊ¯¬$¶³´}ÍÈ´T©Ð8Í³Í|Ô÷aÈÐÝ&amp;¨þJ&#39;</span><span class="op">,</span><span class="at">h</span>(х))<span class="co">//᧢</span></div></code></pre>
+<p>As noted before, the <code>х</code> above is the Cyrillic lookalike for <code>x</code>, and it actually refers to the argument to the Latin-letter-<code>x</code> function, which is just the text between <code>CTF{</code> and <code>}</code> in the safe password. For this to be true, <code>х</code> has to be the result of xoring a key with the “ciphertext” <code>'¢×&amp;Ê´cÊ¯¬$¶³´}ÍÈ´T©Ð8Í³Í|Ô÷aÈÐÝ&amp;¨þJ'</code>. But we also know from the <code>open_safe</code> function that <code>х</code> has to match the regex <code>/[0-9a-zA-Z_@!?-]+/</code>. This is easy to brute force. For each character in the xor key, it must xor with roughly one-fourth of the characters in that string to create a character from the relatively small character class of the regex, which is a pretty strong constraint.</p>
+<p>A short Python script will finish the challenge:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="im">import</span> re</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">xored_string <span class="op">=</span> <span class="st">&#39;¢×&amp;Ê´cÊ¯¬$¶³´}ÍÈ´T©Ð8Í³Í|Ô÷aÈÐÝ&amp;¨þJ&#39;</span></div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3"></div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">valid_key_codepoints <span class="op">=</span> [[],[],[],[]]</div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">    <span class="cf">for</span> key_cp <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">256</span>):</div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">        good <span class="op">=</span> <span class="va">True</span></div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">        <span class="cf">for</span> c <span class="kw">in</span> xored_string[i::<span class="dv">4</span>]:</div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">            <span class="cf">if</span> <span class="kw">not</span> re.match(<span class="st">&#39;[0-9a-zA-Z_@!?-]+&#39;</span>, <span class="bu">chr</span>(<span class="bu">ord</span>(c) <span class="op">^</span> key_cp)):</div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10">                good <span class="op">=</span> <span class="va">False</span></div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11">                <span class="cf">break</span></div>
+<div class="sourceLine" id="12" href="#12" data-line-number="12">        <span class="cf">if</span> good:</div>
+<div class="sourceLine" id="13" href="#13" data-line-number="13">            valid_key_codepoints[i].append(key_cp)</div>
+<div class="sourceLine" id="14" href="#14" data-line-number="14"><span class="bu">print</span>(ks)</div></code></pre>
+<p>This works in Python 3; in Python 2, to get the right codepoints out, you need to add <code># coding: utf-8</code> to the start and prefix the string literal with <code>u</code> to declare that it’s a Unicode string. Or, in either language, you can just parse the codepoints out in JavaScript and paste them in like so:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1">xored_string <span class="op">=</span> <span class="st">&#39;&#39;</span>.join(<span class="bu">map</span>(<span class="bu">chr</span>, [</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">    <span class="dv">162</span>, <span class="dv">215</span>, <span class="dv">38</span>, <span class="dv">129</span>, <span class="dv">202</span>, <span class="dv">180</span>, <span class="dv">99</span>, <span class="dv">202</span></div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">    <span class="dv">175</span>, <span class="dv">172</span>, <span class="dv">36</span>, <span class="dv">182</span>, <span class="dv">179</span>, <span class="dv">180</span>, <span class="dv">125</span>, <span class="dv">205</span></div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">    <span class="dv">200</span>, <span class="dv">180</span>, <span class="dv">84</span>, <span class="dv">151</span>, <span class="dv">169</span>, <span class="dv">208</span>, <span class="dv">56</span>, <span class="dv">205</span></div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">    <span class="dv">179</span>, <span class="dv">205</span>, <span class="dv">124</span>, <span class="dv">212</span>, <span class="dv">156</span>, <span class="dv">247</span>, <span class="dv">97</span>, <span class="dv">200</span></div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">    <span class="dv">208</span>, <span class="dv">221</span>, <span class="dv">38</span>, <span class="dv">155</span>, <span class="dv">168</span>, <span class="dv">254</span>, <span class="dv">74</span></div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">]))</div></code></pre>
+<p>You could equivalently do the above procedure with the string sliced from the original source’s <code>source</code>’s source that turned into this string, since that transformation was also via xoring a period-4 key, and xoring by two different period-4 keys is equivalent to xoring by the xor of those keys.</p>
+<p>Anyway, the Python script prints:</p>
+<pre><code>[[253], [149, 153], [21], [249]]</code></pre>
+<p>So we know the first, third, and fourth characters of the xor key, and there are only two possibilities for the second. In other words, the regex alone has reduced our space of 65536 possible xor keys to just two. Trying the second one produces the text <code>_N3x7-v3R51ON-h45-AnTI-4NTi-ant1-D3bUg_</code>, which sure looks like a flag, and it grants access after we surround it with <code>CTF{ ... }</code>:</p>
+<figure>
+<img src="/img/js-safe-2-granted.png" alt="Success!" /><figcaption>Success!</figcaption>
+</figure>
+<p>So the flag is:</p>
+<pre><code>CTF{_N3x7-v3R51ON-h45-AnTI-4NTi-ant1-D3bUg_}</code></pre>
+<p>Incidentally, this challenge leaves an interesting question of how the function and the flag were written. The ciphertext is a pure function of the flag, but the hash that the regex <code>source</code> is xored with to create the ciphertext depends on the source itself, which contains the regex <code>source</code>; so how do you get it to produce the ciphertext? The haphazard capitalization and 1337ification of the flag makes me think various ways to choose the uppercase, lowercase, or 1337speak versions of individual characters of the flag were bruteforced along with valid xor keys until the result of embedding the ciphertext in the expression, xoring with the xor key, and then embedding that as a regex in the function source happened to hash to the xor key. The hash function is naive enough that this can made pretty fast if you perform some precomputations with the parts of the function source that are fixed. I’m not sure whether some way to find a flag that works even more efficiently would fall out if you just write out all the math, though.</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>One of the practical applications of this “feature” before ES6 was to provide a (highly questionable) way to make multiline strings without worrying about line continuations or string concatenation: you would write your string in a multiline comment in a function, convert the function to a string, and slice out the string you wanted. See <a href="https://stackoverflow.com/a/5571069/3243497">this SO answer</a> or <a href="https://github.com/sindresorhus/multiline">this node plugin</a>.<a href="#fnref1" class="footnoteBack">↩</a></p></li>
+</ol>
+</section></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/ctf"><span class="tag">CTF</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/shellql">← shellql</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/cat-chat">Cat Chat →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>

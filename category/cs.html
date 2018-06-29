@@ -141,6 +141,102 @@ Category → cs
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/proprietary-format" class="post-link">Proprietary Format</a></h3>
+		
+		<h4 class="post-subtitle">Google CTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-06-28
+		(4166 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>The villains are communicating with their own proprietary file format. Figure out what it is.</p>
+<pre><code>$ nc proprietary.ctfcompetition.com 1337</code></pre>
+</blockquote>
+<p>We get a server that will talk to us on a port and a <code>flag.ctf</code> file that’s definitely not a binary. It’s a <a href="https://en.wikipedia.org/wiki/Black_box">black-box</a> reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.</p>
+<p>For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not <code>P6</code>, it complains:</p>
+<p></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/proprietary-format">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/cat-chat" class="post-link">Cat Chat</a></h3>
+		
+		<h4 class="post-subtitle">Google CTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-06-28
+		(2706 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>You discover this cat enthusiast chat app, but the annoying thing about it is that you’re always banned when you start talking about dogs. Maybe if you would somehow get to know the admin’s password, you could fix that.</p>
+</blockquote>
+<p>This challenge is a simple chat app written in NodeJS. The home page redirects you to a chat room labeled with a random UUID. Anybody can join the same chat room with the URL.</p>
+<p><img src="/img/cat-chat-0.png" alt="Fresh Cat Chat room" /></p>
+<p>In a chat room, you can chat and issue two commands, <code>/name</code> to set your name and <code>/report</code> to report that somebody is talking about dogs. After anybody in the chat room issues <code>/report</code>, the admin shows up, listens for a while, and bans anybody who mentions the word “dog”.</p>
+<p>There are two more commands, <code>/secret</code> and <code>/ban</code>, which are in the server source code and also described in comments in the HTML source if you didn’t notice:</p>
+<p></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/cat-chat">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/js-safe-2" class="post-link">JS Safe 2.0</a></h3>
+		
+		<h4 class="post-subtitle">Google CTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-06-28
+		(2640 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML file that can store secrets in the browser’s localStorage. This means that you won’t be able to extract any secret from it (the secrets are on the computer of the owner), but it looks like it was hand-crafted to work only with the password of the owner…</p>
+</blockquote>
+<p>The challenge consists of a fancy HTML file with a cute but irrelevant animated cube and some embedded JavaScript.</p>
+<p><img src="/img/js-safe-2-empty.png" alt="Screenshot of JS Safe 2.0 with a text box and a cube" /></p>
+<p></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/js-safe-2">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/shellql" class="post-link">shellql</a></h3>
 		
 		<h4 class="post-subtitle">DEF CON CTF Qualifiers 2018</h4>
@@ -375,85 +471,6 @@ Of course, this is my first Code Jam and I don’t know how reasonable these req
 </blockquote>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/jam">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/a-star" class="post-link">A*</a></h3>
-		
-		<p class="post-meta">
-		
-		2015-07-20
-		(144 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">Cs</a>, <a href="/category/randomness">Randomness</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	Nope, still no meaningful post today. Instead here is a pretty diagram of the A* search algorithm (A-star in English, for my search crawler overlords). At least, I hope it is; I spent more time fiddling with the pretty colors than making sure the algorithm I implemented was actually A*. It looks right, though? In the background, red component measures traversed distance from start, (inverted) green component measures difference between the traversed distance plus heuristic distance and the theoretically optimal heuristic distance from the start, blue component measures heuristic distance to goal.
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/a-star">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/phone" class="post-link">Phone</a></h3>
-		
-		<p class="post-meta">
-		
-		2015-07-15
-		(1459 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>, <a href="/category/cs">Cs</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p><strong>tl;dr: anybody want to add me on Line or tell/remind me about other phone chat apps? betaveros as always.</strong></p>
-<p>Wow, talk about uninspired post titles.</p>
-<p>I got a new phone today. Or, well, it’s second-hand, actually. I try to make electronics last a long time, but I think this was justified given the state of my last phone’s screen:</p>
-<p><a href="/img/screen.jpg"><img src="/img/screen.jpg?w=269" alt="old phone screen, with a visibly malfunctioning black patch" width="269" height="300" class="aligncenter size-medium wp-image-3142" /></a></p>
-<p>Besides, I’m going off to college and all. Anyway, the phone is pretty cool. It’s a slick shade of red, it came with a cover and everything, and it has one of those fancy 3x3-grid locks. How secure are those again?</p>
-<p>Well, we could just <a href="https://stackoverflow.com/questions/6979524/android-lock-password-combinations">find the answer on StackOverflow</a>, but that’s boring.</p>
-<p></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/phone">→ read more</a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/chi-banner" class="post-link">Chi Banner</a></h3>
-		
-		<p class="post-meta">
-		
-		2015-07-14
-		(318 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">Cs</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	Okay, I think I’m figuring this out. When I make a filler post for the streak, it should be an unabashed filler post, so I can accumulate some of the blogging time I find each day to work on a serious post (and for doing the other important stuff I should be doing!) instead of wasting it right away.
-Life. I’m programming something for Dad involving a parser using Jison, and one of the tasks involved stuffing a custom lexer into the parser.
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/chi-banner">→ read more</a>
 	</footer>
 </article>
 

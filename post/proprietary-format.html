@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Proprietary Format</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content=" The villains are communicating with their own proprietary file format. Figure out what it is.
+$ nc proprietary.ctfcompetition.com 1337  We get a server that will talk to us on a port and a flag.ctf file that’s definitely not a binary. It’s a black-box reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.
+For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not P6, it complains:
+
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/proprietary-format" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Proprietary Format</h1>
+		
+		<h2 class="post-subtitle">Google CTF 2018</h2>
+		
+		<p class="post-meta">
+		
+		2018-06-28
+		(4166 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><blockquote>
+<p>The villains are communicating with their own proprietary file format. Figure out what it is.</p>
+<pre><code>$ nc proprietary.ctfcompetition.com 1337</code></pre>
+</blockquote>
+<p>We get a server that will talk to us on a port and a <code>flag.ctf</code> file that’s definitely not a binary. It’s a <a href="https://en.wikipedia.org/wiki/Black_box">black-box</a> reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.</p>
+<p>For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not <code>P6</code>, it complains:</p>
+<p></p>
+<pre><code>$ nc proprietary.ctfcompetition.com 1337
+blah
+Expected P6 as the header</code></pre>
+<p>Or if the second line is not two space-separated positive integers:</p>
+<pre><code>$ nc proprietary.ctfcompetition.com 1337
+P6
+blah
+Expected width and height</code></pre>
+<p>Or if the third line is not 255:</p>
+<pre><code>$ nc proprietary.ctfcompetition.com 1337
+P6
+1 1
+blah
+Expected 255</code></pre>
+<p>It also complains if you pass a nonpositive width or height with a less helpful and apparently misspelled error message, but this is not particularly relevant.</p>
+<pre><code>$ nc proprietary.ctfcompetition.com 1337
+P6
+0 0
+255
+Image to big</code></pre>
+<p>In any case, this format matches the <a href="http://netpbm.sourceforge.net/doc/ppm.html">PPM format</a>, so it looks like we’re sending it a PPM image, 3 bytes per pixel, and then it’s converting it to the titular Proprietary Format and giving us back the result, which always starts with GCTF. (I didn’t recognize the PPM format exactly when I started the challenge, but the mention of “width” and “height” and inclusion of the number 255 made me pretty sure it was an image format anyway.) The provided <code>flag.ctf</code> attachment also starts with GCTF, so we guess that the challenge is to reverse-engineer how the proprietary image format works and then recover the image from <code>flag.ctf</code>.</p>
+<h3 id="first-steps">First Steps</h3>
+<p>Our first non-error interaction looks like this:</p>
+<pre><code>$ nc proprietary.ctfcompetition.com 1337
+P6
+1 1
+255
+ABC
+GCTFCBA</code></pre>
+<p>Here we see that the three bytes we gave it, which we assume are the RGB components of a pixel, have been reversed. It’s pretty reasonable; it just means the bytes are being stored with the opposite endianness or something. In fact, we don’t really need to care too much about keeping the channels in order, since in the worst case we’ll get an image with color channels permuted, but any shapes and text will almost certainly still be legible.</p>
+<p>Anyway, feeding the server characters by hand through <code>nc</code> and manually observing results that look like the output I pasted above is already inaccurate because we are already receiving null bytes and other unprintable characters, so I switched to a <code>pwntools</code> harness to print representations of these characters.</p>
+<p>Probably the first thing I figured out through experimentation is the header of the output, which is always 4 bytes that are always <code>GCTF</code>, followed by 4 bytes that store the width in little-endian format, followed by 4 bytes that store the height in little-endian format. Then there’s data. In addition, all the remaining bytes in the output are always either bytes we inputted or single nybbles.</p>
+<p>Because of this, I wrote a very simple hexdump function into my harness with a terminal-color-coded side bar. In the side bar, printable characters would be displayed normally, characters between 0 and 15 would be displayed as dim red hex digits, and everything else would just be a magenta <code>?</code>.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="im">from</span> __future__ <span class="im">import</span> division, print_function</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3"><span class="im">import</span> sys</div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4"></div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5"><span class="kw">def</span> terminalify(c):</div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">    <span class="cf">if</span> <span class="dv">32</span> <span class="op">&lt;=</span> <span class="bu">ord</span>(c) <span class="op">&lt;=</span> <span class="dv">126</span>:</div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">        <span class="cf">return</span> c</div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">    <span class="cf">if</span> <span class="bu">ord</span>(c) <span class="op">&lt;</span> <span class="dv">16</span>:</div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">        <span class="cf">return</span> <span class="st">&#39;</span><span class="ch">\x1b</span><span class="st">[38;5;160m</span><span class="sc">{:X}</span><span class="ch">\x1b</span><span class="st">[0m&#39;</span>.<span class="bu">format</span>(<span class="bu">ord</span>(c))</div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10">    <span class="cf">return</span> <span class="st">&#39;</span><span class="ch">\x1b</span><span class="st">[35m?</span><span class="ch">\x1b</span><span class="st">[0m&#39;</span></div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11"></div>
+<div class="sourceLine" id="12" href="#12" data-line-number="12"><span class="kw">def</span> hexdump(s):</div>
+<div class="sourceLine" id="13" href="#13" data-line-number="13">    <span class="cf">for</span> chunk <span class="kw">in</span> group(<span class="dv">8</span>, s):</div>
+<div class="sourceLine" id="14" href="#14" data-line-number="14">        <span class="bu">print</span>((enhex(chunk).ljust(<span class="dv">17</span>) <span class="op">+</span> <span class="st">&#39;&#39;</span>.join(terminalify(c) <span class="cf">for</span> c <span class="kw">in</span> chunk)))</div>
+<div class="sourceLine" id="15" href="#15" data-line-number="15"></div>
+<div class="sourceLine" id="16" href="#16" data-line-number="16">conn <span class="op">=</span> remote(<span class="st">&#39;proprietary.ctfcompetition.com&#39;</span>, <span class="dv">1337</span>)</div>
+<div class="sourceLine" id="17" href="#17" data-line-number="17">conn.sendline(<span class="st">&#39;P6&#39;</span>)</div>
+<div class="sourceLine" id="18" href="#18" data-line-number="18">conn.sendline(sys.argv[<span class="dv">1</span>] <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> sys.argv[<span class="dv">2</span>])</div>
+<div class="sourceLine" id="19" href="#19" data-line-number="19">conn.sendline(<span class="st">&#39;255&#39;</span>)</div>
+<div class="sourceLine" id="20" href="#20" data-line-number="20">conn.sendline(sys.argv[<span class="dv">3</span>])</div>
+<div class="sourceLine" id="21" href="#21" data-line-number="21">conn.shutdown(<span class="st">&#39;send&#39;</span>)</div>
+<div class="sourceLine" id="22" href="#22" data-line-number="22">res <span class="op">=</span> conn.recvall()</div>
+<div class="sourceLine" id="23" href="#23" data-line-number="23">hexdump(res)</div></code></pre>
+<p>This script could be invoked like <code>python pro.py 1 1 abc</code> to send a 1x1 image with pixel components taken from bytes in the string <code>&quot;abc&quot;</code>. I started out doing so, but for most of the later experiments I just modified the script to put loop indices in the <code>args</code> or manually specify a string with escaped characters and reran it. We can run it a couple times just to verify the byte reversal always happens.</p>
+<p><img src="/img/proprietary-byte-reversal.png" alt="Verifying that the three bytes are reversed in a 1x1 image" /></p>
+<p>An additional note: when <code>pwntools</code> is imported, it will consume uppercase arguments from <code>sys.argv</code> and make them available to you from its <a href="http://docs.pwntools.com/en/stable/args.html">magic variable <code>args</code></a>, so you can’t send strings of only uppercase letters with this script.</p>
+<p>Finally, it looks like the server always reads exactly <span class="math inline">\(3 \times h \times w\)</span> bytes after the <code>255</code> and the newline. If we send more bytes, the server just ignores them; if we send fewer, we get some random garbage from what is presumably uninitialized memory. (If we knew this was the PPM format we’d be sure of it too.)</p>
+<p>At this point, it was time to start reverse engineering the rest of the bytes.</p>
+<h3 id="width-n-height-1">Width n, Height 1</h3>
+<p>The next thing I tried was changing my script to submit images with increasing width, but height fixed to 1, and an alphabet mash as the rest of the input. A pattern began to emerge.</p>
+<p><img src="/img/proprietary-height-1.png" alt="Trying images of varying widths and height 1" /></p>
+<p>After the header, the bytes clearly formed 4-byte groups, and there were only three kinds of bytes:</p>
+<ul>
+<li>a zero byte followed by three inputted bytes,</li>
+<li>a 3 byte followed by three zero bytes, or</li>
+<li>a 1 byte followed by three zero bytes.</li>
+</ul>
+<p>The inputted bytes also always came in order. I started tabulating these results with shorthand notation: Each whitespace-separated token would be a group of 4 bytes (“quad-bytes”). Digits and uppercase letters would represent single bytes less than 16 via hex digits, while lowercase letters would represent triplets of inputted bytes. Either component of a token could be omitted if it was 0. In this way, as I increased the width while keeping the height fixed to 1, I got these sequences:</p>
+<pre><code>GCTF 1 1 a
+GCTF 2 1 3 a b
+GCTF 3 1 3 3 a b 1 c
+GCTF 4 1 3 3 a b 3 c d
+GCTF 5 1 3 3 3 a b 3 c d 1 1 e
+GCTF 6 1 3 3 3 a b 3 c d 1 3 e f
+GCTF 7 1 3 3 3 a b 3 c d 3 3 e f 1 g
+GCTF 8 1 3 3 3 a b 3 c d 3 3 e f 3 g h
+GCTF 9 1 3 3 3 3 a b 3 c d 3 3 e f 3 g h 1 1 1 i</code></pre>
+<p>An example might make things clearer. The shorthand for the last line expands to these bytes:</p>
+<pre><code>47435446 (&quot;GCTF&quot;)    09000000 (9: width)
+01000000 (1: height) 03000000 (3)
+03000000 (3)         03000000 (3)
+03000000 (3)         00636261 (a: 0 followed by input bytes)
+00666564 (b)         03000000 (3)
+00696867 (c)         006c6b6a (d)
+03000000 (3)         03000000 (3)
+006f6e6d (e)         00727170 (f)
+03000000 (3)         00757473 (g)
+00787776 (h)         01000000 (1)
+01000000 (1)         01000000 (1)
+00617a79 (i)</code></pre>
+<p>After staring at this pattern for a while, particularly the patterns from images where the width was a power of two in which no <code>1</code> tokens appeared at all, I figured out that I was looking at was a preorder traversal of a more-or-less a binary tree with all leaves at the same level.</p>
+<ul>
+<li>Quad-bytes consisting of a <code>3</code> followed by three zero bytes represented nodes with two children;</li>
+<li>quad-bytes consisting of a <code>1</code> follwed by three zero bytes represented nodes with one child;</li>
+<li>and quad-bytes consisting of a zero byte followed by three inputted bytes were leaves.</li>
+</ul>
+<p>This made sense. By arranging the pixels in a row as leaves in a binary tree, if you then had a subtree where all leaf nodes had the same color, you could presumably represent the subtree differently so as to save space; it’s a classic strategy for range queries from competitive programming and definitely used in some image formats in the wild too. Of course, none of the nodes had any distinct representation here, but that also makes sense since all colors are distinct.</p>
+<p>As an example, the last line represented this tree:</p>
+<pre class="box-draw"><code>3
+├─3
+│ ├─3
+│ │ ├─3
+│ │ │ ├─a
+│ │ │ └─b
+│ │ └─3
+│ │   ├─c
+│ │   └─d
+│ └─3
+│   ├─3
+│   │ ├─e
+│   │ └─f
+│   └─3
+│     ├─g
+│     └─h
+└─1
+  └─1
+    └─1
+      └─i</code></pre>
+<p>Or, with the tree drawn top-down:</p>
+<pre class="box-draw"><code>       ┌────3───┐
+       │        │
+   ┌───3───┐    1
+   │       │    │
+ ┌─3─┐   ┌─3─┐  1
+ │   │   │   │  │
+┌3┐ ┌3┐ ┌3┐ ┌3┐ 1
+│ │ │ │ │ │ │ │ │
+a b c d e f g h i</code></pre>
+<p>I then tried again submitting images and increasing the width while keeping the height fixed to 1, but this time, keeping all of my pixel data identical — it was just the character <code>a</code> (or <code>0x61</code>) over and over. In the same shorthand, these were my results:</p>
+<pre><code>GCTF 2 1 Ca 0 0
+GCTF 3 1 3 Ca 0 0 1 a
+GCTF 4 1 3 Ca 0 0 Ca 0 0
+GCTF 5 1 3 3 Ca 0 0 Ca 0 0 1 1 a
+GCTF 6 1 3 3 Ca 0 0 Ca 0 0 1 Ca 0 0
+GCTF 7 1 3 3 Ca 0 0 Ca 0 0 3 Ca 0 0 1 a
+GCTF 8 1 3 3 Ca 0 0 Ca 0 0 3 Ca 0 0 Ca 0 0
+GCTF 9 1 3 3 3 Ca 0 0 Ca 0 0 3 Ca 0 0 Ca 0 0 1 1 1 a</code></pre>
+<p>Again as an example, here’s the last line spelled out:</p>
+<pre><code>47435446 (&quot;GCTF&quot;)    09000000 (9: width)
+01000000 (1: height) 03000000 (3)
+03000000 (3)         03000000 (3)
+0c616161 (Ca)        00000000 (0)
+00000000 (0)         0c616161 (Ca)
+00000000 (0)         00000000 (0)
+03000000 (3)         0c616161 (Ca)
+00000000 (0)         00000000 (0)
+0c616161 (Ca)        00000000 (0)
+00000000 (0)         01000000 (1)
+01000000 (1)         01000000 (1)
+00616161 (a)</code></pre>
+<p>These are actually the same length as the outputs we got when submitting all different pixels. So there’s no compression yet, which makes understanding easier. The tree structure is still quite visible; the only difference so far is in the leaf nodes and the nodes right above them. If two leaf nodes with the same color have a parent node in common, they are represented as <code>Ca 0 0</code> instead of <code>3 a b</code>.</p>
+<p>I kept experimenting with these wide but short images with various patterns of equal and distinct colors, which more or less just continued to confirm the pattern above. It was time to move on to keeping the width fixed to 1, but increasing the height.</p>
+<h3 id="width-1-height-n">Width 1, Height n</h3>
+<p>Things did not go smoothly at first. Even when the height was only 2, my teammates and I were quite puzzled by the server’s behavior. When we passed, say,</p>
+<pre><code>P6
+1 2
+255
+abcdef</code></pre>
+<p>to the server, the output would not contain the bytes corresponding to the characters <code>def</code>. But if we submitted</p>
+<pre><code>P6
+1 3
+255
+abcdefghi</code></pre>
+<p>then the output <em>would</em> contain the bytes corresponding to characters <code>ghi</code>. We further observed that if we inserted a newline among the second triplet of bytes, say,</p>
+<pre><code>P6
+1 2
+255
+abcde&lt;newline&gt;</code></pre>
+<p>then the output would contain the bytes <code>&lt;newline&gt;ed</code>. We thought for a while that we didn’t understand the PPM format properly, and that somehow line breaks were needed to reach a new row. However, this was disproved when I tried the following, for which the output <em>did not</em> contain the bytes <code>f&lt;newline&gt;d</code>.</p>
+<pre><code>P6
+1 2
+255
+a&lt;newline&gt;cd&lt;newline&gt;f</code></pre>
+<p>Eventually I realized that what we were seeing was lossy compression kicking in; the three bytes <code>abc</code> and the three bytes <code>def</code> were too similar, and the server was compressing its output in some sense by rounding the latter color to the former. On the other hand, the codepoint of the newline character was sufficiently different from all of these bytes, so that when we included one in the second pixel, the algorithm no longer treated it as the same color as the first pixel. But if I submitted <code>a&lt;newline&gt;c</code> and <code>d&lt;newline&gt;f</code>, the algorithm went back to thinking they were similar colors. To get more understandable behavior, all I had to do was ensure that adjacent pixels were always highly distinct, for example by setting one component of every other pixel to <code>\x00</code> and the same component in the other pixels to <code>\xff</code>.</p>
+<p>Once I did that, I could track the pattern in the same shorthand:</p>
+<pre><code>GCTF 1 1 a
+GCTF 1 2 Ea 0 b 0
+GCTF 1 3 5 Ea 0 b 0 1 c
+GCTF 1 4 5 Ea 0 b 0 Ec 0 d 0
+GCTF 1 5 5 5 a 0 b 0 Ec 0 d 0 1 1 e
+GCTF 1 6 5 5 Ea 0 b 0 Ec 0 d 0 1 Ea 0 f 0
+GCTF 1 7 5 5 Ea 0 b 0 Ec 0 d 0 5 Ee 0 f 0 1 g
+GCTF 1 8 5 5 Ea 0 b 0 Ec 0 d 0 5 Ee 0 f 0 Eg 0 h 0
+GCTF 1 9 5 5 5 Ea 0 b 0 Ec 0 d 0 5 Ee 0 f 0 Eg 0 h 0 1 1 1 i</code></pre>
+<p>There’s a binary tree structure just like before, but it’s a bit more complicated. Now, instead of 3’s, most of the time 5’s represent nodes with two children. The exception is at the layer right above the leaves, where E nodes appear instead. There, they directly contain an inputted pixel’s color in the same quad-byte, while the second inputted pixel follows it flanked by two all-zero quad-bytes. Because E nodes are followed by three quad-bytes instead of two, these representations are longer.</p>
+<pre class="box-draw"><code>5
+├─5
+│ ├─5
+│ │ ├─Ea
+│ │ │ ├─0
+│ │ │ ├─b
+│ │ │ └─0
+│ │ └─Ec
+│ │   ├─0
+│ │   ├─d
+│ │   └─0
+│ └─5
+│   ├─Ee
+│   │ ├─0
+│   │ ├─f
+│   │ └─0
+│   └─Eg
+│     ├─0
+│     ├─h
+│     └─0
+└─1
+  └─1
+    └─1
+      └─i</code></pre>
+<p>Or, with the tree drawn top-down:</p>
+<pre class="box-draw"><code>           ┌──────5─────┐
+           │            │
+     ┌─────5─────┐      1
+     │           │      │
+  ┌──3──┐     ┌──5──┐   1
+  │     │     │     │   │
+┌─Ea┐ ┌─Ec┐ ┌─Ee┐ ┌─Eg┐ 1
+│ │ │ │ │ │ │ │ │ │ │ │ │
+0 b 0 0 d 0 0 f 0 0 h 0 i</code></pre>
+<p>And now, the same data collection with all identical colors:</p>
+<pre><code>GCTF 1 2 Aa 0 0
+GCTF 1 3 5 Aa 0 0 1 a
+GCTF 1 4 5 Aa 0 0 Aa 0 0
+GCTF 1 5 5 5 Aa 0 0 Aa 0 0 1 1 a
+GCTF 1 6 5 5 Aa 0 0 Aa 0 0 1 Aa 0 0
+GCTF 1 7 5 5 Aa 0 0 Aa 0 0 5 Aa 0 0 1 a
+GCTF 1 8 5 5 Aa 0 0 Aa 0 0 5 Aa 0 0 Aa 0 0
+GCTF 1 9 5 5 5 Aa 0 0 Aa 0 0 5 Aa 0 0 Aa 0 0 1 1 1 a</code></pre>
+<p>This looks much more like the height-1 situation; the only change is that 3’s became 5’s and C’s became A’s, and of course that the dimensions were switched.</p>
+<p>We haven’t even touched two-dimensional images yet, but already there’s a pretty strong pattern to be discovered from all our experiments so far.</p>
+<h3 id="the-common-pattern">The Common Pattern</h3>
+<p>For clarity, we will call the first byte in each quad-byte the <em>“node descriptor”</em>. We’ve seen that node descriptor <code>1</code> represents nodes with one child, while node descriptors <code>3</code> and <code>5</code> both represent nodes with two children. So do node descriptors <code>A</code> and <code>C</code>, more or less, although thus far they’ve directly accompanied input bytes and their leaf nodes have always been all-zero quad words. Node descriptor <code>E</code> is a strange exception in that it also directly accompanies input bytes, but is followed by three quad-bytes instead of two, and of the three, two quad-bytes are all zero. Still, it makes the most sense to think of node descriptor <code>E</code> as having three children (which have always been leaf nodes in all the examples we’ve seen so far).</p>
+<p>What’s the pattern? It happens that when written in binary, <code>0x1 = 0b0001</code> has one bit set; <code>0x3 = 0b0011</code>, <code>0x5 = 0b0101</code>, <code>0xA = 0b1010</code>, and <code>0xC = 0b1100</code> each have two bits set; and <code>0xE = 0b1110</code> has three bits set. Finally, all the leaf nodes have been represented by quad-bytes starting with a <code>0</code> byte. If we think of 0 as the node decriptor, it has zero bits set, and the leaf node of course has zero children.</p>
+<p>So it seems that each quad-byte represents a node in a tree, the number of bits set in each node descriptor byte represents the number of children the node has in the tree, and that each quad-byte is followed by the recursively generated representations of the corresponding node’s children, if any. In pseudo-Python, the algorithm that parses the tree structure from the proprietary format looks like this:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">def</span> parse_node(stream):</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">    byte <span class="op">=</span> stream.<span class="bu">next</span>()</div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">    blue, green, red <span class="op">=</span> stream.<span class="bu">next</span>(), stream.<span class="bu">next</span>(), stream.<span class="bu">next</span>()</div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">    node <span class="op">=</span> Node(color<span class="op">=</span>(blue, green, red))</div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">    <span class="cf">for</span> bit <span class="kw">in</span> byte.bits_set():</div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">        node.add_child(parse_node(stream))</div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">    <span class="cf">return</span> node</div></code></pre>
+<p>We can also reason about the spatial arrangement of the children of each node. In our wide images, the parents were <code>3 = 0b0011</code> and <code>C = 0b1100</code>. It seems that when two leaves follow <code>3</code>, they represent two horizontally adjacent pixels, and when <code>C</code> directly accompanies a triplet of bytes, that color is applied to two horizontally adjacent pixels. Since children are represented by set bits, we guess that the bottom two bits represent horizontally adjacent regions. Likewise, in our tall images, the parents were <code>5 = 0b0101</code> and <code>A = 0b1010</code>. So we can guess that the bottommost bit and the third bit from the bottom represent vertically adjacent regions. So it seems that the four bits of each node descriptor have some correspondence to a two-dimensional layout, and then there’s only one logically place for the fourth bit to go.</p>
+<p>Pictorially, we conclude that the four bits <code>w, x, y, z</code> of a node descriptor between 0 and 15 map to spatial regions this way:</p>
+<pre class="box-draw"><code>         ┌───┬───┐
+         │ z │ y │
+0bwxyz → ├───┼───┤
+         │ x │ w │
+         └───┴───┘</code></pre>
+<p>In this framework, we can now understand that:</p>
+<ul>
+<li>The number of children of each node is the number of bits in the node descriptor that are 1.</li>
+<li>Each node in our tree represents a square.</li>
+<li>The three color bytes directly after a node descriptor are the color of the quarters of the square whose corresponding bits in the node descriptor are 0.</li>
+<li>The four bytes are then followed by representations of all the node’s children.</li>
+</ul>
+<p>Basically, it’s a <a href="https://en.wikipedia.org/wiki/Quadtree">quad tree</a>!</p>
+<p>We can confirm this by checking out what happens with a 2x2 image with all pixels fairly distinct from each other. I sent the string <code>'a\0\0b\xff\xffc\xff\0d\0\xff'</code>. The result is:</p>
+<pre><code>47435446 (&quot;GCTF&quot;)    02000000 (2: width)
+02000000 (2: height) 0e000061 (Ea)
+00ffff62 (b)         0000ff63 (c)
+00ff0064 (d)</code></pre>
+<p>In our shorthand:</p>
+<pre><code>GCTF 2 2 Ea b c d</code></pre>
+<p>Here the <code>E</code> node is itself labeled with the color of the first pixel, and is followed by its three children, all leaves, labeled with the other pixels in row-major order. Pretty good.</p>
+<p>We’re almost ready to write a parser and solve the challenge. There is one more wrinkle, which I think only appears in images that are at least 3x3 in size. Here’s the result of sending the 3x3 image <code>'a\0\0b\0~c\0\xffd~\0e~\xfff\xff\xffg\xff\0h\xff~i\xff\xff'</code>, which has nine fairly distinct colors for its nine pixels:</p>
+<p><img src="/img/proprietary-3x3.png" alt="Result of sending a 3x3 image, which produces 65 bytes" /></p>
+<p>For the first time, we’ve encountered a case where the number of bytes in the output isn’t divisible by four! Plus, our inputted color bytes are all shifted away from where we expect them to be. What’s going on? After a closer look, we quickly find that we can still recognize parent and leaf nodes as we did before; the only difference is that right after the header width and height, there’s an initial <code>0f</code> byte that’s not followed by a triplet of color bytes. This makes sense; since the <code>0f</code> byte has all four bits set, there’s no reason to specify a color after it, since that color wouldn’t be applied to anything. Once we understand this, we can write down the shorthand just as before, and the tree structure exactly matches what we figured out earlier.</p>
+<pre class="box-draw"><code>F
+├─Ea
+│ ├─b
+│ ├─d
+│ └─e
+├─Ec
+│ ├─0
+│ ├─f
+│ └─0
+├─3
+│ ├─g
+│ └─h
+└─1
+  └─i</code></pre>
+<p>Top-down:</p>
+<pre class="box-draw"><code>         F
+  ┌─────┬┴───┬──┐
+  │     │    │  │
+┌─Ea┐ ┌─Ec┐ ┌3┐ 1
+│ │ │ │ │ │ │ │ │
+b d e 0 f 0 g h i</code></pre>
+<p>Or in the plane, where parenthesized colors are the ones specified in the parent node’s quad-byte:</p>
+<pre class="box-draw"><code>F─────────┬─────────┐
+│E───┬───┐│E───┬───┐│
+││(a)│ b │││(c)│ 0 ││
+│├───┼───┤│├───┼───┤│
+││ d │ e │││ f │ 0 ││
+│└───┴───┘│└───┴───┘│
+├─────────┼─────────┤
+│3───┬───┐│1───┬───┐│
+││ g │ h │││ i │   ││
+│├───┴───┤│├───┘   ││
+││  (0)  │││    (0)││
+│└───────┘│└───────┘│
+└─────────┴─────────┘</code></pre>
+<p>In case you’re wondering, I made all the box-drawings-Unicode diagrams in this post manually in Vim with careful use of digraphs, copy-pasting, and blockwise Visual editing. It seemed like a good idea at the time.</p>
+<h3 id="full-description-and-solution">Full Description and Solution</h3>
+<p>Now we can write down a pretty good description of the Proprietary Format.</p>
+<ul>
+<li>The header consists of twelve bytes: the four bytes <code>GCTF</code>, followed by four bytes for the width and four bytes for the height, both in little-endian.</li>
+<li><p>The rest of the data describes the image recursively as a tree structure. Each node represents a big square that’s part of the image. To parse a node from the stream of data and convert it to a square image S:</p>
+<ul>
+<li>Read the first “node descriptor” byte from the stream. Its value will be between 0 and 15. The four bits of this byte, from least significant to most significant, correspond to the four quarters of S: the top-left, top-right, bottom-left, and bottom-right in that order.</li>
+<li>If the node descriptor is not 15, read the next three bytes. They are the blue, green, and red components of the color of each quarter of S whose corresponding bit in the node descriptor is set to 0.</li>
+<li>Now, for each bit that is 1 in the node descriptor from least significant from most significant, parse a node from the stream, and convert that node to a square S’. The quarter square of S corresponding to that bit looks like S’.</li>
+</ul>
+<p>The converted image will be a square. Its side length should be considered to be the smallest power of two that is greater than or equal to both the width and the height. Pixels outside the valid dimensions will have all components 0, i.e. be pure black.</p></li>
+</ul>
+<p>Armed with this knowledge, we can write a final script to parse <code>flag.ctf</code> back into a <code>P6</code> ppm format, which can be read by GIMP. Note that it doesn’t bother with figuring out the width and height; for simplicity, I manually determined the flag image’s dimensions to be 600x400 from looking at the header bytes, and hardcoded the dimensions to be 1024, the next largest power of 2.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="im">from</span> __future__ <span class="im">import</span> print_function</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3"></div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4"><span class="kw">def</span> byte_stream():</div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;flag.ctf&#39;</span>, <span class="st">&#39;rb&#39;</span>) <span class="im">as</span> infile:</div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">        infile.read(<span class="dv">12</span>) <span class="co"># header</span></div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">        <span class="cf">while</span> <span class="va">True</span>:</div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">            s <span class="op">=</span> infile.read(<span class="dv">1</span>)</div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">            <span class="cf">if</span> s:</div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10">                <span class="cf">yield</span> <span class="bu">ord</span>(s)</div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11">            <span class="cf">else</span>:</div>
+<div class="sourceLine" id="12" href="#12" data-line-number="12">                <span class="cf">return</span></div>
+<div class="sourceLine" id="13" href="#13" data-line-number="13"></div>
+<div class="sourceLine" id="14" href="#14" data-line-number="14"><span class="kw">def</span> solve():</div>
+<div class="sourceLine" id="15" href="#15" data-line-number="15">    it <span class="op">=</span> byte_stream()</div>
+<div class="sourceLine" id="16" href="#16" data-line-number="16">    <span class="kw">def</span> go():</div>
+<div class="sourceLine" id="17" href="#17" data-line-number="17">        sigil <span class="op">=</span> it.<span class="bu">next</span>()</div>
+<div class="sourceLine" id="18" href="#18" data-line-number="18">        color <span class="op">=</span> (<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</div>
+<div class="sourceLine" id="19" href="#19" data-line-number="19">        <span class="cf">if</span> sigil <span class="op">!=</span> <span class="bn">0xf</span>:</div>
+<div class="sourceLine" id="20" href="#20" data-line-number="20">            b <span class="op">=</span> it.<span class="bu">next</span>()</div>
+<div class="sourceLine" id="21" href="#21" data-line-number="21">            g <span class="op">=</span> it.<span class="bu">next</span>()</div>
+<div class="sourceLine" id="22" href="#22" data-line-number="22">            r <span class="op">=</span> it.<span class="bu">next</span>()</div>
+<div class="sourceLine" id="23" href="#23" data-line-number="23">            color <span class="op">=</span> (r, g, b)</div>
+<div class="sourceLine" id="24" href="#24" data-line-number="24">        <span class="cf">if</span> sigil <span class="op">==</span> <span class="dv">0</span>:</div>
+<div class="sourceLine" id="25" href="#25" data-line-number="25">            <span class="cf">return</span> color</div>
+<div class="sourceLine" id="26" href="#26" data-line-number="26">        <span class="cf">return</span> [</div>
+<div class="sourceLine" id="27" href="#27" data-line-number="27">                go() <span class="cf">if</span> sigil <span class="op">&amp;</span> <span class="dv">1</span> <span class="cf">else</span> color,</div>
+<div class="sourceLine" id="28" href="#28" data-line-number="28">                go() <span class="cf">if</span> sigil <span class="op">&amp;</span> <span class="dv">2</span> <span class="cf">else</span> color,</div>
+<div class="sourceLine" id="29" href="#29" data-line-number="29">                go() <span class="cf">if</span> sigil <span class="op">&amp;</span> <span class="dv">4</span> <span class="cf">else</span> color,</div>
+<div class="sourceLine" id="30" href="#30" data-line-number="30">                go() <span class="cf">if</span> sigil <span class="op">&amp;</span> <span class="dv">8</span> <span class="cf">else</span> color,</div>
+<div class="sourceLine" id="31" href="#31" data-line-number="31">        ]</div>
+<div class="sourceLine" id="32" href="#32" data-line-number="32">    bitmap <span class="op">=</span> [[<span class="va">None</span>] <span class="op">*</span> <span class="dv">1024</span> <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1024</span>)]</div>
+<div class="sourceLine" id="33" href="#33" data-line-number="33">    <span class="kw">def</span> render(node, size, r, c):</div>
+<div class="sourceLine" id="34" href="#34" data-line-number="34">        <span class="cf">if</span> <span class="bu">isinstance</span>(node, <span class="bu">tuple</span>):</div>
+<div class="sourceLine" id="35" href="#35" data-line-number="35">            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span><span class="op">**</span>size):</div>
+<div class="sourceLine" id="36" href="#36" data-line-number="36">                <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span><span class="op">**</span>size):</div>
+<div class="sourceLine" id="37" href="#37" data-line-number="37">                    bitmap[r <span class="op">+</span> i][c <span class="op">+</span> j] <span class="op">=</span> node</div>
+<div class="sourceLine" id="38" href="#38" data-line-number="38">        <span class="cf">else</span>:</div>
+<div class="sourceLine" id="39" href="#39" data-line-number="39">            render(node[<span class="dv">0</span>], size <span class="op">-</span> <span class="dv">1</span>, r, c)</div>
+<div class="sourceLine" id="40" href="#40" data-line-number="40">            render(node[<span class="dv">1</span>], size <span class="op">-</span> <span class="dv">1</span>, r, c <span class="op">+</span> <span class="dv">2</span><span class="op">**</span>(size <span class="op">-</span> <span class="dv">1</span>))</div>
+<div class="sourceLine" id="41" href="#41" data-line-number="41">            render(node[<span class="dv">2</span>], size <span class="op">-</span> <span class="dv">1</span>, r <span class="op">+</span> <span class="dv">2</span><span class="op">**</span>(size <span class="op">-</span> <span class="dv">1</span>), c)</div>
+<div class="sourceLine" id="42" href="#42" data-line-number="42">            render(node[<span class="dv">3</span>], size <span class="op">-</span> <span class="dv">1</span>, r <span class="op">+</span> <span class="dv">2</span><span class="op">**</span>(size <span class="op">-</span> <span class="dv">1</span>), c <span class="op">+</span> <span class="dv">2</span><span class="op">**</span>(size <span class="op">-</span> <span class="dv">1</span>))</div>
+<div class="sourceLine" id="43" href="#43" data-line-number="43">    render(go(), <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">0</span>)</div>
+<div class="sourceLine" id="44" href="#44" data-line-number="44">    <span class="cf">for</span> row <span class="kw">in</span> bitmap:</div>
+<div class="sourceLine" id="45" href="#45" data-line-number="45">        <span class="cf">for</span> color <span class="kw">in</span> row:</div>
+<div class="sourceLine" id="46" href="#46" data-line-number="46">            <span class="cf">for</span> component <span class="kw">in</span> color:</div>
+<div class="sourceLine" id="47" href="#47" data-line-number="47">                <span class="bu">print</span>(<span class="bu">chr</span>(component), end<span class="op">=</span><span class="st">&#39;&#39;</span>)</div>
+<div class="sourceLine" id="48" href="#48" data-line-number="48"></div>
+<div class="sourceLine" id="49" href="#49" data-line-number="49"><span class="bu">print</span>(<span class="st">&#39;P6&#39;</span>)</div>
+<div class="sourceLine" id="50" href="#50" data-line-number="50"><span class="bu">print</span>(<span class="st">&#39;1024 1024&#39;</span>)</div>
+<div class="sourceLine" id="51" href="#51" data-line-number="51"><span class="bu">print</span>(<span class="st">&#39;255&#39;</span>)</div>
+<div class="sourceLine" id="52" href="#52" data-line-number="52">solve()</div></code></pre>
+<p>Note that this only works in Python 2 because we are being lazy about tossing bytes, not text, into stdout. In Python 3 it’s probably simpler to write to a file opened in binary mode, or just write in a PPM format that takes decimal integers.</p>
+<p>When the output is opened in GIMP and cropped to taste, we get this image, which reveals the flag:</p>
+<p><img src="/img/proprietary-flag.png" alt="Result of converting flag.ctf back to an image" /></p>
+<pre><code>CTF{P1c4Ss0_woU1d_B3_pr0UD}</code></pre></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/ctf"><span class="tag">CTF</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/cat-chat">← Cat Chat</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>
