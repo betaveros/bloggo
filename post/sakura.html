@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-
-  <meta charset="utf-8" />
-
-  
-  <title>Sakura</title>
-
-  
-  
-
+	<meta charset="utf-8" />
+	
+	<title>Sakura</title>
+	
 
 
 
@@ -19,7 +14,6 @@
 Disassembling the executable produces a huge amount of code. There are some basic obfuscations like a lot of trivial identity functions nested in each other, and a few functions that wrap around identity functions but just add some constant multiple of 16. Most of the meat is in one very large function, though. If you disassemble this function with IDA, you see a lot of variable initializations and then a lot of interesting loops that are quite similar:
 
 " />
-
 
 
 
@@ -45,20 +39,15 @@ Disassembling the executable produces a huge amount of code. There are some basi
 <link rel="icon" href="/favicon.ico" />
 
 
-<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
+
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
-
-
-  
-  <!--[if lte IE 11]>
+<!--[if lte IE 11]>
     <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
   <![endif]-->
 
-
 </head>
-  <body><div id="wrapper">
-    
+<body><div id="wrapper">
 <header class="site-header">
 	
 	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
@@ -264,6 +253,5 @@ Disassembling the executable produces a huge amount of code. There are some basi
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
-
-  </div></body>
+</div></body>
 </html>

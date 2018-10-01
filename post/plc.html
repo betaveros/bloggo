@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-
-  <meta charset="utf-8" />
-
-  
-  <title>PLC</title>
-
-  
-  
-
+	<meta charset="utf-8" />
+	
+	<title>PLC</title>
+	
 
 
 
@@ -21,7 +16,6 @@ You can access this challenge at https://wargames.ret2.systems/csaw_2018_plc_cha
 This was the first ROP (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like until, no pwntools utilities for packing/unpacking numbers, … no one_gadget), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use gdb (or fictionalized web knockoffs thereof).
 
 " />
-
 
 
 
@@ -47,20 +41,15 @@ This was the first ROP (okay, spoiler, it’s a ROP) I ever pulled off live duri
 <link rel="icon" href="/favicon.ico" />
 
 
-<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
+
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
-
-
-  
-  <!--[if lte IE 11]>
+<!--[if lte IE 11]>
     <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
   <![endif]-->
 
-
 </head>
-  <body><div id="wrapper">
-    
+<body><div id="wrapper">
 <header class="site-header">
 	
 	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
@@ -508,6 +497,5 @@ This was the first ROP (okay, spoiler, it’s a ROP) I ever pulled off live duri
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
-
-  </div></body>
+</div></body>
 </html>
