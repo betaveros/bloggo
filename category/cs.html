@@ -141,6 +141,38 @@ Category → cs
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/plc" class="post-link">PLC</a></h3>
+		
+		<h4 class="post-subtitle">CSAW CTF Qualifiers 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-09-30
+		(3590 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>We’ve burrowed ourselves deep within the facility, gaining access to the programable logic controllers (PLC) that drive their nuclear enrichment centrifuges. Kinetic damage is necessary, we need you to neutralize these machines.</p>
+<p>You can access this challenge at <a href="https://wargames.ret2.systems/csaw_2018_plc_challenge" class="uri">https://wargames.ret2.systems/csaw_2018_plc_challenge</a></p>
+</blockquote>
+<p>A much belated post. This is a pwn challenge on a custom online wargaming platform. We are provided with the assembly of what’s ostensibly a programmable logic controller (PLC) for a centrifuge in a nuclear reactor. The challenge looks like it’s still up, so you can take a look and follow along.</p>
+<p>This was the first <a href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a> (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like <code>until</code>, no pwntools utilities for packing/unpacking numbers, … no <code>one_gadget</code>), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use <code>gdb</code> (or fictionalized web knockoffs thereof).</p>
+<p></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/plc">→ read more</a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/proprietary-format" class="post-link">Proprietary Format</a></h3>
 		
 		<h4 class="post-subtitle">Google CTF 2018</h4>
@@ -427,54 +459,6 @@ Category → cs
 </article>
 
 		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/jam" class="post-link">Jam-Packed Fun and Games</a></h3>
-		
-		<p class="post-meta">
-		
-		2015-09-21
-		(4772 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>, <a href="/category/cs">Cs</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Did I say “fun”? That was short for function calls. Which are fun too, admittedly. Blah, I always go to such lengths to come up with snappy yet justified post titles and end up achieving neither.</p>
-<p>One more complimentary breakfast later:</p>
-<p>This is it.</p>
-<p>Google Code Jam World Finals. <a href="/img/nametag.jpg"><img src="/img/nametag.jpg?w=170" alt="[Google Code Jam 2015 name tag with my name and handle and country]" width="170" height="300" class="aligncenter size-medium wp-image-3374" /></a> Let me take a moment to reflect. Seriously. I do not know how I made it this far this year. I guess I might be a top-500-ish competitive programmer globally, maybe even top-150-ish, but definitely not top-25-ish. And <a href="https://code.google.com/codejam/contest/4254486/dashboard#s=p3">Log Set</a>, the hard problem that got me through Round 3, doesn’t seem like it plays to my forte particularly either. It’s a bit mathy, but the math bits aren’t the hard part; I think it’s largely implementation, with one psychological hurdle where you have to realize that, because of how few distinct integers there are in S′, you can efficiently solve the subset-sum instances you need to produce the lexicographically earliest answer. I’m actually kind of impressed I got that. It seems like the sort of hurdle I usually get stuck on. How did this happen?</p>
-<p>Maybe randomness. Maybe I was just particularly clear-minded during the round and wrote less buggy code than usual, because I had no expectation of making it whatsoever and so could look at the contest detachedly (until midway through the contest I accidentally noticed that my rank was under 20, and even then I tried very very hard not to think about it, and it kind of worked).</p>
-<p>But it happened, and now I’m here. Time to roll.</p>
-<p>In some emails much earlier in the Code Jam logistical process, Google had asked for “requests for changes and/or additions” to the software that would be installed on our competition computers, and I had sent them a long list:</p>
-<blockquote>
-<p>Hi,<br /> Here are some things I’d like if they were installed, in decreasing order of priority:</p>
-<ol>
-<li>
-The Vim plugin syntastic ( https://github.com/scrooloose/syntastic )
-</li>
-<li>
-a Haskell compiler (probably Haskell Platform 2014.2.0.0 https://www.haskell.org/platform/ even though it’s a year old)
-</li>
-<li>
-the Haskell package hdevtools ( https://hackage.haskell.org/package/hdevtools ) so that the above two may be integrated
-</li>
-<li>
-(I don’t have enough Linux experience to name a specific thing to install, but command-line utilities that are the equivalent of pbcopy and pbpaste on Mac OS X, which allow me to redirect text into or out of the clipboard from the command line easily)
-</li>
-</ol>
-Of course, this is my first Code Jam and I don’t know how reasonable these requests are. Any nontrivial subset would be appreciated.
-</blockquote>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/jam">→ read more</a>
-	</footer>
-</article>
-
-		
 	
 	
 	<footer class="list-footer">
@@ -492,6 +476,7 @@ Of course, this is my first Code Jam and I don’t know how reasonable these req
 	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
 	<a href="https://pages.github.com/">GitHub Pages</a>, and
 	<a href="https://www.cloudflare.com/">CloudFlare</a>.
 	</p>

