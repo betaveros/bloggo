@@ -6,10 +6,22 @@
     <description>Recent content in Cs on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 30 Sep 2018 23:16:44 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 07 Dec 2018 16:44:20 -0500</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/category/cs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>React and Redux the Hard FP Way</title>
+      <link>//blog.vero.site/post/react-redux</link>
+      <pubDate>Fri, 07 Dec 2018 16:44:20 -0500</pubDate>
+      
+      <guid>//blog.vero.site/post/react-redux</guid>
+      <description>&lt;p&gt;A more accurate but less informative title for this post would be “How I wish React and Redux were explained to me”. Note that this does &lt;em&gt;not&lt;/em&gt; imply that this method of explanation is suitable for anybody else. I suspect it won’t be for most people.&lt;/p&gt;
+&lt;p&gt;I had to learn React and Redux the past summer for my internship at MemSQL, and there were hundreds of articles that explain React and Redux in addition to the (fine) built-in documentation, but none of them scratched the itch; I wanted to know what was going on completely, including some of the technical details and the philosophy I ought to be following, as well as efficiently. I did not need another explanation about how to think functionally, in JavaScript types or with immutable data. React’s chapter on &lt;a href=&#34;https://reactjs.org/docs/conditional-rendering.html&#34;&gt;Conditional Rendering&lt;/a&gt;, for example, felt so inefficient — I know what &lt;code&gt;if&lt;/code&gt; statements and conditional expressions are, and I know how to refactor complicated subexpressions into variables…&lt;/p&gt;
+&lt;p&gt;So here’s the guide I wish I had. I think. It’s been months since I started it (as usual, for posts on this blog) and it is probably incomplete. However, I haven’t written React/Redux deeply in a while, so I didn’t have much motivation to continue to investigate the incomplete bits; and the perfect is the enemy of the good, so here it is.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>PLC</title>

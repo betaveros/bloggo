@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8" />
+	
+	<title>React and Redux the Hard FP Way</title>
+	
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="A more accurate but less informative title for this post would be “How I wish React and Redux were explained to me”. Note that this does not imply that this method of explanation is suitable for anybody else. I suspect it won’t be for most people.
+I had to learn React and Redux the past summer for my internship at MemSQL, and there were hundreds of articles that explain React and Redux in addition to the (fine) built-in documentation, but none of them scratched the itch; I wanted to know what was going on completely, including some of the technical details and the philosophy I ought to be following, as well as efficiently. I did not need another explanation about how to think functionally, in JavaScript types or with immutable data. React’s chapter on Conditional Rendering, for example, felt so inefficient — I know what if statements and conditional expressions are, and I know how to refactor complicated subexpressions into variables…
+So here’s the guide I wish I had. I think. It’s been months since I started it (as usual, for posts on this blog) and it is probably incomplete. However, I haven’t written React/Redux deeply in a while, so I didn’t have much motivation to continue to investigate the incomplete bits; and the perfect is the enemy of the good, so here it is.
+
+" />
+
+
+
+<meta name="generator" content="Hugo 0.31-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/react-redux" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">React and Redux the Hard FP Way</h1>
+		
+		<p class="post-meta">
+		
+		2018-12-07
+		(3097 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>A more accurate but less informative title for this post would be “How I wish React and Redux were explained to me”. Note that this does <em>not</em> imply that this method of explanation is suitable for anybody else. I suspect it won’t be for most people.</p>
+<p>I had to learn React and Redux the past summer for my internship at MemSQL, and there were hundreds of articles that explain React and Redux in addition to the (fine) built-in documentation, but none of them scratched the itch; I wanted to know what was going on completely, including some of the technical details and the philosophy I ought to be following, as well as efficiently. I did not need another explanation about how to think functionally, in JavaScript types or with immutable data. React’s chapter on <a href="https://reactjs.org/docs/conditional-rendering.html">Conditional Rendering</a>, for example, felt so inefficient — I know what <code>if</code> statements and conditional expressions are, and I know how to refactor complicated subexpressions into variables…</p>
+<p>So here’s the guide I wish I had. I think. It’s been months since I started it (as usual, for posts on this blog) and it is probably incomplete. However, I haven’t written React/Redux deeply in a while, so I didn’t have much motivation to continue to investigate the incomplete bits; and the perfect is the enemy of the good, so here it is.</p>
+<p></p>
+<h3 id="react">React</h3>
+<blockquote>
+<p>A JavaScript library for building user interfaces.</p>
+</blockquote>
+<p><a href="https://reactjs.org/">React</a> lets you build HTML interfaces <em>declaratively</em>. To understand React, let’s think about HTML tags as functions for a bit.</p>
+<p>An HTML tag like <code>div</code> is basically a (pure) function <code>type Tag&lt;Props&gt; = (Props) =&gt; HTMLElement</code>, where <code>Props</code> (short for “properties”) is a type that describes the attributes the tag takes, and <code>HTMLElement</code> is a thing your browser knows how to render. For simplicity we <a href="https://reactjs.org/docs/react-component.html#props">include children : HTMLElement in the type of the prop</a> instead of having it as a separate argument. If you translated <code>&lt;div id=&quot;foo&quot;&gt;hello &lt;b&gt;world&lt;/b&gt;&lt;/div&gt;</code> into JavaScript, you might get something like <code>div({ id: foo, children: [&quot;hello &quot;, b({ children: &quot;bar&quot; })])</code>. Note that we implicitly use strings as HTMLElements, and we treated an array of HTMLElements as a single HTMLElement. JavaScript is weakly typed and React can figure this out.</p>
+<p>Now, when you write “HTML tags” in JavaScript using React, you don’t actually get browser-provided <code>HTMLElement</code>s, because that would be too expensive. Instead you get a lightweight React-internal description of an HTML element, of type <code>React.Node</code>. When you give this to React, it will perform magic to make the screen follow the description.</p>
+<p>The simplest React Components one can define are just things with the same type as HTML tags, <code>type Component&lt;Props&gt; = (Props) =&gt; React.Node</code>. In fact, if you literally write a JavaScript function with this type, you get a React Component, what’s called a “functional” component. (Its name should start with a capital letter; this is how React distinguishes custom React Components from native HTML tags.) <code>props</code> is a JavaScript object keyed by attributes, including <code>children</code> for the children.</p>
+<p>Also, React Components can can have state. Actually, some HTML tags have state too: for example, the text in an <code>&lt;input type=&quot;text&quot; /&gt;</code> element is part of its state. To be useful, that text can’t simply be determined by an attribute provided by the creater of that <code>input</code>. So a more complex React component may be an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">ES6 class</a> extending <code>Component&lt;Props, State&gt;</code> with a couple parts:</p>
+<ul>
+<li><code>render</code>, which is a function <code>(Props, State) =&gt; HTMLElement</code>. It’s not literally called as such; it’s a class method in which you access <code>this.props</code> and <code>this.state</code>. But it should still be pure in terms of those arguments. (<a href="https://preactjs.com/">Preact</a>, a React alternative that lets go of browser compatibility to be extremely lean and fast, actually passes <code>props</code> and <code>state</code> as arguments to <code>render</code> in recognition of this.)</li>
+<li>a constructor, which can set an initial value of <code>state</code>.</li>
+<li>Optionally, various event listeners, including <a href="https://reactjs.org/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class">“lifecycle hooks”</a>, which are methods called before or after when a React Component mounts or unmounts. A Component is “mounted” when first rendered to the DOM, and “unmounted” whenever it’s removed.</li>
+</ul>
+<p>Event listeners can’t be pure, unfortunately, or else they wouldn’t be useful. They can read and write from a component’s state, by reading <code>this.state</code> or calling <code>this.setState</code>. Components can pass event handlers that set their own state as props to children.</p>
+<p>As described, React is quite declarative. It just says how to render HTML. The magic of React that makes it fast is its <a href="https://reactjs.org/docs/reconciliation.html">“reconciliation” algorithm</a>, which happens behind the scenes so that when a component only changes partially, React doesn’t have to fully rerender that component into the DOM; it will just keep the parts of the DOM that didn’t change as-is. Note that calling <code>render</code> on elements to create <code>React.Node</code>s is much cheaper than rendering the results into the DOM and it looks like React will do that even if <code>props</code> and <code>state</code> don’t change, unless you tell it otherwise. Still, sometimes even <code>render</code> is expensive; one way to optimize React is to define <code>shouldComponentUpdate</code>, a function that says, given the next props and state, whether the component needs to be rerendered. You can make your components inherit from <code>React.PureComponent</code> instead of <code>React.Component</code> for the extremely common <code>shouldComponentUpdate</code> implementation that says <code>false</code> if the new props and state are shallowly equal to the old one. For this to work, you will need to avoid mutating data structures, but this is generally encouraged in React anyway, and hopefully if you’re programming functionally you were already doing that.</p>
+<p>Also note that, as a heuristic, React never reconciles nodes produced by different components, even if they would ultimately result in the same markup. This has important ramifications: for example, you should try to avoid defining or creating new component types and handlers inside <code>render()</code>, so that you don’t define a different component with the same name every time you run <code>render</code>.</p>
+<h4 id="syntax">Syntax</h4>
+<p>React is typically used with the <a href="https://reactjs.org/docs/introducing-jsx.html">JSX syntax extension</a>, which looks a lot like letting you write inline HTML in JavaScript. The inline HTML transpiles to a call to <code>React.createElement</code>, so it’s just another JavaScript expression.</p>
+<pre class="sourceCode js"><code class="sourceCode javascript"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">const</span> element <span class="op">=</span> <span class="op">&lt;</span>div<span class="op">&gt;</span>Hi<span class="op">!</span>&lt;/div<span class="op">&gt;;</span></div></code></pre>
+<p>Inside HTML tags you can write text and other HTML tags. To break into JavaScript expressions to embed text or attributes, use curly braces. Text will get escaped when it’s rendered; you can’t inject HTML unless you try, with <a href="https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml">dangerouslySetInnerHTML</a>. You can use JSX syntax in the JavaScript expression in curly braces in a JSX expression, and so on.</p>
+<pre class="sourceCode js"><code class="sourceCode javascript"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">const</span> text <span class="op">=</span> <span class="st">&quot;Hi!&quot;</span><span class="op">;</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="kw">const</span> element <span class="op">=</span> <span class="op">&lt;</span>div id<span class="op">={</span><span class="st">&quot;i&quot;</span> <span class="op">+</span> <span class="st">&quot;d&quot;</span><span class="op">}&gt;{</span>text<span class="op">}</span>&lt;/div<span class="op">&gt;;</span></div></code></pre>
+<p>Note that JSX looks like HTML but does not try overly hard to be like it. Many attribute names like <code>tabindex</code> become camelCased like <code>tabIndex</code>, and a <a href="https://reactjs.org/docs/dom-elements.html">handful of HTML attributes are special</a>. Most notably, <code>className</code> should be used instead of <code>class</code>. If an attribute “should” take a JavaScript boolean (e.g. <code>checked</code> or <code>disabled</code>) or a function (all event handlers), it does. The <code>style</code> attribute takes an object keyed by CSS attribute. Also, specifying an attribute without a value is the same as providing <code>true</code> for its value, e.g. <code>&lt;button disabled&gt;Hi&lt;/button&gt;</code> is equivalent to <code>&lt;button disabled={true}&gt;Hi&lt;/button&gt;</code>.</p>
+<p>You use React Components (either functions or ES6 classes) in JSX with the same syntax as above. The name simply must be uppercase:</p>
+<pre class="sourceCode js"><code class="sourceCode javascript"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">const</span> element <span class="op">=</span> <span class="op">&lt;</span>Hello foo<span class="op">=</span><span class="st">&quot;bar&quot;</span><span class="op">&gt;</span>baz&lt;/Hello<span class="op">&gt;;</span></div></code></pre>
+<p>Your <code>Hello</code> component will get the object <code>{foo: 'bar', children: 'baz'}</code> as its <code>props</code>. (Technically I think <code>children</code> will not literally be a JavaScript string, but a React.Children thing containing it.)</p>
+<p>Use the magic React Component <a href="https://reactjs.org/docs/fragments.html"><code>&lt;React.Fragment&gt;</code></a> to get an expression that contains some adjacent HTMLElements or text without a single element wrapping everything. For example:</p>
+<pre class="sourceCode js"><code class="sourceCode javascript"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">const</span> frag <span class="op">=</span> <span class="op">&lt;</span><span class="va">React</span>.<span class="at">Fragment</span><span class="op">&gt;&lt;</span>div<span class="op">&gt;</span>a&lt;/div<span class="op">&gt;&lt;</span>div<span class="op">&gt;</span>b&lt;/div<span class="op">&gt;</span>&lt;/<span class="va">React</span>.<span class="at">Fragment</span><span class="op">&gt;;</span></div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="kw">const</span> wrapped <span class="op">=</span> <span class="op">&lt;</span>div<span class="op">&gt;{</span>frag<span class="op">}</span>&lt;/div<span class="op">&gt;;</span></div></code></pre>
+<p><code>wrapped</code> will just be a div with two divs inside it.</p>
+<h4 id="philosophy-escape-hatches-beneath-the-hood">Philosophy, Escape Hatches, Beneath the Hood</h4>
+<p>React is declarative and pretty functional. It’s designed around downwards data flow: parents give their children data so the children can render correctly, and so on. There should be one true source of each piece of state. Often parents keep state and pass it to their children as props.</p>
+<p>When you need to do more with the DOM, for example to cause imperative animations, you can use <a href="https://reactjs.org/docs/refs-and-the-dom.html">refs</a>, which enable you to get the underlying DOM nodes or instances of your ES6 class component.</p>
+<p>If you ever find a parent needing to pass data to far-removed descendants and don’t want to thread it through the props of a zillion children in between, you can use <a href="https://reactjs.org/docs/context.html">contexts</a>.</p>
+<p>A higher-order component is a function that takes a React component and returns a new React component. Preferably, the function is pure and the new component just composes something around the component. These should be called outside <code>render</code> as described above.</p>
+<h3 id="redux">Redux</h3>
+<blockquote>
+<p>Redux is a predictable state container for JavaScript apps.</p>
+</blockquote>
+<p><a href="https://redux.js.org/">Redux</a> is a framework that forces you to put all your mutable state in one place. The <em>store</em> stores the One True Copy of the state.</p>
+<p>Redux and React are often mentioned in the same breath, but it is worth noting that React is a fine framework even without Redux and that Redux can also be used with non-React frameworks. The creators of Redux are very much on record saying that you <a href="https://redux.js.org/faq/general#when-should-i-use-redux">don’t need to use Redux</a> if you don’t feel the need.</p>
+<p>Anyway, an <em>action</em> is a plain JavaScript object that describes a <code>State =&gt; State</code> function. You decide what actions exist and how they describe state transformations. However, there are conventions worth mentioning here. The most basic convention is that actions have a <code>type</code> attribute whose value is a string constant. The “Flux Standard Action” (FSA) specification is an even more rigid specification for an action’s type that is commonly adhered to. (Flux is the framework by Facebook that inspired Redux, by the way; Redux is stricter in its functional programming design.)</p>
+<pre><code>type FSA&lt;Data&gt; = {
+  type: string,
+  error?: boolean,
+  payload?: Data | Error,
+  meta?: any,
+}</code></pre>
+<p>If <code>error</code> is true, then <code>payload</code> should be an error object. <code>type</code>, <code>error</code>, and <code>payload</code> should completely describe the state transformation; <code>meta</code> is for other metadata that might be useful for, say, debugging.</p>
+<p>A <em>reducer</em> is just a function <code>(Action, State) =&gt; State</code> that turns an action into what it represents. An <em>action creator</em> is just a function that returns an action, because you don’t want to keep writing plain JavaScript objects manually; it never directly interacts with Redux.</p>
+<p>The built-in <a href="https://redux.js.org/api/combinereducers"><code>combineReducers</code></a> is a higher-order function that lifts a JavaScript object, whose values are functions of type <code>(Action, innerState) =&gt; innerState</code>, to a single <code>(Action, OuterState) =&gt; OuterState</code> function, where <code>OuterState</code> has a bunch of different fields with different types for <code>innerState</code> under keys corresponding to the original object. It is a convenience function that lets you write a big reducer conveniently in terms of a bunch of small reducers, nothing more.</p>
+<p>Actions are <em>dispatched</em> by calling <code>store.dispatch(action)</code> (often indirectly) to modify the state. In some sense, <code>dispatch: Action =&gt; IO ()</code>.</p>
+<h3 id="thunks">Thunks</h3>
+<p>I have already lied. An <em>action</em> is basically anything that can be dispatched. They don’t need to be plain JavaScript objects, but it is standard practice to make them so because it maximizes the debugging benefits of Redux.</p>
+<p>However, you can make Redux support more kinds of actions by adding <em>middleware</em>, which are things that sit in the store and receive every action. Middleware can choose to intercept actions or let them pass through (to the next middleware), and can also act on the actions, say by dispatching other actions (although you must be careful not to cause an infinite loop here); only if the actions pass through all middleware does it hit the dispatchers. <code>redux-thunk</code> is a commonly added piece of middleware that intercepts any action that is a JavaScript function, which is called a <em>thunk</em>. <code>redux-thunk</code> intercepts and handles thunks by calling them with the functions <code>dispatch</code> and <code>getState</code> as arguments; thunks can do whatever they want with these functions. Note that thunks can’t (at least, shouldn’t) directly set state, and some people even discourage thunks that use <code>getState</code>. Generally, a thunk should just dispatch other actions that will then modify the state.</p>
+<p>Thunks can in particular dispatch actions asynchronously, and they are the standard Redux way to do so. A thunk might, say, make an AJAX request with a callback that dispatches an action based on the result. However, nothing at all will break if you directly asynchronously dispatch an action in an event handler. Thunks are recommended only for reasons of encapsulation and ease of maintenance — <a href="https://stackoverflow.com/questions/34570758/why-do-we-need-middleware-for-async-flow-in-redux#34599594">this SO answer</a> argues this, although to me it’s just wrong to call <code>loadData</code> an “action creator” when it does the asynchronous dispatch itself, as compared to the actually pure action creators in the example that fully use thunks. I am not sure and currently think that the rule of putting all asynchronous actions in thunks is useful on net, but is also one of the first rules of Redux I’d consider bending.</p>
+<p>There are many other kinds of middleware. For instance, middleware can be useful for debugging, simply by letting every action through as-is but logging them. There are also other Redux libraries that provide ways for actions to dispatch other actions asynchronously, but it seems accepted that only actions that are simple JavaScript objects should directly modify state.</p>
+<ul>
+<li><p><code>redux-promise</code> is middleware that intercepts two kinds of actions:</p>
+<ol type="1">
+<li><p><code>Promise&lt;Action&gt;</code> (well, <code>Promise&lt;any&gt;</code>, and the <code>any</code> better be an action): it asynchronously dispatches the <code>Action</code> if the <code>Promise</code> resolves; it does nothing if the <code>Promise</code> fails.</p></li>
+<li><p><code>FSA&lt;Promise&lt;any&gt;&gt;</code> (a FSA where the payload is a promise): if the <code>Promise</code> resolves, it dispatches the same FSA, but with the result instead of the <code>Promise</code> as the payload; if the <code>Promise</code> rejects, it dispatches the same FSA, but with the error instead of the <code>Promise</code> as the payload and <code>error: true</code>.</p></li>
+</ol></li>
+<li><p><code>redux-promise-middleware</code> also intercepts actions <code>FSA&lt;Promise&lt;any&gt;&gt;</code>. If the FSA’s type is <code>FOO</code>, it immediately dispatches an action of type <code>FOO_PENDING</code> (but no payload). Asynchronously, if the <code>Promise</code> resolves, it dispatches an action of type <code>FOO_FULFILLED</code> and payload equal to the result; if the <code>Promise</code> rejects, it dispatches an action of type <code>FOO_REJECTED</code>, payload equal to the error, and <code>error: true</code>.</p></li>
+<li><p><code>redux-observable</code> is sort-of-not-really middleware. To use it, you write “Epics”, which have type <code>Observable&lt;Action&gt; =&gt; StateObservable&lt;State&gt; =&gt; Observable&lt;Action&gt;</code>. They receive actions after the actions have already gone through the reducers.</p>
+<p>What is an <code>Observable&lt;T&gt;</code> anyway? A literal definition is that an <code>Observable&lt;T&gt;</code> is something that takes three listeners <code>onNext : T =&gt; IO ()</code>, <code>onError : Error =&gt; IO ()</code>, and <code>onCompleted : () =&gt; IO ()</code>, and will call <code>onNext</code> zero or more times followed optionally by one final call to <code>onError</code> or <code>onCompleted</code>, but not both. It is contractually obligated not to do these things out of order.</p>
+<p>You can easily convert an array of <code>T</code> to an <code>Observable&lt;T&gt;</code> that immediately offers all elements of its array to any subscriber. Other examples of Observables include all clicks the user will make on a particular button. You can transform <code>Observables</code> by mapping (obviously Observable is a functor) but also by list operations like filtering, slicing, scanning, grouping, or accumulating, or with time-dependent transformations like debouncing or periodically sampling. You can also merge multiple <code>Observables</code> into one.</p>
+<p>It is tempting to think of Observables as lazy asynchronous lists whose elements arrive over time, and some Observables are like that, but it’s possible for observers/listeners to “miss” elements in Observables that are emitted before the observers are subscribed. This is the difference between “hot” and “cold” observables, but that’s its own can of worms.</p>
+<p>Some obligatory typeclass information:</p>
+<ul>
+<li><p>There are several ways to make <code>Observable&lt;T&gt;</code> a monoid. The simplest is <code>merge</code>, an observable that calls the listener whenever either of its constituent observables emits an item. One might hope that <code>merge</code> would be commutative, but it’s possible for something to synchronously cause two <code>Observables</code> to emit something, in which case order matters.</p></li>
+<li><p><code>Observable</code> is a monad, but a really terrible one.</p></li>
+</ul>
+<p>Do note that <code>Observable</code>s are, or should be, pure, which is why Epics only get to listen to the Actions and not intercept any. Any asynchrony happens during transforming the Actions to different Actions in the output.</p></li>
+<li><p><code>redux-saga</code> uses, uh, sagas. Sagas are JavaScript generator functions that yield objects that represent instructions. The Saga pattern is an existing thing and somebody somewhere wrote a post about how <code>redux-saga</code> doesn’t faithfully implement it, but their blog is down so too bad. I have not investigated Sagas very closely, but they are a solution.</p></li>
+</ul>
+<h3 id="react-redux">React-Redux</h3>
+<p>To reiterate, as the Redux tutorial stresses, React and Redux are not tied. You can use React by itself or with other state management libraries, or Redux with other UI libraries.</p>
+<p>Since Redux wants to hold all mutable state, in React-Redux we don’t want React Components to store any state. So instead all React elements just take <code>props</code>. (This is not strict. Some kinds of local or UI-only state may still be best handled in React; it’s perfectly fine to do so.)</p>
+<p>To create a Component with (read or write) access to state, you write it normally as a component that takes some props, then wrap it with the magical React-Redux function <code>connect</code> to produce a new Component. In its simplest usage, <code>connect</code> takes a <em>selector</em> function <code>: GlobalState =&gt; StateProps</code> that takes the global Redux state, extracts some properties that are relevant to the Component, and injects them as <code>props</code> to the inner component. (This is in addition to any <code>props</code> provided by the caller.) To provide write access, <code>connect</code> grants the ability to dispatch actions by also injecting the <code>dispatch</code> function as a prop (named <code>dispatch</code>). For those who’d like to separate state from the component as much as possible, the second optional argument to <code>connect</code> is a function that maps <code>dispatch</code> to more props; there, you can write handlers that dispatch actions that are tailored directly to the inner Component’s needs. There are more optional arguments that I won’t go into.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>React is a popular way to build web interfaces if you’re used to thinking functionally or declaratively. Redux helps you manage the state in React or in other frameworks even more tightly. That’s it. Now you can make cool modern interactive websites, including those Single-Page Apps that are all the rage these days.</p>
+<p>Of course, while you’re doing that, don’t forget about performance, bandwidth, and accessibility. If React seems too heavyweight or you don’t need too much browser compatibility, you could consider <a href="https://preactjs.com/">Preact</a>. And not every website needs to be interactive! Traditionally server-rendered HTML and static websites are still good.</p></article>
+	<footer class="post-footer">
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/plc">← PLC</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2018 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>
