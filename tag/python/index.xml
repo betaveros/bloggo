@@ -6,10 +6,20 @@
     <description>Recent content in Python on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 May 2014 22:26:53 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 May 2015 23:24:11 +0800</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/tag/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Adventures in Unicode Forensics</title>
+      <link>//blog.vero.site/post/unicode-forensics</link>
+      <pubDate>Sun, 17 May 2015 23:24:11 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/unicode-forensics</guid>
+      <description>What do you do when you get a bunch of files like this from a zipfile?
+   I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing.   Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester.</description>
+    </item>
     
     <item>
       <title>#pyconapac2014</title>
@@ -45,6 +55,16 @@
 &lt;blockquote&gt;
 The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes).
 &lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Example &#34;BetaWorldProblems&#34;</title>
+      <link>//blog.vero.site/post/problems</link>
+      <pubDate>Sat, 20 Apr 2013 11:51:06 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/problems</guid>
+      <description>&lt;p&gt;because my title needs to mean something. &lt;ins date=&#34;2019-02-05T18:08:23-0500&#34;&gt;(note from the future: before late 2017, when I &lt;a href=&#34;//blog.vero.site/post/hello-again&#34;&gt;migrated to Hugo and GitHub Pages&lt;/a&gt;, the blog was called “BetaWorldProblems”.)&lt;/ins&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

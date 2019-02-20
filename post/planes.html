@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8" />
+	
+	<title>Orthogonal Planes</title>
+	
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="I have a backlog of at least 6,000 words and still too many events to blog about, so these posts will not reflect things currently happening to me for a long, long time, except for the little blurbs on top of posts like this one when they exist.
+Blogging is hard.
+Also, I don’t have a good title.
+It begins with an airplane.
+
+For Zarquon’s sake, you’re entrusting me with my own passport and airline tickets and luggage and all this stuff I can’t even. I still layover people for months on end in Pocket Planes sometimes. (Watch the graceful descent of this reference into personally overused snowclone territory.)
+Source: Taiwan, my home for the previous twelve years, which I am now bidding farewell to for the longest time in forever (…which is only (“only”?) five months, assuming I fly back for winter break as already planned). Destination: Seattle, for this year’s Google Code Jam World Finals, which I still don’t know how I managed to qualify for (more on that in later posts); and, before that, an accompanying interview for an internship that I scored as part of the bargain.
+I successfully get on the plane, sort some nice things to have on hand into my MIT tote bag (how did I ever survive airplanes without keeping a tote bag on hand?), and put my backpack with the rest of my stuff into the overhead compartment. An old-ish guy who is probably Korean sits next to me. Plane takeoff is a bit delayed due to traffic congestion. Once during the flight, after an attendant passes out forms to everybody entering South Korea and I tell him I’m not, the guy asks me where I’m going and we have a short conversation. But for the most part, it’s typical airplane shenanigans. I listen to Avril Lavigne and Ellie Goulding, do a little homework, and eat the airplane food. Nothing remarkable happens.
+Until near the end of the flight: a guy in a suit shows up in the aisle and, looking at some sort of checklist, calls my name.
+
+" />
+
+
+
+<meta name="generator" content="Hugo 0.50-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/planes" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Orthogonal Planes</h1>
+		
+		<p class="post-meta">
+		
+		2015-09-20
+		(2675 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>I have a backlog of at least 6,000 words and still too many events to blog about, so these posts will not reflect things currently happening to me for a long, long time, except for the little blurbs on top of posts like this one when they exist.</p>
+<p>Blogging is hard.</p>
+<p>Also, I don’t have a good title.</p>
+<hr />
+<p>It begins with an airplane.</p>
+<p><a href="/img/plane.jpg"><img src="/img/plane.jpg?w=660" alt="[View of airplane wing and clouds from airplane]" width="660" height="373" class="aligncenter size-large wp-image-3361" /></a></p>
+<p>For Zarquon’s sake, you’re entrusting me with <em>my own passport and airline tickets and luggage and all this stuff I can’t even.</em> I still layover people for months on end in <cite>Pocket Planes</cite> sometimes. <a href="//blog.vero.site/post/cars">(Watch the graceful descent of this reference into personally overused snowclone territory.)</a></p>
+<p>Source: Taiwan, my home for the previous twelve years, which I am now bidding farewell to for the longest time in forever (…which is only (“only”?) five months, assuming I fly back for winter break as already planned). Destination: Seattle, for this year’s Google Code Jam World Finals, which I still don’t know how I managed to qualify for (more on that in later posts); and, before that, an accompanying interview for an internship that I scored as part of the bargain.</p>
+<p>I successfully get on the plane, sort some nice things to have on hand into my MIT tote bag (how did I <em>ever</em> survive airplanes without keeping a tote bag on hand?), and put my backpack with the rest of my stuff into the overhead compartment. An old-ish guy who is probably Korean sits next to me. Plane takeoff is a bit delayed due to traffic congestion. Once during the flight, after an attendant passes out forms to everybody entering South Korea and I tell him I’m not, the guy asks me where I’m going and we have a short conversation. But for the most part, it’s typical airplane shenanigans. I listen to Avril Lavigne and Ellie Goulding, do a little homework, and eat the airplane food. Nothing remarkable happens.</p>
+<p>Until near the end of the flight: a guy in a suit shows up in the aisle and, looking at some sort of checklist, calls my name.</p>
+<p></p>
+<p>Paranoid thoughts race through my head, like maybe I’m on the wrong flight or my ticket hadn’t been paid for or something. But all that happened was, because the flight I was on had been delayed and the gap between arrival in Incheon and departure of my transfer flight from there to Seattle was pretty small, I might need to hurry, so the guy helps me get my stuff and moves me to a front-row(-of-economy-class) seat.</p>
+<p>After landing, I run through the Incheon airport, not even stopping to put my belt back on after the security checkpoint. There’s an electric car I have to take first, and then I have to walk a long distance to find my gate. I don’t have time to notice much about the airport, except that there are lots of posters about MERS as one would expect, and once I pass by a few people performing a symphonic version of “Let It Go”. <a href="/img/mers.jpg"><img src="/img/mers.jpg?w=170" alt="[Signs informing travelers about MERS in English and Korean]" width="170" height="300" class="aligncenter size-medium wp-image-3362" /></a></p>
+<p>I barely make it as the flight begins boarding… or so I think. As it turns out, this flight says it has been delayed too, due to transfer flights to it being delayed. Hey, wasn’t that my flight and didn’t I make it? Or are there other transfer flights that have been delayed even more? I have no idea. <a href="/img/delay-sign.jpg"><img src="/img/delay-sign.jpg?w=660" alt="[Sign about delayed flight]" width="660" height="373" class="aligncenter size-large wp-image-3364" /></a> So I wait, charge my phone, stretch and jump around, and message my mom about what’s happening.</p>
+<p>On the second leg of the flight I sit in the window seat next to a young couple. I try to sleep a lot. I also spend a lot of time in the aisle standing and making silly hand motions to the beat of my music player because the seat is so cramped. Also, I listen to Meghan Trainor on the in-flight entertainment system and decide many of the melody are not-in-a-bad-way catchy. Then after a few more listens I hear the <a href="http://tvtropes.org/pmwiki/pmwiki.php/Main/SubvertedRhymeEveryOccasion">Subverted Rhyme Every Occasion</a> and feel very satisfied. Also also, there’s an interesting puzzle game on the entertainment system where you have to push and pull direction-restricted blocks to reach the exit. But I think this is enough boring expository about airplane ride shenanigans; you get the picture.</p>
+<p>In total I do about 6% of 18.06 on these two flights.</p>
+<p>Exciting thing number two: nobody ever prepared me for having to declare customs. I am in a state of mild panic after the flight attendant first passes out the customs forms, because I wonder whether my gifts of food will be confiscated, or whether I’ll have to pay duty on my valuables, or whether any sane person with common sense would actually report all of these things I have with me. I fill mine out casually, then spend a long time contemplating the alternatives before wrinkling it up and asking the attendant for a new one. For this attempt I honestly and meticulously list everything expensive and/or possibly objectionable I have, although I try to give lower bounds of their dollar values rather than guesses at their averages.</p>
+<p>The plane lands. I’m in the United States now! There are automatic customs machines that scan passports and let people through automatically, which is cool. Except after I use the machine, it gives me a ticket and somebody tells me to get in line again, I’m guessing because I answered the question about whether I was carrying more than $800 of stuff positively. But after I explain my past and expected immediate future to the border patrol officer and he reads my really honest form, he just waves me through.</p>
+<p>I get my luggage and message my parents on the wi-fi.</p>
+<p>My phone works!</p>
+<p>I contact the friends of friends who pick me up. This takes a while and I am also mildly panicked here because the only lead I have for recognizing my friend is that he is driving a silver or white Civic, and I do not actually know what a Civic looks like. All I know about Civics is that they are mentioned in <a href="https://youtu.be/mbyzgeee2mg">two</a> <a href="https://youtu.be/ljPFZrRD3J8">songs</a> (both with explicit language) I heard from Interneting too much. (Also, the word is a palindrome consisting entirely of Roman numeral letters…) It is thanks to these songs that I remember that Civics are made by Honda, and I think Honda’s logo has an H on it, which finally enables me to rule out a lot of the cars I am looking at.</p>
+<p>When Eddy actually arrives, nothing scary or even awkward happens. In the car, he tells me about Seattle. Musicians: Nirvana, Jimi Hendrix, Macklemore &amp; Ryan Lewis. Companies: Costco, Boeing, Microsoft. Oh, and Starbucks. They seem nearly as common here as 7-11s in Taiwan.</p>
+<p>We arrive at their home, play a game of some Carcassonne variant, wait for his mom Cindy, then leave to eat dinner at a Chinese place. The fried rice I order is abso-zarking-lutely huge and I only manage to eat half. Cue SatW:</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Meals in U.S. after which this comic&#39;s sentiment is verified: 1<a href="http://t.co/qweMZrCMI7">http://t.co/qweMZrCMI7</a><a href="https://twitter.com/hashtag/Murica?src=hash&amp;ref_src=twsrc%5Etfw">#Murica</a></p>&mdash; Brian Chen (@betaveros) <a href="https://twitter.com/betaveros/status/631659203258482688?ref_src=twsrc%5Etfw">August 13, 2015</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>My fortune cookie reads “Your leadership qualities will shine soon.” After I gorge myself, they drop me off at the Sheraton hotel. I fumble around asking people awkwardly what I should be doing, then manage to check-in and get into my room, at which point I firmly decide that the hotel is obviously for rich people.</p>
+<p>I am pretty sure this is a two-person room because the bed is huge and there are two sets of towels and four pillows. The bathroom door is not lockable.</p>
+<p>The shower knobs are one-dimensional, starting at “off” and going to “cold” and then “hot”. At first I thought was one of those unfathomable hotel peculiarities like all the weird curtains I’ve encountered in my travels at first, but later I realized the bathroom in Eddy’s house is designed the same way so perhaps it’s more of a general cultural difference. (Addendum from future me: indeed, the showers here in East Campus have one-dimensional controls too. One notable counterexample will show up in a post.) My gut reaction is that this lack of an extra dimension to control the water intensity is kind of annoying and might be the sort of thing that keeps libertarians awake at night worrying about the nanny state’s gradual erosion of freedoms. But once I actually shower, I realize I don’t miss the extra dimension at all; I never feel like I need hot (or cold) water with reduced intensity. So never mind, I guess?</p>
+<p>After a few moments poking around my room, I hear somebody knocking on my door. He’s there to deliver a goodie bag from Google. It’s pretty impressive! The bag is from Alchemy Goods and says it was recycled from bicycle tires. It looks and feels quite sturdy (with one downside: according to a warning tag attached, it can leave skid marks on clothes under the right conditions, although I haven’t experienced that at all yet.) The most notable object inside the bag is a set of Bluetooth headphones. <a href="/img/goodies.jpg"><img src="/img/goodies.jpg?w=660" alt="[Assorted goods from Google goodie bag]" width="660" height="373" class="aligncenter size-large wp-image-3365" /></a></p>
+<p>(Also, if against all odds, you somehow have not figured out my full name, now you have!)</p>
+<hr />
+<p>Anyway, the Sheraton provides complimentary breakfast every morning and although the bread and pastries don’t have that much variety, there’s lots of fruit and yogurt and also lots of really good orange juice, so I don’t mind the former shortcoming. So, one complimentary breakfast later, time comes for the Google interview. For this, I have decided to wear my Code Jam t-shirt from last year so that I can rep Chiuchang at the competition the next day. I am paranoid enough to go down to the lobby about twenty minutes before the scheduled meeting time (9:30 AM), which gives me enough time to find a place to sit down and do one 18.06 homework problem.</p>
+<p>Eventually, other people appear. There are two other interviewees, one regular Code Jammer (very pro) and one Distributed. (More details elided to err towards protecting privacy.) The lead recruiter meets us in the lobby and takes us to the Google Seattle office.</p>
+<p>The whole thing turns out to be much less painful than I thought. Although I will introduce a little bit of vagueness when writing about this because I think some of it is kind of secret.</p>
+<p>My first interviewer is one of the lead engineers of Google Code Jam itself! He’s wearing a gray TopCoder t-shirt. I think the first question was, what were my two favorite programming languages and when would I pick one over the other? Then we discuss several questions about designing and testing a paintbrush program. I write some Python on the whiteboard.</p>
+<p>After maybe forty-five minutes of technical questions and discussions he says it’s time I can ask questions, so I ask him what he does at Google. He says he works for Android, something along the lines of developing infrastructure to roll out changes to different groups of people and get metrics on usage. This might be A/B testing of sorts.</p>
+<p>At the end of our hour he takes me around the office briefly, particularly to the cafeteria on the same floor to see if I want anything to eat or drink. I pick out a glass jar of unsweetened black tea. I don’t know why I chose it. Probably part of me was trying to pick a drink that looks more mature than Coca-Cola or vitamin water so as to impress people. I don’t think it mattered, I don’t know why I thought it would matter, and the tea is really completely unsweetened, which is, well, not my cup of tea. ¯\_(ツ)_/¯</p>
+<p>The second interviewer is Japanese and asks me two straightforward questions about graphs (build dependencies, in the story) and DP. I can’t seem to remember what he did at Google, darn. It might have been Maps-related?</p>
+<p>My lunch is with a person who does security for Google Cloud Platform, which we talk about. Google food is pretty nice. I get various snippets of salad, a bowl of fried rice, some cherries, and a couple other scoops of unidentified goopy stuff.</p>
+<p>After lunch, this employee shows me all the cool facilities around the Google office: mini-cafeterias on every floor, a barbershop and massage center, and a sort-of-not-really-secret nap room concealed behind a bookcase that swings open. (I explicitly asked him if I could blog about that and he thought it was fine, so it’s not <em>that</em> secret.)</p>
+<p>I think the third guy is South Asian and asks a graph question, sort of (water levels on a grid) and… another graph question (travel routines, in the story). In solving the latter, I’m a little chagrined to discover I don’t have the time complexity and limitations of Dijkstra off the top of my head. In hindsight, though, because we were a few isomorphisms away from the original problem, I think the real takeaway is that I ought to have been more eager to use the white board as mental swap space. I think it would have helped a lot.</p>
+<p>(Nobody asks me anything about multithreading or any of those research papers about Google designs with a dozen-odd pages each that were mentioned in the prep document. So much for cramming those before the interview…)</p>
+<p>And that’s all! We go back to the hotel. I think I did okay.</p>
+<hr />
+<p>The night there is the welcome reception, at which I talk more with Googlers than with other contestants. I meet the organizer I’ve been exchanging emails with, and the woman who responded to my attempt to submit Piet in the qualification round.</p>
+<p>There is a brief conversation of Brainfuck because the contestant who solved a GCJ problem with it is there. The staff member responsible for picking out the t-shirt says he included Brainfuck on the T-shirts and the organizer is horrified to hear this. “Don’t make me lose my job!” But then she learns that Brainfuck code only consists of eight punctuation characters and does not actually look obscene. (The whole thing makes it ten thousand (+6,384) times funnier when I first read the last Code Jam problem the next day, but I’m getting ahead of myself.)</p>
+<p>Also, I play Jenga with some of the organizers, eat lots of food without having any idea what I’m eating (despite asking a lot of questions, I still don’t quite get what hummus is… it’s a thing and there are beans in it?), and nab a Google linked-chain puzzle. Actually, although I fiddle with the puzzle a lot at random moments during the reception (perfect excuse for pretending to be antisocial (…okay, <em>actually be</em> antisocial, I’m sorry, I do actually regret not just walking up to tourist when I saw him and saying hi)), I don’t take it until just before leaving, at which point the organizer tells me just to take it if I want it, so I do. <a href="/img/jenga.jpg"><img src="/img/jenga.jpg?w=137" alt="[Tall Jenga tower]" width="137" height="300" class="aligncenter size-medium wp-image-3366" /></a> I don’t meet any of the other people from Taiwan because they’ve collectively decided to stay in their rooms. Darn. So I manage to get their room number by logging into shady timed Windows 10-ish computers in the lobby where the welcome event was held, and visit some of them in their room. I learn that they’ve dealt with dinner by ordering room service (which is, of course, exorbitantly priced… forty-odd dollars for a meager meal for two. Like I said, hotel for rich people.)</p>
+<p>Well, darn, I can’t call room service because I don’t have a credit card (the hotel requires one, but after I emailed the organizer about this, she was nice enough to put her credit card down for me, just with the obvious requirement that I not order anything). So now I don’t have anybody with whom I can go out to seek dinner.</p>
+<p>I go back to my room, mill about, then decide I’m not hungry enough and I can last until the complimentary breakfast the next morning.</p>
+<p>And so it goes.</p></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/competitions"><span class="tag">Competitions</span></a></li>
+			
+			<li><a href="/tag/google-code-jam"><span class="tag">Google Code Jam</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/puzzle-48">← Puzzle 48 / Double Back</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/jam">Jam-Packed Fun and Games →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2019 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>

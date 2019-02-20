@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8" />
+	
+	<title>Adventures in Unicode Forensics</title>
+	
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="What do you do when you get a bunch of files like this from a zipfile?
+   I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing.   Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester." />
+
+
+
+<meta name="generator" content="Hugo 0.50-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/unicode-forensics" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Adventures in Unicode Forensics</h1>
+		
+		<p class="post-meta">
+		
+		2015-05-17
+		(764 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>, <a href="/category/school">School</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>What do you do when you get a bunch of files like this from a zipfile?</p>
+<figure>
+<a href="/img/mojibake.png"><img src="/img/mojibake.png" alt="I&#039;ve blurred the messed-up file names because I&#039;m not sure it&#039;s impossible to reconstruct the Chinese names of people from them and I&#039;d rather err towards being paranoid about privacy. Except for the one file name whose author&#039;s identity I&#039;m OK with disclosing." /></a>
+<figcaption>
+I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing.
+</figcaption>
+</figure>
+<p>Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester. I didn’t even do that part yet (I really should); first the girl who handled last semester’s assignments had to pass on the files she collected to me, and I unzipped the attachment to reveal these file names.</p>
+<p>Well, I thought, no big deal, I <a href="http://www.joelonsoftware.com/articles/Unicode.html">understand Unicode (somewhat)</a>, I’ll just do something like decode them as latin1 and re-encode them as UTF-8, right? Or maybe Big5? In fact, maybe <a href="https://github.com/LuminosoInsight/python-ftfy"><code>python-ftfy</code></a> will just automagically fix it for me; I’ve been waiting for a chance to use that, like the dozens of other things on my GitHub star list…</p>
+<p>I wish.</p>
+<p>ftfy did nothing to the text. Also, UTF-8 was not high on my list because the filenames strongly suggested a double-byte encoding. By eyeballing the filenames and comparing them to the organized naming scheme of some other files that had, thankfully, survived the .zip intact, I noted that every Chinese character had replaced with two characters, while underscores had survived unscathed. It was a simple substitution cipher with a lot of crib text available. So that rules out the most common UTF-8, but it gives me a lot of information, so this can’t be hard, right?</p>
+<p>One of the files that I knew belonged to me came out as such, according to Python’s <code>os.listdir</code>:</p>
+<p><code>'i\xcc\x81\xc2\xaci\xcc\x82a\xcc\x8aa\xcc\x82\xe2\x88\x82_e\xcc\x80Wn\xcc\x83n.pdf'</code></p>
+<p>After <code>codecs.decode(_, 'utf_8')</code> we get:</p>
+<p><code>u'i\u0301\xaci\u0302a\u030aa\u0302\u2202_e\u0300Wn\u0303n.pdf'</code> Attempt at UTF-8 rendition: <code>í¬îåâ∂_èWñn.pdf</code></p>
+<p>That’s really weird; those codepoints are kinda large, and there’s a literal <code>i</code> at the start, and it doesn’t look at all like the two-characters-for-one pattern we noticed from staring at the plaintext. Oh, they’re using combining characters. How do we fix that?</p>
+<p>Fumble, mumble, search. Oh, I want <code>unicodedata.normalize('NFC', _)</code>.</p>
+<p><code>u'\xed\xac\xee\xe5\xe2\u2202_\xe8W\xf1n.pdf'</code> Attempt at UTF-8 rendition: <code>í¬îåâ∂_èWñn.pdf</code></p>
+<p>Although the byte sequences are totally different, they look the same, which is the point. <em>holds up fist</em> This… is… UNICODE!!!</p>
+<p>Anyway, the code points in the normalized version make more sense. Except for that conspicuous <code>\u2202</code> or <code>∂</code>, of course. Indeed, although it looks promising, if we now try e.g. <code>codecs.encode(_, 'windows-1252')</code> we get,</p>
+<p><code>UnicodeEncodeError: 'charmap' codec can't encode character u'\u2202' in position 5: character maps to</code></p>
+<p>One can get around this by passing a third argument to <code>encode</code> to make it ignore or replace the invalid parts, but the result of the first couple of codepoints, after further pseudomagical decoding and encoding, is still nonsense. Alas.</p>
+<p>I continued to try passing the filenames in and out of <code>codecs.encode</code> and <code>codecs.decode</code> with various combinations of <code>utf_8</code> and <code>latin_1</code> and <code>big5</code> and <code>windows-1252</code>, to no avail.</p>
+<p>Then I did other stuff. Homework, college forms, writing a bilingual graduation song, talking to other dragons about 1994 video games, and did I mention I started taking driving lessons now? Yeah. That sort of thing.</p>
+<p>Around that last thing, I asked the previous caretaker and learned that the computer she collected these files had a Japanese locale. So I added <code>shift_jis</code> and <code>euc_jp</code> to the mix, but still nothing.</p>
+<p>I later tried unzipping it with <code>unzip</code> from the command-line — the results were even worse — as well as unzipping it from a Windows computer — even worse than the command line.</p>
+<p>So the problem remained, until…</p>
+<hr />
+<p>The resolution is very anticlimactic; it took me half a week to think of getting at the files programmatically straight from the zip archive, instead of unzipping first. Python spat out half the file names from the zip file as <code>unicode</code> and the other half as <code>str</code>. From there it was easy guessing.</p>
+<script type="application/javascript" src="//gist.github.com/betaveros/cea1a430266ae8f124c8.js"></script>
+<p>There were still three file names that failed, but they were easy to fix manually.</p>
+<p>I’m not sure why I eventually decided to blog about this anymore, honestly. Especially compared to my 12 other drafts. Oops.</p>
+<ins datetime="2015-05-18T23:23:41+00:00">
+ETA: I thought this script would be a one-trick pony but, amazingly, I ended up using it again the day after, this time with <code>Big5</code> after I copied some files to a Windows laptop, converted them to .pdf, and sent them back in a .zip.
+</ins>
+<ins datetime="2015-05-24T13:42:17+00:00">
+ETA2: This script came in handy <em>again</em> after I copied a zip file to an Ubuntu desktop computer with an actual CD drive so I could burn everything to a disc!
+</ins>
+</article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/python"><span class="tag">Python</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/sylow">← Sylow</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/commitment">A Commitment →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2019 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>

@@ -6,10 +6,20 @@
     <description>Recent content in Rankk on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 May 2013 23:03:05 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jul 2013 22:43:21 +0800</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/tag/rankk/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Rankk Solving Statistics</title>
+      <link>//blog.vero.site/post/rankk-stats</link>
+      <pubDate>Thu, 18 Jul 2013 22:43:21 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/rankk-stats</guid>
+      <description>&lt;p&gt;Funny, I go on a trip to Penghu followed by a four-day science camp and also get dragged into drawing classes and some sort of movie advising joint, and this is what I decide to blog about.&lt;/p&gt;
+&lt;p&gt;Since it’s summer, I went back to &lt;a href=&#34;http://www.rankk.org/&#34;&gt;Rankk&lt;/a&gt; and solved stuff. This is lots of fun if you’re good with computers, plus a little math, cryptography, and general puzzling. I’m still stuck on level 8… oh well. Since the levels didn’t seem very indicative of difficulty to me, I decided to do some analysis.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Haskell and Primes</title>

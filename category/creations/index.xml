@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Randomness on Bounded-Error Log</title>
-    <link>//blog.vero.site/category/randomness</link>
-    <description>Recent content in Randomness on Bounded-Error Log</description>
+    <title>Creations on Bounded-Error Log</title>
+    <link>//blog.vero.site/category/creations</link>
+    <description>Recent content in Creations on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 26 Jul 2015 11:46:04 +0800</lastBuildDate>
     
-	<atom:link href="//blog.vero.site/category/randomness/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="//blog.vero.site/category/creations/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -58,6 +58,18 @@
     </item>
     
     <item>
+      <title>Phone II</title>
+      <link>//blog.vero.site/post/phone-ii</link>
+      <pubDate>Sun, 19 Jul 2015 23:59:49 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/phone-ii</guid>
+      <description>Here are two screenshots of the Android 3x3 grid lock we dealt with in the phone post.
+
+
+Part of the reason I don’t have a real post today and am instead writing filler for the streak is that I wanted to include this 3x3 lock in the programming presentation I’ve been indirectly complaining about in the last few posts, and I couldn’t find any nicely licensed screenshots to illustrate it, so I made these screenshots myself, and then I spent somewhat more than an hour researching copyright law and listening to a talk about it before posting them.</description>
+    </item>
+    
+    <item>
       <title>US$2,857</title>
       <link>//blog.vero.site/post/2857</link>
       <pubDate>Mon, 13 Jul 2015 23:20:09 +0800</pubDate>
@@ -67,16 +79,6 @@
 &lt;p&gt;= 739 hours of Taiwan’s hourly minimum wage or 4.43 months of Taiwan’s monthly minimum wage&lt;br /&gt; = 317 hours of Massachusetts’s minimum wage (7.94 weeks or 1.85 months assuming a 40-hour work week)&lt;br /&gt; = 1.2~1.7 weeks of &lt;a href=&#34;https://twitter.com/tzhongg/status/536565474041937921/photo/1&#34;&gt;a list of high tech internship salaries&lt;/a&gt; as &lt;a href=&#34;http://www.slate.com/blogs/moneybox/2014/11/24/tech_internship_salaries_they_will_destroy_your_sense_of_self_worth.html&#34;&gt;featured on Slate&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;= 2,955 plates of Sushi Express&lt;br /&gt; = 1,478 cheap boxed lunches (at NT$60 each), which would last one person 1.35 years at 3 per day&lt;br /&gt; = 1,122 &lt;a href=&#34;http://www.economist.com/content/big-mac-index/&#34;&gt;Big Macs&lt;/a&gt;, price in Taiwan, or 596 Big Macs, average price in U.S. (January 2015)&lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Sheep</title>
-      <link>//blog.vero.site/post/sheep</link>
-      <pubDate>Sat, 11 Jul 2015 22:42:57 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/sheep</guid>
-      <description>Ok I give up I don’t have any material and don’t feel like preparing any because the influx of IMO problems, including the shortlist, is too fascinating. Instead, here is a joke quoted verbatim from TVTropes (CC-NC-SA).
- An American anthropologist has been studying a tribe in Africa by living with them for a year. One day, the chief called him into the chief’s hut. The chief sighed. “Well, my friend, it seems that we must ask you to leave.</description>
     </item>
     
     <item>
@@ -107,18 +109,6 @@
     </item>
     
     <item>
-      <title>Drop-In Filler</title>
-      <link>//blog.vero.site/post/drop-in</link>
-      <pubDate>Mon, 06 Jul 2015 21:50:05 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/drop-in</guid>
-      <description>(streak)
-I’ll probably be making filler posts for a while until I make decent progress on linear algebra and programming work, including another presentation.
-Let’s listen to some more music.
-  This is a Deemo song and even though there are a lot of things I could snark about in the grammar, scansion, and execution of the video (less flashy lyric video here), I kind of want to forgive all that for the (really really dark) poetic image.</description>
-    </item>
-    
-    <item>
       <title>(8,9,7)</title>
       <link>//blog.vero.site/post/897</link>
       <pubDate>Sun, 05 Jul 2015 10:09:29 +0800</pubDate>
@@ -136,7 +126,9 @@ Let’s listen to some more music.
       <pubDate>Wed, 01 Jul 2015 01:05:52 +0800</pubDate>
       
       <guid>//blog.vero.site/post/double-post</guid>
-      <description>20 posts so far in my daily streak, ignoring the time I posted after midnight but including exactly one of this post and the commitment-starting post. You pick which one. The arithmetic works out either way. My last four posts have been made with less than two minutes to spare before midnight, and my last post in particular made it by just seven seconds. This is working as intended in that I’ve knocked out nine drafts that I’m pretty sure would have rotted in my draft folder for at least a few more months otherwise, and I’ve also jotted down more spontaneous thoughts and posted them instead of postponing them until they was too late to be applicable.</description>
+      <description>&lt;p&gt;20 posts so far in my &lt;a href=&#34;//blog.vero.site/post/commitment&#34; /&gt;daily streak&lt;/a&gt;, ignoring the time I posted after midnight but including exactly one of this post and the commitment-starting post. You pick which one. The arithmetic works out either way. My last four posts have been made with less than two minutes to spare before midnight, and my last post in particular made it by just seven seconds. This is working as intended in that I’ve knocked out nine drafts that I’m pretty sure would have rotted in my draft folder for at least a few more months otherwise, and I’ve also jotted down more spontaneous thoughts and posted them instead of postponing them until they was too late to be applicable. But this is also a problem because I can’t spend every day procrastinating blogging and then frantically blogging before midnight — I have some serious programming work to do, and a talk to prepare for, and, of course, linear algebra homework!!!&lt;/p&gt;
+&lt;p&gt;I’m kind of stuck here so&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -177,36 +169,6 @@ Over time I tend to hoard stuff here.</description>
     </item>
     
     <item>
-      <title>8 Songs for 18 Years</title>
-      <link>//blog.vero.site/post/8-songs</link>
-      <pubDate>Fri, 19 Jun 2015 13:40:30 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/8-songs</guid>
-      <description>&lt;p&gt;At some point I thought, hmm, maybe this blog would benefit from some more sentimental, memory-capturing music/videos, like I chose for my &lt;a href=&#34;//blog.vero.site/post/time&#34;&gt;end of 2013 post&lt;/a&gt; or my &lt;a href=&#34;//blog.vero.site/post/rewind&#34;&gt;end of 2014 post&lt;/a&gt;. (Yeah, I link to my own posts alarmingly often. I think that’s kind of weird. I don’t know.)&lt;/p&gt;
-&lt;p&gt;Obviously, because you’re reading this already, I decided to follow through with that idea. There’s no particular significance for posting this now — it’s not my birthday or anything, as the title might suggest; it just has a nice ring to it — except of course that I’m starting to get mildly desperate for content for my &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak exercise&lt;/a&gt;. Standard disclaimers apply.&lt;/p&gt;
-&lt;p&gt;This is mostly for my future self. I should note that, although I like these songs, this is not a list of my absolute most favorite songs ever. You can tell because there isn’t any Coldplay or fun. (the band.) Instead, each of these songs was chosen to be meaningful to myself and my life in at least two different ways that generally don’t overlap with the other songs. This was difficult but I think I managed it — you know, how constraint breeds creativity and everything? Also, they’re arranged by approximate chronological order of impact. But it also means that this list isn’t going to be that meaningful to anybody other than myself.&lt;/p&gt;
-&lt;p&gt;Also, I have a long list of class-of-2015 sentimental songs, which I’m not including here because I think there are so many that they deserve a separate post. Will I avoid procrastinating and feeling awkward for long enough to make such a post? Stay tuned!&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;shrugs&lt;/em&gt; Whatever, enjoy the music or stop reading now if you want.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1: Simon &amp;amp; Garfunkel - Scarborough Fair/Canticle&lt;/strong&gt; 
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/-Jj4s9I-53g&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-  Not only is Scarborough Fair one of my mom’s favorite songs, I’ve bumped into it three entirely separate times while solving puzzles. I always love counterpoint and I find the effect here especially haunting.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>rekt</title>
-      <link>//blog.vero.site/post/rekt</link>
-      <pubDate>Tue, 16 Jun 2015 00:36:06 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/rekt</guid>
-      <description>&lt;p&gt;Darn, I only lasted four days. That’s pretty bad.&lt;/p&gt;
-&lt;p&gt;And I broke like 90% of my HabitRPG streaks too. I was busy running Monte-Carlo calculations to estimate the number of domino logic puzzles, and forgot about midnight. Okay, before that I spent twice as much time on &lt;a href=&#34;http://www1.flightrising.com/&#34;&gt;Flight Rising&lt;/a&gt; for whatever reason. Bad life decisions.&lt;/p&gt;
-&lt;p&gt;I guess that means today I have to post one now, before going to sleep, and one later. Eh, time to harvest really weird mini-posts from nowhere.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>College Emails</title>
       <link>//blog.vero.site/post/college-emails</link>
       <pubDate>Sat, 13 Jun 2015 09:08:33 +0800</pubDate>
@@ -229,25 +191,6 @@ Over time I tend to hoard stuff here.</description>
 &lt;p&gt;These rules are not completely rigorous because I don’t know them completely rigorously. You can use common sense to reach a consensus in corner cases.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Use a normal deck of playing cards, or two or more identical decks if you want. Deal five cards to each player and set the rest aside to form a draw pile. Cards are played into a discard pile in the center. Players sit in an approximate circle and take turns along the circle, playing one card and then, usually, drawing one replacement card from the draw pile, so in normal 99, hands stay at five cards. When the draw pile runs out, shuffle the discard pile to become the new draw pile.  There is a “running total” in the game, an integer that starts at 0. Normal cards add their value to the running total when played. The total cannot become greater than 99, hence the name. If you have no cards that could keep it less than or equal to 99, you lose. In that case, the turn passes to the next player and the game continues until only one player remains, or until players get bored and decide to play something else.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Numbers</title>
-      <link>//blog.vero.site/post/numbers</link>
-      <pubDate>Mon, 20 Oct 2014 00:00:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/numbers</guid>
-      <description>Continuing the porting of stuff from betaveros.stash, and adding more stuff.
-Mnemonic Here’s my mnemonic table for digits, inspired by an old Martin Gardner column. I wrote from memory the first 132 digits of 2012! correctly at IMO 2012 with this table. I had remembered more, but unfortunately, if I recall correctly, I confused myself over whether I had encoded a 5 or a 2 by the S of “nose”, because this is supposed to be more of a phonetic code than a spelling one — otherwise double letters would be confusing and lots of randomly appearing digraphs would be wasted, because English is weird.</description>
-    </item>
-    
-    <item>
-      <title>74 Days</title>
-      <link>//blog.vero.site/post/74-days</link>
-      <pubDate>Fri, 27 Dec 2013 18:14:21 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/74-days</guid>
-      <description>&lt;p&gt;I did it!&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -297,19 +240,6 @@ soft
     </item>
     
     <item>
-      <title>More Random Blathering</title>
-      <link>//blog.vero.site/post/more-random-blathering</link>
-      <pubDate>Sun, 16 Aug 2009 21:47:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/more-random-blathering</guid>
-      <description>&lt;div class=&#34;warning&#34;&gt;
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2009 self wrote this. It is preserved for historical interest and amusement only, and does not reflect my current beliefs or attitudes.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Somehow my cousin deleted the Eragon game from his PSP. Ah well, it was fun while it lasted. Current project: get that secretary-problem paper done. It looks much nicer now, due to the references and big bold titles.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>A (****) of a Lot of (****)</title>
       <link>//blog.vero.site/post/a-lot-of</link>
       <pubDate>Fri, 12 Dec 2008 21:41:00 +0800</pubDate>
@@ -321,19 +251,6 @@ soft
 &lt;p&gt;Arvorie has just spammed my email account with three emails, two of them talking about palindromes.&lt;/p&gt;
 &lt;p&gt;“What? The fat in your head?”&lt;/p&gt;
 &lt;p&gt;My latest hard cryptogram, used with a substitution cipher:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Peanut Butter Viscosity</title>
-      <link>//blog.vero.site/post/peanut-butter-viscosity</link>
-      <pubDate>Mon, 29 Sep 2008 08:44:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/peanut-butter-viscosity</guid>
-      <description>&lt;div class=&#34;warning&#34;&gt;
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2008 self wrote this. It is selectively preserved for historical interest and amusement from a lot of similar, chronologically nearby posts. That’s all.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Note to self: PB gets stickier when toasted. Slightly strange because under heat it should flow easier, but it’s probably the same principle as the way cement works.&lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;</description>
     </item>
     

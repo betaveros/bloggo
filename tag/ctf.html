@@ -143,7 +143,7 @@ Tag → ctf
 <p>This was the first <a href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a> (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like <code>until</code>, no pwntools utilities for packing/unpacking numbers, … no <code>one_gadget</code>), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use <code>gdb</code> (or fictionalized web knockoffs thereof).</p>
 <p></p>
 	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/plc">→ read more</a>
+		<a class="read-more" href="//blog.vero.site/post/plc">→ read more<span class="offscreen"> PLC</span></a>
 	</footer>
 </article>
 
@@ -175,7 +175,7 @@ Tag → ctf
 <p>For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not <code>P6</code>, it complains:</p>
 <p></p>
 	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/proprietary-format">→ read more</a>
+		<a class="read-more" href="//blog.vero.site/post/proprietary-format">→ read more<span class="offscreen"> Proprietary Format</span></a>
 	</footer>
 </article>
 
@@ -208,7 +208,7 @@ Tag → ctf
 <p>There are two more commands, <code>/secret</code> and <code>/ban</code>, which are in the server source code and also described in comments in the HTML source if you didn’t notice:</p>
 <p></p>
 	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/cat-chat">→ read more</a>
+		<a class="read-more" href="//blog.vero.site/post/cat-chat">→ read more<span class="offscreen"> Cat Chat</span></a>
 	</footer>
 </article>
 
@@ -239,7 +239,7 @@ Tag → ctf
 <p><img src="/img/js-safe-2-empty.png" alt="Screenshot of JS Safe 2.0 with a text box and a cube" /></p>
 <p></p>
 	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/js-safe-2">→ read more</a>
+		<a class="read-more" href="//blog.vero.site/post/js-safe-2">→ read more<span class="offscreen"> JS Safe 2.0</span></a>
 	</footer>
 </article>
 
@@ -283,7 +283,7 @@ Tag → ctf
 <p>The goal is to read the flag from the open MySQL connection.</p>
 <p></p>
 	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/shellql">→ read more</a>
+		<a class="read-more" href="//blog.vero.site/post/shellql">→ read more<span class="offscreen"> shellql</span></a>
 	</footer>
 </article>
 
@@ -316,7 +316,7 @@ Tag → ctf
 <div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="dv">6</span></div></code></pre>
 <p></p>
 	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/doggo">→ read more</a>
+		<a class="read-more" href="//blog.vero.site/post/doggo">→ read more<span class="offscreen"> Pupper/Doggo</span></a>
 	</footer>
 </article>
 
@@ -347,7 +347,7 @@ Tag → ctf
 </figure>
 <p></p>
 	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/messy-desk">→ read more</a>
+		<a class="read-more" href="//blog.vero.site/post/messy-desk">→ read more<span class="offscreen"> Messy Desk</span></a>
 	</footer>
 </article>
 
@@ -379,7 +379,7 @@ Tag → ctf
 <p>Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from <a href="https://github.com/betaveros/xxb"><code>xxb</code></a> but <code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
 <p></p>
 	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/thoroughly-stripped">→ read more</a>
+		<a class="read-more" href="//blog.vero.site/post/thoroughly-stripped">→ read more<span class="offscreen"> Thoroughly Stripped</span></a>
 	</footer>
 </article>
 
@@ -407,7 +407,7 @@ Tag → ctf
 <p>Disassembling the executable produces a huge amount of code. There are some basic obfuscations like a lot of trivial identity functions nested in each other, and a few functions that wrap around identity functions but just add some constant multiple of 16. Most of the meat is in one very large function, though. If you disassemble this function with IDA, you see a lot of variable initializations and then a lot of interesting loops that are quite similar:</p>
 <p></p>
 	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/sakura">→ read more</a>
+		<a class="read-more" href="//blog.vero.site/post/sakura">→ read more<span class="offscreen"> Sakura</span></a>
 	</footer>
 </article>
 

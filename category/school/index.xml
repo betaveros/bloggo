@@ -50,6 +50,16 @@
     </item>
     
     <item>
+      <title>Adventures in Unicode Forensics</title>
+      <link>//blog.vero.site/post/unicode-forensics</link>
+      <pubDate>Sun, 17 May 2015 23:24:11 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/unicode-forensics</guid>
+      <description>What do you do when you get a bunch of files like this from a zipfile?
+   I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing.   Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester.</description>
+    </item>
+    
+    <item>
       <title>Re-Re-Revisiting the SAT</title>
       <link>//blog.vero.site/post/sat</link>
       <pubDate>Sat, 08 Feb 2014 00:54:03 +0800</pubDate>
@@ -63,19 +73,6 @@
 &lt;blockquote&gt;
 the correlation of HSGPA [high-school GPA] and FYGPA [first-year GPA in college] is 0.36 (Adj. r = 0.54), which is slightly higher than the multiple correlation of the SAT (critical reading, math, and writing combined) with FYGPA (r = 0.35, Adj. r = 0.53).
 &lt;/blockquote&gt;</description>
-    </item>
-    
-    <item>
-      <title>Music</title>
-      <link>//blog.vero.site/post/music</link>
-      <pubDate>Sat, 22 Jun 2013 23:13:54 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/music</guid>
-      <description>&lt;p&gt;Isn’t it weird to suddenly talk about this topic?&lt;/p&gt;
-&lt;p&gt;I don’t think that I have ever talked about music any more than briefly in passing. It might be confusing to my &lt;em&gt;finger quotes&lt;/em&gt; &lt;em&gt;audience&lt;/em&gt;, and I worry I’ll seem inconsistent.&lt;/p&gt;
-Well, a foolish consistency is the hobgoblin of little minds. If you wonder, “I didn’t know that you sang and played the piano, or you liked music in that way — or, at all…” please note that I didn’t know either. 
-&lt;hr /&gt;
-&lt;p&gt;For most of my life, I was just a shower singer to myself.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -109,6 +106,17 @@ soft
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;malapert : effrontery :: argute :&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Φllotaxy</title>
+      <link>//blog.vero.site/post/phyllotaxy</link>
+      <pubDate>Thu, 04 Apr 2013 13:49:55 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/phyllotaxy</guid>
+      <description>This is beautiful. Why do they have to make it sound all mysterious and difficult? That’s (the reciprocal of) the golden ratio, by the way.
+
+Transcript since the resolution is far from awesome: “Most angiosperms have alternate phyllotaxy, with leaves arranged in an ascending spiral around the stem, each successive leaf emerging 137.5° from the site of the previous one. Why 137.5°? Mathematical analyses suggest that this angle minimizes shading of the lower leaves by those above.</description>
     </item>
     
     <item>
@@ -155,17 +163,6 @@ soft
 Exhibit A: mathematical analysis/advanced calculus notes, circa 2010
 &lt;/figcaption&gt;
 &lt;/figure&gt;</description>
-    </item>
-    
-    <item>
-      <title>Bilingualism</title>
-      <link>//blog.vero.site/post/bilingualism</link>
-      <pubDate>Sun, 12 Feb 2012 22:11:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/bilingualism</guid>
-      <description>&lt;p&gt;So, as triggered by my confrontation with the Chinese book report (remember? whatever the answer is, it’s okay): a reflection on my incompetence at dealing with two languages, and why this matters, or not.&lt;/p&gt;
-&lt;p&gt;I can think in both languages. It’s a natural product of our school environment. The two languages often have to complement each other; most of the nerdy terms or globally relevant allusions are English-exclusive (I couldn’t talk coherently about SOPA in any language other than English!), but a lot of cultural and geographical staples around here are Chinese only. And sometimes there are unexpected holes where an innocuous-looking phrase simply has a few too many connotations to translate perfectly (the example I always get stuck on, and have yet to solve satisfactorily with anything short of a full sentence recasting, is “appreciate”.)&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -216,21 +213,6 @@ Exhibit A: mathematical analysis/advanced calculus notes, circa 2010
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This post is backdated. I am writing this post in 2018 because, as part of the &lt;a href=&#34;//blog.vero.site/post/remigration&#34;&gt;Big 2017 Remigration&lt;/a&gt;, I have decided to delete most of the posts because they were too embarrassing and sparse on information, but figured I might keep a rundown of the highlights.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;2006, on this blog:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Your Typical Friday</title>
-      <link>//blog.vero.site/post/your-typical-friday</link>
-      <pubDate>Fri, 08 Sep 2006 19:15:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/your-typical-friday</guid>
-      <description>&lt;div class=&#34;warning&#34;&gt;
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2006 self wrote this. It is preserved for historical interest (as the first post ever made on this blog) and amusement, and is not representative of my current beliefs or attitudes.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Today was an… ordinary special day. Well, an ordinary day from all aspects, but a special day if you count the way everybody got hyperactive after lunch.&lt;/p&gt;
-&lt;p&gt;Well, duh!&lt;/p&gt;
-&lt;p&gt;Just your typical Friday. Typical Fridays, we get computer class. And I can repeat it again.&lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;</description>
     </item>
     

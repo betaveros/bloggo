@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8" />
+	
+	<title>Rankk Solving Statistics</title>
+	
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="Funny, I go on a trip to Penghu followed by a four-day science camp and also get dragged into drawing classes and some sort of movie advising joint, and this is what I decide to blog about.
+Since it’s summer, I went back to Rankk and solved stuff. This is lots of fun if you’re good with computers, plus a little math, cryptography, and general puzzling. I’m still stuck on level 8… oh well. Since the levels didn’t seem very indicative of difficulty to me, I decided to do some analysis.
+" />
+
+
+
+<meta name="generator" content="Hugo 0.50-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/rankk-stats" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Rankk Solving Statistics</h1>
+		
+		<p class="post-meta">
+		
+		2013-07-18
+		(1139 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>Funny, I go on a trip to Penghu followed by a four-day science camp and also get dragged into drawing classes and some sort of movie advising joint, and this is what I decide to blog about.</p>
+<p>Since it’s summer, I went back to <a href="http://www.rankk.org/">Rankk</a> and solved stuff. This is lots of fun if you’re good with computers, plus a little math, cryptography, and general puzzling. I’m still stuck on level 8… oh well. Since the levels didn’t seem very indicative of difficulty to me, I decided to do some analysis.</p>
+<p>New challenges have been added to Rankk over time, so my metric of difficulty is the number of solvers divided by the time from release to now. Of course this is far from perfect; for example, a challenge’s author doesn’t always seem consistently counted as a solver, problems with lower numbers and problems that will help level up are more likely to get checked out by new rankkers, and so on. But this is just for fun.  <strong><em>Disclaimer:</em></strong> I don’t think this goes against the spirit of Rankk since I say absolutely nothing about what the actual contents of challenges are and all these statistics are publicly available (in one place under “stats &gt; By challenges”). If you are somebody important and disagree then please tell me; I’m sure you can find my contact information :P . I can find virtually no precedent for posting about this stuff, but the FAQ encourages people to “Blog about Rankk or your Rankk journey”, so here it is.</p>
+<p><a href="https://docs.google.com/spreadsheet/ccc?key=0AhaZRLmCc_z8dFhSX1dJcmhrN3kycjhwOWplN19QSkE#gid=0"><strong>The sorted data is here</strong></a>. <del datetime="2015-02-18T08:00:23+00:00">It uses the =NOW() function because I’m lazy, so the metric might be affected even if nobody solves any more challenges.</del> Plus, given so few solvers for the top challenges, this metric is extremely volatile and everything below might be invalidated in a few days or sooner (I wouldn’t be surprised if it might even cause its own invalidation). But again this is just for fun. What does it say about difficulty?</p>
+<p>edit: Sphinx linked to this! Yeah so it’s probably ok. I went back and, I hope, future-proofed a copy of the sheet as of time of original post; apparently not as much has changed as I feared.</p>
+<p>edit: …and I just realized I subtracted by the wrong column <em>facepalm</em> Still luckily, not much has changed. I’ve only had to swap a few challenges to retroactively correct this.</p>
+<ins datetime="2015-02-18T08:00:23+00:00">
+ETA 2015-02-18: Since I wrote this post, I’ve future-proofed it and copied the statistics several different times, and I’ll probably keep doing this whenever I remember because it takes about four minutes to do. It’s interesting to see the change. <a href="https://docs.google.com/spreadsheet/ccc?key=0AhaZRLmCc_z8dFhSX1dJcmhrN3kycjhwOWplN19QSkE#gid=0">The stats are in the same place</a> linked above.
+</ins>
+<p><strong>8/2 ToeJam</strong> (7 solved), which people like to refer to as the prototypical “hard challenge”, is only 11th hardest.</p>
+<p>The top 10 hardest (parenthetical numbers are solver counts) are: <strong>4/30 Dice rolls</strong> (2), <strong>4/31 Byte swapping</strong> (3), <strong>4/47 Disguise</strong> (1), <strong>4/26 Incarnation</strong> (4), <strong>5/25 Dice rolls II</strong> (2), <strong>6/13 Time for church</strong> (2), <strong>4/45 Meteoroid</strong> (2), <strong>4/37 Letterboxes</strong> (5), <strong>5/15 Stronger algorithm</strong> (6), <strong>4/40 Signal to noise</strong> (4). This might suggest that the metric overestimates the difficulty of more recent challenges, since fewer solvers will see them or will put extra effort into them in trying to advance to the next level. Alternatively, maybe it just says that new challenges are usually added to middle levels to preserve the higher levels’ selectiveness, even if they’re really hard. But at least <strong>5/15 Stronger algorithm</strong> seems definitely hard, since it was only released four months after ToeJam and still has fewer solvers.</p>
+<p>Huh, now I’m even more curious if there really is a lot more to 4/30 than I’m seeing.</p>
+<p>The hardest challenge from each level, sorted from hardest to easiest: <strong>4/30 Dice rolls</strong> (2), <strong>5/25 Dice rolls II</strong> (2), <strong>6/13 Time for church</strong> (2), <strong>8/2 Meet ToeJam</strong> (7), <strong>3/67 Holy Rankk Transform</strong> (4), <strong>2/49 IRC II</strong> (13), <strong>9/1 The showdown</strong> (26), <strong>7/2 Mummified</strong> (27), <strong>1/43 Nothing like home</strong> (53).</p>
+<p>Yes, <em>every level except for <strong>(edit:) 1 and 7</strong> has a harder challenge than the final Level 9 challenge</em>. For more comparison: <strong>1/43</strong> is right above <strong>6/2 SQL injection</strong> (71) and slightly above <strong>7/3 Eliza speak</strong> (71). No wonder I can’t solve it.</p>
+The path of least resistance an average rankker would take to become Geb (i.e. the 10 - <i>n</i> easiest challenges for each level <i>n</i>) would be:
+<ol>
+<li>
+1/1 Really elementary, 1/2 Easy Javascript, 1/4 Python 101, 1/13 True or false, 1/6 The nth term, 1/3 Hieroglyphics math, 1/15 Basecamp, 1/22 Easy stegano, 1/25 Weak password
+</li>
+<li>
+2/3 View me, 2/15 Sheep and goats, 2/1 Shhh, 2/10 HTML encode, 2/4 Hit the dots!, 2/19 Nonograms I, 2/67 Let’s Program 1A, 2/24 Python 102
+</li>
+<li>
+3/10 Sudoku I, 3/11 Guess the number, 3/19 Nonograms II, 3/12 Eight commands, 3/36 Regex revisit, 3/28 Squeeze me not, 3/1 Camel programming
+</li>
+<li>
+4/1 A special browser, 4/18 Regex final, 4/4 Move it, 4/5 Crypto entrance test, 4/19 Weak algorithm II, 4/6 Sudoku II
+</li>
+<li>
+5/2 Too slow!, 5/8 Averages, 5/12 Rotation, 5/10 Convert and count, 5/11 Best product
+</li>
+<li>
+6/3 Linked list, 6/5 Ascii art, 6/4 All but one, 6/6 Hangman
+</li>
+<li>
+7/5 Invisible captcha, 7/1 Proxy hunting, 7/6 The returning knight
+</li>
+<li>
+8/3 The odd one, 8/1 Formless
+</li>
+<li>
+9/1 The showdown
+</li>
+</ol>
+<p>There’s a cute mix of challenges for levels 1 to 4; after that, programming becomes very clearly the best means of proceeding.</p>
+<p>Stuff about myself:</p>
+<p>The hardest challenge I have solved is <strong>4/37 Letterboxes</strong>, followed by <strong>4/33 Primeval painting</strong> and then <strong>5/28 Cyclic Redundancy Chase</strong>. I find this… pretty funny. 4/37 is harder than ToeJam. What.</p>
+<p>The easiest challenge I have not solved seems to be <strong>3/28 Squeeze me not</strong>, followed by <strong>1/57 Challenge tube</strong>. I really can’t. Don’t tell me.</p>
+For some comparison, my level-advancement challenges were:
+<ol>
+<li>
+1/1 Really elementary, 1/2 Easy Javascript, 1/6 The nth term, 1/13 True or false, 1/34 Lisp I, 1/18 Number of ways, 1/21 Frame of mind, 1/15 Basecamp, 1/41 Bye intruder
+</li>
+<li>
+2/1 Shhh, 2/3 View me, 2/6 Don’t blink, 2/7 Be alert, 2/12 Hackers’ Camp 1A, 2/13 Intersection, 2/9 Into the future, 2/24 Python 102
+</li>
+<li>
+3/2 Brackets rulez!, 3/11 Guess the number, 3/1 Camel programming, 3/42 Weak algorithm, 3/19 Nonograms II, 3/10 Sudoku I, 3/18 Labourer tag
+</li>
+<li>
+4/1 A special browser, 4/18 Regex final, 4/13 Gray matter, 4/33 Primeval painting, 4/25 Ancient math, 4/19 Weak algorithm II
+</li>
+<li>
+5/6 Chamber door, 5/9 Pinch mark, 5/2 Too slow!, 5/8 Averages, 5/16 Baa baa blacksheep
+</li>
+<li>
+6/3 Linked list, 6/7 Traversal, 6/9 Amazing, 6/4 All but one
+</li>
+<li>
+7/8 Gen8:17, 7/7 Jackpot, 7/9 26!
+</li>
+<li>
+8/3 The odd one, (???)
+</li>
+<li>
+(???)
+</li>
+</ol>
+<p>The biggest abnormality is in level 7 — the three of my chosen challenges were the second- to fourth-hardest level 7 challenges, and are all harder than 8/1 Formless. I’m weird.</p>
+<p>…I need to start my summer homework…</p></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/rankk"><span class="tag">Rankk</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/music">← Music</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/puzzle-42">Puzzle 42 / Fillomino [Greater-Than] →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2019 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>
