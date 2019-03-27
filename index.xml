@@ -6,10 +6,23 @@
     <description>Recent content on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Feb 2019 16:01:01 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 27 Mar 2019 18:26:41 -0400</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>refrain</title>
+      <link>//blog.vero.site/post/refrain</link>
+      <pubDate>Wed, 27 Mar 2019 18:26:41 -0400</pubDate>
+      
+      <guid>//blog.vero.site/post/refrain</guid>
+      <description>&lt;pre&gt;&lt;code&gt;http://111.186.63.17/perf.data.gz
+
+Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this challenge, we get a gzipped file called &lt;code&gt;perf.data&lt;/code&gt; and a minimal description of an environment. Googling this reveals that &lt;code&gt;perf.data&lt;/code&gt; is a record format of the &lt;code&gt;perf&lt;/code&gt; tool, a Linux profiler. Installing &lt;code&gt;perf&lt;/code&gt; allows us to read &lt;code&gt;perf.data&lt;/code&gt; and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is &lt;code&gt;perf report -D&lt;/code&gt;, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the &lt;code&gt;perf record&lt;/code&gt; was run against.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Olympiads: The Infinitely Overdue Retrospective</title>

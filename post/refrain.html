@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8" />
+	
+	<title>refrain</title>
+	
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="http://111.186.63.17/perf.data.gz Environment: Ubuntu 16.04&#43;latex In this challenge, we get a gzipped file called perf.data and a minimal description of an environment. Googling this reveals that perf.data is a record format of the perf tool, a Linux profiler. Installing perf allows us to read perf.data and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is perf report -D, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the perf record was run against.
+
+" />
+
+
+
+<meta name="generator" content="Hugo 0.50-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/refrain" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">refrain</h1>
+		
+		<h2 class="post-subtitle">0CTF/TCTF 2019 Quals</h2>
+		
+		<p class="post-meta">
+		
+		2019-03-27
+		(2427 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><pre><code>http://111.186.63.17/perf.data.gz
+
+Environment: Ubuntu 16.04+latex</code></pre>
+<p>In this challenge, we get a gzipped file called <code>perf.data</code> and a minimal description of an environment. Googling this reveals that <code>perf.data</code> is a record format of the <code>perf</code> tool, a Linux profiler. Installing <code>perf</code> allows us to read <code>perf.data</code> and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is <code>perf report -D</code>, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the <code>perf record</code> was run against.</p>
+<p></p>
+<pre><code>0x6178 [0xa8]: event: 10
+.
+. ... raw event: size 168 bytes
+.  0000:  0a 00 00 00 02 00 a8 00 e7 61 00 00 e7 61 00 00  .........a...a..
+.  0010:  00 00 40 00 00 00 00 00 00 10 00 00 00 00 00 00  ..@.............
+.  0020:  00 00 00 00 00 00 00 00 fd 00 00 00 00 00 00 00  ................
+.  0030:  ad 5e 46 00 00 00 00 00 71 95 13 17 00 00 00 00  .^F.....q.......
+.  0040:  05 00 00 00 02 18 00 00 2f 75 73 72 2f 6c 69 62  ......../usr/lib
+.  0050:  2f 78 38 36 5f 36 34 2d 6c 69 6e 75 78 2d 67 6e  /x86_64-linux-gn
+.  0060:  75 2f 49 6d 61 67 65 4d 61 67 69 63 6b 2d 36 2e  u/ImageMagick-6.
+.  0070:  38 2e 39 2f 62 69 6e 2d 51 31 36 2f 63 6f 6e 76  8.9/bin-Q16/conv
+.  0080:  65 72 74 00 00 00 00 00 e7 61 00 00 e7 61 00 00  ert......a...a..
+.  0090:  43 be 7a 60 88 a8 00 00 00 00 00 00 00 00 00 00  C.z`............
+.  00a0:  15 00 00 00 00 00 00 00                          ........        </code></pre>
+<p>(Better places you may be able to get this from include <code>perf buildid-list</code>. Also, <code>perf script &gt;/dev/null</code> will warn about missing libraries on stderr, which will be useful. More on that later.)</p>
+<p>Another useful command is <code>perf report --header-only</code>, which gives, among other stuff:</p>
+<pre class="wrap"><code># cmdline : /usr/lib/linux-hwe-tools-4.10.0-42/perf record -e intel_pt// convert -font Courier text:- image.png</code></pre>
+<p>This tells us the exact command that was profiled with <code>perf</code>: it was <code>convert -font Courier text:- image.png</code>, an ImageMagick command that reads text from stdin (presumably the flag) and renders it to a PNG image.</p>
+<p>As for the <code>perf</code> invocation, the <code>intel_pt//</code> bit refers to Intel Processor Trace, a source of kernel events that tracks, among other things, whether each conditional branch was taken. It doesn’t track much more than that — much of the data is really just an encoded sequence, representing Ts (“taken”) and Ns (“not taken”), which you can see in <code>perf report -D</code> — but if you have the exact same executable and libraries that the command used, this is enough to perfectly reconstruct the control flow since you can trace the assembly and know what the next branch instruction is at all times. I did this challenge on a laptop running Ubuntu 18.04 and quickly concluded that I didn’t have the same libraries. Fortunately, I had a 16.04 VM that mostly did, so I could get better <code>perf report</code>s in the VM. I also played with the <code>perf script</code> command, which produces at least gigabytes of data, but reports the names and addresses involved in every conditional branch to the best of its ability in a format of millions of lines like this, which can be grepped through.</p>
+<pre class="small wrap"><code>         convert 32608 [002] 1659210.049834:          1     branches:      7f794df893e9 strcmp (/lib/x86_64-linux-gnu/ld-2.27.so) =&gt;     7f794df8a250 strcmp (/lib/x86_64-linux-gnu/ld-2.27.so)</code></pre>
+<p>Now, we need to figure out a place where this information theoretically allows us to reconstruct the text drawn by <code>convert</code>. This is not that easy. The trace only shows us conditional branches, not anything about the value of any data that’s being computed or passed around, and a lot of the time different characters or different pixels aren’t going to cause different control flow; they’ll just be passed around like any other character or pixel value. After a while digging through the ImageMagick source and stepping through some test executions of <code>convert</code> in <code>gdb</code>, I homed in on the calls to the FreeType library, in particular <code>FT_Glyph_To_Bitmap</code>, as the most likely place where different characters would lead to different control flow, although I wasn’t certain until I actually wrote the code that it would work. The idea is that different glyphs will have different numbers of strokes and lead to different numbers of pixels being drawn and such, which will change the control flow.</p>
+<p>Even with this idea, though, it’s incredibly hard to actually reason through the control flow for every glyph just to reconstruct each character. This could involve reasoning about subtle differences among hundreds of branches across thousands of lines of assembly. Instead, we’d much rather let the computer do the work for us by running the same <code>convert</code> command against the same libraries on known plaintexts and compare the branching patterns we record against those.</p>
+<p>Unfortunately, although I could read the <code>perf report</code> on my VM, I couldn’t get Intel PT recording to work in it, which isn’t that surprising since it has to interact with the processor on a very low level to work. So I ended up finding and forcibly downgrading <code>libfreetype6</code> to <code>2.6.1-0.1ubuntu2.3</code> on my host laptop, the exact same version that was in my VM and that the challenge was recorded against. This was enough to make things like <code>perf script</code> find the symbols it wanted, and to let us make reference recordings that had the same branching behavior per glyph to the given recording for at least the time it spends in <code>libfreetype6</code>.</p>
+<p>ASLR means that the addresses being branched between won’t be identical from run to run, but it will still preserve addresses mod 2<sup>12</sup>, so you can get pretty solid fingerprints out of just taking the last three hex digits of all addresses involved.</p>
+<p>After a lot of exploratory grepping, I figured out a conditional branch I liked, which occurred at something <code>0x132 FT_Glyph_To_Bitmap</code>. I grepped for this line and a thousand lines after it out of <code>perf script</code> (since I assumed that <code>grep</code> would be able to get through the millions of lines more efficiently than a casually written Python script) and then postprocessed with a Python script to extract some hashes of the branching patterns, which could be compared against hashes produced the same way from the given <code>perf.data</code>. Trying this out against some very simple <code>perf.data</code> I made confirmed that the same letters seemed to be giving the same fingerprints (although the entire text seemed to be rendered four times with a few fixed calls before and after repetitions, but this was not hard to ignore).</p>
+<p>Just to give an example, here’s the result of recording the conversion of <code>flag{aaabbbcccddd}</code> and postprocessing, with lines cut off at the right because all the lines are thousands of characters long. The lines look identical except for the hashes at the end because they don’t diverge until hundreds of characters in, but the hash at the end lets us see identical and different branching behavior easily. In particular, you can see <code>feb2cf</code>, <code>01c5bc</code>, <code>20a3ce</code>, and <code>115279</code> each repeat three times each, suggesting they correspond to the renderings of glyphs <code>a</code>, <code>b</code>, <code>c</code>, and <code>d</code> respectively. Then you can confirm that <code>feb2cf</code> reappears just a few lines earlier, corresponding to the <code>a</code> of <code>flag</code>. The whole thing repeats four times, surrounded and delimited by <code>75a768</code> and with a single extra <code>1c418a</code> at the start, whose significance I’m not sure of, but since those hashes appear in the same positions in the fingerprints from the challenge recording we don’t need to worry about them.</p>
+<pre><code>1c418a 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+75a768 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+43dffc 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+92c2d1 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+6db238 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+215a7d 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+01c5bc 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+01c5bc 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+01c5bc 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+20a3ce 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+20a3ce 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+20a3ce 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+115279 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+115279 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+115279 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+215a7d 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+75a768 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+43dffc 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+92c2d1 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+6db238 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+215a7d 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+01c5bc 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+01c5bc 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+01c5bc 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+20a3ce 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+20a3ce 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+20a3ce 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+115279 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+115279 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+115279 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+215a7d 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+75a768 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+43dffc 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+92c2d1 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+6db238 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+215a7d 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+01c5bc 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+01c5bc 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+01c5bc 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+20a3ce 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+20a3ce 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+20a3ce 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+115279 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+115279 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+115279 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+215a7d 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+75a768 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+43dffc 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+92c2d1 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+6db238 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+215a7d 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+01c5bc 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+01c5bc 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+01c5bc 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+20a3ce 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+20a3ce 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+20a3ce 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+115279 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+115279 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+115279 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+215a7d 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
+75a768 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc</code></pre>
+<p>I then recorded a reference <code>perf.data</code> like this (the digits are tripled just so, as above, it’s easier to notice the triplets of repeating hashes and slightly error-correct positions):</p>
+<pre class="wrap"><code>echo &#39;flag{abcdefghijklmnopqrstuvwxyz000111222333444555666777888999}&#39; | sudo perf record -e intel_pt// convert -font Courier text:- image.png</code></pre>
+<p>This produces a fingerprint for the next few lines after each branch from <code>0x132 FT_Glyph_To_Bitmap</code>.</p>
+<pre class="wrap"><code>perf script -i perf.data | grep &quot;132 FT_Glyph_To_Bitmap&quot; -A 1000 | python3 post1000.py &gt; pout</code></pre>
+<p>The <code>post1000.py</code> script used in the last step to produce all of the above text dumps is the following extremely hacky snippet, which, for each branch from <code>0x132 FT_Glyph_To_Bitmap</code>, extracts the mod-2<sup>12</sup> addresses along with some capital letters for the next couple branches that land wholly in <code>libfreetype</code>, with the hope that human inspection will be able to recover some information if something goes wrong, and then hashes the result for easy comparison. Nothing went wrong, so the rest of the line didn’t matter. (We don’t expect branches that go outside <code>libfreetype</code> to be deterministic functions of the letter or glyph being drawn — for example, if <code>libfreetype</code> has to <code>malloc</code> any memory, the control flow in <code>malloc</code> can depend chaotically on various allocations that happened earlier on different glyphs or different parts of the processing altogether. For the same reason, we don’t expect recording the 1000 branches after every branch from <code>0x132 FT_Glyph_To_Bitmap</code> to stop at the exact same place in <code>libfreetype</code> control flow, so we only hash a somewhat arbitrary prefix.)</p>
+<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="im">import</span> sys</div>
+<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="im">import</span> hashlib</div>
+<div class="sourceLine" id="3" href="#3" data-line-number="3"></div>
+<div class="sourceLine" id="4" href="#4" data-line-number="4"><span class="kw">def</span> show(buf):</div>
+<div class="sourceLine" id="5" href="#5" data-line-number="5">    s <span class="op">=</span> <span class="st">&#39; &#39;</span>.join(buf)</div>
+<div class="sourceLine" id="6" href="#6" data-line-number="6">    <span class="bu">print</span>(hashlib.sha256(s[:<span class="dv">1000</span>].encode(<span class="st">&#39;utf-8&#39;</span>)).hexdigest()[:<span class="dv">6</span>] <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> s)</div>
+<div class="sourceLine" id="7" href="#7" data-line-number="7"></div>
+<div class="sourceLine" id="8" href="#8" data-line-number="8">line_buf <span class="op">=</span> []</div>
+<div class="sourceLine" id="9" href="#9" data-line-number="9"></div>
+<div class="sourceLine" id="10" href="#10" data-line-number="10"><span class="cf">for</span> line <span class="kw">in</span> sys.stdin:</div>
+<div class="sourceLine" id="11" href="#11" data-line-number="11">    <span class="cf">if</span> <span class="st">&quot;branches:&quot;</span> <span class="kw">in</span> line:</div>
+<div class="sourceLine" id="12" href="#12" data-line-number="12">        _, rest <span class="op">=</span> line.split(<span class="st">&quot;branches:&quot;</span>)</div>
+<div class="sourceLine" id="13" href="#13" data-line-number="13">        <span class="cf">if</span> <span class="st">&quot;132 FT_Glyph_To_Bitmap&quot;</span> <span class="kw">in</span> rest <span class="kw">and</span> line_buf:</div>
+<div class="sourceLine" id="14" href="#14" data-line-number="14">            show(line_buf)</div>
+<div class="sourceLine" id="15" href="#15" data-line-number="15">            line_buf <span class="op">=</span> []</div>
+<div class="sourceLine" id="16" href="#16" data-line-number="16">        <span class="cf">if</span> rest.count(<span class="st">&quot;libfreetype&quot;</span>) <span class="op">&gt;=</span> <span class="dv">2</span>:</div>
+<div class="sourceLine" id="17" href="#17" data-line-number="17">            tok1, tok2, <span class="op">*</span>_ <span class="op">=</span> rest.split()</div>
+<div class="sourceLine" id="18" href="#18" data-line-number="18">            line_buf.append(tok1[<span class="op">-</span><span class="dv">3</span>:] <span class="op">+</span> <span class="st">&#39;&#39;</span>.join(c <span class="cf">for</span> c <span class="kw">in</span> tok2 <span class="cf">if</span> c.isupper()))</div>
+<div class="sourceLine" id="19" href="#19" data-line-number="19"></div>
+<div class="sourceLine" id="20" href="#20" data-line-number="20"><span class="cf">if</span> line_buf:</div>
+<div class="sourceLine" id="21" href="#21" data-line-number="21">    show(line_buf)</div></code></pre>
+<p>After this point I didn’t bother scripting the extraction of the flag, and just spent a few minutes manually comparing the hashes produced from the challenge <code>perf.data</code> against the hashes produced from the known plaintext <code>perf.data</code> and notating the flag’s characters one by one in Vim. This produces the flag:</p>
+<pre><code>flag{1df9e1d99ff7ea50bbe782492430b223}</code></pre></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/ctf"><span class="tag">CTF</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/olympiads">← Olympiads: The Infinitely Overdue Retrospective</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2019 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>
