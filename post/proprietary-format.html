@@ -163,29 +163,29 @@ GCTFCBA</code></pre>
 <p>Anyway, feeding the server characters by hand through <code>nc</code> and manually observing results that look like the output I pasted above is already inaccurate because we are already receiving null bytes and other unprintable characters, so I switched to a <code>pwntools</code> harness to print representations of these characters.</p>
 <p>Probably the first thing I figured out through experimentation is the header of the output, which is always 4 bytes that are always <code>GCTF</code>, followed by 4 bytes that store the width in little-endian format, followed by 4 bytes that store the height in little-endian format. Then there’s data. In addition, all the remaining bytes in the output are always either bytes we inputted or single nybbles.</p>
 <p>Because of this, I wrote a very simple hexdump function into my harness with a terminal-color-coded side bar. In the side bar, printable characters would be displayed normally, characters between 0 and 15 would be displayed as dim red hex digits, and everything else would just be a magenta <code>?</code>.</p>
-<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="im">from</span> __future__ <span class="im">import</span> division, print_function</div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></div>
-<div class="sourceLine" id="3" href="#3" data-line-number="3"><span class="im">import</span> sys</div>
-<div class="sourceLine" id="4" href="#4" data-line-number="4"></div>
-<div class="sourceLine" id="5" href="#5" data-line-number="5"><span class="kw">def</span> terminalify(c):</div>
-<div class="sourceLine" id="6" href="#6" data-line-number="6">    <span class="cf">if</span> <span class="dv">32</span> <span class="op">&lt;=</span> <span class="bu">ord</span>(c) <span class="op">&lt;=</span> <span class="dv">126</span>:</div>
-<div class="sourceLine" id="7" href="#7" data-line-number="7">        <span class="cf">return</span> c</div>
-<div class="sourceLine" id="8" href="#8" data-line-number="8">    <span class="cf">if</span> <span class="bu">ord</span>(c) <span class="op">&lt;</span> <span class="dv">16</span>:</div>
-<div class="sourceLine" id="9" href="#9" data-line-number="9">        <span class="cf">return</span> <span class="st">&#39;</span><span class="ch">\x1b</span><span class="st">[38;5;160m</span><span class="sc">{:X}</span><span class="ch">\x1b</span><span class="st">[0m&#39;</span>.<span class="bu">format</span>(<span class="bu">ord</span>(c))</div>
-<div class="sourceLine" id="10" href="#10" data-line-number="10">    <span class="cf">return</span> <span class="st">&#39;</span><span class="ch">\x1b</span><span class="st">[35m?</span><span class="ch">\x1b</span><span class="st">[0m&#39;</span></div>
-<div class="sourceLine" id="11" href="#11" data-line-number="11"></div>
-<div class="sourceLine" id="12" href="#12" data-line-number="12"><span class="kw">def</span> hexdump(s):</div>
-<div class="sourceLine" id="13" href="#13" data-line-number="13">    <span class="cf">for</span> chunk <span class="kw">in</span> group(<span class="dv">8</span>, s):</div>
-<div class="sourceLine" id="14" href="#14" data-line-number="14">        <span class="bu">print</span>((enhex(chunk).ljust(<span class="dv">17</span>) <span class="op">+</span> <span class="st">&#39;&#39;</span>.join(terminalify(c) <span class="cf">for</span> c <span class="kw">in</span> chunk)))</div>
-<div class="sourceLine" id="15" href="#15" data-line-number="15"></div>
-<div class="sourceLine" id="16" href="#16" data-line-number="16">conn <span class="op">=</span> remote(<span class="st">&#39;proprietary.ctfcompetition.com&#39;</span>, <span class="dv">1337</span>)</div>
-<div class="sourceLine" id="17" href="#17" data-line-number="17">conn.sendline(<span class="st">&#39;P6&#39;</span>)</div>
-<div class="sourceLine" id="18" href="#18" data-line-number="18">conn.sendline(sys.argv[<span class="dv">1</span>] <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> sys.argv[<span class="dv">2</span>])</div>
-<div class="sourceLine" id="19" href="#19" data-line-number="19">conn.sendline(<span class="st">&#39;255&#39;</span>)</div>
-<div class="sourceLine" id="20" href="#20" data-line-number="20">conn.sendline(sys.argv[<span class="dv">3</span>])</div>
-<div class="sourceLine" id="21" href="#21" data-line-number="21">conn.shutdown(<span class="st">&#39;send&#39;</span>)</div>
-<div class="sourceLine" id="22" href="#22" data-line-number="22">res <span class="op">=</span> conn.recvall()</div>
-<div class="sourceLine" id="23" href="#23" data-line-number="23">hexdump(res)</div></code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="im">from</span> __future__ <span class="im">import</span> division, print_function</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="im">import</span> sys</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">def</span> terminalify(c):</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">    <span class="cf">if</span> <span class="dv">32</span> <span class="op">&lt;=</span> <span class="bu">ord</span>(c) <span class="op">&lt;=</span> <span class="dv">126</span>:</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">        <span class="cf">return</span> c</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">    <span class="cf">if</span> <span class="bu">ord</span>(c) <span class="op">&lt;</span> <span class="dv">16</span>:</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">        <span class="cf">return</span> <span class="st">&#39;</span><span class="ch">\x1b</span><span class="st">[38;5;160m</span><span class="sc">{:X}</span><span class="ch">\x1b</span><span class="st">[0m&#39;</span>.<span class="bu">format</span>(<span class="bu">ord</span>(c))</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">    <span class="cf">return</span> <span class="st">&#39;</span><span class="ch">\x1b</span><span class="st">[35m?</span><span class="ch">\x1b</span><span class="st">[0m&#39;</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="kw">def</span> hexdump(s):</a>
+<a class="sourceLine" id="cb7-13" data-line-number="13">    <span class="cf">for</span> chunk <span class="kw">in</span> group(<span class="dv">8</span>, s):</a>
+<a class="sourceLine" id="cb7-14" data-line-number="14">        <span class="bu">print</span>((enhex(chunk).ljust(<span class="dv">17</span>) <span class="op">+</span> <span class="st">&#39;&#39;</span>.join(terminalify(c) <span class="cf">for</span> c <span class="kw">in</span> chunk)))</a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16">conn <span class="op">=</span> remote(<span class="st">&#39;proprietary.ctfcompetition.com&#39;</span>, <span class="dv">1337</span>)</a>
+<a class="sourceLine" id="cb7-17" data-line-number="17">conn.sendline(<span class="st">&#39;P6&#39;</span>)</a>
+<a class="sourceLine" id="cb7-18" data-line-number="18">conn.sendline(sys.argv[<span class="dv">1</span>] <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> sys.argv[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb7-19" data-line-number="19">conn.sendline(<span class="st">&#39;255&#39;</span>)</a>
+<a class="sourceLine" id="cb7-20" data-line-number="20">conn.sendline(sys.argv[<span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb7-21" data-line-number="21">conn.shutdown(<span class="st">&#39;send&#39;</span>)</a>
+<a class="sourceLine" id="cb7-22" data-line-number="22">res <span class="op">=</span> conn.recvall()</a>
+<a class="sourceLine" id="cb7-23" data-line-number="23">hexdump(res)</a></code></pre></div>
 <p>This script could be invoked like <code>python pro.py 1 1 abc</code> to send a 1x1 image with pixel components taken from bytes in the string <code>&quot;abc&quot;</code>. I started out doing so, but for most of the later experiments I just modified the script to put loop indices in the <code>args</code> or manually specify a string with escaped characters and reran it. We can run it a couple times just to verify the byte reversal always happens.</p>
 <p><img src="/img/proprietary-byte-reversal.png" alt="Verifying that the three bytes are reversed in a 1x1 image" /></p>
 <p>An additional note: when <code>pwntools</code> is imported, it will consume uppercase arguments from <code>sys.argv</code> and make them available to you from its <a href="http://docs.pwntools.com/en/stable/args.html">magic variable <code>args</code></a>, so you can’t send strings of only uppercase letters with this script.</p>
@@ -367,13 +367,13 @@ GCTF 1 9 5 5 5 Aa 0 0 Aa 0 0 5 Aa 0 0 Aa 0 0 1 1 1 a</code></pre>
 <p>For clarity, we will call the first byte in each quad-byte the <em>“node descriptor”</em>. We’ve seen that node descriptor <code>1</code> represents nodes with one child, while node descriptors <code>3</code> and <code>5</code> both represent nodes with two children. So do node descriptors <code>A</code> and <code>C</code>, more or less, although thus far they’ve directly accompanied input bytes and their leaf nodes have always been all-zero quad words. Node descriptor <code>E</code> is a strange exception in that it also directly accompanies input bytes, but is followed by three quad-bytes instead of two, and of the three, two quad-bytes are all zero. Still, it makes the most sense to think of node descriptor <code>E</code> as having three children (which have always been leaf nodes in all the examples we’ve seen so far).</p>
 <p>What’s the pattern? It happens that when written in binary, <code>0x1 = 0b0001</code> has one bit set; <code>0x3 = 0b0011</code>, <code>0x5 = 0b0101</code>, <code>0xA = 0b1010</code>, and <code>0xC = 0b1100</code> each have two bits set; and <code>0xE = 0b1110</code> has three bits set. Finally, all the leaf nodes have been represented by quad-bytes starting with a <code>0</code> byte. If we think of 0 as the node decriptor, it has zero bits set, and the leaf node of course has zero children.</p>
 <p>So it seems that each quad-byte represents a node in a tree, the number of bits set in each node descriptor byte represents the number of children the node has in the tree, and that each quad-byte is followed by the recursively generated representations of the corresponding node’s children, if any. In pseudo-Python, the algorithm that parses the tree structure from the proprietary format looks like this:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">def</span> parse_node(stream):</div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">    byte <span class="op">=</span> stream.<span class="bu">next</span>()</div>
-<div class="sourceLine" id="3" href="#3" data-line-number="3">    blue, green, red <span class="op">=</span> stream.<span class="bu">next</span>(), stream.<span class="bu">next</span>(), stream.<span class="bu">next</span>()</div>
-<div class="sourceLine" id="4" href="#4" data-line-number="4">    node <span class="op">=</span> Node(color<span class="op">=</span>(blue, green, red))</div>
-<div class="sourceLine" id="5" href="#5" data-line-number="5">    <span class="cf">for</span> bit <span class="kw">in</span> byte.bits_set():</div>
-<div class="sourceLine" id="6" href="#6" data-line-number="6">        node.add_child(parse_node(stream))</div>
-<div class="sourceLine" id="7" href="#7" data-line-number="7">    <span class="cf">return</span> node</div></code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">def</span> parse_node(stream):</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">    byte <span class="op">=</span> stream.<span class="bu">next</span>()</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">    blue, green, red <span class="op">=</span> stream.<span class="bu">next</span>(), stream.<span class="bu">next</span>(), stream.<span class="bu">next</span>()</a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">    node <span class="op">=</span> Node(color<span class="op">=</span>(blue, green, red))</a>
+<a class="sourceLine" id="cb22-5" data-line-number="5">    <span class="cf">for</span> bit <span class="kw">in</span> byte.bits_set():</a>
+<a class="sourceLine" id="cb22-6" data-line-number="6">        node.add_child(parse_node(stream))</a>
+<a class="sourceLine" id="cb22-7" data-line-number="7">    <span class="cf">return</span> node</a></code></pre></div>
 <p>We can also reason about the spatial arrangement of the children of each node. In our wide images, the parents were <code>3 = 0b0011</code> and <code>C = 0b1100</code>. It seems that when two leaves follow <code>3</code>, they represent two horizontally adjacent pixels, and when <code>C</code> directly accompanies a triplet of bytes, that color is applied to two horizontally adjacent pixels. Since children are represented by set bits, we guess that the bottom two bits represent horizontally adjacent regions. Likewise, in our tall images, the parents were <code>5 = 0b0101</code> and <code>A = 0b1010</code>. So we can guess that the bottommost bit and the third bit from the bottom represent vertically adjacent regions. So it seems that the four bits of each node descriptor have some correspondence to a two-dimensional layout, and then there’s only one logically place for the fourth bit to go.</p>
 <p>Pictorially, we conclude that the four bits <code>w, x, y, z</code> of a node descriptor between 0 and 15 map to spatial regions this way:</p>
 <pre class="box-draw"><code>         ┌───┬───┐
@@ -449,58 +449,58 @@ b d e 0 f 0 g h i</code></pre>
 <p>The converted image will be a square. Its side length should be considered to be the smallest power of two that is greater than or equal to both the width and the height. Pixels outside the valid dimensions will have all components 0, i.e. be pure black.</p></li>
 </ul>
 <p>Armed with this knowledge, we can write a final script to parse <code>flag.ctf</code> back into a <code>P6</code> ppm format, which can be read by GIMP. Note that it doesn’t bother with figuring out the width and height; for simplicity, I manually determined the flag image’s dimensions to be 600x400 from looking at the header bytes, and hardcoded the dimensions to be 1024, the next largest power of 2.</p>
-<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="im">from</span> __future__ <span class="im">import</span> print_function</div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></div>
-<div class="sourceLine" id="3" href="#3" data-line-number="3"></div>
-<div class="sourceLine" id="4" href="#4" data-line-number="4"><span class="kw">def</span> byte_stream():</div>
-<div class="sourceLine" id="5" href="#5" data-line-number="5">    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;flag.ctf&#39;</span>, <span class="st">&#39;rb&#39;</span>) <span class="im">as</span> infile:</div>
-<div class="sourceLine" id="6" href="#6" data-line-number="6">        infile.read(<span class="dv">12</span>) <span class="co"># header</span></div>
-<div class="sourceLine" id="7" href="#7" data-line-number="7">        <span class="cf">while</span> <span class="va">True</span>:</div>
-<div class="sourceLine" id="8" href="#8" data-line-number="8">            s <span class="op">=</span> infile.read(<span class="dv">1</span>)</div>
-<div class="sourceLine" id="9" href="#9" data-line-number="9">            <span class="cf">if</span> s:</div>
-<div class="sourceLine" id="10" href="#10" data-line-number="10">                <span class="cf">yield</span> <span class="bu">ord</span>(s)</div>
-<div class="sourceLine" id="11" href="#11" data-line-number="11">            <span class="cf">else</span>:</div>
-<div class="sourceLine" id="12" href="#12" data-line-number="12">                <span class="cf">return</span></div>
-<div class="sourceLine" id="13" href="#13" data-line-number="13"></div>
-<div class="sourceLine" id="14" href="#14" data-line-number="14"><span class="kw">def</span> solve():</div>
-<div class="sourceLine" id="15" href="#15" data-line-number="15">    it <span class="op">=</span> byte_stream()</div>
-<div class="sourceLine" id="16" href="#16" data-line-number="16">    <span class="kw">def</span> go():</div>
-<div class="sourceLine" id="17" href="#17" data-line-number="17">        sigil <span class="op">=</span> it.<span class="bu">next</span>()</div>
-<div class="sourceLine" id="18" href="#18" data-line-number="18">        color <span class="op">=</span> (<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</div>
-<div class="sourceLine" id="19" href="#19" data-line-number="19">        <span class="cf">if</span> sigil <span class="op">!=</span> <span class="bn">0xf</span>:</div>
-<div class="sourceLine" id="20" href="#20" data-line-number="20">            b <span class="op">=</span> it.<span class="bu">next</span>()</div>
-<div class="sourceLine" id="21" href="#21" data-line-number="21">            g <span class="op">=</span> it.<span class="bu">next</span>()</div>
-<div class="sourceLine" id="22" href="#22" data-line-number="22">            r <span class="op">=</span> it.<span class="bu">next</span>()</div>
-<div class="sourceLine" id="23" href="#23" data-line-number="23">            color <span class="op">=</span> (r, g, b)</div>
-<div class="sourceLine" id="24" href="#24" data-line-number="24">        <span class="cf">if</span> sigil <span class="op">==</span> <span class="dv">0</span>:</div>
-<div class="sourceLine" id="25" href="#25" data-line-number="25">            <span class="cf">return</span> color</div>
-<div class="sourceLine" id="26" href="#26" data-line-number="26">        <span class="cf">return</span> [</div>
-<div class="sourceLine" id="27" href="#27" data-line-number="27">                go() <span class="cf">if</span> sigil <span class="op">&amp;</span> <span class="dv">1</span> <span class="cf">else</span> color,</div>
-<div class="sourceLine" id="28" href="#28" data-line-number="28">                go() <span class="cf">if</span> sigil <span class="op">&amp;</span> <span class="dv">2</span> <span class="cf">else</span> color,</div>
-<div class="sourceLine" id="29" href="#29" data-line-number="29">                go() <span class="cf">if</span> sigil <span class="op">&amp;</span> <span class="dv">4</span> <span class="cf">else</span> color,</div>
-<div class="sourceLine" id="30" href="#30" data-line-number="30">                go() <span class="cf">if</span> sigil <span class="op">&amp;</span> <span class="dv">8</span> <span class="cf">else</span> color,</div>
-<div class="sourceLine" id="31" href="#31" data-line-number="31">        ]</div>
-<div class="sourceLine" id="32" href="#32" data-line-number="32">    bitmap <span class="op">=</span> [[<span class="va">None</span>] <span class="op">*</span> <span class="dv">1024</span> <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1024</span>)]</div>
-<div class="sourceLine" id="33" href="#33" data-line-number="33">    <span class="kw">def</span> render(node, size, r, c):</div>
-<div class="sourceLine" id="34" href="#34" data-line-number="34">        <span class="cf">if</span> <span class="bu">isinstance</span>(node, <span class="bu">tuple</span>):</div>
-<div class="sourceLine" id="35" href="#35" data-line-number="35">            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span><span class="op">**</span>size):</div>
-<div class="sourceLine" id="36" href="#36" data-line-number="36">                <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span><span class="op">**</span>size):</div>
-<div class="sourceLine" id="37" href="#37" data-line-number="37">                    bitmap[r <span class="op">+</span> i][c <span class="op">+</span> j] <span class="op">=</span> node</div>
-<div class="sourceLine" id="38" href="#38" data-line-number="38">        <span class="cf">else</span>:</div>
-<div class="sourceLine" id="39" href="#39" data-line-number="39">            render(node[<span class="dv">0</span>], size <span class="op">-</span> <span class="dv">1</span>, r, c)</div>
-<div class="sourceLine" id="40" href="#40" data-line-number="40">            render(node[<span class="dv">1</span>], size <span class="op">-</span> <span class="dv">1</span>, r, c <span class="op">+</span> <span class="dv">2</span><span class="op">**</span>(size <span class="op">-</span> <span class="dv">1</span>))</div>
-<div class="sourceLine" id="41" href="#41" data-line-number="41">            render(node[<span class="dv">2</span>], size <span class="op">-</span> <span class="dv">1</span>, r <span class="op">+</span> <span class="dv">2</span><span class="op">**</span>(size <span class="op">-</span> <span class="dv">1</span>), c)</div>
-<div class="sourceLine" id="42" href="#42" data-line-number="42">            render(node[<span class="dv">3</span>], size <span class="op">-</span> <span class="dv">1</span>, r <span class="op">+</span> <span class="dv">2</span><span class="op">**</span>(size <span class="op">-</span> <span class="dv">1</span>), c <span class="op">+</span> <span class="dv">2</span><span class="op">**</span>(size <span class="op">-</span> <span class="dv">1</span>))</div>
-<div class="sourceLine" id="43" href="#43" data-line-number="43">    render(go(), <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">0</span>)</div>
-<div class="sourceLine" id="44" href="#44" data-line-number="44">    <span class="cf">for</span> row <span class="kw">in</span> bitmap:</div>
-<div class="sourceLine" id="45" href="#45" data-line-number="45">        <span class="cf">for</span> color <span class="kw">in</span> row:</div>
-<div class="sourceLine" id="46" href="#46" data-line-number="46">            <span class="cf">for</span> component <span class="kw">in</span> color:</div>
-<div class="sourceLine" id="47" href="#47" data-line-number="47">                <span class="bu">print</span>(<span class="bu">chr</span>(component), end<span class="op">=</span><span class="st">&#39;&#39;</span>)</div>
-<div class="sourceLine" id="48" href="#48" data-line-number="48"></div>
-<div class="sourceLine" id="49" href="#49" data-line-number="49"><span class="bu">print</span>(<span class="st">&#39;P6&#39;</span>)</div>
-<div class="sourceLine" id="50" href="#50" data-line-number="50"><span class="bu">print</span>(<span class="st">&#39;1024 1024&#39;</span>)</div>
-<div class="sourceLine" id="51" href="#51" data-line-number="51"><span class="bu">print</span>(<span class="st">&#39;255&#39;</span>)</div>
-<div class="sourceLine" id="52" href="#52" data-line-number="52">solve()</div></code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="im">from</span> __future__ <span class="im">import</span> print_function</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="kw">def</span> byte_stream():</a>
+<a class="sourceLine" id="cb29-5" data-line-number="5">    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;flag.ctf&#39;</span>, <span class="st">&#39;rb&#39;</span>) <span class="im">as</span> infile:</a>
+<a class="sourceLine" id="cb29-6" data-line-number="6">        infile.read(<span class="dv">12</span>) <span class="co"># header</span></a>
+<a class="sourceLine" id="cb29-7" data-line-number="7">        <span class="cf">while</span> <span class="va">True</span>:</a>
+<a class="sourceLine" id="cb29-8" data-line-number="8">            s <span class="op">=</span> infile.read(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb29-9" data-line-number="9">            <span class="cf">if</span> s:</a>
+<a class="sourceLine" id="cb29-10" data-line-number="10">                <span class="cf">yield</span> <span class="bu">ord</span>(s)</a>
+<a class="sourceLine" id="cb29-11" data-line-number="11">            <span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb29-12" data-line-number="12">                <span class="cf">return</span></a>
+<a class="sourceLine" id="cb29-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb29-14" data-line-number="14"><span class="kw">def</span> solve():</a>
+<a class="sourceLine" id="cb29-15" data-line-number="15">    it <span class="op">=</span> byte_stream()</a>
+<a class="sourceLine" id="cb29-16" data-line-number="16">    <span class="kw">def</span> go():</a>
+<a class="sourceLine" id="cb29-17" data-line-number="17">        sigil <span class="op">=</span> it.<span class="bu">next</span>()</a>
+<a class="sourceLine" id="cb29-18" data-line-number="18">        color <span class="op">=</span> (<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb29-19" data-line-number="19">        <span class="cf">if</span> sigil <span class="op">!=</span> <span class="bn">0xf</span>:</a>
+<a class="sourceLine" id="cb29-20" data-line-number="20">            b <span class="op">=</span> it.<span class="bu">next</span>()</a>
+<a class="sourceLine" id="cb29-21" data-line-number="21">            g <span class="op">=</span> it.<span class="bu">next</span>()</a>
+<a class="sourceLine" id="cb29-22" data-line-number="22">            r <span class="op">=</span> it.<span class="bu">next</span>()</a>
+<a class="sourceLine" id="cb29-23" data-line-number="23">            color <span class="op">=</span> (r, g, b)</a>
+<a class="sourceLine" id="cb29-24" data-line-number="24">        <span class="cf">if</span> sigil <span class="op">==</span> <span class="dv">0</span>:</a>
+<a class="sourceLine" id="cb29-25" data-line-number="25">            <span class="cf">return</span> color</a>
+<a class="sourceLine" id="cb29-26" data-line-number="26">        <span class="cf">return</span> [</a>
+<a class="sourceLine" id="cb29-27" data-line-number="27">                go() <span class="cf">if</span> sigil <span class="op">&amp;</span> <span class="dv">1</span> <span class="cf">else</span> color,</a>
+<a class="sourceLine" id="cb29-28" data-line-number="28">                go() <span class="cf">if</span> sigil <span class="op">&amp;</span> <span class="dv">2</span> <span class="cf">else</span> color,</a>
+<a class="sourceLine" id="cb29-29" data-line-number="29">                go() <span class="cf">if</span> sigil <span class="op">&amp;</span> <span class="dv">4</span> <span class="cf">else</span> color,</a>
+<a class="sourceLine" id="cb29-30" data-line-number="30">                go() <span class="cf">if</span> sigil <span class="op">&amp;</span> <span class="dv">8</span> <span class="cf">else</span> color,</a>
+<a class="sourceLine" id="cb29-31" data-line-number="31">        ]</a>
+<a class="sourceLine" id="cb29-32" data-line-number="32">    bitmap <span class="op">=</span> [[<span class="va">None</span>] <span class="op">*</span> <span class="dv">1024</span> <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1024</span>)]</a>
+<a class="sourceLine" id="cb29-33" data-line-number="33">    <span class="kw">def</span> render(node, size, r, c):</a>
+<a class="sourceLine" id="cb29-34" data-line-number="34">        <span class="cf">if</span> <span class="bu">isinstance</span>(node, <span class="bu">tuple</span>):</a>
+<a class="sourceLine" id="cb29-35" data-line-number="35">            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span><span class="op">**</span>size):</a>
+<a class="sourceLine" id="cb29-36" data-line-number="36">                <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span><span class="op">**</span>size):</a>
+<a class="sourceLine" id="cb29-37" data-line-number="37">                    bitmap[r <span class="op">+</span> i][c <span class="op">+</span> j] <span class="op">=</span> node</a>
+<a class="sourceLine" id="cb29-38" data-line-number="38">        <span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb29-39" data-line-number="39">            render(node[<span class="dv">0</span>], size <span class="op">-</span> <span class="dv">1</span>, r, c)</a>
+<a class="sourceLine" id="cb29-40" data-line-number="40">            render(node[<span class="dv">1</span>], size <span class="op">-</span> <span class="dv">1</span>, r, c <span class="op">+</span> <span class="dv">2</span><span class="op">**</span>(size <span class="op">-</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb29-41" data-line-number="41">            render(node[<span class="dv">2</span>], size <span class="op">-</span> <span class="dv">1</span>, r <span class="op">+</span> <span class="dv">2</span><span class="op">**</span>(size <span class="op">-</span> <span class="dv">1</span>), c)</a>
+<a class="sourceLine" id="cb29-42" data-line-number="42">            render(node[<span class="dv">3</span>], size <span class="op">-</span> <span class="dv">1</span>, r <span class="op">+</span> <span class="dv">2</span><span class="op">**</span>(size <span class="op">-</span> <span class="dv">1</span>), c <span class="op">+</span> <span class="dv">2</span><span class="op">**</span>(size <span class="op">-</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb29-43" data-line-number="43">    render(go(), <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb29-44" data-line-number="44">    <span class="cf">for</span> row <span class="kw">in</span> bitmap:</a>
+<a class="sourceLine" id="cb29-45" data-line-number="45">        <span class="cf">for</span> color <span class="kw">in</span> row:</a>
+<a class="sourceLine" id="cb29-46" data-line-number="46">            <span class="cf">for</span> component <span class="kw">in</span> color:</a>
+<a class="sourceLine" id="cb29-47" data-line-number="47">                <span class="bu">print</span>(<span class="bu">chr</span>(component), end<span class="op">=</span><span class="st">&#39;&#39;</span>)</a>
+<a class="sourceLine" id="cb29-48" data-line-number="48"></a>
+<a class="sourceLine" id="cb29-49" data-line-number="49"><span class="bu">print</span>(<span class="st">&#39;P6&#39;</span>)</a>
+<a class="sourceLine" id="cb29-50" data-line-number="50"><span class="bu">print</span>(<span class="st">&#39;1024 1024&#39;</span>)</a>
+<a class="sourceLine" id="cb29-51" data-line-number="51"><span class="bu">print</span>(<span class="st">&#39;255&#39;</span>)</a>
+<a class="sourceLine" id="cb29-52" data-line-number="52">solve()</a></code></pre></div>
 <p>Note that this only works in Python 2 because we are being lazy about tossing bytes, not text, into stdout. In Python 3 it’s probably simpler to write to a file opened in binary mode, or just write in a PPM format that takes decimal integers.</p>
 <p>When the output is opened in GIMP and cropped to taste, we get this image, which reveals the flag:</p>
 <p><img src="/img/proprietary-flag.png" alt="Result of converting flag.ctf back to an image" /></p>

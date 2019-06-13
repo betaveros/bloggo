@@ -125,26 +125,26 @@ Disassembling the executable produces a huge amount of code. There are some basi
 	<article><p>(Okay, this post is backdated.)</p>
 <p>Disassembling the executable produces a huge amount of code. There are some basic obfuscations like a lot of trivial identity functions nested in each other, and a few functions that wrap around identity functions but just add some constant multiple of 16. Most of the meat is in one very large function, though. If you disassemble this function with IDA, you see a lot of variable initializations and then a lot of interesting loops that are quite similar:</p>
 <p></p>
-<pre class="sourceCode c"><code class="sourceCode c"><div class="sourceLine" id="1" href="#1" data-line-number="1">flag = <span class="dv">1</span>;</div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">sum = <span class="dv">0</span>;</div>
-<div class="sourceLine" id="3" href="#3" data-line-number="3">banned_mask = <span class="dv">0</span>;</div>
-<div class="sourceLine" id="4" href="#4" data-line-number="4">cur_ptr = (__int64 *)identity((__int64)&amp;v904);</div>
-<div class="sourceLine" id="5" href="#5" data-line-number="5">end_ptr = plus_16((__int64)&amp;v904);</div>
-<div class="sourceLine" id="6" href="#6" data-line-number="6"><span class="cf">while</span> ( cur_ptr != (__int64 *)end_ptr )</div>
-<div class="sourceLine" id="7" href="#7" data-line-number="7">{</div>
-<div class="sourceLine" id="8" href="#8" data-line-number="8">    cval = *cur_ptr;</div>
-<div class="sourceLine" id="9" href="#9" data-line-number="9">    *(&amp;big_array[<span class="dv">20</span> * (<span class="dt">signed</span> <span class="dt">int</span>)cval] + SHIDWORD(cval)) = *(&amp;a1[<span class="dv">20</span> * (<span class="dt">signed</span> <span class="dt">int</span>)cval] + SHIDWORD(cval));</div>
-<div class="sourceLine" id="10" href="#10" data-line-number="10">    digit = *(&amp;a1[<span class="dv">20</span> * (<span class="dt">signed</span> <span class="dt">int</span>)cval] + SHIDWORD(cval)) - <span class="ch">&#39;0&#39;</span>;</div>
-<div class="sourceLine" id="11" href="#11" data-line-number="11">    <span class="cf">if</span> ( digit &lt;= <span class="dv">0</span> || digit &gt; <span class="dv">9</span> )</div>
-<div class="sourceLine" id="12" href="#12" data-line-number="12">        flag = <span class="dv">0</span>;</div>
-<div class="sourceLine" id="13" href="#13" data-line-number="13">    <span class="cf">if</span> ( (banned_mask &gt;&gt; digit) &amp; <span class="dv">1</span> )</div>
-<div class="sourceLine" id="14" href="#14" data-line-number="14">        flag = <span class="dv">0</span>;</div>
-<div class="sourceLine" id="15" href="#15" data-line-number="15">    banned_mask |= <span class="dv">1</span> &lt;&lt; digit;</div>
-<div class="sourceLine" id="16" href="#16" data-line-number="16">    sum += digit;</div>
-<div class="sourceLine" id="17" href="#17" data-line-number="17">    ++cur_ptr;</div>
-<div class="sourceLine" id="18" href="#18" data-line-number="18">}</div>
-<div class="sourceLine" id="19" href="#19" data-line-number="19"><span class="cf">if</span> ( sum != <span class="dv">17</span> )</div>
-<div class="sourceLine" id="20" href="#20" data-line-number="20">    flag = <span class="dv">0</span>;</div></code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" data-line-number="1">flag = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">sum = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">banned_mask = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">cur_ptr = (__int64 *)identity((__int64)&amp;v904);</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">end_ptr = plus_16((__int64)&amp;v904);</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="cf">while</span> ( cur_ptr != (__int64 *)end_ptr )</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">{</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">    cval = *cur_ptr;</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">    *(&amp;big_array[<span class="dv">20</span> * (<span class="dt">signed</span> <span class="dt">int</span>)cval] + SHIDWORD(cval)) = *(&amp;a1[<span class="dv">20</span> * (<span class="dt">signed</span> <span class="dt">int</span>)cval] + SHIDWORD(cval));</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">    digit = *(&amp;a1[<span class="dv">20</span> * (<span class="dt">signed</span> <span class="dt">int</span>)cval] + SHIDWORD(cval)) - <span class="ch">&#39;0&#39;</span>;</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">    <span class="cf">if</span> ( digit &lt;= <span class="dv">0</span> || digit &gt; <span class="dv">9</span> )</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">        flag = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">    <span class="cf">if</span> ( (banned_mask &gt;&gt; digit) &amp; <span class="dv">1</span> )</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">        flag = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">    banned_mask |= <span class="dv">1</span> &lt;&lt; digit;</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">    sum += digit;</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">    ++cur_ptr;</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">}</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="cf">if</span> ( sum != <span class="dv">17</span> )</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">    flag = <span class="dv">0</span>;</a></code></pre></div>
 <p>So index pairs are read from <code>cur_ptr</code> and indexed into <code>a1</code>, which are copied into <code>big_array</code>. In order to succeed and give us the flag, the variable I’ve labeled <code>flag</code> has to stay <code>1</code> throughout the entire program. There are several checks:</p>
 <ul>
 <li>The characters extracted from <code>a1</code> must be ASCII nonzero digits, as seen from the check of failure if <code>digit &lt;= 0 || digit &gt; 9</code>.</li>
@@ -153,56 +153,56 @@ Disassembling the executable produces a huge amount of code. There are some basi
 </ul>
 <p>This reveals the conceit: this is, to a first approximation, a <a href="https://en.wikipedia.org/wiki/Kakuro">Kakuro</a>, where cells are filled with digits from 1 to 9 and each constraint taken from <code>cur_ptr</code> specifies a row or column, which must contain no repeated digits and must sum to a given number. (Given the way the code is written, there is no requirement that the constrained sequences of cells are actually rows or columns, but from the final output they seem to be.) Realizing that this is an established logic puzzle genre is not particularly essential to solving the challenge, although it might help let you guess around some uncertainties about how things work without necessarily rigorously examining all the code. Kakuros aren’t solid rectangles of empty cells — some of the cells in the input correspond to black squares used only to delimit other rows and columns, and aren’t used in any clues, so the digits in those cells would be completely unconstrained, which explains why digits are copied to <code>big_array</code> only when they show up in a constraint.</p>
 <p>Now we just feed these constraints into z3 to get the answer. This is a fairly hacky Python script that processes the disassembled IDA code after a bunch of renames, but not too many so the <code>v</code>(number) variables were still in order, including each of the obfuscated identity functions to something including <code>identity</code> and each of the obfuscated functions that just added some number to <code>plus_&lt;number&gt;</code>.</p>
-<pre class="sourceCode python"><code class="sourceCode python"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="im">from</span> __future__ <span class="im">import</span> division, print_function</div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">impot re</div>
-<div class="sourceLine" id="3" href="#3" data-line-number="3"><span class="im">from</span> z3 <span class="im">import</span> <span class="op">*</span></div>
-<div class="sourceLine" id="4" href="#4" data-line-number="4"></div>
-<div class="sourceLine" id="5" href="#5" data-line-number="5">vards <span class="op">=</span> <span class="bu">dict</span>()</div>
-<div class="sourceLine" id="6" href="#6" data-line-number="6"></div>
-<div class="sourceLine" id="7" href="#7" data-line-number="7"><span class="kw">def</span> between(left, right, s):</div>
-<div class="sourceLine" id="8" href="#8" data-line-number="8">    a, b <span class="op">=</span> s.split(left)</div>
-<div class="sourceLine" id="9" href="#9" data-line-number="9">    <span class="cf">return</span> b.split(right)[<span class="dv">0</span>]</div>
-<div class="sourceLine" id="10" href="#10" data-line-number="10"></div>
-<div class="sourceLine" id="11" href="#11" data-line-number="11">solver <span class="op">=</span> Solver()</div>
-<div class="sourceLine" id="12" href="#12" data-line-number="12">cells <span class="op">=</span> []</div>
-<div class="sourceLine" id="13" href="#13" data-line-number="13"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</div>
-<div class="sourceLine" id="14" href="#14" data-line-number="14">    row <span class="op">=</span> []</div>
-<div class="sourceLine" id="15" href="#15" data-line-number="15">    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</div>
-<div class="sourceLine" id="16" href="#16" data-line-number="16">        v <span class="op">=</span> Int(<span class="st">&#39;cell_</span><span class="sc">{}</span><span class="st">_</span><span class="sc">{}</span><span class="st">&#39;</span>.<span class="bu">format</span>(i, j))</div>
-<div class="sourceLine" id="17" href="#17" data-line-number="17">        solver.add(<span class="dv">1</span> <span class="op">&lt;=</span> v)</div>
-<div class="sourceLine" id="18" href="#18" data-line-number="18">        solver.add(v <span class="op">&lt;=</span> <span class="dv">9</span>)</div>
-<div class="sourceLine" id="19" href="#19" data-line-number="19">        row.append(v)</div>
-<div class="sourceLine" id="20" href="#20" data-line-number="20">    cells.append(row)</div>
-<div class="sourceLine" id="21" href="#21" data-line-number="21"></div>
-<div class="sourceLine" id="22" href="#22" data-line-number="22"><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;sakura-huge.txt&#39;</span>) <span class="im">as</span> infile:</div>
-<div class="sourceLine" id="23" href="#23" data-line-number="23">    <span class="cf">for</span> line <span class="kw">in</span> infile:</div>
-<div class="sourceLine" id="24" href="#24" data-line-number="24">        line <span class="op">=</span> line[:<span class="op">-</span><span class="dv">1</span>]</div>
-<div class="sourceLine" id="25" href="#25" data-line-number="25">        set_match <span class="op">=</span> re.match(<span class="vs">r&#39;  v(\d+) = (\d+);&#39;</span>, line)</div>
-<div class="sourceLine" id="26" href="#26" data-line-number="26">        <span class="cf">if</span> set_match:</div>
-<div class="sourceLine" id="27" href="#27" data-line-number="27">            vards[<span class="bu">int</span>(set_match.group(<span class="dv">1</span>))] <span class="op">=</span> <span class="bu">int</span>(set_match.group(<span class="dv">2</span>))</div>
-<div class="sourceLine" id="28" href="#28" data-line-number="28">        <span class="cf">elif</span> <span class="st">&#39;identity&#39;</span> <span class="kw">in</span> line:</div>
-<div class="sourceLine" id="29" href="#29" data-line-number="29">            v <span class="op">=</span> <span class="bu">int</span>(between(<span class="st">&#39;&amp;v&#39;</span>, <span class="st">&#39;)&#39;</span>, line))</div>
-<div class="sourceLine" id="30" href="#30" data-line-number="30">            <span class="co"># print(&#39;start:&#39;, v, vards.get(v))</span></div>
-<div class="sourceLine" id="31" href="#31" data-line-number="31">        <span class="cf">elif</span> <span class="st">&#39;plus&#39;</span> <span class="kw">in</span> line:</div>
-<div class="sourceLine" id="32" href="#32" data-line-number="32">            r <span class="op">=</span> <span class="bu">int</span>(between(<span class="st">&#39;plus_&#39;</span>, <span class="st">&#39;(&#39;</span>, line))</div>
-<div class="sourceLine" id="33" href="#33" data-line-number="33">            cur_vars <span class="op">=</span> []</div>
-<div class="sourceLine" id="34" href="#34" data-line-number="34">            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(r <span class="op">//</span> <span class="dv">8</span>):</div>
-<div class="sourceLine" id="35" href="#35" data-line-number="35">                row, col <span class="op">=</span> vards[v <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>i], vards[v <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>i <span class="op">+</span> <span class="dv">1</span>]</div>
-<div class="sourceLine" id="36" href="#36" data-line-number="36">                cur_vars.append(cells[row][col])</div>
-<div class="sourceLine" id="37" href="#37" data-line-number="37">            <span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(cur_vars):</div>
-<div class="sourceLine" id="38" href="#38" data-line-number="38">                <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i):</div>
-<div class="sourceLine" id="39" href="#39" data-line-number="39">                    solver.add(v <span class="op">!=</span> cur_vars[j])</div>
-<div class="sourceLine" id="40" href="#40" data-line-number="40">        <span class="cf">elif</span> <span class="st">&#39;if ( sum&#39;</span> <span class="kw">in</span> line:</div>
-<div class="sourceLine" id="41" href="#41" data-line-number="41">            target_sum <span class="op">=</span> <span class="bu">int</span>(between(<span class="st">&#39;!= &#39;</span>, <span class="st">&#39; )&#39;</span>, line))</div>
-<div class="sourceLine" id="42" href="#42" data-line-number="42">            solver.add(<span class="bu">sum</span>(cur_vars) <span class="op">==</span> target_sum)</div>
-<div class="sourceLine" id="43" href="#43" data-line-number="43"></div>
-<div class="sourceLine" id="44" href="#44" data-line-number="44">solver.check()</div>
-<div class="sourceLine" id="45" href="#45" data-line-number="45">solution <span class="op">=</span> solver.model()</div>
-<div class="sourceLine" id="46" href="#46" data-line-number="46"><span class="bu">print</span>()</div>
-<div class="sourceLine" id="47" href="#47" data-line-number="47"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</div>
-<div class="sourceLine" id="48" href="#48" data-line-number="48">    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">20</span>):</div>
-<div class="sourceLine" id="49" href="#49" data-line-number="49">        <span class="bu">print</span>(solution[cells[i][j]], end<span class="op">=</span><span class="st">&quot;&quot;</span>)</div>
-<div class="sourceLine" id="50" href="#50" data-line-number="50">    <span class="bu">print</span>()</div></code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="im">from</span> __future__ <span class="im">import</span> division, print_function</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">impot re</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="im">from</span> z3 <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">vards <span class="op">=</span> <span class="bu">dict</span>()</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw">def</span> between(left, right, s):</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">    a, b <span class="op">=</span> s.split(left)</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">    <span class="cf">return</span> b.split(right)[<span class="dv">0</span>]</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">solver <span class="op">=</span> Solver()</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">cells <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">    row <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">        v <span class="op">=</span> Int(<span class="st">&#39;cell_</span><span class="sc">{}</span><span class="st">_</span><span class="sc">{}</span><span class="st">&#39;</span>.<span class="bu">format</span>(i, j))</a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">        solver.add(<span class="dv">1</span> <span class="op">&lt;=</span> v)</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18">        solver.add(v <span class="op">&lt;=</span> <span class="dv">9</span>)</a>
+<a class="sourceLine" id="cb2-19" data-line-number="19">        row.append(v)</a>
+<a class="sourceLine" id="cb2-20" data-line-number="20">    cells.append(row)</a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;sakura-huge.txt&#39;</span>) <span class="im">as</span> infile:</a>
+<a class="sourceLine" id="cb2-23" data-line-number="23">    <span class="cf">for</span> line <span class="kw">in</span> infile:</a>
+<a class="sourceLine" id="cb2-24" data-line-number="24">        line <span class="op">=</span> line[:<span class="op">-</span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb2-25" data-line-number="25">        set_match <span class="op">=</span> re.match(<span class="vs">r&#39;  v(\d+) = (\d+);&#39;</span>, line)</a>
+<a class="sourceLine" id="cb2-26" data-line-number="26">        <span class="cf">if</span> set_match:</a>
+<a class="sourceLine" id="cb2-27" data-line-number="27">            vards[<span class="bu">int</span>(set_match.group(<span class="dv">1</span>))] <span class="op">=</span> <span class="bu">int</span>(set_match.group(<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb2-28" data-line-number="28">        <span class="cf">elif</span> <span class="st">&#39;identity&#39;</span> <span class="kw">in</span> line:</a>
+<a class="sourceLine" id="cb2-29" data-line-number="29">            v <span class="op">=</span> <span class="bu">int</span>(between(<span class="st">&#39;&amp;v&#39;</span>, <span class="st">&#39;)&#39;</span>, line))</a>
+<a class="sourceLine" id="cb2-30" data-line-number="30">            <span class="co"># print(&#39;start:&#39;, v, vards.get(v))</span></a>
+<a class="sourceLine" id="cb2-31" data-line-number="31">        <span class="cf">elif</span> <span class="st">&#39;plus&#39;</span> <span class="kw">in</span> line:</a>
+<a class="sourceLine" id="cb2-32" data-line-number="32">            r <span class="op">=</span> <span class="bu">int</span>(between(<span class="st">&#39;plus_&#39;</span>, <span class="st">&#39;(&#39;</span>, line))</a>
+<a class="sourceLine" id="cb2-33" data-line-number="33">            cur_vars <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb2-34" data-line-number="34">            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(r <span class="op">//</span> <span class="dv">8</span>):</a>
+<a class="sourceLine" id="cb2-35" data-line-number="35">                row, col <span class="op">=</span> vards[v <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>i], vards[v <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>i <span class="op">+</span> <span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb2-36" data-line-number="36">                cur_vars.append(cells[row][col])</a>
+<a class="sourceLine" id="cb2-37" data-line-number="37">            <span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(cur_vars):</a>
+<a class="sourceLine" id="cb2-38" data-line-number="38">                <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i):</a>
+<a class="sourceLine" id="cb2-39" data-line-number="39">                    solver.add(v <span class="op">!=</span> cur_vars[j])</a>
+<a class="sourceLine" id="cb2-40" data-line-number="40">        <span class="cf">elif</span> <span class="st">&#39;if ( sum&#39;</span> <span class="kw">in</span> line:</a>
+<a class="sourceLine" id="cb2-41" data-line-number="41">            target_sum <span class="op">=</span> <span class="bu">int</span>(between(<span class="st">&#39;!= &#39;</span>, <span class="st">&#39; )&#39;</span>, line))</a>
+<a class="sourceLine" id="cb2-42" data-line-number="42">            solver.add(<span class="bu">sum</span>(cur_vars) <span class="op">==</span> target_sum)</a>
+<a class="sourceLine" id="cb2-43" data-line-number="43"></a>
+<a class="sourceLine" id="cb2-44" data-line-number="44">solver.check()</a>
+<a class="sourceLine" id="cb2-45" data-line-number="45">solution <span class="op">=</span> solver.model()</a>
+<a class="sourceLine" id="cb2-46" data-line-number="46"><span class="bu">print</span>()</a>
+<a class="sourceLine" id="cb2-47" data-line-number="47"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</a>
+<a class="sourceLine" id="cb2-48" data-line-number="48">    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">20</span>):</a>
+<a class="sourceLine" id="cb2-49" data-line-number="49">        <span class="bu">print</span>(solution[cells[i][j]], end<span class="op">=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb2-50" data-line-number="50">    <span class="bu">print</span>()</a></code></pre></div>
 <p>Piping this into the executable gives us our flag:</p>
 <pre><code>hitcon{6c0d62189adfd27a12289890d5b89c0dc8098bc976ecc3f6d61ec0429cccae61}</code></pre></article>
 	<footer class="post-footer">

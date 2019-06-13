@@ -110,6 +110,41 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/c-to-d" class="post-link">C/C&#43;&#43; to D</a></h3>
+		
+		<p class="post-meta">
+		
+		2015-01-14
+		(1997 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Some notes.</p>
+<p>I’m assuming you want to use D largely, but not entirely, for competitive programming. That’s me right now.</p>
+<h3 id="basics">Basics</h3>
+<p>Syntax is very similar. Function definitions, semicolon-terminated statements, variable declarations, and so on. You can declare <code>int main() {...}</code> or <code>void main() {...}</code> or something with arguments.</p>
+<p>Basic types like <code>bool</code> and <code>int</code> and <code>double</code> are all there. Wonderfully, <code>long</code> is 64 bits. Instead of <code>unsigned</code> whatever, just prefix a <code>u</code>, e.g. <code>uint</code>.</p>
+<p>Arithmetic operators and bit operators are all there too, including unsigned right shift <code>&gt;&gt;&gt;</code>. Although <code>^</code> is still xor, D has exponentiation as <code>^^</code>. Sadly, <code>%</code> is still same-sign remainder; there’s no true mod.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">import</span> std.stdio;</a></code></pre></div>
+<p>Casts look like <code>cast(int) x;</code></p>
+<h3 id="control-flow">Control Flow</h3>
+<p><code>if</code>, <code>while</code>, <code>for</code>, <code>do</code>, and even <code>switch</code> all work as you’d expect, along with <code>break</code> and <code>continue</code>.</p>
+<p><code>foreach</code> is the nice addition though. Not only can you iterate over arrays and stuff, but range loops go like:</p>
+<p></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/c-to-d">→ read more<span class="offscreen"> C/C&#43;&#43; to D</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/rewind" class="post-link">Rewind</a></h3>
 		
 		<p class="post-meta">
@@ -204,18 +239,18 @@ edit: This poll has been removed, it wasn’t very interesting anyway.
 <p>這裡沒有完整的解答code，因為AC是要用血汗換來的才值得 :-)</p>
 <h2 id="treap">Treap</h2>
 <p>我討厭單字母<code>l</code>的變數名稱（跟<code>1</code>太像了。我沒有被這個雷過，這只是自己對自己程式碼可讀性的要求），所以我的子樹叫做<code>lc</code>(left child)，<code>rc</code>(right child)。</p>
-<pre class="sourceCode cpp"><code class="sourceCode cpp"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">struct</span> Treap {</div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">    Treap * lc;</div>
-<div class="sourceLine" id="3" href="#3" data-line-number="3">    Treap * rc;</div>
-<div class="sourceLine" id="4" href="#4" data-line-number="4">    <span class="dt">unsigned</span> pri;</div>
-<div class="sourceLine" id="5" href="#5" data-line-number="5">    <span class="dt">char</span> val;</div>
-<div class="sourceLine" id="6" href="#6" data-line-number="6">    <span class="dt">int</span> size;</div>
-<div class="sourceLine" id="7" href="#7" data-line-number="7">};</div>
-<div class="sourceLine" id="8" href="#8" data-line-number="8"></div>
-<div class="sourceLine" id="9" href="#9" data-line-number="9"><span class="dt">int</span> size(Treap * a) { <span class="cf">return</span> a ? a-&gt;size : <span class="dv">0</span>; }</div>
-<div class="sourceLine" id="10" href="#10" data-line-number="10"><span class="dt">void</span> pull(Treap * a) {</div>
-<div class="sourceLine" id="11" href="#11" data-line-number="11">    <span class="cf">if</span> (a) a-&gt;size = <span class="dv">1</span> + size(a-&gt;lc) + size(a-&gt;rc);</div>
-<div class="sourceLine" id="12" href="#12" data-line-number="12">}</div></code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">struct</span> Treap {</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">    Treap * lc;</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">    Treap * rc;</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="dt">unsigned</span> pri;</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="dt">char</span> val;</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="dt">int</span> size;</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">};</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="dt">int</span> size(Treap * a) { <span class="cf">return</span> a ? a-&gt;size : <span class="dv">0</span>; }</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="dt">void</span> pull(Treap * a) {</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">    <span class="cf">if</span> (a) a-&gt;size = <span class="dv">1</span> + size(a-&gt;lc) + size(a-&gt;rc);</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">}</a></code></pre></div>
 <p></p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/hoj-cp">→ read more<span class="offscreen"> HOJ 226: CP (中)</span></a>
@@ -403,34 +438,6 @@ Guess the left-over card. The guesser wins if correct; the other player wins if 
 <p>Okay, no more gratuitous narrative excursions into game-theory. The first stop, National Center for Traditional Arts, was a very laid-back culture place with old-fashioned retro shops and streets.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/games">→ read more<span class="offscreen"> [IOI 2014 Part 3] Games of Luck and Strategy and Really Weird Noises</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/one-line" class="post-link">[IOI 2014 Part 2] One Line to Solve Them All</a></h3>
-		
-		<p class="post-meta">
-		
-		2014-07-26
-		(3911 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>I started trying to sleep at 9 the night before the contest, tossed and turned in bed until 10, then fell asleep and got up at 3:35 in the morning. Blah. At that point, I went to the bathroom and applied some chapstick before trying to go back to sleep until 6. After breakfast, I grabbed a few minutes of sleep on the bus to the convention center where our contest would be, then slept on a sofa outside the actual contest hall alongside most of the rest of our team as we waited for a very long time until it was okay for us to enter. Competitions really mess with one’s sleep schedule.</p>
-<p>Then, much too soon, we could enter. Day 1 of the contest was about to start.</p>
-<p>The laptops were as yesterday, although they were protected with a white screensaver that indicated my name and ID as well as a countdown to the start of the contest. I was glad to see that my mousepad and all my writing utensils had survived without me. Somebody had the sense of humor to project an online stopwatch with an animated bomb fuse onto the screens to indicate the remaining time, which, once again, there was a lot of.</p>
-<p>I conferred briefly with Paul (TZW (alphaveros (?))) about vim settings for a bit, but there were still fifteen minutes left or so. I idly stretched, practiced typing my <code>.vimrc</code> on an imaginary keyboard, and watched as the US dude two tables to my left unplugged his laptop’s mouse and rearranged absolutely everything on his table using the surface under his chair as swap space. (Well, that was how I mentally described it at the time, pending further revelations. (hint hint))</p>
-<p>Then it began. </p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/one-line">→ read more<span class="offscreen"> [IOI 2014 Part 2] One Line to Solve Them All</span></a>
 	</footer>
 </article>
 

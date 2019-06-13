@@ -403,7 +403,7 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
 <p>Syntax is very similar. Function definitions, semicolon-terminated statements, variable declarations, and so on. You can declare <code>int main() {...}</code> or <code>void main() {...}</code> or something with arguments.</p>
 <p>Basic types like <code>bool</code> and <code>int</code> and <code>double</code> are all there. Wonderfully, <code>long</code> is 64 bits. Instead of <code>unsigned</code> whatever, just prefix a <code>u</code>, e.g. <code>uint</code>.</p>
 <p>Arithmetic operators and bit operators are all there too, including unsigned right shift <code>&gt;&gt;&gt;</code>. Although <code>^</code> is still xor, D has exponentiation as <code>^^</code>. Sadly, <code>%</code> is still same-sign remainder; there’s no true mod.</p>
-<pre class="sourceCode d"><code class="sourceCode d"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">import</span> std.stdio;</div></code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">import</span> std.stdio;</a></code></pre></div>
 <p>Casts look like <code>cast(int) x;</code></p>
 <h3 id="control-flow">Control Flow</h3>
 <p><code>if</code>, <code>while</code>, <code>for</code>, <code>do</code>, and even <code>switch</code> all work as you’d expect, along with <code>break</code> and <code>continue</code>.</p>

@@ -117,24 +117,24 @@
 		
 		</p>
 	</header>
-	<article><pre class="sourceCode sh"><code class="sourceCode bash"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="ex">rustc</span> -C prefer-dynamic</div></code></pre>
-<pre class="sourceCode css"><code class="sourceCode css"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="fu">.meter-text</span> { <span class="kw">white-space</span>: <span class="dv">pre-wrap</span>; }</div></code></pre>
-<pre class="sourceCode sh"><code class="sourceCode bash"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="ex">launchctl</span> stop com.apple.pboard</div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="ex">launchctl</span> start com.apple.pboard</div></code></pre>
-<pre class="sourceCode sh"><code class="sourceCode bash"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="co"># requires ImageMagick</span></div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="kw">function</span><span class="fu"> img()</span> <span class="kw">{</span></div>
-<div class="sourceLine" id="3" href="#3" data-line-number="3">    <span class="ex">identify</span> -format <span class="st">&#39;&lt;img src=&quot;%f&quot; width=&quot;%w&quot; height=&quot;%h&quot; /&gt;&#39;</span> <span class="va">$1</span></div>
-<div class="sourceLine" id="4" href="#4" data-line-number="4"><span class="kw">}</span></div></code></pre>
+	<article><div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="ex">rustc</span> -C prefer-dynamic</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="fu">.meter-text</span> { <span class="kw">white-space</span>: <span class="dv">pre-wrap</span>; }</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="ex">launchctl</span> stop com.apple.pboard</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="ex">launchctl</span> start com.apple.pboard</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># requires ImageMagick</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">function</span><span class="fu"> img()</span> <span class="kw">{</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">    <span class="ex">identify</span> -format <span class="st">&#39;&lt;img src=&quot;%f&quot; width=&quot;%w&quot; height=&quot;%h&quot; /&gt;&#39;</span> <span class="va">$1</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">}</span></a></code></pre></div>
 <pre class="vim"><code>:%s/\%xa0/ /ge
 :%s/\%u2019/&#39;/ge
 :%s/\%u201c/&quot;/ge
 :%s/\%u201d/&quot;/ge</code></pre>
-<pre class="sourceCode sh"><code class="sourceCode bash"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="ex">ifconfig</span> en0 <span class="kw">|</span> <span class="fu">grep</span> ether</div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="fu">sudo</span> ifconfig en1 ether 12:34:56:78:9a:bc</div></code></pre>
-<pre class="sourceCode sh"><code class="sourceCode bash"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">while [[</span> <span class="va">$(</span><span class="fu">date</span> +%Y<span class="va">)</span> <span class="ot">-ne</span> 2015<span class="kw"> ]]</span>;<span class="kw">do</span> <span class="ex">figlet</span> <span class="va">$(($(</span><span class="fu">date</span> -j 0101000015 +%s<span class="va">)</span>-<span class="va">$(</span><span class="fu">date</span> +%s<span class="va">)))</span><span class="kw">;</span><span class="fu">sleep</span> 1<span class="kw">;</span><span class="fu">clear</span><span class="kw">;done</span>;<span class="ex">figlet</span> Happy New Year!</div></code></pre>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><div class="sourceLine" id="1" href="#1" data-line-number="1">javascript<span class="op">:</span>(<span class="kw">function</span>(x)<span class="op">{</span><span class="kw">function</span><span class="op">%</span>20f(n)<span class="op">{</span><span class="cf">return</span><span class="op">%</span>20Math.<span class="at">round</span>(n<span class="op">*</span><span class="dv">1000</span>)/<span class="dv">1000</span><span class="op">;}</span><span class="at">alert</span>(<span class="st">&quot;HP:%20&quot;</span><span class="op">+</span><span class="at">f</span>(<span class="va">x</span>.<span class="at">hp</span>)<span class="op">+</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">MP:%20&quot;</span><span class="op">+</span><span class="at">f</span>(<span class="va">x</span>.<span class="at">mp</span>)<span class="op">+</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">EXP:%20&quot;</span><span class="op">+</span><span class="at">f</span>(<span class="va">x</span>.<span class="at">exp</span>)<span class="op">+</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">GP:%20&quot;</span><span class="op">+</span><span class="at">f</span>(<span class="va">x</span>.<span class="at">gp</span>))<span class="op">;}</span>(<span class="va">angular</span>.<span class="at">element</span>(<span class="va">document</span>.<span class="at">querySelector</span>(<span class="st">&#39;.hero-stats&#39;</span>)).<span class="at">scope</span>().<span class="va">user</span>.<span class="at">stats</span>))<span class="op">;</span></div></code></pre>
-<pre class="sourceCode sh"><code class="sourceCode bash"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="bu">alias</span> kd=<span class="st">&#39;ruby --external-encoding UTF-8 -S kramdown&#39;</span></div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="bu">alias</span> please=<span class="st">&quot;sudo&quot;</span></div></code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="ex">ifconfig</span> en0 <span class="kw">|</span> <span class="fu">grep</span> ether</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="fu">sudo</span> ifconfig en1 ether 12:34:56:78:9a:bc</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">while [[</span> <span class="va">$(</span><span class="fu">date</span> +%Y<span class="va">)</span> <span class="ot">-ne</span> 2015<span class="kw"> ]]</span>;<span class="kw">do</span> <span class="ex">figlet</span> <span class="va">$(($(</span><span class="fu">date</span> -j 0101000015 +%s<span class="va">)</span>-<span class="va">$(</span><span class="fu">date</span> +%s<span class="va">)))</span><span class="kw">;</span><span class="fu">sleep</span> 1<span class="kw">;</span><span class="fu">clear</span><span class="kw">;done</span>;<span class="ex">figlet</span> Happy New Year!</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb8-1" data-line-number="1">javascript<span class="op">:</span>(<span class="kw">function</span>(x)<span class="op">{</span><span class="kw">function</span><span class="op">%</span>20f(n)<span class="op">{</span><span class="cf">return</span><span class="op">%</span>20Math.<span class="at">round</span>(n<span class="op">*</span><span class="dv">1000</span>)/<span class="dv">1000</span><span class="op">;}</span><span class="at">alert</span>(<span class="st">&quot;HP:%20&quot;</span><span class="op">+</span><span class="at">f</span>(<span class="va">x</span>.<span class="at">hp</span>)<span class="op">+</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">MP:%20&quot;</span><span class="op">+</span><span class="at">f</span>(<span class="va">x</span>.<span class="at">mp</span>)<span class="op">+</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">EXP:%20&quot;</span><span class="op">+</span><span class="at">f</span>(<span class="va">x</span>.<span class="at">exp</span>)<span class="op">+</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">GP:%20&quot;</span><span class="op">+</span><span class="at">f</span>(<span class="va">x</span>.<span class="at">gp</span>))<span class="op">;}</span>(<span class="va">angular</span>.<span class="at">element</span>(<span class="va">document</span>.<span class="at">querySelector</span>(<span class="st">&#39;.hero-stats&#39;</span>)).<span class="at">scope</span>().<span class="va">user</span>.<span class="at">stats</span>))<span class="op">;</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="bu">alias</span> kd=<span class="st">&#39;ruby --external-encoding UTF-8 -S kramdown&#39;</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="bu">alias</span> please=<span class="st">&quot;sudo&quot;</span></a></code></pre></div>
 <pre><code>sage: R = PolynomialRing(QQ, &#39;x&#39;)
 sage: f = R.lagrange_polynomial([(0,1),(2,2),(3,-2),(-4,9)]); f
 -23/84*x^3 - 11/84*x^2 + 13/7*x + 1</code></pre>
@@ -145,47 +145,47 @@ sage: f = R.lagrange_polynomial([(0,1),(2,2),(3,-2),(-4,9)]); f
 ;; ...
 /def -PCred -F -t&#39;fire&#39;
 /def -PCmagenta -F -t&#39;#\d+&#39;</code></pre>
-<pre class="sourceCode bash"><code class="sourceCode bash"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="co">#!/bin/bash</span></div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="kw">if [[</span> <span class="va">$#</span> <span class="ot">&lt;</span> 1<span class="kw"> ]]</span>; <span class="kw">then</span></div>
-<div class="sourceLine" id="3" href="#3" data-line-number="3">    <span class="bu">echo</span> <span class="st">&quot;cr: args pl0x&quot;</span> <span class="op">&gt;&amp;2</span></div>
-<div class="sourceLine" id="4" href="#4" data-line-number="4">    <span class="bu">exit</span> 1</div>
-<div class="sourceLine" id="5" href="#5" data-line-number="5"><span class="kw">fi</span></div>
-<div class="sourceLine" id="6" href="#6" data-line-number="6"><span class="kw">if</span> <span class="ex">g++</span> <span class="va">$1</span>.cpp -O2 -Wall -o <span class="va">$1</span><span class="kw">;</span> <span class="kw">then</span></div>
-<div class="sourceLine" id="7" href="#7" data-line-number="7">    <span class="bu">echo</span> <span class="st">&quot;cr: compile OK&quot;</span> <span class="op">&gt;&amp;2</span></div>
-<div class="sourceLine" id="8" href="#8" data-line-number="8">    <span class="kw">if [[</span> <span class="va">$#</span> <span class="ot">&gt;</span> 1<span class="kw"> ]]</span>; <span class="kw">then</span></div>
-<div class="sourceLine" id="9" href="#9" data-line-number="9">        <span class="ex">./</span><span class="va">$1</span> <span class="op">&lt;</span> <span class="va">$1</span><span class="ex">-</span><span class="va">$2</span>.in</div>
-<div class="sourceLine" id="10" href="#10" data-line-number="10">    <span class="kw">else</span></div>
-<div class="sourceLine" id="11" href="#11" data-line-number="11">        <span class="ex">./</span><span class="va">$1</span> <span class="op">&lt;</span> <span class="ex">/dev/stdin</span></div>
-<div class="sourceLine" id="12" href="#12" data-line-number="12">    <span class="kw">fi</span></div>
-<div class="sourceLine" id="13" href="#13" data-line-number="13"><span class="kw">fi</span></div></code></pre>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">import</span> <span class="dt">Control.Applicative</span></div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="kw">import</span> <span class="dt">Control.Lens</span></div>
-<div class="sourceLine" id="3" href="#3" data-line-number="3"><span class="kw">import</span> <span class="dt">Control.Monad.Trans</span></div>
-<div class="sourceLine" id="4" href="#4" data-line-number="4"><span class="kw">import</span> <span class="dt">Control.Monad.Trans.State</span></div>
-<div class="sourceLine" id="5" href="#5" data-line-number="5"><span class="kw">import</span> <span class="dt">Control.Monad.Trans.Writer</span></div>
-<div class="sourceLine" id="6" href="#6" data-line-number="6"><span class="kw">import</span> <span class="dt">Data.Monoid</span></div>
-<div class="sourceLine" id="7" href="#7" data-line-number="7"></div>
-<div class="sourceLine" id="8" href="#8" data-line-number="8"><span class="ot">listTraversal ::</span> <span class="dt">Traversal&#39;</span> [a] a</div>
-<div class="sourceLine" id="9" href="#9" data-line-number="9">listTraversal _    []     <span class="fu">=</span> pure []</div>
-<div class="sourceLine" id="10" href="#10" data-line-number="10">listTraversal func (x<span class="fu">:</span>xs) <span class="fu">=</span> <span class="kw">let</span> newX <span class="fu">=</span> func x; newXs <span class="fu">=</span> listTraversal func xs <span class="kw">in</span> (<span class="fu">:</span>) <span class="fu">&lt;$&gt;</span> newX <span class="fu">&lt;*&gt;</span> newXs</div>
-<div class="sourceLine" id="11" href="#11" data-line-number="11"></div>
-<div class="sourceLine" id="12" href="#12" data-line-number="12"><span class="ot">getSeventh ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">StateT</span> <span class="dt">Int</span> (<span class="dt">Writer</span> (<span class="dt">First</span> <span class="dt">Int</span>)) <span class="dt">Int</span></div>
-<div class="sourceLine" id="13" href="#13" data-line-number="13">getSeventh <span class="fu">=</span> \a <span class="ot">-&gt;</span> <span class="kw">do</span></div>
-<div class="sourceLine" id="14" href="#14" data-line-number="14">    modify (<span class="fu">+</span><span class="dv">1</span>)</div>
-<div class="sourceLine" id="15" href="#15" data-line-number="15">    i <span class="ot">&lt;-</span> get</div>
-<div class="sourceLine" id="16" href="#16" data-line-number="16">    lift <span class="fu">.</span> tell <span class="fu">.</span> <span class="dt">First</span> <span class="fu">$</span> <span class="kw">if</span> i <span class="fu">==</span> <span class="dv">7</span> <span class="kw">then</span> <span class="dt">Just</span> a <span class="kw">else</span> <span class="dt">Nothing</span></div>
-<div class="sourceLine" id="17" href="#17" data-line-number="17">    return a</div>
-<div class="sourceLine" id="18" href="#18" data-line-number="18"></div>
-<div class="sourceLine" id="19" href="#19" data-line-number="19"><span class="ot">increaseSeventh ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">State</span> <span class="dt">Int</span> <span class="dt">Int</span></div>
-<div class="sourceLine" id="20" href="#20" data-line-number="20">increaseSeventh <span class="fu">=</span> \a <span class="ot">-&gt;</span> <span class="kw">do</span></div>
-<div class="sourceLine" id="21" href="#21" data-line-number="21">    modify (<span class="fu">+</span><span class="dv">1</span>)</div>
-<div class="sourceLine" id="22" href="#22" data-line-number="22">    i <span class="ot">&lt;-</span> get</div>
-<div class="sourceLine" id="23" href="#23" data-line-number="23">    return <span class="fu">$</span> <span class="kw">if</span> i <span class="fu">==</span> <span class="dv">7</span> <span class="kw">then</span> a<span class="fu">+</span><span class="dv">1</span> <span class="kw">else</span> a</div>
-<div class="sourceLine" id="24" href="#24" data-line-number="24"></div>
-<div class="sourceLine" id="25" href="#25" data-line-number="25">main <span class="fu">=</span> <span class="kw">do</span></div>
-<div class="sourceLine" id="26" href="#26" data-line-number="26">    <span class="kw">let</span> x <span class="fu">=</span> [<span class="dv">100</span>,<span class="dv">200</span><span class="fu">..</span><span class="dv">2000</span>]</div>
-<div class="sourceLine" id="27" href="#27" data-line-number="27">    print <span class="fu">$</span> execWriter (execStateT (listTraversal getSeventh x) <span class="dv">0</span>)</div>
-<div class="sourceLine" id="28" href="#28" data-line-number="28">    print <span class="fu">$</span> evalState (listTraversal increaseSeventh x) <span class="dv">0</span></div></code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co">#!/bin/bash</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">if [[</span> <span class="va">$#</span> <span class="ot">&lt;</span> 1<span class="kw"> ]]</span>; <span class="kw">then</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">    <span class="bu">echo</span> <span class="st">&quot;cr: args pl0x&quot;</span> <span class="op">&gt;&amp;2</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">    <span class="bu">exit</span> 1</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw">fi</span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="kw">if</span> <span class="ex">g++</span> <span class="va">$1</span>.cpp -O2 -Wall -o <span class="va">$1</span><span class="kw">;</span> <span class="kw">then</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7">    <span class="bu">echo</span> <span class="st">&quot;cr: compile OK&quot;</span> <span class="op">&gt;&amp;2</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8">    <span class="kw">if [[</span> <span class="va">$#</span> <span class="ot">&gt;</span> 1<span class="kw"> ]]</span>; <span class="kw">then</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9">        <span class="ex">./</span><span class="va">$1</span> <span class="op">&lt;</span> <span class="va">$1</span><span class="ex">-</span><span class="va">$2</span>.in</a>
+<a class="sourceLine" id="cb12-10" data-line-number="10">    <span class="kw">else</span></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11">        <span class="ex">./</span><span class="va">$1</span> <span class="op">&lt;</span> <span class="ex">/dev/stdin</span></a>
+<a class="sourceLine" id="cb12-12" data-line-number="12">    <span class="kw">fi</span></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="kw">fi</span></a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">import</span> <span class="dt">Control.Applicative</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">import</span> <span class="dt">Control.Lens</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">import</span> <span class="dt">Control.Monad.Trans</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw">import</span> <span class="dt">Control.Monad.Trans.State</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="kw">import</span> <span class="dt">Control.Monad.Trans.Writer</span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="kw">import</span> <span class="dt">Data.Monoid</span></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="ot">listTraversal ::</span> <span class="dt">Traversal&#39;</span> [a] a</a>
+<a class="sourceLine" id="cb13-9" data-line-number="9">listTraversal _    []     <span class="fu">=</span> pure []</a>
+<a class="sourceLine" id="cb13-10" data-line-number="10">listTraversal func (x<span class="fu">:</span>xs) <span class="fu">=</span> <span class="kw">let</span> newX <span class="fu">=</span> func x; newXs <span class="fu">=</span> listTraversal func xs <span class="kw">in</span> (<span class="fu">:</span>) <span class="fu">&lt;$&gt;</span> newX <span class="fu">&lt;*&gt;</span> newXs</a>
+<a class="sourceLine" id="cb13-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb13-12" data-line-number="12"><span class="ot">getSeventh ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">StateT</span> <span class="dt">Int</span> (<span class="dt">Writer</span> (<span class="dt">First</span> <span class="dt">Int</span>)) <span class="dt">Int</span></a>
+<a class="sourceLine" id="cb13-13" data-line-number="13">getSeventh <span class="fu">=</span> \a <span class="ot">-&gt;</span> <span class="kw">do</span></a>
+<a class="sourceLine" id="cb13-14" data-line-number="14">    modify (<span class="fu">+</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb13-15" data-line-number="15">    i <span class="ot">&lt;-</span> get</a>
+<a class="sourceLine" id="cb13-16" data-line-number="16">    lift <span class="fu">.</span> tell <span class="fu">.</span> <span class="dt">First</span> <span class="fu">$</span> <span class="kw">if</span> i <span class="fu">==</span> <span class="dv">7</span> <span class="kw">then</span> <span class="dt">Just</span> a <span class="kw">else</span> <span class="dt">Nothing</span></a>
+<a class="sourceLine" id="cb13-17" data-line-number="17">    return a</a>
+<a class="sourceLine" id="cb13-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb13-19" data-line-number="19"><span class="ot">increaseSeventh ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">State</span> <span class="dt">Int</span> <span class="dt">Int</span></a>
+<a class="sourceLine" id="cb13-20" data-line-number="20">increaseSeventh <span class="fu">=</span> \a <span class="ot">-&gt;</span> <span class="kw">do</span></a>
+<a class="sourceLine" id="cb13-21" data-line-number="21">    modify (<span class="fu">+</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb13-22" data-line-number="22">    i <span class="ot">&lt;-</span> get</a>
+<a class="sourceLine" id="cb13-23" data-line-number="23">    return <span class="fu">$</span> <span class="kw">if</span> i <span class="fu">==</span> <span class="dv">7</span> <span class="kw">then</span> a<span class="fu">+</span><span class="dv">1</span> <span class="kw">else</span> a</a>
+<a class="sourceLine" id="cb13-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb13-25" data-line-number="25">main <span class="fu">=</span> <span class="kw">do</span></a>
+<a class="sourceLine" id="cb13-26" data-line-number="26">    <span class="kw">let</span> x <span class="fu">=</span> [<span class="dv">100</span>,<span class="dv">200</span><span class="fu">..</span><span class="dv">2000</span>]</a>
+<a class="sourceLine" id="cb13-27" data-line-number="27">    print <span class="fu">$</span> execWriter (execStateT (listTraversal getSeventh x) <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb13-28" data-line-number="28">    print <span class="fu">$</span> evalState (listTraversal increaseSeventh x) <span class="dv">0</span></a></code></pre></div>
 <pre class="applescript"><code>on run {input, parameters}
     tell application &quot;Firefox&quot; to activate
     tell application &quot;System Events&quot;
