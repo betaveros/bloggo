@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cs on Bounded-Error Log</title>
+    <title>CS on Bounded-Error Log</title>
     <link>//blog.vero.site/category/cs</link>
-    <description>Recent content in Cs on Bounded-Error Log</description>
+    <description>Recent content in CS on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 27 Mar 2019 18:26:41 -0400</lastBuildDate>
@@ -20,8 +20,7 @@
       <description>&lt;pre&gt;&lt;code&gt;http://111.186.63.17/perf.data.gz
 
 Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In this challenge, we get a gzipped file called &lt;code&gt;perf.data&lt;/code&gt; and a minimal description of an environment. Googling this reveals that &lt;code&gt;perf.data&lt;/code&gt; is a record format of the &lt;code&gt;perf&lt;/code&gt; tool, a Linux profiler. Installing &lt;code&gt;perf&lt;/code&gt; allows us to read &lt;code&gt;perf.data&lt;/code&gt; and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is &lt;code&gt;perf report -D&lt;/code&gt;, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the &lt;code&gt;perf record&lt;/code&gt; was run against.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;In this challenge, we get a gzipped file called &lt;code&gt;perf.data&lt;/code&gt; and a minimal description of an environment. Googling this reveals that &lt;code&gt;perf.data&lt;/code&gt; is a record format of the &lt;code&gt;perf&lt;/code&gt; tool, a Linux profiler. Installing &lt;code&gt;perf&lt;/code&gt; allows us to read &lt;code&gt;perf.data&lt;/code&gt; and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is &lt;code&gt;perf report -D&lt;/code&gt;, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the &lt;code&gt;perf record&lt;/code&gt; was run against.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -32,8 +31,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
       <guid>//blog.vero.site/post/react-redux</guid>
       <description>&lt;p&gt;A more accurate but less informative title for this post would be “How I wish React and Redux were explained to me”. Note that this does &lt;em&gt;not&lt;/em&gt; imply that this method of explanation is suitable for anybody else. I suspect it won’t be for most people.&lt;/p&gt;
 &lt;p&gt;I had to learn React and Redux the past summer for my internship at MemSQL, and there were hundreds of articles that explain React and Redux in addition to the (fine) built-in documentation, but none of them scratched the itch; I wanted to know what was going on completely, including some of the technical details and the philosophy I ought to be following, as well as efficiently. I did not need another explanation about how to think functionally, in JavaScript types or with immutable data. React’s chapter on &lt;a href=&#34;https://reactjs.org/docs/conditional-rendering.html&#34;&gt;Conditional Rendering&lt;/a&gt;, for example, felt so inefficient — I know what &lt;code&gt;if&lt;/code&gt; statements and conditional expressions are, and I know how to refactor complicated subexpressions into variables…&lt;/p&gt;
-&lt;p&gt;So here’s the guide I wish I had. I think. It’s been months since I started it (as usual, for posts on this blog) and it is probably incomplete. However, I haven’t written React/Redux deeply in a while, so I didn’t have much motivation to continue to investigate the incomplete bits; and the perfect is the enemy of the good, so here it is.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;So here’s the guide I wish I had. I think. It’s been months since I started it (as usual, for posts on this blog) and it is probably incomplete. However, I haven’t written React/Redux deeply in a while, so I didn’t have much motivation to continue to investigate the incomplete bits; and the perfect is the enemy of the good, so here it is.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -47,8 +45,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You can access this challenge at &lt;a href=&#34;https://wargames.ret2.systems/csaw_2018_plc_challenge&#34;&gt;https://wargames.ret2.systems/csaw_2018_plc_challenge&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;A much belated post. This is a pwn challenge on a custom online wargaming platform. We are provided with the assembly of what’s ostensibly a programmable logic controller (PLC) for a centrifuge in a nuclear reactor. The challenge looks like it’s still up, so you can take a look and follow along.&lt;/p&gt;
-&lt;p&gt;This was the first &lt;a href=&#34;https://en.wikipedia.org/wiki/Return-oriented_programming&#34;&gt;ROP&lt;/a&gt; (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like &lt;code&gt;until&lt;/code&gt;, no pwntools utilities for packing/unpacking numbers, … no &lt;code&gt;one_gadget&lt;/code&gt;), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use &lt;code&gt;gdb&lt;/code&gt; (or fictionalized web knockoffs thereof).&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;This was the first &lt;a href=&#34;https://en.wikipedia.org/wiki/Return-oriented_programming&#34;&gt;ROP&lt;/a&gt; (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like &lt;code&gt;until&lt;/code&gt;, no pwntools utilities for packing/unpacking numbers, … no &lt;code&gt;one_gadget&lt;/code&gt;), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use &lt;code&gt;gdb&lt;/code&gt; (or fictionalized web knockoffs thereof).&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -62,8 +59,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;$ nc proprietary.ctfcompetition.com 1337&lt;/code&gt;&lt;/pre&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;We get a server that will talk to us on a port and a &lt;code&gt;flag.ctf&lt;/code&gt; file that’s definitely not a binary. It’s a &lt;a href=&#34;https://en.wikipedia.org/wiki/Black_box&#34;&gt;black-box&lt;/a&gt; reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.&lt;/p&gt;
-&lt;p&gt;For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not &lt;code&gt;P6&lt;/code&gt;, it complains:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not &lt;code&gt;P6&lt;/code&gt;, it complains:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -78,8 +74,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This challenge is a simple chat app written in NodeJS. The home page redirects you to a chat room labeled with a random UUID. Anybody can join the same chat room with the URL.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;//blog.vero.site/img/cat-chat-0.png&#34; alt=&#34;Fresh Cat Chat room&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In a chat room, you can chat and issue two commands, &lt;code&gt;/name&lt;/code&gt; to set your name and &lt;code&gt;/report&lt;/code&gt; to report that somebody is talking about dogs. After anybody in the chat room issues &lt;code&gt;/report&lt;/code&gt;, the admin shows up, listens for a while, and bans anybody who mentions the word “dog”.&lt;/p&gt;
-&lt;p&gt;There are two more commands, &lt;code&gt;/secret&lt;/code&gt; and &lt;code&gt;/ban&lt;/code&gt;, which are in the server source code and also described in comments in the HTML source if you didn’t notice:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;There are two more commands, &lt;code&gt;/secret&lt;/code&gt; and &lt;code&gt;/ban&lt;/code&gt;, which are in the server source code and also described in comments in the HTML source if you didn’t notice:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -92,8 +87,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML file that can store secrets in the browser’s localStorage. This means that you won’t be able to extract any secret from it (the secrets are on the computer of the owner), but it looks like it was hand-crafted to work only with the password of the owner…&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;The challenge consists of a fancy HTML file with a cute but irrelevant animated cube and some embedded JavaScript.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;//blog.vero.site/img/js-safe-2-empty.png&#34; alt=&#34;Screenshot of JS Safe 2.0 with a text box and a cube&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;//blog.vero.site/img/js-safe-2-empty.png&#34; alt=&#34;Screenshot of JS Safe 2.0 with a text box and a cube&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -119,8 +113,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
 &lt;img src=&#34;//blog.vero.site/img/shell_this.png&#34; alt=&#34;Disassembled innermost function of interest in shellme.so&#34; /&gt;&lt;figcaption&gt;Disassembled innermost function of interest in &lt;code&gt;shellme.so&lt;/code&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;The goal is to read the flag from the open MySQL connection.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;The goal is to read the flag from the open MySQL connection.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -133,8 +126,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The challenge is all about getting that QR code. After trying our best to clean up the image, we ended up with this:&lt;/p&gt;
 &lt;figure&gt;
 &lt;img src=&#34;//blog.vero.site/img/messy-qr.png&#34; alt=&#34;Maximally enhanced image of the QR code&#34; /&gt;&lt;figcaption&gt;Maximally enhanced image of the QR code&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;/figure&gt;</description>
     </item>
     
     <item>
@@ -149,8 +141,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;wolf-overview&#34;&gt;Wolf Overview&lt;/h3&gt;
 &lt;p&gt;Let’s first go over the Wolf syntax and semantics. (There are small differences between the three problems, but they’re syntactically identical and only semantically differ in cases that we’ll naturally get to.) The &lt;code&gt;examples&lt;/code&gt; folder has some examples of valid code:&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode ml&#34;&gt;&lt;code class=&#34;sourceCode ocaml&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; data-line-number=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;let&lt;/span&gt; x = (&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt; :&amp;gt; &lt;span class=&#34;kw&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;) &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; data-line-number=&#34;2&#34;&gt;&lt;span class=&#34;dv&#34;&gt;6&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; data-line-number=&#34;2&#34;&gt;&lt;span class=&#34;dv&#34;&gt;6&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -160,8 +151,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
       
       <guid>//blog.vero.site/post/sakura</guid>
       <description>&lt;p&gt;(Okay, this post is backdated.)&lt;/p&gt;
-&lt;p&gt;Disassembling the executable produces a huge amount of code. There are some basic obfuscations like a lot of trivial identity functions nested in each other, and a few functions that wrap around identity functions but just add some constant multiple of 16. Most of the meat is in one very large function, though. If you disassemble this function with IDA, you see a lot of variable initializations and then a lot of interesting loops that are quite similar:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Disassembling the executable produces a huge amount of code. There are some basic obfuscations like a lot of trivial identity functions nested in each other, and a few functions that wrap around identity functions but just add some constant multiple of 16. Most of the meat is in one very large function, though. If you disassemble this function with IDA, you see a lot of variable initializations and then a lot of interesting loops that are quite similar:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -175,8 +165,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.&lt;/p&gt;
-&lt;p&gt;Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from &lt;a href=&#34;https://github.com/betaveros/xxb&#34;&gt;&lt;code&gt;xxb&lt;/code&gt;&lt;/a&gt; but &lt;code&gt;xxd -c 20 thoroughlyStripped&lt;/code&gt; is quite sufficient.)&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from &lt;a href=&#34;https://github.com/betaveros/xxb&#34;&gt;&lt;code&gt;xxb&lt;/code&gt;&lt;/a&gt; but &lt;code&gt;xxd -c 20 thoroughlyStripped&lt;/code&gt; is quite sufficient.)&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -185,7 +174,8 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
       <pubDate>Mon, 08 Aug 2016 13:54:22 +0800</pubDate>
       
       <guid>//blog.vero.site/post/bcodex</guid>
-      <description>&lt;p&gt;&lt;code&gt;--... ---.. ....- ..... ..--- ----- ....- ....- ...-- -.... ...-- -.... ...-- . ....- ....- ..--- ----- ....- ..... ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -.... ....- ....- ..--- ----- ...-- ..-. ....- ----- ..--- ----- ...-- ..--- ...-- ..-. ....- ..... ...-- .- ...-- ..... ....- ----- ....- ..... ...-- -.... ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ...-- ..-. ...-- ---.. ....- ....- ....- ..... ..--- ----- ...-- -.. ...-- .- ...-- -.-. ...-- -.... ..--- ----- ...-- --... ...-- .- ...-- ..-. ...-- ..... ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ....- ....- ....- ----- ...-- . ...-- -.... ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- ....- ....- ----- ....- ----- ...-- -.. ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ....- ---.. ...-- ..-. ..... -.-. ....- ..... ....- ----- ..... -.-. ...-- -.... ...-- ..--- ....- ...-- ....- ..... ...-- ----. ..... -... ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- .- ....- ..... ..... -..&lt;/code&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;code&gt;--... ---.. ....- ..... ..--- ----- ....- ....- ...-- -.... ...-- -.... ...-- . ....- ....- ..--- ----- ....- ..... ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -.... ....- ....- ..--- ----- ...-- ..-. ....- ----- ..--- ----- ...-- ..--- ...-- ..-. ....- ..... ...-- .- ...-- ..... ....- ----- ....- ..... ...-- -.... ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ...-- ..-. ...-- ---.. ....- ....- ....- ..... ..--- ----- ...-- -.. ...-- .- ...-- -.-. ...-- -.... ..--- ----- ...-- --... ...-- .- ...-- ..-. ...-- ..... ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ....- ....- ....- ----- ...-- . ...-- -.... ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- ....- ....- ----- ....- ----- ...-- -.. ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ....- ---.. ...-- ..-. ..... -.-. ....- ..... ....- ----- ..... -.-. ...-- -.... ...-- ..--- ....- ...-- ....- ..... ...-- ----. ..... -... ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- .- ....- ..... ..... -..&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;..--- ..... ....- ----- ...-- ..... ...-- ..--- ....- .- ..--- ----- --... ---.. ..--- ----- ...-- ..... ...-- .- ...-- ..... ..--- ----- ...-- ..--- ..--- ----- ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- --... ---.. ..--- ----- ....- ---.. ...-- ..--- ...-- ..-. ....- ..... ...-- -.... ...-- ..... ..--- ----- ....- ..... ....- ----- ..--- ----- ...-- ..... ....- ----- ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ..--- ----- ...-- -.. ....- ----- ...-- ..-. ...-- ---.. ..--- ----- ....- ..... ...-- .- ...-- . ...-- -.... -.... ----. ..--- ----- --... ---.. ..--- ----- ...-- ....- ....- ----- ...-- . ....- .---- ...-- .- ...-- -.. ...-- -.... ...-- ..... ..--- -----&lt;/code&gt; &lt;a href=&#34;https://github.com/betaveros/bcodex&#34;&gt;&lt;code&gt;...-- ...-- ...-- ....- ....- ----- ...-- ..... ...-- -.... ....- ----.&lt;/code&gt;&lt;/a&gt; &lt;code&gt;..--- ----- ...-- --... ....- ...-- ....- ----- ...-- . ..--- ----- --... --... ...-- ..--- ....- ....- ...-- -.-. ...-- -.... ...-- -.. ...-- -.. ..--- ----- ....- ..... ....- ----- ..--- ----- --... ----. ...-- ..--- ....- --... ...-- ..--- ..--- ....- ...-- ....- ....- ...-- ...-- .- ....- .---- ....- ..... ..--- ----- ....- ....- ....- ----- ..--- ----- ...-- .- ....- ..... ..--- ----- ...-- ....- ....- ----- ....- -.... ...-- -.. ...-- ..... ..--- ----- ....- ...-- ....- -.... ...-- ..-. ..--- ----- ...-- .- ...-- ..-. ..--- ----- ...-- ..--- ...-- ..-. ....- .- ..--- ----- ...-- . ....- ----- ...-- ..... ...-- -.... ....- ...-- ...-- ..-. ..--- ----- ...-- ...-- ....- ...-- ....- ----- ....- ---.. ....- ....- ...-- -.... ....- ...-- ..... -.. ..--- -----&lt;/code&gt; &lt;a href=&#34;http://betaveros.github.io/bcodex/&#34;&gt;&lt;code&gt;..--- .- ....- ----- ....- -.... ..--- ----- ...-- ....- ...-- ..--- ...-- ..-. ..--- ----- ....- ..... ....- ...-- ....- .- ..--- ----- ...-- .- ....- ..... ..--- ----- ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -----&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -241,8 +231,7 @@ Of course, this is my first Code Jam and I don’t know how reasonable these req
 &lt;p&gt;I got a new phone today. Or, well, it’s second-hand, actually. I try to make electronics last a long time, but I think this was justified given the state of my last phone’s screen:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/screen.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/screen.jpg?w=269&#34; alt=&#34;old phone screen, with a visibly malfunctioning black patch&#34; width=&#34;269&#34; height=&#34;300&#34; class=&#34;aligncenter size-medium wp-image-3142&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Besides, I’m going off to college and all. Anyway, the phone is pretty cool. It’s a slick shade of red, it came with a cover and everything, and it has one of those fancy 3x3-grid locks. How secure are those again?&lt;/p&gt;
-&lt;p&gt;Well, we could just &lt;a href=&#34;https://stackoverflow.com/questions/6979524/android-lock-password-combinations&#34;&gt;find the answer on StackOverflow&lt;/a&gt;, but that’s boring.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Well, we could just &lt;a href=&#34;https://stackoverflow.com/questions/6979524/android-lock-password-combinations&#34;&gt;find the answer on StackOverflow&lt;/a&gt;, but that’s boring.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -263,7 +252,8 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
       <guid>//blog.vero.site/post/college-emails</guid>
       <description>&lt;p&gt;(Frivolous blog content, posted as part of a &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly committed to&lt;/a&gt;; standard disclaimers apply)&lt;/p&gt;
 &lt;p&gt;Out of boredom and curiosity, I &lt;a href=&#34;https://betaveros.github.io/bars-college.html&#34;&gt;graphed how many emails colleges sent me&lt;/a&gt;, excluding the colleges I actually applied to. I am being extremely polite and just calling them emails. I’ve wanted to make this for a long time, but it wasn’t until I saw this &lt;a href=&#34;https://medium.com/message/my-failed-experiment-in-time-travel-3aa2240a6bc0&#34;&gt;post about an email experiment&lt;/a&gt; on &lt;a href=&#34;http://waxy.org/links/&#34;&gt;waxy.org/links&lt;/a&gt; that I understood which tools I could use to quantify my emails. (And then I actually made it and procrastinated posting it here for two months. If you look at my GitHub page or activity you might have seen it already, though. Oops.)&lt;/p&gt;
-&lt;p&gt;I don’t think the results were expected. Other than saying that, I leave the interpretation up to the reader because I’m on a tight blogging schedule. Cool? Cool.&lt;/p&gt;</description>
+&lt;p&gt;I don’t think the results were expected. Other than saying that, I leave the interpretation up to the reader because I’m on a tight blogging schedule. Cool? Cool.&lt;/p&gt;
+&lt;p&gt;Step-by-step instructions:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -287,8 +277,7 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
 …&lt;br /&gt;
 5:52 PM &lt;strong&gt;phenomist&lt;/strong&gt;: actually nvm excel is probably easier lol
 &lt;/blockquote&gt;
-&lt;p&gt;Okay I’m sorry this is a horrible puzzle where the rules don’t make sense and I didn’t even get it testsolved. I just wanted an image to concisely demonstrate the capabilities of &lt;a href=&#34;https://github.com/betaveros/gridderface&#34;&gt;gridderface&lt;/a&gt;, my puzzle marking and creation program, for the project homepage, after somebody expressed interest in using the program to write a puzzle. Then I got tremendously carried away.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Okay I’m sorry this is a horrible puzzle where the rules don’t make sense and I didn’t even get it testsolved. I just wanted an image to concisely demonstrate the capabilities of &lt;a href=&#34;https://github.com/betaveros/gridderface&#34;&gt;gridderface&lt;/a&gt;, my puzzle marking and creation program, for the project homepage, after somebody expressed interest in using the program to write a puzzle. Then I got tremendously carried away.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -307,8 +296,7 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
 &lt;p&gt;Casts look like &lt;code&gt;cast(int) x;&lt;/code&gt;&lt;/p&gt;
 &lt;h3 id=&#34;control-flow&#34;&gt;Control Flow&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;if&lt;/code&gt;, &lt;code&gt;while&lt;/code&gt;, &lt;code&gt;for&lt;/code&gt;, &lt;code&gt;do&lt;/code&gt;, and even &lt;code&gt;switch&lt;/code&gt; all work as you’d expect, along with &lt;code&gt;break&lt;/code&gt; and &lt;code&gt;continue&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;foreach&lt;/code&gt; is the nice addition though. Not only can you iterate over arrays and stuff, but range loops go like:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;code&gt;foreach&lt;/code&gt; is the nice addition though. Not only can you iterate over arrays and stuff, but range loops go like:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -335,8 +323,7 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb1-9&#34; data-line-number=&#34;9&#34;&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; size(Treap * a) { &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; a ? a-&amp;gt;size : &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;; }&lt;/a&gt;
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb1-10&#34; data-line-number=&#34;10&#34;&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; pull(Treap * a) {&lt;/a&gt;
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb1-11&#34; data-line-number=&#34;11&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; (a) a-&amp;gt;size = &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; + size(a-&amp;gt;lc) + size(a-&amp;gt;rc);&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-12&#34; data-line-number=&#34;12&#34;&gt;}&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-12&#34; data-line-number=&#34;12&#34;&gt;}&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -349,7 +336,7 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
 &lt;p&gt;Then, much too soon, we could enter. Day 1 of the contest was about to start.&lt;/p&gt;
 &lt;p&gt;The laptops were as yesterday, although they were protected with a white screensaver that indicated my name and ID as well as a countdown to the start of the contest. I was glad to see that my mousepad and all my writing utensils had survived without me. Somebody had the sense of humor to project an online stopwatch with an animated bomb fuse onto the screens to indicate the remaining time, which, once again, there was a lot of.&lt;/p&gt;
 &lt;p&gt;I conferred briefly with Paul (TZW (alphaveros (?))) about vim settings for a bit, but there were still fifteen minutes left or so. I idly stretched, practiced typing my &lt;code&gt;.vimrc&lt;/code&gt; on an imaginary keyboard, and watched as the US dude two tables to my left unplugged his laptop’s mouse and rearranged absolutely everything on his table using the surface under his chair as swap space. (Well, that was how I mentally described it at the time, pending further revelations. (hint hint))&lt;/p&gt;
-&lt;p&gt;Then it began. &lt;/p&gt;</description>
+&lt;p&gt;Then it began.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -361,7 +348,9 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
       <description>&lt;p&gt;Yes, I know day 1 of the contest already ended and is probably a more interesting topic to blog about, but I finished writing this last night just before the internet was cut off to quarantine the contestants from the leaders, who received the problems and began translating them. I didn’t know about this until it was too late, which is why I’ve been waiting since yesterday to post this.&lt;/p&gt;
 &lt;p&gt;To provide a counterpoint to the last post, one of the many, &lt;em&gt;many&lt;/em&gt; advantages of entering an international competition is that you get to meet a lot more people you already know, so there’s less time spent being socially awkward. While waiting for stuff to happen, aside from all the expected time spent with the Taiwan team, I also talked to, played games with, and otherwise entertained a whole lot of people I already knew, including my schoolmates (no less than fourteen of them were volunteers) and some of the college students who had shepherded us around during olympiad training.&lt;/p&gt;
 &lt;p&gt;Which is a good thing, too, because there was a lot of waiting.&lt;/p&gt;
-&lt;p&gt;First I waited for my teammates; my parents had decided to take me to the hotel (Fullon Shenkeng) directly, since I had a lot of stuff, and I had arrived early. This took about an hour, after which we had lunch. Then I waited for the hotel to give us our room cards, which took about five hours, after which we had dinner. Finally, at night, I waited for the Codeforces system tests. Very nerve-wracking. But I’m getting ahead of myself.&lt;/p&gt;</description>
+&lt;p&gt;First I waited for my teammates; my parents had decided to take me to the hotel (Fullon Shenkeng) directly, since I had a lot of stuff, and I had arrived early. This took about an hour, after which we had lunch. Then I waited for the hotel to give us our room cards, which took about five hours, after which we had dinner. Finally, at night, I waited for the Codeforces system tests. Very nerve-wracking. But I’m getting ahead of myself.&lt;/p&gt;
+&lt;p&gt;Advantage #2 of being the home team: you can talk to all of the organizers and volunteers fluently, so you can get them to help you more quickly. Although we waited for our room cards for an obscenely long time, I got the volunteers to replace my pinyin-name-card with a legitimate one that said “Brian” on it really quickly.&lt;/p&gt;
+&lt;p&gt;Unfortunately, after I talked to a few more people, it looks like they aren’t going to change my name in the database. So if anybody reading this chances to look at the IOI live ranking and is unable to find me, look for the first name “Po-En”.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -372,7 +361,8 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
       <guid>//blog.vero.site/post/pycon</guid>
       <description>&lt;p&gt;Late post. As usual.&lt;/p&gt;
 &lt;p&gt;It started with an online competition — write programs, solve problems, get points. I wouldn’t call the problems easy, but they weren’t hard either. So I solved all of them. To make it even less impressive, only about twenty people submitted anything at all.&lt;/p&gt;
-&lt;p&gt;But the result was just what it was: I ended up with a free ticket to &lt;a href=&#34;https://tw.pycon.org/2014apac/en/&#34;&gt;PyCon APAC 2014&lt;/a&gt;.&lt;/p&gt;</description>
+&lt;p&gt;But the result was just what it was: I ended up with a free ticket to &lt;a href=&#34;https://tw.pycon.org/2014apac/en/&#34;&gt;PyCon APAC 2014&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I’d prefer a conference about a more functional programming language, but I’ll take what I get. Another adventure!&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -384,7 +374,7 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
       <description>&lt;p&gt;After the first stage of selection camp, I was very nervous because I was fifth place in a selection sequence that would finally result in a team of four.&lt;/p&gt;
 &lt;p&gt;I screwed myself over on the first mock test by committing to a bad implementation method on a problem that was hard to get points on. My method seemed simple, but the memory usage leaked out in a way that was confusing and hard to patch; unfortunately, I tried to patch it in increasingly desperate and convoluted ways rather than scrapping the method, and thus missed out on many of the points elsewhere.&lt;/p&gt;
 &lt;p&gt;During the second test I failed to read the last problem carefully and spent too much of my time on the second problem, once again missing out on a lot of relatively easy points. I had optimized and optimized and pushed my quadratic runtime down to linearithmic, which would allow me to get the points for the last subtask — or so I thought. But with 10 minutes left I had all but one testcase right, and after desperately rereading my code, I realized that I had a string comparison stuck in an inner loop that could make my runtime degenerate to quadratic if the input string had lots of the same digit. In order to have a solidly linearithmic algorithm, I would have to implement a &lt;a href=&#34;https://en.wikipedia.org/wiki/Suffix_array&#34;&gt;suffix array&lt;/a&gt;. Ten minutes? I gave up. (The problem setters told me afterwards that hashing would have worked too; I didn’t think of that at all. Oops.) I spent the 10 minutes reading the last problem and still failed to read it carefully. So that did not go very well.&lt;/p&gt;
-&lt;p&gt;But, as the title probably gave away, during the third and fourth mock tests everything went much better than expected. :)  There are two good reasons:&lt;/p&gt;</description>
+&lt;p&gt;But, as the title probably gave away, during the third and fourth mock tests everything went much better than expected. :)&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -406,7 +396,7 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
 &lt;/ul&gt;
 &lt;p&gt;Even if I can handle step 1, step 2 is by no means a simple task, as my struggle to implement a mere &lt;a href=&#34;//blog.vero.site/post/haskell&#34;&gt;Sieve of Eratosthenes&lt;/a&gt; efficiently shows. That is fun, but not at all intuitive; I am doubtful I can do this under contest conditions. It is extremely difficult to transfer my skills in learning how to implement, say, a segment tree or treap into this language.&lt;/p&gt;
 &lt;p&gt;But! Google links to the &lt;a href=&#34;http://www.go-hero.net/jam/10/round/0&#34;&gt;programming language breakdown for 2010 Qualification Round&lt;/a&gt; as an example, and much to my surprise, Haskell ranks somewhere between sixth and tenth place in popularity (depending on what you sort by), so there are functional superprogrammers who can presumably do something like this.&lt;/p&gt;
-&lt;p&gt;As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it. &lt;/p&gt;</description>
+&lt;p&gt;As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -424,7 +414,8 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
 &lt;p&gt;Anyway. Around this time a year ago, I paused my participation in big high-school competitions, for a variety of reasons.&lt;/p&gt;
 &lt;p&gt;Firstly, I stopped attempting to make IMO both because I wouldn’t get that much from the training and because other people ought to have the opportunity. I was concerned that I might condition myself to only be able to do math with the short-term motivation of contests. Better to focus on college math and maybe some original research, I thought. During the year, I did lots of the former and very little of the latter. Meh.&lt;/p&gt;
 &lt;p&gt;As for the IOI, my obvious next target: I was tired of training and going abroad while paranoid about whether my immune system would hold up. I didn’t feel that the IOI was worth that. To some degree, I also felt burned out about programming. Long story short, my treatment should end soon, and learning Haskell completely resolved the burnout problem.&lt;/p&gt;
-&lt;p&gt;But the most important reason, I think, was that “high school was too short”. I started math competitions ridiculously early and didn’t spend much time exploring other interests. I thought I knew myself well enough that I could say I didn’t have many more interests at all, but I was completely wrong (psych nerds will reflexively note this to be the &lt;a href=&#34;https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect&#34;&gt;Dunning-Kruger effect&lt;/a&gt;). I coded lots in weird languages — Haskell, as mentioned previously, plus Scala, plus all manner of other magical command line tools. I wrote my first math problem and submitted it officially, picked up a new instrument, went to a debate competition, served as an unimportant tech guy for MUN, discovered and became hooked on Pentatonix, participated in three puzzle hunts in Australia and one in Massachusetts, figured out my rough political stance, rode a boat, got retweeted by &lt;span class=&#34;citation&#34; data-cites=&#34;eevee&#34;&gt;@eevee&lt;/span&gt; and &lt;span class=&#34;citation&#34; data-cites=&#34;Kyrgyzstan_News&#34;&gt;@Kyrgyzstan_News&lt;/span&gt;, increased my Neopets™ fortune by over 3400%, and lurked on FurAffinity a little too much.&lt;/p&gt;</description>
+&lt;p&gt;But the most important reason, I think, was that “high school was too short”. I started math competitions ridiculously early and didn’t spend much time exploring other interests. I thought I knew myself well enough that I could say I didn’t have many more interests at all, but I was completely wrong (psych nerds will reflexively note this to be the &lt;a href=&#34;https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect&#34;&gt;Dunning-Kruger effect&lt;/a&gt;). I coded lots in weird languages — Haskell, as mentioned previously, plus Scala, plus all manner of other magical command line tools. I wrote my first math problem and submitted it officially, picked up a new instrument, went to a debate competition, served as an unimportant tech guy for MUN, discovered and became hooked on Pentatonix, participated in three puzzle hunts in Australia and one in Massachusetts, figured out my rough political stance, rode a boat, got retweeted by &lt;span class=&#34;citation&#34; data-cites=&#34;eevee&#34;&gt;@eevee&lt;/span&gt; and &lt;span class=&#34;citation&#34; data-cites=&#34;Kyrgyzstan_News&#34;&gt;@Kyrgyzstan_News&lt;/span&gt;, increased my Neopets™ fortune by over 3400%, and lurked on FurAffinity a little too much.&lt;/p&gt;
+&lt;p&gt;But now, dear competition world, I’m back.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -434,7 +425,8 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
       
       <guid>//blog.vero.site/post/rankk-stats</guid>
       <description>&lt;p&gt;Funny, I go on a trip to Penghu followed by a four-day science camp and also get dragged into drawing classes and some sort of movie advising joint, and this is what I decide to blog about.&lt;/p&gt;
-&lt;p&gt;Since it’s summer, I went back to &lt;a href=&#34;http://www.rankk.org/&#34;&gt;Rankk&lt;/a&gt; and solved stuff. This is lots of fun if you’re good with computers, plus a little math, cryptography, and general puzzling. I’m still stuck on level 8… oh well. Since the levels didn’t seem very indicative of difficulty to me, I decided to do some analysis.&lt;/p&gt;</description>
+&lt;p&gt;Since it’s summer, I went back to &lt;a href=&#34;http://www.rankk.org/&#34;&gt;Rankk&lt;/a&gt; and solved stuff. This is lots of fun if you’re good with computers, plus a little math, cryptography, and general puzzling. I’m still stuck on level 8… oh well. Since the levels didn’t seem very indicative of difficulty to me, I decided to do some analysis.&lt;/p&gt;
+&lt;p&gt;New challenges have been added to Rankk over time, so my metric of difficulty is the number of solvers divided by the time from release to now. Of course this is far from perfect; for example, a challenge’s author doesn’t always seem consistently counted as a solver, problems with lower numbers and problems that will help level up are more likely to get checked out by new rankkers, and so on. But this is just for fun.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -468,8 +460,7 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
       <pubDate>Sat, 20 Apr 2013 11:51:06 +0800</pubDate>
       
       <guid>//blog.vero.site/post/problems</guid>
-      <description>&lt;p&gt;because my title needs to mean something. &lt;ins date=&#34;2019-02-05T18:08:23-0500&#34;&gt;(note from the future: before late 2017, when I &lt;a href=&#34;//blog.vero.site/post/hello-again&#34;&gt;migrated to Hugo and GitHub Pages&lt;/a&gt;, the blog was called “BetaWorldProblems”.)&lt;/ins&gt;&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;because my title needs to mean something. &lt;ins date=&#34;2019-02-05T18:08:23-0500&#34;&gt;(note from the future: before late 2017, when I &lt;a href=&#34;//blog.vero.site/post/hello-again&#34;&gt;migrated to Hugo and GitHub Pages&lt;/a&gt;, the blog was called “BetaWorldProblems”.)&lt;/ins&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -478,8 +469,7 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
       <pubDate>Thu, 14 Mar 2013 20:35:09 +0800</pubDate>
       
       <guid>//blog.vero.site/post/google-reader-powering-down</guid>
-      <description>&lt;p&gt;Google just announced &lt;a href=&#34;http://googlereader.blogspot.tw/2013/03/powering-down-google-reader.html&#34;&gt;it’s shutting down Google Reader&lt;/a&gt; in three and a half months… I am participating in the friendly Reddit DDoS-hug of all the alternatives (&lt;a href=&#34;http://www.reddit.com/r/AskReddit/comments/1a8zgj/what_are_some_good_web_rss_readers_to_replace/c8v71t5&#34;&gt;list&lt;/a&gt;, but scroll around in the thread for a few more). Darn.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Google just announced &lt;a href=&#34;http://googlereader.blogspot.tw/2013/03/powering-down-google-reader.html&#34;&gt;it’s shutting down Google Reader&lt;/a&gt; in three and a half months… I am participating in the friendly Reddit DDoS-hug of all the alternatives (&lt;a href=&#34;http://www.reddit.com/r/AskReddit/comments/1a8zgj/what_are_some_good_web_rss_readers_to_replace/c8v71t5&#34;&gt;list&lt;/a&gt;, but scroll around in the thread for a few more). Darn.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -508,7 +498,7 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
       <guid>//blog.vero.site/post/programming</guid>
       <description>&lt;p&gt;Okay I don’t actually know how this pointless rambling got so long. I know the longer it is the more people will just tend to skim, because I do that all the time. So I went back and refactored—er, rewrote all the somewhat tangential bits (wow these puns are too easy) into footnotes. Manually. Obviously if I have to do this again I’ll write a script for it. But the post is still really long, and I bet nobody will read the whole thing. Oh well.&lt;/p&gt;
 &lt;p&gt;Life updates: I got out of the hospital Friday two-and-a-half weeks ago, went to the preliminaries of NPSC (a national team programming contest) with classmates, threw up a lot, went back into the hospital, and came out again. I wrote a lot of stuff about the experience and how much it sucked (hint: &lt;em&gt;a lot&lt;/em&gt;) when I started this draft around that time, but now putting so much detail in this post feels weird. I’m mostly good now.&lt;/p&gt;
-&lt;p&gt;Three years ago NPSC was the only programming contest I really knew of; now I’ve participated in quite a few more, both online and locally, but it’s still the only contest I’ve entered that gives you real-time verdicts. I believe it inherits this from being modeled after ACM-ICPC, but that’s for college people and I’m less clear on how it works. All the other contests, namely &lt;a href=&#34;https://www.topcoder.com/&#34;&gt;TopCoder&lt;/a&gt;, &lt;a href=&#34;http://www.codeforces.com/&#34;&gt;CodeForces&lt;/a&gt;, &lt;a href=&#34;http://usaco.org/&#34;&gt;USACO&lt;/a&gt;, and the other local individual competition (there doesn’t appear to be an English name so for the purpose of this post I’ll just call it “Nameless Local”; there’s a nation-wide competition in one-and-a-half weeks!), have system tests after the contest that don’t allow you to resubmit afterwards.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; They all give pretests that you get to know about right away, just to catch super-silly non-algorithmic mistakes like failing to remove the debug statements or reading input from the wrong place, but these contain weak test cases and don’t guarantee that the solution will pass the system tests and get full score.  After roughly parsing the rules on the IOI’s website, I believe the IOI (at least this year; I don’t know if it has evolved or anything) allows real-time testing and feedback with a confusing bunch of restrictions: how it apparently works is there are free “public tests”, and you can get results for a “release test” using the official test cases by using a “release token”, which you get two of every half hour. Additionally, there is apparently a cap of 64 submissions per problem, but I’m pretty sure it’s the kind of cap that honest competitors can safely ignore, like the 100-per-group in Australian puzzlehunts. Well, at least it tells us the organizers think in binary. Or octal.&lt;/p&gt;</description>
+&lt;p&gt;Three years ago NPSC was the only programming contest I really knew of; now I’ve participated in quite a few more, both online and locally, but it’s still the only contest I’ve entered that gives you real-time verdicts. I believe it inherits this from being modeled after ACM-ICPC, but that’s for college people and I’m less clear on how it works. All the other contests, namely &lt;a href=&#34;https://www.topcoder.com/&#34;&gt;TopCoder&lt;/a&gt;, &lt;a href=&#34;http://www.codeforces.com/&#34;&gt;CodeForces&lt;/a&gt;, &lt;a href=&#34;http://usaco.org/&#34;&gt;USACO&lt;/a&gt;, and the other local individual competition (there doesn’t appear to be an English name so for the purpose of this post I’ll just call it “Nameless Local”; there’s a nation-wide competition in one-and-a-half weeks!), have system tests after the contest that don’t allow you to resubmit afterwards.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; They all give pretests that you get to know about right away, just to catch super-silly non-algorithmic mistakes like failing to remove the debug statements or reading input from the wrong place, but these contain weak test cases and don’t guarantee that the solution will pass the system tests and get full score.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -528,7 +518,8 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       
       <guid>//blog.vero.site/post/debug</guid>
       <description>&lt;p&gt;Okay did I mention how I sucked at the command line? This is part of the journey towards stopping. Yes, I’m on a Mac and it’s not very *nix-y in some ways but it’s enough for me for now.&lt;/p&gt;
-&lt;p&gt;Today’s story starts when I learned about &lt;a href=&#34;https://www.gnu.org/software/gdb/&#34;&gt;&lt;code&gt;gdb&lt;/code&gt;&lt;/a&gt;, the pure-command-line GNU Debugger, which is incredibly cool. I have tried and failed to learn how to use the debug function on many of my IDEs; I found shotgunning &lt;code&gt;printf&lt;/code&gt; statements as needed faster. This may well be the first time I found a command-line tool so much more intuitive than the GUI-equipped programs. Wow.&lt;/p&gt;</description>
+&lt;p&gt;Today’s story starts when I learned about &lt;a href=&#34;https://www.gnu.org/software/gdb/&#34;&gt;&lt;code&gt;gdb&lt;/code&gt;&lt;/a&gt;, the pure-command-line GNU Debugger, which is incredibly cool. I have tried and failed to learn how to use the debug function on many of my IDEs; I found shotgunning &lt;code&gt;printf&lt;/code&gt; statements as needed faster. This may well be the first time I found a command-line tool so much more intuitive than the GUI-equipped programs. Wow.&lt;/p&gt;
+&lt;p&gt;Then I learned that for some reason the &lt;code&gt;gdb&lt;/code&gt; on this computer was 6.3, which is 1.2~1.5 major versions behind (depending on how you count) and missing a frustrating amount of features. (The one that the current Code::Blocks installer installs is also something like 6.4. Blech.)&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -542,8 +533,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
 &lt;/div&gt;
 &lt;p&gt;Hardware:&lt;/p&gt;
 &lt;p&gt;The laptop I’m typing this on is over two years old. This is not a lot by some measures, but weird spontaneous glitches are starting to accumulate to the point where they’re getting on my nerves. The internet card still needs an extra reset to start working half the time, and occasionally warrants a full reboot, which costs five minutes. The USB ports are loopy, some windows just show up black when they feel like it, and there’s a steadily climbing whir in the background. I’m kind of anticipating the moment the whole thing just drops dead.&lt;/p&gt;
-&lt;p&gt;Well, I’m not about to run out of computers to use (there’s a noisy XP desktop that also barely works despite handling all our print jobs, but also one spanking new eight-core CPU laptop, which Dad considered a valuable enough investment (?)) but such a loss is still not something to be dismissed lightly. And the externalized cost is far more important and chilling. Who knows how many kids in the Congo had to mine coltan, or how much conflict has occurred over the crude oil, or what awful conditions those sweatshop-assembly workers are going through? Annie Leonard’s words still resonate with me from when we were first shown the video a year ago. Which is more recent than this laptop, so that doesn’t mean that much. I think a couple months ago I would have absolutely no second thoughts about getting a new one, though. Yup, I’m in a quandary (ha ha vocabulary) on the balance between desensitization and compulsive hoarding of stuff.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Well, I’m not about to run out of computers to use (there’s a noisy XP desktop that also barely works despite handling all our print jobs, but also one spanking new eight-core CPU laptop, which Dad considered a valuable enough investment (?)) but such a loss is still not something to be dismissed lightly. And the externalized cost is far more important and chilling. Who knows how many kids in the Congo had to mine coltan, or how much conflict has occurred over the crude oil, or what awful conditions those sweatshop-assembly workers are going through? Annie Leonard’s words still resonate with me from when we were first shown the video a year ago. Which is more recent than this laptop, so that doesn’t mean that much. I think a couple months ago I would have absolutely no second thoughts about getting a new one, though. Yup, I’m in a quandary (ha ha vocabulary) on the balance between desensitization and compulsive hoarding of stuff.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -564,8 +554,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       <description>&lt;div class=&#34;warning&#34;&gt;
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2009 self wrote this (except for the insertions by my 2013 self). It is preserved for historical interest and amusement, and does not reflect my current beliefs or attitudes.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Strange things:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Strange things:&lt;/p&gt;</description>
     </item>
     
     <item>

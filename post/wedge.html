@@ -14,12 +14,11 @@
 Note on notation: to be maximally clear, I have bolded all my vectors and put tiny arrows on them. Normal letters are usually reals, uppercase letters are usually bigger matrices. Also, \(\cdot^T\) denotes the transpose of a matrix.
 Let \(\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m\) be elements of \(\mathbb{R}^n\) where \(m \leq n\), i.e. column vectors with \(n\) real elements. Let \(V = [\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m]\). This means pasting the column vectors together to make an \(n \times m\) matrix (\(n\) rows \(m\) columns).
 Consider the thing \(\vec{\textbf{v}}_1 \wedge \vec{\textbf{v}}_2 \wedge \cdots \wedge \vec{\textbf{v}}_m\), which can be visualized as the hyperparallelogram \(\left\{\sum_{i=1}^{m} t_i\vec{\textbf{v}}_i \,\middle\vert\, t_i \in [0,1], i = 1, 2, \ldots, m \right\}\) but is apparently a different thing in a different vector space of things. We wonder how to compute the hyperarea of this hyperparallelogram.
-
 " />
 
 
 
-<meta name="generator" content="Hugo 0.50-DEV" />
+<meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
 <link rel="canonical" href="//blog.vero.site/post/wedge" />
@@ -127,7 +126,6 @@ Consider the thing \(\vec{\textbf{v}}_1 \wedge \vec{\textbf{v}}_2 \wedge \cdots 
 <hr />
 <p>Let <span class="math inline">\(\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m\)</span> be elements of <span class="math inline">\(\mathbb{R}^n\)</span> where <span class="math inline">\(m \leq n\)</span>, i.e. column vectors with <span class="math inline">\(n\)</span> real elements. Let <span class="math inline">\(V = [\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m]\)</span>. This means pasting the column vectors together to make an <span class="math inline">\(n \times m\)</span> matrix (<span class="math inline">\(n\)</span> rows <span class="math inline">\(m\)</span> columns).</p>
 <p>Consider the thing <span class="math inline">\(\vec{\textbf{v}}_1 \wedge \vec{\textbf{v}}_2 \wedge \cdots \wedge \vec{\textbf{v}}_m\)</span>, which can be visualized as the hyperparallelogram <span class="math inline">\(\left\{\sum_{i=1}^{m} t_i\vec{\textbf{v}}_i \,\middle\vert\, t_i \in [0,1], i = 1, 2, \ldots, m \right\}\)</span> but is apparently a different thing in a different vector space of things. We wonder how to compute <strong>the hyperarea of this hyperparallelogram</strong>.</p>
-<p></p>
 <p>To get a simple idea of what we’re trying to do, we start with the <span class="math inline">\(m = 2\)</span> case without any advanced stuff.</p>
 <h3 id="m-2">m = 2</h3>
 <p>We have two <span class="math inline">\(n\)</span>-dimensional vectors <span class="math inline">\(\vec{\textbf{v}}_1\)</span> and <span class="math inline">\(\vec{\textbf{v}}_2\)</span>, and we want to consider the area of the parallelogram they bound. Well, geometrically this can be computed as <span class="math display">\[ \vert\vec{\textbf{v}}_1\vert \vert\vec{\textbf{v}}_2\vert\sin \theta \]</span> where <span class="math inline">\(\theta\)</span> is the angle between the two vectors. And we can get at that angle because we know that the vectors’ dot product</p>

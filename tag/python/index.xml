@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Python on Bounded-Error Log</title>
+    <title>python on Bounded-Error Log</title>
     <link>//blog.vero.site/tag/python</link>
-    <description>Recent content in Python on Bounded-Error Log</description>
+    <description>Recent content in python on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 17 May 2015 23:24:11 +0800</lastBuildDate>
@@ -29,7 +29,8 @@
       <guid>//blog.vero.site/post/pycon</guid>
       <description>&lt;p&gt;Late post. As usual.&lt;/p&gt;
 &lt;p&gt;It started with an online competition — write programs, solve problems, get points. I wouldn’t call the problems easy, but they weren’t hard either. So I solved all of them. To make it even less impressive, only about twenty people submitted anything at all.&lt;/p&gt;
-&lt;p&gt;But the result was just what it was: I ended up with a free ticket to &lt;a href=&#34;https://tw.pycon.org/2014apac/en/&#34;&gt;PyCon APAC 2014&lt;/a&gt;.&lt;/p&gt;</description>
+&lt;p&gt;But the result was just what it was: I ended up with a free ticket to &lt;a href=&#34;https://tw.pycon.org/2014apac/en/&#34;&gt;PyCon APAC 2014&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I’d prefer a conference about a more functional programming language, but I’ll take what I get. Another adventure!&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -63,8 +64,7 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
       <pubDate>Sat, 20 Apr 2013 11:51:06 +0800</pubDate>
       
       <guid>//blog.vero.site/post/problems</guid>
-      <description>&lt;p&gt;because my title needs to mean something. &lt;ins date=&#34;2019-02-05T18:08:23-0500&#34;&gt;(note from the future: before late 2017, when I &lt;a href=&#34;//blog.vero.site/post/hello-again&#34;&gt;migrated to Hugo and GitHub Pages&lt;/a&gt;, the blog was called “BetaWorldProblems”.)&lt;/ins&gt;&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;because my title needs to mean something. &lt;ins date=&#34;2019-02-05T18:08:23-0500&#34;&gt;(note from the future: before late 2017, when I &lt;a href=&#34;//blog.vero.site/post/hello-again&#34;&gt;migrated to Hugo and GitHub Pages&lt;/a&gt;, the blog was called “BetaWorldProblems”.)&lt;/ins&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

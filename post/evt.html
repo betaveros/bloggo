@@ -16,12 +16,11 @@ The “Extreme Value Theorem”, according to my old calculus textbook (Larson, 
  Of course Rudin proves this, but coming from an unrigorous calculus background, the required deductions span three chapters and are very hard to motivate. That’s probably because it proves things for extremely general objects.
 In particular, I have no idea why the definition of “compact” is what it is: “a set for which every open cover has a finite subcovering”. Therefore, here’s a less general but more motivated proof, from the grounds-up.
 Definitions Real numbers are hard to define. We only need to know that we can add, subtract, multiply, divide, and compare them, i.e. they’re an ordered field, and that they have the least-upper-bound property. That is, if we have a set of real numbers that are bounded above, then the set has a least upper bound, a bound that “perfectly fits” the set. Precisely, the bound must be such that every element of the set is less than or equal to it, and no smaller value satisfies the same property.
-
 " />
 
 
 
-<meta name="generator" content="Hugo 0.50-DEV" />
+<meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
 <link rel="canonical" href="//blog.vero.site/post/evt" />
@@ -133,7 +132,6 @@ Definitions Real numbers are hard to define. We only need to know that we can ad
 <p>In particular, I have no idea why the definition of “compact” is what it is: “a set for which every open cover has a finite subcovering”. Therefore, here’s a less general but more motivated proof, from the grounds-up.</p>
 <h3 id="definitions">Definitions</h3>
 <p><strong>Real numbers</strong> are hard to define. We only need to know that we can add, subtract, multiply, divide, and compare them, i.e. they’re an ordered field, and that they have the <strong>least-upper-bound property</strong>. That is, if we have a set of real numbers that are bounded above, then the set has a <em>least upper bound</em>, a bound that “perfectly fits” the set. Precisely, the bound must be such that every element of the set is less than or equal to it, and no smaller value satisfies the same property.</p>
-<p></p>
 <p>(The rationals don’t have this property, since <span class="math inline">\(\{x \in \mathbb{Q} \mid x^2 &lt; 2\}\)</span> has no rational that bounds it perfectly. For any bound, you can find a smaller bound between it and that beastly irrational <span class="math inline">\(\sqrt{2}\)</span>.)</p>
 <p>(Also note that the least-upper-bound property quickly implies its mirror image, the greatest-lower-bound property: just consider the least-upper-bound of the lower bounds of some set.)</p>
 <p>A set is <strong>bounded</strong> if there’s a fixed number that’s greater than the distance between any two points. Easy.</p>

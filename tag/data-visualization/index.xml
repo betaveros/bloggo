@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Data Visualization on Bounded-Error Log</title>
+    <title>data visualization on Bounded-Error Log</title>
     <link>//blog.vero.site/tag/data-visualization</link>
-    <description>Recent content in Data Visualization on Bounded-Error Log</description>
+    <description>Recent content in data visualization on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 13 Jun 2015 09:08:33 +0800</lastBuildDate>
@@ -19,7 +19,8 @@
       <guid>//blog.vero.site/post/college-emails</guid>
       <description>&lt;p&gt;(Frivolous blog content, posted as part of a &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly committed to&lt;/a&gt;; standard disclaimers apply)&lt;/p&gt;
 &lt;p&gt;Out of boredom and curiosity, I &lt;a href=&#34;https://betaveros.github.io/bars-college.html&#34;&gt;graphed how many emails colleges sent me&lt;/a&gt;, excluding the colleges I actually applied to. I am being extremely polite and just calling them emails. I’ve wanted to make this for a long time, but it wasn’t until I saw this &lt;a href=&#34;https://medium.com/message/my-failed-experiment-in-time-travel-3aa2240a6bc0&#34;&gt;post about an email experiment&lt;/a&gt; on &lt;a href=&#34;http://waxy.org/links/&#34;&gt;waxy.org/links&lt;/a&gt; that I understood which tools I could use to quantify my emails. (And then I actually made it and procrastinated posting it here for two months. If you look at my GitHub page or activity you might have seen it already, though. Oops.)&lt;/p&gt;
-&lt;p&gt;I don’t think the results were expected. Other than saying that, I leave the interpretation up to the reader because I’m on a tight blogging schedule. Cool? Cool.&lt;/p&gt;</description>
+&lt;p&gt;I don’t think the results were expected. Other than saying that, I leave the interpretation up to the reader because I’m on a tight blogging schedule. Cool? Cool.&lt;/p&gt;
+&lt;p&gt;Step-by-step instructions:&lt;/p&gt;</description>
     </item>
     
   </channel>

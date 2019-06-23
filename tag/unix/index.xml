@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Unix on Bounded-Error Log</title>
+    <title>unix on Bounded-Error Log</title>
     <link>//blog.vero.site/tag/unix</link>
-    <description>Recent content in Unix on Bounded-Error Log</description>
+    <description>Recent content in unix on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 05 Nov 2012 22:28:39 +0800</lastBuildDate>
@@ -18,7 +18,8 @@
       
       <guid>//blog.vero.site/post/debug</guid>
       <description>&lt;p&gt;Okay did I mention how I sucked at the command line? This is part of the journey towards stopping. Yes, I’m on a Mac and it’s not very *nix-y in some ways but it’s enough for me for now.&lt;/p&gt;
-&lt;p&gt;Today’s story starts when I learned about &lt;a href=&#34;https://www.gnu.org/software/gdb/&#34;&gt;&lt;code&gt;gdb&lt;/code&gt;&lt;/a&gt;, the pure-command-line GNU Debugger, which is incredibly cool. I have tried and failed to learn how to use the debug function on many of my IDEs; I found shotgunning &lt;code&gt;printf&lt;/code&gt; statements as needed faster. This may well be the first time I found a command-line tool so much more intuitive than the GUI-equipped programs. Wow.&lt;/p&gt;</description>
+&lt;p&gt;Today’s story starts when I learned about &lt;a href=&#34;https://www.gnu.org/software/gdb/&#34;&gt;&lt;code&gt;gdb&lt;/code&gt;&lt;/a&gt;, the pure-command-line GNU Debugger, which is incredibly cool. I have tried and failed to learn how to use the debug function on many of my IDEs; I found shotgunning &lt;code&gt;printf&lt;/code&gt; statements as needed faster. This may well be the first time I found a command-line tool so much more intuitive than the GUI-equipped programs. Wow.&lt;/p&gt;
+&lt;p&gt;Then I learned that for some reason the &lt;code&gt;gdb&lt;/code&gt; on this computer was 6.3, which is 1.2~1.5 major versions behind (depending on how you count) and missing a frustrating amount of features. (The one that the current Code::Blocks installer installs is also something like 6.4. Blech.)&lt;/p&gt;</description>
     </item>
     
   </channel>

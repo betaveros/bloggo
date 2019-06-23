@@ -81,8 +81,7 @@ Vectors are like columns of matrices, or matrices with one column. Except row ve
 &lt;p&gt;Let&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 f_\epsilon(x) = \begin{cases} 0 &amp;amp; \text{if } |x| \geq \epsilon \\ 1 - \left|\frac{x}{\epsilon}\right| &amp;amp;\text{if } |x| &amp;lt; \epsilon \end{cases}.
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+\]&lt;/span&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -118,8 +117,7 @@ If \(x, y, z &amp;gt; 0\) then
 &lt;h3 id=&#34;chapter-2-basic-topology-some-ch.-3&#34;&gt;Chapter 2: Basic Topology (+ some Ch. 3)&lt;/h3&gt;
 &lt;p&gt;An &lt;strong&gt;isolated point&lt;/strong&gt; of E is in E but not a limit point of it. E is &lt;strong&gt;perfect&lt;/strong&gt; if it is exactly equal to its set of limit points. Equivalently, it is closed and has no isolated points. Ex. 2.44: The Cantor set is perfect.&lt;/p&gt;
 &lt;p&gt;A &lt;strong&gt;compact set&lt;/strong&gt; is a set for which every open cover has a finite subcover.&lt;/p&gt;
-&lt;p&gt;Compactness or compact sets have these properties (with made-up names):&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Compactness or compact sets have these properties (with made-up names):&lt;/p&gt;</description>
     </item>
     
     <item>

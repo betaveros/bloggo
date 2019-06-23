@@ -18,7 +18,7 @@ Tag → x86
 
 
 
-<meta name="generator" content="Hugo 0.50-DEV" />
+<meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
 <link rel="canonical" href="//blog.vero.site/tag/x86" />
@@ -141,7 +141,6 @@ Tag → x86
 </blockquote>
 <p>We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.</p>
 <p>Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from <a href="https://github.com/betaveros/xxb"><code>xxb</code></a> but <code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
-<p></p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/thoroughly-stripped">→ read more<span class="offscreen"> Thoroughly Stripped</span></a>
 	</footer>

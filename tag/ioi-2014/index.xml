@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ioi 2014 on Bounded-Error Log</title>
+    <title>IOI 2014 on Bounded-Error Log</title>
     <link>//blog.vero.site/tag/ioi-2014</link>
-    <description>Recent content in Ioi 2014 on Bounded-Error Log</description>
+    <description>Recent content in IOI 2014 on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 07 Sep 2014 16:01:28 +0800</lastBuildDate>
@@ -38,7 +38,12 @@
 &lt;figcaption&gt;
 I think our leader made this. Thanks.
 &lt;/figcaption&gt;
-&lt;/figure&gt;</description>
+&lt;/figure&gt;
+&lt;p&gt;Naturally, after the normal medals had been exhausted, the three full scorers received bags with prizes that may forever remain unknown to my sorry self, as well as a standing ovation from everybody in the auditorium. The orchestra had been going through ABBA songs during the ceremony, and very considerately played “The Winner Takes It All” for this part. It was impossible not to mentally fill in the lyrics.&lt;/p&gt;
+&lt;blockquote&gt;
+The winner takes it all&lt;br /&gt;The loser has to fall&lt;br /&gt;It’s simple and it’s plain&lt;br /&gt;Why should I complaiiiiiiiin?
+&lt;/blockquote&gt;
+&lt;p&gt;Speeches followed. Most were just average forgettable speeches, but Forster gave another speech that was somehow even better than the one he gave at the opening ceremony, with nonstop golden quotables such as:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -59,7 +64,9 @@ Guess the left-over card. The guesser wins if correct; the other player wins if 
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Guess-it is not trivial because sometimes you should ask the other player if he or she has a card that you already see in your hand; otherwise whenever you answered “no” to a query you’d immediately guess that the asked card is the hidden one. It is actually a solved game in the sense that the probabilities of the Nash equilibrium strategy for when to guess and when to bluff have been worked out already, but they’re not simple probabilities by any means and humans are terrible randomizers anyway. A few rounds of it sure beats rock-paper-scissors. I was very amused to lose almost all our games with 11 cards but win almost all of our games with 13.&lt;/p&gt;
-&lt;p&gt;Okay, no more gratuitous narrative excursions into game-theory. The first stop, National Center for Traditional Arts, was a very laid-back culture place with old-fashioned retro shops and streets.&lt;/p&gt;</description>
+&lt;p&gt;Okay, no more gratuitous narrative excursions into game-theory. The first stop, National Center for Traditional Arts, was a very laid-back culture place with old-fashioned retro shops and streets.&lt;/p&gt;
+&lt;p&gt;We watched a 3D glove puppetry (布袋戲) video, in the same session as a lot of the leaders.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/519.jpg&#34;&gt;&lt;img class=&#34;aligncenter size-medium wp-image-2521&#34; src=&#34;//blog.vero.site/img/519.jpg?w=225&#34; alt=&#34;519&#34; width=&#34;225&#34; height=&#34;300&#34; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -72,7 +79,7 @@ Guess the left-over card. The guesser wins if correct; the other player wins if 
 &lt;p&gt;Then, much too soon, we could enter. Day 1 of the contest was about to start.&lt;/p&gt;
 &lt;p&gt;The laptops were as yesterday, although they were protected with a white screensaver that indicated my name and ID as well as a countdown to the start of the contest. I was glad to see that my mousepad and all my writing utensils had survived without me. Somebody had the sense of humor to project an online stopwatch with an animated bomb fuse onto the screens to indicate the remaining time, which, once again, there was a lot of.&lt;/p&gt;
 &lt;p&gt;I conferred briefly with Paul (TZW (alphaveros (?))) about vim settings for a bit, but there were still fifteen minutes left or so. I idly stretched, practiced typing my &lt;code&gt;.vimrc&lt;/code&gt; on an imaginary keyboard, and watched as the US dude two tables to my left unplugged his laptop’s mouse and rearranged absolutely everything on his table using the surface under his chair as swap space. (Well, that was how I mentally described it at the time, pending further revelations. (hint hint))&lt;/p&gt;
-&lt;p&gt;Then it began. &lt;/p&gt;</description>
+&lt;p&gt;Then it began.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -85,7 +92,7 @@ Guess the left-over card. The guesser wins if correct; the other player wins if 
 &lt;p&gt;We left off at the end of the practice session. As if somebody were taking revenge against us for not having to suffer through any airplane trips, we were served a cold airplane meal for lunch.&lt;/p&gt;
 &lt;p&gt;Seriously, the box had a sticker that noted its manufacturer as something something Air Kitchen and another translucent sticker that badly covered an inscription saying the same thing in much bigger letters. It contained a cold apple salad, a cold chicken bun, a cold flat plastic cylinder of orange juice, and a package of plastic utensils that was exactly like the utensils that came with every airplane meal ever. I was disappointed, but at least the salad tasted okay, and I ate an extra one because two of my teammates volunteered theirs.&lt;/p&gt;
 &lt;p&gt;To pass the time, we played an extra-evil &lt;a href=&#34;https://en.wikipedia.org/wiki/Ninety-nine_(addition_card_game)&#34;&gt;ninety-nine&lt;/a&gt; variant. Apparently this is a very Taiwanese game because lots of student guides were teaching their teams the game, although our special cards differ from the ones Wikipedia lists in a lot of ways and our evil variant created more opportunity for sabotage and counter-sabotage and bluffing. 7s are used to draw your replacement card from somebody else’s hand, and that person cannot draw again and will have one less card; aces are used to swap your entire hand with somebody else, who also cannot draw a card; small-value cards can be combined to form special values (e.g. play a 2 and 5 for the effect of a 7) but after playing a combination you can only draw one replacement card; and later, to speed up the game, we added a rule where all 9s had to be unconditionally discarded without replacement but would still get shuffled back into the draw pile. Players lose if it’s their turn and they have no playable cards, including no cards at all.&lt;/p&gt;
-&lt;p&gt;While we were playing and repeatedly reveling in everybody ganging up to beat the winner from the last round, an instrumental version of “You Are My Sunshine” played on repeat in the background for literally the entire time. It wasn’t a very good version either. If you didn’t listen carefully for the fade-out and few seconds of silence at the end of each loop, you’d think that the loop was only one verse long.  After the miserable excuse for lunch, we entered the place the opening ceremony, and an orchestra played a few songs that I can finally hope gave the contestants a feeling of Taiwanese culture. I recognized &lt;a href=&#34;https://zh.wikipedia.org/zh-tw/%E6%9C%9B%E6%98%A5%E9%A2%A8&#34;&gt;「望春風」&lt;/a&gt;.&lt;/p&gt;</description>
+&lt;p&gt;While we were playing and repeatedly reveling in everybody ganging up to beat the winner from the last round, an instrumental version of “You Are My Sunshine” played on repeat in the background for literally the entire time. It wasn’t a very good version either. If you didn’t listen carefully for the fade-out and few seconds of silence at the end of each loop, you’d think that the loop was only one verse long.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -97,7 +104,9 @@ Guess the left-over card. The guesser wins if correct; the other player wins if 
       <description>&lt;p&gt;Yes, I know day 1 of the contest already ended and is probably a more interesting topic to blog about, but I finished writing this last night just before the internet was cut off to quarantine the contestants from the leaders, who received the problems and began translating them. I didn’t know about this until it was too late, which is why I’ve been waiting since yesterday to post this.&lt;/p&gt;
 &lt;p&gt;To provide a counterpoint to the last post, one of the many, &lt;em&gt;many&lt;/em&gt; advantages of entering an international competition is that you get to meet a lot more people you already know, so there’s less time spent being socially awkward. While waiting for stuff to happen, aside from all the expected time spent with the Taiwan team, I also talked to, played games with, and otherwise entertained a whole lot of people I already knew, including my schoolmates (no less than fourteen of them were volunteers) and some of the college students who had shepherded us around during olympiad training.&lt;/p&gt;
 &lt;p&gt;Which is a good thing, too, because there was a lot of waiting.&lt;/p&gt;
-&lt;p&gt;First I waited for my teammates; my parents had decided to take me to the hotel (Fullon Shenkeng) directly, since I had a lot of stuff, and I had arrived early. This took about an hour, after which we had lunch. Then I waited for the hotel to give us our room cards, which took about five hours, after which we had dinner. Finally, at night, I waited for the Codeforces system tests. Very nerve-wracking. But I’m getting ahead of myself.&lt;/p&gt;</description>
+&lt;p&gt;First I waited for my teammates; my parents had decided to take me to the hotel (Fullon Shenkeng) directly, since I had a lot of stuff, and I had arrived early. This took about an hour, after which we had lunch. Then I waited for the hotel to give us our room cards, which took about five hours, after which we had dinner. Finally, at night, I waited for the Codeforces system tests. Very nerve-wracking. But I’m getting ahead of myself.&lt;/p&gt;
+&lt;p&gt;Advantage #2 of being the home team: you can talk to all of the organizers and volunteers fluently, so you can get them to help you more quickly. Although we waited for our room cards for an obscenely long time, I got the volunteers to replace my pinyin-name-card with a legitimate one that said “Brian” on it really quickly.&lt;/p&gt;
+&lt;p&gt;Unfortunately, after I talked to a few more people, it looks like they aren’t going to change my name in the database. So if anybody reading this chances to look at the IOI live ranking and is unable to find me, look for the first name “Po-En”.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -109,8 +118,7 @@ Guess the left-over card. The guesser wins if correct; the other player wins if 
       <description>&lt;p&gt;Indexing debates are boring. Especially when you can just flagrantly disregard all concerns about memory safety (because C++ never had any in the first place) and write &lt;code&gt;int _array[100008], array = _array + 2;&lt;/code&gt; I do this alarmingly often; hence, the title. Hashtag firstworldanarchists. Three ± 1 cheers for &lt;a href=&#34;http://www.haskell.org/ghc/docs/7.6-latest/html/libraries/array-0.4.0.1/Data-Array.html#v:array&#34;&gt;Haskell arrays&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Anyway. One of the disadvantages of entering an international competition as the home team is a lack of time to completely absorb the idea that what is about to happen is a Big Thing. There was lots of time before the other international competitions I went to to spend uncomfortably on airplanes trying to adjust for the timezone difference.&lt;/p&gt;
 &lt;p&gt;Not so for a competition in one’s own country. Right up to the night before entering the hotel that marks the beginning of everything, I’m still at home, furiously refreshing the AoPS IMO fora and Facebook for news (!!!), lazily solving trivial Codeforces Div II problems with &lt;del&gt;pointless&lt;/del&gt; point-free Haskell one-liners, and blogging. (There’s more, but I kind of want it to be a surprise.)&lt;/p&gt;
-&lt;p&gt;Anyway, let’s set the rules. Well, there’s only one, honestly:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Anyway, let’s set the rules. Well, there’s only one, honestly:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -122,7 +130,7 @@ Guess the left-over card. The guesser wins if correct; the other player wins if 
       <description>&lt;p&gt;After the first stage of selection camp, I was very nervous because I was fifth place in a selection sequence that would finally result in a team of four.&lt;/p&gt;
 &lt;p&gt;I screwed myself over on the first mock test by committing to a bad implementation method on a problem that was hard to get points on. My method seemed simple, but the memory usage leaked out in a way that was confusing and hard to patch; unfortunately, I tried to patch it in increasingly desperate and convoluted ways rather than scrapping the method, and thus missed out on many of the points elsewhere.&lt;/p&gt;
 &lt;p&gt;During the second test I failed to read the last problem carefully and spent too much of my time on the second problem, once again missing out on a lot of relatively easy points. I had optimized and optimized and pushed my quadratic runtime down to linearithmic, which would allow me to get the points for the last subtask — or so I thought. But with 10 minutes left I had all but one testcase right, and after desperately rereading my code, I realized that I had a string comparison stuck in an inner loop that could make my runtime degenerate to quadratic if the input string had lots of the same digit. In order to have a solidly linearithmic algorithm, I would have to implement a &lt;a href=&#34;https://en.wikipedia.org/wiki/Suffix_array&#34;&gt;suffix array&lt;/a&gt;. Ten minutes? I gave up. (The problem setters told me afterwards that hashing would have worked too; I didn’t think of that at all. Oops.) I spent the 10 minutes reading the last problem and still failed to read it carefully. So that did not go very well.&lt;/p&gt;
-&lt;p&gt;But, as the title probably gave away, during the third and fourth mock tests everything went much better than expected. :)  There are two good reasons:&lt;/p&gt;</description>
+&lt;p&gt;But, as the title probably gave away, during the third and fourth mock tests everything went much better than expected. :)&lt;/p&gt;</description>
     </item>
     
   </channel>

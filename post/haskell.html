@@ -20,7 +20,7 @@ Okay, but seriously now. I wrote this about my journey to learn functional progr
 
 
 
-<meta name="generator" content="Hugo 0.50-DEV" />
+<meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
 <link rel="canonical" href="//blog.vero.site/post/haskell" />
@@ -140,7 +140,7 @@ Okay, but seriously now. I wrote this about my journey to learn functional progr
 <blockquote>
 The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes).
 </blockquote>
-<p> Anyway, while browsing <a href="http://www.reddit.com/r/haskell">r/haskell</a>, I learned from this article what I was doing wrong; it’s entirely possible to generate primes functionally and quickly. This article on <a href="http://www.cs.tufts.edu/%7Enr/cs257/archive/melissa-oneill/Sieve-JFP.pdf">functional Sieve of Eratosthenes</a> explains why the “naive Sieve of Eratosthenes”, viz.,</p>
+<p>Anyway, while browsing <a href="http://www.reddit.com/r/haskell">r/haskell</a>, I learned from this article what I was doing wrong; it’s entirely possible to generate primes functionally and quickly. This article on <a href="http://www.cs.tufts.edu/%7Enr/cs257/archive/melissa-oneill/Sieve-JFP.pdf">functional Sieve of Eratosthenes</a> explains why the “naive Sieve of Eratosthenes”, viz.,</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb3-1" data-line-number="1">primes <span class="fu">=</span> sieve [<span class="dv">2</span><span class="fu">..</span>]</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">sieve (p <span class="fu">:</span> xs) <span class="fu">=</span> p <span class="fu">:</span> sieve [x <span class="fu">|</span> x <span class="ot">&lt;-</span> xs, x <span class="ot">`mod`</span> p <span class="fu">&gt;</span> <span class="dv">0</span>]</a></code></pre></div>
 <p>(copied from the article; it’s simpler than my own naive attempt) is severely slow, in fact with time complexity <span class="math inline">\(\Theta(n^2 / (\log n)^2)\)</span>. Even trial division with a suitable cut-off is faster.</p>

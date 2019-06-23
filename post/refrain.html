@@ -11,12 +11,11 @@
 
 <meta name="author" content="betaveros" />
 <meta name="description" content="http://111.186.63.17/perf.data.gz Environment: Ubuntu 16.04&#43;latex In this challenge, we get a gzipped file called perf.data and a minimal description of an environment. Googling this reveals that perf.data is a record format of the perf tool, a Linux profiler. Installing perf allows us to read perf.data and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is perf report -D, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the perf record was run against.
-
 " />
 
 
 
-<meta name="generator" content="Hugo 0.50-DEV" />
+<meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
 <link rel="canonical" href="//blog.vero.site/post/refrain" />
@@ -125,7 +124,6 @@
 
 Environment: Ubuntu 16.04+latex</code></pre>
 <p>In this challenge, we get a gzipped file called <code>perf.data</code> and a minimal description of an environment. Googling this reveals that <code>perf.data</code> is a record format of the <code>perf</code> tool, a Linux profiler. Installing <code>perf</code> allows us to read <code>perf.data</code> and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is <code>perf report -D</code>, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the <code>perf record</code> was run against.</p>
-<p></p>
 <pre><code>0x6178 [0xa8]: event: 10
 .
 . ... raw event: size 168 bytes

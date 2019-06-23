@@ -19,7 +19,7 @@ scala&amp;gt; val * = 12 *: Int = 12  scala&amp;gt; * * * * * res0: Int = 1728" 
 
 
 
-<meta name="generator" content="Hugo 0.50-DEV" />
+<meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
 <link rel="canonical" href="//blog.vero.site/post/scala" />
@@ -132,7 +132,7 @@ scala&amp;gt; val * = 12 *: Int = 12  scala&amp;gt; * * * * * res0: Int = 1728" 
 <a class="sourceLine" id="cb1-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb1-4" data-line-number="4">scala&gt; * * * * *</a>
 <a class="sourceLine" id="cb1-5" data-line-number="5">res0: Int = <span class="dv">1728</span></a></code></pre></div>
-<p> If you’re in a code-golf mood, this lets you shave a few characters by sticking variable names right next to keywords. Here’s a 52-character quine in script mode. (Adapted from <a href="http://www.codecommit.com/blog/scala/useless-hackery-a-scala-quine">this post from Code Commit</a>)</p>
+<p>If you’re in a code-golf mood, this lets you shave a few characters by sticking variable names right next to keywords. Here’s a 52-character quine in script mode. (Adapted from <a href="http://www.codecommit.com/blog/scala/useless-hackery-a-scala-quine">this post from Code Commit</a>)</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode scala"><code class="sourceCode scala"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">val</span>^ =<span class="st">&quot;val^ =%c%s%1$c;printf(^,34,^)&quot;</span>;<span class="fu">printf</span>(^,<span class="dv">34</span>,^)</a></code></pre></div>
 <p>Functions are first-class objects! All the folding and mapping of functional programming (not to mention monadic operations) of functional programming are there! No more five-line boilerplate anonymous ActionListeners! Applied (no pun intended) to quines again, here’s one that doesn’t use <code>printf</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode scala"><code class="sourceCode scala"><a class="sourceLine" id="cb3-1" data-line-number="1">{s:String=&gt;<span class="fu">println</span>((s<span class="fl">+34.</span>toChar)*<span class="dv">2</span>)}apply <span class="st">&quot;{s:String=&gt;println((s+34.toChar)*2)}apply &quot;</span>;</a></code></pre></div>

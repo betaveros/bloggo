@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Slitherlink on Bounded-Error Log</title>
+    <title>slitherlink on Bounded-Error Log</title>
     <link>//blog.vero.site/tag/slitherlink</link>
-    <description>Recent content in Slitherlink on Bounded-Error Log</description>
+    <description>Recent content in slitherlink on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 27 Apr 2013 17:27:26 +0800</lastBuildDate>
@@ -18,8 +18,7 @@
       
       <guid>//blog.vero.site/post/puzzle-41</guid>
       <description>&lt;p&gt;I survived midterms.&lt;/p&gt;
-&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/slitherlink.html&#34;&gt;Slitherlink&lt;/a&gt; mutant. Draw a loop through adjacent vertices that cannot intersect itself. Each number indicates how many of the four edges around it are drawn. In addition, each pair of colored squares in corresponding positions (e.g. R1C1 and R6C6, R2C8 and R7C3) must have an equal number of edges drawn around them (i.e. if there were numbers placed there, they would be equal).&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/slitherlink.html&#34;&gt;Slitherlink&lt;/a&gt; mutant. Draw a loop through adjacent vertices that cannot intersect itself. Each number indicates how many of the four edges around it are drawn. In addition, each pair of colored squares in corresponding positions (e.g. R1C1 and R6C6, R2C8 and R7C3) must have an equal number of edges drawn around them (i.e. if there were numbers placed there, they would be equal).&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -33,8 +32,7 @@
 &lt;del datetime=&#34;2017-11-25T16:26:24-0500&#34;&gt;
 Please click on the image if it looks weird, which it very likely will.
 &lt;/del&gt;
-&lt;p&gt;&lt;ins datetime=&#34;2017-11-25T16:26:37-0500&#34;&gt;(This was a WordPress bug that should no longer be relevant.)&lt;/ins&gt;&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;ins datetime=&#34;2017-11-25T16:26:37-0500&#34;&gt;(This was a WordPress bug that should no longer be relevant.)&lt;/ins&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -44,8 +42,7 @@ Please click on the image if it looks weird, which it very likely will.
       
       <guid>//blog.vero.site/post/puzzle-37</guid>
       <description>&lt;p&gt;Nikoli &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/slitherlink.html&#34;&gt;Slitherlink&lt;/a&gt; + &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/masyu.html&#34;&gt;Masyu&lt;/a&gt; hybrid; I don’t know who first put them together but combinations like this aren’t rare.&lt;/p&gt;
-&lt;p&gt;Draw a loop through vertices that cannot intersect itself; each number indicates how many of the four edges around it are drawn; the loop must pass through all large dots, and it must go straight through white dots while turning either before or after (or both), while it must turn on black dots without turning either before or after.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Draw a loop through vertices that cannot intersect itself; each number indicates how many of the four edges around it are drawn; the loop must pass through all large dots, and it must go straight through white dots while turning either before or after (or both), while it must turn on black dots without turning either before or after.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -55,8 +52,7 @@ Please click on the image if it looks weird, which it very likely will.
       
       <guid>//blog.vero.site/post/puzzle-32</guid>
       <description>&lt;p&gt;Yes, a “big” crazy mutant puzzle for a “milestone” &lt;a href=&#34;https://xkcd.com/1000/&#34;&gt;(as seen on xkcd)&lt;/a&gt;, both for this blog and for my life. Things are rough now, but I prepared this ridiculously ahead of time. It’s still not &lt;em&gt;really&lt;/em&gt; big, but I’m not so experienced and I don’t have the inspiration for something like &lt;a href=&#34;http://www.artofproblemsolving.com/Forum/viewtopic.php?f=535&amp;amp;t=506208&#34;&gt;an entire mini-puzzlehunt&lt;/a&gt;. Also, I think I should attempt more word-bank-based puzzles some day so I won’t fail as completely at them.&lt;/p&gt;
-&lt;p&gt;But anyway: This is a Slitherlink combining MellowMelon’s &lt;a href=&#34;https://mellowmelon.wordpress.com/slitherlink/crosslink/&#34;&gt;Crosslink&lt;/a&gt; and &lt;a href=&#34;https://mellowmelon.wordpress.com/category/puzzle-types/slitherlink/liar-slitherlink/&#34;&gt;Liar&lt;/a&gt; variations. Draw a loop through vertices that can intersect itself but must go straight both times if it does; each number normally indicates how many of the four edges around it are draw, but exactly one clue in each row and column is false. Have fun.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;But anyway: This is a Slitherlink combining MellowMelon’s &lt;a href=&#34;https://mellowmelon.wordpress.com/slitherlink/crosslink/&#34;&gt;Crosslink&lt;/a&gt; and &lt;a href=&#34;https://mellowmelon.wordpress.com/category/puzzle-types/slitherlink/liar-slitherlink/&#34;&gt;Liar&lt;/a&gt; variations. Draw a loop through vertices that can intersect itself but must go straight both times if it does; each number normally indicates how many of the four edges around it are draw, but exactly one clue in each row and column is false. Have fun.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -66,8 +62,7 @@ Please click on the image if it looks weird, which it very likely will.
       
       <guid>//blog.vero.site/post/puzzle-16</guid>
       <description>&lt;p&gt;Slitherlink with 20 clues taken out as dominoes and their original positions shaded. For more lucid rules please visit &lt;a href=&#34;https://mellowmelon.wordpress.com/2010/10/21/puzzle-263/&#34;&gt;MellowMelon’s puzzle 263&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Domino set is all possible dominoes exactly once each: &lt;strong&gt;{00,01,02,03,11,12,13,22,23,33}&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Domino set is all possible dominoes exactly once each: &lt;strong&gt;{00,01,02,03,11,12,13,22,23,33}&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -76,8 +71,7 @@ Please click on the image if it looks weird, which it very likely will.
       <pubDate>Thu, 22 Mar 2012 20:46:51 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-14</guid>
-      <description>&lt;p&gt;Just a normal one this time.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Just a normal one this time.&lt;/p&gt;</description>
     </item>
     
     <item>

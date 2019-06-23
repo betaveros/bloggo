@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Matrices on Bounded-Error Log</title>
+    <title>matrices on Bounded-Error Log</title>
     <link>//blog.vero.site/tag/matrices</link>
-    <description>Recent content in Matrices on Bounded-Error Log</description>
+    <description>Recent content in matrices on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 14 Oct 2012 17:01:29 +0800</lastBuildDate>
@@ -22,7 +22,8 @@
 &lt;p&gt;Well, what a hard question. But of course given the curriculum it’s the only interesting problem I think could be asked.&lt;/p&gt;
 &lt;p&gt;When I was hurrying through the high-school curriculum I remember having to learn the same thing and not having any idea what the heck was happening. Matrices appeared in that section as a messy, burdensome way to solve equations and never again, at least not in an interesting enough way to make me remember. I don’t have my precalc textbook, but a supplementary precalc book completely confirms my impressions and “matrix” doesn’t even appear in my calculus textbook index. They virtually failed to show up in olympiad training too. I learned that Po-Shen Loh knew how to &lt;a href=&#34;http://www.math.cmu.edu/~ploh/docs/math/mop2009/alg-comb.pdf&#34;&gt;kill a bunch of combinatorics problems with them (PDF)&lt;/a&gt;, but not in the slightest how to do that myself.&lt;/p&gt;
 &lt;p&gt;Somewhere else, during what I’m guessing was random independent exploration, I happened upon the signed-permutation-rule (a.k.a. &lt;a href=&#34;https://en.wikipedia.org/wiki/Leibniz_formula_for_determinants&#34;&gt;Leibniz formula&lt;/a&gt;) for evaluating determinants, which made a lot more sense for me and looked more beautiful and symmetric&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\det(A) = \sum_{\sigma \in S_n} \text{sgn}(\sigma) \prod_{i=1}^n A_{i,\sigma_i}\]&lt;/span&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\det(A) = \sum_{\sigma \in S_n} \text{sgn}(\sigma) \prod_{i=1}^n A_{i,\sigma_i}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;and I was annoyed when both of my linear algebra textbooks defined it first with cofactor expansion. Even though they quickly proved you could expand along any row or column, and one also followed up with the permutation formula a few sections later, it still felt uglier to me. Yes, it’s impossible to understand that equation without knowledge of permutations and their signs, but I’m very much a permutations kind of guy. Sue me.&lt;/p&gt;</description>
     </item>
     
   </channel>

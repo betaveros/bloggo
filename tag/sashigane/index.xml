@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Sashigane on Bounded-Error Log</title>
+    <title>sashigane on Bounded-Error Log</title>
     <link>//blog.vero.site/tag/sashigane</link>
-    <description>Recent content in Sashigane on Bounded-Error Log</description>
+    <description>Recent content in sashigane on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 09 Nov 2012 17:03:16 +0800</lastBuildDate>
@@ -18,8 +18,7 @@
       
       <guid>//blog.vero.site/post/puzzle-31</guid>
       <description>&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt; puzzle where every polyomino is required to be an L-shape, as in &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/sashigane.html&#34;&gt;Sashigane&lt;/a&gt;. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.&lt;/p&gt;
-&lt;p&gt;My second, and now symmetric, attempt at this crazy self-invented mutant; &lt;a href=&#34;//blog.vero.site/post/puzzle-22&#34;&gt;puzzle 22&lt;/a&gt; was the first. A word of warning: I can’t solve this without bifurcating near the end, so logic purists may be disappointed, but I like the clue arrangement too much. In fact I suspect this puzzle could have many more clues removed without affecting uniqueness, so tight are the rule constraints in this type.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;My second, and now symmetric, attempt at this crazy self-invented mutant; &lt;a href=&#34;//blog.vero.site/post/puzzle-22&#34;&gt;puzzle 22&lt;/a&gt; was the first. A word of warning: I can’t solve this without bifurcating near the end, so logic purists may be disappointed, but I like the clue arrangement too much. In fact I suspect this puzzle could have many more clues removed without affecting uniqueness, so tight are the rule constraints in this type.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -29,8 +28,7 @@
       
       <guid>//blog.vero.site/post/puzzle-22</guid>
       <description>&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt; puzzle where every polyomino is required to be an L-shape, as in &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/sashigane.html&#34;&gt;Sashigane&lt;/a&gt;. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.&lt;/p&gt;
-&lt;p&gt;May be slightly reminiscent of &lt;a href=&#34;http://mathgrant.blogspot.com/2011/09/monday-mutant-95-polyominous-no.html&#34;&gt;no-rectangle Fillominoes&lt;/a&gt;. &lt;em&gt;Slightly…&lt;/em&gt; (Has anybody done this before? It seems so interesting that I feel like I couldn’t be first.)&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;May be slightly reminiscent of &lt;a href=&#34;http://mathgrant.blogspot.com/2011/09/monday-mutant-95-polyominous-no.html&#34;&gt;no-rectangle Fillominoes&lt;/a&gt;. &lt;em&gt;Slightly…&lt;/em&gt; (Has anybody done this before? It seems so interesting that I feel like I couldn’t be first.)&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -40,8 +38,7 @@
       
       <guid>//blog.vero.site/post/puzzle-20</guid>
       <description>&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/20-sashigane.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/20-sashigane.png&#34; alt=&#34;&#34; title=&#34;Sashigane&#34; width=&#34;345&#34; height=&#34;345&#34; class=&#34;aligncenter size-full wp-image-1302&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Yeah, I lied last time I made one of these; the original Nikoli name wasn’t that hard to remember, and “sashigane puzzles” has shown up as a search query, so here you go. Perfect opposite-type-clue rotational symmetry, chaotic_iak! I hope you’re satisfied now.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Yeah, I lied last time I made one of these; the original Nikoli name wasn’t that hard to remember, and “sashigane puzzles” has shown up as a search query, so here you go. Perfect opposite-type-clue rotational symmetry, chaotic_iak! I hope you’re satisfied now.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -51,8 +48,7 @@
       
       <guid>//blog.vero.site/post/puzzle-12</guid>
       <description>&lt;p&gt;If you are reading this, then our APMO testing time is over! There’s a small chance of me being really happy or really frustrated about how I did, but I’m betting on a solid “meh.”&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://mathgrant.blogspot.com/2012/01/rules-ellbound.html&#34;&gt;Rules page&lt;/a&gt; by mathgrant. There’s no way I’m going to memorize the Japanese name yet. [edit: It’s Sashigane. It’s not that hard.]&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;a href=&#34;http://mathgrant.blogspot.com/2012/01/rules-ellbound.html&#34;&gt;Rules page&lt;/a&gt; by mathgrant. There’s no way I’m going to memorize the Japanese name yet. [edit: It’s Sashigane. It’s not that hard.]&lt;/p&gt;</description>
     </item>
     
   </channel>

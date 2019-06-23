@@ -6,21 +6,22 @@
     <description>Recent content in Categories on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sun, 23 Jun 2019 16:40:07 -0400</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Creations</title>
-      <link>//blog.vero.site/category/creations</link>
-      <pubDate>Sun, 26 Jul 2015 11:46:04 +0800</pubDate>
+      <title>thoughts</title>
+      <link>//blog.vero.site/category/thoughts</link>
+      <pubDate>Sun, 23 Jun 2019 16:40:07 -0400</pubDate>
       
-      <guid>//blog.vero.site/category/creations</guid>
+      <guid>//blog.vero.site/category/thoughts</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Cs</title>
+      <title>CS</title>
       <link>//blog.vero.site/category/cs</link>
       <pubDate>Wed, 27 Mar 2019 18:26:41 -0400</pubDate>
       
@@ -29,7 +30,7 @@
     </item>
     
     <item>
-      <title>Life</title>
+      <title>life</title>
       <link>//blog.vero.site/category/life</link>
       <pubDate>Sun, 03 Feb 2019 16:01:01 -0500</pubDate>
       
@@ -38,43 +39,7 @@
     </item>
     
     <item>
-      <title>Math</title>
-      <link>//blog.vero.site/category/math</link>
-      <pubDate>Fri, 07 Aug 2015 12:04:30 +0800</pubDate>
-      
-      <guid>//blog.vero.site/category/math</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Meta</title>
-      <link>//blog.vero.site/category/meta</link>
-      <pubDate>Tue, 07 Nov 2017 00:27:42 -0500</pubDate>
-      
-      <guid>//blog.vero.site/category/meta</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Puzzles</title>
-      <link>//blog.vero.site/category/puzzles</link>
-      <pubDate>Tue, 16 Jan 2018 19:39:22 -0500</pubDate>
-      
-      <guid>//blog.vero.site/category/puzzles</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>School</title>
-      <link>//blog.vero.site/category/school</link>
-      <pubDate>Sat, 18 Jul 2015 23:45:41 +0800</pubDate>
-      
-      <guid>//blog.vero.site/category/school</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Self Analysis</title>
+      <title>self-analysis</title>
       <link>//blog.vero.site/category/self-analysis</link>
       <pubDate>Sun, 03 Feb 2019 16:01:01 -0500</pubDate>
       
@@ -83,11 +48,47 @@
     </item>
     
     <item>
-      <title>Thoughts</title>
-      <link>//blog.vero.site/category/thoughts</link>
-      <pubDate>Thu, 13 Jun 2019 17:39:14 -0400</pubDate>
+      <title>puzzles</title>
+      <link>//blog.vero.site/category/puzzles</link>
+      <pubDate>Tue, 16 Jan 2018 19:39:22 -0500</pubDate>
       
-      <guid>//blog.vero.site/category/thoughts</guid>
+      <guid>//blog.vero.site/category/puzzles</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>meta</title>
+      <link>//blog.vero.site/category/meta</link>
+      <pubDate>Tue, 07 Nov 2017 00:27:42 -0500</pubDate>
+      
+      <guid>//blog.vero.site/category/meta</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>math</title>
+      <link>//blog.vero.site/category/math</link>
+      <pubDate>Fri, 07 Aug 2015 12:04:30 +0800</pubDate>
+      
+      <guid>//blog.vero.site/category/math</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>creations</title>
+      <link>//blog.vero.site/category/creations</link>
+      <pubDate>Sun, 26 Jul 2015 11:46:04 +0800</pubDate>
+      
+      <guid>//blog.vero.site/category/creations</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>school</title>
+      <link>//blog.vero.site/category/school</link>
+      <pubDate>Sat, 18 Jul 2015 23:45:41 +0800</pubDate>
+      
+      <guid>//blog.vero.site/category/school</guid>
       <description></description>
     </item>
     

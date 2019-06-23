@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Vim on Bounded-Error Log</title>
+    <title>vim on Bounded-Error Log</title>
     <link>//blog.vero.site/tag/vim</link>
-    <description>Recent content in Vim on Bounded-Error Log</description>
+    <description>Recent content in vim on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 13 Apr 2014 15:51:16 +0800</lastBuildDate>
@@ -30,7 +30,7 @@
 &lt;/ul&gt;
 &lt;p&gt;Even if I can handle step 1, step 2 is by no means a simple task, as my struggle to implement a mere &lt;a href=&#34;//blog.vero.site/post/haskell&#34;&gt;Sieve of Eratosthenes&lt;/a&gt; efficiently shows. That is fun, but not at all intuitive; I am doubtful I can do this under contest conditions. It is extremely difficult to transfer my skills in learning how to implement, say, a segment tree or treap into this language.&lt;/p&gt;
 &lt;p&gt;But! Google links to the &lt;a href=&#34;http://www.go-hero.net/jam/10/round/0&#34;&gt;programming language breakdown for 2010 Qualification Round&lt;/a&gt; as an example, and much to my surprise, Haskell ranks somewhere between sixth and tenth place in popularity (depending on what you sort by), so there are functional superprogrammers who can presumably do something like this.&lt;/p&gt;
-&lt;p&gt;As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it. &lt;/p&gt;</description>
+&lt;p&gt;As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it.&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Meta on Bounded-Error Log</title>
+    <title>meta on Bounded-Error Log</title>
     <link>//blog.vero.site/category/meta</link>
-    <description>Recent content in Meta on Bounded-Error Log</description>
+    <description>Recent content in meta on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 07 Nov 2017 00:27:42 -0500</lastBuildDate>
@@ -20,8 +20,7 @@
       <description>&lt;p&gt;And here we are.&lt;/p&gt;
 &lt;p&gt;This is the first post on this blog after I migrated off WordPress for a static solution.&lt;/p&gt;
 &lt;p&gt;At first, I wanted to set things up on Amazon Web Services (AWS), which was an adventure. There are lots of online posts about how to do this, but Amazon’s services change quickly and there was often outdated information. For instance, Amazon had a wizard that led you through setting up a static site, which I clicked on. It helpfully handled a lot of grunt work, but now I was out of sync with all of the guides. Oh well.&lt;/p&gt;
-&lt;p&gt;I think things are confusing partly because there are four AWS components all interacting to make a static site happen:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;I think things are confusing partly because there are four AWS components all interacting to make a static site happen:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -33,8 +32,7 @@
       <description>&lt;p&gt;&lt;strong&gt;tl;dr: I don’t use Facebook much. If you want to contact me, I would prefer nearly any other mode of communication. I am also going to stop autosharing posts from this blog onto Facebook. RSS readers are great; get yours today.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Recently I checked Facebook and it said something like “You’ve added N friends this past T units of time! Thanks for making the world more connected!” and I just couldn’t any more. Facebook friends are not friends. &lt;a href=&#34;https://en.wikipedia.org/wiki/Dunbar&#39;s_number&#34;&gt;Dunbar’s number&lt;/a&gt; is around 150, maybe double that if you want to stretch it; humans cannot handle that many human relationships. Facebook’s siloed ecosystem is the opposite of connected with the rest of the Internet.&lt;/p&gt;
 &lt;p&gt;That is one of many reasons I pretty much don’t use Facebook any more. This is not new, but I’ve never formalized it. Also, I figure others might assume otherwise since I still do have an account and still accept friend requests and post sometimes. Thus, I’m writing this post.&lt;/p&gt;
-&lt;p&gt;Here are all of the reasons:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Here are all of the reasons:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -45,8 +43,7 @@
       <guid>//blog.vero.site/post/step-back</guid>
       <description>&lt;p&gt;There’s some point in the decline of a blog’s activity at which you just can’t apologize with a straight face for not posting any more. Only ironically.&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;I brainstormed reasons why I’m not blogging. It took a while for me to find a reason that felt right, but I think it’s mostly the concern that I don’t have anything important to say, and I’m just spamming people’s inboxes or Facebook feeds. I make fun of my perfectonist tendencies, but they haven’t gone away and have been exacerbated by how public this blog feels now. There’s also a general feeling permeating life that I should be trying to present myself professionally to people, because like a diamond, the Internet is forever.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;I brainstormed reasons why I’m not blogging. It took a while for me to find a reason that felt right, but I think it’s mostly the concern that I don’t have anything important to say, and I’m just spamming people’s inboxes or Facebook feeds. I make fun of my perfectonist tendencies, but they haven’t gone away and have been exacerbated by how public this blog feels now. There’s also a general feeling permeating life that I should be trying to present myself professionally to people, because like a diamond, the Internet is forever.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -57,8 +54,7 @@
       <guid>//blog.vero.site/post/musings-pressure</guid>
       <description>&lt;p&gt;I hate doing things under time pressure, but I have to admit I do a lot more things when time pressure exists. One of the things is writing. Another is posting the things I write. They aren’t very good, but they’re better than writing that doesn’t exist.&lt;/p&gt;
 &lt;p&gt;(in case you forgot, I’m still posting this pretty much only because &lt;a href=&#34;//blog.vero.site/post/no-excuses&#34;&gt;I made myself post once every weekend&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;It’s interesting that I can impose time pressure on myself by declaring commitment devices by fiat and it works. Other people have developed other methods of doing this — I recently discovered &lt;a href=&#34;http://www.themostdangerouswritingapp.com/&#34;&gt;The Most Dangerous Writing App&lt;/a&gt;, which puts time pressure on you to type every five seconds or it deletes everything you wrote. There are many other ways it’s done.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;It’s interesting that I can impose time pressure on myself by declaring commitment devices by fiat and it works. Other people have developed other methods of doing this — I recently discovered &lt;a href=&#34;http://www.themostdangerouswritingapp.com/&#34;&gt;The Most Dangerous Writing App&lt;/a&gt;, which puts time pressure on you to type every five seconds or it deletes everything you wrote. There are many other ways it’s done.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -69,8 +65,7 @@
       <guid>//blog.vero.site/post/no-excuses</guid>
       <description>&lt;p&gt;Wow, this has been the longest silence on this blog in a long time.&lt;/p&gt;
 &lt;p&gt;I can’t justify it with lack of time either. Interning at Dropbox takes up all of my weekdays, but my weekends are much freer than I’m used to. I carelessly let two weeks at home in Taiwan pass by without doing much about blogging, and once again a lot of my few blog drafts have drifted into the temporally awkward zone, being too far away from the events they are about.&lt;/p&gt;
-&lt;p&gt;Neither is it for lack of things happening. At MIT, there was the &lt;a href=&#34;http://thetech.com/2016/06/10/senior-house-turnaround-announced&#34;&gt;Senior House turnaround and freshman moratorium&lt;/a&gt;. I can’t even begin to sum up the discussion around this issue, but I think &lt;a href=&#34;https://medium.com/@hollyhaney/an-open-letter-to-chancellor-barnhart-from-a-senior-house-resident-efc107e789ab#.a1psbheao&#34;&gt;the best response I’ve read is this open letter&lt;/a&gt;. Then there’s the &lt;a href=&#34;http://seniorhouse.mit.edu/&#34;&gt;official Senior House response&lt;/a&gt;. But that’s enough links, since I imagine the chances that this issue is relevant to you &lt;em&gt;and&lt;/em&gt; you’d need this blog to link you to them if you’re reading this are pretty low. (Then again, the chances that you’re reading this are already pretty low. Although the chances &lt;em&gt;you&lt;/em&gt; are reading this right now is 100%.)&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Neither is it for lack of things happening. At MIT, there was the &lt;a href=&#34;http://thetech.com/2016/06/10/senior-house-turnaround-announced&#34;&gt;Senior House turnaround and freshman moratorium&lt;/a&gt;. I can’t even begin to sum up the discussion around this issue, but I think &lt;a href=&#34;https://medium.com/@hollyhaney/an-open-letter-to-chancellor-barnhart-from-a-senior-house-resident-efc107e789ab#.a1psbheao&#34;&gt;the best response I’ve read is this open letter&lt;/a&gt;. Then there’s the &lt;a href=&#34;http://seniorhouse.mit.edu/&#34;&gt;official Senior House response&lt;/a&gt;. But that’s enough links, since I imagine the chances that this issue is relevant to you &lt;em&gt;and&lt;/em&gt; you’d need this blog to link you to them if you’re reading this are pretty low. (Then again, the chances that you’re reading this are already pretty low. Although the chances &lt;em&gt;you&lt;/em&gt; are reading this right now is 100%.)&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -125,8 +120,7 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
 &lt;a href=&#34;//blog.vero.site/post/index-txt&#34;&gt;and&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/897&#34;&gt;of&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/drop-in&#34;&gt;course&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/a-list&#34;&gt;metric&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/sheep&#34;&gt;zarktons&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/2857&#34;&gt;of&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/numbers-bmp&#34;&gt;shameless&lt;/a&gt; &lt;a href=&#34;//blog.vero.site/post/clicker&#34;&gt;filler&lt;/a&gt;.
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I also had lots of fun conversations about my posts, such as:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;I also had lots of fun conversations about my posts, such as:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -137,8 +131,7 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
       <guid>//blog.vero.site/post/signal</guid>
       <description>&lt;p&gt;(Short blog content, posted as part of a &lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly committed to&lt;/a&gt;; standard disclaimers apply)&lt;/p&gt;
 &lt;p&gt;For the interested, I wrote a &lt;a href=&#34;https://ibshgin.wordpress.com/2015/06/17/copyright/&#34;&gt;&lt;strong&gt;post summarizing issues in copyright and patent law&lt;/strong&gt;&lt;/a&gt; on a new blog for a school club. Actually, if you’re reading this post, you’re probably already interested enough / bored enough to read that post, so go read it. I think the videos are worth watching despite their length, but I tried to summarize the key points in text, so decide how much to read or watch depending on how much spare time you have.&lt;/p&gt;
-&lt;p&gt;I don’t know if that blog will work out, but anyway WordPress tells me I have 8500% more followers on this blog than the other one, even though I have doubts about how many of those followers actually read anything I post at all, so I thought I should link to that post here. Also, by publicizing the blog, I get to shame my friends and fellow club members into posting so that it doesn’t look so empty. Social media expertise, you know?&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;I don’t know if that blog will work out, but anyway WordPress tells me I have 8500% more followers on this blog than the other one, even though I have doubts about how many of those followers actually read anything I post at all, so I thought I should link to that post here. Also, by publicizing the blog, I get to shame my friends and fellow club members into posting so that it doesn’t look so empty. Social media expertise, you know?&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -149,8 +142,7 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
       <guid>//blog.vero.site/post/rekt</guid>
       <description>&lt;p&gt;Darn, I only lasted four days. That’s pretty bad.&lt;/p&gt;
 &lt;p&gt;And I broke like 90% of my HabitRPG streaks too. I was busy running Monte-Carlo calculations to estimate the number of domino logic puzzles, and forgot about midnight. Okay, before that I spent twice as much time on &lt;a href=&#34;http://www1.flightrising.com/&#34;&gt;Flight Rising&lt;/a&gt; for whatever reason. Bad life decisions.&lt;/p&gt;
-&lt;p&gt;I guess that means today I have to post one now, before going to sleep, and one later. Eh, time to harvest really weird mini-posts from nowhere.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;I guess that means today I have to post one now, before going to sleep, and one later. Eh, time to harvest really weird mini-posts from nowhere.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -160,8 +152,7 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
       
       <guid>//blog.vero.site/post/commitment</guid>
       <description>&lt;p&gt;Obligatory life update: I have graduated &lt;a href=&#34;https://motivatedgrammar.wordpress.com/2012/01/24/a-brief-history-of-speaking-about-graduation/&#34;&gt;[from]&lt;/a&gt; high school.&lt;/p&gt;
-&lt;p&gt;But that’s not what this post is about. I &lt;a href=&#34;//blog.vero.site/post/scheduled-blogging&#34;&gt;contemplated setting up a schedule for my blogging&lt;/a&gt; three long years ago, and decided against it, because I didn’t think writing was a high enough priority for me. Well, I am setting up a schedule now: &lt;strong&gt;I am going to post something on this blog every day&lt;/strong&gt; until I have to leave the country (which is happening once before college, so it’s not for as long as you think; but I might decide to continue the schedule anyway after I get back. We’ll see when the time comes.)&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;But that’s not what this post is about. I &lt;a href=&#34;//blog.vero.site/post/scheduled-blogging&#34;&gt;contemplated setting up a schedule for my blogging&lt;/a&gt; three long years ago, and decided against it, because I didn’t think writing was a high enough priority for me. Well, I am setting up a schedule now: &lt;strong&gt;I am going to post something on this blog every day&lt;/strong&gt; until I have to leave the country (which is happening once before college, so it’s not for as long as you think; but I might decide to continue the schedule anyway after I get back. We’ll see when the time comes.)&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -173,8 +164,7 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
       <description>&lt;p&gt;Indexing debates are boring. Especially when you can just flagrantly disregard all concerns about memory safety (because C++ never had any in the first place) and write &lt;code&gt;int _array[100008], array = _array + 2;&lt;/code&gt; I do this alarmingly often; hence, the title. Hashtag firstworldanarchists. Three ± 1 cheers for &lt;a href=&#34;http://www.haskell.org/ghc/docs/7.6-latest/html/libraries/array-0.4.0.1/Data-Array.html#v:array&#34;&gt;Haskell arrays&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Anyway. One of the disadvantages of entering an international competition as the home team is a lack of time to completely absorb the idea that what is about to happen is a Big Thing. There was lots of time before the other international competitions I went to to spend uncomfortably on airplanes trying to adjust for the timezone difference.&lt;/p&gt;
 &lt;p&gt;Not so for a competition in one’s own country. Right up to the night before entering the hotel that marks the beginning of everything, I’m still at home, furiously refreshing the AoPS IMO fora and Facebook for news (!!!), lazily solving trivial Codeforces Div II problems with &lt;del&gt;pointless&lt;/del&gt; point-free Haskell one-liners, and blogging. (There’s more, but I kind of want it to be a surprise.)&lt;/p&gt;
-&lt;p&gt;Anyway, let’s set the rules. Well, there’s only one, honestly:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Anyway, let’s set the rules. Well, there’s only one, honestly:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -188,7 +178,9 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
 &lt;/div&gt;
 &lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/orange-comment.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/orange-comment.png&#34; alt=&#34;&#34; title=&#34;orange-comment&#34; width=&#34;458&#34; height=&#34;85&#34; class=&#34;aligncenter size-full wp-image-1383&#34; /&gt;&lt;/a&gt; Here’s a guilty secret: I like getting feedback.&lt;/p&gt;
 &lt;p&gt;I’m not restricting myself to painstakingly thoughtful comments that attempt to &lt;em&gt;build upon&lt;/em&gt; and &lt;em&gt;transform&lt;/em&gt; the post to form an interesting conversation, the kind English teachers are hellbent on promoting. Sure, I get the most kicks out of those, but I’m not picky. Even single-digit pageview bars or a handful of Facebook “like”s give me buzzes of excitement.&lt;/p&gt;
-&lt;p&gt;It’s a guilty feeling, because I also think that that these are unimaginably cheap internet currencies and should not qualify as “meaningful” under a rational mindset. I strongly suspect visitors accidentally click on my blog and leave after five seconds without taking in anything, because I do that all the time to other people’s blogs and sites. Sometimes it is out of boredom, sometimes it is because I actually have something of higher priority to do than indiscriminate reading, sometimes it is simply because I cannot read the language. I’ve seen plenty of people like posts on Facebook based on the poster, only occasionally taking into consideration the first word of the post in question, before actually reading them.&lt;/p&gt;</description>
+&lt;p&gt;It’s a guilty feeling, because I also think that that these are unimaginably cheap internet currencies and should not qualify as “meaningful” under a rational mindset. I strongly suspect visitors accidentally click on my blog and leave after five seconds without taking in anything, because I do that all the time to other people’s blogs and sites. Sometimes it is out of boredom, sometimes it is because I actually have something of higher priority to do than indiscriminate reading, sometimes it is simply because I cannot read the language. I’ve seen plenty of people like posts on Facebook based on the poster, only occasionally taking into consideration the first word of the post in question, before actually reading them.&lt;/p&gt;
+&lt;p&gt;Yes, the proliferation of “liking” on Facebook bothers me. I don’t expect everybody to reply meaningfully to everything when they just want to express approval lightly. However, when I see that tiny minority of people handing them out to people in their own threads like programs at a concert, I become indignant. Under their influence, what was originally a straightforward, meaningful badge of appreciation becomes a handwavy gesture that carries virtually no weight, and then I don’t know what to do when I see something I like &lt;em&gt;seriously&lt;/em&gt;. Will clicking that button still express the feeling strongly enough?&lt;/p&gt;
+&lt;p&gt;I accept that, in our stressful world, a few instant effortless gags that take ten seconds to fully process and approve deserve a place. Nevertheless, the number of people who seem to want to make the “like” a completely passive and automatic action is almost physically painful:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -198,8 +190,7 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
       
       <guid>//blog.vero.site/post/scheduled-blogging</guid>
       <description>&lt;p&gt;Some bloggers have a regular schedule for posting and forcing themselves to meet the deadlines. In essence, something like “updates every Thursday.”&lt;/p&gt;
-&lt;p&gt;For me, I think this is a bad idea, because it forces me to write. If my day is boring and uneventful as it quite often is and I still have to crank out a post, it would not be a post that readers would enjoy. Better once-a-month enthusiastic, interesting posts then an ugly stream of tedious drudgery for the visitor to wade through every time, stuff like (quoting one random ancient post):&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;For me, I think this is a bad idea, because it forces me to write. If my day is boring and uneventful as it quite often is and I still have to crank out a post, it would not be a post that readers would enjoy. Better once-a-month enthusiastic, interesting posts then an ugly stream of tedious drudgery for the visitor to wade through every time, stuff like (quoting one random ancient post):&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -211,8 +202,7 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
       <description>&lt;p&gt;A new year. A new start. And just a chance to abuse the phrase “See you next year!” It’s hard to get tired of using it once every 365.24 days.&lt;/p&gt;
 &lt;p&gt;So, I have decided to open up my other blog to people.&lt;/p&gt;
 &lt;p&gt;There are a few reasons for not doing so previously. Firstly, there’s a lot of silly writing with unexplained LOLs and exclamations all over the place in the archives, not to mention the countless other sorts of weirdness linked to the handle I’m using here that’s spread over the rest of the interwebz. But I like to keep old stuff as some kind of record that my past self existed, and I’ve given up being embarrassed about them. And anyway, now and then I’m still performing embarrassing acts that outstrips any of this stuff by miles.&lt;/p&gt;
-&lt;p&gt;When I was thirteen*, the world was a different place to me. I imagined thousands of creepy people staring at computer screens out there, waiting to kidnap children and sell them to clients halfway across the globe the instant they figured out their addresses and statuses as minors. I don’t blame that old me; there has been at least one computer class devoted to videos of this type.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;When I was thirteen*, the world was a different place to me. I imagined thousands of creepy people staring at computer screens out there, waiting to kidnap children and sell them to clients halfway across the globe the instant they figured out their addresses and statuses as minors. I don’t blame that old me; there has been at least one computer class devoted to videos of this type.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -224,8 +214,7 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
       <description>&lt;div class=&#34;warning&#34;&gt;
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This post is backdated. I am writing this post in 2019 because, as part of the &lt;a href=&#34;//blog.vero.site/post/remigration&#34;&gt;Big 2017 Remigration&lt;/a&gt;, I have decided to delete most of the posts because they were too embarrassing and sparse on information, but figured I might keep a rundown of the highlights.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;2011, on this blog:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;2011, on this blog:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -237,8 +226,7 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
       <description>&lt;div class=&#34;warning&#34;&gt;
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This post is backdated. I am writing this post in 2018 because, as part of the &lt;a href=&#34;//blog.vero.site/post/remigration&#34;&gt;Big 2017 Remigration&lt;/a&gt;, I have decided to delete most of the posts because they were too embarrassing and sparse on information, but figured I might keep a rundown of the highlights.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;2010, on this blog:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;2010, on this blog:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -250,8 +238,7 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
       <description>&lt;div class=&#34;warning&#34;&gt;
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This post is backdated. I am writing this post in 2018 because, as part of the &lt;a href=&#34;//blog.vero.site/post/remigration&#34;&gt;Big 2017 Remigration&lt;/a&gt;, I have decided to delete most of the posts because they were too embarrassing and sparse on information, but figured I might keep a rundown of the highlights.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;2009, on this blog:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;2009, on this blog:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -263,8 +250,7 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
       <description>&lt;div class=&#34;warning&#34;&gt;
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This post is backdated. I am writing this post in 2018 because, as part of the &lt;a href=&#34;//blog.vero.site/post/remigration&#34;&gt;Big 2017 Remigration&lt;/a&gt;, I have decided to delete most of the posts because they were too embarrassing and sparse on information, but figured I might keep a rundown of the highlights.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;2008, on this blog:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;2008, on this blog:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -276,8 +262,7 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
       <description>&lt;div class=&#34;warning&#34;&gt;
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2008 self wrote this. It is selectively preserved for historical interest and amusement from a lot of similar, chronologically nearby posts. That’s all.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Hooray! I got a new banner! Is there something rebellious lurking just beyond my grasp?&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Hooray! I got a new banner! Is there something rebellious lurking just beyond my grasp?&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -291,8 +276,7 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
 &lt;/div&gt;
 &lt;p&gt;Blog revival!!! Thanks to Jonathan for reminding me of the existence of Blogger.&lt;/p&gt;
 &lt;p&gt;Today was a good day all in all.&lt;/p&gt;
-&lt;p&gt;Accomplishments:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Accomplishments:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -304,8 +288,7 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
       <description>&lt;div class=&#34;warning&#34;&gt;
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This post is backdated. I am writing this post in 2018 because, as part of the &lt;a href=&#34;//blog.vero.site/post/remigration&#34;&gt;Big 2017 Remigration&lt;/a&gt;, I have decided to delete most of the posts because they were too embarrassing and sparse on information, but figured I might keep a rundown of the highlights.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;2006, on this blog:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;2006, on this blog:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -319,8 +302,7 @@ a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a si
 &lt;/div&gt;
 &lt;p&gt;Today was an… ordinary special day. Well, an ordinary day from all aspects, but a special day if you count the way everybody got hyperactive after lunch.&lt;/p&gt;
 &lt;p&gt;Well, duh!&lt;/p&gt;
-&lt;p&gt;Just your typical Friday. Typical Fridays, we get computer class. And I can repeat it again.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Just your typical Friday. Typical Fridays, we get computer class. And I can repeat it again.&lt;/p&gt;</description>
     </item>
     
   </channel>

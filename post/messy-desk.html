@@ -12,12 +12,11 @@
 <meta name="author" content="betaveros" />
 <meta name="description" content="This challenge is a video of somebody’s messy desk, with what is apparently the audio from a Futurama clip. The desk is indeed extremely messy and full of things that aren’t particularly useful for us, but close examination reveals a QR code reflected in the globe in the middle.
 The challenge is all about getting that QR code. After trying our best to clean up the image, we ended up with this:
- Maximally enhanced image of the QR code  
-" />
+ Maximally enhanced image of the QR code " />
 
 
 
-<meta name="generator" content="Hugo 0.50-DEV" />
+<meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
 <link rel="canonical" href="//blog.vero.site/post/messy-desk" />
@@ -127,7 +126,6 @@ The challenge is all about getting that QR code. After trying our best to clean 
 <figure>
 <img src="/img/messy-qr.png" alt="Maximally enhanced image of the QR code" /><figcaption>Maximally enhanced image of the QR code</figcaption>
 </figure>
-<p></p>
 <p>After rotating it tastefully, we spent a long time transcribing from this QR code to a Google Sheet as best we could. Some useful references were this post on <a href="https://medium.freecodecamp.org/lets-enhance-how-we-found-rogerkver-s-1000-wallet-obfuscated-private-key-8514e74a5433">deobfuscating a QR code for a bitcoin wallet</a> and <a href="https://www.thonky.com/qr-code-tutorial/introduction">Thonky’s QR Code Tutorial</a>, a step-by-step tutorial to producing a QR code featuring steps such as “Step 4: Understand Galois Field Arithmetic”. At some point, we realized we had transposed the entire thing, because our QR code was missing its Dark Module in its bottom-left and somebody had read a good Format Info string in reverse order without realizing. (The word “module” is the term for the smallest black-and-white blocks that make up QR codes; we don’t use the term “pixel” to avoid confusion, since QR codes will often be rendered on a screen with each module taking up many pixels.)</p>
 <figure>
 <img src="/img/thonky-function-patterns2.png" alt="Function Patterns (from thonky.com, CC BY-NC 4.0)" /><figcaption>Function Patterns (<a href="https://www.thonky.com/qr-code-tutorial/module-placement-matrix">from thonky.com</a>, CC BY-NC 4.0)</figcaption>

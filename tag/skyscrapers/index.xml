@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Skyscrapers on Bounded-Error Log</title>
+    <title>skyscrapers on Bounded-Error Log</title>
     <link>//blog.vero.site/tag/skyscrapers</link>
-    <description>Recent content in Skyscrapers on Bounded-Error Log</description>
+    <description>Recent content in skyscrapers on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 09 Nov 2012 16:58:09 +0800</lastBuildDate>
@@ -18,8 +18,7 @@
       
       <guid>//blog.vero.site/post/puzzle-30</guid>
       <description>&lt;p&gt;Haha, way-overdue &lt;a href=&#34;http://logicmastersindia.com/FF2/&#34;&gt;Fillomino-Fillia&lt;/a&gt; practice puzzle. This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt; puzzle; in addition to normal rules, treat numbers inside the grid as building heights. Numbers outside the grid indicate how many buildings can be seen from that direction, where a building blocks all buildings of lower or equal height behind it.&lt;/p&gt;
-&lt;p&gt;Edit: I should warn that the arithmetic here is pretty annoying.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Edit: I should warn that the arithmetic here is pretty annoying.&lt;/p&gt;</description>
     </item>
     
   </channel>

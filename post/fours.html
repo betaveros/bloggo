@@ -16,11 +16,12 @@ Did you know that there was going to be an anecdote involving the seventh Artemi
 I don’t know, it sounded cool at the time.
 Problem 4. Find all functions f: Z → Z such that, for all integers a,b,c that satisfy a&#43;b&#43;c = 0, the following equality holds: \[f(a)^2&#43;f(b)^2&#43;f(c)^2=2f(a)f(b)&#43;2f(b)f(c)&#43;2f(c)f(a).\] (Here Z denotes the set of integers.)
 An innocent-looking functional equation, but once you start trying it you discover that there’s quite some depth to it. Random guessing can yield that \(f(x) = x^2\) is a solution, so I proved inductively that after dividing out a constant f(1) then the remaining part of f is a perfect square. Letting \(f(x) = f(1)g(x)^2\) with g(x) a nonnegative integer and factorizing the original equation, I got an auxiliary functional equation equivalent to the original equation.
+Casework on small values of g, and the surprises started coming hard and fast. First: wow there’s an extra odd-even solution! Then: woah there’s another mod 4 solution! What is this madness?
 " />
 
 
 
-<meta name="generator" content="Hugo 0.50-DEV" />
+<meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
 <link rel="canonical" href="//blog.vero.site/post/fours" />
@@ -132,7 +133,8 @@ An innocent-looking functional equation, but once you start trying it you discov
 <p>I don’t know, it sounded cool at the time.</p>
 <p><strong>Problem 4.</strong> Find all functions f: Z → Z such that, for all integers a,b,c that satisfy a+b+c = 0, the following equality holds: <span class="math display">\[f(a)^2+f(b)^2+f(c)^2=2f(a)f(b)+2f(b)f(c)+2f(c)f(a).\]</span> (Here Z denotes the set of integers.)</p>
 <p>An innocent-looking functional equation, but once you start trying it you discover that there’s quite some depth to it. Random guessing can yield that <span class="math inline">\(f(x) = x^2\)</span> is a solution, so I proved inductively that after dividing out a constant f(1) then the remaining part of f is a perfect square. Letting <span class="math inline">\(f(x) = f(1)g(x)^2\)</span> with g(x) a nonnegative integer and factorizing the original equation, I got an auxiliary functional equation equivalent to the original equation.</p>
-<p>Casework on small values of g, and the surprises started coming hard and fast. First: wow there’s an extra odd-even solution! Then: woah there’s another mod 4 solution! What is this madness?  For a while I did wonder if there would be a solution for any even modulus, but I checked them and discovered that no, the periods were restricted to 2 and 4. Such a simple symmetric problem statement, and such a ridiculous set of solutions. I checked the validity again, just to be sure.</p>
+<p>Casework on small values of g, and the surprises started coming hard and fast. First: wow there’s an extra odd-even solution! Then: woah there’s another mod 4 solution! What is this madness?</p>
+<p>For a while I did wonder if there would be a solution for any even modulus, but I checked them and discovered that no, the periods were restricted to 2 and 4. Such a simple symmetric problem statement, and such a ridiculous set of solutions. I checked the validity again, just to be sure.</p>
 <p>Wow. 1:35 finish. Embarrassingly this is about the same amount of time I spent on last year’s #1/A1, which was basically listing alarmingly trivial equations automatically. I don’t think all of the steps were trivial for this one, particularly the factorization, even though I feel like I should have known it.</p>
 <p>Anyway, I’m not alone in taking a lot of time on this problem. But it was time to move on…</p>
 <p><strong>Problem 5.</strong> Let ABC be a triangle with <span class="math inline">\(\angle BCA=90^{\circ}\)</span>, and let D be the foot of the altitude from C. Let X be a point in the interior of the segment CD. Let K be the point on the segment AX such that BK=BC. Similarly, let L be the point on the segment BX such that AL=AC. Let M be the point of intersection of AL and BK.</p>

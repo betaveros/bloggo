@@ -18,11 +18,12 @@ As for non-candidates, Java has BigInteger and memory safety, but all in all I d
 The only difficult choice I have to make is, of course, Haskell — which can be quite fast, even while it’s ridiculously type-safe and expressive and referentially transparent and easy to reason about, once you’ve:
  figured out how to do the problem scrapped step 1 and actually figured out how to do the problem functionally gotten the thing to compile  Even if I can handle step 1, step 2 is by no means a simple task, as my struggle to implement a mere Sieve of Eratosthenes efficiently shows. That is fun, but not at all intuitive; I am doubtful I can do this under contest conditions. It is extremely difficult to transfer my skills in learning how to implement, say, a segment tree or treap into this language.
 But! Google links to the programming language breakdown for 2010 Qualification Round as an example, and much to my surprise, Haskell ranks somewhere between sixth and tenth place in popularity (depending on what you sort by), so there are functional superprogrammers who can presumably do something like this.
-As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it. " />
+As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it.
+" />
 
 
 
-<meta name="generator" content="Hugo 0.50-DEV" />
+<meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
 <link rel="canonical" href="//blog.vero.site/post/cabal" />
@@ -138,7 +139,7 @@ As it happens, I ended up implementing all four solutions to the qualification r
 </ul>
 <p>Even if I can handle step 1, step 2 is by no means a simple task, as my struggle to implement a mere <a href="//blog.vero.site/post/haskell">Sieve of Eratosthenes</a> efficiently shows. That is fun, but not at all intuitive; I am doubtful I can do this under contest conditions. It is extremely difficult to transfer my skills in learning how to implement, say, a segment tree or treap into this language.</p>
 <p>But! Google links to the <a href="http://www.go-hero.net/jam/10/round/0">programming language breakdown for 2010 Qualification Round</a> as an example, and much to my surprise, Haskell ranks somewhere between sixth and tenth place in popularity (depending on what you sort by), so there are functional superprogrammers who can presumably do something like this.</p>
-<p>As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it. </p>
+<p>As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">let</span> sols <span class="fu">=</span> (g1 <span class="fu">!!</span> pred r1) <span class="ot">`intersect`</span> (g2 <span class="fu">!!</span> pred r2) <span class="kw">in</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">    printf <span class="st">&quot;Case #%d: %s\n&quot;</span> tci <span class="fu">$</span> <span class="kw">case</span> sols <span class="kw">of</span></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">        [] <span class="ot">-&gt;</span> <span class="st">&quot;Volunteer cheated!&quot;</span></a>

@@ -13,12 +13,11 @@
 <meta name="description" content=" The villains are communicating with their own proprietary file format. Figure out what it is.
 $ nc proprietary.ctfcompetition.com 1337  We get a server that will talk to us on a port and a flag.ctf file that’s definitely not a binary. It’s a black-box reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.
 For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not P6, it complains:
-
 " />
 
 
 
-<meta name="generator" content="Hugo 0.50-DEV" />
+<meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
 <link rel="canonical" href="//blog.vero.site/post/proprietary-format" />
@@ -129,7 +128,6 @@ For the first few lines of input that the server wants, it responds with quite h
 </blockquote>
 <p>We get a server that will talk to us on a port and a <code>flag.ctf</code> file that’s definitely not a binary. It’s a <a href="https://en.wikipedia.org/wiki/Black_box">black-box</a> reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.</p>
 <p>For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not <code>P6</code>, it complains:</p>
-<p></p>
 <pre><code>$ nc proprietary.ctfcompetition.com 1337
 blah
 Expected P6 as the header</code></pre>

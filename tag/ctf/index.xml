@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ctf on Bounded-Error Log</title>
+    <title>CTF on Bounded-Error Log</title>
     <link>//blog.vero.site/tag/ctf</link>
-    <description>Recent content in Ctf on Bounded-Error Log</description>
+    <description>Recent content in CTF on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 27 Mar 2019 18:26:41 -0400</lastBuildDate>
@@ -20,8 +20,7 @@
       <description>&lt;pre&gt;&lt;code&gt;http://111.186.63.17/perf.data.gz
 
 Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In this challenge, we get a gzipped file called &lt;code&gt;perf.data&lt;/code&gt; and a minimal description of an environment. Googling this reveals that &lt;code&gt;perf.data&lt;/code&gt; is a record format of the &lt;code&gt;perf&lt;/code&gt; tool, a Linux profiler. Installing &lt;code&gt;perf&lt;/code&gt; allows us to read &lt;code&gt;perf.data&lt;/code&gt; and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is &lt;code&gt;perf report -D&lt;/code&gt;, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the &lt;code&gt;perf record&lt;/code&gt; was run against.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;In this challenge, we get a gzipped file called &lt;code&gt;perf.data&lt;/code&gt; and a minimal description of an environment. Googling this reveals that &lt;code&gt;perf.data&lt;/code&gt; is a record format of the &lt;code&gt;perf&lt;/code&gt; tool, a Linux profiler. Installing &lt;code&gt;perf&lt;/code&gt; allows us to read &lt;code&gt;perf.data&lt;/code&gt; and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is &lt;code&gt;perf report -D&lt;/code&gt;, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the &lt;code&gt;perf record&lt;/code&gt; was run against.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -35,8 +34,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You can access this challenge at &lt;a href=&#34;https://wargames.ret2.systems/csaw_2018_plc_challenge&#34;&gt;https://wargames.ret2.systems/csaw_2018_plc_challenge&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;A much belated post. This is a pwn challenge on a custom online wargaming platform. We are provided with the assembly of what’s ostensibly a programmable logic controller (PLC) for a centrifuge in a nuclear reactor. The challenge looks like it’s still up, so you can take a look and follow along.&lt;/p&gt;
-&lt;p&gt;This was the first &lt;a href=&#34;https://en.wikipedia.org/wiki/Return-oriented_programming&#34;&gt;ROP&lt;/a&gt; (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like &lt;code&gt;until&lt;/code&gt;, no pwntools utilities for packing/unpacking numbers, … no &lt;code&gt;one_gadget&lt;/code&gt;), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use &lt;code&gt;gdb&lt;/code&gt; (or fictionalized web knockoffs thereof).&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;This was the first &lt;a href=&#34;https://en.wikipedia.org/wiki/Return-oriented_programming&#34;&gt;ROP&lt;/a&gt; (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like &lt;code&gt;until&lt;/code&gt;, no pwntools utilities for packing/unpacking numbers, … no &lt;code&gt;one_gadget&lt;/code&gt;), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use &lt;code&gt;gdb&lt;/code&gt; (or fictionalized web knockoffs thereof).&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -50,8 +48,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;$ nc proprietary.ctfcompetition.com 1337&lt;/code&gt;&lt;/pre&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;We get a server that will talk to us on a port and a &lt;code&gt;flag.ctf&lt;/code&gt; file that’s definitely not a binary. It’s a &lt;a href=&#34;https://en.wikipedia.org/wiki/Black_box&#34;&gt;black-box&lt;/a&gt; reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.&lt;/p&gt;
-&lt;p&gt;For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not &lt;code&gt;P6&lt;/code&gt;, it complains:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not &lt;code&gt;P6&lt;/code&gt;, it complains:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -66,8 +63,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This challenge is a simple chat app written in NodeJS. The home page redirects you to a chat room labeled with a random UUID. Anybody can join the same chat room with the URL.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;//blog.vero.site/img/cat-chat-0.png&#34; alt=&#34;Fresh Cat Chat room&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In a chat room, you can chat and issue two commands, &lt;code&gt;/name&lt;/code&gt; to set your name and &lt;code&gt;/report&lt;/code&gt; to report that somebody is talking about dogs. After anybody in the chat room issues &lt;code&gt;/report&lt;/code&gt;, the admin shows up, listens for a while, and bans anybody who mentions the word “dog”.&lt;/p&gt;
-&lt;p&gt;There are two more commands, &lt;code&gt;/secret&lt;/code&gt; and &lt;code&gt;/ban&lt;/code&gt;, which are in the server source code and also described in comments in the HTML source if you didn’t notice:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;There are two more commands, &lt;code&gt;/secret&lt;/code&gt; and &lt;code&gt;/ban&lt;/code&gt;, which are in the server source code and also described in comments in the HTML source if you didn’t notice:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -80,8 +76,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML file that can store secrets in the browser’s localStorage. This means that you won’t be able to extract any secret from it (the secrets are on the computer of the owner), but it looks like it was hand-crafted to work only with the password of the owner…&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;The challenge consists of a fancy HTML file with a cute but irrelevant animated cube and some embedded JavaScript.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;//blog.vero.site/img/js-safe-2-empty.png&#34; alt=&#34;Screenshot of JS Safe 2.0 with a text box and a cube&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;//blog.vero.site/img/js-safe-2-empty.png&#34; alt=&#34;Screenshot of JS Safe 2.0 with a text box and a cube&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -107,8 +102,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
 &lt;img src=&#34;//blog.vero.site/img/shell_this.png&#34; alt=&#34;Disassembled innermost function of interest in shellme.so&#34; /&gt;&lt;figcaption&gt;Disassembled innermost function of interest in &lt;code&gt;shellme.so&lt;/code&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;The goal is to read the flag from the open MySQL connection.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;The goal is to read the flag from the open MySQL connection.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -121,8 +115,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The challenge is all about getting that QR code. After trying our best to clean up the image, we ended up with this:&lt;/p&gt;
 &lt;figure&gt;
 &lt;img src=&#34;//blog.vero.site/img/messy-qr.png&#34; alt=&#34;Maximally enhanced image of the QR code&#34; /&gt;&lt;figcaption&gt;Maximally enhanced image of the QR code&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;/figure&gt;</description>
     </item>
     
     <item>
@@ -137,8 +130,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;wolf-overview&#34;&gt;Wolf Overview&lt;/h3&gt;
 &lt;p&gt;Let’s first go over the Wolf syntax and semantics. (There are small differences between the three problems, but they’re syntactically identical and only semantically differ in cases that we’ll naturally get to.) The &lt;code&gt;examples&lt;/code&gt; folder has some examples of valid code:&lt;/p&gt;
 &lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode ml&#34;&gt;&lt;code class=&#34;sourceCode ocaml&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; data-line-number=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;let&lt;/span&gt; x = (&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt; :&amp;gt; &lt;span class=&#34;kw&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;) &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; data-line-number=&#34;2&#34;&gt;&lt;span class=&#34;dv&#34;&gt;6&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; data-line-number=&#34;2&#34;&gt;&lt;span class=&#34;dv&#34;&gt;6&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -148,8 +140,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
       
       <guid>//blog.vero.site/post/sakura</guid>
       <description>&lt;p&gt;(Okay, this post is backdated.)&lt;/p&gt;
-&lt;p&gt;Disassembling the executable produces a huge amount of code. There are some basic obfuscations like a lot of trivial identity functions nested in each other, and a few functions that wrap around identity functions but just add some constant multiple of 16. Most of the meat is in one very large function, though. If you disassemble this function with IDA, you see a lot of variable initializations and then a lot of interesting loops that are quite similar:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Disassembling the executable produces a huge amount of code. There are some basic obfuscations like a lot of trivial identity functions nested in each other, and a few functions that wrap around identity functions but just add some constant multiple of 16. Most of the meat is in one very large function, though. If you disassemble this function with IDA, you see a lot of variable initializations and then a lot of interesting loops that are quite similar:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -163,8 +154,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.&lt;/p&gt;
-&lt;p&gt;Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from &lt;a href=&#34;https://github.com/betaveros/xxb&#34;&gt;&lt;code&gt;xxb&lt;/code&gt;&lt;/a&gt; but &lt;code&gt;xxd -c 20 thoroughlyStripped&lt;/code&gt; is quite sufficient.)&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from &lt;a href=&#34;https://github.com/betaveros/xxb&#34;&gt;&lt;code&gt;xxb&lt;/code&gt;&lt;/a&gt; but &lt;code&gt;xxd -c 20 thoroughlyStripped&lt;/code&gt; is quite sufficient.)&lt;/p&gt;</description>
     </item>
     
   </channel>

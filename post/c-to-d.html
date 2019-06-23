@@ -18,12 +18,11 @@ Arithmetic operators and bit operators are all there too, including unsigned rig
 import std.stdio; Casts look like cast(int) x;
 Control Flow if, while, for, do, and even switch all work as you’d expect, along with break and continue.
 foreach is the nice addition though. Not only can you iterate over arrays and stuff, but range loops go like:
-
 " />
 
 
 
-<meta name="generator" content="Hugo 0.50-DEV" />
+<meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
 <link rel="canonical" href="//blog.vero.site/post/c-to-d" />
@@ -137,7 +136,6 @@ foreach is the nice addition though. Not only can you iterate over arrays and st
 <h3 id="control-flow">Control Flow</h3>
 <p><code>if</code>, <code>while</code>, <code>for</code>, <code>do</code>, and even <code>switch</code> all work as you’d expect, along with <code>break</code> and <code>continue</code>.</p>
 <p><code>foreach</code> is the nice addition though. Not only can you iterate over arrays and stuff, but range loops go like:</p>
-<p></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">foreach</span> (i; <span class="dv">0</span> .. <span class="dv">10</span>) writeln(i);</a></code></pre></div>
 <p>If you want both the index and the element (a la <code>zipWithIndex</code>):</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">foreach</span> (i, e; array) writeln(i, e);</a></code></pre></div>

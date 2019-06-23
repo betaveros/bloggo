@@ -14,12 +14,11 @@
 The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension shellme.so.
 $link = mysqli_connect(&amp;#39;localhost&amp;#39;, &amp;#39;shellql&amp;#39;, &amp;#39;shellql&amp;#39;, &amp;#39;shellql&amp;#39;);  if (isset($_POST[&amp;#39;shell&amp;#39;])) { if (strlen($_POST[&amp;#39;shell&amp;#39;]) &amp;lt;= 1000) { echo $_POST[&amp;#39;shell&amp;#39;]; shellme($_POST[&amp;#39;shell&amp;#39;]); } exit(); } The extension basically just executes $_POST[&#39;shell&#39;] as shellcode after a strict SECCOMP call, prctl(22, 1). This means that we can only use the four syscalls read, write, and exit, and sigreturn, where the latter two aren’t particularly useful.
  Disassembled innermost function of interest in shellme.so  The goal is to read the flag from the open MySQL connection.
-
 " />
 
 
 
-<meta name="generator" content="Hugo 0.50-DEV" />
+<meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
 <link rel="canonical" href="//blog.vero.site/post/shellql" />
@@ -142,7 +141,6 @@ $link = mysqli_connect(&amp;#39;localhost&amp;#39;, &amp;#39;shellql&amp;#39;, &
 <img src="/img/shell_this.png" alt="Disassembled innermost function of interest in shellme.so" /><figcaption>Disassembled innermost function of interest in <code>shellme.so</code></figcaption>
 </figure>
 <p>The goal is to read the flag from the open MySQL connection.</p>
-<p></p>
 <p>To implement this in shellcode, we need to do a little digging into the MySQL documentation to figure out how the <a href="https://dev.mysql.com/doc/dev/mysql-server/latest/PAGE_PROTOCOL.html">client/server protocol</a> works. Since the connection is authenticated, we can fortunately jump straight into the <a href="https://dev.mysql.com/doc/dev/mysql-server/latest/page_protocol_command_phase.html">command phase</a>. From the documentation page for the command phase, we learn that every command packet starts with a four-byte length field. We want to submit a <a href="https://dev.mysql.com/doc/dev/mysql-server/latest/page_protocol_com_query.html">COM_QUERY</a> packet, which just means that after the length field we send <code>0x03</code> and then our SQL query. Seems easy enough.</p>
 <p>The first obstacle was simply that no matter what shellcode we submitted, we got an Internal Server Error. I probably spent a few hours trying to find shellcode that wouldn’t cause an error, mostly with combinations of <code>ret</code>, as well as trying to get the extension running locally on my VM to debug, but I kept getting segmentation faults whenever I merely loaded the extension locally, even if I didn’t call it. So nothing worked and I wasn’t even sure if my shellcode was being run on the server, much less know how to submit a SQL query and get a response back.</p>
 <p>My first breakthrough occurred when I thought of sending the classic x86 infinite loop <code>\xeb\xfe</code> (<code>jmp .</code>, or short relative jump −2 bytes). When I POSTed this loop, the server took something like 15 seconds to respond, instead of the usual half a second. At last, proof that my shellcode was being executed, and the meager reassurance that if all else failed, I could use a timing attack to get my shellcode to pass information back to me. I spent some more time trying to find some way to get output back from my shellcode, but after struggling for long enough and consulting with my teammates I resigned to writing shellcode blind to execute the timing attack.</p>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Arithmetic on Bounded-Error Log</title>
+    <title>arithmetic on Bounded-Error Log</title>
     <link>//blog.vero.site/tag/arithmetic</link>
-    <description>Recent content in Arithmetic on Bounded-Error Log</description>
+    <description>Recent content in arithmetic on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 12 Jun 2015 08:00:00 +0800</lastBuildDate>
@@ -22,7 +22,7 @@
 &lt;p&gt;Anyway, yes, I am documenting the rules to a card game on this blog. I think this deserves to exist online.&lt;/p&gt;
 &lt;p&gt;These rules are not completely rigorous because I don’t know them completely rigorously. You can use common sense to reach a consensus in corner cases.&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;Use a normal deck of playing cards, or two or more identical decks if you want. Deal five cards to each player and set the rest aside to form a draw pile. Cards are played into a discard pile in the center. Players sit in an approximate circle and take turns along the circle, playing one card and then, usually, drawing one replacement card from the draw pile, so in normal 99, hands stay at five cards. When the draw pile runs out, shuffle the discard pile to become the new draw pile.  There is a “running total” in the game, an integer that starts at 0. Normal cards add their value to the running total when played. The total cannot become greater than 99, hence the name. If you have no cards that could keep it less than or equal to 99, you lose. In that case, the turn passes to the next player and the game continues until only one player remains, or until players get bored and decide to play something else.&lt;/p&gt;</description>
+&lt;p&gt;Use a normal deck of playing cards, or two or more identical decks if you want. Deal five cards to each player and set the rest aside to form a draw pile. Cards are played into a discard pile in the center. Players sit in an approximate circle and take turns along the circle, playing one card and then, usually, drawing one replacement card from the draw pile, so in normal 99, hands stay at five cards. When the draw pile runs out, shuffle the discard pile to become the new draw pile.&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Math on Bounded-Error Log</title>
+    <title>math on Bounded-Error Log</title>
     <link>//blog.vero.site/category/math</link>
-    <description>Recent content in Math on Bounded-Error Log</description>
+    <description>Recent content in math on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 07 Aug 2015 12:04:30 +0800</lastBuildDate>
@@ -25,8 +25,7 @@ Day 3 (Excursions)
 &lt;blockquote&gt;
 (paraphrased) In triangle △ABC, ∠A is 40° and ∠B is 60°. The angle bisector of ∠A meets BC at D; E is on AB such that ∠ADE is 30°. Find ∠DEC.
 &lt;/blockquote&gt;
-&lt;p&gt;Hsin-Po figures out that, once you guess (ROT13) gur bgure boivbhf privna vf nyfb na natyr ovfrpgbe naq gurl vagrefrpg ng gur vapragre, lbh pna cebir vg ol pbafgehpgvat gur vapragre naq fubjvat sebz gur tvira natyr gung gurl vaqrrq pbvapvqr.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; Then, there’s a combinatorics problem in a book with a solution that they’re not sure about:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Hsin-Po figures out that, once you guess (ROT13) gur bgure boivbhf privna vf nyfb na natyr ovfrpgbe naq gurl vagrefrpg ng gur vapragre, lbh pna cebir vg ol pbafgehpgvat gur vapragre naq fubjvat sebz gur tvira natyr gung gurl vaqrrq pbvapvqr.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; Then, there’s a combinatorics problem in a book with a solution that they’re not sure about:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -37,8 +36,7 @@ Day 3 (Excursions)
       <guid>//blog.vero.site/post/897</guid>
       <description>&lt;p&gt;(&lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;streak&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;I always tell myself, okay, I will actually just draw something facetiously and get it over with, nobody comes to this blog to admire my GIMP mouse doodles, but then perfectionist tendencies kick in and I get &lt;a href=&#34;//blog.vero.site/post/1024&#34;&gt;car&lt;/a&gt;ried away and it ends up taking more than an hour or so.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/linear.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/linear.png?w=652&#34; alt=&#34;linear&#34; width=&#34;652&#34; height=&#34;489&#34; class=&#34;aligncenter size-large wp-image-3074&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/linear.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/linear.png?w=652&#34; alt=&#34;linear&#34; width=&#34;652&#34; height=&#34;489&#34; class=&#34;aligncenter size-large wp-image-3074&#34; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -51,8 +49,7 @@ Day 3 (Excursions)
 &lt;p&gt;Note on notation: I’m going to use &lt;span class=&#34;math inline&#34;&gt;\(\text{Stab}(x)\)&lt;/span&gt; instead of &lt;span class=&#34;math inline&#34;&gt;\(G_x\)&lt;/span&gt; for the stabilizer subgroup and &lt;span class=&#34;math inline&#34;&gt;\(\text{Cl}(x)\)&lt;/span&gt; instead of &lt;span class=&#34;math inline&#34;&gt;\(^Gx\)&lt;/span&gt; for the conjugacy classes. For the orbit of &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; I’ll stick with the norm and use &lt;span class=&#34;math inline&#34;&gt;\(Gx\)&lt;/span&gt;, although it’s only used in confusing summation notation that I’ll explain with words too.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;We keep using this silly counting argument which I thought was something like Burnside’s lemma but actually is a lot simpler, just partitioning the set into orbits and slapping the orbit-stabilizer theorem on.&lt;/p&gt;
-&lt;p&gt;If &lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt; is the group and &lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt; is the set then&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;If &lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt; is the group and &lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt; is the set then&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -65,8 +62,7 @@ Day 3 (Excursions)
 &lt;p&gt;Note on notation: to be maximally clear, I have bolded all my vectors and put tiny arrows on them. Normal letters are usually reals, uppercase letters are usually bigger matrices. Also, &lt;span class=&#34;math inline&#34;&gt;\(\cdot^T\)&lt;/span&gt; denotes the transpose of a matrix.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m\)&lt;/span&gt; be elements of &lt;span class=&#34;math inline&#34;&gt;\(\mathbb{R}^n\)&lt;/span&gt; where &lt;span class=&#34;math inline&#34;&gt;\(m \leq n\)&lt;/span&gt;, i.e. column vectors with &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; real elements. Let &lt;span class=&#34;math inline&#34;&gt;\(V = [\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m]\)&lt;/span&gt;. This means pasting the column vectors together to make an &lt;span class=&#34;math inline&#34;&gt;\(n \times m\)&lt;/span&gt; matrix (&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; rows &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; columns).&lt;/p&gt;
-&lt;p&gt;Consider the thing &lt;span class=&#34;math inline&#34;&gt;\(\vec{\textbf{v}}_1 \wedge \vec{\textbf{v}}_2 \wedge \cdots \wedge \vec{\textbf{v}}_m\)&lt;/span&gt;, which can be visualized as the hyperparallelogram &lt;span class=&#34;math inline&#34;&gt;\(\left\{\sum_{i=1}^{m} t_i\vec{\textbf{v}}_i \,\middle\vert\, t_i \in [0,1], i = 1, 2, \ldots, m \right\}\)&lt;/span&gt; but is apparently a different thing in a different vector space of things. We wonder how to compute &lt;strong&gt;the hyperarea of this hyperparallelogram&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Consider the thing &lt;span class=&#34;math inline&#34;&gt;\(\vec{\textbf{v}}_1 \wedge \vec{\textbf{v}}_2 \wedge \cdots \wedge \vec{\textbf{v}}_m\)&lt;/span&gt;, which can be visualized as the hyperparallelogram &lt;span class=&#34;math inline&#34;&gt;\(\left\{\sum_{i=1}^{m} t_i\vec{\textbf{v}}_i \,\middle\vert\, t_i \in [0,1], i = 1, 2, \ldots, m \right\}\)&lt;/span&gt; but is apparently a different thing in a different vector space of things. We wonder how to compute &lt;strong&gt;the hyperarea of this hyperparallelogram&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -83,8 +79,7 @@ Day 3 (Excursions)
 &lt;p&gt;Of course Rudin proves this, but coming from an unrigorous calculus background, the required deductions span three chapters and are very hard to motivate. That’s probably because it proves things for extremely general objects.&lt;/p&gt;
 &lt;p&gt;In particular, I have no idea why the definition of “compact” is what it is: “a set for which every open cover has a finite subcovering”. Therefore, here’s a less general but more motivated proof, from the grounds-up.&lt;/p&gt;
 &lt;h3 id=&#34;definitions&#34;&gt;Definitions&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Real numbers&lt;/strong&gt; are hard to define. We only need to know that we can add, subtract, multiply, divide, and compare them, i.e. they’re an ordered field, and that they have the &lt;strong&gt;least-upper-bound property&lt;/strong&gt;. That is, if we have a set of real numbers that are bounded above, then the set has a &lt;em&gt;least upper bound&lt;/em&gt;, a bound that “perfectly fits” the set. Precisely, the bound must be such that every element of the set is less than or equal to it, and no smaller value satisfies the same property.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;strong&gt;Real numbers&lt;/strong&gt; are hard to define. We only need to know that we can add, subtract, multiply, divide, and compare them, i.e. they’re an ordered field, and that they have the &lt;strong&gt;least-upper-bound property&lt;/strong&gt;. That is, if we have a set of real numbers that are bounded above, then the set has a &lt;em&gt;least upper bound&lt;/em&gt;, a bound that “perfectly fits” the set. Precisely, the bound must be such that every element of the set is less than or equal to it, and no smaller value satisfies the same property.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -144,7 +139,8 @@ Transcript since the resolution is far from awesome: “Most angiosperms have al
 &lt;p&gt;Well, what a hard question. But of course given the curriculum it’s the only interesting problem I think could be asked.&lt;/p&gt;
 &lt;p&gt;When I was hurrying through the high-school curriculum I remember having to learn the same thing and not having any idea what the heck was happening. Matrices appeared in that section as a messy, burdensome way to solve equations and never again, at least not in an interesting enough way to make me remember. I don’t have my precalc textbook, but a supplementary precalc book completely confirms my impressions and “matrix” doesn’t even appear in my calculus textbook index. They virtually failed to show up in olympiad training too. I learned that Po-Shen Loh knew how to &lt;a href=&#34;http://www.math.cmu.edu/~ploh/docs/math/mop2009/alg-comb.pdf&#34;&gt;kill a bunch of combinatorics problems with them (PDF)&lt;/a&gt;, but not in the slightest how to do that myself.&lt;/p&gt;
 &lt;p&gt;Somewhere else, during what I’m guessing was random independent exploration, I happened upon the signed-permutation-rule (a.k.a. &lt;a href=&#34;https://en.wikipedia.org/wiki/Leibniz_formula_for_determinants&#34;&gt;Leibniz formula&lt;/a&gt;) for evaluating determinants, which made a lot more sense for me and looked more beautiful and symmetric&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\det(A) = \sum_{\sigma \in S_n} \text{sgn}(\sigma) \prod_{i=1}^n A_{i,\sigma_i}\]&lt;/span&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\det(A) = \sum_{\sigma \in S_n} \text{sgn}(\sigma) \prod_{i=1}^n A_{i,\sigma_i}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;and I was annoyed when both of my linear algebra textbooks defined it first with cofactor expansion. Even though they quickly proved you could expand along any row or column, and one also followed up with the permutation formula a few sections later, it still felt uglier to me. Yes, it’s impossible to understand that equation without knowledge of permutations and their signs, but I’m very much a permutations kind of guy. Sue me.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -177,7 +173,8 @@ Our old friend, the monster of a functional equation, in edible form. In the gam
 &lt;p&gt;Did you know that there was going to be an anecdote involving the seventh Artemis Fowl book but I couldn’t make it work so instead you have a weird and utterly disconnected metareference to something deleted?&lt;/p&gt;
 &lt;p&gt;I don’t know, it sounded cool at the time.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Problem 4.&lt;/strong&gt; Find all functions f: Z → Z such that, for all integers a,b,c that satisfy a+b+c = 0, the following equality holds: &lt;span class=&#34;math display&#34;&gt;\[f(a)^2+f(b)^2+f(c)^2=2f(a)f(b)+2f(b)f(c)+2f(c)f(a).\]&lt;/span&gt; (Here Z denotes the set of integers.)&lt;/p&gt;
-&lt;p&gt;An innocent-looking functional equation, but once you start trying it you discover that there’s quite some depth to it. Random guessing can yield that &lt;span class=&#34;math inline&#34;&gt;\(f(x) = x^2\)&lt;/span&gt; is a solution, so I proved inductively that after dividing out a constant f(1) then the remaining part of f is a perfect square. Letting &lt;span class=&#34;math inline&#34;&gt;\(f(x) = f(1)g(x)^2\)&lt;/span&gt; with g(x) a nonnegative integer and factorizing the original equation, I got an auxiliary functional equation equivalent to the original equation.&lt;/p&gt;</description>
+&lt;p&gt;An innocent-looking functional equation, but once you start trying it you discover that there’s quite some depth to it. Random guessing can yield that &lt;span class=&#34;math inline&#34;&gt;\(f(x) = x^2\)&lt;/span&gt; is a solution, so I proved inductively that after dividing out a constant f(1) then the remaining part of f is a perfect square. Letting &lt;span class=&#34;math inline&#34;&gt;\(f(x) = f(1)g(x)^2\)&lt;/span&gt; with g(x) a nonnegative integer and factorizing the original equation, I got an auxiliary functional equation equivalent to the original equation.&lt;/p&gt;
+&lt;p&gt;Casework on small values of g, and the surprises started coming hard and fast. First: wow there’s an extra odd-even solution! Then: woah there’s another mod 4 solution! What is this madness?&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -191,7 +188,7 @@ Our old friend, the monster of a functional equation, in edible form. In the gam
 &lt;p&gt;Thus were my thoughts at 3:30 in the morning, which were a much worse method of preparation than that which I used for the APMO, which involved trying for the first time to put my compass in its box and staring at a cryptic crossword. Twisted thoughts as I lay innocently in bed, trying to preserve my spirit and mathematical function. I got up at 6:30 and ate a breakfast nervously with the team.&lt;/p&gt;
 &lt;p&gt;We dispersed into the contest hall. Flat squarish white tables in orderly rows greeted us. They were considerably smaller than the arm-span tables we had last year in the Netherlands’ stadium, but the space was still ample compared to the ones we took our practice tests on at home. I floundered a bit looking for whoever was supposed to check our stuff for forbidden items, but none of the proctors paid any attention to that, so I flipped through my own jacket pockets paranoidly.&lt;/p&gt;
 &lt;p&gt;But preparation was too brief, and there were at least fifteen minutes left with nothing to do except try not to panic. I managed to fill these fifteen minutes by doing elaborate breathing exercises, raising and flapping my arms, counting down seconds, focusing on a color word, meditating badly, clearing out everything nonmathematical from my mind with a symbolic gesture. This is not a very coherent description, but I wasn’t feeling very coherent.&lt;/p&gt;
-&lt;p&gt;I opened an eye halfway and watched as the clock ticked down the last few seconds. The starting signal sounded. I opened up the problem envelope…  (nonessential expressions deLaTeXed; you’re welcome)&lt;/p&gt;</description>
+&lt;p&gt;I opened an eye halfway and watched as the clock ticked down the last few seconds. The starting signal sounded. I opened up the problem envelope…&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -204,7 +201,7 @@ Our old friend, the monster of a functional equation, in edible form. In the gam
 &lt;p&gt;Okay, this break in storytelling is mainly brought to you by generic summer laziness, as well as possibly a tiny bit of chemotherapy adverse effect. There is only a little perfectionism involved, and that’s because this post contains a long awkward situation (you might have guessed already). I guess this is what it feels like to have oodles of stuff to blog about, but not enough motivation. Heck, these few days with running the TAIMC have long filled my list of rant topics with juicy stories until it’s near-bursting. But I need to end this self-pity party before I get carried away, so… back to the action.&lt;/p&gt;
 &lt;p&gt;Stranded in a foreign country at least 20 degrees Celsius below our comfort zone, having worn the same clothes for 36 hours of airplane travel, and still with less than 48 hours until the contest and &lt;em&gt;zero out of six compasses&lt;/em&gt;, we were running out of options.&lt;/p&gt;
 &lt;p&gt;A quick inventory of clothes showed that, after including the vests and caps in the backpacks we got, we probably had just enough clothes to survive the cruel frigid environment. So, reluctantly, we left the games room and hit the street to hunt down some underwear and socks to change into. Not to mention toothbrushes and some T-shirts and jackets for good measure, because the inside of the hotel was not the right temperature for full cold-resistance gear.&lt;/p&gt;
-&lt;p&gt;Some haphazard wandering up and down the streets later, we found a store that suited our needs and picked up some clothes. The underwear came in two sizes: too loose and too tight. We picked the latter. Oh well, it would only be for a day or so… right?  And so that was our first day without our luggage. We survived. My iPod finally ran out of battery the second day while furiously refreshing my email, trying to stay connected and update everybody. The schedule marched ahead without us.&lt;/p&gt;</description>
+&lt;p&gt;Some haphazard wandering up and down the streets later, we found a store that suited our needs and picked up some clothes. The underwear came in two sizes: too loose and too tight. We picked the latter. Oh well, it would only be for a day or so… right?&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -217,7 +214,7 @@ Our old friend, the monster of a functional equation, in edible form. In the gam
 &lt;p&gt;At least, we tried. I started to realize that there was much more to this hotel than it seemed.&lt;/p&gt;
 &lt;p&gt;Firstly, of course, was the confusing placement of rooms with numbers starting with 4 and 5 on the fourth floor (which would be the fifth floor by our numbering system, where the lobby is floor 1; but here the lobby was assigned 0. Off-by-one errors just waiting to happen here.) Secondly were the completely indecipherable signs. I don’t remember the details, but the first signs we saw read something like “560 ~ 540: left; 520 ~ 540: right”. Occasionally there would be weird slashes or half-slashes between the numbers instead (later I finally realized they were slanted, Comic-Sans-style capital Ys, or “and” in Spanish). Are these closed, open, or half-open intervals? And why the heck are their upper and lower bounds in a different order!?&lt;/p&gt;
 &lt;p&gt;We wandered through the corridors, peeking down each one, trying to figure out whether the numbers were increasing or decreasing and whether a parity argument (for those of you not fluent in math lingo, that means odds and evens) allowed for the existence of our room. Who knew the simple act of finding one’s living quarters could be so mathematically tasking? In the end, our rooms were in the last corridor, just about diametrically opposite to the elevators on the half of our floor. Oh well.&lt;/p&gt;
-&lt;p&gt;The room was pretty nice overall. The furniture and basic facilities were quite complete, with a sparkly bathroom and a couple tables and chairs of various shapes. The closet was big and had a safe, which was rather important because just about everybody we had met had warned us over and over again about all the incredibly skilled thieves, muggers, and pickpockets in Argentina. It was probably much safer (no pun intended) in the hotel, but with all of these warnings (later we would even find a notice from the hotel warning us to lock our doors) I was never entirely certain. There were lots of lights controlled by a set of confusing switches on either side of our beds. There was at least one white immovable divider cunningly disguised as a switch, one switch that didn’t ever seem to do anything, and one that turned everything off. The last one made a little sense after a while because it had pictures of stars and a moon on it, but the whole setup was still pretty non-user-friendly in my opinion.  The awesome part was that our room was connected with the one next door with a tiny midway corridor, so by keeping the connecting doors unlocked, the four of us (me, WL, CPT, KYL) could share one room key and just hang out really conveniently. The other two had a room connected to one with two guys from Cyprus. I don’t think they interacted that much, although I know we got an inequality from them one of the days before the contest. We observed that Jensen didn’t work on it and didn’t really touch it afterwards, still living under the mistaken and highly deluded assumption that there was no way the PSC would choose an inequality now that they finally realized that everybody knew Muirhead.&lt;/p&gt;</description>
+&lt;p&gt;The room was pretty nice overall. The furniture and basic facilities were quite complete, with a sparkly bathroom and a couple tables and chairs of various shapes. The closet was big and had a safe, which was rather important because just about everybody we had met had warned us over and over again about all the incredibly skilled thieves, muggers, and pickpockets in Argentina. It was probably much safer (no pun intended) in the hotel, but with all of these warnings (later we would even find a notice from the hotel warning us to lock our doors) I was never entirely certain. There were lots of lights controlled by a set of confusing switches on either side of our beds. There was at least one white immovable divider cunningly disguised as a switch, one switch that didn’t ever seem to do anything, and one that turned everything off. The last one made a little sense after a while because it had pictures of stars and a moon on it, but the whole setup was still pretty non-user-friendly in my opinion.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -229,7 +226,8 @@ Our old friend, the monster of a functional equation, in edible form. In the gam
       <description>&lt;p&gt;It’s time to begin the epic blogging journey. The detailed version of this year’s amazing IMO, because I decided that a perfectionist guy like myself could not possibly liveblog and be satisfied with both the quality of the posts and being able to fully enjoy the actual event.&lt;/p&gt;
 &lt;p&gt;Our story begins in a hotel in Taiwan.&lt;/p&gt;
 &lt;p&gt;The night before departure, us six contestants and Prof. Lin gathered in a hotel. This was entirely necessary because our flight left at something like five o’clock in the morning. After checking over the flight plans and relevant phone numbers in a conference room, we enjoyed a pretty extensive buffet dinner, what would easily be the best meal we would get to have for at least a week, the highlight of which was a fish steak that looked and tasted exactly like fried egg. Afterwards we did some emergency shopping and prepared a convenience-store breakfast for consumption three o’clock the next day.&lt;/p&gt;
-&lt;p&gt;As I’ve complained before, we have an 11-hour difference to get used to, and that morning I had gotten myself to sleep as late as 6 AM trying (successfully, much to my amazement) to complete an iPod OS system update. I didn’t think I could pass airport security with the sort of consciousness I had when I finally slept that morning, so I reverted with the rest of the team to an 11 PM curfew. Oh well. The seven of us left the hotel after 3 AM, setting off in a huge 30-person bus for the airport.&lt;/p&gt;</description>
+&lt;p&gt;As I’ve complained before, we have an 11-hour difference to get used to, and that morning I had gotten myself to sleep as late as 6 AM trying (successfully, much to my amazement) to complete an iPod OS system update. I didn’t think I could pass airport security with the sort of consciousness I had when I finally slept that morning, so I reverted with the rest of the team to an 11 PM curfew. Oh well. The seven of us left the hotel after 3 AM, setting off in a huge 30-person bus for the airport.&lt;/p&gt;
+&lt;p&gt;Luggage drop-off was mostly uneventful. I realized that the airline didn’t seem to like passengers bringing two bags onto the airplane, and decided to distribute my bag with all the winter clothes in it into my luggage and my backpack. Little did we know what would happen to the luggage…&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -240,7 +238,8 @@ Our old friend, the monster of a functional equation, in edible form. In the gam
       <guid>//blog.vero.site/post/impact-minus-two-weeks</guid>
       <description>&lt;p&gt;Wait, are you serious? Under two weeks left, is that what it’s come to?&lt;/p&gt;
 &lt;p&gt;What happened to my majestic plans to go over every functional equation I failed on, ever? Or to go through a super-intense geometry-immersion period and actually try to develop some of that crazy “intuition” thing? And I have &lt;em&gt;finals&lt;/em&gt; coming up too! I just finished a ludicrous deadline-extended geography project that I am absolutely confident is the crappiest paper of my entire school career so far! And despite a semester of (slacking) classes, my Spanish is still only barely at a usable level! Exclamation marks!&lt;/p&gt;
-&lt;p&gt;Don’t panic… let’s focus on the positive. I am absolutely prepared with my stationery. I bought three spanking new 0.4mm pens that say “Can write for 1000 meters!” because all of my current ones are annoyingly thick and constantly having almost-but-not-quite run out, plus three new mechanical pencils and enough matching 2B lead to last me through college. All the pencils and lead are Pentel. I haven’t done any research, so if something terrible happens in Argentina I know what company to blame, and I am writing it here so I won’t confuse the brands. Also, in view of what happened to SCH’s carry-on baggage last year (luckily there was no geo on Day 1), I got an extra compass I hope won’t be needed.&lt;/p&gt;</description>
+&lt;p&gt;Don’t panic… let’s focus on the positive. I am absolutely prepared with my stationery. I bought three spanking new 0.4mm pens that say “Can write for 1000 meters!” because all of my current ones are annoyingly thick and constantly having almost-but-not-quite run out, plus three new mechanical pencils and enough matching 2B lead to last me through college. All the pencils and lead are Pentel. I haven’t done any research, so if something terrible happens in Argentina I know what company to blame, and I am writing it here so I won’t confuse the brands. Also, in view of what happened to SCH’s carry-on baggage last year (luckily there was no geo on Day 1), I got an extra compass I hope won’t be needed.&lt;/p&gt;
+&lt;p&gt;While we’re listing all the &lt;em&gt;stuff&lt;/em&gt; I have gotten ready:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -258,7 +257,7 @@ Our old friend, the monster of a functional equation, in edible form. In the gam
 &lt;li&gt;AG/CA/NG/GCN/AGA&lt;/li&gt;
 &lt;li&gt;GA/GN/CA/GCN/AGC&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Algebra x9, Combinatorics x7, Geometry x12, Number Theory x8. In other words a distribution in perfect negative correlation with my estimated ability in each subject. At least, that’s how I’ve always estimated them before about a month ago. Ouch, the last stage was the only one of the three where problem distribution for combinatorics actually reached its fair share. (Alternative interpretation: 2011’s distribution was majorly f123ed up with only one real geometry problem, which just means that this year’s battle will probably be difficult for me. (Alternative alternative interpretation: the evil, nasty, wicked, depraved windmill was actually an outrageous negative for me. Gee, I don’t know how to feel. But I should actually do stuff instead of wildly speculating; let’s get back to the topic.))  The last stage of selection had a pretty steady “Individual Study” was steady. The first mock test had slightly easy problems as 1 and 2 and a completely insurmountable NT problem that was basically adding a zillion unrelated numbers up and having the result magically be divisible by a prime. I finished the first two problems in an hour and spent three and a half on the third, calculating over a hundred values modulo 19 trying to find a pattern. Nothing.&lt;/p&gt;</description>
+&lt;p&gt;Algebra x9, Combinatorics x7, Geometry x12, Number Theory x8. In other words a distribution in perfect negative correlation with my estimated ability in each subject. At least, that’s how I’ve always estimated them before about a month ago. Ouch, the last stage was the only one of the three where problem distribution for combinatorics actually reached its fair share. (Alternative interpretation: 2011’s distribution was majorly f123ed up with only one real geometry problem, which just means that this year’s battle will probably be difficult for me. (Alternative alternative interpretation: the evil, nasty, wicked, depraved windmill was actually an outrageous negative for me. Gee, I don’t know how to feel. But I should actually do stuff instead of wildly speculating; let’s get back to the topic.))&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -271,8 +270,7 @@ Our old friend, the monster of a functional equation, in edible form. In the gam
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2009 self wrote this. It is preserved for historical interest and amusement, and as a testament to how far I’d go to typeset math equations in ASCII art.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;I have just come back from a week of continuous mathematics, board gaming, and hitting people with sticks to ensure that they get up in time. Yippee! Those problems sure do get around.&lt;/p&gt;
-&lt;p&gt;Sample problem: This problem rocks!&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Sample problem: This problem rocks!&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -320,8 +318,7 @@ Vectors are like columns of matrices, or matrices with one column. Except row ve
 &lt;p&gt;Let&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 f_\epsilon(x) = \begin{cases} 0 &amp;amp; \text{if } |x| \geq \epsilon \\ 1 - \left|\frac{x}{\epsilon}\right| &amp;amp;\text{if } |x| &amp;lt; \epsilon \end{cases}.
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+\]&lt;/span&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -347,8 +344,7 @@ If \(x, y, z &amp;gt; 0\) then
 &lt;h3 id=&#34;chapter-2-basic-topology-some-ch.-3&#34;&gt;Chapter 2: Basic Topology (+ some Ch. 3)&lt;/h3&gt;
 &lt;p&gt;An &lt;strong&gt;isolated point&lt;/strong&gt; of E is in E but not a limit point of it. E is &lt;strong&gt;perfect&lt;/strong&gt; if it is exactly equal to its set of limit points. Equivalently, it is closed and has no isolated points. Ex. 2.44: The Cantor set is perfect.&lt;/p&gt;
 &lt;p&gt;A &lt;strong&gt;compact set&lt;/strong&gt; is a set for which every open cover has a finite subcover.&lt;/p&gt;
-&lt;p&gt;Compactness or compact sets have these properties (with made-up names):&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Compactness or compact sets have these properties (with made-up names):&lt;/p&gt;</description>
     </item>
     
   </channel>

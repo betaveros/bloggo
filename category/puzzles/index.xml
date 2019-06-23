@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Puzzles on Bounded-Error Log</title>
+    <title>puzzles on Bounded-Error Log</title>
     <link>//blog.vero.site/category/puzzles</link>
-    <description>Recent content in Puzzles on Bounded-Error Log</description>
+    <description>Recent content in puzzles on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 16 Jan 2018 19:39:22 -0500</lastBuildDate>
@@ -19,8 +19,7 @@
       <guid>//blog.vero.site/post/2018-hunt</guid>
       <description>&lt;p&gt;My third MIT Mystery Hunt with ✈✈✈ Galactic Trendsetters ✈✈✈ (also see: &lt;a href=&#34;//blog.vero.site/post/january&#34;&gt;2017&lt;/a&gt; and &lt;a href=&#34;//blog.vero.site/post/whoosh&#34;&gt;2016&lt;/a&gt;, writing with Random in &lt;a href=&#34;//blog.vero.site/post/hunt&#34;&gt;2015&lt;/a&gt;). It was a good hunt with a fun theme, solid puzzles, and extraordinary production quality, marred only by a fickle unlock structure and a handful of unnecessarily involved extractions.&lt;/p&gt;
 &lt;p&gt;Since we had been told the hunt would be smaller than past years’ (now a controversial statement since the coin was &lt;em&gt;not&lt;/em&gt; found particularly early) and we didn’t particularly want to win (yet), part of our team temporarily split off this year to hunt as Teammate. Based on our Discord channel, ✈✈✈ Galactic Trendsetters ✈✈✈ had 75 people this year, including remote solvers and people who dropped in and out.&lt;/p&gt;
-&lt;p&gt;A short description of the hunt structure: This year’s hunt theme was &lt;em&gt;Inside Out&lt;/em&gt;, the Disney movie about anthropomorphized emotions. This was revealed through a kickoff that demonstrated the hunt’s extraordinary production quality, in which we watched the unveiling of the Health &amp;amp; Safety hunt, first directly, then in the Control Room with the emotions of a distraught hunter (Miss Terry Hunter) and a lot of beautiful memory orbs and scenery. After Terry’s emotions became overwhelmed in response to the theme, we had to help her emotions to allow her to complete the Health &amp;amp; Safety hunt. The intro round took place in the Control Room; we had to solve 34 regular puzzles and five metapuzzles (somewhat overlapping, with some regular puzzles belonging to more than one metapuzzle) to help each of the five emotions get back to the Control Room. The rest of the hunt consisted of recovering memory orbs from each of four Islands of Personality, each of which had its own theme and meta structure, and which we could choose the unlock order of.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;A short description of the hunt structure: This year’s hunt theme was &lt;em&gt;Inside Out&lt;/em&gt;, the Disney movie about anthropomorphized emotions. This was revealed through a kickoff that demonstrated the hunt’s extraordinary production quality, in which we watched the unveiling of the Health &amp;amp; Safety hunt, first directly, then in the Control Room with the emotions of a distraught hunter (Miss Terry Hunter) and a lot of beautiful memory orbs and scenery. After Terry’s emotions became overwhelmed in response to the theme, we had to help her emotions to allow her to complete the Health &amp;amp; Safety hunt. The intro round took place in the Control Room; we had to solve 34 regular puzzles and five metapuzzles (somewhat overlapping, with some regular puzzles belonging to more than one metapuzzle) to help each of the five emotions get back to the Control Room. The rest of the hunt consisted of recovering memory orbs from each of four Islands of Personality, each of which had its own theme and meta structure, and which we could choose the unlock order of.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -33,8 +32,7 @@
 &lt;p&gt;(Thing negative two: Thing zero, which is at the bottom of this post, contains two puzzles by me. Skip there if that sounds interesting and text walls don’t.)&lt;/p&gt;
 &lt;p&gt;Thing negative one: I abandoned this blog (again). The last month has been a mess and much of it is political stuff of the sort that I’m the worst/slowest at writing about.&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;Thing one: I was on-site for a second MIT Mystery Hunt.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Thing one: I was on-site for a second MIT Mystery Hunt.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -43,7 +41,8 @@
       <pubDate>Mon, 08 Aug 2016 13:54:22 +0800</pubDate>
       
       <guid>//blog.vero.site/post/bcodex</guid>
-      <description>&lt;p&gt;&lt;code&gt;--... ---.. ....- ..... ..--- ----- ....- ....- ...-- -.... ...-- -.... ...-- . ....- ....- ..--- ----- ....- ..... ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -.... ....- ....- ..--- ----- ...-- ..-. ....- ----- ..--- ----- ...-- ..--- ...-- ..-. ....- ..... ...-- .- ...-- ..... ....- ----- ....- ..... ...-- -.... ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ...-- ..-. ...-- ---.. ....- ....- ....- ..... ..--- ----- ...-- -.. ...-- .- ...-- -.-. ...-- -.... ..--- ----- ...-- --... ...-- .- ...-- ..-. ...-- ..... ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ....- ....- ....- ----- ...-- . ...-- -.... ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- ....- ....- ----- ....- ----- ...-- -.. ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ....- ---.. ...-- ..-. ..... -.-. ....- ..... ....- ----- ..... -.-. ...-- -.... ...-- ..--- ....- ...-- ....- ..... ...-- ----. ..... -... ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- .- ....- ..... ..... -..&lt;/code&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;code&gt;--... ---.. ....- ..... ..--- ----- ....- ....- ...-- -.... ...-- -.... ...-- . ....- ....- ..--- ----- ....- ..... ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -.... ....- ....- ..--- ----- ...-- ..-. ....- ----- ..--- ----- ...-- ..--- ...-- ..-. ....- ..... ...-- .- ...-- ..... ....- ----- ....- ..... ...-- -.... ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ...-- ..-. ...-- ---.. ....- ....- ....- ..... ..--- ----- ...-- -.. ...-- .- ...-- -.-. ...-- -.... ..--- ----- ...-- --... ...-- .- ...-- ..-. ...-- ..... ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ....- ....- ....- ----- ...-- . ...-- -.... ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- ....- ....- ----- ....- ----- ...-- -.. ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ....- ---.. ...-- ..-. ..... -.-. ....- ..... ....- ----- ..... -.-. ...-- -.... ...-- ..--- ....- ...-- ....- ..... ...-- ----. ..... -... ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- .- ....- ..... ..... -..&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;..--- ..... ....- ----- ...-- ..... ...-- ..--- ....- .- ..--- ----- --... ---.. ..--- ----- ...-- ..... ...-- .- ...-- ..... ..--- ----- ...-- ..--- ..--- ----- ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- --... ---.. ..--- ----- ....- ---.. ...-- ..--- ...-- ..-. ....- ..... ...-- -.... ...-- ..... ..--- ----- ....- ..... ....- ----- ..--- ----- ...-- ..... ....- ----- ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ..--- ----- ...-- -.. ....- ----- ...-- ..-. ...-- ---.. ..--- ----- ....- ..... ...-- .- ...-- . ...-- -.... -.... ----. ..--- ----- --... ---.. ..--- ----- ...-- ....- ....- ----- ...-- . ....- .---- ...-- .- ...-- -.. ...-- -.... ...-- ..... ..--- -----&lt;/code&gt; &lt;a href=&#34;https://github.com/betaveros/bcodex&#34;&gt;&lt;code&gt;...-- ...-- ...-- ....- ....- ----- ...-- ..... ...-- -.... ....- ----.&lt;/code&gt;&lt;/a&gt; &lt;code&gt;..--- ----- ...-- --... ....- ...-- ....- ----- ...-- . ..--- ----- --... --... ...-- ..--- ....- ....- ...-- -.-. ...-- -.... ...-- -.. ...-- -.. ..--- ----- ....- ..... ....- ----- ..--- ----- --... ----. ...-- ..--- ....- --... ...-- ..--- ..--- ....- ...-- ....- ....- ...-- ...-- .- ....- .---- ....- ..... ..--- ----- ....- ....- ....- ----- ..--- ----- ...-- .- ....- ..... ..--- ----- ...-- ....- ....- ----- ....- -.... ...-- -.. ...-- ..... ..--- ----- ....- ...-- ....- -.... ...-- ..-. ..--- ----- ...-- .- ...-- ..-. ..--- ----- ...-- ..--- ...-- ..-. ....- .- ..--- ----- ...-- . ....- ----- ...-- ..... ...-- -.... ....- ...-- ...-- ..-. ..--- ----- ...-- ...-- ....- ...-- ....- ----- ....- ---.. ....- ....- ...-- -.... ....- ...-- ..... -.. ..--- -----&lt;/code&gt; &lt;a href=&#34;http://betaveros.github.io/bcodex/&#34;&gt;&lt;code&gt;..--- .- ....- ----- ....- -.... ..--- ----- ...-- ....- ...-- ..--- ...-- ..-. ..--- ----- ....- ..... ....- ...-- ....- .- ..--- ----- ...-- .- ....- ..... ..--- ----- ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -----&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -56,8 +55,7 @@
 &lt;p&gt;I was on-site for the 2016 MIT Mystery Hunt. I even &lt;em&gt;solved a metapuzzle&lt;/em&gt;. This year I hunted with ✈✈✈ Galactic Trendsetters ✈✈✈, the team primarily but not overwhelmingly formed from floorpi, my dorm floor. (Perhaps somewhat regrettably, I didn’t contribute to any events or runarounds or things given to HQ, unless you count attending a “recitation” for Student Simulator (round King Arthur, second from left).)&lt;/p&gt;
 &lt;p&gt;(Also, I made this post. Has it been two weeks already? Okay, that’s not an unusual timeframe.)&lt;/p&gt;
 &lt;p&gt;But wow, I got to touch so many puzzles.&lt;/p&gt;
-&lt;p&gt;Non-spoilery comments on particularly memorable puzzles I did, which are disproportionately programming-related, if anybody wants to look at them (I am describing how to get to the puzzle from the round instead of linking because I’m lazy and links might rot but the instructions will hopefully survive archival (although turns out there’s actually a &lt;a href=&#34;http://huntception.com/toc.html&#34;&gt;table of contents&lt;/a&gt; so I don’t know what I’m doing)):&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Non-spoilery comments on particularly memorable puzzles I did, which are disproportionately programming-related, if anybody wants to look at them (I am describing how to get to the puzzle from the round instead of linking because I’m lazy and links might rot but the instructions will hopefully survive archival (although turns out there’s actually a &lt;a href=&#34;http://huntception.com/toc.html&#34;&gt;table of contents&lt;/a&gt; so I don’t know what I’m doing)):&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -67,8 +65,7 @@
       
       <guid>//blog.vero.site/post/puzzle-49</guid>
       <description>&lt;p&gt;I’m not really satisfied with the execution, but eh, what the hell. My brain can only function at so much of its full capacity when it’s a few kilometers up in the sky.&lt;/p&gt;
-&lt;p&gt;This is a &lt;a href=&#34;https://mellowmelon.wordpress.com/2009/12/20/puzzle-135/&#34;&gt;Triple Back&lt;/a&gt;, variant on &lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s Double Back&lt;/a&gt;. Briefly, draw a closed loop through all square centers visiting each bold-outlined area exactly three (= ⌊π⌋) times. Shaded cells do not influence solving, only aesthetics.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;This is a &lt;a href=&#34;https://mellowmelon.wordpress.com/2009/12/20/puzzle-135/&#34;&gt;Triple Back&lt;/a&gt;, variant on &lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s Double Back&lt;/a&gt;. Briefly, draw a closed loop through all square centers visiting each bold-outlined area exactly three (= ⌊π⌋) times. Shaded cells do not influence solving, only aesthetics.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -91,8 +88,7 @@
 &lt;p&gt;Solvers:&lt;/p&gt;
 &lt;ol type=&#34;1&#34;&gt;
 &lt;li&gt;Yoshiap @ 11-20 13:31:56&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;/ol&gt;</description>
     </item>
     
     <item>
@@ -108,8 +104,7 @@
 &lt;li&gt;Jack Lance @ 11-19 10:39:11&lt;/li&gt;
 &lt;li&gt;Yoshiap @ 11-20 03:29:54&lt;/li&gt;
 &lt;/ol&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;hr /&gt;</description>
     </item>
     
     <item>
@@ -120,8 +115,7 @@
       <guid>//blog.vero.site/post/anticron</guid>
       <description>&lt;p&gt;Unfortunately, I did not get this successfully testsolved, although, for whatever comfort it may provide, I did engage in several interactive rounds of nerfing it.&lt;/p&gt;
 &lt;p&gt;As usual, &lt;a href=&#34;http://bpchen.scripts.mit.edu/2015/&#34;&gt;you can check your answers here.&lt;/a&gt; Text above this horizontal rule is not part of the puzzle.&lt;/p&gt;
-&lt;p&gt;Solvers:&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Solvers:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -138,8 +132,7 @@ ETA 11/17 16:15 UTC−5: Adjusted spacing between the bottom numbers after feedb
 &lt;p&gt;Solvers (in my local UTC−5 because I’m lazy):&lt;/p&gt;
 &lt;ol type=&#34;1&#34;&gt;
 &lt;li&gt;Yoshiap @ 11-17 18:28:34&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;/ol&gt;</description>
     </item>
     
     <item>
@@ -156,8 +149,7 @@ right now, my blog drafts contain a backlog of ~7500 words and counting;
 &lt;li&gt;
 I was not accepted as an MIT Admissions blogger, which is bad because my blogging will continue to not reach a large audience, but good because my blogging will continue to not reach a large audience. Maybe it had something to do with the fact that, because the application form wouldn’t let me submit without any media, I panickedly cranked out the following puzzle in an hour or so to attach.
 &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;/ol&gt;</description>
     </item>
     
     <item>
@@ -176,7 +168,9 @@ I was not accepted as an MIT Admissions blogger, which is bad because my bloggin
 &lt;code&gt;haxxor/purity2/logic.html&lt;/code&gt; (2010/10/10?)
 &lt;/h3&gt;
 &lt;p&gt;My file hierarchy is really weird. I don’t think this time stamp is when I wrote the puzzle because it was part of a silly static site setup I created (but never actually put anywhere), and I probably edited and regenerated stuff like the breadcrumbs many times, but it’ll have to do.&lt;/p&gt;
-&lt;p&gt;This is also funny because the title of the HTML file is “Logic Puzzles” and the description starts, “These puzzles were made when I was really bored…”, but there’s only one puzzle.&lt;/p&gt;</description>
+&lt;p&gt;This is also funny because the title of the HTML file is “Logic Puzzles” and the description starts, “These puzzles were made when I was really bored…”, but there’s only one puzzle.&lt;/p&gt;
+&lt;p&gt;Well, it’s better than an under construction page, I guess.&lt;/p&gt;
+&lt;p&gt;I’ll quote the entirety of the old instructions as I wrote them, even though they’re really verbose, since it’s easy to scroll past them:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -187,8 +181,7 @@ I was not accepted as an MIT Admissions blogger, which is bad because my bloggin
       <guid>//blog.vero.site/post/puzzle-47</guid>
       <description>&lt;p&gt;CLICKBAIT PERSONALITY TEST THAT YOU CAN DO WITHOUT SOLVING THE PUZZLE: What do you see in the puzzle image below? I have my own thoughts but I won’t bias you by posting them yet. Sound out your thoughts in the comments below! (I don’t expect this to work but I’d love to be proven wrong)&lt;/p&gt;
 &lt;p&gt;Okay so apparently how puzzles work is I go nearly a year without posting one and then when I post a terrible one, I feel guilty and obligated to post a legitimate one soon after. Testsolved by chaotic_iak.&lt;/p&gt;
-&lt;p&gt;This is a Fillomino (write a number in every empty cell so that every group of cells with the same number that is connected through its edges has that number of cells) where each tetromino has had their 4s replaced by one of L, I, T, or S describing their shape, and they obey the rules of LITS — they can touch if they are not congruent, they must all be connected, and their squares cannot form a 2×2 block. In addition, cells separated by a thick border may not contain the same number or letter.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;This is a Fillomino (write a number in every empty cell so that every group of cells with the same number that is connected through its edges has that number of cells) where each tetromino has had their 4s replaced by one of L, I, T, or S describing their shape, and they obey the rules of LITS — they can touch if they are not congruent, they must all be connected, and their squares cannot form a 2×2 block. In addition, cells separated by a thick border may not contain the same number or letter.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -202,8 +195,7 @@ I was not accepted as an MIT Admissions blogger, which is bad because my bloggin
 …&lt;br /&gt;
 5:52 PM &lt;strong&gt;phenomist&lt;/strong&gt;: actually nvm excel is probably easier lol
 &lt;/blockquote&gt;
-&lt;p&gt;Okay I’m sorry this is a horrible puzzle where the rules don’t make sense and I didn’t even get it testsolved. I just wanted an image to concisely demonstrate the capabilities of &lt;a href=&#34;https://github.com/betaveros/gridderface&#34;&gt;gridderface&lt;/a&gt;, my puzzle marking and creation program, for the project homepage, after somebody expressed interest in using the program to write a puzzle. Then I got tremendously carried away.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Okay I’m sorry this is a horrible puzzle where the rules don’t make sense and I didn’t even get it testsolved. I just wanted an image to concisely demonstrate the capabilities of &lt;a href=&#34;https://github.com/betaveros/gridderface&#34;&gt;gridderface&lt;/a&gt;, my puzzle marking and creation program, for the project homepage, after somebody expressed interest in using the program to write a puzzle. Then I got tremendously carried away.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -213,7 +205,9 @@ I was not accepted as an MIT Admissions blogger, which is bad because my bloggin
       
       <guid>//blog.vero.site/post/hunt</guid>
       <description>&lt;p&gt;Well, it’s been over a week, which is a long time for blog posts to be delayed after the event they’re documenting in probably all of the world except my blog. So.&lt;/p&gt;
-&lt;p&gt;I guess this post should start with a bit of background. I’ve been puzzlehunting for… wow, three and a half years now. I was introduced to puzzlehunts from AoPS, when some fellow members got together a team for &lt;a href=&#34;http://puzzle.cisra.com.au/2011/teamstats_AoPS.html&#34;&gt;CiSRA 2011&lt;/a&gt;, and I think I’ve participated to some degree in every known internet Australian puzzlehunt since.&lt;/p&gt;</description>
+&lt;p&gt;I guess this post should start with a bit of background. I’ve been puzzlehunting for… wow, three and a half years now. I was introduced to puzzlehunts from AoPS, when some fellow members got together a team for &lt;a href=&#34;http://puzzle.cisra.com.au/2011/teamstats_AoPS.html&#34;&gt;CiSRA 2011&lt;/a&gt;, and I think I’ve participated to some degree in every known internet Australian puzzlehunt since.&lt;/p&gt;
+&lt;p&gt;But as for my experience with the MIT Mystery Hunt in particular, I sort of hunted with a decidedly uncompetitive AoPS team in 2012 (I think we solved one puzzle exactly), but my serious hunting career began when dzaefn recruited me into the Random team (then Random Thymes) &lt;a href=&#34;//blog.vero.site/post/hunter&#34;&gt;for the 2013 hunt&lt;/a&gt; (and I did blog obliquely about it). We didn’t win (and I actually didn’t participate that much because I was traveling with family) but the next year (as One Fish Two Fish Random Fish Blue Fish (1f-2f-17f-255f (I am evidently in a parentheses mood today because as you’ve probably noticed, the amount and depth of parentheses in this sentence are positively alarming (lol)))) we won.&lt;/p&gt;
+&lt;p&gt;And I do have a half-written post about that which will never get posted (and I &lt;em&gt;also&lt;/em&gt; didn’t participate that much, because my family was moving that weekend) but okay, let’s just drop any semblance of chronological coherence on this blog and dump a short version of the list of puzzles and parts towards which I contributed solving, as I wrote them down one year ago:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -227,8 +221,7 @@ I was not accepted as an MIT Admissions blogger, which is bad because my bloggin
 &lt;p&gt;If you don’t already know what occasion it is, it’s easy to find out by looking through my archives or possibly anywhere else I’ve left a trail online. Or you could solve the puzzle! (Or you could &lt;ins datetime=&#34;2014-11-20T12:29:52+00:00&#34;&gt;scroll down to read the solution!&lt;/ins&gt;) If this puzzle had an answer, it would be a nine-letter word, although like most of mathematics, it’s less about the answer than about the path you take to get there…&lt;/p&gt;
 &lt;ins datetime=&#34;2017-11-24T18:36:41-0500&#34;&gt;
 2017 edit: A warning that this has somewhat linkrotted and is harder to solve, but theoretically still possible.
-&lt;/ins&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;/ins&gt;</description>
     </item>
     
     <item>
@@ -239,8 +232,7 @@ I was not accepted as an MIT Admissions blogger, which is bad because my bloggin
       <guid>//blog.vero.site/post/puzzle-45</guid>
       <description>&lt;p&gt;As requested, a puzzle post! Straight from the WTF-variant department. Quite hard.&lt;/p&gt;
 &lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;, with the additional constraint that for each polyomino, there must &lt;em&gt;not&lt;/em&gt; exist a path (i.e. a sequence of cells, each orthogonally adjacent to the next) that includes each of the polyomino’s cells exactly once (and does not include cells outside the polyomino).&lt;/p&gt;
-&lt;p&gt;As a degenerate case, 1-ominoes are banned as well.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;As a degenerate case, 1-ominoes are banned as well.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -252,8 +244,7 @@ I was not accepted as an MIT Admissions blogger, which is bad because my bloggin
       <description>&lt;ins datetime=&#34;2013-11-18T23:20:18+00:00&#34;&gt;
 Edit 11/19 7:23 AM UTC+8: Fixed some transcription errors on right: &lt;strong&gt;R4C17 is D instead of N, and R15C17 is G instead of E.&lt;/strong&gt; Neither change should greatly impact solvability. Thanks to ksun for pointing out an error.
 &lt;/ins&gt;
-&lt;p&gt;Logic puzzles are easy to construct if one doesn’t have some specific pattern or theme in mind. It’s just that, given the increasing number of constructors and puzzles with amazing themes, I don’t think it’s very meaningful for me to just construct more puzzles of the same genres by putting down clues randomly. That’s why, for my seventeenth birthday, I took the puzzlehunt route and made something without instructions that is not completely solved by logical deduction. Still, I’ve provided all the information needed to do this puzzle initially, so I hope my not getting the inductive bits test-solved can be excused.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Logic puzzles are easy to construct if one doesn’t have some specific pattern or theme in mind. It’s just that, given the increasing number of constructors and puzzles with amazing themes, I don’t think it’s very meaningful for me to just construct more puzzles of the same genres by putting down clues randomly. That’s why, for my seventeenth birthday, I took the puzzlehunt route and made something without instructions that is not completely solved by logical deduction. Still, I’ve provided all the information needed to do this puzzle initially, so I hope my not getting the inductive bits test-solved can be excused.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -267,8 +258,7 @@ Edit 11/19 7:23 AM UTC+8: Fixed some transcription errors on right: &lt;strong&g
 ETA: Journalistic responsibility compels me to mention that chaotic_iak also added, “might be beaten later”. Oops?
 &lt;/ins&gt;
 &lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt; combining the &lt;a href=&#34;http://mathgrant.blogspot.tw/2011/09/monday-mutant-95-polyominous-no.html&#34;&gt;Nonrectangular&lt;/a&gt; (polyominoes can’t be rectangles) and &lt;a href=&#34;http://mathgrant.blogspot.tw/2012/10/fillomino-fillia-2-preview-series-walls.html&#34;&gt;Walls&lt;/a&gt; (polyominoes can’t span thick lines) variant rules. I think the first variant first came from mathgrant; I’m not as sure about the second, but they both appeared in &lt;a href=&#34;http://logicmastersindia.com/forum/forums/thread-view.asp?tid=525&amp;amp;posts=64&amp;amp;start=1&#34;&gt;Fillomino-Fillia 2&lt;/a&gt;, at least.&lt;/p&gt;
-&lt;p&gt;Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is a shape that’s not a rectangle with that number of cells. In addition, cells separated by a thick border may not contain the same number.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is a shape that’s not a rectangle with that number of cells. In addition, cells separated by a thick border may not contain the same number.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -278,8 +268,7 @@ ETA: Journalistic responsibility compels me to mention that chaotic_iak also add
       
       <guid>//blog.vero.site/post/puzzle-42</guid>
       <description>&lt;p&gt;Oops, I forgot the “puzzles” category was semi-reserved for puzzles I constructed/wrote, because among other things an LMI bot is following it. Anyway, if this makes up for anything, I have a puzzle that I’ve procrastinated posting for very, very long.&lt;/p&gt;
-&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt; puzzle. Inequality signs in the grid must be satisfied by the two numbers they touch.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt; puzzle. Inequality signs in the grid must be satisfied by the two numbers they touch.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -291,8 +280,7 @@ ETA: Journalistic responsibility compels me to mention that chaotic_iak also add
       <description>&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/informatix.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/informatix.jpg?w=300&#34; alt=&#34;Informatix [MUMS Puzzle Hunt 2013]&#34;/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;So, I somehow managed to &lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/teamstats.html?team=not+AoPS&#34;&gt;get 25 points all by myself&lt;/a&gt; in &lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/&#34;&gt;MUMS Puzzle Hunt 2013&lt;/a&gt;. Well, I pestered chaotic_iak a little with &lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/2013/puzzles/3.3_Diagnosus_ghQ3AcbJ.html&#34;&gt;3.3 Diagnosus (.html with animated .gif)&lt;/a&gt; but we still didn’t recognize all the Pokémon until hint 3, at which point Google sufficed for me.&lt;/p&gt;
 &lt;p&gt;This is nowhere near the top, but compared to the usual results of whatever AoPS team I form, it’s amazing. By far the best result of AoPS was on CiSRA in 2010 (46th with 58 points), before I discovered puzzle hunts in AoPS; unfortunately due to people getting older and the influx of younger and younger people to the fora, there are less possible teammates each year and they have less time, so here I am by myself. (Also I could have accepted an invitation from a guy in the some-form-of-Elephant team, but I figure if you can win two MUMS hunts in a row you don’t need any more people.)&lt;/p&gt;
-&lt;p&gt;All in all: Yay!&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;All in all: Yay!&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -302,8 +290,7 @@ ETA: Journalistic responsibility compels me to mention that chaotic_iak also add
       
       <guid>//blog.vero.site/post/puzzle-41</guid>
       <description>&lt;p&gt;I survived midterms.&lt;/p&gt;
-&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/slitherlink.html&#34;&gt;Slitherlink&lt;/a&gt; mutant. Draw a loop through adjacent vertices that cannot intersect itself. Each number indicates how many of the four edges around it are drawn. In addition, each pair of colored squares in corresponding positions (e.g. R1C1 and R6C6, R2C8 and R7C3) must have an equal number of edges drawn around them (i.e. if there were numbers placed there, they would be equal).&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/slitherlink.html&#34;&gt;Slitherlink&lt;/a&gt; mutant. Draw a loop through adjacent vertices that cannot intersect itself. Each number indicates how many of the four edges around it are drawn. In addition, each pair of colored squares in corresponding positions (e.g. R1C1 and R6C6, R2C8 and R7C3) must have an equal number of edges drawn around them (i.e. if there were numbers placed there, they would be equal).&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -313,8 +300,7 @@ ETA: Journalistic responsibility compels me to mention that chaotic_iak also add
       
       <guid>//blog.vero.site/post/puzzle-40</guid>
       <description>&lt;p&gt;Yeah, and there’s this. chaotic_iak rejected this variant for his &lt;a href=&#34;https://chaosatthesky.wordpress.com/puzzles/#fff&#34;&gt;February sequence&lt;/a&gt; in order to get consistent 7x7 dimensions, so I made one. It’s been about a month. I have no idea why I procrastinated posting it until now.&lt;/p&gt;
-&lt;p&gt;This is a Samurai &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;, which means each grid satisfies the constraints on its own. Write a number in every empty cell so that, in each square grid, every group of cells with the same number that is connected through its edges has that number of cells. Note that the two grids must contain the same numbers where they overlap, but the grouping should be considered independently. I’d explain this really carefully if it weren’t the main gimmick of this puzzle.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;This is a Samurai &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;, which means each grid satisfies the constraints on its own. Write a number in every empty cell so that, in each square grid, every group of cells with the same number that is connected through its edges has that number of cells. Note that the two grids must contain the same numbers where they overlap, but the grouping should be considered independently. I’d explain this really carefully if it weren’t the main gimmick of this puzzle.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -328,8 +314,7 @@ ETA: Journalistic responsibility compels me to mention that chaotic_iak also add
 &lt;del datetime=&#34;2017-11-25T16:26:24-0500&#34;&gt;
 Please click on the image if it looks weird, which it very likely will.
 &lt;/del&gt;
-&lt;p&gt;&lt;ins datetime=&#34;2017-11-25T16:26:37-0500&#34;&gt;(This was a WordPress bug that should no longer be relevant.)&lt;/ins&gt;&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;ins datetime=&#34;2017-11-25T16:26:37-0500&#34;&gt;(This was a WordPress bug that should no longer be relevant.)&lt;/ins&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -340,8 +325,7 @@ Please click on the image if it looks weird, which it very likely will.
       <guid>//blog.vero.site/post/puzzle-38</guid>
       <description>&lt;p&gt;A &lt;a href=&#34;http://inabapuzzle.com/honkaku/contact.html&#34;&gt;Naoki Inaba (JP)&lt;/a&gt; type, as seen on &lt;a href=&#34;http://puzzleparasite.blogspot.tw/2012/01/rules-contact.html&#34;&gt;Para’s Puzzle Site&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Draw a loop through adjacent vertices that cannot intersect itself; each number indicates the total length of all straight segments adjacent to it, where segment length is always measured up to the nearest turns in the loop.&lt;/p&gt;
-&lt;p&gt;Let’s see how well WordPress’s scheduling works again. Happy Chinese New Year!&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Let’s see how well WordPress’s scheduling works again. Happy Chinese New Year!&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -351,8 +335,7 @@ Please click on the image if it looks weird, which it very likely will.
       
       <guid>//blog.vero.site/post/puzzle-37</guid>
       <description>&lt;p&gt;Nikoli &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/slitherlink.html&#34;&gt;Slitherlink&lt;/a&gt; + &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/masyu.html&#34;&gt;Masyu&lt;/a&gt; hybrid; I don’t know who first put them together but combinations like this aren’t rare.&lt;/p&gt;
-&lt;p&gt;Draw a loop through vertices that cannot intersect itself; each number indicates how many of the four edges around it are drawn; the loop must pass through all large dots, and it must go straight through white dots while turning either before or after (or both), while it must turn on black dots without turning either before or after.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Draw a loop through vertices that cannot intersect itself; each number indicates how many of the four edges around it are drawn; the loop must pass through all large dots, and it must go straight through white dots while turning either before or after (or both), while it must turn on black dots without turning either before or after.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -361,8 +344,7 @@ Please click on the image if it looks weird, which it very likely will.
       <pubDate>Wed, 23 Jan 2013 18:29:00 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-36</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://mathgrant.blogspot.tw/2012/11/monday-mutant-119-polyominous-tetra.html&#34;&gt;mathgrant’s hybrid type&lt;/a&gt;: a Fillomino (write a number in every empty cell so that every group of cells with the same number that is connected through its edges has that number of cells) where each tetromino has had their 4s replaced by one of L, I, T, or S describing their shape, and they obey the rules of LITS — they can touch if they are not congruent, they must all be connected, and their squares cannot form a 2x2 block.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;http://mathgrant.blogspot.tw/2012/11/monday-mutant-119-polyominous-tetra.html&#34;&gt;mathgrant’s hybrid type&lt;/a&gt;: a Fillomino (write a number in every empty cell so that every group of cells with the same number that is connected through its edges has that number of cells) where each tetromino has had their 4s replaced by one of L, I, T, or S describing their shape, and they obey the rules of LITS — they can touch if they are not congruent, they must all be connected, and their squares cannot form a 2x2 block.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -378,7 +360,8 @@ Faint rainbow
 &lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;So winter vacation started and parents had planned a trip to southern Taiwan, to get closer to nature and walk around and stuff.&lt;/p&gt;
-&lt;p&gt;Also, the MIT Mystery Hunt, the absolute granddaddy of all the other puzzlehunts in terms of age, structure, and size, happened this weekend. Originally, I didn’t have a team and just planned to look at the puzzles after they got archived and &lt;s&gt;try solving some puzzles&lt;/s&gt; read the solutions while constantly thinking, “How could anybody ever solve that?” Because of that, I wasn’t planning to even bring my laptop at first; then I could force myself to study some long-overdue ring theory during the nights. I was taken aback by a private message on Saturday morning from somebody with many different names inviting me to remote-solve for Random Thymes.&lt;/p&gt;</description>
+&lt;p&gt;Also, the MIT Mystery Hunt, the absolute granddaddy of all the other puzzlehunts in terms of age, structure, and size, happened this weekend. Originally, I didn’t have a team and just planned to look at the puzzles after they got archived and &lt;s&gt;try solving some puzzles&lt;/s&gt; read the solutions while constantly thinking, “How could anybody ever solve that?” Because of that, I wasn’t planning to even bring my laptop at first; then I could force myself to study some long-overdue ring theory during the nights. I was taken aback by a private message on Saturday morning from somebody with many different names inviting me to remote-solve for Random Thymes.&lt;/p&gt;
+&lt;p&gt;Me: !!!!!!!!!!&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -388,8 +371,7 @@ Faint rainbow
       
       <guid>//blog.vero.site/post/puzzle-35</guid>
       <description>&lt;p&gt;This is another &lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s Double Back&lt;/a&gt;. Briefly, draw a closed loop through all square centers visiting each bold-outlined area twice. Shaded cells do not influence solving, only aesthetics.&lt;/p&gt;
-&lt;p&gt;It’s mostly easy, I think. It’s okay if you don’t know what the theme means. (Yes, chao, I want more contrib points.) Also, WordPress seems to have stopped automatically linking images to their files. Hmm.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;It’s mostly easy, I think. It’s okay if you don’t know what the theme means. (Yes, chao, I want more contrib points.) Also, WordPress seems to have stopped automatically linking images to their files. Hmm.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -399,8 +381,7 @@ Faint rainbow
       
       <guid>//blog.vero.site/post/puzzle-34</guid>
       <description>&lt;p&gt;It’s been a while, hasn’t it? This is something I constructed semi-experimentally to stop failing at an entire genre of puzzles, and then procrastinated posting just about forever. I only test-solved this on paper; I hope I didn’t do anything silly while digitizing.&lt;/p&gt;
-&lt;p&gt;Rules paraphrased from USPC because I can’t find any good links: Write each of the given words into its own snail; letters must be entered from the outside of the snail spirally inward. Not all squares will be used; squares with “-” must stay blank. Each letter can appear at most once in each row and column.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Rules paraphrased from USPC because I can’t find any good links: Write each of the given words into its own snail; letters must be entered from the outside of the snail spirally inward. Not all squares will be used; squares with “-” must stay blank. Each letter can appear at most once in each row and column.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -420,8 +401,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       
       <guid>//blog.vero.site/post/puzzle-33</guid>
       <description>&lt;p&gt;Noticed this at &lt;a href=&#34;http://meanderlawn.blogspot.tw/&#34;&gt;meander lawn&lt;/a&gt; who has a really broad puzzle blogroll… I don’t really know what I’m doing and may have misinterpreted something, but here goes. (Ahahaha puzzle 33 on 11/22… I wish it was intentional :P)&lt;/p&gt;
-&lt;p&gt;Draw a path through square centers which enters and exits through the given places. Outside the “ice barns” (the gray things), the path may turn freely but may not self-intersect; inside “ice barns” the path may self-intersect but may not turn. Each ice barn (not necessarily every cell but every region, I think) must be passed over. The path must pass through each given arrow in the given direction.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Draw a path through square centers which enters and exits through the given places. Outside the “ice barns” (the gray things), the path may turn freely but may not self-intersect; inside “ice barns” the path may self-intersect but may not turn. Each ice barn (not necessarily every cell but every region, I think) must be passed over. The path must pass through each given arrow in the given direction.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -431,8 +411,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       
       <guid>//blog.vero.site/post/puzzle-32</guid>
       <description>&lt;p&gt;Yes, a “big” crazy mutant puzzle for a “milestone” &lt;a href=&#34;https://xkcd.com/1000/&#34;&gt;(as seen on xkcd)&lt;/a&gt;, both for this blog and for my life. Things are rough now, but I prepared this ridiculously ahead of time. It’s still not &lt;em&gt;really&lt;/em&gt; big, but I’m not so experienced and I don’t have the inspiration for something like &lt;a href=&#34;http://www.artofproblemsolving.com/Forum/viewtopic.php?f=535&amp;amp;t=506208&#34;&gt;an entire mini-puzzlehunt&lt;/a&gt;. Also, I think I should attempt more word-bank-based puzzles some day so I won’t fail as completely at them.&lt;/p&gt;
-&lt;p&gt;But anyway: This is a Slitherlink combining MellowMelon’s &lt;a href=&#34;https://mellowmelon.wordpress.com/slitherlink/crosslink/&#34;&gt;Crosslink&lt;/a&gt; and &lt;a href=&#34;https://mellowmelon.wordpress.com/category/puzzle-types/slitherlink/liar-slitherlink/&#34;&gt;Liar&lt;/a&gt; variations. Draw a loop through vertices that can intersect itself but must go straight both times if it does; each number normally indicates how many of the four edges around it are draw, but exactly one clue in each row and column is false. Have fun.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;But anyway: This is a Slitherlink combining MellowMelon’s &lt;a href=&#34;https://mellowmelon.wordpress.com/slitherlink/crosslink/&#34;&gt;Crosslink&lt;/a&gt; and &lt;a href=&#34;https://mellowmelon.wordpress.com/category/puzzle-types/slitherlink/liar-slitherlink/&#34;&gt;Liar&lt;/a&gt; variations. Draw a loop through vertices that can intersect itself but must go straight both times if it does; each number normally indicates how many of the four edges around it are draw, but exactly one clue in each row and column is false. Have fun.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -442,8 +421,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       
       <guid>//blog.vero.site/post/puzzle-31</guid>
       <description>&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt; puzzle where every polyomino is required to be an L-shape, as in &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/sashigane.html&#34;&gt;Sashigane&lt;/a&gt;. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.&lt;/p&gt;
-&lt;p&gt;My second, and now symmetric, attempt at this crazy self-invented mutant; &lt;a href=&#34;//blog.vero.site/post/puzzle-22&#34;&gt;puzzle 22&lt;/a&gt; was the first. A word of warning: I can’t solve this without bifurcating near the end, so logic purists may be disappointed, but I like the clue arrangement too much. In fact I suspect this puzzle could have many more clues removed without affecting uniqueness, so tight are the rule constraints in this type.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;My second, and now symmetric, attempt at this crazy self-invented mutant; &lt;a href=&#34;//blog.vero.site/post/puzzle-22&#34;&gt;puzzle 22&lt;/a&gt; was the first. A word of warning: I can’t solve this without bifurcating near the end, so logic purists may be disappointed, but I like the clue arrangement too much. In fact I suspect this puzzle could have many more clues removed without affecting uniqueness, so tight are the rule constraints in this type.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -453,8 +431,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       
       <guid>//blog.vero.site/post/puzzle-30</guid>
       <description>&lt;p&gt;Haha, way-overdue &lt;a href=&#34;http://logicmastersindia.com/FF2/&#34;&gt;Fillomino-Fillia&lt;/a&gt; practice puzzle. This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt; puzzle; in addition to normal rules, treat numbers inside the grid as building heights. Numbers outside the grid indicate how many buildings can be seen from that direction, where a building blocks all buildings of lower or equal height behind it.&lt;/p&gt;
-&lt;p&gt;Edit: I should warn that the arithmetic here is pretty annoying.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Edit: I should warn that the arithmetic here is pretty annoying.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -463,8 +440,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       <pubDate>Thu, 08 Nov 2012 17:35:43 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-29</guid>
-      <description>&lt;p&gt;This is a &lt;a href=&#34;https://mellowmelon.wordpress.com/corral/&#34;&gt;Corral&lt;/a&gt; puzzle in which half the clues are &lt;a href=&#34;http://mathgrant.blogspot.tw/2012/08/monday-mutant-117-inner-limits.html&#34;&gt;multiplicative&lt;/a&gt;. For each symmetric pair of clues, one is normal and one is multiplicative.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;This is a &lt;a href=&#34;https://mellowmelon.wordpress.com/corral/&#34;&gt;Corral&lt;/a&gt; puzzle in which half the clues are &lt;a href=&#34;http://mathgrant.blogspot.tw/2012/08/monday-mutant-117-inner-limits.html&#34;&gt;multiplicative&lt;/a&gt;. For each symmetric pair of clues, one is normal and one is multiplicative.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -474,8 +450,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       
       <guid>//blog.vero.site/post/puzzle-28</guid>
       <description>&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt; puzzle where every polyomino is required to be nonrectangular (which also bans squares). Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is a shape that’s not a rectangle with that number of cells.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://logicmastersindia.com/FF2/&#34;&gt;Fillomino-Fillia 2&lt;/a&gt; is coming! Anyway I don’t know how to judge difficulty but this is probably terrible practice. I should try a Skyscrapers if I can keep pretending USH homework doesn’t exist which I probably shouldn’t.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;a href=&#34;http://logicmastersindia.com/FF2/&#34;&gt;Fillomino-Fillia 2&lt;/a&gt; is coming! Anyway I don’t know how to judge difficulty but this is probably terrible practice. I should try a Skyscrapers if I can keep pretending USH homework doesn’t exist which I probably shouldn’t.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -486,8 +461,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       <guid>//blog.vero.site/post/puzzle-27</guid>
       <description>&lt;p&gt;Nice and tricky. (I think.)&lt;/p&gt;
 &lt;p&gt;In fact I tried to be too tricky and spent a very long time fixing an ambiguity. It was worth it though.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/lits.html&#34;&gt;LITS - Nikoli.&lt;/a&gt; Exactly one tetromino per region, no 2x2s, they’re connected, adjacent tetrominoes are noncongruent.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/lits.html&#34;&gt;LITS - Nikoli.&lt;/a&gt; Exactly one tetromino per region, no 2x2s, they’re connected, adjacent tetrominoes are noncongruent.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -498,8 +472,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       <guid>//blog.vero.site/post/puzzle-26</guid>
       <description>&lt;p&gt;That’s not a picture. Why is it recreated as one? Oh well.&lt;/p&gt;
 &lt;p&gt;You can interpret this as me about reaching level 8.1 (the user ranking) on &lt;a href=&#34;https://www.rankk.org/&#34;&gt;rankk&lt;/a&gt; or complaining about how infuriating level 8.1 (the puzzle) is. I’m torn.&lt;/p&gt;
-&lt;p&gt;This is one of a bunch of &lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s Double Backs&lt;/a&gt;. Briefly, draw a closed loop through all square centers visiting each bold-outlined area twice. Shaded cells do not influence solving, only aesthetics.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;This is one of a bunch of &lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s Double Backs&lt;/a&gt;. Briefly, draw a closed loop through all square centers visiting each bold-outlined area twice. Shaded cells do not influence solving, only aesthetics.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -510,8 +483,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       <guid>//blog.vero.site/post/puzzle-25</guid>
       <description>&lt;p&gt;Most uncreative picture ever! But it’s suitable after &lt;a href=&#34;http://puzzle.cisra.com.au/&#34;&gt;CiSRA’s Puzzle Week&lt;/a&gt;. This might be the first time our AoPS team managed all four puzzles in a group.&lt;/p&gt;
 &lt;p&gt;…sigh, now I must handle the guilt for squeezing out so much time from my normal schedule.&lt;/p&gt;
-&lt;p&gt;This is one of a bunch of &lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s Double Backs&lt;/a&gt;. Briefly, draw a closed loop through all square centers visiting each bold-outlined area twice. Shaded cells do not influence solving, only aesthetics.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;This is one of a bunch of &lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s Double Backs&lt;/a&gt;. Briefly, draw a closed loop through all square centers visiting each bold-outlined area twice. Shaded cells do not influence solving, only aesthetics.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -521,8 +493,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       
       <guid>//blog.vero.site/post/puzzle-24</guid>
       <description>&lt;p&gt;Right, back to puzzles because I have nothing substantial to say. Circumstantial evidence suggests I created this one in June.&lt;/p&gt;
-&lt;p&gt;This is one of a bunch of &lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s Double Backs&lt;/a&gt;. Draw a closed loop through all square centers visiting each bold-outlined area twice.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;This is one of a bunch of &lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s Double Backs&lt;/a&gt;. Draw a closed loop through all square centers visiting each bold-outlined area twice.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -531,8 +502,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       <pubDate>Wed, 19 Sep 2012 21:49:01 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-23</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://mathgrant.blogspot.tw/2012/08/monday-mutant-117-inner-limits.html&#34;&gt;Too lazy to explain rules today&lt;/a&gt; although this is probably an easy one.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;http://mathgrant.blogspot.tw/2012/08/monday-mutant-117-inner-limits.html&#34;&gt;Too lazy to explain rules today&lt;/a&gt; although this is probably an easy one.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -542,8 +512,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       
       <guid>//blog.vero.site/post/puzzle-22</guid>
       <description>&lt;p&gt;This is a &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt; puzzle where every polyomino is required to be an L-shape, as in &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/sashigane.html&#34;&gt;Sashigane&lt;/a&gt;. Write a number in every empty cell so that every group of cells with the same number that is connected through its edges is an L-shape (with arms of positive length and 1-cell thickness) with that number of cells.&lt;/p&gt;
-&lt;p&gt;May be slightly reminiscent of &lt;a href=&#34;http://mathgrant.blogspot.com/2011/09/monday-mutant-95-polyominous-no.html&#34;&gt;no-rectangle Fillominoes&lt;/a&gt;. &lt;em&gt;Slightly…&lt;/em&gt; (Has anybody done this before? It seems so interesting that I feel like I couldn’t be first.)&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;May be slightly reminiscent of &lt;a href=&#34;http://mathgrant.blogspot.com/2011/09/monday-mutant-95-polyominous-no.html&#34;&gt;no-rectangle Fillominoes&lt;/a&gt;. &lt;em&gt;Slightly…&lt;/em&gt; (Has anybody done this before? It seems so interesting that I feel like I couldn’t be first.)&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -553,8 +522,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       
       <guid>//blog.vero.site/post/puzzle-21</guid>
       <description>&lt;p&gt;I made this a long time ago but put it off until I had programmed enough to digitize it without my fingers leaving the home row. I think the finish is interesting.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/lits.html&#34;&gt;LITS - Nikoli.&lt;/a&gt; Exactly one tetromino per region, no 2x2s, they’re connected, adjacent tetrominoes are noncongruent.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/lits.html&#34;&gt;LITS - Nikoli.&lt;/a&gt; Exactly one tetromino per region, no 2x2s, they’re connected, adjacent tetrominoes are noncongruent.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -564,8 +532,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       
       <guid>//blog.vero.site/post/puzzle-20</guid>
       <description>&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/20-sashigane.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/20-sashigane.png&#34; alt=&#34;&#34; title=&#34;Sashigane&#34; width=&#34;345&#34; height=&#34;345&#34; class=&#34;aligncenter size-full wp-image-1302&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Yeah, I lied last time I made one of these; the original Nikoli name wasn’t that hard to remember, and “sashigane puzzles” has shown up as a search query, so here you go. Perfect opposite-type-clue rotational symmetry, chaotic_iak! I hope you’re satisfied now.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Yeah, I lied last time I made one of these; the original Nikoli name wasn’t that hard to remember, and “sashigane puzzles” has shown up as a search query, so here you go. Perfect opposite-type-clue rotational symmetry, chaotic_iak! I hope you’re satisfied now.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -576,8 +543,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       <guid>//blog.vero.site/post/puzzle-19</guid>
       <description>&lt;p&gt;I have just realized that I have only ever tried one level of difficulty in puzzle construction, viz., “as hard as I can make it”. This is mainly because I don’t want to construct anything overly trivial with the same few tricks, but, well, maybe it’s not the best idea for actually trying to build an audience.&lt;/p&gt;
 &lt;p&gt;Am I actually trying to build an audience? Am I? *shudders*&lt;/p&gt;
-&lt;p&gt;(Yajilin summary: fill in some cells, draw a loop through the rest, filled cells aren’t adjacent, arrows denote # of filled cells along some ray; &lt;a href=&#34;https://mellowmelon.wordpress.com/yajilin/&#34;&gt;MellowMelon’s rules&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;(Yajilin summary: fill in some cells, draw a loop through the rest, filled cells aren’t adjacent, arrows denote # of filled cells along some ray; &lt;a href=&#34;https://mellowmelon.wordpress.com/yajilin/&#34;&gt;MellowMelon’s rules&lt;/a&gt;)&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -586,8 +552,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       <pubDate>Wed, 01 Aug 2012 19:03:44 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-18</guid>
-      <description>&lt;p&gt;Again, the &lt;a href=&#34;http://zotmeister.dreamwidth.org/2005/03/22/&#34;&gt;Zotmeister type&lt;/a&gt;. (Short rules: each cell states how many liars are in the 3x3 square centered at it, liars incorrectly so. Liars satisfy the “dynasty” rule i.e. liars are not orthogonally adjacent and non-liars are connected through sides.)&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Again, the &lt;a href=&#34;http://zotmeister.dreamwidth.org/2005/03/22/&#34;&gt;Zotmeister type&lt;/a&gt;. (Short rules: each cell states how many liars are in the 3x3 square centered at it, liars incorrectly so. Liars satisfy the “dynasty” rule i.e. liars are not orthogonally adjacent and non-liars are connected through sides.)&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -596,8 +561,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       <pubDate>Mon, 30 Jul 2012 19:07:41 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-17</guid>
-      <description>&lt;p&gt;Corral puzzle, aka Cave aka Bag etc. (Yes, from nikoli.) Short rules: draw a loop along the grid lines; each numbered cell is in the loop and the number denotes how many cells can be seen vertically or horizontally from that cell, plus the cell itself. Stealing link to &lt;a href=&#34;https://mellowmelon.wordpress.com/corral/&#34;&gt;MellowMelon’s long rules&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Corral puzzle, aka Cave aka Bag etc. (Yes, from nikoli.) Short rules: draw a loop along the grid lines; each numbered cell is in the loop and the number denotes how many cells can be seen vertically or horizontally from that cell, plus the cell itself. Stealing link to &lt;a href=&#34;https://mellowmelon.wordpress.com/corral/&#34;&gt;MellowMelon’s long rules&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -607,8 +571,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       
       <guid>//blog.vero.site/post/puzzle-16</guid>
       <description>&lt;p&gt;Slitherlink with 20 clues taken out as dominoes and their original positions shaded. For more lucid rules please visit &lt;a href=&#34;https://mellowmelon.wordpress.com/2010/10/21/puzzle-263/&#34;&gt;MellowMelon’s puzzle 263&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Domino set is all possible dominoes exactly once each: &lt;strong&gt;{00,01,02,03,11,12,13,22,23,33}&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Domino set is all possible dominoes exactly once each: &lt;strong&gt;{00,01,02,03,11,12,13,22,23,33}&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -617,8 +580,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       <pubDate>Sun, 25 Mar 2012 00:00:08 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-15</guid>
-      <description>&lt;p&gt;A bonus gift for the birthday of a very important person! Ignore the colors while solving.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;A bonus gift for the birthday of a very important person! Ignore the colors while solving.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -627,8 +589,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       <pubDate>Thu, 22 Mar 2012 20:46:51 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-14</guid>
-      <description>&lt;p&gt;Just a normal one this time.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Just a normal one this time.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -637,8 +598,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       <pubDate>Mon, 19 Mar 2012 06:44:28 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-13</guid>
-      <description>&lt;p&gt;Somewhat depressing almost-symmetry.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Somewhat depressing almost-symmetry.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -648,8 +608,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       
       <guid>//blog.vero.site/post/puzzle-12</guid>
       <description>&lt;p&gt;If you are reading this, then our APMO testing time is over! There’s a small chance of me being really happy or really frustrated about how I did, but I’m betting on a solid “meh.”&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://mathgrant.blogspot.com/2012/01/rules-ellbound.html&#34;&gt;Rules page&lt;/a&gt; by mathgrant. There’s no way I’m going to memorize the Japanese name yet. [edit: It’s Sashigane. It’s not that hard.]&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;a href=&#34;http://mathgrant.blogspot.com/2012/01/rules-ellbound.html&#34;&gt;Rules page&lt;/a&gt; by mathgrant. There’s no way I’m going to memorize the Japanese name yet. [edit: It’s Sashigane. It’s not that hard.]&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -658,8 +617,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       <pubDate>Tue, 06 Mar 2012 18:25:47 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-11</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://zotmeister.dreamwidth.org/2005/03/22/&#34;&gt;Ruleset&lt;/a&gt; designed by Zotmeister.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;http://zotmeister.dreamwidth.org/2005/03/22/&#34;&gt;Ruleset&lt;/a&gt; designed by Zotmeister.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -668,8 +626,7 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       <pubDate>Sat, 03 Mar 2012 18:00:11 +0800</pubDate>
       
       <guid>//blog.vero.site/post/puzzle-10</guid>
-      <description>&lt;p&gt;A ratio-preserving enlargement of the janko.at sample invocation puzzle, perhaps. I wanted to try using smaller clues. Finally a grid too large for full-size displaying! Is that even supposed to be an achievement?&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;A ratio-preserving enlargement of the janko.at sample invocation puzzle, perhaps. I wanted to try using smaller clues. Finally a grid too large for full-size displaying! Is that even supposed to be an achievement?&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -744,8 +701,7 @@ A Liar Slitherlink as created by MellowMelon (probably). Normal Slitherlink rule
       
       <guid>//blog.vero.site/post/puzzle-3</guid>
       <description>&lt;p&gt;I only just managed to make a 10x10 that’s not broken.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.janko.at/Applets/Nurikabe/q.php?w=450&amp;amp;h=340&amp;amp;r=10&amp;amp;c=10&amp;amp;p=,,4,,,,3,,,/,8,,,,,,,,/,,,5,,,,,,/,,,,,,,3,,/,,,,,,,,,/,,,,,,,,,/,,,,,,,7,,/,3,,,,,,,3,/,,2,,,,,,,/,,,,,4,,,,&#34;&gt;janko.at applet&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;a href=&#34;http://www.janko.at/Applets/Nurikabe/q.php?w=450&amp;amp;h=340&amp;amp;r=10&amp;amp;c=10&amp;amp;p=,,4,,,,3,,,/,8,,,,,,,,/,,,5,,,,,,/,,,,,,,3,,/,,,,,,,,,/,,,,,,,,,/,,,,,,,7,,/,3,,,,,,,3,/,,2,,,,,,,/,,,,,4,,,,&#34;&gt;janko.at applet&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
