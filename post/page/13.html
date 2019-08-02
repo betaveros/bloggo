@@ -114,6 +114,43 @@ Posts
 	
 	<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/cabal" class="post-link">Adventures in Cabal Installations</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-04-13
+		(1550 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">Cs</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>First Google Code Jam!</p>
+<p>The format of this competition, allowing us to run programs on our own machines, brought up a very interesting issue for me: what programming language should I be using? (I had had similar considerations for IPSC 2013, but GCJ’s problems are closer to the traditional ACM-ICPC style.)</p>
+<p>The obvious choice is C++, the language I use for roughly every other competition, but its safety (or lack thereof) is not very appealing. I need speed, but not <em>that much</em> speed. Unfortunately I still haven’t gotten around to learning any other friendlier mid-level languages (on the list: D, Go, or Rust), so I have no close substitutes for C++ right now.</p>
+<p>Python is certainly available for a reliable arbitrary-length integer type, if nothing else.</p>
+<p>As for non-candidates, Java has <code>BigInteger</code> and memory safety, but all in all I decided the benefits are too minor and it’s too ugly without operator overloading. Scala is probably way too slow. So I don’t expect to be writing either language.</p>
+<p>The only difficult choice I have to make is, of course, Haskell — which can be quite fast, even while it’s ridiculously type-safe and expressive and referentially transparent and easy to reason about, once you’ve:</p>
+<ul>
+<li>figured out how to do the problem</li>
+<li>scrapped step 1 and <em>actually</em> figured out how to do the problem <em>functionally</em></li>
+<li>gotten the thing to compile</li>
+</ul>
+<p>Even if I can handle step 1, step 2 is by no means a simple task, as my struggle to implement a mere <a href="//blog.vero.site/post/haskell">Sieve of Eratosthenes</a> efficiently shows. That is fun, but not at all intuitive; I am doubtful I can do this under contest conditions. It is extremely difficult to transfer my skills in learning how to implement, say, a segment tree or treap into this language.</p>
+<p>But! Google links to the <a href="http://www.go-hero.net/jam/10/round/0">programming language breakdown for 2010 Qualification Round</a> as an example, and much to my surprise, Haskell ranks somewhere between sixth and tenth place in popularity (depending on what you sort by), so there are functional superprogrammers who can presumably do something like this.</p>
+<p>As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/cabal">→ read more<span class="offscreen"> Adventures in Cabal Installations</span></a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/sat" class="post-link">Re-Re-Revisiting the SAT</a></h3>
 		
 		<p class="post-meta">
@@ -366,32 +403,6 @@ ETA: Journalistic responsibility compels me to mention that chaotic_iak also add
 <p>This is a <a href="http://www.nikoli.co.jp/en/puzzles/fillomino.html">Fillomino</a> puzzle. Inequality signs in the grid must be satisfied by the two numbers they touch.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/puzzle-42">→ read more<span class="offscreen"> Puzzle 42 / Fillomino [Greater-Than]</span></a>
-	</footer>
-</article>
-
-	
-	<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/rankk-stats" class="post-link">Rankk Solving Statistics</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-07-18
-		(1139 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Funny, I go on a trip to Penghu followed by a four-day science camp and also get dragged into drawing classes and some sort of movie advising joint, and this is what I decide to blog about.</p>
-<p>Since it’s summer, I went back to <a href="http://www.rankk.org/">Rankk</a> and solved stuff. This is lots of fun if you’re good with computers, plus a little math, cryptography, and general puzzling. I’m still stuck on level 8… oh well. Since the levels didn’t seem very indicative of difficulty to me, I decided to do some analysis.</p>
-<p>New challenges have been added to Rankk over time, so my metric of difficulty is the number of solvers divided by the time from release to now. Of course this is far from perfect; for example, a challenge’s author doesn’t always seem consistently counted as a solver, problems with lower numbers and problems that will help level up are more likely to get checked out by new rankkers, and so on. But this is just for fun.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/rankk-stats">→ read more<span class="offscreen"> Rankk Solving Statistics</span></a>
 	</footer>
 </article>
 
