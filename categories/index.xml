@@ -6,10 +6,19 @@
     <description>Recent content in Categories on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Aug 2019 21:23:15 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 04 Aug 2019 09:49:20 -0400</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CS</title>
+      <link>//blog.vero.site/category/cs</link>
+      <pubDate>Sun, 04 Aug 2019 09:49:20 -0400</pubDate>
+      
+      <guid>//blog.vero.site/category/cs</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>thoughts</title>
@@ -17,15 +26,6 @@
       <pubDate>Thu, 01 Aug 2019 21:23:15 -0400</pubDate>
       
       <guid>//blog.vero.site/category/thoughts</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>CS</title>
-      <link>//blog.vero.site/category/cs</link>
-      <pubDate>Wed, 27 Mar 2019 18:26:41 -0400</pubDate>
-      
-      <guid>//blog.vero.site/category/cs</guid>
       <description></description>
     </item>
     

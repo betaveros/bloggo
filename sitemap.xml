@@ -4,25 +4,42 @@
   
   <url>
     <loc>//blog.vero.site/</loc>
-    <lastmod>2019-08-01T21:23:15-04:00</lastmod>
+    <lastmod>2019-08-04T09:49:20-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/category/cs</loc>
+    <lastmod>2019-08-04T09:49:20-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/categories</loc>
-    <lastmod>2019-08-01T21:23:15-04:00</lastmod>
+    <lastmod>2019-08-04T09:49:20-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>//blog.vero.site/post/multiplication</loc>
+    <lastmod>2019-08-04T09:49:20-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/post</loc>
-    <lastmod>2019-08-01T21:23:15-04:00</lastmod>
+    <lastmod>2019-08-04T09:49:20-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/tags</loc>
-    <lastmod>2019-08-01T21:23:15-04:00</lastmod>
+    <lastmod>2019-08-04T09:49:20-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/haskell</loc>
+    <lastmod>2019-08-04T09:49:20-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -51,12 +68,6 @@
   <url>
     <loc>//blog.vero.site/post/username</loc>
     <lastmod>2019-06-13T17:39:14-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/category/cs</loc>
-    <lastmod>2019-03-27T18:26:41-04:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -312,12 +323,6 @@
   <url>
     <loc>//blog.vero.site/post/bcodex</loc>
     <lastmod>2016-08-08T13:54:22+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/tag/haskell</loc>
-    <lastmod>2016-08-08T13:54:22+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
