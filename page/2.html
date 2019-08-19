@@ -110,6 +110,37 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/proprietary-format" class="post-link">Proprietary Format</a></h3>
+		
+		<h4 class="post-subtitle">Google CTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-06-28
+		(4166 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>The villains are communicating with their own proprietary file format. Figure out what it is.</p>
+<pre><code>$ nc proprietary.ctfcompetition.com 1337</code></pre>
+</blockquote>
+<p>We get a server that will talk to us on a port and a <code>flag.ctf</code> file that’s definitely not a binary. It’s a <a href="https://en.wikipedia.org/wiki/Black_box">black-box</a> reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.</p>
+<p>For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not <code>P6</code>, it complains:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/proprietary-format">→ read more<span class="offscreen"> Proprietary Format</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/cat-chat" class="post-link">Cat Chat</a></h3>
 		
 		<h4 class="post-subtitle">Google CTF 2018</h4>
@@ -357,37 +388,6 @@
 <p>What parts of me can I just not deny, huh? Unfortunately 2017 is also the year I decide my online presence should probably be a little more professional, so you might have to read between the lines a bit.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/transformation">→ read more<span class="offscreen"> Transformation</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/thoroughly-stripped" class="post-link">Thoroughly Stripped</a></h3>
-		
-		<h4 class="post-subtitle">CSAW CTF 2017 Finals (Forensics, 200 pts)</h4>
-		
-		<p class="post-meta">
-		
-		2017-11-12
-		(1142 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Woo, first CTF writeup. I got the opportunity to participate in the 2017 CSAW CTF finals with Don’t Hack Alone.</p>
-<blockquote>
-<p>Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.</p>
-</blockquote>
-<p>We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.</p>
-<p>Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from <a href="https://github.com/betaveros/xxb"><code>xxb</code></a> but <code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/thoroughly-stripped">→ read more<span class="offscreen"> Thoroughly Stripped</span></a>
 	</footer>
 </article>
 

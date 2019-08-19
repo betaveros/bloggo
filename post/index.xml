@@ -6,10 +6,24 @@
     <description>Recent content in Posts on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 04 Aug 2019 09:49:20 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 19 Aug 2019 09:10:43 -0400</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Go to Class (Most of the Time)</title>
+      <link>//blog.vero.site/post/go-to-class</link>
+      <pubDate>Mon, 19 Aug 2019 09:10:43 -0400</pubDate>
+      
+      <guid>//blog.vero.site/post/go-to-class</guid>
+      <description>&lt;div class=&#34;series&#34;&gt;
+&lt;p&gt;part of the “what I learned after four years at MIT” series, I guess? A short post this time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;I can’t begin to count the number of times we were exhorted in high school to go to class. College is different, they said. Nobody is going to force you to go to class any more. This is what you came to college to do, what you paid so much time and money for. It’s on you to make sure you’re learning.&lt;/p&gt;
+&lt;p&gt;By and large I followed this advice, until I considered that I might have overcorrected given the exhortations. There are a lot of definitely bad reasons to skip class, chief among them being too lazy to get out of bed. There are also some non-obvious reasons to go to class, such as getting the professors to recognize you — this is a reason to go to office hours even if you’re not particularly struggling with the class, or if you know people who might be able to help you that you could ask more comfortably or more conveniently; professors who know you may eventually be able to give you career advice, research opportunities, or letters of recommendation. (Of course, you shouldn’t try to befriend professors purely for these selfish motives; they’re also good to know just as fellow humans.)&lt;/p&gt;
+&lt;p&gt;But there are also plenty of legitimate reasons to skip class. (It’s really unclear how many people out there need to hear this, but my past self did, and I want this draft out of the way-too-long queue of posts.) Here are some.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Multiplication by Juxtaposition</title>
@@ -40,7 +54,9 @@ TypeError: &amp;#39;int&amp;#39; object is not callable&lt;/code&gt;&lt;/pre&gt;
       <pubDate>Thu, 01 Aug 2019 21:23:15 -0400</pubDate>
       
       <guid>//blog.vero.site/post/writing</guid>
-      <description>&lt;p&gt;&lt;em&gt;Part of the “what I learned after four years at MIT” series, I guess?&lt;/em&gt;&lt;/p&gt;
+      <description>&lt;div class=&#34;series&#34;&gt;
+&lt;p&gt;part of the “what I learned after four years at MIT” series, I guess?&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;I hated timed essays in high school. It’s pretty clear if you skim that part of the blog archives:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;My [SAT] essay got a 10 out of 12. It’s an essay I’d be ashamed of posting anywhere else; it’s disgustingly traditional and formulaic. […] This was simply because I knew that using my normal essay-writing mindset, I’d get maybe a 3, because I’d spend the first twenty minutes debating myself over which side I was on and rewrite the introduction ten times. Too bad. I wasn’t there to write a good essay; I was there to get a good score on the SAT.&lt;/p&gt;
@@ -57,7 +73,9 @@ TypeError: &amp;#39;int&amp;#39; object is not callable&lt;/code&gt;&lt;/pre&gt;
       <pubDate>Sun, 23 Jun 2019 16:40:07 -0400</pubDate>
       
       <guid>//blog.vero.site/post/things</guid>
-      <description>&lt;p&gt;&lt;em&gt;Part of a series of posts about what I learned after four years at MIT. We’re ramping up to deeper topics eventually, I promise. Soon™.&lt;/em&gt;&lt;/p&gt;
+      <description>&lt;div class=&#34;series&#34;&gt;
+&lt;p&gt;Part of a series of posts about what I learned after four years at MIT. We’re ramping up to deeper topics eventually, I promise. Soon™.&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;This post is about things. You know, physical objects. Earthly possessions. The indispensable yet fickle chains that bind us to this plane of existence.&lt;/p&gt;
 &lt;p&gt;As a freshman I loved getting free stuff. I went into my first career fair starry-eyed, taking free pens and t-shirts and sunglasses and drawstring bags from every company that would let me; I’m sure many other MIT students have gone through the same ritual of passing. There seemed to be no downside. Besides, all the swag was probably small change for most of the companies anyway, due to VC funding or massive government contracts or whatever. So I might as well make full use of it.&lt;/p&gt;
 &lt;p&gt;Less normally (although I have no idea by how much), I also hoarded a lot of things that naturally pop up in everyday life, the stuff that would otherwise get thrown away: extra napkins, plastic bags, produce containers, boxes, those payment envelopes that come with magazine subscriptions and exhort you to Subscribe Now To 12 Issues For 20% Off!! At some point I kept the fortune from every fortune cookie I had ever eaten in a tiny resealable bag. The rationale was basically the same: they might be useful some day&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; and there was no downside.&lt;/p&gt;</description>

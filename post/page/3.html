@@ -114,6 +114,37 @@ Posts
 	
 	<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/thoroughly-stripped" class="post-link">Thoroughly Stripped</a></h3>
+		
+		<h4 class="post-subtitle">CSAW CTF 2017 Finals (Forensics, 200 pts)</h4>
+		
+		<p class="post-meta">
+		
+		2017-11-12
+		(1142 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Woo, first CTF writeup. I got the opportunity to participate in the 2017 CSAW CTF finals with Don’t Hack Alone.</p>
+<blockquote>
+<p>Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.</p>
+</blockquote>
+<p>We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.</p>
+<p>Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from <a href="https://github.com/betaveros/xxb"><code>xxb</code></a> but <code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/thoroughly-stripped">→ read more<span class="offscreen"> Thoroughly Stripped</span></a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/hello-again" class="post-link">Hello, Again</a></h3>
 		
 		<p class="post-meta">
@@ -351,32 +382,6 @@ Posts
 <p>Meanwhile, during the same school year, more or less:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/time-money-1">→ read more<span class="offscreen"> Time, Money, and All That Good Stuff: Part 1 of ∞</span></a>
-	</footer>
-</article>
-
-	
-	<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/musings-pressure" class="post-link">Musings on Time Pressure</a></h3>
-		
-		<p class="post-meta">
-		
-		2016-08-15
-		(375 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/meta">Meta</a>, <a href="/category/thoughts">Thoughts</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>I hate doing things under time pressure, but I have to admit I do a lot more things when time pressure exists. One of the things is writing. Another is posting the things I write. They aren’t very good, but they’re better than writing that doesn’t exist.</p>
-<p>(in case you forgot, I’m still posting this pretty much only because <a href="//blog.vero.site/post/no-excuses">I made myself post once every weekend</a>)</p>
-<p>It’s interesting that I can impose time pressure on myself by declaring commitment devices by fiat and it works. Other people have developed other methods of doing this — I recently discovered <a href="http://www.themostdangerouswritingapp.com/">The Most Dangerous Writing App</a>, which puts time pressure on you to type every five seconds or it deletes everything you wrote. There are many other ways it’s done.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/musings-pressure">→ read more<span class="offscreen"> Musings on Time Pressure</span></a>
 	</footer>
 </article>
 
