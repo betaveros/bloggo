@@ -4,31 +4,48 @@
   
   <url>
     <loc>//blog.vero.site/</loc>
-    <lastmod>2019-08-19T09:10:43-04:00</lastmod>
+    <lastmod>2019-08-21T23:34:04-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/categories</loc>
-    <lastmod>2019-08-19T09:10:43-04:00</lastmod>
+    <lastmod>2019-08-21T23:34:04-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post/money</loc>
+    <lastmod>2019-08-21T23:34:04-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post</loc>
+    <lastmod>2019-08-21T23:34:04-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tags</loc>
+    <lastmod>2019-08-21T23:34:04-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/money</loc>
+    <lastmod>2019-08-21T23:34:04-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/category/thoughts</loc>
+    <lastmod>2019-08-21T23:34:04-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/post/go-to-class</loc>
     <lastmod>2019-08-19T09:10:43-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/post</loc>
-    <lastmod>2019-08-19T09:10:43-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/category/thoughts</loc>
-    <lastmod>2019-08-19T09:10:43-04:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -40,12 +57,6 @@
   <url>
     <loc>//blog.vero.site/post/multiplication</loc>
     <lastmod>2019-08-04T09:49:20-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/tags</loc>
-    <lastmod>2019-08-04T09:49:20-04:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -303,12 +314,6 @@
   </url>
   
   <url>
-    <loc>//blog.vero.site/tag/money</loc>
-    <lastmod>2016-08-22T15:38:29+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>//blog.vero.site/post/musings-pressure</loc>
     <lastmod>2016-08-15T15:44:20+08:00</lastmod>
   </url>
@@ -551,6 +556,17 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/post/unfiltering</loc>
+    <lastmod>2015-09-24T14:00:18+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/category/creations</loc>
+    <lastmod>2015-09-24T14:00:18+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/tag/google-code-jam</loc>
     <lastmod>2015-09-21T00:45:43+08:00</lastmod>
     <priority>0</priority>
@@ -770,12 +786,6 @@
   </url>
   
   <url>
-    <loc>//blog.vero.site/category/creations</loc>
-    <lastmod>2015-07-26T11:46:04+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>//blog.vero.site/tag/idle-games</loc>
     <lastmod>2015-07-26T11:46:04+08:00</lastmod>
     <priority>0</priority>
@@ -841,6 +851,11 @@
   <url>
     <loc>//blog.vero.site/post/numbers-bmp</loc>
     <lastmod>2015-07-22T14:06:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post/translation-party</loc>
+    <lastmod>2015-07-21T23:53:12+08:00</lastmod>
   </url>
   
   <url>
@@ -949,6 +964,11 @@
   <url>
     <loc>//blog.vero.site/post/2857</loc>
     <lastmod>2015-07-13T23:20:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post/self-vs-other</loc>
+    <lastmod>2015-07-12T23:59:54+08:00</lastmod>
   </url>
   
   <url>
@@ -1083,6 +1103,11 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/post/titles</loc>
+    <lastmod>2015-06-27T23:59:03+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/post/last-step</loc>
     <lastmod>2015-06-26T22:37:45+08:00</lastmod>
   </url>
@@ -1206,6 +1231,11 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/post/thoughts-teaching</loc>
+    <lastmod>2015-06-16T23:04:09+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/tag/please-dont-make-me-tag-this</loc>
     <lastmod>2015-06-16T00:36:06+08:00</lastmod>
     <priority>0</priority>
@@ -1291,6 +1321,11 @@
   <url>
     <loc>//blog.vero.site/post/wedge</loc>
     <lastmod>2015-05-13T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post/three</loc>
+    <lastmod>2015-04-30T19:30:42+08:00</lastmod>
   </url>
   
   <url>
@@ -2556,6 +2591,10 @@
   
   <url>
     <loc>//blog.vero.site/about</loc>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/all</loc>
   </url>
   
   <url>

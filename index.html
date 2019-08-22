@@ -78,6 +78,8 @@
 			
 			<li class="menu-item "><a href="/util">Utilities</a></li>
 			
+			<li class="menu-item "><a href="/all">All Posts</a></li>
+			
 		</ul>
 	</nav>
 	<nav class="social-menu collapsed">
@@ -107,6 +109,34 @@
 	</header>
 	
 	
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/money" class="post-link">Money Matters</a></h3>
+		
+		<p class="post-meta">
+		
+		2019-08-21
+		(1637 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/thoughts">Thoughts</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<div class="series">
+<p>part of the “what I learned after four years at MIT” series, I guess?</p>
+</div>
+<p>There’s some oft-cited psychology studies that suggest that once your salary goes above $75,000, additional money doesn’t make you happier. This sounds like a sage bit of life advice if it were true, the ultimate rebuff against excessive greed and materialism and sacrificing other things for a six-digit salary, but it overstates the case a bit. <a href="https://80000hours.org/articles/money-and-happiness/">80,000 Hours’ analysis of money and happiness</a> is probably the analysis I’d trust the most here; I think it would be more accurate just to say that you get diminishing returns of happiness from salaries above $70,000.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Still, that was enough for me to decide fairly early on that I wasn’t interested in trying to get a high-paying job for its own sake, or in spending too much effort trying to invest my way to a fortune.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> I wanted my job to be personally satisfying and good for the world, while paying enough for me and my family (current and future) to get by, but I planned to treat any additional money after that as little more than a bonus used for breaking ties.</p>
+<p>I still mostly stand by that decision today, but over the intervening years I realized there were a whole host of reasons to want money that weren’t that selfish at all.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/money">→ read more<span class="offscreen"> Money Matters</span></a>
+	</footer>
+</article>
+
 		
 			<article class="post-entry">
 	<header class="post-header">
@@ -150,7 +180,7 @@
 		
 		<span class="post-categories">
 			filed under
-			<a href="/category/cs">Cs</a>
+			<a href="/category/cs">CS</a>
 		</span>
 		
 		</p>
@@ -376,37 +406,6 @@ Environment: Ubuntu 16.04+latex</code></pre>
 <p>So here’s the guide I wish I had. I think. It’s been months since I started it (as usual, for posts on this blog) and it is probably incomplete. However, I haven’t written React/Redux deeply in a while, so I didn’t have much motivation to continue to investigate the incomplete bits; and the perfect is the enemy of the good, so here it is.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/react-redux">→ read more<span class="offscreen"> React and Redux the Hard FP Way</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/plc" class="post-link">PLC</a></h3>
-		
-		<h4 class="post-subtitle">CSAW CTF Qualifiers 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-09-30
-		(3590 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>We’ve burrowed ourselves deep within the facility, gaining access to the programable logic controllers (PLC) that drive their nuclear enrichment centrifuges. Kinetic damage is necessary, we need you to neutralize these machines.</p>
-<p>You can access this challenge at <a href="https://wargames.ret2.systems/csaw_2018_plc_challenge">https://wargames.ret2.systems/csaw_2018_plc_challenge</a></p>
-</blockquote>
-<p>A much belated post. This is a pwn challenge on a custom online wargaming platform. We are provided with the assembly of what’s ostensibly a programmable logic controller (PLC) for a centrifuge in a nuclear reactor. The challenge looks like it’s still up, so you can take a look and follow along.</p>
-<p>This was the first <a href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a> (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like <code>until</code>, no pwntools utilities for packing/unpacking numbers, … no <code>one_gadget</code>), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use <code>gdb</code> (or fictionalized web knockoffs thereof).</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/plc">→ read more<span class="offscreen"> PLC</span></a>
 	</footer>
 </article>
 
