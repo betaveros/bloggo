@@ -6,10 +6,33 @@
     <description>Recent content in scala on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 Mar 2015 13:01:08 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 04 Aug 2019 09:49:20 -0400</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/tag/scala/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Multiplication by Juxtaposition</title>
+      <link>//blog.vero.site/post/multiplication</link>
+      <pubDate>Sun, 04 Aug 2019 09:49:20 -0400</pubDate>
+      
+      <guid>//blog.vero.site/post/multiplication</guid>
+      <description>&lt;p&gt;We interrupt the irregularly scheduled philosophical posts for some programming memes:&lt;/p&gt;
+&lt;p&gt;Over the last few days, the Internet has divided itself over what the value of the expression 8÷2(2+2) should be. Some say it should be evaluated as (8÷2)×(2+2) = 16. Some say it should be evaluated as 8÷(2×(2+2)) = 1.&lt;/p&gt;
+&lt;p&gt;At the risk of belaboring the obvious, the core dispute here is not really mathematical. There is not some sequence of mathematical operations that produces some number, where mathematicians disagree about what number it produces. Instead, this is a dispute about mathematical notation: what sequence of mathematical operations the expression corresponds to the way it’s written. Specifically, it is a dispute about whether multiplication written as juxtaposition (how “2” is written right next to “(2+2)”) has strictly higher precedence than division. It is closer to a linguistic or typographical dispute than a purely mathematical one, and the correct answer to the dispute is that whoever wrote the expression that way should learn to write math better.&lt;/p&gt;
+&lt;p&gt;This debate is not even new. The internet had fun arguing over &lt;a href=&#34;https://knowyourmeme.com/memes/48293&#34;&gt;48÷2(9+3) and 6÷2(1+2)&lt;/a&gt;, which are functionally identical ambiguous expressions, eight years ago. I don’t know why the debate is resurging now and why we still haven’t gotten tired of it.&lt;/p&gt;
+&lt;p&gt;But life is short, so since we’re here anyway, let’s make some additional memes.&lt;/p&gt;
+&lt;h3 id=&#34;asking-the-computer&#34;&gt;Asking the computer&lt;/h3&gt;
+&lt;p&gt;Some of my coworkers had the idea to ask some programming languages what the answer was. The results were underwhelming.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ python3
+Python 3.6.7 (default, Oct 22 2018, 11:32:17)
+[GCC 8.2.0] on linux
+Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.
+&amp;gt;&amp;gt;&amp;gt; 8/2(2+2)
+Traceback (most recent call last):
+  File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;
+TypeError: &amp;#39;int&amp;#39; object is not callable&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
     
     <item>
       <title>Puzzle 46 / Fillomino [LITS &#43; Extra Region &#43; Walls &#43; Anti-Walls &#43; Inequality &#43; Tapa &#43; Masyu]</title>
@@ -41,6 +64,28 @@
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb1-3&#34; data-line-number=&#34;3&#34;&gt;&lt;/a&gt;
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; data-line-number=&#34;4&#34;&gt;scala&amp;gt; * * * * *&lt;/a&gt;
 &lt;a class=&#34;sourceLine&#34; id=&#34;cb1-5&#34; data-line-number=&#34;5&#34;&gt;res0: Int = &lt;span class=&#34;dv&#34;&gt;1728&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Now on GitHub!</title>
+      <link>//blog.vero.site/post/github</link>
+      <pubDate>Sat, 09 Feb 2013 22:54:34 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/github</guid>
+      <description>Yay?
+Right now I feel about this a lot like I felt about getting Twitter. Nobody I know personally is there, but all the “famous” “technological” people are, and something like 90% of the open-source projects I bump into are too.
+Just like Twitter, I barely know how to use Git either, but that’s okay. For version control I’m going all command-line now! Last time I tried to link stuff up with Eclipse everything exploded, but after I ran git init from the terminal this time, it’s highlighting things red and green everywhere like it’s suddenly begging me not to forsake it for the command line.</description>
+    </item>
+    
+    <item>
+      <title>Ridiculously Long-Winded Programming Babble</title>
+      <link>//blog.vero.site/post/programming</link>
+      <pubDate>Sun, 16 Dec 2012 22:08:28 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/programming</guid>
+      <description>&lt;p&gt;Okay I don’t actually know how this pointless rambling got so long. I know the longer it is the more people will just tend to skim, because I do that all the time. So I went back and refactored—er, rewrote all the somewhat tangential bits (wow these puns are too easy) into footnotes. Manually. Obviously if I have to do this again I’ll write a script for it. But the post is still really long, and I bet nobody will read the whole thing. Oh well.&lt;/p&gt;
+&lt;p&gt;Life updates: I got out of the hospital Friday two-and-a-half weeks ago, went to the preliminaries of NPSC (a national team programming contest) with classmates, threw up a lot, went back into the hospital, and came out again. I wrote a lot of stuff about the experience and how much it sucked (hint: &lt;em&gt;a lot&lt;/em&gt;) when I started this draft around that time, but now putting so much detail in this post feels weird. I’m mostly good now.&lt;/p&gt;
+&lt;p&gt;Three years ago NPSC was the only programming contest I really knew of; now I’ve participated in quite a few more, both online and locally, but it’s still the only contest I’ve entered that gives you real-time verdicts. I believe it inherits this from being modeled after ACM-ICPC, but that’s for college people and I’m less clear on how it works. All the other contests, namely &lt;a href=&#34;https://www.topcoder.com/&#34;&gt;TopCoder&lt;/a&gt;, &lt;a href=&#34;http://www.codeforces.com/&#34;&gt;CodeForces&lt;/a&gt;, &lt;a href=&#34;http://usaco.org/&#34;&gt;USACO&lt;/a&gt;, and the other local individual competition (there doesn’t appear to be an English name so for the purpose of this post I’ll just call it “Nameless Local”; there’s a nation-wide competition in one-and-a-half weeks!), have system tests after the contest that don’t allow you to resubmit afterwards.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; They all give pretests that you get to know about right away, just to catch super-silly non-algorithmic mistakes like failing to remove the debug statements or reading input from the wrong place, but these contain weak test cases and don’t guarantee that the solution will pass the system tests and get full score.&lt;/p&gt;</description>
     </item>
     
   </channel>

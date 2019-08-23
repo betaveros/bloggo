@@ -6,10 +6,24 @@
     <description>Recent content in thoughts on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Aug 2019 23:34:04 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2019 00:37:43 -0400</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/category/thoughts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cook Like You&#39;re Not on MasterChef</title>
+      <link>//blog.vero.site/post/cook</link>
+      <pubDate>Fri, 23 Aug 2019 00:37:43 -0400</pubDate>
+      
+      <guid>//blog.vero.site/post/cook</guid>
+      <description>&lt;div class=&#34;series&#34;&gt;
+&lt;p&gt;part of the “what I learned after four years at MIT” series, I guess?&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;When I was very young, I thought cooking was easy. I sliced plastic vegetables with a toy knife and then Velcroed them back together, ad infinitum. For at least some time, I wanted to be a chef when I grew up.&lt;/p&gt;
+&lt;p&gt;When I was slightly less young, I thought cooking was hard. My reference points were mostly (1) my parents, who seemed to know how to make a million different dishes in inscrutable ways without thinking, and (2) MasterChef contestants (who I assume were better at cooking than my parents because they were, well, on MasterChef) messing things up and getting kicked off the show.&lt;/p&gt;
+&lt;p&gt;Now, I think I probably elided some meaningful distinctions there in my youthful naïveté. Cooking food that will keep you from getting kicked off MasterChef is hard. Cooking edible food is easy.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; Cooking storebought dumplings in particular is so stupidly easy it’s unfair. More generally, though, most recipes tolerate a lot of substitutions,&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; number fudging,&lt;a href=&#34;#fn3&#34; class=&#34;footnote-ref&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; and even straight-up skipping pesky instructions, like the ones in baking recipes where you mix two sets of ingredients separately in specific orders. There are reasons for those steps, but ignoring them and dumping everything into the same mixing bowl usually won’t make your results inedible. You can also just decide to omit ingredients you don’t like. Probably the least tolerant ingredient measurements in recipes are the measurements of baking soda or baking powder, which by the way are different things, in baking recipes. But otherwise you’d really be surprised how many corners you can get away with cutting — I’ve even completely winged one baking soda/powder measurement with decent results. I think this is especially important to know for people from technical backgrounds like me, who have an instinct to treat the numbers in recipes as precisely measured, painstakingly optimized choices to produce the best dish. They usually aren’t, and even if they are optimized for the recipe author’s palate, they probably won’t be optimized for yours.&lt;a href=&#34;#fn4&#34; class=&#34;footnote-ref&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt; And they certainly aren’t optimized for any tradeoffs you might want to make between food quality versus the time and effort you’re putting into cooking. Make the tradeoffs you want. You’re not on MasterChef.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Money Matters</title>
@@ -351,6 +365,17 @@ See, this is awkward.
     </item>
     
     <item>
+      <title>Variance</title>
+      <link>//blog.vero.site/post/variance</link>
+      <pubDate>Thu, 16 Jul 2015 23:59:25 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/variance</guid>
+      <description>It’s olympiad season. Taiwan placed 18th in the IMO rankings1. Next day there are news stories about how it’s our “third worst performance in history”, and commenters drawing casual arrows from changes in Taiwan’s standardized tests and curriculum to this result, and the Ministry of Education saying they’d review their procedures or something.
+What.
+Did you forget our performance last year? Do you think our olympiad training system is completely overhauled on an annual basis, or has even a tangential relationship with the overall education system?</description>
+    </item>
+    
+    <item>
       <title>Self vs. Other</title>
       <link>//blog.vero.site/post/self-vs-other</link>
       <pubDate>Sun, 12 Jul 2015 23:59:54 +0800</pubDate>
@@ -630,6 +655,20 @@ the correlation of HSGPA [high-school GPA] and FYGPA [first-year GPA in college]
     </item>
     
     <item>
+      <title>Unread Count</title>
+      <link>//blog.vero.site/post/unread-count</link>
+      <pubDate>Sat, 03 Nov 2012 11:32:50 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/unread-count</guid>
+      <description>&lt;div class=&#34;warning&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; from 2019: My 2012 self wrote this. I don’t remember writing it. This is the first time I have felt personally attacked by a post I wrote seven years ago.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Why do so many people have these three- or four- or even five-digit inbox unread counts? I become uncomfortable when I have more than about five unread emails, or if there are twenty emails of whatever status in my inbox — the rest get archived, of course. Out of sight, out of mind. Whew. It’s hard for me to fathom how anybody can sleep knowing they have such a scary number of unread emails waiting for them.&lt;/p&gt;
+&lt;p&gt;Why does the status of being unread matter, one might ask? There are already so many ways to classify things in the typical inbox: stars or labels or folders or flags or whatever your mail service may call them. Well, the thing that makes the unread qualifier stand out is that it already has meaning; you don’t need to assign it any. It means you haven’t read it! Thank you, Captain Obvious.&lt;/p&gt;
+&lt;p&gt;If you know how to use email, there are no good reasons to ignore the status. Is the email actually not important to the point where you won’t even bother to read it? In that case, why is it even in your inbox? If it’s spam, mark it as such; spam filters are pretty effective nowadays, but only if you train them, and even if not it only takes one click to get rid of it. If it’s some notification you don’t care about, unsuscribe or fine-tune your subscription. As invasive as web services are getting nowadays, I haven’t yet seen a legitimate one that doesn’t provide a link to let you do one of these things, even if it’s concealed in small gray text at the bottom of the email. Should you encounter a notification that doesn’t have these links or doesn’t stop spawning evil clones after you tell it to, don’t think twice; it is spam and should be mercilessly filtered as such. And if you still have two hundred emails left after all that, you should either rethink your values or start reading them now.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>English Names</title>
       <link>//blog.vero.site/post/english-names</link>
       <pubDate>Sat, 25 Feb 2012 23:08:46 +0800</pubDate>
@@ -640,6 +679,17 @@ the correlation of HSGPA [high-school GPA] and FYGPA [first-year GPA in college]
 &lt;/div&gt;
 &lt;p&gt;For some reason, everybody around here seems to think that adding English characters, no matter how broken or meaningless, confers an added sense of quality or superiority. I don’t really understand the mindset here but it’s the only explanation I can come up with. It’s certainly not to make the lives of our English-speaking population any easier.&lt;/p&gt;
 &lt;p&gt;We were sharing songs in Chinese class with literary techniques, and there were a bunch of songs, including mine, by this pretty famous singer with the stage name &lt;a href=&#34;http://en.wikipedia.org/wiki/Fish_Leong&#34;&gt;Fish Leong&lt;/a&gt;. Okay, it’s kind of cute and it’s a translated homophonic Cantonese pun, so it makes some sense, although I wonder what people would think the name meant if mentioned without any context. There was this more obscure guy a couple seasons back in the reality TV singing competition (see, no original shows around here) whose name was Quack. &lt;em&gt;smacks head&lt;/em&gt; It’s also kind of cute if you only know that the word is the sound a duck makes, which probably holds for most of the audience. But still, it takes just five seconds to &lt;a href=&#34;http://en.wikipedia.org/wiki/Quack&#34;&gt;put it into Wikipedia&lt;/a&gt;. Oops?&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Nerdy Writing</title>
+      <link>//blog.vero.site/post/nerdy-writing</link>
+      <pubDate>Mon, 05 Sep 2011 21:18:00 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/nerdy-writing</guid>
+      <description>Note: My 2011 self wrote this. It is selectively preserved for historical interest and amusement. It’s just meta enough to be funny, I think.
+ I can look at the posts I made in fourth grade, and understand how I might get exaggeratedly happy about these tiny things, and write this ramble that goes up and down and all over the place.
+Anyway apparently I wrote “to indulge in a colloquialism” less than a year ago in a school essay and now it sounds plain freaky to me.</description>
     </item>
     
     <item>

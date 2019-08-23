@@ -120,6 +120,37 @@ Tag → x86
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/plc" class="post-link">PLC</a></h3>
+		
+		<h4 class="post-subtitle">CSAW CTF Qualifiers 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-09-30
+		(3590 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>We’ve burrowed ourselves deep within the facility, gaining access to the programable logic controllers (PLC) that drive their nuclear enrichment centrifuges. Kinetic damage is necessary, we need you to neutralize these machines.</p>
+<p>You can access this challenge at <a href="https://wargames.ret2.systems/csaw_2018_plc_challenge">https://wargames.ret2.systems/csaw_2018_plc_challenge</a></p>
+</blockquote>
+<p>A much belated post. This is a pwn challenge on a custom online wargaming platform. We are provided with the assembly of what’s ostensibly a programmable logic controller (PLC) for a centrifuge in a nuclear reactor. The challenge looks like it’s still up, so you can take a look and follow along.</p>
+<p>This was the first <a href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a> (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like <code>until</code>, no pwntools utilities for packing/unpacking numbers, … no <code>one_gadget</code>), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use <code>gdb</code> (or fictionalized web knockoffs thereof).</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/plc">→ read more<span class="offscreen"> PLC</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/thoroughly-stripped" class="post-link">Thoroughly Stripped</a></h3>
 		
 		<h4 class="post-subtitle">CSAW CTF 2017 Finals (Forensics, 200 pts)</h4>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8" />
+	
+	<title>Cook Like You&#39;re Not on MasterChef</title>
+	
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="part of the “what I learned after four years at MIT” series, I guess?
+ When I was very young, I thought cooking was easy. I sliced plastic vegetables with a toy knife and then Velcroed them back together, ad infinitum. For at least some time, I wanted to be a chef when I grew up.
+When I was slightly less young, I thought cooking was hard. My reference points were mostly (1) my parents, who seemed to know how to make a million different dishes in inscrutable ways without thinking, and (2) MasterChef contestants (who I assume were better at cooking than my parents because they were, well, on MasterChef) messing things up and getting kicked off the show.
+Now, I think I probably elided some meaningful distinctions there in my youthful naïveté. Cooking food that will keep you from getting kicked off MasterChef is hard. Cooking edible food is easy.1 Cooking storebought dumplings in particular is so stupidly easy it’s unfair. More generally, though, most recipes tolerate a lot of substitutions,2 number fudging,3 and even straight-up skipping pesky instructions, like the ones in baking recipes where you mix two sets of ingredients separately in specific orders. There are reasons for those steps, but ignoring them and dumping everything into the same mixing bowl usually won’t make your results inedible. You can also just decide to omit ingredients you don’t like. Probably the least tolerant ingredient measurements in recipes are the measurements of baking soda or baking powder, which by the way are different things, in baking recipes. But otherwise you’d really be surprised how many corners you can get away with cutting — I’ve even completely winged one baking soda/powder measurement with decent results. I think this is especially important to know for people from technical backgrounds like me, who have an instinct to treat the numbers in recipes as precisely measured, painstakingly optimized choices to produce the best dish. They usually aren’t, and even if they are optimized for the recipe author’s palate, they probably won’t be optimized for yours.4 And they certainly aren’t optimized for any tradeoffs you might want to make between food quality versus the time and effort you’re putting into cooking. Make the tradeoffs you want. You’re not on MasterChef.
+" />
+
+
+
+<meta name="generator" content="Hugo 0.56.0-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/cook" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+			<li class="menu-item "><a href="/all">All Posts</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Cook Like You&#39;re Not on MasterChef</h1>
+		
+		<p class="post-meta">
+		
+		2019-08-23
+		(1591 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/thoughts">Thoughts</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><div class="series">
+<p>part of the “what I learned after four years at MIT” series, I guess?</p>
+</div>
+<p>When I was very young, I thought cooking was easy. I sliced plastic vegetables with a toy knife and then Velcroed them back together, ad infinitum. For at least some time, I wanted to be a chef when I grew up.</p>
+<p>When I was slightly less young, I thought cooking was hard. My reference points were mostly (1) my parents, who seemed to know how to make a million different dishes in inscrutable ways without thinking, and (2) MasterChef contestants (who I assume were better at cooking than my parents because they were, well, on MasterChef) messing things up and getting kicked off the show.</p>
+<p>Now, I think I probably elided some meaningful distinctions there in my youthful naïveté. Cooking food that will keep you from getting kicked off MasterChef is hard. Cooking edible food is easy.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Cooking storebought dumplings in particular is so stupidly easy it’s unfair. More generally, though, most recipes tolerate a lot of substitutions,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> number fudging,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> and even straight-up skipping pesky instructions, like the ones in baking recipes where you mix two sets of ingredients separately in specific orders. There are reasons for those steps, but ignoring them and dumping everything into the same mixing bowl usually won’t make your results inedible. You can also just decide to omit ingredients you don’t like. Probably the least tolerant ingredient measurements in recipes are the measurements of baking soda or baking powder, which by the way are different things, in baking recipes. But otherwise you’d really be surprised how many corners you can get away with cutting — I’ve even completely winged one baking soda/powder measurement with decent results. I think this is especially important to know for people from technical backgrounds like me, who have an instinct to treat the numbers in recipes as precisely measured, painstakingly optimized choices to produce the best dish. They usually aren’t, and even if they are optimized for the recipe author’s palate, they probably won’t be optimized for yours.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> And they certainly aren’t optimized for any tradeoffs you might want to make between food quality versus the time and effort you’re putting into cooking. Make the tradeoffs you want. You’re not on MasterChef.</p>
+<p>Cook time is often also more flexible than you might expect. It has to be; any combination of cookware and stove/oven will have its own peculiarities in how it heats up, the temperature it reaches, how quickly and how evenly it reaches that temperature. The best way to tell if something is done is usually just trying to eat a little. This is less advisable for meats that are dangerous to eat raw, which is actually a reason I eat much less meat nowadays when cooking for myself, and it’s not a bad reason in my opinion; but for those things you can usually try cutting up the biggest chunks and seeing if the middle is the right color.</p>
+<p>What’s more, even dishes that have gone wrong can be rescued. You can add more of a lot of seasonings as you’re finishing up, which is why it’s usually better to err towards seasoning less if you’re not sure. If you seasoned too much, you can counter it with a different flavor: if it’s too sweet or salty, consider adding a few drops of lemon juice. As a last resort, you can do something stupid like drown the whole dish in ketchup.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> These are all things you are allowed to do when you are a cook who is not on MasterChef.</p>
+<p>I don’t have quite enough cooking time or experience to say that much about any specific foods, but I’ll dedicate a paragraph to fried rice, which has become cemented on hall as my “canonical food” after I followed a recipe my mother sent me over Skype four years ago. The recipe just goes something like: Put four uncooked cups of rice in a rice cooker;<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> throw one or two chopped onions into a big, well-oiled frying pan or wok, followed later by one pound of frozen vegetables (the kind with small bits of carrots, corn, peas, bell peppers, and/or edamame); beat anywhere from four to eight eggs and fry them separately; mix everything together; add salt and soy sauce to taste, plus optionally whatever spices you feel like (sesame oil, olive oil, Italian seasoning, furikake…)</p>
+<p>Hey, a segue. Some other foods I love include furikake (a kind of Japanese seasoning for rice and other foods), which is probably not that healthy but makes a lot of things taste great, and eggs, which are so versatile and tasty while still being pretty healthy. You can scramble them, fry them, poach them, soft- or hard-boil them, the list goes on. For times when you’re busier or just in need of low-effort comfort food, supermarkets have so many frozen meals and snacks that are less healthy than the alternatives but take no effort to make, and you have absolute freedom to season them with whatever you want. Finally, of course, you can also be one of those people and buy Soylent. I drink it very rarely, but it is useful to stockpile for those meals when I really just don’t have any or energy to spare. Not everybody likes it, so if you want to stockpile Soylent see if you can find a friend to try a single bottle before committing to an entire box.</p>
+<p>There are also a lot of resources out there for eating on a tight budget, it turns out. There is Leanne Brown’s cookbook <a href="https://books.leannebrown.com/good-and-cheap.pdf">Good and Cheap (PDF)</a>. For more community resources, I’ve been linked to the subreddits <a href="https://www.reddit.com/r/EatCheapAndHealthy/">/r/EatCheapAndHealthy</a> and <a href="https://www.reddit.com/r/MealPrepSunday/">/r/MealPrepSunday</a>. Honorable mention to <a href="https://www.reddit.com/r/PutAnEggOnIt/">/r/PutAnEggOnIt</a> because, as I mentioned, eggs are amazing.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+<p>We’ve covered a lot of things about how to cook for yourself, but I wanted to finally mention the social aspect of food. As anybody who has watched <cite>How to Train Your Dragon</cite> or consumed most other narratives listed on the <a href="http://tvtropes.org/pmwiki/pmwiki.php/Main/TastesLikeFriendship">relevant TVTropes page</a> (content warning: TVTropes) can tell you, sharing food is a remarkably efficient and generalizable way to make friends and meet new people. It’s not 100% universally applicable, of course — dietary restrictions and allergies exist — but it’s as close as I think one can get. There’s also nothing about this trope that requires the shared food to be food you made, but I do think that it makes more of an impression if it is. And once you realize that this is an impression you can make even with skill, effort, and results far below the level of people going on MasterChef, the social world is your oyster.</p>
+<p>That would have been another great segue into the next thing I wanted to talk about if I had gone ahead with the original plan of shoving everything I learned over the last four years into a big post, but it’s good that I didn’t because based on where we are now that post would have had more than 10,000 words. Anyway, until next time.</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I seemed to have picked it up <a href="//blog.vero.site/post/ascension">pretty soon after coming to college</a>. Although I probably did put a bit more effort into practicing and asking my parents to teach me before coming to college than I let on there.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>You can take just about any ingredient and Google “(ingredient) substitute”. This is useful for dealing with when you have a limited selection of ingredients, as well as for dealing with dietary restrictions, whether they be your own or a friend’s.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>As long as you’re not off by a multiplicative factor. I remember making cupcakes with some friends in high school and accidentally measuring tablespoons instead of teaspoons of salt. It didn’t turn out so well.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>By the way, for similar reasons, you can also ask restaurants to omit ingredients. I think when I first started going to restaurants as an independent adult, I felt like I would be meddling with their sacred recipes by asking for such changes, but restaurants can’t optimize a dish or recipe for everybody; you know what you like eating best, Not to mention, restaurants already fulfill lots of <a href="https://knowyourmeme.com/memes/special-delivery-instructions">ridiculous orders</a> and you probably have a more legitimate reason. If you’re worrying about whether your request is too absurd for a restaurant to handle, it probably isn’t.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>As a child, I once read a short story in one of those massive story collection books, the kind that was probably supposed to teach a kid good morals and life principles, that went like this. There was a kid who was a picky eater: he loved eating everything with ketchup, but refused to eat any liver. One day his mom got fed up and fed him liver covered in ketchup without telling him what it was. After he had ate it, she told him what he had just eaten; he was horrified and stopped covering everything he ate in ketchup. I am not recounting the story that well, but I think the story was supposed to teach you that you shouldn’t eat everything in ketchup because you might unwittingly eat something gross. However, I thought this was a <a href="https://tvtropes.org/pmwiki/pmwiki.php/Main/BrokenAesop">Broken Aesop</a> that just taught you that you can make anything palatable by adding enough ketchup.<a href="#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>In theory you’re supposed to do this a day early and leave the rice overnight in the fridge so it dries out, but I’m too lazy to plan ahead. I’m not on MasterChef, so who cares.<a href="#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>I hope you weren’t expecting the obvious pun here. Come on.<a href="#fnref7" class="footnote-back">↩</a></p></li>
+</ol>
+</section></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/food"><span class="tag">Food</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/money">← Money Matters</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2019 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>

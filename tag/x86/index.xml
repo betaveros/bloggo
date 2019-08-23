@@ -6,10 +6,24 @@
     <description>Recent content in x86 on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Nov 2017 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 30 Sep 2018 23:16:44 -0400</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/tag/x86/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PLC</title>
+      <link>//blog.vero.site/post/plc</link>
+      <pubDate>Sun, 30 Sep 2018 23:16:44 -0400</pubDate>
+      
+      <guid>//blog.vero.site/post/plc</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;We’ve burrowed ourselves deep within the facility, gaining access to the programable logic controllers (PLC) that drive their nuclear enrichment centrifuges. Kinetic damage is necessary, we need you to neutralize these machines.&lt;/p&gt;
+&lt;p&gt;You can access this challenge at &lt;a href=&#34;https://wargames.ret2.systems/csaw_2018_plc_challenge&#34;&gt;https://wargames.ret2.systems/csaw_2018_plc_challenge&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A much belated post. This is a pwn challenge on a custom online wargaming platform. We are provided with the assembly of what’s ostensibly a programmable logic controller (PLC) for a centrifuge in a nuclear reactor. The challenge looks like it’s still up, so you can take a look and follow along.&lt;/p&gt;
+&lt;p&gt;This was the first &lt;a href=&#34;https://en.wikipedia.org/wiki/Return-oriented_programming&#34;&gt;ROP&lt;/a&gt; (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like &lt;code&gt;until&lt;/code&gt;, no pwntools utilities for packing/unpacking numbers, … no &lt;code&gt;one_gadget&lt;/code&gt;), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use &lt;code&gt;gdb&lt;/code&gt; (or fictionalized web knockoffs thereof).&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Thoroughly Stripped</title>

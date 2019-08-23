@@ -6,10 +6,20 @@
     <description>Recent content in unicode on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Feb 2013 22:01:25 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 May 2015 23:24:11 +0800</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/tag/unicode/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Adventures in Unicode Forensics</title>
+      <link>//blog.vero.site/post/unicode-forensics</link>
+      <pubDate>Sun, 17 May 2015 23:24:11 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/unicode-forensics</guid>
+      <description>What do you do when you get a bunch of files like this from a zipfile?
+   I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing.   Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester.</description>
+    </item>
     
     <item>
       <title>Adventures in Scala Pseudo-Abuse</title>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8" />
+	
+	<title>Variance</title>
+	
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="It’s olympiad season. Taiwan placed 18th in the IMO rankings1. Next day there are news stories about how it’s our “third worst performance in history”, and commenters drawing casual arrows from changes in Taiwan’s standardized tests and curriculum to this result, and the Ministry of Education saying they’d review their procedures or something.
+What.
+Did you forget our performance last year? Do you think our olympiad training system is completely overhauled on an annual basis, or has even a tangential relationship with the overall education system?" />
+
+
+
+<meta name="generator" content="Hugo 0.56.0-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/variance" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+			<li class="menu-item "><a href="/all">All Posts</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Variance</h1>
+		
+		<p class="post-meta">
+		
+		2015-07-16
+		(1404 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/thoughts">Thoughts</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>It’s olympiad season. Taiwan placed 18th in the IMO rankings<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Next day there are news stories about how it’s our “third worst performance in history”, and commenters drawing casual arrows from changes in Taiwan’s standardized tests and curriculum to this result, and the Ministry of Education saying they’d review their procedures or something.</p>
+<p>What.</p>
+<p>Did you forget our performance last year? Do you think our olympiad training system is completely overhauled on an annual basis, or has even a tangential relationship with the overall education system?? Do you think people can be turned towards or away from mathematical olympiads because of standardized tests?? Do you think these contestants’ training plans are so transient that they’d be completely overthrown by one year of progress towards the implementation of faraway edicts about math topics for the layman???? If a measurement gives you a result of 3rd place one year and 18th place the next — both of which are more than 1.5 standard deviations from the mean<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> — how can your first (or second, or third) thought <em>possibly</em> be “we performed 15 places worse so something needs to be changed” instead of “oh wait this is not a very precise metric, maybe we shouldn’t read too much into it”?</p>
+<p>Yes, I’m ranting here, but even though these things are so clear to me, I know it’s not obvious to most people at all because they don’t understand just how huge the variance in mathematics competitions are. Or in any similar competition, really. (And I know I’m likely preaching to the choir here by writing on my blog — a very understaffed choir to boot. But I have to do this. Remember? <a href="//blog.vero.site/post/commitment">Streak</a>?)</p>
+<p>It’s like… I’m trying to come up with a suitably crazy analogy, but it’s not easy… it’s like, you decide one day to look at the front pages of The New York Times and of Al Jazeera. You don’t even read any articles, you just look at the front page layout and graphics and text, and you notice that Al Jazeera has a video on its front page and the NYT doesn’t. You don’t even come back the next day to check again, you just conclude based on that one day’s whim that the New York Times needs more variety in its journalism, and you write and publish an article to that effect.</p>
+<p>Where do I even begin.</p>
+<ol type="1">
+<li>We are looking at the performance of six people chosen from a country with 15,000,000 people aged 15 to 19 (<a href="http://www.ris.gov.tw/zh_TW/346">source</a><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>). The people on the team change every year. In fact this is truer for us than a lot of other countries — many contestants (including me) choose not to participate three or more times even if they would be eligible and could easily get a spot on the team. I’m not actually sure what everybody’s reasons are, but I can say now that it is actually somewhat of a custom and not just coincidence. This pretty much ensures that the set of contestants we get some years are going to be luckier than some others. This need not have anything to do with any part of the country’s education system. You can’t get around the component of chance.</li>
+<li>The variance increases even more when you consider that we are measuring our performance with a <em>ranking between countries</em>, not some absolute unit of problem-solving ability. Even if the skill level of Taiwan’s contestants is precisely constant — even if we somehow sent clones of the same six students to solve the same six problems every year and they got the exact same scores each year — our ranking would still fluctuate depending on how good other countries’ teams happened to be at those problems.</li>
+<li>And speaking of the problems: okay, seriously. This is not the SAT or PISA or whatever, where they norm the test every year and try to cover each subject proportionally or anything. This is an olympiad competition with six problems, and any way you slice it, the number of potential olympiad topics is way more than six. Some years there will be <a href="http://www.artofproblemsolving.com/community/c6h418796p2363537">combinatorial geometry</a> or a <a href="http://www.artofproblemsolving.com/community/c6h488342p2736375">really weird inequality</a>. Other years there won’t. Some people will happen to be good at these types of problems, even if they might not be as good at many other types that just didn’t happen to get chosen for the paper, and so perform above expectations. In fact, some people may well happen to be good at these types of problems but not the particular problem that came up, and then choose to spend all their time on the particular problem because they expect to be able to solve it and lose out on points elsewhere. The decision of how to allocate one’s time between problems is often far from obvious and just as often hugely influential on one’s score.</li>
+<li>If you know my olympiad experience you’ll know that this is kind of a personal rant now, so one more example strategic choice — when faced with a geometry problem, you can choose to bash it or to try to do it synthetically; often, bashing requires fewer insights, but more careful work, and carries with it the risk that if you don’t manage to finish the bash or make an error early on, you may not get any points at all, whereas synthetic partial results are more likely to be rewarded by the marking scheme. The strategic considerations behind such a choice and their accuracy have practically no bearing on mathematical ability, but the points can cause a huge jump in the rankings just the same.</li>
+<li>And finally, great, even if our system for creating IMO-chart-topping students isn’t really optimal, why do you reporters and parents care? This is <em>very, very different</em> from optimizing an education system for creating a baseline level of literacy or marketable skills, or for boosting economic productivity, or pretty much all the metrics that society cares about and that justify having a general education system in the first place. Even if you are concerned about nurturing the top mathematicians and scientists to serve as pioneers or visionaries for the rest of the country (and I suppose there are good reasons to be thus concerned), there is still a significant difference between this and olympiad performance, and I suspect that beyond a certain point (which we’re far from, but I can’t say the same for every single country in the IMO), optimizing for these reportable victories will actually tend to destroy the students’ future prospects by inducing burnout or overemphasizing particular rigid forms of problem solving. I’m not saying you can’t have all of these things, or that one can only be done at the expense of the others, or that I wouldn’t like to see a better system for creating IMO-chart-topping students. But except for the present and former contestants and their close friends and coaches, this ranking really shouldn’t matter to you because it is an extremely imprecise signal for most of the things that affect society at large. And we certainly don’t need your officious diagnoses of the problem and wildly off-base suggestions for fixing it.</li>
+<li>And finally, this is quite a tangent but Jesus zarking Babelfishes, MIT did not give me a full scholarship. I’ve already agonized about this before on this blog enough, so suffice it to say: where the hell do you get your facts, reporters?</li>
+</ol>
+<p>I suppose this is one of those incidents that supports what is apparently known as Knoll’s Law of Media Accuracy: “Everything you read in the newspapers is absolutely true except for the rare story of which you happen to have firsthand knowledge.” Something important to keep in mind.</p>
+<p>(edit: clarified purpose of item 3, added extra points I wanted to make to item 4)</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Also, the U.S. team, which includes (at least) two of my future classmates, placed first. Congratulations, but this post probably does not apply to you at all, except for maybe one random Twitter commenter I saw who thought Common Core had something to do with this.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>μ = 10.7, σ = 4.72, ρ = −0.08; all of these were <a href="https://docs.google.com/spreadsheets/d/16IFGStdFXsQejHZ-RuT446v5NiEvzbcqoWIPfn-Naqc/edit?usp=sharing">quickly calculated with Google Sheets</a> and I’m not completely sure of their accuracy<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>I’m kind of confused because I looked up this statistic before, but last time somehow came up with the figure 320,000. I think this figure is right. Sorry, Ryan. My point still holds, though.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
+</article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/rant"><span class="tag">Rant</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/phone">← Phone</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/mit-mnemonics">MIT Course Number Mnemonics →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2019 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>
