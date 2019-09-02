@@ -6,10 +6,34 @@
     <description>Recent content in puzzlehunt on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Jan 2018 19:39:22 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 02 Sep 2019 10:34:38 -0400</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/tag/puzzlehunt/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Introduction to Puzzlehunts</title>
+      <link>//blog.vero.site/post/puzzlehunts</link>
+      <pubDate>Mon, 02 Sep 2019 10:34:38 -0400</pubDate>
+      
+      <guid>//blog.vero.site/post/puzzlehunts</guid>
+      <description>&lt;div class=&#34;series&#34;&gt;
+&lt;p&gt;not part of the ongoing series, but you can almost pretend it is. This sentence and the one before it are not a puzzle.&lt;/p&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Imagine a word search.&lt;/p&gt;
+&lt;p&gt;Now imagine you aren’t told what words to look for.&lt;/p&gt;
+&lt;p&gt;Now imagine you aren’t told it’s a word search.&lt;/p&gt;
+&lt;p&gt;Now imagine it isn’t a word search.&lt;/p&gt;
+&lt;footer&gt;
+— &lt;a href=&#34;http://www.gmpuzzles.com/blog/2013/04/ask-dr-sudoku-13-puzzle-hunting/&#34;&gt;Mike Develin, via Thomas Snyder&lt;/a&gt; (aka Dr. Sudoku)
+&lt;/footer&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This post aims to be a fairly comprehensive introduction to puzzlehunts and their puzzles, a single post where I can just point people. I erred towards comprehensiveness in this post because I am not aware of any similar resources, especially for puzzlers interested in trying harder puzzlehunts who might not know any more experienced puzzlers to solve with. It’s possible to start solving some puzzles after reading much shorter guides, e.g. Puzzled Pint’s &lt;a href=&#34;http://www.puzzledpint.com/files/3513/8254/7894/2013_10_22_Puzzling_Basics_Infographic.pdf&#34;&gt;“Puzzling Basics” (PDF)&lt;/a&gt;, so feel free to skip around, stop reading midway through, or bookmark this to read only after you’ve spent more time solving.&lt;/p&gt;
+&lt;h3 id=&#34;what-is-a-puzzlehunt&#34;&gt;What is a Puzzlehunt?&lt;/h3&gt;
+&lt;p&gt;A &lt;strong&gt;puzzlehunt&lt;/strong&gt;&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; is an event where people, usually in teams, solve a series of &lt;strong&gt;puzzles&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This is not a very useful definition. The more interesting question is, what is the kind of “puzzle”&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; that appears in a puzzlehunt? The concept of a puzzlehunt puzzle is fuzzy and difficult to define precisely. Just about any hard rule one might try to state will be broken by some puzzle, sometimes deliberately. Still, here are some common features of puzzlehunt puzzles:&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>2018 MIT Mystery Hunt</title>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8" />
+	
+	<title>Introduction to Puzzlehunts</title>
+	
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="not part of the ongoing series, but you can almost pretend it is. This sentence and the one before it are not a puzzle.
+  Imagine a word search.
+Now imagine you aren’t told what words to look for.
+Now imagine you aren’t told it’s a word search.
+Now imagine it isn’t a word search.
+ — Mike Develin, via Thomas Snyder (aka Dr. Sudoku)   This post aims to be a fairly comprehensive introduction to puzzlehunts and their puzzles, a single post where I can just point people. I erred towards comprehensiveness in this post because I am not aware of any similar resources, especially for puzzlers interested in trying harder puzzlehunts who might not know any more experienced puzzlers to solve with. It’s possible to start solving some puzzles after reading much shorter guides, e.g. Puzzled Pint’s “Puzzling Basics” (PDF), so feel free to skip around, stop reading midway through, or bookmark this to read only after you’ve spent more time solving.
+What is a Puzzlehunt? A puzzlehunt1 is an event where people, usually in teams, solve a series of puzzles.
+This is not a very useful definition. The more interesting question is, what is the kind of “puzzle”2 that appears in a puzzlehunt? The concept of a puzzlehunt puzzle is fuzzy and difficult to define precisely. Just about any hard rule one might try to state will be broken by some puzzle, sometimes deliberately. Still, here are some common features of puzzlehunt puzzles:
+" />
+
+
+
+<meta name="generator" content="Hugo 0.56.0-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/puzzlehunts" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+			<li class="menu-item "><a href="/all">All Posts</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Introduction to Puzzlehunts</h1>
+		
+		<p class="post-meta">
+		
+		2019-09-02
+		(5970 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><div class="series">
+<p>not part of the ongoing series, but you can almost pretend it is. This sentence and the one before it are not a puzzle.</p>
+</div>
+<blockquote>
+<p>Imagine a word search.</p>
+<p>Now imagine you aren’t told what words to look for.</p>
+<p>Now imagine you aren’t told it’s a word search.</p>
+<p>Now imagine it isn’t a word search.</p>
+<footer>
+— <a href="http://www.gmpuzzles.com/blog/2013/04/ask-dr-sudoku-13-puzzle-hunting/">Mike Develin, via Thomas Snyder</a> (aka Dr. Sudoku)
+</footer>
+</blockquote>
+<p>This post aims to be a fairly comprehensive introduction to puzzlehunts and their puzzles, a single post where I can just point people. I erred towards comprehensiveness in this post because I am not aware of any similar resources, especially for puzzlers interested in trying harder puzzlehunts who might not know any more experienced puzzlers to solve with. It’s possible to start solving some puzzles after reading much shorter guides, e.g. Puzzled Pint’s <a href="http://www.puzzledpint.com/files/3513/8254/7894/2013_10_22_Puzzling_Basics_Infographic.pdf">“Puzzling Basics” (PDF)</a>, so feel free to skip around, stop reading midway through, or bookmark this to read only after you’ve spent more time solving.</p>
+<h3 id="what-is-a-puzzlehunt">What is a Puzzlehunt?</h3>
+<p>A <strong>puzzlehunt</strong><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> is an event where people, usually in teams, solve a series of <strong>puzzles</strong>.</p>
+<p>This is not a very useful definition. The more interesting question is, what is the kind of “puzzle”<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> that appears in a puzzlehunt? The concept of a puzzlehunt puzzle is fuzzy and difficult to define precisely. Just about any hard rule one might try to state will be broken by some puzzle, sometimes deliberately. Still, here are some common features of puzzlehunt puzzles:</p>
+<ul>
+<li>Almost always, puzzles somehow result in an <em>answer</em>, which is generally a word, short phrase, or name. The goal of solving the puzzle is to find the answer.</li>
+<li>Usually, puzzlehunt puzzles don’t come with instructions: figuring out what to do is part of the puzzle.</li>
+<li>Usually, when you’ve correctly solved a puzzle and gotten an answer, it will be obvious that you’ve done the right thing. All the information provided by the puzzle will somehow “fit together”.</li>
+<li>Usually, you can submit the answer somewhere (on a site, in an app, or just by personally contacting the author) to confirm whether it’s correct. This might unlock more puzzles.</li>
+</ul>
+<p>Puzzlehunts often feature <strong>metapuzzles</strong> (often simply referred to as “metas”), which are “bigger” puzzles that somehow incorporate the answers of normal puzzles. So, to solve the metapuzzle, you have to solve most or all of the normal puzzles, and then use the answers you’ve gotten somehow. The answers to metapuzzles are often puns that are thematic or that answer a question posed in the story; for example, the story might be about defeating an evil overlord and the meta answers might be tricks or tools you can use in this heroic quest. Sometimes there are metametapuzzles that incorporate the answers of metapuzzles and so on.</p>
+<p>Beyond that, there is not much one can say about puzzles and puzzlehunts in general. Most puzzles are one-of-a-kind and work differently from any other puzzle. There are exceptions to every rule listed above — hence all the “usually”s. For now, here are a few example puzzles, which you might even be able to try right off the bat:</p>
+<ul>
+<li><a href="http://66.165.95.155/safetythird/aqua-puzzles/2013/puzzles/1%20-%20Alter%20Rivals.pdf">Alter Rivals (PDF)</a> (2013 MIT Orientation Aquarium Hunt): This might be the easiest puzzle I know that I don’t feel like is “trivial”. It’s a little over-embellished and the PDF file size is large, but I think it’s a good simple example of figuring out what you’re supposed to do without explicit instructions, and of a common puzzlehunt concept that will be discussed later. (The answer is somewhat ambiguous; the official hunt answer was a name with 8 letters that had a space in the middle.)</li>
+<li><a href="http://web.mit.edu/puzzle/www/2015/puzzle/feeling_bluefin/">Feeling Bluefin</a> (Catherine Olsson, 2015 MIT Mystery Hunt): The most solved puzzle from the 2015 MIT Mystery Hunt; part of a “fish round” with many relatively easier puzzles.</li>
+<li><a href="http://www.maths.usyd.edu.au/ub/sums/puzzlehunt/2015/puzzles/A1S1_Evergreen.pdf">Evergreen (PDF)</a> (Rory Tarnow-Mordi, 2015 SUMS Puzzlehunt): Ignore the first page, which is just part of the story that is told throughout the entire puzzlehunt.</li>
+<li><a href="http://www.maths.usyd.edu.au/ub/sums/puzzlehunt/2012/puzzles/A1S1_Double_Act.pdf">Double Act (PDF)</a> (Sean Gardiner, 2012 SUMS Puzzlehunt): Ditto.</li>
+<li><a href="http://playdash.org/DASH4/puzzles/DASH4_Puzzle4_GreatWallOfChina.pdf">The Great Wall of China (PDF)</a> (DASH 4): This has a relatively straightforward and accessible concept, but is still not easy to solve. If you’ve figured out how this puzzle works but can’t get all the clues, there are some resources that may be useful in the <a href="#tools-for-solving">Tools for Solving</a> section below.</li>
+<li><a href="https://2019.galacticpuzzlehunt.com/puzzle/the-farmers-dilemma">The Farmer’s Dilemma</a> (DD Liu, 2019 Galactic Puzzle Hunt): This puzzle is substantially longer and more difficult than all of the other puzzles on this list, but I believe it is still unusually approachable among puzzlehunt puzzles in that you don’t need to know any of the puzzlehunt mechanisms below to solve it.</li>
+</ul>
+<p>If you’d like a full-fledged hunt to try out, here are some that I know of, although they will be easier if you finish reading at least the “Simple Puzzle Tropes” section below:</p>
+<ul>
+<li><a href="/pdf/intro-puzzles.pdf">Introduction to Puzzlehunts (PDF)</a> is a very small hunt I wrote for the Splash 2016 class where this post originated. The answers form a metapuzzle for which there is a five-letter meta answer (so this is what’s known as a “pure meta”). You are encouraged to backsolve the last puzzle.</li>
+<li><a href="https://jacoblance.wordpress.com/2015/03/14/p-i-hunt-1/">P.I.HUNT 1</a> (Jack Lance, 2015) is a great online hunt by a friend, which features eight first-round introductory puzzles. Make sure to check out the supplementary material. Even if you’re an experienced puzzlehunter and are reading this anyway, I think you might still find <a href="https://jacoblance.files.wordpress.com/2015/03/p-i-hunta5.pdf">Index Cards (PDF)</a> amusing.</li>
+<li><a href="https://www.octothorpean.org/">The Order of the Octothorpe</a> is a puzzle trail with a very shallow difficulty curve. It’s a bit heavy on puzzlehunt encodings, and I’m told the metapuzzles are questionable, but it goes through many examples that should give solvers a solid foundation of useful puzzlehunt mechanisms.</li>
+</ul>
+<h3 id="puzzle-structure">Puzzle Structure</h3>
+<p>Before we further delve into how puzzles work, it’s good to get some terminology out of the way.</p>
+<ul>
+<li>Most puzzles have a <em>title</em>. Sometimes the title is just a literal description of the puzzle; sometimes it’s a hint; sometimes it’s a confirmational phrase that only makes sense after you solve the puzzle. Sometimes it’s multiple of the above.</li>
+<li>Some puzzles have <em>flavor text</em>. Flavor text is usually English prose that’s right after the title and somehow distinguished from the rest of the puzzle. Flavor text may provide more oblique hints or a component of the meta; it may also simply be irrelevant text to integrate the puzzle into a story (to provide “flavor”).</li>
+<li>Finally there is the puzzle content itself, which can be just about anything — a blob of text, a bunch of numbers, a bunch of music files, a crossword grid, an interactive game, a PDF that you have to print out and fold, or anything else.</li>
+</ul>
+<p>As an example: in the “Alter Rivals” puzzle linked above, “Alter Rivals” is the title. The flavor text are the four lines that say:</p>
+<blockquote>
+<p><em>Customer</em>: Hello, is this Tannen Wormhole Incorporated?<br />
+<em>You</em>: Um, did you mean McFly Portal Enterprises?<br />
+<em>Customer</em>: Yeah, close enough. I’m not sure where I am right now<br />
+<em>You</em>: Okay, could you describe your issue a bit more?</p>
+</blockquote>
+<p>The rest of the text is the puzzle content. The distinction is less obvious in this puzzle, but should be clearer if you also look at other puzzles from the same hunt: <a href="http://66.165.95.155/safetythird/aqua-puzzles/2013/puzzles/2%20-%20Parallel%20Enclosures.pdf">Parallel Enclosures (PDF)</a>, <a href="http://66.165.95.155/safetythird/aqua-puzzles/2013/puzzles/3%20-%20Company%20Timpani.pdf">Company Timpani (PDF)</a>, and so on. You’ll see that each of these other puzzles has flavor text formatted similarly, followed by puzzle content that’s formatted differently. In this case, each flavor text does provide a hint about how to solve the rest of the puzzle.</p>
+<p>As another example: The first page of <a href="http://www.maths.usyd.edu.au/ub/sums/puzzlehunt/2015/puzzles/A1S1_Evergreen.pdf">Evergreen</a>, starting with “The hulking, partially white-rusted metal mass” and ending with “You take a look…” is the flavor text. This time it is not directly related to the puzzle; instead, it’s just one part of an overarching story that is told through the flavortext of all of the puzzles, which is something that many Australian puzzle hunts do. The second page, the picture of the book, is the puzzle content.</p>
+<p>Metapuzzles generally also have the above structure, but can be further categorized into <strong>pure metas</strong> and <strong>shell metas</strong>. Shell metas have puzzle content that you insert the answers into somehow, whereas pure metas involve nothing more than the answers themselves. To solve most pure metas and many shell metas, you often need to notice some special property all the answers share. Metapuzzles sometimes enable <em>backsolving</em>, in which you guess the answer to a puzzle using information about how the puzzle answer fits into its metapuzzle, sometimes bypassing the puzzle itself entirely.</p>
+<h3 id="how-to-solve-puzzlehunt-puzzles">How to Solve Puzzlehunt Puzzles</h3>
+<p>Even though most puzzles are one-of-a-kind, that doesn’t mean that you have to figure out how every puzzle works from scratch every time. Some kinds of puzzle content readily suggest what you have to do, or at least the first step of it.</p>
+<ul>
+<li>If there’s a list of clues, you should probably try solving them.</li>
+<li>If there are a bunch of pictures, you should probably try identifying them.</li>
+<li>If something looks like a familiar puzzle genre, such as a maze, a word search, or a crossword, you should probably try solving it as such a puzzle.</li>
+</ul>
+<p>Some puzzlehunt puzzles thrive on misdirection, and what looks like a familiar puzzle genre may be something far more complex, or sometimes something far simpler; but most often, puzzles are what they look like to some extent.</p>
+<p>Other things you should look out for are hidden structure or patterns that might suggest what to do or encode information. If some words are unexpectedly bolded, or if you’ve solved a bunch of clues and all your answers turn out to have five letters, then that’s probably important.</p>
+<p>Finally, remember your goal is to get a short answer, so try things that condense the information in the puzzle into something shorter. This brings us to some mechanisms that are more exclusive to puzzlehunts:</p>
+<h3 id="how-to-extract-the-answer">How to Extract the Answer</h3>
+<p>There are certain mechanisms that often crop up in puzzlehunt puzzles, but aren’t in other familiar puzzle genres. Usually, this is because puzzlehunt puzzles need to somehow produce an <em>answer</em>: one word, name, or short phrase that you arrive at when you’ve solved the puzzle.</p>
+<p>These mechanisms are often used in the process of <strong>extraction</strong>, a loosely defined term that refers to how one gets an answer, or sometimes a short message that suggests the next step, out of a puzzle that may have a lot of information. Some kinds of extraction are self-explanatory, e.g. you might fill in a crossword with some of the squares circled and then read the circled squares, after which you might no longer need any of the non-circled squares. However, there are many important extraction methods that may not be so clearly indicated, which include:</p>
+<ul>
+<li><p>Checking the <strong>first letters</strong> is always worth it. A lot of puzzles spell out their final answer through first letters of answers to individual clues or something similar. Sometimes, the first letters of the clues might spell out a message as well. These messages often need to be combined with other things in the puzzle that may only appear later. Let’s just say that this mechanism appears a lot. Every time you open a puzzle, you should check if the first letters spell something.</p></li>
+<li><p><strong>Indexing</strong> is perhaps the most common way numbers are used in puzzles, as well as the most common way to condense a list of answers to an early stage of the puzzle into an answer, cluephrase, or next step. You <em>index</em> a number into a word by taking the letter at that numbered position in the word. For example, you might index 2 into the word “EXAMPLE” to get the letter X.</p>
+<p>Usually, spaces and punctuation are ignored when you index. For example, if you index 6 into “FOR EXAMPLE”, you get the A.</p>
+<p>Very occasionally, you can index into a sentence by taking the Nth word, or just into any kind of sequence by taking the Nth thing.</p>
+<p>(You almost always won’t need to index numbers that are greater than the word’s length. If you’re trying to index 9 into EXAMPLE, that just doesn’t work and means you’re not indexing the right number into the right word. In extremely rare cases, you might “wrap around” by starting over from the first letter, to get the same X in this example; but unless the puzzle somehow clues this, you should be mad at the puzzle author while doing so.)</p></li>
+<li><p><strong>Ordering</strong> is what it sounds like, figuring out a rule to reorder items in a list. In well-written puzzles, orderings will generally be provided by the puzzle: you will not need to “randomly anagram” a bunch of letters to get an ordering or a phrase. This is a big puzzle-writing no-no and a sign that you’re missing something (or that you’re dealing with a badly written puzzle — it happens). If the clues are in alphabetical order, or if the answers to the clues are in alphabetical order, that is usually a signal that the order the clues were provided in isn’t important, so you need to find the correct ordering of answers or the correct way to assign answers to something else. Otherwise, you probably should expect to use the ordering eventually to extract something.</p>
+<p>(This is not to say that anagramming never appears in good puzzles. But when it does the number of letters is usually not too large; there is usually confirmation, e.g. you’re also provided with the definition of the anagram, or the results of anagramming might all be words in the same category; and it’s rarely the final step.)</p>
+<p>Some examples of ways orderings might be clued: if you have six answers that start with six distinct consecutive letters of the alphabet (most often A to F, but other runs of letters are possible), then you should probably put those answers in that alphabetical order, as well as potentially other things associated with those answers. Another common ordering is if things have distinct lengths that are consecutive integers: e.g. if exactly one answer has 5 letters, exactly one has 6 letters, exactly one has 7 letters, and so on.</p>
+<p>Note also that when answers are in alphabetical order, it can help you confirm if they are right. So if you have a list of, say, 50 clues and you have answers for all of them that are <em>almost</em> in alphabetical order, the answers that aren’t in order might be wrong.</p>
+<p>Finally, the order in which puzzles in a meta are presented is often not important, and you may need to reorder the puzzles or their answers, even if the order is not obviously arbitrary (e.g. the puzzles could have been sorted alphabetically by title, but weren’t). Puzzles are often ordered after they and the meta are all written based on considerations regarding difficulty, variety, and the structure of how puzzles unlock other puzzles when solved.</p></li>
+<li><p><strong>Encodings</strong> such as binary, Morse, Braille, semaphore, or ASCII, appear often in puzzles. Many different kinds of puzzle content can subtly encode letters or words with these codes. Sometimes you’ll solve part of the puzzle and then decode what you’ve obtained to get the answer or a message. When puzzles use such encodings, they usually hint at them in their flavor text: mentions of telegrams or transmissions may be a hint for Morse; any mention of blindness or feeling for things may be a hint for Braille; any mention of flags may be hinting at semaphore. Many cheat sheets of puzzlehunt codes can be found online (examples: <a href="http://www.puzzledpint.com/files/3614/6881/3541/CodeSheet_07_2016.pdf">Puzzled Pint (PDF)</a>, <a href="http://www.ericharshbarger.org/epp/code_sheet.pdf">Eric Harshbarger (PDF)</a>, <a href="https://netninja.com/2012/12/02/moleskine-code-sheet/">Netninja.com (PDF)</a>), as well as phone apps that will convert to/from these codes for you (<a href="http://www.puzzledpint.com/resources/">Puzzled Pint resources</a> links to a few).</p>
+<ul>
+<li>However, one of the most common encodings appears often enough that it’s often not clued, and that is for <strong>numbers to encode letters</strong> by their position in the alphabet: A = 1, B = 2, C = 3, and so on, until Z = 26.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> This may also be considered “indexing into the alphabet”. The reverse process, interpreting letters as numbers, also appears occasionally.</li>
+</ul></li>
+<li><p>Finally: <strong>Recursion</strong> is a common puzzle trope when you have to reapply an idea from an earlier stage of a puzzle in a later stage, or to get the final answer. For example, if the puzzle consists of clues for palindromes, and you’ve extracted a meaningful English phrase but it isn’t the answer, the phrase could be another clue for a palindrome that is the answer.</p></li>
+</ul>
+<p>Some less common puzzle tropes that are still worth knowing:</p>
+<ul>
+<li><p><strong>Diagonalization</strong> is taking the Nth letter of the Nth word or phrase. If you had the answers DESPAIR, WRATH, SCALE, EPIC, MYTHOLOGY, FLAMING, MAGNIFICENT, and PTERODACTYL in that order, you could diagonalize by take the first letter of DESPAIR, the second letter of WRATH, the third letter of SCALE, and so on, and get a thematic word. This is an old technique; Edgar Allan Poe concealed a name in his poem <a href="https://www.eapoe.org/works/poems/enigmalb.htm">“An Enigma”</a> this way.</p></li>
+<li><p><strong>Overlapping</strong> (not an established term) is when you pair words or phrases up and take a letter they both have at the same position. This is especially common when the words or phrases have the same number of letters, but it may still be used if that’s not the case. As an example, if you had the pair of words EXAMPLE and ANALOGY, you could overlap them and see that they both have an A as their third letter, and extract the letter A.</p></li>
+<li><p><strong>Indirect indexing</strong> (not an established term) is when you find a distinguished item in a sequence and then take the letter at the corresponding position. To reuse an example, if you had the pair of words EXAMPLE and ANALOGY as well as many other pairs of words where one word contains an X, that might suggest looking at the position of the X (it’s the 2nd letter of EXAMPLE) and then the letter at the same position in the other word (the 2nd letter of ANALOGY is N). But the sequence doesn’t have to be the letters in another word.</p></li>
+<li><p><strong>2D tracing</strong> (not an established term) is when you’ve gotten a bunch of things that can be located on some kind of canonical two-dimensional layout, e.g. geographical locations, stations on a subway map, or elements on the periodic table. Connecting the things in order on that layout might trace out letters or some other image.</p></li>
+</ul>
+<p>The result of extraction might be the answer to the puzzle, in which case you can submit it. It might also be a couple other things.</p>
+<ul>
+<li>It can be a <strong>cluephrase</strong> that suggests the answer, much like a normal crossword clue.</li>
+<li>It can be an “answerphrase”<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> that says something like “THE ANSWER IS GO AFTER”, so you just submit “GO AFTER”. Answerphrases may be used for a couple reasons. Sometimes it’s just to make the puzzle longer, to make it more interesting or to provide more examples to let solvers break in. Sometimes it’s used if the answer doesn’t have a strong “answer nature”, and the writer wants to emphasize that it is literally the answer rather than a cluephrase or instruction (so you don’t go looking for a word that means “GO AFTER”, or trying to continue the puzzle by making things go after other things somehow). Occasionally, some more abridged answerphrases crop up: things like “ANS GO AFTER” or “SOL GO AFTER” are not unheard of, usually because the puzzle was somehow so constrained that the author couldn’t make it extract too many (or too few) letters.</li>
+<li>It can be a “recursive” clue as mentioned above that produces the final answer in the same way as in the rest of the puzzle.</li>
+<li>It can even be an instruction that tells you what the next step in the puzzle is.</li>
+</ul>
+<p>In any case, if you manage to extract a coherent message or sequence of words, you’re probably doing the right thing.</p>
+<h2 id="established-puzzle-genres">Established Puzzle Genres</h2>
+<p>Again, even though most puzzles are one-of-a-kind, some genres of puzzle do tend to appear a lot. There will often be some kind of additional modification or twist on top of the standard way a puzzle from such a genre works, but even so it helps to know how those standard puzzles work first, so here’s a list. I will not describe genres that are as common and as simple as word searches, rebuses, and mazes. Nevertheless, I think there are some puzzle genres that are worth pointing out explicitly.</p>
+<p><strong>This list is absolutely not exhaustive.</strong> Nothing is off-limits for puzzlehunts, really.</p>
+<ul>
+<li><p><strong>Crosswords</strong> are a common puzzle genre that I will assume I don’t need to explain. However, many puzzlehunt puzzles feature crosswords with gimmicks: maybe you have to write more than one letter, or something that’s not a letter, in some squares; maybe you also write letters on black squares, or outside the grid; maybe some of the clues or some of the crosses are wrong. Think sort of like the Thursday crosswords of the New York Times, but potentially more extreme. When these gimmicks appear, they are often involved in extraction. (Some puzzlehunt crosswords are completely normal, but I think they’re actually pretty rare.)</p>
+<p>Occasionally you will also see <em>diagramless crosswords</em>, where you only get the numbered clues but not the grid. Part of the puzzle is to reconstruct the grid using the answers you can solve and the standard conventions for how American crosswords are laid out and numbered.</p></li>
+<li><p><strong>Wordplay</strong> is an umbrella term I put here to mean manipulations of words and letters such as adding letters to the ends of words, inserting words in other words, homophones, or palindromes. A somewhat standard kind of puzzle just consists of clues for words or groups of words with some wordplay relationship along these lines; you then have to figure out the words and the relationship. But a lot of these techniques also appear in cryptic crossword clues:</p></li>
+<li><p><strong>Cryptic (crossword) clues</strong> are a type of clue for words or phrases. Outside of puzzlehunts, they are generally found as the clues in <a href="https://en.wikipedia.org/wiki/Cryptic_crossword">cryptic crosswords</a>, a somewhat British genre of puzzle. Each clue is sort of its own small wordplay puzzle, combining a definition of the answer with a wordplay description of it. On top of all that, most of the gimmicks that might appear in normal crosswords in puzzlehunts can also appear in cryptic crosswords.</p>
+<p>A simple cryptic clue I just made up as an example:</p>
+<blockquote>
+<p>The art house contains dirt (5)</p>
+</blockquote>
+<p>Although this clue seems to be describing a building for creative types that might require janitorial services, that’s the “surface meaning” of the clue and is completely irrelevant for solving it. This is what Wikipedia calls a “hidden word” clue. The part of the clue “The art house” literally “contains” the answer to the clue, but it’s spread out among those words with spaces added; “dirt” is a definition of the answer; and finally, the “(5)” is an <em>enumeration</em> that indicates that the answer has five letters.</p>
+<p>Hidden word clues are just one of the dozens of kinds of cryptic clues, and among the easiest to solve. It takes a considerable amount of work to understand and start solving cryptic clues, and explaining all the other ways cryptic clues can work would be its own very long post, so I will just say that the Wikipedia article on cryptic crosswords I just linked has many examples, and mention that <a href="https://web.archive.org/web/20170606074111/http://www.lafn.org/~keglerron/kegler.html">Kegler’s Kryptics</a> (archive.org link) include a lot of very easy cryptic crosswords for solvers new to the genre. (It looks like a lot of the images are broken, but the .puz files seem to work and you can find various tools online to open them. They’re the standardized Across Lite format for crosswords.)</p></li>
+<li><p><a href="http://enigma.puzzlers.org/guide/composing"><strong>Flats</strong></a> are another genre of word puzzle that clue some wordplay-related words through context, usually in a verse. They are most known for appearing in the National Puzzlers’ League’s publication, <cite>The Enigma</cite>. Apparently the genre actually predates crosswords. They are pretty rare in puzzles (and in general), but it’s worth knowing of their existence.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p></li>
+<li><p><strong>Ciphers</strong> also sometimes appear in puzzles. One of the simplest ciphers is the Caesar shift, where letters are shifted forward/backward in the alphabet: for example, a forward shift by 5 would turn A → F, B → G, and so on, turning the word “RUT” into “WZY”. This loops around the alphabet, so shifting W by 5 again gives you B as follows: W → X → Y → Z → A → B. Occasionally some puzzles will play with the fact that some words turn into other words when you shift them. A special case is ROT13, which is Caesar shifting by 13; it has the neat property that encryption and decryption are the same process, and is often used online to hide spoilers when better formatting is not available.</p>
+<p>There are also substitution ciphers, where each letter is replaced with a fixed other letter every time it appears, and more complicated (and correspondingly much rarer) ciphers like Vigenere or Playfair. Many tools are available online for solving ciphers.</p></li>
+<li><p><strong>Logic puzzles</strong> are puzzles that rely on logical deduction as opposed to the common “inductive” leaps of thought in puzzlehunts. Some logic puzzles are ad hoc, where you need to deduce information from logical rules in a framework invented by the puzzle. Other logic puzzles come from one of many established genres of grid-based logic puzzles. The most widely-known grid-based logic puzzle type is Sudoku, but several other types, like Nurikabe, Masyu, or Star Battle, appear occasionally (usually as a component of a more complicated puzzle, sometimes only subtly hinted). Many of these genres were invented by the Japanese publisher <a href="http://nikoli.co.jp/en/">Nikoli</a>. Another source of logic puzzles is the blog <a href="http://www.gmpuzzles.com/">Grandmaster Puzzles</a>, which publishes logic puzzles from a variety of contributors. Since this is a puzzlehunt, logic puzzles can also have gimmicks on top of the usual puzzles in their genre.</p></li>
+<li><p>The <strong>Conundrum</strong>, also called the (Duck) <strong>Konundrum</strong>, is a genre of puzzle that’s radically different from most puzzlehunt puzzles in that it consists of nothing <em>but</em> instructions — an incredibly long, complicated, sometimes self-referential list of instructions, which solvers have to follow in painstaking detail in order to get the answer. The <a href="http://web.mit.edu/puzzle/www/2000/set5/6/Puzzle.html">original Duck Konundrum</a> appeared in the 2000 MIT Mystery Hunt and has been a staple of Mystery Hunts ever since, as well as appearing in other puzzlehunts. Duck Conundrums need not feature actual ducks, although they often do as homage to the original puzzle. On the other hand, Dan Katz, the author of the original Duck Konundrum, once suggested other Konundra authors should <a href="https://mystery-hunt.livejournal.com/14443.html">avoid using ducks</a>:</p>
+<blockquote>
+<p><strong>Hands off the duck.</strong> That’s my calling card, thank you very much. (The funny thing is, I don’t even have a thing for ducks. I was just trying to throw my initials in the name; if I’d been in a different mood in 1999, I might have written five Deer Konundrums by now.)</p>
+</blockquote></li>
+<li><p>Literally anything else! Wikipedia has a <a href="https://en.wikipedia.org/wiki/Category:Word_puzzles">category of word puzzles</a> that has some things that are useful to know about, but which I think Wikipedia already explains well enough, including <a href="https://en.wikipedia.org/wiki/Ditloid">ditloids</a>, <a href="https://en.wikipedia.org/wiki/Dropquote">dropquotes</a>, and <a href="https://en.wikipedia.org/wiki/Printer%27s_Devilry">printer’s devilry</a> clues.</p></li>
+</ul>
+<p>If you want to be introduced through puzzle mechanics with a puzzle, check out <a href="http://web.mit.edu/puzzle/www/2018/full/puzzle/yeah_but_it_didnt_work.html">Yeah, but It Didn’t Work!</a> (Justin Melvin, 2018 MIT Mystery Hunt). It’s a little involved, but puzzle-mechanic-heavy by design. Make sure to note the link at the bottom.</p>
+<h3 id="tools-for-solving">Tools for Solving</h3>
+<p>Even when you know how a puzzle works, sometimes you still might have trouble solving individual clues. In such cases, it’s useful to know about the many online tools that can help you in the process.</p>
+<ul>
+<li><p>There are many online tools that you can use to look up words if you have partial data, such as the length of the word, some of the letters or letter patterns in the word, or the approximate definition. Here is a short list.</p>
+<ul>
+<li>Anagramming: <a href="http://anagram-solver.net/">Free Online Anagram Solver</a> will anagram your letters into a known entry in its database. <a href="http://wordsmith.org/anagram/">Internet Anagram Server</a> or <a href="http://www.oneacross.com/">OneAcross</a> will anagram your letters into a sequence of words, which in my experience is more fun for wordplay but less useful in puzzlehunts.</li>
+<li><p>Pattern-matching: Some tools let you search for words or phrases by glob patterns (e.g. <code>f*der</code> to find words that start with “f” and end with “der”). Others let you use some variant of <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>. Some allow both.</p>
+<ul>
+<li><a href="http://www.morewords.com/">MoreWords</a> lets you search its dictionary with glob patterns, and also suggests words obtainable by anagramming or letter changes that are sometimes useful.</li>
+<li><a href="http://crosswordnexus.com/wiki/">CrosswordNexus Wikipedia Regex Search</a> lets you search Wikipedia article titles and Wiktionary words.</li>
+<li><a href="http://onelook.com/">OneLook</a> lets you search for words and phrases using glob patterns. <a href="http://onelook.com/reverse-dictionary.shtml">OneLook Reverse Dictionary</a> takes this one step further, letting you specify both a pattern and a vague definition; it doesn’t always work, but when it does it’s incredible.</li>
+<li><a href="http://quinapalus.com/qat.html">Qat</a> not only supports glob patterns, but also a more complex kind of pattern matching where you can have multiple expressions made from your variables and require that all of them be words. So you can write a query such as <a href="https://quinapalus.com/cgi-bin/qat?pat=AB%3BAlB%3B%7CA%7C%3D1%3B%7CB%7C%3D6&amp;ent=Search&amp;dict=0"><code>AB;AlB;|A|=1;|B|=6</code></a>, which means “find all seven-letter words where you can insert an <code>l</code> between the first and second letters to get another word”; all such seven-letter words will be in the left column of Qat’s results (at least, assuming your definition of what makes a “word” exactly matches Qat’s dictionary). The site has many more examples that probably explain this better.</li>
+<li><a href="https://nutrimatic.org/"><strong>Nutrimatic</strong></a> is one of the most powerful and universally applicable tools on this list. It searches a corpus of words and phrases from Wikipedia, so it can find more English names and phrases than any of the other tools above, and it supports its own type of regular expressions that, in particular, supports anagrams.</li>
+</ul></li>
+</ul></li>
+<li><p>As mentioned above, having a code sheet or phone app that will help you convert between common codes is often helpful.</p></li>
+</ul>
+<p>Finally, never forget about your favorite search engine. It sounds silly compared to the other tools here, but there are puzzles where an important and difficult step is to perform an online search for something to figure out what it’s referencing. Consider also adding quotes strategically to ensure an exact match.</p>
+<h2 id="more-puzzles">More Puzzles</h2>
+<p>Has your appetite been whetted? Want to solve more puzzles, or actually participate in a puzzlehunt?</p>
+<p>The <a href="http://puzzlehuntcalendar.com/">Puzzle Hunt Calendar</a> is probably the best resource to learn about upcoming puzzlehunts. Some puzzlehunts are held physically, including a fair number that are publicity events by tech companies; some others are completely online, except occasionally for a final physical “runaround”. As of time of writing, over the last few years there have been quite a few instances of annual puzzlehunts missing a year or sometimes stopping entirely, so I won’t spend too much time listing specific puzzlehunts for fear of the information quickly becoming outdated. Still, here’s an attempt at a list.</p>
+<ul>
+<li><p><a href="http://www.puzzledpint.com/">Puzzled Pint</a> is, I’m told, one of the most accessible puzzling events out there in terms of puzzles, which explains the many introductory resources of theirs that I’ve already linked in this post. It happens every month. Of course it involves the going out to a pub/bar/restaurant to do puzzles thing, which I am not sure I would have considered an accessible activity when I was the age at which I started learning about puzzlehunts, but it’s an option. The puzzles are online too.</p></li>
+<li><p>Many physical puzzlehunts have easier and harder difficulty levels that you can choose between when signing up. If you’re in the Boston area, you can check out <a href="http://www.baphl.org/">BAPHL (Boston Area Puzzle Hunt League)</a> (which runs with massive variation in frequency, basically whenever somebody feels like writing a hunt).</p></li>
+<li><p><a href="http://www.pandamagazine.com/index.php">P&amp;A</a> offers a bimonthly (every two months, not twice each month) puzzle magazine and several very large Puzzle Boats. Both are paid and most people will probably want to split the Puzzle Boat’s cost with a few others, but if you want a veritable boatload of puzzles and have a budget for it, this is where you get them.</p></li>
+<li><p>I am personally involved with writing the <a href="https://galacticpuzzlehunt.com">Galactic Puzzle Hunt</a>, which has been running since 2017 and is entirely online. Our puzzles have a wide range of difficulties, but so far we’ve tried to make sure the first few puzzles are accessible and have provided hints.</p></li>
+<li><p>The biggest puzzlehunt event of the year is almost certainly the <a href="http://web.mit.edu/puzzle/www/">MIT Mystery Hunt</a>, held every January at MIT over Marthin Luther King Jr. Weekend and typically featuring over 100 puzzles with many metas. It’s better in person and with a not-too-small team, but no attempt at a puzzlehunt list would be complete without it, and recent hunts have often had accessible introductory puzzles or rounds.</p></li>
+<li><p>A smattering of other puzzlehunts that can be done online and have happened with some regularity somewhat recently: <a href="http://www.ms.unimelb.edu.au/~mums/puzzlehunt/">MUMS</a>, <a href="http://www.maths.usyd.edu.au/ub/sums/puzzlehunt/2015/main">SUMS</a>, <a href="http://www.mezzacotta.net/puzzle/">mezzacotta</a> (spiritually/formerly CiSRA), <a href="https://jacoblance.wordpress.com/category/p-i-hunt/">P.I.Hunt</a>, <a href="https://reddothunt.sg/">redDOThunt</a>, <a href="https://puzzlepotluck.com/">Puzzle Potluck</a>, <a href="https://missionstreetpuzzles.com/puzzle-archives/">Mission Street Puzzles</a>, <a href="http://www.markhalpin.com/puzzles/puzzles.html">Mark Halpin’s Labor Day Extravaganzas</a>. The last one may be the hunt on this list that’s the least accessible if you’re new to puzzlehunts, as it tends to be heavy on difficult word puzzles, but they’re <em>good</em> difficult word puzzles.</p></li>
+</ul>
+<p>You can even try writing your own puzzles or puzzlehunt, although I very strongly recommend solving multiple puzzlehunts before doing this. The biggest thing you get from actively solving that’s hard to get from reading a guide is learning what makes a puzzle <em>fun</em>, which I think is a balancing act that’s hard to appreciate just by reading a guide. If and when you do want to start writing puzzles, the single most important piece of advice you should heed is to <em>always get your puzzles testsolved</em>. Have somebody who is completely unspoiled on the puzzle try solving it. Listen to their feedback. I won’t go further into this because there seem to actually be more resources online on writing puzzles and running puzzlehunts than on solving them; here are some. (The later resources in this list actually just link to the earlier ones.)</p>
+<ul>
+<li><a href="https://foggyb.livejournal.com/42978.html">Foggy Brume’s puzzle standards, part 1</a> / <a href="https://foggyb.livejournal.com/43107.html">part 2</a> / <a href="https://foggyb.livejournal.com/43360.html">part 3</a></li>
+<li><a href="https://web.mit.edu/dwilson/www/puzzles/puzzlewriting.html">David Wilson’s Introduction to Writing Good Puzzle Hunt Puzzles</a></li>
+<li><a href="https://github.com/fortenforge/suggestions-for-running-a-puzzlehunt">fortenforge’s Suggestions for Running a Puzzlehunt</a> (I contributed a little bit)</li>
+</ul>
+<h3 id="one-last-thing">One last thing…</h3>
+<p>Of course, given everything I said about how every puzzle is different, I had to make this post a puzzle too. Can you find the six answers embedded above and use what you learned about first letters, ordering, converting between letters and numbers, and indexing to find the suitably self-referential meta answer? (This post stands on its own; you won’t need to solve any linked puzzles or hunts.)</p>
+<p>Happy puzzling!</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Linguistic note: I prefer to write “puzzlehunt” as one word, but it also appears frequently as the two words “puzzle hunt”. Based on an unscientific poll of some puzzlers I know, I believe I’m in the minority here.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>I am not aware of any popular term for directly referring to this kind of puzzle by itself; one usually just says “puzzlehunt puzzle”, or sometimes “hunt puzzle”. I think I have heard the term “inductive puzzles”, because they rely on <a href="https://en.wikipedia.org/wiki/Inductive_reasoning">inductive reasoning</a>, looking for patterns and generalizing them, as opposed to logic puzzles where you can perfectly logically deduce the solution, but it hasn’t caught on.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>Unlike the Puzzled Pint “Puzzling Basics” info sheet, I think it’s very rare that this is the right encoding if there are numbers greater than 26. You should not have to “wrap around” and treat 27 as A, 28 as B, and so on, unless it’s explicitly clued.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>I believe this term originates in David Wilson’s <a href="https://web.mit.edu/dwilson/www/puzzles/puzzlewriting.html">post on writing puzzles</a>.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>Naturally, a few days after I write this, flats are prominently featured in a puzzle in a prominent puzzlehunt. (I think this is at best a very mild spoiler.) I still think they’re rare though.<a href="#fnref5" class="footnote-back">↩</a></p></li>
+</ol>
+</section></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/puzzle"><span class="tag">Puzzle</span></a></li>
+			
+			<li><a href="/tag/puzzlehunt"><span class="tag">Puzzlehunt</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/cook">← Cook Like You&#39;re Not on MasterChef</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2019 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>

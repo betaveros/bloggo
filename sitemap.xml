@@ -4,31 +4,54 @@
   
   <url>
     <loc>//blog.vero.site/tags</loc>
-    <lastmod>2019-08-23T00:37:43-04:00</lastmod>
+    <lastmod>2019-09-02T10:34:38-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/</loc>
-    <lastmod>2019-08-23T00:37:43-04:00</lastmod>
+    <lastmod>2019-09-02T10:34:38-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/categories</loc>
-    <lastmod>2019-08-23T00:37:43-04:00</lastmod>
+    <lastmod>2019-09-02T10:34:38-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post/puzzlehunts</loc>
+    <lastmod>2019-09-02T10:34:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post</loc>
+    <lastmod>2019-09-02T10:34:38-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/puzzle</loc>
+    <lastmod>2019-09-02T10:34:38-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/puzzlehunt</loc>
+    <lastmod>2019-09-02T10:34:38-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/category/puzzles</loc>
+    <lastmod>2019-09-02T10:34:38-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/post/cook</loc>
     <lastmod>2019-08-23T00:37:43-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/post</loc>
-    <lastmod>2019-08-23T00:37:43-04:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -230,24 +253,6 @@
   
   <url>
     <loc>//blog.vero.site/tag/mit</loc>
-    <lastmod>2018-01-16T19:39:22-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/tag/puzzle</loc>
-    <lastmod>2018-01-16T19:39:22-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/tag/puzzlehunt</loc>
-    <lastmod>2018-01-16T19:39:22-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/category/puzzles</loc>
     <lastmod>2018-01-16T19:39:22-05:00</lastmod>
     <priority>0</priority>
   </url>
