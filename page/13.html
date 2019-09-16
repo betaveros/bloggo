@@ -112,6 +112,48 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/hoj-cp" class="post-link">HOJ 226: CP (中)</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-12-15
+		(227 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>This post was written in Traditional Mandarin Chinese for my fellow competitive programmers in Taiwan.</p>
+<p><a href="http://hoj.twbbs.org/judge/problem/view/226">題目在這裡，HOJ 226</a></p>
+<p>有關的題目出現於NPSC 2014 高中組決賽pD。</p>
+<p>前置要求：treap (split, merge)跟在上面實作區段操作（請參考資訊枝幹）。</p>
+<p>這裡沒有完整的解答code，因為AC是要用血汗換來的才值得 :-)</p>
+<h2 id="treap">Treap</h2>
+<p>我討厭單字母<code>l</code>的變數名稱（跟<code>1</code>太像了。我沒有被這個雷過，這只是自己對自己程式碼可讀性的要求），所以我的子樹叫做<code>lc</code>(left child)，<code>rc</code>(right child)。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">struct</span> Treap {</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">    Treap * lc;</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">    Treap * rc;</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="dt">unsigned</span> pri;</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="dt">char</span> val;</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="dt">int</span> size;</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">};</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="dt">int</span> size(Treap * a) { <span class="cf">return</span> a ? a-&gt;size : <span class="dv">0</span>; }</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="dt">void</span> pull(Treap * a) {</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">    <span class="cf">if</span> (a) a-&gt;size = <span class="dv">1</span> + size(a-&gt;lc) + size(a-&gt;rc);</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">}</a></code></pre></div>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/hoj-cp">→ read more<span class="offscreen"> HOJ 226: CP (中)</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/comics" class="post-link">Commemorating Obvious Milestones Involving Chronological Sustenance</a></h3>
 		
 		<p class="post-meta">
@@ -380,33 +422,6 @@ Guess the left-over card. The guesser wins if correct; the other player wins if 
 <p>Unfortunately, after I talked to a few more people, it looks like they aren’t going to change my name in the database. So if anybody reading this chances to look at the IOI live ranking and is unable to find me, look for the first name “Po-En”.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/waiting">→ read more<span class="offscreen"> [IOI 2014 Part 0] Waiting</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/prelude" class="post-link">[IOI 2014 Part −1] Prelude.hs</a></h3>
-		
-		<p class="post-meta">
-		
-		2014-07-12
-		(331 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/meta">Meta</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Indexing debates are boring. Especially when you can just flagrantly disregard all concerns about memory safety (because C++ never had any in the first place) and write <code>int _array[100008], array = _array + 2;</code> I do this alarmingly often; hence, the title. Hashtag firstworldanarchists. Three ± 1 cheers for <a href="http://www.haskell.org/ghc/docs/7.6-latest/html/libraries/array-0.4.0.1/Data-Array.html#v:array">Haskell arrays</a>.</p>
-<p>Anyway. One of the disadvantages of entering an international competition as the home team is a lack of time to completely absorb the idea that what is about to happen is a Big Thing. There was lots of time before the other international competitions I went to to spend uncomfortably on airplanes trying to adjust for the timezone difference.</p>
-<p>Not so for a competition in one’s own country. Right up to the night before entering the hotel that marks the beginning of everything, I’m still at home, furiously refreshing the AoPS IMO fora and Facebook for news (!!!), lazily solving trivial Codeforces Div II problems with <del>pointless</del> point-free Haskell one-liners, and blogging. (There’s more, but I kind of want it to be a surprise.)</p>
-<p>Anyway, let’s set the rules. Well, there’s only one, honestly:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/prelude">→ read more<span class="offscreen"> [IOI 2014 Part −1] Prelude.hs</span></a>
 	</footer>
 </article>
 

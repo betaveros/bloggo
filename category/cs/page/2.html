@@ -120,6 +120,38 @@ Category → CS
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/doggo" class="post-link">Pupper/Doggo</a></h3>
+		
+		<h4 class="post-subtitle">PlaidCTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-05-06
+		(2909 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called <em>Wolf</em>. Concretely, every type in Wolf’s type system has an associated <em>secrecy</em>: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.</p>
+<p>Of course, this is a CTF, so the challenge is all about breaking the theoretical guarantees of the type system. When we submit code, it’s evaluated in a context with a private integer variable <code>flag</code>; our code is typechecked, executed, and printed, but only if its type is public. The goal is to break the type system and write code that produces a public value that depends on <code>flag</code>, so that we can exfiltrate <code>flag</code> itself.</p>
+<p>In all, there are three progressively harder Wolf problems, named Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the flag of the challenge before it, so that you need to solve them in order (unless you can somehow blindly exploit servers running SML programs).</p>
+<h3 id="wolf-overview">Wolf Overview</h3>
+<p>Let’s first go over the Wolf syntax and semantics. (There are small differences between the three problems, but they’re syntactically identical and only semantically differ in cases that we’ll naturally get to.) The <code>examples</code> folder has some examples of valid code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">let</span> x = (<span class="dv">5</span> :&gt; <span class="kw">private</span> <span class="dt">int</span>) <span class="kw">in</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="dv">6</span></a></code></pre></div>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/doggo">→ read more<span class="offscreen"> Pupper/Doggo</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/thoroughly-stripped" class="post-link">Thoroughly Stripped</a></h3>
 		
 		<h4 class="post-subtitle">CSAW CTF 2017 Finals (Forensics, 200 pts)</h4>
@@ -375,35 +407,6 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
    I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing.   Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester.
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/unicode-forensics">→ read more<span class="offscreen"> Adventures in Unicode Forensics</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-46" class="post-link">Puzzle 46 / Fillomino [LITS &#43; Extra Region &#43; Walls &#43; Anti-Walls &#43; Inequality &#43; Tapa &#43; Masyu]</a></h3>
-		
-		<p class="post-meta">
-		
-		2015-03-29
-		(258 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>, <a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-5:27 PM <strong>phenomist</strong>: do you use gridderface to make pretty puzzles?<br />
-…<br />
-5:52 PM <strong>phenomist</strong>: actually nvm excel is probably easier lol
-</blockquote>
-<p>Okay I’m sorry this is a horrible puzzle where the rules don’t make sense and I didn’t even get it testsolved. I just wanted an image to concisely demonstrate the capabilities of <a href="https://github.com/betaveros/gridderface">gridderface</a>, my puzzle marking and creation program, for the project homepage, after somebody expressed interest in using the program to write a puzzle. Then I got tremendously carried away.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/puzzle-46">→ read more<span class="offscreen"> Puzzle 46 / Fillomino [LITS &#43; Extra Region &#43; Walls &#43; Anti-Walls &#43; Inequality &#43; Tapa &#43; Masyu]</span></a>
 	</footer>
 </article>
 

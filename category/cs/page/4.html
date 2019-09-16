@@ -120,6 +120,46 @@ Category → CS
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/haskell" class="post-link">Haskell and Primes</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-05-25
+		(682 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>, <a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+“I have been told that any encryption becomes safer if the underlying algorithm is maximally obscured, what is most conveniently done by coding it in Haskell.” – rankk
+</blockquote>
+<p>Functional programming is terribly addicting! Partly I think the completely different way of thinking makes it feel like learning programming, and falling in love with it, all over again. Partly there’s this evil sense of satisfaction from using <code>$</code>s (and later <code>&lt;$&gt;</code>s and <code>=&lt;&lt;</code>s and <code>&amp;&amp;&amp;</code>s) to improve readability for initiated Haskellers and worsen it for everybody else. Partly it’s because <a href="http://learnyouahaskell.com/"><i>Learn You a Haskell for Great Good!</i></a> is such a fun read — there are too many funny bits to list but my favorite so far is when the author analyzes the first verse of Avril Lavigne’s <em>Girlfriend</em>.</p>
+<p>Although I think my code in Haskell tends to be more readable than in other languages, code obfuscation in Haskell is almost natural: all you have to do is refactor the wrong function to be “pointfree”, which means that even though it’s a function that takes arguments, you define it without parameters by manipulating and joining a bunch of other functions. Example (plus a few other tiny obfuscations):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" data-line-number="1">isPrime <span class="fu">=</span> liftA2 (<span class="fu">&amp;&amp;</span>) (liftA2 (<span class="fu">$</span>) (all <span class="fu">.</span> ((<span class="fu">.</span>) (<span class="dv">0</span> <span class="fu">/=</span>)) <span class="fu">.</span> rem) (flip</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">    takeWhile [<span class="dv">2</span><span class="fu">..</span>] <span class="fu">.</span> (flip (<span class="fu">.</span>) <span class="fu">$</span> liftA2 (<span class="fu">*</span>) id id) <span class="fu">.</span> (<span class="fu">&gt;=</span>))) ((<span class="fu">&lt;</span>) <span class="dv">1</span>)</a></code></pre></div>
+<p>QQ wordpress why no Haskell highlighting <ins>(Editor’s note from 2017: The migration should highlight this now!)</ins></p>
+<p>Also, for some reason, you can do this in Haskell:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb2-1" data-line-number="1">ghci<span class="fu">&gt;</span> <span class="kw">let</span> <span class="dv">2</span> <span class="fu">+</span> <span class="dv">2</span> <span class="fu">=</span> <span class="dv">5</span> <span class="kw">in</span> <span class="dv">2</span> <span class="fu">+</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="dv">5</span></a></code></pre></div>
+<p>(via <a href="http://www.yellosoft.us/evilgenius/">Haskell for the Evil Genius</a>)</p>
+<hr />
+<p>Okay, but seriously now. I wrote this about my journey to learn functional programming in the <a href="//blog.vero.site/post/programming">programming babble post</a> half a year ago:</p>
+<blockquote>
+The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes).
+</blockquote>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/haskell">→ read more<span class="offscreen"> Haskell and Primes</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/problems" class="post-link">Example &#34;BetaWorldProblems&#34;</a></h3>
 		
 		<p class="post-meta">
@@ -351,33 +391,6 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
 	There are two big elementary and middle school competitions around this part of the globe. Well, “big” according to “I’ve heard of it”, which is by no means an accurate measure of, well, anything. I don’t go out of my way to look for them any more, even though… hold on, am I still eligible? Whatever. But in any case, diverting any unnecessary energy from the olympiad-proof-training is probably not a good idea now.
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/crappy-markup">→ read more<span class="offscreen"> Adventures in Crappy Markup</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/technological-fails" class="post-link">Technological Fails</a></h3>
-		
-		<p class="post-meta">
-		
-		2009-12-20
-		(387 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<div class="warning">
-<p><strong>Note</strong>: My 2009 self wrote this (except for the insertions by my 2013 self). It is preserved for historical interest and amusement, and does not reflect my current beliefs or attitudes.</p>
-</div>
-<p>Strange things:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/technological-fails">→ read more<span class="offscreen"> Technological Fails</span></a>
 	</footer>
 </article>
 

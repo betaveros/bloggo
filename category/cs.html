@@ -120,6 +120,47 @@ Category → CS
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/baby-boi" class="post-link">baby_boi (A Textbook CTF ROP Tutorial)</a></h3>
+		
+		<h4 class="post-subtitle">CSAW CTF Qualifiers 2019</h4>
+		
+		<p class="post-meta">
+		
+		2019-09-15
+		(1702 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>Welcome to pwn.</p>
+<p><code>nc pwn.chal.csaw.io 1005</code></p>
+</blockquote>
+<p>Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with security professionals who probably have decades of experience and who follow security developments for a living or whatever, there remains a competition where scrubs like me can apply our extremely basic CTF skills and still feel kinda smart by earning points. Now that I’ve graduated and am no longer eligible, our team was pretty small and I didn’t dedicate the full weekend to the CTF, but it means I got to do the really easy challenges in the categories that I was the worst at, by which I mean pwn.</p>
+<p><code>baby_boi</code> is pretty much the simplest possible modern ROP (the modern security protections NX and ASLR are not artificially disabled, but you get everything you need to work around them). We even get source code.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv[]) {</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">char</span> buf[<span class="dv">32</span>];</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">  printf(<span class="st">&quot;Hello!</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">  printf(<span class="st">&quot;Here I am: %p</span><span class="sc">\n</span><span class="st">&quot;</span>, printf);</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">  gets(buf);</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">}</a></code></pre></div>
+<p>So there’s nothing novel here for experienced pwners, but I feel like there is a shortage of tutorials that walk you through how to solve a textbook ROP the way you’d want to solve it in a CTF, so here is a writeup.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/baby-boi">→ read more<span class="offscreen"> baby_boi (A Textbook CTF ROP Tutorial)</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/multiplication" class="post-link">Multiplication by Juxtaposition</a></h3>
 		
 		<h4 class="post-subtitle">Evaluating 8÷2(2&#43;2) in Haskell (and some other languages)</h4>
@@ -376,38 +417,6 @@ Environment: Ubuntu 16.04+latex</code></pre>
 <p>The goal is to read the flag from the open MySQL connection.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/shellql">→ read more<span class="offscreen"> shellql</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/doggo" class="post-link">Pupper/Doggo</a></h3>
-		
-		<h4 class="post-subtitle">PlaidCTF 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-05-06
-		(2909 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called <em>Wolf</em>. Concretely, every type in Wolf’s type system has an associated <em>secrecy</em>: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.</p>
-<p>Of course, this is a CTF, so the challenge is all about breaking the theoretical guarantees of the type system. When we submit code, it’s evaluated in a context with a private integer variable <code>flag</code>; our code is typechecked, executed, and printed, but only if its type is public. The goal is to break the type system and write code that produces a public value that depends on <code>flag</code>, so that we can exfiltrate <code>flag</code> itself.</p>
-<p>In all, there are three progressively harder Wolf problems, named Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the flag of the challenge before it, so that you need to solve them in order (unless you can somehow blindly exploit servers running SML programs).</p>
-<h3 id="wolf-overview">Wolf Overview</h3>
-<p>Let’s first go over the Wolf syntax and semantics. (There are small differences between the three problems, but they’re syntactically identical and only semantically differ in cases that we’ll naturally get to.) The <code>examples</code> folder has some examples of valid code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">let</span> x = (<span class="dv">5</span> :&gt; <span class="kw">private</span> <span class="dt">int</span>) <span class="kw">in</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="dv">6</span></a></code></pre></div>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/doggo">→ read more<span class="offscreen"> Pupper/Doggo</span></a>
 	</footer>
 </article>
 
