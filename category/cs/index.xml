@@ -6,10 +6,22 @@
     <description>Recent content in CS on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Sep 2019 23:43:10 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 16 Sep 2019 01:18:58 -0400</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/category/cs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>callsite</title>
+      <link>//blog.vero.site/post/callsite</link>
+      <pubDate>Mon, 16 Sep 2019 01:18:58 -0400</pubDate>
+      
+      <guid>//blog.vero.site/post/callsite</guid>
+      <description>Call me maybe? nc rev.chal.csaw.io 1001
+ A rev with a nasty binary. There are so many functions. I do not like this binary.
+   Static Analysis After staring at the sea of functions in IDA for a little bit, I gave up and tried dumb things instead.
+$ strings callsite | grep flag flag.txt WARNING: Unsupported flag value(s) of 0x%x in DT_FLAGS_1. s-&amp;gt;_flags2 &amp;amp; _IO_FLAGS2_FORTIFY version == NULL || (flags &amp;amp; ~(DL_LOOKUP_ADD_DEPENDENCY | DL_LOOKUP_GSCOPE_LOCK)) == 0 imap-&amp;gt;l_type == lt_loaded &amp;amp;&amp;amp; (imap-&amp;gt;l_flags_1 &amp;amp; DF_1_NODELETE) == 0 Oh neat, flag.</description>
+    </item>
     
     <item>
       <title>unagi</title>

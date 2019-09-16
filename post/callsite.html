@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8" />
+	
+	<title>callsite</title>
+	
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="Call me maybe? nc rev.chal.csaw.io 1001
+ A rev with a nasty binary. There are so many functions. I do not like this binary.
+   Static Analysis After staring at the sea of functions in IDA for a little bit, I gave up and tried dumb things instead.
+$ strings callsite | grep flag flag.txt WARNING: Unsupported flag value(s) of 0x%x in DT_FLAGS_1. s-&amp;gt;_flags2 &amp;amp; _IO_FLAGS2_FORTIFY version == NULL || (flags &amp;amp; ~(DL_LOOKUP_ADD_DEPENDENCY | DL_LOOKUP_GSCOPE_LOCK)) == 0 imap-&amp;gt;l_type == lt_loaded &amp;amp;&amp;amp; (imap-&amp;gt;l_flags_1 &amp;amp; DF_1_NODELETE) == 0 Oh neat, flag." />
+
+
+
+<meta name="generator" content="Hugo 0.56.0-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/callsite" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+			<li class="menu-item "><a href="/all">All Posts</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">callsite</h1>
+		
+		<h2 class="post-subtitle">CSAW CTF Qualifiers 2019</h2>
+		
+		<p class="post-meta">
+		
+		2019-09-16
+		(561 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><blockquote>
+<p>Call me maybe? <code>nc rev.chal.csaw.io 1001</code></p>
+</blockquote>
+<p>A rev with a nasty binary. There are so many functions. I do not like this binary.</p>
+<figure>
+<a href="/img/callsite-gross.png"><img src="/img/callsite-gross.png" alt="Screenshot of IDA Pro on the callsite binary, with a lot of code and functions." /></a>
+</figure>
+<h3 id="static-analysis">Static Analysis</h3>
+<p>After staring at the sea of functions in IDA for a little bit, I gave up and tried dumb things instead.</p>
+<pre><code>$ strings callsite | grep flag
+flag.txt
+WARNING: Unsupported flag value(s) of 0x%x in DT_FLAGS_1.
+s-&gt;_flags2 &amp; _IO_FLAGS2_FORTIFY
+version == NULL || (flags &amp; ~(DL_LOOKUP_ADD_DEPENDENCY | DL_LOOKUP_GSCOPE_LOCK)) == 0
+imap-&gt;l_type == lt_loaded &amp;&amp; (imap-&gt;l_flags_1 &amp; DF_1_NODELETE) == 0</code></pre>
+<p>Oh neat, <code>flag.txt</code> is a lead. It’s not hard to find the string in IDA, and then follow cross-references to reach the code referencing it.</p>
+<figure>
+<a href="/img/callsite-flag.png"><img src="/img/callsite-flag.png" alt="Screenshot of IDA Pro of part of the callsite binary using flag.txt." /></a>
+</figure>
+<p>Purely circumstantially, this looks a lot like code we’d like to call to print the flag. Phew! We’ve found the most important lines of assembly from among the hundreds of functions. It appears that there is a comparison between some string and the suspiciously alphanumeric string “aaGr6xly5gT42” before the code to print the flag.</p>
+<h3 id="dynamic-analysis">Dynamic Analysis</h3>
+<p>After trying a bunch of things in <code>gdb</code> I basically just learned that <code>callsite 1234 5678</code> segfaults while trying to execute the address 0x1234. In addition, there were some suspicious strings to be found in the registers when that segfault happens. (This output is from <code>voltron show reg</code>.)</p>
+<pre><code>[ o d I t s z a P c ]
+[                   ]
+RIP 0000000000001234 | 4....... |
+RAX 0000000000000001 | ........ |
+RBX 0000000000715580 | .Uq..... | =&gt; &quot;aaaj23.Ahui1k&quot;
+RBP 00007FFFFFFFDE68 | h....... | =&gt; 0x7FFFFFFFE217 =&gt; &quot;/home/fidget/portal/callsite&quot;
+RSP 00007FFFFFFFDC78 | x....... | =&gt; 0x400693 =&gt; &quot;1&quot;
+RDI 0000000000715580 | .Uq..... | =&gt; &quot;aaaj23.Ahui1k&quot;
+RSI 0000000000000000 | ........ |
+RDX 00007FFFFFFFDC88 | ........ | =&gt; &quot;40x200
+RCX 0000000000000000 | ........ |
+R8  0000000000000000 | ........ |
+R9  0000000000000000 | ........ |
+R10 0000000000000000 | ........ |
+R11 00000000004BA260 | `.K..... |
+R12 0000000000407AD0 | .z@..... | =&gt; &quot;UH&quot;
+R13 0000000000000000 | ........ |
+R14 00000000006E4018 | .@n..... | =&gt; 0x450830 =&gt; &quot;H&quot;
+R15 0000000000000000 | ........ |
+CS  0033  DS  0000
+ES  0000  FS  0000
+GS  0000  SS  002B</code></pre>
+<p>More in-depth interactive stepping allowed me to determine that the segfaulting instruction was <code>0x40068f</code>, although this wasn’t actually that useful:</p>
+<pre><code>.text:000000000040068F                 call    [rsp+0C8h+var_C0]</code></pre>
+<p>However, the function in which this instruction resides disassembles moderately well, and it has a few clues in the form of string literals:</p>
+<figure>
+<a href="/img/callsite-sub.png"><img src="/img/callsite-sub.png" alt="Screenshot of IDA Pro on the subroutine" /></a>
+</figure>
+<p>There’s some <code>&quot;%lx&quot;</code> energy floating around, corroborating how our first argument was interpreted as hexadecimal to obtain an address. As for <code>&quot;aa&quot;</code>, which suspiciously appears at the start of the string we saw pointed to by our registers as well as the string literal being compared against, fortenforge figured out that the C <a href="http://man7.org/linux/man-pages/man3/crypt.3.html">crypt</a> function was being called on the second argument we passed to <code>callsite</code>, and the result was this suspicious string. <code>crypt</code> is an ancient DES-based hash function with a salt of exactly two characters, which happened to be <code>aa</code> in this case. So it seems like we should reverse the hash <code>aaGr6xly5gT42</code> to figure out what the second argument should be.</p>
+<p>We fed the hash to <a href="https://hashcat.net/hashcat/">hashcat</a> for maybe an hour before fortenforge also realized we could probably just cut the Gordian knot by jumping to the code after the check at <code>0x400cbb</code>. I did so, and:</p>
+<pre><code>$ nc rev.chal.csaw.io 1001
+Give me two args, space separated:
+400cbb whatever
+flag{you_got_the_call_site}
+Wrong!</code></pre>
+<p>“Wrong” is a social construct, as they say.</p>
+</article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/ctf"><span class="tag">CTF</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/unagi">← unagi</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2019 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>
