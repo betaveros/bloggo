@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8" />
+	
+	<title>unagi</title>
+	
+
+
+
+
+<meta name="author" content="betaveros" />
+<meta name="description" content=" come get me
+http://web.chal.csaw.io:1003
+ This was a web challenge with a few pages. The “User” page displayed some user information:
+    Name: Alice
+Email: alice@fakesite.com
+Group: CSAW2019
+Intro: Alice is cool
+Name: Bob
+Email: bob@fakesite.com
+Group: CSAW2019
+Intro: Bob is cool too
+ The “About” page simply told us, “Flag is located at /flag.txt, come get it”. The most interesting page was “Upload”, where we could view an example users XML file:
+" />
+
+
+
+<meta name="generator" content="Hugo 0.56.0-DEV" />
+
+
+<link rel="canonical" href="//blog.vero.site/post/unagi" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header">
+	
+	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
+	
+	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+		<span class="icon icon-menu" aria-hidden="true"></span>
+	</button>
+	<nav class="site-menu collapsed">
+		<h2 class="offscreen">Main Menu</h2>
+		<ul class="menu-list">
+			
+			
+			
+			
+			<li class="menu-item "><a href="/about">About</a></li>
+			
+			<li class="menu-item "><a href="/category/life">Life</a></li>
+			
+			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
+			
+			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
+			
+			<li class="menu-item "><a href="/category/math">Math</a></li>
+			
+			<li class="menu-item "><a href="/category/cs">CS</a></li>
+			
+			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
+			
+			<li class="menu-item "><a href="/category/meta">Meta</a></li>
+			
+			<li class="menu-item "><a href="/util">Utilities</a></li>
+			
+			<li class="menu-item "><a href="/all">All Posts</a></li>
+			
+		</ul>
+	</nav>
+	<nav class="social-menu collapsed">
+		<h2 class="offscreen">Social Networks</h2>
+		<ul class="social-list">
+
+			
+
+			
+			<li class="social-item">
+				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+			</li>
+
+			
+
+			<li class="social-item">
+				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">unagi</h1>
+		
+		<h2 class="post-subtitle">CSAW CTF Qualifiers 2019</h2>
+		
+		<p class="post-meta">
+		
+		2019-09-15
+		(568 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><blockquote>
+<p>come get me</p>
+<p>http://web.chal.csaw.io:1003</p>
+</blockquote>
+<p>This was a web challenge with a few pages. The “User” page displayed some user information:</p>
+<figure>
+<a href="/img/unagi-user.png"><img src="/img/unagi-user.png" alt="Screenshot of User page, transcribed below" /></a>
+</figure>
+<blockquote>
+<p>Name: Alice<br />
+Email: alice@fakesite.com<br />
+Group: CSAW2019<br />
+Intro: Alice is cool</p>
+<p>Name: Bob<br />
+Email: bob@fakesite.com<br />
+Group: CSAW2019<br />
+Intro: Bob is cool too</p>
+</blockquote>
+<p>The “About” page simply told us, “Flag is located at /flag.txt, come get it”. The most interesting page was “Upload”, where we could view an example users XML file:</p>
+<pre class="xmml"><code>&lt;users&gt;
+  &lt;user&gt;
+    &lt;username&gt;alice&lt;/username&gt;
+    &lt;password&gt;passwd1&lt;/password&gt;
+    &lt;name&gt;Alice&lt;/name&gt;
+    &lt;email&gt;alice@fakesite.com&lt;/email&gt;
+    &lt;group&gt;CSAW2019&lt;/group&gt;
+  &lt;/user&gt;
+  &lt;user&gt;
+    &lt;username&gt;bob&lt;/username&gt;
+    &lt;password&gt;passwd2&lt;/password&gt;
+    &lt;name&gt;Bob&lt;/name&gt;
+    &lt;email&gt;bob@fakesite.com&lt;/email&gt;
+    &lt;group&gt;CSAW2019&lt;/group&gt;
+  &lt;/user&gt;
+&lt;/users&gt;</code></pre>
+<p>More importantly, we could also upload a file of our own, where the information we provided would be sent back to us, formatted analogously to the “User” page.</p>
+<figure>
+<a href="/img/unagi-upload.png"><img src="/img/unagi-upload.png" alt="Screenshot of Upload page, with a form to Upload New Users" /></a>
+</figure>
+<p>Doing some searching for vulnerabilities related to XML quickly reveals <a href="https://www.owasp.org/index.php/XML_External_Entity_%28XXE%29_Processing">XML Eternal Entity Processing</a>, or XXE for short. A minimal example of an XXE exploit would look like:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="er">&lt;</span>!ENTITY yeet SYSTEM &quot;file:///flag.txt&quot;&gt;</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">&lt;users&gt;&lt;user&gt;&lt;name&gt;</span><span class="dv">&amp;yeet;</span><span class="kw">&lt;/name&gt;&lt;/user&gt;&lt;/users&gt;</span></a></code></pre></div>
+<p>Here we define the entity <code>&amp;yeet;</code> to transclude the file <code>file:///flag.txt</code>, so that, in theory, if it’s processed and we get to see the results, we’ll also get the contents of that file. (Note that we omitted all fields other than <code>name</code> just because, after testing, the “Upload” page still worked with XML with such a structure; had it not, we might have had to add back all the other fields with dummy content.)</p>
+<p>Alas, if we attempt to upload this file, we don’t get any output back. Instead, we get a small message at the top of the screen:</p>
+<blockquote>
+<p>WAF blocked uploaded file. Please try again</p>
+</blockquote>
+<p>A “WAF”, it turns out, is a Web Application Firewall, basically something that sits in front of your application filtering out suspicious inputs that look like exploits. After trying a bunch of things, I decided the WAF was very strict but very dumb, simply checking for words like ENTITY and SYSTEM anywhere in the file, without regard for whether they were in a comment or anything. (This is more or less what the <a href="https://github.com/osirislab/CSAW-CTF-2019-Quals/blob/master/web/unagi/src/upload.php">posted challenge source</a> reveals.)</p>
+<p>So, more Googling led me to this article, <a href="https://lab.wallarm.com/xxe-that-can-bypass-waf-protection-98f679452ce0">“XXE that can bypass WAF protection”</a>. I tried several of the methods. Eventually after an hour or two of fiddling and trying the various strategies, I got the encoding bypass to work, by taking this XML:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-16&quot; <span class="kw">?&gt;</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="dt">&lt;!DOCTYPE </span>users <span class="dt">[&lt;!ENTITY</span> yeet SYSTEM <span class="st">&quot;file:///flag.txt&quot;</span><span class="dt">&gt;]&gt;</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">&lt;users&gt;&lt;user&gt;&lt;name&gt;</span><span class="dv">&amp;yeet;</span><span class="kw">&lt;/name&gt;&lt;/user&gt;&lt;/users&gt;</span></a></code></pre></div>
+<p>and converting it to UTF-16, exactly as described on that page:</p>
+<pre><code>$ iconv -f utf-8 -t utf-16be &lt; xxe.xml &gt; xxe-utf-16.xml</code></pre>
+<p>Uploading <code>xxe-utf-16.xml</code> produces interesting output.</p>
+<blockquote>
+<p>Name: AAAAAAAAAAAAAAAAAAAA</p>
+</blockquote>
+<p>That doesn’t looks like something we entered, so it seems that our injection worked, but it doesn’t look like a flag either. More experimenting reveals that, unfortunately, when the name or any of the other visible fields in the sample XML are echoed back to us, they are truncated to a fixed length. So maybe the flag is later in <code>/flag.txt</code>, so it’s being hidden by the truncation? How can we work around this?</p>
+<p>All that remains is a little bit of lateral thinking. If you compare the Users page and the sample XML more carefully, you’ll see that one field on the Users page is unaccounted for:</p>
+<blockquote>
+<p>Intro: Alice is cool</p>
+</blockquote>
+<p>Maybe, just maybe, this corresponds to an <code>&lt;intro&gt;</code> tag? Let’s try it:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-16&quot; <span class="kw">?&gt;</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="dt">&lt;!DOCTYPE </span>users <span class="dt">[&lt;!ENTITY</span> yeet SYSTEM <span class="st">&quot;file:///flag.txt&quot;</span><span class="dt">&gt;]&gt;</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">&lt;users&gt;&lt;user&gt;&lt;intro&gt;</span><span class="dv">&amp;yeet;</span><span class="kw">&lt;/intro&gt;&lt;/user&gt;&lt;/users&gt;</span></a></code></pre></div>
+<p>Converting to UTF-16 as before and uploading, we see:</p>
+<figure>
+<a href="/img/unagi-flag.png"><img src="/img/unagi-flag.png" alt="Screenshot of User page displaying the flag after our uploaded exploit" /></a>
+</figure>
+<p>There’s our flag, amidst all the other screaming A’s:</p>
+<pre><code>flag{n0w_i&#39;m_s@d_cuz_y0u_g3t_th3_fl4g_but_c0ngr4ts}</code></pre></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/ctf"><span class="tag">CTF</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/baby-boi">← baby_boi (A Textbook CTF ROP Tutorial)</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2019 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+
+
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>

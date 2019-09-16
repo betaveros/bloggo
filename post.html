@@ -116,6 +116,50 @@ Posts
 	
 	<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/unagi" class="post-link">unagi</a></h3>
+		
+		<h4 class="post-subtitle">CSAW CTF Qualifiers 2019</h4>
+		
+		<p class="post-meta">
+		
+		2019-09-15
+		(568 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>come get me</p>
+<p>http://web.chal.csaw.io:1003</p>
+</blockquote>
+<p>This was a web challenge with a few pages. The “User” page displayed some user information:</p>
+<figure>
+<a href="/img/unagi-user.png"><img src="/img/unagi-user.png" alt="Screenshot of User page, transcribed below" /></a>
+</figure>
+<blockquote>
+<p>Name: Alice<br />
+Email: alice@fakesite.com<br />
+Group: CSAW2019<br />
+Intro: Alice is cool</p>
+<p>Name: Bob<br />
+Email: bob@fakesite.com<br />
+Group: CSAW2019<br />
+Intro: Bob is cool too</p>
+</blockquote>
+<p>The “About” page simply told us, “Flag is located at /flag.txt, come get it”. The most interesting page was “Upload”, where we could view an example users XML file:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/unagi">→ read more<span class="offscreen"> unagi</span></a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/baby-boi" class="post-link">baby_boi (A Textbook CTF ROP Tutorial)</a></h3>
 		
 		<h4 class="post-subtitle">CSAW CTF Qualifiers 2019</h4>
@@ -405,35 +449,6 @@ TypeError: &#39;int&#39; object is not callable</code></pre>
 <p>Finally I decided that I would break it into lots of small posts on specific topics. This way, at least the perfectionism can’t bleed between posts too much. The first topic I wanted to write about is simple, mundane, and also fairly limited in scope itself: how to choose your MIT username.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/username">→ read more<span class="offscreen"> How to Choose an MIT Username</span></a>
-	</footer>
-</article>
-
-	
-	<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/refrain" class="post-link">refrain</a></h3>
-		
-		<h4 class="post-subtitle">0CTF/TCTF 2019 Quals</h4>
-		
-		<p class="post-meta">
-		
-		2019-03-27
-		(2427 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<pre><code>http://111.186.63.17/perf.data.gz
-
-Environment: Ubuntu 16.04+latex</code></pre>
-<p>In this challenge, we get a gzipped file called <code>perf.data</code> and a minimal description of an environment. Googling this reveals that <code>perf.data</code> is a record format of the <code>perf</code> tool, a Linux profiler. Installing <code>perf</code> allows us to read <code>perf.data</code> and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is <code>perf report -D</code>, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the <code>perf record</code> was run against.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/refrain">→ read more<span class="offscreen"> refrain</span></a>
 	</footer>
 </article>
 

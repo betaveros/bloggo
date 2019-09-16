@@ -116,6 +116,38 @@ Posts
 	
 	<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/doggo" class="post-link">Pupper/Doggo</a></h3>
+		
+		<h4 class="post-subtitle">PlaidCTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-05-06
+		(2909 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called <em>Wolf</em>. Concretely, every type in Wolf’s type system has an associated <em>secrecy</em>: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.</p>
+<p>Of course, this is a CTF, so the challenge is all about breaking the theoretical guarantees of the type system. When we submit code, it’s evaluated in a context with a private integer variable <code>flag</code>; our code is typechecked, executed, and printed, but only if its type is public. The goal is to break the type system and write code that produces a public value that depends on <code>flag</code>, so that we can exfiltrate <code>flag</code> itself.</p>
+<p>In all, there are three progressively harder Wolf problems, named Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the flag of the challenge before it, so that you need to solve them in order (unless you can somehow blindly exploit servers running SML programs).</p>
+<h3 id="wolf-overview">Wolf Overview</h3>
+<p>Let’s first go over the Wolf syntax and semantics. (There are small differences between the three problems, but they’re syntactically identical and only semantically differ in cases that we’ll naturally get to.) The <code>examples</code> folder has some examples of valid code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">let</span> x = (<span class="dv">5</span> :&gt; <span class="kw">private</span> <span class="dt">int</span>) <span class="kw">in</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="dv">6</span></a></code></pre></div>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/doggo">→ read more<span class="offscreen"> Pupper/Doggo</span></a>
+	</footer>
+</article>
+
+	
+	<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/on-delete-facebook" class="post-link">On #DeleteFacebook</a></h3>
 		
 		<p class="post-meta">
@@ -355,34 +387,6 @@ Posts
 <p>I brainstormed reasons why I’m not blogging. It took a while for me to find a reason that felt right, but I think it’s mostly the concern that I don’t have anything important to say, and I’m just spamming people’s inboxes or Facebook feeds. I make fun of my perfectonist tendencies, but they haven’t gone away and have been exacerbated by how public this blog feels now. There’s also a general feeling permeating life that I should be trying to present myself professionally to people, because like a diamond, the Internet is forever.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/step-back">→ read more<span class="offscreen"> Taking a Step Back</span></a>
-	</footer>
-</article>
-
-	
-	<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/january" class="post-link">I guess January is puzzles month</a></h3>
-		
-		<p class="post-meta">
-		
-		2017-02-04
-		(718 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>And it’s not even January any more.</p>
-<p>(Thing negative two: Thing zero, which is at the bottom of this post, contains two puzzles by me. Skip there if that sounds interesting and text walls don’t.)</p>
-<p>Thing negative one: I abandoned this blog (again). The last month has been a mess and much of it is political stuff of the sort that I’m the worst/slowest at writing about.</p>
-<hr />
-<p>Thing one: I was on-site for a second MIT Mystery Hunt.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/january">→ read more<span class="offscreen"> I guess January is puzzles month</span></a>
 	</footer>
 </article>
 
