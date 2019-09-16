@@ -17,10 +17,15 @@
       <pubDate>Mon, 16 Sep 2019 01:18:58 -0400</pubDate>
       
       <guid>//blog.vero.site/post/callsite</guid>
-      <description>Call me maybe? nc rev.chal.csaw.io 1001
- A rev with a nasty binary. There are so many functions. I do not like this binary.
-   Static Analysis After staring at the sea of functions in IDA for a little bit, I gave up and tried dumb things instead.
-$ strings callsite | grep flag flag.txt WARNING: Unsupported flag value(s) of 0x%x in DT_FLAGS_1. s-&amp;gt;_flags2 &amp;amp; _IO_FLAGS2_FORTIFY version == NULL || (flags &amp;amp; ~(DL_LOOKUP_ADD_DEPENDENCY | DL_LOOKUP_GSCOPE_LOCK)) == 0 imap-&amp;gt;l_type == lt_loaded &amp;amp;&amp;amp; (imap-&amp;gt;l_flags_1 &amp;amp; DF_1_NODELETE) == 0 Oh neat, flag.</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Call me maybe? &lt;code&gt;nc rev.chal.csaw.io 1001&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A rev with a nasty binary. There are so many functions. I do not like this binary.&lt;/p&gt;
+&lt;figure&gt;
+&lt;a href=&#34;//blog.vero.site/img/callsite-gross.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/callsite-gross.png&#34; alt=&#34;Screenshot of IDA Pro on the callsite binary, with a lot of code and functions.&#34; /&gt;&lt;/a&gt;
+&lt;/figure&gt;
+&lt;h3 id=&#34;static-analysis&#34;&gt;Static Analysis&lt;/h3&gt;
+&lt;p&gt;After staring at the sea of functions in IDA for a little bit, I gave up and tried dumb things instead.&lt;/p&gt;</description>
     </item>
     
     <item>

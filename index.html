@@ -129,10 +129,15 @@
 		</p>
 	</header>
 	
-	Call me maybe? nc rev.chal.csaw.io 1001
- A rev with a nasty binary. There are so many functions. I do not like this binary.
-   Static Analysis After staring at the sea of functions in IDA for a little bit, I gave up and tried dumb things instead.
-$ strings callsite | grep flag flag.txt WARNING: Unsupported flag value(s) of 0x%x in DT_FLAGS_1. s-&gt;_flags2 &amp; _IO_FLAGS2_FORTIFY version == NULL || (flags &amp; ~(DL_LOOKUP_ADD_DEPENDENCY | DL_LOOKUP_GSCOPE_LOCK)) == 0 imap-&gt;l_type == lt_loaded &amp;&amp; (imap-&gt;l_flags_1 &amp; DF_1_NODELETE) == 0 Oh neat, flag.
+	<blockquote>
+<p>Call me maybe? <code>nc rev.chal.csaw.io 1001</code></p>
+</blockquote>
+<p>A rev with a nasty binary. There are so many functions. I do not like this binary.</p>
+<figure>
+<a href="/img/callsite-gross.png"><img src="/img/callsite-gross.png" alt="Screenshot of IDA Pro on the callsite binary, with a lot of code and functions." /></a>
+</figure>
+<h3 id="static-analysis">Static Analysis</h3>
+<p>After staring at the sea of functions in IDA for a little bit, I gave up and tried dumb things instead.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/callsite">→ read more<span class="offscreen"> callsite</span></a>
 	</footer>
