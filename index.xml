@@ -3620,6 +3620,18 @@ Anyway apparently I wrote “to indulge in a colloquialism” less than a year a
     </item>
     
     <item>
+      <title>Coq Reference</title>
+      <link>//blog.vero.site/ref/coq</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/coq</guid>
+      <description>It seems like a rite of passage to create one of these because there are so many Coq tactic cheat sheets out there and there’s just so much to learn. Here’s mine.
+This is mostly about tactics but I realized not really.
+Links:
+ Coq Tactics. Authoritative but dense. Logical Foundations (Software Foundations Volume 1). I think the order of ideas makes pedagogical sense but also makes it hard for me to look up particular tactics or concepts.</description>
+    </item>
+    
+    <item>
       <title>Factorize</title>
       <link>//blog.vero.site/util/factorize</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
