@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<meta charset="utf-8" />
-	
-	<title>baby_boi (A Textbook CTF ROP Tutorial)</title>
-	
-
-
-
+<meta charset="utf-8" />
+<title>baby_boi (A Textbook CTF ROP Tutorial)</title>
 
 <meta name="author" content="betaveros" />
 <meta name="description" content=" Welcome to pwn.
@@ -15,97 +10,47 @@ nc pwn.chal.csaw.io 1005
  Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with security professionals who probably have decades of experience and who follow security developments for a living or whatever, there remains a competition where scrubs like me can apply our extremely basic CTF skills and still feel kinda smart by earning points. Now that I’ve graduated and am no longer eligible, our team was pretty small and I didn’t dedicate the full weekend to the CTF, but it means I got to do the really easy challenges in the categories that I was the worst at, by which I mean pwn.
 baby_boi is pretty much the simplest possible modern ROP (the modern security protections NX and ASLR are not artificially disabled, but you get everything you need to work around them). We even get source code.
 #include &amp;lt;stdio.h&amp;gt; #include &amp;lt;stdlib.h&amp;gt;  int main(int argc, char **argv[]) { char buf[32]; printf(&amp;quot;Hello!\n&amp;quot;); printf(&amp;quot;Here I am: %p\n&amp;quot;, printf); gets(buf); } So there’s nothing novel here for experienced pwners, but I feel like there is a shortage of tutorials that walk you through how to solve a textbook ROP the way you’d want to solve it in a CTF, so here is a writeup.
-" />
-
-
-
-<meta name="generator" content="Hugo 0.56.0-DEV" />
-
+" /><meta name="generator" content="Hugo 0.56.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/baby-boi" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
-
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="format-detection" content="telephone=no,email=no,adress=no" />
 <meta http-equiv="Cache-Control" content="no-transform" />
 
-
 <meta name="robots" content="index,follow" />
 <meta name="referrer" content="origin-when-cross-origin" />
 
-
-
-
 <link rel="icon" href="/favicon.ico" />
-
-
 
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
 <!--[if lte IE 11]>
     <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
-  <![endif]-->
+<![endif]-->
 
 </head>
 <body><div id="wrapper">
-<header class="site-header">
-	
-	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
-	
-	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
-	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
-		<span class="icon icon-menu" aria-hidden="true"></span>
-	</button>
-	<nav class="site-menu collapsed">
-		<h2 class="offscreen">Main Menu</h2>
-		<ul class="menu-list">
-			
-			
-			
-			
-			<li class="menu-item "><a href="/about">About</a></li>
-			
-			<li class="menu-item "><a href="/category/life">Life</a></li>
-			
-			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
-			
-			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
-			
-			<li class="menu-item "><a href="/category/math">Math</a></li>
-			
-			<li class="menu-item "><a href="/category/cs">CS</a></li>
-			
-			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
-			
-			<li class="menu-item "><a href="/category/meta">Meta</a></li>
-			
-			<li class="menu-item "><a href="/util">Utilities</a></li>
-			
-			<li class="menu-item "><a href="/all">All Posts</a></li>
-			
-		</ul>
-	</nav>
-	<nav class="social-menu collapsed">
-		<h2 class="offscreen">Social Networks</h2>
-		<ul class="social-list">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
 
-			
-
-			
-			<li class="social-item">
-				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
-			</li>
-
-			
-
-			<li class="social-item">
-				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
-			</li>
-
-		</ul>
-	</nav>
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
 </header>
 
 <section class="main post-detail">
@@ -330,9 +275,6 @@ flag{baby_boi_dodooo_doo_doo_dooo}</code></pre>
 	<a href="https://www.cloudflare.com/">CloudFlare</a>.
 	</p>
 </footer>
-
-
-
 
 <script src="/katex/katex.min.js"></script>
 <script src="/katex/contrib/auto-render.min.js"></script>

@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<meta charset="utf-8" />
-	
-	<title>[IMO 2012 Part 5] Unlucky Fours</title>
-	
-
-
-
+<meta charset="utf-8" />
+<title>[IMO 2012 Part 5] Unlucky Fours</title>
 
 <meta name="author" content="betaveros" />
 <meta name="description" content="[edit: okay guys I’m surprised at many people come here with search queries looking for solutions. If you want IMO solutions, the corresponding AoPS forum invariably has many of them. This is probably late-ish, but just in case.]  Day 2 of the contest.
@@ -17,97 +12,47 @@ I don’t know, it sounded cool at the time.
 Problem 4. Find all functions f: Z → Z such that, for all integers a,b,c that satisfy a&#43;b&#43;c = 0, the following equality holds: \[f(a)^2&#43;f(b)^2&#43;f(c)^2=2f(a)f(b)&#43;2f(b)f(c)&#43;2f(c)f(a).\] (Here Z denotes the set of integers.)
 An innocent-looking functional equation, but once you start trying it you discover that there’s quite some depth to it. Random guessing can yield that \(f(x) = x^2\) is a solution, so I proved inductively that after dividing out a constant f(1) then the remaining part of f is a perfect square. Letting \(f(x) = f(1)g(x)^2\) with g(x) a nonnegative integer and factorizing the original equation, I got an auxiliary functional equation equivalent to the original equation.
 Casework on small values of g, and the surprises started coming hard and fast. First: wow there’s an extra odd-even solution! Then: woah there’s another mod 4 solution! What is this madness?
-" />
-
-
-
-<meta name="generator" content="Hugo 0.56.0-DEV" />
-
+" /><meta name="generator" content="Hugo 0.56.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/fours" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
-
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="format-detection" content="telephone=no,email=no,adress=no" />
 <meta http-equiv="Cache-Control" content="no-transform" />
 
-
 <meta name="robots" content="index,follow" />
 <meta name="referrer" content="origin-when-cross-origin" />
 
-
-
-
 <link rel="icon" href="/favicon.ico" />
-
-
 
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
 <!--[if lte IE 11]>
     <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
-  <![endif]-->
+<![endif]-->
 
 </head>
 <body><div id="wrapper">
-<header class="site-header">
-	
-	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
-	
-	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
-	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
-		<span class="icon icon-menu" aria-hidden="true"></span>
-	</button>
-	<nav class="site-menu collapsed">
-		<h2 class="offscreen">Main Menu</h2>
-		<ul class="menu-list">
-			
-			
-			
-			
-			<li class="menu-item "><a href="/about">About</a></li>
-			
-			<li class="menu-item "><a href="/category/life">Life</a></li>
-			
-			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
-			
-			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
-			
-			<li class="menu-item "><a href="/category/math">Math</a></li>
-			
-			<li class="menu-item "><a href="/category/cs">CS</a></li>
-			
-			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
-			
-			<li class="menu-item "><a href="/category/meta">Meta</a></li>
-			
-			<li class="menu-item "><a href="/util">Utilities</a></li>
-			
-			<li class="menu-item "><a href="/all">All Posts</a></li>
-			
-		</ul>
-	</nav>
-	<nav class="social-menu collapsed">
-		<h2 class="offscreen">Social Networks</h2>
-		<ul class="social-list">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
 
-			
-
-			
-			<li class="social-item">
-				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
-			</li>
-
-			
-
-			<li class="social-item">
-				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
-			</li>
-
-		</ul>
-	</nav>
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
 </header>
 
 <section class="main post-detail">
@@ -206,9 +151,6 @@ Casework on small values of g, and the surprises started coming hard and fast. F
 	<a href="https://www.cloudflare.com/">CloudFlare</a>.
 	</p>
 </footer>
-
-
-
 
 <script src="/katex/katex.min.js"></script>
 <script src="/katex/contrib/auto-render.min.js"></script>

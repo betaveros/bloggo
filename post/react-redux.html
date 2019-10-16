@@ -1,109 +1,54 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<meta charset="utf-8" />
-	
-	<title>React and Redux the Hard FP Way</title>
-	
-
-
-
+<meta charset="utf-8" />
+<title>React and Redux the Hard FP Way</title>
 
 <meta name="author" content="betaveros" />
 <meta name="description" content="A more accurate but less informative title for this post would be “How I wish React and Redux were explained to me”. Note that this does not imply that this method of explanation is suitable for anybody else. I suspect it won’t be for most people.
 I had to learn React and Redux the past summer for my internship at MemSQL, and there were hundreds of articles that explain React and Redux in addition to the (fine) built-in documentation, but none of them scratched the itch; I wanted to know what was going on completely, including some of the technical details and the philosophy I ought to be following, as well as efficiently. I did not need another explanation about how to think functionally, in JavaScript types or with immutable data. React’s chapter on Conditional Rendering, for example, felt so inefficient — I know what if statements and conditional expressions are, and I know how to refactor complicated subexpressions into variables…
 So here’s the guide I wish I had. I think. It’s been months since I started it (as usual, for posts on this blog) and it is probably incomplete. However, I haven’t written React/Redux deeply in a while, so I didn’t have much motivation to continue to investigate the incomplete bits; and the perfect is the enemy of the good, so here it is.
-" />
-
-
-
-<meta name="generator" content="Hugo 0.56.0-DEV" />
-
+" /><meta name="generator" content="Hugo 0.56.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/react-redux" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
-
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="format-detection" content="telephone=no,email=no,adress=no" />
 <meta http-equiv="Cache-Control" content="no-transform" />
 
-
 <meta name="robots" content="index,follow" />
 <meta name="referrer" content="origin-when-cross-origin" />
 
-
-
-
 <link rel="icon" href="/favicon.ico" />
-
-
 
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
 <!--[if lte IE 11]>
     <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
-  <![endif]-->
+<![endif]-->
 
 </head>
 <body><div id="wrapper">
-<header class="site-header">
-	
-	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
-	
-	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
-	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
-		<span class="icon icon-menu" aria-hidden="true"></span>
-	</button>
-	<nav class="site-menu collapsed">
-		<h2 class="offscreen">Main Menu</h2>
-		<ul class="menu-list">
-			
-			
-			
-			
-			<li class="menu-item "><a href="/about">About</a></li>
-			
-			<li class="menu-item "><a href="/category/life">Life</a></li>
-			
-			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
-			
-			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
-			
-			<li class="menu-item "><a href="/category/math">Math</a></li>
-			
-			<li class="menu-item "><a href="/category/cs">CS</a></li>
-			
-			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
-			
-			<li class="menu-item "><a href="/category/meta">Meta</a></li>
-			
-			<li class="menu-item "><a href="/util">Utilities</a></li>
-			
-			<li class="menu-item "><a href="/all">All Posts</a></li>
-			
-		</ul>
-	</nav>
-	<nav class="social-menu collapsed">
-		<h2 class="offscreen">Social Networks</h2>
-		<ul class="social-list">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
 
-			
-
-			
-			<li class="social-item">
-				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
-			</li>
-
-			
-
-			<li class="social-item">
-				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
-			</li>
-
-		</ul>
-	</nav>
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
 </header>
 
 <section class="main post-detail">
@@ -244,9 +189,6 @@ So here’s the guide I wish I had. I think. It’s been months since I started 
 	<a href="https://www.cloudflare.com/">CloudFlare</a>.
 	</p>
 </footer>
-
-
-
 
 <script src="/katex/katex.min.js"></script>
 <script src="/katex/contrib/auto-render.min.js"></script>

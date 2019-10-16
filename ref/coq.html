@@ -1,106 +1,51 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<meta charset="utf-8" />
-	
-	<title>Coq Reference</title>
-	
-
-
-
+<meta charset="utf-8" />
+<title>Coq Reference</title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="" />
-
-
-
-<meta name="generator" content="Hugo 0.56.0-DEV" />
-
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.56.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/ref/coq" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
-
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="format-detection" content="telephone=no,email=no,adress=no" />
 <meta http-equiv="Cache-Control" content="no-transform" />
 
-
 <meta name="robots" content="index,follow" />
 <meta name="referrer" content="origin-when-cross-origin" />
 
-
-
-
 <link rel="icon" href="/favicon.ico" />
-
-
 
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
 <!--[if lte IE 11]>
     <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
-  <![endif]-->
+<![endif]-->
 
 </head>
 <body><div id="wrapper">
-<header class="site-header">
-	
-	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
-	
-	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
-	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
-		<span class="icon icon-menu" aria-hidden="true"></span>
-	</button>
-	<nav class="site-menu collapsed">
-		<h2 class="offscreen">Main Menu</h2>
-		<ul class="menu-list">
-			
-			
-			
-			
-			<li class="menu-item "><a href="/about">About</a></li>
-			
-			<li class="menu-item "><a href="/category/life">Life</a></li>
-			
-			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
-			
-			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
-			
-			<li class="menu-item "><a href="/category/math">Math</a></li>
-			
-			<li class="menu-item "><a href="/category/cs">CS</a></li>
-			
-			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
-			
-			<li class="menu-item "><a href="/category/meta">Meta</a></li>
-			
-			<li class="menu-item "><a href="/util">Utilities</a></li>
-			
-			<li class="menu-item "><a href="/all">All Posts</a></li>
-			
-		</ul>
-	</nav>
-	<nav class="social-menu collapsed">
-		<h2 class="offscreen">Social Networks</h2>
-		<ul class="social-list">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
 
-			
-
-			
-			<li class="social-item">
-				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
-			</li>
-
-			
-
-			<li class="social-item">
-				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
-			</li>
-
-		</ul>
-	</nav>
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
 </header>
 
 <section class="main post-detail">
@@ -110,7 +55,7 @@
 		<p class="post-meta">
 		
 		
-		(2894 words)
+		(3376 words)
 		
 		<span class="post-categories">
 			filed under
@@ -144,7 +89,7 @@
 <h3 id="how-to-fish">How to fish</h3>
 <ul>
 <li>Use the queries. <code>Search &quot;foo&quot;.</code> <code>Check foo.</code> <code>About foo.</code> <code>Compute foo.</code> To look up notation (e.g. what does <code>&lt;&gt;</code> mean?) use <code>Locate</code> (e.g. <code>Locate &quot;&lt;&gt;&quot;</code>).</li>
-<li>To look up a simple abstract theorem about natural numbers or equality without knowing what it’s called, <code>SearchPattern</code> is useful. For example, I was looking to prove <code>x &lt;&gt; y</code> given <code>y &lt;&gt; x</code>. <code>SearchPattern (_ &lt;&gt; _ -&gt; _ &lt;&gt; _).</code> found the theorem for me (it was called <code>not_eq_sym</code>).</li>
+<li>To look up a simple abstract theorem about natural numbers or equality without knowing what it’s called, <code>SearchPattern</code> is useful. For example, I was looking to prove <code>x &lt;&gt; y</code> given <code>y &lt;&gt; x</code>. <code>SearchPattern (_ &lt;&gt; _ -&gt; _ &lt;&gt; _).</code> found the theorem for me (it was called <code>not_eq_sym</code>). Similarly <code>SearchRewrite</code> on some expression pattern searches for theorems you could use to rewrite that expression.</li>
 </ul>
 <h3 id="how-to-use-hypotheses">How to use hypotheses</h3>
 <p>To use that example again: If you run <code>Check not_eq_sym.</code> you’ll get:</p>
@@ -157,6 +102,7 @@
 
 Arguments A, x, y are implicit</code></pre>
 <p>Without the <code>@</code> you only need to supply (and are only allowed to supply) the one non-implicit argument, <code>H</code>, to <code>not_eq_sym</code>. In practice arguments are usually implicit because they’re deducible from the others, so <code>not_eq_sym H</code> is pretty good.</p>
+<p>Implicits can appear in other ways and cause weird issues, such as when you’re trying to rewrite or do something else to an expression that seems to exactly match one side of the rule you’re rewriting with, but Coq refuses to operate on that expression even though it’s in plain sight. The expressions might actually be different because they have implicit arguments that differ. You can see those implicits in the expressions by issusing <code>Show Print Implicit.</code>, or fiddling with your CoqIDE settings.</p>
 <h3 id="finishing-a-proof-of-something-true">Finishing a proof of something true</h3>
 <ul>
 <li><code>reflexivity.</code> proves something is equal to itself. It can handle some simplification.</li>
@@ -172,11 +118,13 @@ Side note: <code>I</code> is the name for the unique thing of type <code>True</c
 <h3 id="finishing-a-proof-of-something-false">Finishing a proof of something false</h3>
 <ul>
 <li><code>discriminate H.</code> proves anything, given an equality <code>H</code> that says something equals something structurally different (with different constructors). You don’t need to specify <code>H</code>.</li>
-<li><code>contradiction.</code> proves anything if a hypothesis is false. Note that it has to be a hypothesis and not a thing before <code>-&gt;</code>; if you want to do that, <code>intros</code> it.</li>
+<li><code>contradiction.</code> proves anything if a hypothesis is false. Note that it has to be a hypothesis and not a thing before <code>-&gt;</code>; if you want to do that, <code>intros</code> it. It also searches for two contradictory hypotheses.</li>
+<li><code>absurd P.</code> proves anything by breaking into subgoals <code>P</code> and <code>~P</code>.</li>
 </ul>
+<p>Sidebar: <code>congruence.</code> generalizes <code>discriminate</code> and <code>injection</code> in some way.</p>
 <h3 id="modifying-the-goal-with-existing-facts">Modifying the goal with existing facts</h3>
 <ul>
-<li><code>apply H.</code> sets the goal to P if <code>H</code> is “P implies our goal” (or, directly proves a Prop that directly follows from a theorem; see above).</li>
+<li><code>apply H.</code> sets the goal to P if <code>H</code> is “P implies our goal” (or, directly proves a Prop that directly follows from a theorem; see above). <code>H</code> can also take more than one argument or premise, in which case <code>apply H.</code> opens up one subgoal per premise. (So in fact, finishing a goal via “<code>apply H.</code>” is just the special case where there are zero premises.)</li>
 <li><code>simpl.</code> simplifies the expression. It’s often not necessary in a finished proof, but can help clarify what the goal looks like in the interactive process.</li>
 <li><code>rewrite -&gt; H.</code> resp. <code>rewrite &lt;- H.</code> If H is something that says “A = B”, replace A with B in the goal, resp., B with A. If <code>H</code> requires some hypotheses, it will open up those hypotheses as subgoals, coming last.</li>
 <li><code>rewrite -&gt; H by tactic.</code> resp. <code>rewrite &lt;- H by tactic.</code> As above but immediately solve the subgoals.</li>
@@ -197,12 +145,14 @@ Side note: <code>I</code> is the name for the unique thing of type <code>True</c
 <p>(There’s also an <code>assert (Name : U)</code> syntax but I never remember the order.)</p>
 <h3 id="splitting-into-cases">Splitting into cases</h3>
 <ul>
-<li><code>constructor.</code> splits the goal into cases if it’s some kind of product type.</li>
-<li><code>destruct expr as [pattern].</code> splits <code>expr</code> apart, possibly breaking into cases, depending on what constructor <code>expr</code> is. Here <code>[pattern]</code> should be an “intro pattern of disjunctions and conjunctions”. If <code>expr</code> is a product then <code>[pattern]</code> could be <code>[H1 H2]</code>; if <code>expr</code> is a sum then <code>[pattern]</code> could be <code>[H1 | H2]</code>; this could be nested. You can even omit “as …” if there’s nothing to destruct to.</li>
+<li><code>constructor.</code> splits the goal into cases if it’s some kind of product type. It’s actually basically just <code>apply</code>ing the constructor. When the goal is a sum type, <code>constructor N.</code> for some number <code>N</code> more precisely chooses to prove the <code>N</code>th constructor.</li>
+<li><code>destruct expr as [pattern].</code> splits <code>expr</code> apart, possibly breaking into cases, depending on what constructor <code>expr</code> is. Here <code>[pattern]</code> should be an “intro pattern of disjunctions and conjunctions”. If <code>expr</code> is a product then <code>[pattern]</code> could be <code>[H1 H2]</code>; if <code>expr</code> is a sum then <code>[pattern]</code> could be <code>[H1 | H2]</code>; this could be nested, e.g. <code>[H1 H2 | H3 H4 H5 | ]</code> if it’s a sum of cases with 2, 3, and 0 fields, respectively (and this is what I mean elsewhere by <code>[pattern]</code>). You can even omit “as …” if there’s nothing to destruct to.</li>
 <li><code>destruct expr eqn:Hname.</code> does the same, but also giving you a hypothesis with name <code>Hname</code> that states that <code>expr</code> equals what the case is.</li>
-<li><code>induction n as [pattern].</code> splits into base case and induction hypothesis based on what constructor <code>n</code> is. Every pattern comes with an induction hypothesis.</li>
+<li><code>induction n as [pattern].</code> splits into base case and induction hypothesis based on what constructor <code>n</code> is. Every branch of the pattern comes with an induction hypothesis. Note: <code>induction</code> behind the scenes is just <code>apply</code> on the “inductive principle” Coq generated when it or you declared the type of <code>n</code>. It seems to have the name of the type of <code>n</code> concatenated with <code>_ind</code>.</li>
 </ul>
-<p>Coq is constructive, so you can’t assume <code>P \/ ~P</code> (“P or not P”) in full generality. However you can do this for many common cases of <code>P</code>. Theorems that prove this often have <code>dec</code> in their name for “decidable”. Consider <code>SearchPattern</code> for not just <code>_ \/ _</code>, but also <code>{_} + {_}</code> (where either <code>_</code> could be further refined depending on what you’re looking for). I’m not entirely sure I can explain the difference between these two kinds of theorems, but you can use them in the same way: <code>destruct</code> into two cases to do case analysis. Example of theorems of two kinds:</p>
+<p>Coq is constructive, so you can’t assume <code>P \/ ~P</code> (“P or not P”) in full generality. However you can do this for many common cases of <code>P</code>. Theorems that prove this often have <code>dec</code> in their name for “decidable”. Consider <code>SearchPattern</code> for not just <code>_ \/ _</code>, but also <code>{_} + {_}</code> (where either <code>_</code> could be further refined depending on what you’re looking for).</p>
+<p>The difference, based on my limited understanding and a Piazza answer: <code>_ \/ _</code> is a Prop but <code>{_} + {_}</code> is a Type. Prop and Type belong to different “universes”, approximately proof stuff and computable stuff, and Coq enforces that information can’t flow from the proof universe to the computable universe. So a <code>{_} + {_}</code> is stronger than a <code>_ \/ _</code> in that (after specifying any variables needed) you can explicitly compute which branch of the <code>{_} + {_}</code> you have evidence for, and use that information in a function that computes something.</p>
+<p>In proofs, you use them in the same way, though: <code>destruct</code> into two cases to do case analysis. Example of theorems of two kinds:</p>
 <pre><code>Nat.eq_dec: forall n m : nat, {n = m} + {n &lt;&gt; m}
 le_gt_dec: forall n m : nat, {n &lt;= m} + {n &gt; m}
 le_dec: forall n m : nat, {n &lt;= m} + {~ n &lt;= m}</code></pre>
@@ -225,7 +175,7 @@ Nat.lt_trichotomy: forall n m : nat, n &lt; m \/ n = m \/ m &lt; n</code></pre>
 <ul>
 <li><p><code>intros n.</code> introduce universally quantified variables or LHS’s of implications into the context.</p>
 <ul>
-<li><code>intros [|n'].</code> combines it with a <code>destruct</code>.</li>
+<li><code>intros [pattern].</code> combines it with a <code>destruct</code>.</li>
 </ul></li>
 <li><code>revert m.</code> basically undoes an <code>intros</code> when it’s simple.</li>
 <li><code>generalize m.</code> undoes an <code>intro</code> in more cases, replacing <code>m</code> with a universally quantified variable. But <code>m</code> can be an expression.</li>
@@ -233,9 +183,9 @@ Nat.lt_trichotomy: forall n m : nat, n &lt; m \/ n = m \/ m &lt; n</code></pre>
 </ul>
 <h3 id="working-with-ands-and-ors">Working with Ands and Ors</h3>
 <ul>
-<li><code>split.</code> when trying to prove <code>A /\ B</code>, split into subgoals <code>A</code> and <code>B</code>.</li>
-<li><code>left.</code> when trying to prove <code>A \/ B</code>, specifically prove <code>A</code>.</li>
-<li><code>right.</code> when trying to prove <code>A \/ B</code>, specifically prove <code>B</code>.</li>
+<li><code>split.</code> when trying to prove <code>A /\ B</code>, split into subgoals <code>A</code> and <code>B</code>. (This actually works for any goal with one constructor, and is basically just <code>constructor 1.</code>)</li>
+<li><code>left.</code> when trying to prove <code>A \/ B</code>, specifically prove <code>A</code>. (This actually works for any goal with two constructors, and is basically just <code>constructor 1.</code>)</li>
+<li><code>right.</code> when trying to prove <code>A \/ B</code>, specifically prove <code>B</code>. (This actually works for any goal with two constructors, and is basically just <code>constructor 2.</code>)</li>
 <li><code>destruct Hand as [Hleft Hright].</code> turns a hypothesis <code>A /\ B</code> into hypotheses <code>A</code> and <code>B</code>.</li>
 <li><code>destruct Hor as [Hleft | Hright].</code> uses a hypothesis <code>A \/ B</code> by splitting into cases where either <code>A</code> (named <code>Hleft</code>) or <code>B</code> (named <code>Hright</code>) is true.</li>
 </ul>
@@ -249,9 +199,16 @@ proj2: forall A B : Prop, A /\ B -&gt; B</code></pre>
 <h3 id="working-with-existence">Working with Existence</h3>
 <ul>
 <li><code>exists x.</code> is how you prove an <code>exists a, (something about a)</code>, by explicitly exhibiting an <code>x</code> satisfying that something.</li>
-<li><code>destruct Hexists as [x H].</code> turns an existence result into the explicit example satisfying that result and the hypothesis stating that the result does hold.</li>
+<li><code>destruct Hexists as [x H].</code> turns an existence result into the explicit example (“witness”) satisfying that result and the hypothesis stating that the result does hold for the witness.</li>
 </ul>
 <pre><code>ex_intro : forall (A : Type) (P : A -&gt; Prop) (x : A), P x -&gt; exists y, P y</code></pre>
+<p>What <em>is</em> this <code>exists y, P y</code> business anyway? It’s special notation for <code>ex</code>:</p>
+<pre><code>&quot;&#39;exists&#39; x .. y , p&quot; := ex (fun x =&gt; .. (ex (fun y =&gt; p)) ..) : type_scope (default interpretation)
+&quot;&#39;exists&#39; ! x .. y , p&quot; := ex (unique (fun x =&gt; .. (ex (unique (fun y =&gt; p))) ..)) : type_scope (default interpretation)</code></pre>
+<pre><code>ex : forall A : Type, (A -&gt; Prop) -&gt; Prop
+
+Argument A is implicit</code></pre>
+<p>And <code>ex_intro</code> above is the one constructor of this type.</p>
 <h3 id="equality-and-negation-while-were-at-it">Equality and negation, while we’re at it</h3>
 <pre><code>eq_refl : forall (A : Type) (x : A), x = x
 
@@ -314,9 +271,6 @@ proj2: forall A B : Prop, A /\ B -&gt; B</code></pre>
 	<a href="https://www.cloudflare.com/">CloudFlare</a>.
 	</p>
 </footer>
-
-
-
 
 <script src="/katex/katex.min.js"></script>
 <script src="/katex/contrib/auto-render.min.js"></script>

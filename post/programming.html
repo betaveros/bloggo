@@ -1,109 +1,54 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<meta charset="utf-8" />
-	
-	<title>Ridiculously Long-Winded Programming Babble</title>
-	
-
-
-
+<meta charset="utf-8" />
+<title>Ridiculously Long-Winded Programming Babble</title>
 
 <meta name="author" content="betaveros" />
 <meta name="description" content="Okay I don’t actually know how this pointless rambling got so long. I know the longer it is the more people will just tend to skim, because I do that all the time. So I went back and refactored—er, rewrote all the somewhat tangential bits (wow these puns are too easy) into footnotes. Manually. Obviously if I have to do this again I’ll write a script for it. But the post is still really long, and I bet nobody will read the whole thing. Oh well.
 Life updates: I got out of the hospital Friday two-and-a-half weeks ago, went to the preliminaries of NPSC (a national team programming contest) with classmates, threw up a lot, went back into the hospital, and came out again. I wrote a lot of stuff about the experience and how much it sucked (hint: a lot) when I started this draft around that time, but now putting so much detail in this post feels weird. I’m mostly good now.
 Three years ago NPSC was the only programming contest I really knew of; now I’ve participated in quite a few more, both online and locally, but it’s still the only contest I’ve entered that gives you real-time verdicts. I believe it inherits this from being modeled after ACM-ICPC, but that’s for college people and I’m less clear on how it works. All the other contests, namely TopCoder, CodeForces, USACO, and the other local individual competition (there doesn’t appear to be an English name so for the purpose of this post I’ll just call it “Nameless Local”; there’s a nation-wide competition in one-and-a-half weeks!), have system tests after the contest that don’t allow you to resubmit afterwards.1 They all give pretests that you get to know about right away, just to catch super-silly non-algorithmic mistakes like failing to remove the debug statements or reading input from the wrong place, but these contain weak test cases and don’t guarantee that the solution will pass the system tests and get full score.
-" />
-
-
-
-<meta name="generator" content="Hugo 0.56.0-DEV" />
-
+" /><meta name="generator" content="Hugo 0.56.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/programming" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
-
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="format-detection" content="telephone=no,email=no,adress=no" />
 <meta http-equiv="Cache-Control" content="no-transform" />
 
-
 <meta name="robots" content="index,follow" />
 <meta name="referrer" content="origin-when-cross-origin" />
 
-
-
-
 <link rel="icon" href="/favicon.ico" />
-
-
 
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
 <!--[if lte IE 11]>
     <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
-  <![endif]-->
+<![endif]-->
 
 </head>
 <body><div id="wrapper">
-<header class="site-header">
-	
-	<h2 class="title"><a href="/">Bounded-Error Log</a></h2>
-	
-	<p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
-	<button class="menu-toggle" type="button" aria-label="Toggle Menu">
-		<span class="icon icon-menu" aria-hidden="true"></span>
-	</button>
-	<nav class="site-menu collapsed">
-		<h2 class="offscreen">Main Menu</h2>
-		<ul class="menu-list">
-			
-			
-			
-			
-			<li class="menu-item "><a href="/about">About</a></li>
-			
-			<li class="menu-item "><a href="/category/life">Life</a></li>
-			
-			<li class="menu-item "><a href="/category/thoughts">Thoughts</a></li>
-			
-			<li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li>
-			
-			<li class="menu-item "><a href="/category/math">Math</a></li>
-			
-			<li class="menu-item "><a href="/category/cs">CS</a></li>
-			
-			<li class="menu-item "><a href="/category/puzzles">Puzzles</a></li>
-			
-			<li class="menu-item "><a href="/category/meta">Meta</a></li>
-			
-			<li class="menu-item "><a href="/util">Utilities</a></li>
-			
-			<li class="menu-item "><a href="/all">All Posts</a></li>
-			
-		</ul>
-	</nav>
-	<nav class="social-menu collapsed">
-		<h2 class="offscreen">Social Networks</h2>
-		<ul class="social-list">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
 
-			
-
-			
-			<li class="social-item">
-				<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
-			</li>
-
-			
-
-			<li class="social-item">
-				<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
-			</li>
-
-		</ul>
-	</nav>
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
 </header>
 
 <section class="main post-detail">
@@ -238,9 +183,6 @@ More annoyingly, functions are not objects. Even C++ has function pointers, as c
 	<a href="https://www.cloudflare.com/">CloudFlare</a>.
 	</p>
 </footer>
-
-
-
 
 <script src="/katex/katex.min.js"></script>
 <script src="/katex/contrib/auto-render.min.js"></script>
