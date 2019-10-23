@@ -55,7 +55,7 @@
 		<p class="post-meta">
 		
 		
-		(3376 words)
+		(3849 words)
 		
 		<span class="post-categories">
 			filed under
@@ -74,7 +74,7 @@
 <ul>
 <li><a href="https://pjreddie.com/coq-tactics/">Coq Tactics Index</a> (Joseph Redmon)</li>
 <li><a href="https://www.cs.cornell.edu/courses/cs3110/2018sp/a5/coq-tactics-cheatsheet.html">Coq Tactics Cheatsheet</a> (Cornell CS3110)</li>
-<li><a href="http://adam.chlipala.net/itp/tactic-reference.html">Coq Tactics Quick Reference</a> (Adam Chlipala)</li>
+<li><a href="http://adam.chlipala.net/itp/tactic-reference.html">Coq Tactics Quick Reference</a> (Adam Chlipala) / the <a href="http://adam.chlipala.net/frap/">Formal Reasoning About Programs</a> book also has a nice appendix</li>
 <li><a href="https://www.cis.upenn.edu/~rrand/popl_2016/reference.html">Coq Tactics</a> (UPenn ???)</li>
 </ul></li>
 </ul>
@@ -128,11 +128,13 @@ Side note: <code>I</code> is the name for the unique thing of type <code>True</c
 <li><code>simpl.</code> simplifies the expression. It’s often not necessary in a finished proof, but can help clarify what the goal looks like in the interactive process.</li>
 <li><code>rewrite -&gt; H.</code> resp. <code>rewrite &lt;- H.</code> If H is something that says “A = B”, replace A with B in the goal, resp., B with A. If <code>H</code> requires some hypotheses, it will open up those hypotheses as subgoals, coming last.</li>
 <li><code>rewrite -&gt; H by tactic.</code> resp. <code>rewrite &lt;- H by tactic.</code> As above but immediately solve the subgoals.</li>
+<li><code>subst x.</code> substitutes <code>x</code> everywhere it appears. If you defined <code>x := expr</code> or got an equation like <code>x = expr</code> then this will replace <code>x</code> with <code>expr</code> everywhere and then get rid of <code>x</code>. This is useful if you had two variables <code>x</code> and <code>y</code> introduced in different places in your proof, proved they were equal, and want to fully get rid of one from your context.</li>
 <li><code>unfold f.</code> Unfold some function f in the goal; approximately, inline it. This may be required if <code>f</code> is a <code>match</code> expression; Coq won’t automatically “simplify” expressions with <code>f</code> since they might actually get more complicated.</li>
 <li><code>replace term with term'.</code> Replace <code>term</code> with <code>term'</code> in the goal, and adds a new goal to prove that <code>term = term'</code>, putting it last.</li>
 <li><code>replace term with term' by tactic.</code> Same, but prove that new goal immediately with a tactic.</li>
 <li><code>change term with term'.</code> Roughly same as <code>replace</code> without opening subgoals, if the terms are “convertible”. I was told this means something like “you can prove they’re equal by <code>reflexivity</code>”.</li>
 <li><code>symmetry.</code> swaps the goal <code>a = b</code> with <code>b = a</code>.</li>
+<li><code>exfalso.</code> explicitly sets the goal to <code>False</code>; sometimes this makes applying theorems easier.</li>
 </ul>
 <h3 id="adding-intermediate-goals">Adding intermediate goals</h3>
 <ul>
@@ -146,6 +148,7 @@ Side note: <code>I</code> is the name for the unique thing of type <code>True</c
 <h3 id="splitting-into-cases">Splitting into cases</h3>
 <ul>
 <li><code>constructor.</code> splits the goal into cases if it’s some kind of product type. It’s actually basically just <code>apply</code>ing the constructor. When the goal is a sum type, <code>constructor N.</code> for some number <code>N</code> more precisely chooses to prove the <code>N</code>th constructor.</li>
+<li><code>f_equal.</code>, when the goal is to prove that two calls to the same function are equal, splits into proving that each of the corresponding arguments are equal. (Note that the original goal being true very much doesn’t imply these goals are all true, although it does if the function is a constructor.)</li>
 <li><code>destruct expr as [pattern].</code> splits <code>expr</code> apart, possibly breaking into cases, depending on what constructor <code>expr</code> is. Here <code>[pattern]</code> should be an “intro pattern of disjunctions and conjunctions”. If <code>expr</code> is a product then <code>[pattern]</code> could be <code>[H1 H2]</code>; if <code>expr</code> is a sum then <code>[pattern]</code> could be <code>[H1 | H2]</code>; this could be nested, e.g. <code>[H1 H2 | H3 H4 H5 | ]</code> if it’s a sum of cases with 2, 3, and 0 fields, respectively (and this is what I mean elsewhere by <code>[pattern]</code>). You can even omit “as …” if there’s nothing to destruct to.</li>
 <li><code>destruct expr eqn:Hname.</code> does the same, but also giving you a hypothesis with name <code>Hname</code> that states that <code>expr</code> equals what the case is.</li>
 <li><code>induction n as [pattern].</code> splits into base case and induction hypothesis based on what constructor <code>n</code> is. Every branch of the pattern comes with an induction hypothesis. Note: <code>induction</code> behind the scenes is just <code>apply</code> on the “inductive principle” Coq generated when it or you declared the type of <code>n</code>. It seems to have the name of the type of <code>n</code> concatenated with <code>_ind</code>.</li>
@@ -234,7 +237,7 @@ Argument A is implicit</code></pre>
 <li><code>repeat</code> some tacic e.g. <code>repeat rewrite -&gt; H.</code> repeats a tactic until it fails.</li>
 <li><p><code>all:</code> applies a tactic to all subgoals. This is like <code>;</code> but you get to pause beforehand, and also is how you use goal-reordering tactics.</p></li>
 </ul>
-<p>You can try tactics but not fail if they don’t apply. This is likely only useful acting on multiple subgoals at once, so most likely after <code>;</code> or <code>all:</code>. I think they should probably be used sparingly.</p>
+<p>You can try tactics but not fail if they don’t apply. This is likely only useful acting on multiple subgoals at once, so most likely after <code>;</code> or <code>all:</code>. I think they should probably be used sparingly. Or maybe in custom tactics.</p>
 <ul>
 <li><code>try</code> tries a tactic but doesn’t fail if it fails.</li>
 <li><code>||</code> combines two tactics, trying the left tactic before trying the right tactic.</li>
@@ -243,6 +246,24 @@ Argument A is implicit</code></pre>
 <ul>
 <li><code>admit.</code> lets you pretend a subgoal is proved and move on. The proof will need to end with <code>Admitted.</code> instead of <code>Qed.</code></li>
 </ul>
+<h3 id="custom-tactics-and-hint-databases">Custom tactics and hint databases</h3>
+<p>Let’s say you’re building a hint database called <code>foo</code>. If you got a theorem <code>bar</code> that you want to rewrite rightwards automatically, you can add it like:</p>
+<pre><code>Hint Rewrite bar : foo.</code></pre>
+<p>Probably only do this if <code>bar</code> doesn’t take any premises. If you want to autorewrite using a theorem <code>bar</code> with premises that might not always be true, and you only want to autorewrite when the premises can be automatically proven, you can say that the premises must be solved with <code>auto</code> to use the hint:</p>
+<pre><code>Hint Rewrite bar2 using (solve [ auto ]) : foo.</code></pre>
+<p>After all that you can use <code>autorewrite with foo.</code></p>
+<p>The simplest way to build a custom tactic just looks like:</p>
+<pre><code>Ltac my_tactic := tactic1; tactic2; tactic3.</code></pre>
+<p>More interesting tactics will pattern match on the goal or on hypotheses. Use the syntax <code>match goal with ...</code>. The pattern has <code>|-</code> to separate hypotheses from the goal.</p>
+<p>You can name hypotheses. To name variables or expressions that might appear in the hypotheses or goal but might vary and that you want to use in the tactic, use a question mark in front of a name in the pattern. Don’t use that question mark in the body of the tactic. Example:</p>
+<pre><code>Ltac subst_Some_eq :=
+  match goal with
+  | H : Some ?a = Some ?b |- _ =&gt;
+        inversion H; subst b
+  end.</code></pre>
+<p>Brackets are super precise. This applies these three tactics respectively to the three focused goals. There must be exactly three. You can omit tactics to do <code>idtac</code>, the identity tactic.</p>
+<pre><code>[&gt; tactic1 | tactic2 | tactic3 ]</code></pre>
+<p>Note that in a proof script you have to apply to all focused goals so it would look like <code>all: [&gt; tactic1 | tactic2 | tactic3 ]</code> although this is a silly way to do it. If you’re putting this after a semicolon, you can drop the <code>&gt;</code>. I’m not sure how this works.</p>
 </article>
 	<footer class="post-footer">
 		
