@@ -61,6 +61,33 @@ Category → CS
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/advent-rocket" class="post-link">Rocket Equation</a></h3>
+		
+		<h4 class="post-subtitle">Advent of Code 2019, Day 1</h4>
+		
+		<p class="post-meta">
+		
+		2019-12-01
+		(992 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>, <a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>It’s December, so it’s time for a lot of things, including <a href="https://adventofcode.com/">Advent of Code</a>. I will not be able to be as competitive as I was last year, and already lost a lot of points to a really silly mistake on day 1, but I’ll be playing when I can and <a href="https://github.com/betaveros/advent-of-code-golf-2019">golfing</a> the problems when I have time (so far: 7 + 14 bytes).</p>
+<p>As one might expect, <a href="https://adventofcode.com/2019/day/1">Day 1</a> is not too complex, but the second part can be analyzed to some mathematical depth and was discussed a bit on Reddit; plus, it occurred to me recently that I set up KaTeX on my blog but never used it, so I was looking for an excuse to write some equations anyway.</p>
+<p>The problem statement for part 2, in brief: We are tasked with calculating the total mass of fuel required to launch a rocket module of a given mass. For something of mass <span class="math inline">\(m\)</span>, one can compute the directly required mass of fuel by dividing <span class="math inline">\(m\)</span> by 3, rounding down, and subtracting 2; if the result is negative, it is taken to be 0 instead. However, the directly required fuel also requires fuel itself, calculated from its own mass by the same procedure, and that required fuel requires fuel based on its own mass, and so on until you reach fuel with 0 requirement.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/advent-rocket">→ read more<span class="offscreen"> Rocket Equation</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/callsite" class="post-link">callsite</a></h3>
 		
 		<h4 class="post-subtitle">CSAW CTF Qualifiers 2019</h4>
@@ -355,35 +382,6 @@ Environment: Ubuntu 16.04+latex</code></pre>
 <p>There are two more commands, <code>/secret</code> and <code>/ban</code>, which are in the server source code and also described in comments in the HTML source if you didn’t notice:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/cat-chat">→ read more<span class="offscreen"> Cat Chat</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/js-safe-2" class="post-link">JS Safe 2.0</a></h3>
-		
-		<h4 class="post-subtitle">Google CTF 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-06-28
-		(2640 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML file that can store secrets in the browser’s localStorage. This means that you won’t be able to extract any secret from it (the secrets are on the computer of the owner), but it looks like it was hand-crafted to work only with the password of the owner…</p>
-</blockquote>
-<p>The challenge consists of a fancy HTML file with a cute but irrelevant animated cube and some embedded JavaScript.</p>
-<p><img src="/img/js-safe-2-empty.png" alt="Screenshot of JS Safe 2.0 with a text box and a cube" /></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/js-safe-2">→ read more<span class="offscreen"> JS Safe 2.0</span></a>
 	</footer>
 </article>
 

@@ -6,10 +6,21 @@
     <description>Recent content on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Sep 2019 01:18:58 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 01 Dec 2019 13:38:14 -0500</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Rocket Equation</title>
+      <link>//blog.vero.site/post/advent-rocket</link>
+      <pubDate>Sun, 01 Dec 2019 13:38:14 -0500</pubDate>
+      
+      <guid>//blog.vero.site/post/advent-rocket</guid>
+      <description>&lt;p&gt;It’s December, so it’s time for a lot of things, including &lt;a href=&#34;https://adventofcode.com/&#34;&gt;Advent of Code&lt;/a&gt;. I will not be able to be as competitive as I was last year, and already lost a lot of points to a really silly mistake on day 1, but I’ll be playing when I can and &lt;a href=&#34;https://github.com/betaveros/advent-of-code-golf-2019&#34;&gt;golfing&lt;/a&gt; the problems when I have time (so far: 7 + 14 bytes).&lt;/p&gt;
+&lt;p&gt;As one might expect, &lt;a href=&#34;https://adventofcode.com/2019/day/1&#34;&gt;Day 1&lt;/a&gt; is not too complex, but the second part can be analyzed to some mathematical depth and was discussed a bit on Reddit; plus, it occurred to me recently that I set up KaTeX on my blog but never used it, so I was looking for an excuse to write some equations anyway.&lt;/p&gt;
+&lt;p&gt;The problem statement for part 2, in brief: We are tasked with calculating the total mass of fuel required to launch a rocket module of a given mass. For something of mass &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt;, one can compute the directly required mass of fuel by dividing &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; by 3, rounding down, and subtracting 2; if the result is negative, it is taken to be 0 instead. However, the directly required fuel also requires fuel itself, calculated from its own mass by the same procedure, and that required fuel requires fuel based on its own mass, and so on until you reach fuel with 0 requirement.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>callsite</title>

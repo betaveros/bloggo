@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>Rocket Equation</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="It’s December, so it’s time for a lot of things, including Advent of Code. I will not be able to be as competitive as I was last year, and already lost a lot of points to a really silly mistake on day 1, but I’ll be playing when I can and golfing the problems when I have time (so far: 7 &#43; 14 bytes).
+As one might expect, Day 1 is not too complex, but the second part can be analyzed to some mathematical depth and was discussed a bit on Reddit; plus, it occurred to me recently that I set up KaTeX on my blog but never used it, so I was looking for an excuse to write some equations anyway.
+The problem statement for part 2, in brief: We are tasked with calculating the total mass of fuel required to launch a rocket module of a given mass. For something of mass \(m\), one can compute the directly required mass of fuel by dividing \(m\) by 3, rounding down, and subtracting 2; if the result is negative, it is taken to be 0 instead. However, the directly required fuel also requires fuel itself, calculated from its own mass by the same procedure, and that required fuel requires fuel based on its own mass, and so on until you reach fuel with 0 requirement.
+" /><meta name="generator" content="Hugo 0.56.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/advent-rocket" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Rocket Equation</h1>
+		
+		<h2 class="post-subtitle">Advent of Code 2019, Day 1</h2>
+		
+		<p class="post-meta">
+		
+		2019-12-01
+		(992 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>, <a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>It’s December, so it’s time for a lot of things, including <a href="https://adventofcode.com/">Advent of Code</a>. I will not be able to be as competitive as I was last year, and already lost a lot of points to a really silly mistake on day 1, but I’ll be playing when I can and <a href="https://github.com/betaveros/advent-of-code-golf-2019">golfing</a> the problems when I have time (so far: 7 + 14 bytes).</p>
+<p>As one might expect, <a href="https://adventofcode.com/2019/day/1">Day 1</a> is not too complex, but the second part can be analyzed to some mathematical depth and was discussed a bit on Reddit; plus, it occurred to me recently that I set up KaTeX on my blog but never used it, so I was looking for an excuse to write some equations anyway.</p>
+<p>The problem statement for part 2, in brief: We are tasked with calculating the total mass of fuel required to launch a rocket module of a given mass. For something of mass <span class="math inline">\(m\)</span>, one can compute the directly required mass of fuel by dividing <span class="math inline">\(m\)</span> by 3, rounding down, and subtracting 2; if the result is negative, it is taken to be 0 instead. However, the directly required fuel also requires fuel itself, calculated from its own mass by the same procedure, and that required fuel requires fuel based on its own mass, and so on until you reach fuel with 0 requirement.</p>
+<p>This is easy to program by just following instructions, but one might wonder whether there is a closed form. Not exactly, but we can certainly learn more about the behavior of the answer in terms of the module mass.</p>
+<hr />
+<p>Let <span class="math inline">\(x_0 := m\)</span> be the mass of a given module, and for <span class="math inline">\(i \geq 0\)</span> let <span class="math inline">\(x_{i+1}\)</span> be the fuel directly required for something of mass <span class="math inline">\(x_i\)</span>. We are given that <span class="math display">\[\tag{1} x_{i+1} = \max\left(\left\lfloor\frac{x_i}{3}\right\rfloor - 2, 0\right).\]</span> Then, given <span class="math inline">\(m\)</span>, we want to calculate the total required fuel <span class="math display">\[T := \sum_{i=1}^\infty x_i.\]</span> We will worry about the upper limit later, but right now it doesn’t matter since the way this formula is written, <span class="math inline">\(x_i = 0\)</span> for all sufficiently large <span class="math inline">\(i\)</span> and summing over those doesn’t hurt.</p>
+<p>Let’s postpone the <span class="math inline">\(\max(\cdot\,, 0)\)</span> part, and define the simpler sequence <span class="math inline">\(y_n\)</span> by <span class="math inline">\({y_0 := x_0 = m}\)</span> and, for <span class="math inline">\(i \geq 0\)</span>, <span class="math display">\[\tag{2} y_{i+1} = \left\lfloor\frac{y_i}{3}\right\rfloor - 2.\]</span> We can then compute <span class="math inline">\(T\)</span> as <span class="math display">\[T = \sum_{i=1}^\infty \max(y_i, 0)\]</span> instead.</p>
+<p>Equation (2) does not iterate cleanly, but it does if we add 3 to both sides. One way to motivate this is to note that <span class="math inline">\(y_i\)</span> converges quickly to <span class="math inline">\(-3\)</span>, i.e. <span class="math inline">\(y_i + 3\)</span> converges to 0. Concretely:</p>
+<p><span class="math display">\[y_{i+1} + 3 = \left\lfloor\frac{y_i}{3}\right\rfloor - 2 + 3 = \left\lfloor\frac{y_i + 3}{3}\right\rfloor.\]</span></p>
+<p>In other words, if we define <span class="math inline">\(z_i = y_i + 3\)</span> for all <span class="math inline">\(i\)</span>, we have <span class="math display">\[z_{i+1} = \left\lfloor\frac{z_i}{3}\right\rfloor,\]</span> which implies <span class="math display">\[z_{i} = \left\lfloor\frac{z_0}{3^i}\right\rfloor = \left\lfloor\frac{m + 3}{3^i}\right\rfloor\]</span> for all <span class="math inline">\(i\)</span>; and we have <span class="math display">\[\tag{3} T = \sum_{i=1}^\infty \max(z_i - 3, 0).\]</span> We can compute a concrete upper bound for the sum now. The last index <span class="math inline">\(i\)</span> we want is the last one where <span class="math inline">\(\lfloor z_0/3^i \rfloor \geq 3\)</span>. The flooring doesn’t actually matter here; we just want the largest <span class="math inline">\(i\)</span> such that <span class="math inline">\(z_0 \geq 3^{i+1}\)</span>, which gives <span class="math inline">\(i \leq (\log_3 z_0) - 1\)</span>. So we can write <span class="math display">\[\tag{4} T = \sum_{i=1}^{\lfloor \log_3 z_0 \rfloor - 1} (z_i - 3) = \sum_{i=1}^{\lfloor \log_3 (m+3) \rfloor - 1} \left(\left\lfloor\frac{m + 3}{3^i}\right\rfloor - 3\right).\]</span> This is kind of similar to a closed form — we don’t have any recurrences any more, just a sum of elementary operations. But we can keep going, and in particular pin down the asymptotic behavior of <span class="math inline">\(T\)</span> with <span class="math inline">\(m\)</span>.</p>
+<hr />
+<p>Let’s write <span class="math inline">\(z_0 = m + 3\)</span> in <a href="https://en.wikipedia.org/wiki/Ternary_numeral_system">base 3</a>. That is, suppose the digits of <span class="math inline">\(z_0\)</span> in base 3 are <span class="math inline">\(a_n, a_{n-1}, \ldots, a_0\)</span>, which we may denote <span class="math display">\[z_0 = \overline{(a_na_{n-1}a_{n-2}\ldots a_0)}_3,\]</span> i.e. <span class="math display">\[z_0 = \sum_{j=0}^n 3^ja_j,\quad a_j \in \{0, 1, 2\}, a_n \neq 0.\]</span> The reason this is useful is that dividing a base-3 number by 3 and rounding down is simply chopping off the last digit. As a result, if <span class="math inline">\(0 \leq i \leq n\)</span>, then <span class="math display">\[z_i = \overline{(a_na_{n-1}a_{n-2}\ldots a_i)}_3 = \sum_{j=0}^{n-i} 3^ja_{i+j},\]</span> and the last <span class="math inline">\(z_i\)</span> we can sum in (3) while ignoring the <span class="math inline">\(\max(\cdot\,,0)\)</span> operation is <span class="math display">\[z_{n-1} = \overline{(a_na_{n-1})}_3.\]</span> So in fact (3) becomes <span class="math display">\[\tag{5} T = \sum_{i=1}^{n-1} (z_i - 3) = \left(\sum_{i=1}^{n-1} z_i\right) - 3(n-1).\]</span> Let’s focus on the sum <span class="math display">\[\sum_{i=1}^{n-1} z_i = \sum_{i=1}^{n-1} \sum_{j=0}^{n-i} 3^ja_{i+j},\]</span> and write down all terms involving a particular digit <span class="math inline">\(a_s\)</span>: it’s just <span class="math display">\[a_s3^{s-1} + \cdots + a_s3^0\]</span> (which we take to be the empty sum if <span class="math inline">\(s = 0\)</span>), with an exception if <span class="math inline">\(s = n\)</span>, where the term <span class="math inline">\(a_n3^0\)</span> does not appear because we stop slightly prematurely, before <span class="math inline">\(z_n\)</span>. This is a <a href="https://en.wikipedia.org/wiki/Geometric_series">geometric series</a>, which we can evaluate to be <span class="math display">\[a_s \cdot \frac{3^s - 1}{2}.\]</span> Therefore, <span class="math display">\[\sum_{i=1}^{n-1} z_i = \left(\sum_{s=0}^n a_s\cdot \frac{3^s - 1}{2}\right) - a_n,\]</span> where the <span class="math inline">\(-a_n\)</span> term handles the exception pointed out above. With some rearrangement, we see <span class="math display">\[\sum_{i=1}^{n-1} z_i = \frac{1}{2}\left(\sum_{s=0}^n (a_s3^s - a_s)\right) - a_n.\]</span> But <span class="math inline">\(\sum_{s=0}^n a_s3^s\)</span> is just <span class="math inline">\(z_0\)</span>, so <span class="math display">\[\sum_{i=1}^{n-1} z_i = \frac{1}{2}\left(z_0 - \sum_{s=0}^n a_s\right) - a_n.\]</span> If we substitute back into (5) we see <span class="math display">\[T = \frac{1}{2}\left(z_0 - \sum_{s=0}^n a_s\right) - a_n - 3(n-1).\]</span></p>
+<p>So, suppose <span class="math inline">\(m\)</span> is the original module mass. If we write <span class="math inline">\(m + 3 = z_0\)</span> in base 3, let <span class="math inline">\(S\)</span> be the ternary digit sum, <span class="math inline">\(F\)</span> be the first digit, and <span class="math inline">\(D\)</span> be the number of digits (note that <span class="math inline">\(D = n + 1\)</span>), then this equation becomes <span class="math display">\[\tag{6} T = \frac{m}{2} - \frac{S}{2} - F - 3D + \frac{15}{2}.\]</span></p>
+<p>The “closed form” (6) is much wordier than (4), but it’s a better “closed form” in the sense that the asymptotic behavior of <span class="math inline">\(T\)</span> as a function of <span class="math inline">\(m\)</span> is much more obvious: <span class="math display">\[T = \frac{m}{2} - O(\log m).\]</span> For large modules, the total mass of required fuel is roughly half of the mass of the module.</p></article>
+	<footer class="post-footer">
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/callsite">← callsite</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2019 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>
