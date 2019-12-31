@@ -3,25 +3,48 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>//blog.vero.site/</loc>
-    <lastmod>2019-12-01T13:38:14-05:00</lastmod>
+    <loc>//blog.vero.site/tags</loc>
+    <lastmod>2019-12-31T16:24:31+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//blog.vero.site/category/cs</loc>
-    <lastmod>2019-12-01T13:38:14-05:00</lastmod>
+    <loc>//blog.vero.site/</loc>
+    <lastmod>2019-12-31T16:24:31+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/categories</loc>
-    <lastmod>2019-12-01T13:38:14-05:00</lastmod>
+    <lastmod>2019-12-31T16:24:31+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/post</loc>
+    <lastmod>2019-12-31T16:24:31+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post/startup-lag</loc>
+    <lastmod>2019-12-31T16:24:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/category/life</loc>
+    <lastmod>2019-12-31T16:24:31+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/year-end-post</loc>
+    <lastmod>2019-12-31T16:24:31+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/category/cs</loc>
     <lastmod>2019-12-01T13:38:14-05:00</lastmod>
     <priority>0</priority>
   </url>
@@ -34,12 +57,6 @@
   <url>
     <loc>//blog.vero.site/category/math</loc>
     <lastmod>2019-12-01T13:38:14-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/tags</loc>
-    <lastmod>2019-09-16T01:18:58-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -187,12 +204,6 @@
   </url>
   
   <url>
-    <loc>//blog.vero.site/category/life</loc>
-    <lastmod>2019-02-03T16:01:01-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>//blog.vero.site/category/self-analysis</loc>
     <lastmod>2019-02-03T16:01:01-05:00</lastmod>
     <priority>0</priority>
@@ -201,12 +212,6 @@
   <url>
     <loc>//blog.vero.site/post/prose-passion</loc>
     <lastmod>2018-12-31T21:05:59+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/tag/year-end-post</loc>
-    <lastmod>2018-12-31T21:05:59+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
