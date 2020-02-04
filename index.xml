@@ -6,10 +6,29 @@
     <description>Recent content on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Feb 2020 23:24:47 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 04 Feb 2020 18:00:58 -0500</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Signed Modulo</title>
+      <link>//blog.vero.site/post/modulo</link>
+      <pubDate>Tue, 04 Feb 2020 18:00:58 -0500</pubDate>
+      
+      <guid>//blog.vero.site/post/modulo</guid>
+      <description>&lt;p&gt;One thing many mathematically-inclined programmers run into when implementing mathematical algorithms, particularly number-theoretic ones, is that the &lt;a href=&#34;https://en.wikipedia.org/wiki/Modulo_operation&#34;&gt;modulo operation&lt;/a&gt; doesn’t behave how they expect or prefer.&lt;/p&gt;
+&lt;p&gt;In many languages, this operator is denoted &lt;code&gt;%&lt;/code&gt;. Concretely, one might prefer that, if the second argument is positive, then the modulo operation would always give a nonnegative result. Under this behavior, the expression &lt;code&gt;(-5) % 3&lt;/code&gt; would evaluate to &lt;code&gt;1&lt;/code&gt; rather than &lt;code&gt;-2&lt;/code&gt;. This is a lot more useful for number theory because then for positive integers &lt;code&gt;n&lt;/code&gt;, the &lt;code&gt;% n&lt;/code&gt; operation actually maps integers to exactly the &lt;code&gt;n&lt;/code&gt; canonical representatives for the residue classes. As a result, &lt;span class=&#34;math inline&#34;&gt;\(a \equiv b \mod n\)&lt;/span&gt; if and only if &lt;code&gt;a % n == b % n&lt;/code&gt;. You can also do things like index into a length-&lt;code&gt;n&lt;/code&gt; array with &lt;code&gt;a % n&lt;/code&gt; and know that the index will be in-bounds. Finally, there are also optimization opportunities: modding by a power of 2 becomes equivalent to a simple bitwise AND, which is really fast on modern computers.&lt;/p&gt;
+&lt;p&gt;A few programming languages, notably Python, do implement &lt;code&gt;%&lt;/code&gt; this way. However, the majority of languages today, including pretty much everything remotely descended from C, do not; instead, &lt;code&gt;(-5) % 3&lt;/code&gt; is &lt;code&gt;-2&lt;/code&gt;. This post attempts to track down why.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;The first thing to note is that there is a more important number-theoretic identity we’d like to have:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\texttt{a} = (\texttt{a / b}) \cdot \texttt{b} + (\texttt{a \% b}). \tag{1}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In words, the integer division and modulo operators should give a breakdown of &lt;code&gt;a&lt;/code&gt; into a sum of some copies of &lt;code&gt;b&lt;/code&gt; plus a remainder. Note that this equation also implies that specifying the rounding behavior of division is equivalent to specifying the sign behavior of the modulo operation, which will come up repeatedly later.&lt;/p&gt;
+&lt;p&gt;It’s also very uncontroversial that that remainder should have no copies of &lt;code&gt;b&lt;/code&gt;, positive or negative, left over, which gives the constraint:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[|\texttt{a \% b}| &amp;lt; |\texttt{b}|. \tag{2}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Every programming language I can think of satisfies these two constraints.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; So far so good. However, these two constraints don’t uniquely determine the values of &lt;code&gt;a % b&lt;/code&gt; when &lt;code&gt;a&lt;/code&gt; isn’t divisible by &lt;code&gt;b&lt;/code&gt;; there are two possible values for &lt;code&gt;a % b&lt;/code&gt;, one positive and one negative. Concretely, we could express &lt;span class=&#34;math inline&#34;&gt;\(-5\)&lt;/span&gt; as either &lt;span class=&#34;math inline&#34;&gt;\((-1) \cdot 3 + (-2)\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\((-2) \cdot 3 + 1\)&lt;/span&gt;, so &lt;code&gt;(-5) % 3&lt;/code&gt; could be &lt;code&gt;-2&lt;/code&gt; or &lt;code&gt;1&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It’s still mostly uncontroversial that, if &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; are both positive, then &lt;code&gt;a % b&lt;/code&gt; should be nonnegative as well; we could call this constraint (3).&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; However, if &lt;code&gt;a&lt;/code&gt; is negative and &lt;code&gt;b&lt;/code&gt; is positive, programming languages start to diverge in their behavior. Why?&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>2020 MIT Mystery Hunt</title>

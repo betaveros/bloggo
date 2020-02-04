@@ -52,6 +52,38 @@
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/modulo" class="post-link">Signed Modulo</a></h3>
+		
+		<p class="post-meta">
+		
+		2020-02-04
+		(3813 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>, <a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>One thing many mathematically-inclined programmers run into when implementing mathematical algorithms, particularly number-theoretic ones, is that the <a href="https://en.wikipedia.org/wiki/Modulo_operation">modulo operation</a> doesn’t behave how they expect or prefer.</p>
+<p>In many languages, this operator is denoted <code>%</code>. Concretely, one might prefer that, if the second argument is positive, then the modulo operation would always give a nonnegative result. Under this behavior, the expression <code>(-5) % 3</code> would evaluate to <code>1</code> rather than <code>-2</code>. This is a lot more useful for number theory because then for positive integers <code>n</code>, the <code>% n</code> operation actually maps integers to exactly the <code>n</code> canonical representatives for the residue classes. As a result, <span class="math inline">\(a \equiv b \mod n\)</span> if and only if <code>a % n == b % n</code>. You can also do things like index into a length-<code>n</code> array with <code>a % n</code> and know that the index will be in-bounds. Finally, there are also optimization opportunities: modding by a power of 2 becomes equivalent to a simple bitwise AND, which is really fast on modern computers.</p>
+<p>A few programming languages, notably Python, do implement <code>%</code> this way. However, the majority of languages today, including pretty much everything remotely descended from C, do not; instead, <code>(-5) % 3</code> is <code>-2</code>. This post attempts to track down why.</p>
+<hr />
+<p>The first thing to note is that there is a more important number-theoretic identity we’d like to have:</p>
+<p><span class="math display">\[\texttt{a} = (\texttt{a / b}) \cdot \texttt{b} + (\texttt{a \% b}). \tag{1}\]</span></p>
+<p>In words, the integer division and modulo operators should give a breakdown of <code>a</code> into a sum of some copies of <code>b</code> plus a remainder. Note that this equation also implies that specifying the rounding behavior of division is equivalent to specifying the sign behavior of the modulo operation, which will come up repeatedly later.</p>
+<p>It’s also very uncontroversial that that remainder should have no copies of <code>b</code>, positive or negative, left over, which gives the constraint:</p>
+<p><span class="math display">\[|\texttt{a \% b}| &lt; |\texttt{b}|. \tag{2}\]</span></p>
+<p>Every programming language I can think of satisfies these two constraints.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> So far so good. However, these two constraints don’t uniquely determine the values of <code>a % b</code> when <code>a</code> isn’t divisible by <code>b</code>; there are two possible values for <code>a % b</code>, one positive and one negative. Concretely, we could express <span class="math inline">\(-5\)</span> as either <span class="math inline">\((-1) \cdot 3 + (-2)\)</span> or <span class="math inline">\((-2) \cdot 3 + 1\)</span>, so <code>(-5) % 3</code> could be <code>-2</code> or <code>1</code>.</p>
+<p>It’s still mostly uncontroversial that, if <code>a</code> and <code>b</code> are both positive, then <code>a % b</code> should be nonnegative as well; we could call this constraint (3).<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> However, if <code>a</code> is negative and <code>b</code> is positive, programming languages start to diverge in their behavior. Why?</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/modulo">→ read more<span class="offscreen"> Signed Modulo</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/2020-hunt" class="post-link">2020 MIT Mystery Hunt</a></h3>
 		
 		<p class="post-meta">
@@ -335,33 +367,6 @@ Intro: Bob is cool too</p>
 <p>I still mostly stand by that decision today, but over the intervening years I realized there were a whole host of reasons to want money that weren’t that selfish at all.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/money">→ read more<span class="offscreen"> Money Matters</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/go-to-class" class="post-link">Go to Class (Most of the Time)</a></h3>
-		
-		<p class="post-meta">
-		
-		2019-08-19
-		(681 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/thoughts">Thoughts</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<div class="series">
-<p>part of the “what I learned after four years at MIT” series, I guess? A short post this time.</p>
-</div>
-<p>I can’t begin to count the number of times we were exhorted in high school to go to class. College is different, they said. Nobody is going to force you to go to class any more. This is what you came to college to do, what you paid so much time and money for. It’s on you to make sure you’re learning.</p>
-<p>By and large I followed this advice, until I considered that I might have overcorrected given the exhortations. There are a lot of definitely bad reasons to skip class, chief among them being too lazy to get out of bed. There are also some non-obvious reasons to go to class, such as getting the professors to recognize you — this is a reason to go to office hours even if you’re not particularly struggling with the class, or if you know people who might be able to help you that you could ask more comfortably or more conveniently; professors who know you may eventually be able to give you career advice, research opportunities, or letters of recommendation. (Of course, you shouldn’t try to befriend professors purely for these selfish motives; they’re also good to know just as fellow humans.)</p>
-<p>But there are also plenty of legitimate reasons to skip class. (It’s really unclear how many people out there need to hear this, but my past self did, and I want this draft out of the way-too-long queue of posts.) Here are some.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/go-to-class">→ read more<span class="offscreen"> Go to Class (Most of the Time)</span></a>
 	</footer>
 </article>
 <footer class="list-footer">

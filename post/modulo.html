@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>Signed Modulo</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="One thing many mathematically-inclined programmers run into when implementing mathematical algorithms, particularly number-theoretic ones, is that the modulo operation doesn’t behave how they expect or prefer.
+In many languages, this operator is denoted %. Concretely, one might prefer that, if the second argument is positive, then the modulo operation would always give a nonnegative result. Under this behavior, the expression (-5) % 3 would evaluate to 1 rather than -2. This is a lot more useful for number theory because then for positive integers n, the % n operation actually maps integers to exactly the n canonical representatives for the residue classes. As a result, \(a \equiv b \mod n\) if and only if a % n == b % n. You can also do things like index into a length-n array with a % n and know that the index will be in-bounds. Finally, there are also optimization opportunities: modding by a power of 2 becomes equivalent to a simple bitwise AND, which is really fast on modern computers.
+A few programming languages, notably Python, do implement % this way. However, the majority of languages today, including pretty much everything remotely descended from C, do not; instead, (-5) % 3 is -2. This post attempts to track down why.
+The first thing to note is that there is a more important number-theoretic identity we’d like to have:
+\[\texttt{a} = (\texttt{a / b}) \cdot \texttt{b} &#43; (\texttt{a \% b}). \tag{1}\]
+In words, the integer division and modulo operators should give a breakdown of a into a sum of some copies of b plus a remainder. Note that this equation also implies that specifying the rounding behavior of division is equivalent to specifying the sign behavior of the modulo operation, which will come up repeatedly later.
+It’s also very uncontroversial that that remainder should have no copies of b, positive or negative, left over, which gives the constraint:
+\[|\texttt{a \% b}| &amp;lt; |\texttt{b}|. \tag{2}\]
+Every programming language I can think of satisfies these two constraints.1 So far so good. However, these two constraints don’t uniquely determine the values of a % b when a isn’t divisible by b; there are two possible values for a % b, one positive and one negative. Concretely, we could express \(-5\) as either \((-1) \cdot 3 &#43; (-2)\) or \((-2) \cdot 3 &#43; 1\), so (-5) % 3 could be -2 or 1.
+It’s still mostly uncontroversial that, if a and b are both positive, then a % b should be nonnegative as well; we could call this constraint (3).2 However, if a is negative and b is positive, programming languages start to diverge in their behavior. Why?
+" /><meta name="generator" content="Hugo 0.56.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/modulo" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Signed Modulo</h1>
+		
+		<p class="post-meta">
+		
+		2020-02-04
+		(3813 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>, <a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>One thing many mathematically-inclined programmers run into when implementing mathematical algorithms, particularly number-theoretic ones, is that the <a href="https://en.wikipedia.org/wiki/Modulo_operation">modulo operation</a> doesn’t behave how they expect or prefer.</p>
+<p>In many languages, this operator is denoted <code>%</code>. Concretely, one might prefer that, if the second argument is positive, then the modulo operation would always give a nonnegative result. Under this behavior, the expression <code>(-5) % 3</code> would evaluate to <code>1</code> rather than <code>-2</code>. This is a lot more useful for number theory because then for positive integers <code>n</code>, the <code>% n</code> operation actually maps integers to exactly the <code>n</code> canonical representatives for the residue classes. As a result, <span class="math inline">\(a \equiv b \mod n\)</span> if and only if <code>a % n == b % n</code>. You can also do things like index into a length-<code>n</code> array with <code>a % n</code> and know that the index will be in-bounds. Finally, there are also optimization opportunities: modding by a power of 2 becomes equivalent to a simple bitwise AND, which is really fast on modern computers.</p>
+<p>A few programming languages, notably Python, do implement <code>%</code> this way. However, the majority of languages today, including pretty much everything remotely descended from C, do not; instead, <code>(-5) % 3</code> is <code>-2</code>. This post attempts to track down why.</p>
+<hr />
+<p>The first thing to note is that there is a more important number-theoretic identity we’d like to have:</p>
+<p><span class="math display">\[\texttt{a} = (\texttt{a / b}) \cdot \texttt{b} + (\texttt{a \% b}). \tag{1}\]</span></p>
+<p>In words, the integer division and modulo operators should give a breakdown of <code>a</code> into a sum of some copies of <code>b</code> plus a remainder. Note that this equation also implies that specifying the rounding behavior of division is equivalent to specifying the sign behavior of the modulo operation, which will come up repeatedly later.</p>
+<p>It’s also very uncontroversial that that remainder should have no copies of <code>b</code>, positive or negative, left over, which gives the constraint:</p>
+<p><span class="math display">\[|\texttt{a \% b}| &lt; |\texttt{b}|. \tag{2}\]</span></p>
+<p>Every programming language I can think of satisfies these two constraints.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> So far so good. However, these two constraints don’t uniquely determine the values of <code>a % b</code> when <code>a</code> isn’t divisible by <code>b</code>; there are two possible values for <code>a % b</code>, one positive and one negative. Concretely, we could express <span class="math inline">\(-5\)</span> as either <span class="math inline">\((-1) \cdot 3 + (-2)\)</span> or <span class="math inline">\((-2) \cdot 3 + 1\)</span>, so <code>(-5) % 3</code> could be <code>-2</code> or <code>1</code>.</p>
+<p>It’s still mostly uncontroversial that, if <code>a</code> and <code>b</code> are both positive, then <code>a % b</code> should be nonnegative as well; we could call this constraint (3).<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> However, if <code>a</code> is negative and <code>b</code> is positive, programming languages start to diverge in their behavior. Why?</p>
+<h3 id="negative-dividend">Negative Dividend</h3>
+<p>As mentioned, in modern C, <code>(-5) % 3</code> is <code>-2</code>. In general, the result of a modulo operation in C has the <strong>sign of the dividend</strong>. (Just to make our terminology explicit: when we divide or mod <code>a</code> by <code>b</code>, <code>a</code> is called the <strong>dividend</strong>, <code>b</code> is called the <strong>divisor</strong>, the result of the division is the <strong>quotient</strong>, and the result of the modulo operation is called the <strong>remainder</strong>.) It makes a lot of sense that programming languages in the lineage of C would copy the behavior of C’s <code>%</code>, simply to maintain backwards compatibility.</p>
+<p>In fact, it makes sense even for C itself, which is low-level enough to be fairly beholden to the instruction set being targeted. I think it is a strong design constraint that the syntactically simplest way of performing a modulo operation should compile to a single instruction, if such an instruction is available; and, on modern computer architectures, it is. Just as the most front-of-mind example, the documentation for the <a href="https://www.felixcloutier.com/x86/idiv">x86 IDIV</a> instruction says:</p>
+<blockquote>
+<p>Non-integral results are truncated (chopped) towards 0. The remainder is always less than the divisor in magnitude.</p>
+</blockquote>
+<p>You can verify for yourself that under (1), division truncating towards zero corresponds to a remainder with the sign of the dividend; so if the dividend is nonpositive, the remainder will also be nonpositive.</p>
+<p>At least, that was my initial reaction, until I realized that C (1972) predates x86 (1978) by quite a few years. <a href="https://en.wikipedia.org/wiki/C_%28programming_language%29#Early_developments">C was designed</a> in tandem with the development of Unix for the <a href="https://en.wikipedia.org/wiki/PDP-11">PDP-11</a>. Fortunately, you can find the <a href="https://pdos.csail.mit.edu/6.828/2005/readings/pdp11-40.pdf">PDP-11 manual (PDF)</a> online, and in it, the documentation for its DIV instruction:</p>
+<figure>
+<a href="/img/pdp11-div.png"><img src="/img/pdp11-div.png" alt="Page 4-32 of the PDP-11 manual, excerpted below" height="447" width="444"></a>
+<figcaption>
+Page 4-32 of the PDP-11 manual
+</figcaption>
+</figure>
+<blockquote>
+<p>Division will be performed so that the remainder is of the same sign as the dividend.</p>
+</blockquote>
+<p>So that provides one layer of justification, but we’re kind of just kicking the can down the road: why did the PDP-11 perform division in this way?</p>
+<p>Well, as its name might suggest, the PDP-11 had its own backwards compatibility issues to worry about. If we jump back to the <a href="http://www.bitsavers.org/pdf/dec/pdp1/F15D_PDP1_Handbook_Oct63.pdf">PDP-1 manual</a>, we can find:</p>
+<figure>
+<a href="/img/pdp1-div.png"><img src="/img/pdp1-div.png" alt="Page 15 of the PDP-1 manual, excerpted below"></a>
+<figcaption>
+Page 15 of the PDP-1 manual
+</figcaption>
+</figure>
+<blockquote>
+<p>The sign of the remainder (in IO bit zero) is the sign of the dividend.</p>
+</blockquote>
+<p>However, this time the choice of sign has a more fundamental justification, which is that the PDP-1 used a <a href="https://en.wikipedia.org/wiki/Ones%27_complement"><strong>one’s-complement representation</strong></a><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> of its numbers.</p>
+<figure>
+<a href="/img/pdp1-number.png"><img src="/img/pdp1-number.png" alt="Page 7 of the PDP-1 manual, excerpted below"></a>
+<figcaption>
+Page 7 of the PDP-1 manual
+</figcaption>
+</figure>
+<blockquote>
+<p>Negative numbers are represented as the one’s complement of the positive numbers.</p>
+</blockquote>
+<p>One’s-complement has fallen out of favor in modern processors because handling overflow/carrying in addition/subtraction is worse, as is having distinct positive and negative zeroes. Nevertheless, if you want to perform a modulo operation, the sign-of-dividend remainder is easier to compute than the nonnegative remainder. Regardless of the dividend’s sign, you can divide the dividend’s magnitude by the divisor, and simply flip the signs of the remainder (and the quotient) afterwards if the dividend was negative. So this is one justification for why the PDP series and C all produce remainders matching the sign of the dividend.</p>
+<p>In fact, there’s more. It might have been that this choice of sign was the behavior in practice, but C89 deliberately did not specify the rounding behavior, as the <a href="http://port70.net/~nsz/c/c89/c89-draft.html#3.3.5">spec</a><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> says (emphasis mine):</p>
+<blockquote>
+<p>When integers are divided and the division is inexact, if both operands are positive the result of the <code>/</code> operator is the largest integer less than the algebraic quotient and the result of the <code>%</code> operator is positive. <strong>If either operand is negative,</strong> whether the result of the <code>/</code> operator is the largest integer less than the algebraic quotient or the smallest integer greater than the algebraic quotient <strong>is implementation-defined</strong>, as is the sign of the result of the <code>%</code> operator. If the quotient <code>a/b</code> is representable, the expression <code>(a/b)*b + a%b</code> shall equal a.</p>
+</blockquote>
+<p>The spec requires that the division and modulo operations satisfy constraints (1), (2), and (3), but deliberately does not specify the sign of the remainder if it’s still ambiguous, presumably so different hardware with different division/modulo semantics can still implement <code>%</code> in a single instruction. However, if you skip a few years ahead, the C99 specification <em>does</em> specify the sign of the remainder, and §6.5.5 of <a href="http://www.open-std.org/jtc1/sc22/wg14/www/C99RationaleV5.10.pdf">the C99 rationale</a> explains that this was for compatibility with (wait for it) <strong>Fortran</strong>:</p>
+<blockquote>
+<p>In C89, division of integers involving negative operands could round upward or downward in an implementation-defined manner; the intent was to avoid incurring overhead in run-time code to check for special cases and enforce specific behavior. In Fortran, however, <strong>the result will always truncate toward zero</strong>, and the overhead seems to be acceptable to the numeric programming community. Therefore, <strong>C99 now requires similar behavior</strong>, which should facilitate porting of code from Fortran to C.</p>
+</blockquote>
+<p>Fortran, in turn, was initially designed for the IBM 704, which used the even harder-to-use <a href="https://en.wikipedia.org/wiki/Signed_number_representations#Signed_magnitude_representation_(SMR)"><strong>sign-magnitude representation</strong></a> for its numbers. The <a href="http://bitsavers.org/pdf/ibm/704/24-6661-2_704_Manual_1955.pdf">IBM 704</a> manual:</p>
+<figure>
+<a href="/img/ibm704-number.png"><img src="/img/ibm704-number.png" alt="Page 8 of the IBM 704 manual, excerpted below"></a>
+<figcaption>
+Page 8 of the IBM 704 manual
+</figcaption>
+</figure>
+<blockquote>
+<p>Fixed-point numbers have a sign bit and a magnitude of 35 bits […]</p>
+</blockquote>
+<p>And, to nobody’s surprise, the documentation for the IBM 704’s division instruction says:</p>
+<figure>
+<a href="/img/ibm704-div.png"><img src="/img/ibm704-div.png" alt="Page 18 of the IBM 704 manual, excerpted below"></a>
+<figcaption>
+Page 18 of the IBM 704 manual
+</figcaption>
+</figure>
+<blockquote>
+<p>The sign of the remainder always agrees with the sign of the dividend.</p>
+</blockquote>
+<p>Due to its nice sign symmetry, the advantage of a sign-of-dividend modulo result is even starker if you’re working with sign-magnitude numbers.</p>
+<p>So, in a nutshell, the modulo operations of C and languages descended from C are influenced by backwards compatibility from the days when computer scientists and engineers <strong>hadn’t settled on two’s complement</strong> as a number representation.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+<p>I should add, though, that although I think this backwards compatibility is the strongest reason we have sign-of-dividend remainder today, it’s not the only possible reason. Sign-of-dividend remainder also has advantages when applied to floating-point numbers: for example, in today’s standard double-precision floating-point numbers, <code>-1e-18 % 1</code> is just <code>-1e-18</code> if the remainder has the sign of the dividend, but loses precision if you want the positive remainder because the number <code>1 - 1e-18</code> gets rounded to <code>1</code>.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> And of course, if your language has an <code>%</code> operator that works on both integers and on floating-point numbers, it’s probably desirable for its mathematical behavior on both to be consistent.</p>
+<p>Also, there are a fair number of programming languages that provide both types of modulo operation we’ve seen so far, e.g. Ada, Clojure, Common Lisp, and Haskell. They often differentiate the two operations by calling the variant producing a sign-of-dividend remainder “remainder” or <code>rem</code>, and the variant matching Python’s behavior “modulo” or <code>mod</code>. (A more atypical example is CoffeeScript, which inherits JavaScript’s remainder operation <code>%</code> and defines a modulo operation with the symbol <code>%%</code>.) Wikipedia has a <a href="https://en.wikipedia.org/wiki/Modulo_operation#In_programming_languages">more complete list of programming languages</a> by their behavior.</p>
+<p>Up to now, though, I’ve been tiptoeing around another case for the modulo operation: What if the <em>divisor</em> is negative?</p>
+<h3 id="negative-divisor">Negative Divisor</h3>
+<p>I think using the modulo operation with a negative divisor is much rarer in practice: usually, either the divisor is a fixed positive constant<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>, or it arises from a context where it’s definitely positive, such as being an array length.</p>
+<p>Still, it turns out that in most languages, if the modulo operation doesn’t take the sign of the dividend, or if there’s a <code>mod</code> operator/function separate from the <code>rem</code> function, it usually computes a result with the <strong>same sign as the divisor.</strong> So, for example, in Python, <code>5 % -3</code> is <code>-1</code>.</p>
+<p>This behavior might seem a little strange or mathematically undesirable at first, but the justifications I mentioned at the start of this post aren’t so strong any more. Instead, if you plug sign-of-divisor remainder into equation (1), you can work out that this corresponds to the mathematically neat definition of integer division that <strong>always rounds down</strong>, or <strong>floors</strong>: <span class="math display">\[\texttt{n / a} = \left\lfloor\frac{\texttt{n}}{\texttt{a}}\right\rfloor.\]</span></p>
+<p>In light of this observation, it’s worth checking more completely if the claim that sign-of-dividend remainder is easier to compute in one’s-complement or sign-magnitude numbers still holds up. It does: the sign symmetry is still better. With sign-of-dividend remainder, we have the nice identities <span class="math display">\[(-n)\;\texttt{rem}\;a = -(n\;\texttt{rem}\;a)\]</span> and <span class="math display">\[n\;\texttt{rem}\;a = n\;\texttt{rem}\;(-a).\]</span> That is, negating the dividend negates the result, and negating the divisor doesn’t affect it. So, we can drop the signs from both dividend and divisor, compute the remainder, and negate the result iff the dividend started out negative.</p>
+<p>With sign-of-divisor modulus, we don’t have nice identities like this. The best we can do is <span class="math display">\[(-n)\;\texttt{mod}\;(-a) = -(n\;\texttt{mod}\;a):\]</span> negating both dividend and divisor negates the result. There isn’t a neat identity spanning the other direction because their arithmetic relation depends on if the result is zero.</p>
+<p>One clearer way to see the affinity between sign-of-dividend remainder and one’s-complement/sign-magnitude numbers is to think about the optimization cases. In either representation, dividing or modding a number by a fixed power of two is easier with truncating division and sign-of-dividend remainder; division is a bit right shift and modding is just taking the last few bits (both with sign extension if one’s-complement). Of course, as mentioned at the start of this post, the same affinity links flooring division and sign-of-divisor remainder to two’s-complement. Flooring division by a power of two is a bit right shift in two’s-complement (again, with sign extension if needed); modding by a power of two is just taking the last few bits.</p>
+<p>Now, however, we’re left with a rectangle to complete. Which kind of division and modulo is easier to implement, fully generally, in today’s hardware, with today’s two’s-complement numbers and algorithmic understanding?</p>
+<p>I wasn’t able to find any resources online examining this question exactly — nearly everybody either only gives an algorithm for dividing/modding two nonnegative integers, or just says to remove the signs from both operands and fix the result at the end — but based on my limited understanding of hardware and division algorithms, I think the rectangle completes as expected: in two’s-complement, sign-of-divisor has a slight advantage.</p>
+<h3 id="division-algorithms-and-sign">Division Algorithms and Sign</h3>
+<p>Wikipedia has pretty nice descriptions of the <a href="https://en.wikipedia.org/wiki/Division_algorithm#Slow_division_methods">“slow” division algorithms</a> used to do division and modulo in hardware. Here, though, I’ll try to present these algorithms with pseudocode that’s even less efficient but even conceptually simpler than what Wikipedia has.</p>
+<p>First, “restoring division”:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1">r <span class="op">=</span> dividend</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">q <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="cf">for</span> i <span class="im">from</span> ((bit width of r) <span class="op">-</span> <span class="dv">1</span>) down to <span class="dv">0</span>:</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="co"># the following shift must use a wider integer to not overflow</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="co"># (and in practice, divisor will be shifted left at the start</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">    <span class="co"># and shifted right once each loop)</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">    new_r <span class="op">=</span> r <span class="op">-</span> (divisor <span class="op">&lt;&lt;</span> i)</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">    <span class="cf">if</span> r <span class="op">&gt;=</span> <span class="dv">0</span>:</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">        q <span class="op">+=</span> (<span class="dv">1</span> <span class="op">&lt;&lt;</span> i)</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">        r <span class="op">=</span> new_r</a></code></pre></div>
+<p>Basically, for each power-of-two multiple of the divisor starting from the largest, you try to subtract it from the dividend; if the difference is nonnegative, you write down 1 in your quotient and set the new dividend to that difference; otherwise, you write down 0 in your quotient and keep the dividend unchanged. The division is called “restoring” because you can equivalently think of it as always subtracting the divisor’s multiple from the dividend, but then backtracking and “restoring” the old dividend if you got a negative result.</p>
+<p>This algorithm assumes that the dividend and divisor are both nonnegative. There isn’t a nice way to make it sign-agnostic, so I think it favors sign-of-dividend remainder. However, it is not the best hardware division algorithm in practice.</p>
+<p>Consider <a href="https://en.wikipedia.org/wiki/Division_algorithm#Non-restoring_division">non-restoring division</a>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" data-line-number="1">r <span class="op">=</span> dividend</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">q <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="cf">for</span> i <span class="im">from</span> ((bit width of r) <span class="op">-</span> <span class="dv">1</span>) down to <span class="dv">0</span>:</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">    <span class="co"># Same caveats as above: shift must use wider integer,</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">    <span class="co"># divisor wouldn&#39;t be shifted dynamically.</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">    <span class="co"># Also, instead of adding numbers to q, we&#39;d store the sign of each</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">    <span class="co"># addition as individual bits and convert it to a two&#39;s-complement number</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">    <span class="co"># in a single step at the end.</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">    <span class="cf">if</span> r <span class="op">&gt;=</span> <span class="dv">0</span>:</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">        q <span class="op">+=</span> (<span class="dv">1</span> <span class="op">&lt;&lt;</span> i)</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">        r <span class="op">-=</span> (divisor <span class="op">&lt;&lt;</span> i)</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">    <span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">        q <span class="op">-=</span> (<span class="dv">1</span> <span class="op">&lt;&lt;</span> i)</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">        r <span class="op">+=</span> (divisor <span class="op">&lt;&lt;</span> i)</a></code></pre></div>
+<p>Whereas restoring division tries to subtract multiples of the divisor and then undoes its work if the answer is negative, nonrestoring division unapologetically subtracts or adds multiples of the divisor depending on the sign of the dividend to try to send it closer to 0. This fun algorithm produces a <code>q</code> in the form of a binary representation with digits from the set <span class="math inline">\(\{+1, -1\}\)</span>; fortunately, this is not hard to convert back to a normal binary number. It also produces a remainder <code>r</code> in the range <code>-divisor &lt;= r &lt; divisor</code>, whose sign is not terribly meaningful.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a></p>
+<p>Nonrestoring division works because after adding or subtracting <code>divisor &lt;&lt; i</code>, the value of <code>n</code> is in the range <code>-(divisor &lt;&lt; i) &lt;= n &lt; (divisor &lt;&lt; i)</code> (check this). It’s kind of funny because if you do an easy division like divide 5 by 3 as a pair of 32-bit integers, the first thing it will do is compute the very small number <span class="math inline">\(5 - 3 \cdot 2^{31}\)</span>, stick that in <code>r</code>, and then spend literally all of its remaining iterations correcting back up towards 0, which it just manages to do. But it works, and in fact, it works equally well for positive and negative dividends.</p>
+<p>Nonrestoring division doesn’t work, however, with a negative divisor. So it makes sense to check if the divisor is negative, remove the sign, run the algorithm, and then use the initial sign of the divisor to guide the final sign correction if necessary. This makes nonrestoring division a good fit for computing a sign-of-divisor remainder. Also, the rest of the algorithm is quite a good fit for two’s-complement arithmetic. Addition, subtraction, and shifting are all easy. Checking if <code>n &gt;= 0</code> is the easiest nontrivial comparison to do in two’s-complement; simply check if the most significant bit of <code>n</code> is unset. And if the <span class="math inline">\(\{+1, -1\}\)</span> “bits” of <code>q</code> are stored as <code>1</code> and <code>0</code> in <code>q</code>, you can recover a normal two’s-complement number simply as <code>q - ~q</code>, which equals <code>2*q + 1</code> and actually requires no bit operations.</p>
+<p>What’s more, it does appear to be more efficient in hardware in terms of delay. Wikipedia states this fact with a citation to a Stanford handout that doesn’t appear to demonstrate it at all (??), but, using my basic understanding of hardware,<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> I will nevertheless attempt to defend this claim on my own. Since both division algorithms have equally long loops, the delay in each loop iteration is likely the most important factor; and the key difference is that the branch condition can be computed sooner in nonrestoring division.</p>
+<ul>
+<li>In one iteration of restoring division, you need to compute <code>new_r = r - (divisor &lt;&lt; i)</code>, and then mux on the <abbr title="most significant bit">MSB</abbr> of <code>new_r</code> to choose between <code>new_r</code> and <code>r</code>. Crucially, these two things must happen in series, and using one bit to mux between two many-bit integers costs quite a bit of delay, because you need to add buffers to that one bit to give it enough strength to drive all the muxes. So the critical path through one iteration is something like that of one adder plus a bunch of buffers.</li>
+<li>In one iteration of nonrestoring division, you can compute <code>r - (divisor &lt;&lt; i)</code> and <code>r + (divisor &lt;&lt; i)</code> <em>and</em> add buffers to the <abbr title="most significant bit">MSB</abbr> of <code>r</code>, <em>all in parallel</em>. Then you can use the buffered <abbr title="most significant bit">MSB</abbr> to mux between the difference and the sum. The two adders probably have longer delay than the buffer tree, so the critical path is just a little more than one adder, which is nontrivially shorter than the delay of one iteration of restoring division.</li>
+</ul>
+<p>So, using nonrestoring division, sign-of-divisor modulus seems easier or more efficient to implement in hardware than sign-of-dividend remainder. Wikipedia continues on to describe SRT division, which is even faster, but it appears to share the property of nonrestoring division that the dividend bounces around positive and negative values, making the algorithm work equally well on positive and negative initial dividends. All in all, this increases my confidence that backwards compatibility is the main reason that sign-of-dividend remainder is popular today.</p>
+<h3 id="some-other-possible-sign-behaviors">Some Other Possible Sign Behaviors</h3>
+<p>For completeness, we’ll mention some other options for implementing division and modulo that are neither of the above two. For one, you could say that the remainder should <em>always</em> be nonnegative. A few languages take this option, e.g. <a href="http://www.r6rs.org/final/html/r6rs/r6rs-Z-H-14.html#node_sec_11.7.3.1">Scheme</a>. This is also a plausible choice, but the drawback is that there is no simple description of the corresponding quotient forced by (1): you have to round down if the divisor is positive and round up if the divisor is negative.</p>
+<p>Scheme also offers a fourth option of <code>div0</code> and <code>mod0</code>, which, as mentioned in an early footnote, is unusual for violating (3): it tries to minimize the magnitude of the remainder,<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> which corresponds to rounding division to the closest integer. This option is suggested for floating-point numbers in the <a href="http://python-history.blogspot.com/2010/08/why-pythons-integer-division-floors.html">Python History blog post</a>, because magnitude-minimization is valuable when working with floating-point numbers.</p>
+<p>A summary of the four options covered:</p>
+<!--
+Quotient                        | Remainder          | Benefits
+--------------------------------|--------------------|------------------------------------------------------
+Truncate towards zero           | Sign of dividend   | Backwards-compatible; more sign symmetry; better preserves representability in floating-point numbers
+Floor (round down)              | Sign of divisor    | Mathematically nice; better optimization opportunities in two's-complement
+Round away from sign of divisor | Always nonnegative | Remainder is mathematically nice
+-->
+<table class="small">
+<thead>
+<tr>
+<th>
+Quotient
+</th>
+<th>
+Remainder
+</th>
+<th>
+Benefits
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Truncate towards zero
+</td>
+<td>
+Sign of dividend
+</td>
+<td>
+Backwards-compatible; more sign symmetry; better preserves floating-point representability
+</td>
+</tr>
+<tr>
+<td>
+Floor (round down)
+</td>
+<td>
+Sign of divisor
+</td>
+<td>
+Mathematically nice; better optimization opportunities in two’s-complement
+</td>
+</tr>
+<tr>
+<td>
+Round away from sign of divisor
+</td>
+<td>
+Always nonnegative
+</td>
+<td>
+Remainder is mathematically nice
+</td>
+</tr>
+<tr>
+<td>
+Round to closest integer
+</td>
+<td>
+Minimum magnitude
+</td>
+<td>
+Magnitude reduction is good for floating-point precision
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sources">Sources</h3>
+<p>Multiple footnotes link to the Python History blog post <a href="http://python-history.blogspot.com/2010/08/why-pythons-integer-division-floors.html">Why Python’s integer division floors</a>. That post mentions the core claim of this one, that sign-of-dividend remainder is based on older computers using sign-magnitude number representation, and probably inspired it entirely. It also mentions the floating-point advantage. After more research, though, one of the most complete analyses I found after more research was somewhat unexpectedly <a href="https://github.com/WebAssembly/design/issues/250">Issue #250 on the WebAssembly design</a> repo, which led me to the Fortran connection. A few people have posted hardware division implementations; here’s a <a href="https://electronics.stackexchange.com/questions/280673/why-does-hardware-division-take-much-longer-than-multiplication">StackExchange answer with (massive) hardware diagrams</a>, and <a href="https://sistenix.com/division.html">somebody’s SystemVerilog implementation</a>. Finally, although this is almost no evidence at all, here’s <a href="http://www.edaboard.co.uk/binary-division-algorithms-t440247.html">internet person mentioning PDP-1</a>.</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Actually, Wikipedia says that ISO Pascal, a language I was unable to think of, does not satisfy (1). That’s unfortunate.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p><a href="http://www.r6rs.org/final/html/r6rs/r6rs-Z-H-14.html#node_sec_11.7.3.1">Scheme</a> actually offers a <code>div0</code> and <code>mod0</code> that do not satisfy this condition. We will return to this example at the end of this post.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>Bizarrely, Wikipedia spells this “ones’ complement”. This does not appear to be common usage.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>This is a draft spec, because the actual specs are copyrighted and rather pricey (?)<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>There’s a Python History blog post, <a href="https://python-history.blogspot.com/2010/08/why-pythons-integer-division-floors.html">Why Python’s Integer Division Floors</a>, that made this point a long time ago. This post is heavily based on that one; I just tried to flesh out the details a bit more.<a href="#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>This example is also taken from the same Python History blog post.<a href="#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>Common constants, based on a totally unscientific search through my code folder: 2 or powers thereof for bit-related things; 10 or powers thereof for digit-related things; the occasional 7, 12, 24, or 60 for date/time handling; and, of course, every competitive programmer’s favorite prime, 1000000007. (It’s a prime that fits comfortably in a 32-bit signed integer. Often, if an interesting problem involves really large integers, a programming problem will ask you to compute the answer to that problem mod 1000000007 so that you don’t need to use big integers, which are widely considered out of scope and give people in some programming languages too much of an advantage. In fact, 1000000007 is a twin prime, and occasionally a problem will troll contestants who don’t read carefully enough by making them mod numbers by its twin, 1000000009.)<a href="#fnref7" class="footnote-back">↩</a></p></li>
+<li id="fn8"><p>The value of <code>q</code> is simply the possible <em>odd</em> remainder for which such an <code>r</code> exists, so <code>r</code> is negative iff <span class="math inline">\(\lfloor \texttt{n}/\texttt{a} \rfloor\)</span> is even. This would be a hilarious way for a programming language to choose the sign of its modulo operation (although it violates <span class="math inline">\((3)\)</span>, and you’d have to fix the case where <code>r == -divisor</code> to even satisfy <span class="math inline">\((2)\)</span>).<a href="#fnref8" class="footnote-back">↩</a></p></li>
+<li id="fn9"><p>Yay 6.004.<a href="#fnref9" class="footnote-back">↩</a></p></li>
+<li id="fn10"><p>When there’s a tie, it prefers <code>-(divisor/2)</code> over <code>divisor/2</code>. Technically you could generate a bunch more division variants that are the same as this except for how they break this tie, but I don’t think these variants are different in ways worth analyzing.<a href="#fnref10" class="footnote-back">↩</a></p></li>
+</ol>
+</section></article>
+	<footer class="post-footer">
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/2020-hunt">← 2020 MIT Mystery Hunt</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2020 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>

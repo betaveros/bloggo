@@ -61,6 +61,39 @@ Category → math
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/modulo" class="post-link">Signed Modulo</a></h3>
+		
+		<p class="post-meta">
+		
+		2020-02-04
+		(3813 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>, <a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>One thing many mathematically-inclined programmers run into when implementing mathematical algorithms, particularly number-theoretic ones, is that the <a href="https://en.wikipedia.org/wiki/Modulo_operation">modulo operation</a> doesn’t behave how they expect or prefer.</p>
+<p>In many languages, this operator is denoted <code>%</code>. Concretely, one might prefer that, if the second argument is positive, then the modulo operation would always give a nonnegative result. Under this behavior, the expression <code>(-5) % 3</code> would evaluate to <code>1</code> rather than <code>-2</code>. This is a lot more useful for number theory because then for positive integers <code>n</code>, the <code>% n</code> operation actually maps integers to exactly the <code>n</code> canonical representatives for the residue classes. As a result, <span class="math inline">\(a \equiv b \mod n\)</span> if and only if <code>a % n == b % n</code>. You can also do things like index into a length-<code>n</code> array with <code>a % n</code> and know that the index will be in-bounds. Finally, there are also optimization opportunities: modding by a power of 2 becomes equivalent to a simple bitwise AND, which is really fast on modern computers.</p>
+<p>A few programming languages, notably Python, do implement <code>%</code> this way. However, the majority of languages today, including pretty much everything remotely descended from C, do not; instead, <code>(-5) % 3</code> is <code>-2</code>. This post attempts to track down why.</p>
+<hr />
+<p>The first thing to note is that there is a more important number-theoretic identity we’d like to have:</p>
+<p><span class="math display">\[\texttt{a} = (\texttt{a / b}) \cdot \texttt{b} + (\texttt{a \% b}). \tag{1}\]</span></p>
+<p>In words, the integer division and modulo operators should give a breakdown of <code>a</code> into a sum of some copies of <code>b</code> plus a remainder. Note that this equation also implies that specifying the rounding behavior of division is equivalent to specifying the sign behavior of the modulo operation, which will come up repeatedly later.</p>
+<p>It’s also very uncontroversial that that remainder should have no copies of <code>b</code>, positive or negative, left over, which gives the constraint:</p>
+<p><span class="math display">\[|\texttt{a \% b}| &lt; |\texttt{b}|. \tag{2}\]</span></p>
+<p>Every programming language I can think of satisfies these two constraints.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> So far so good. However, these two constraints don’t uniquely determine the values of <code>a % b</code> when <code>a</code> isn’t divisible by <code>b</code>; there are two possible values for <code>a % b</code>, one positive and one negative. Concretely, we could express <span class="math inline">\(-5\)</span> as either <span class="math inline">\((-1) \cdot 3 + (-2)\)</span> or <span class="math inline">\((-2) \cdot 3 + 1\)</span>, so <code>(-5) % 3</code> could be <code>-2</code> or <code>1</code>.</p>
+<p>It’s still mostly uncontroversial that, if <code>a</code> and <code>b</code> are both positive, then <code>a % b</code> should be nonnegative as well; we could call this constraint (3).<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> However, if <code>a</code> is negative and <code>b</code> is positive, programming languages start to diverge in their behavior. Why?</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/modulo">→ read more<span class="offscreen"> Signed Modulo</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/advent-rocket" class="post-link">Rocket Equation</a></h3>
 		
 		<h4 class="post-subtitle">Advent of Code 2019, Day 1</h4>
@@ -312,35 +345,6 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
 Transcript since the resolution is far from awesome: “Most angiosperms have alternate phyllotaxy, with leaves arranged in an ascending spiral around the stem, each successive leaf emerging 137.5° from the site of the previous one. Why 137.5°? Mathematical analyses suggest that this angle minimizes shading of the lower leaves by those above.
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/phyllotaxy">→ read more<span class="offscreen"> Φllotaxy</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/matrix" class="post-link">Matrix Intuition</a></h3>
-		
-		<p class="post-meta">
-		
-		2012-10-14
-		(2974 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/math">Math</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Stopped by a friend’s house a few days ago to do homework, which somehow devolved into me analyzing what programming language I should try to learn next in a corner, which is completely irrelevant to the rest of this post. Oops.</p>
-<p>Anyway, in normal-math-curriculum-land, my classmates are now learning about matrices. How to add them, how to multiply them, how to calculate the determinant and stuff. Being a nice person, and feeling somewhat guilty for my grade stability despite the number of study hours I siphoned off to puzzles and the like, I was eager to help confront the monster. Said classmate basically asked me what they were for.</p>
-<p>Well, what a hard question. But of course given the curriculum it’s the only interesting problem I think could be asked.</p>
-<p>When I was hurrying through the high-school curriculum I remember having to learn the same thing and not having any idea what the heck was happening. Matrices appeared in that section as a messy, burdensome way to solve equations and never again, at least not in an interesting enough way to make me remember. I don’t have my precalc textbook, but a supplementary precalc book completely confirms my impressions and “matrix” doesn’t even appear in my calculus textbook index. They virtually failed to show up in olympiad training too. I learned that Po-Shen Loh knew how to <a href="http://www.math.cmu.edu/~ploh/docs/math/mop2009/alg-comb.pdf">kill a bunch of combinatorics problems with them (PDF)</a>, but not in the slightest how to do that myself.</p>
-<p>Somewhere else, during what I’m guessing was random independent exploration, I happened upon the signed-permutation-rule (a.k.a. <a href="https://en.wikipedia.org/wiki/Leibniz_formula_for_determinants">Leibniz formula</a>) for evaluating determinants, which made a lot more sense for me and looked more beautiful and symmetric</p>
-<p><span class="math display">\[\det(A) = \sum_{\sigma \in S_n} \text{sgn}(\sigma) \prod_{i=1}^n A_{i,\sigma_i}\]</span></p>
-<p>and I was annoyed when both of my linear algebra textbooks defined it first with cofactor expansion. Even though they quickly proved you could expand along any row or column, and one also followed up with the permutation formula a few sections later, it still felt uglier to me. Yes, it’s impossible to understand that equation without knowledge of permutations and their signs, but I’m very much a permutations kind of guy. Sue me.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/matrix">→ read more<span class="offscreen"> Matrix Intuition</span></a>
 	</footer>
 </article>
 
