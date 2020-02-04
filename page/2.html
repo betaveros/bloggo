@@ -57,6 +57,46 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/multiplication" class="post-link">Multiplication by Juxtaposition</a></h3>
+		
+		<h4 class="post-subtitle">Evaluating 8÷2(2&#43;2) in Haskell (and some other languages)</h4>
+		
+		<p class="post-meta">
+		
+		2019-08-04
+		(2653 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>We interrupt the irregularly scheduled philosophical posts for some programming memes:</p>
+<p>Over the last few days, the Internet has divided itself over what the value of the expression 8÷2(2+2) should be. Some say it should be evaluated as (8÷2)×(2+2) = 16. Some say it should be evaluated as 8÷(2×(2+2)) = 1.</p>
+<p>At the risk of belaboring the obvious, the core dispute here is not really mathematical. There is not some sequence of mathematical operations that produces some number, where mathematicians disagree about what number it produces. Instead, this is a dispute about mathematical notation: what sequence of mathematical operations the expression corresponds to the way it’s written. Specifically, it is a dispute about whether multiplication written as juxtaposition (how “2” is written right next to “(2+2)”) has strictly higher precedence than division. It is closer to a linguistic or typographical dispute than a purely mathematical one, and the correct answer to the dispute is that whoever wrote the expression that way should learn to write math better.</p>
+<p>This debate is not even new. The internet had fun arguing over <a href="https://knowyourmeme.com/memes/48293">48÷2(9+3) and 6÷2(1+2)</a>, which are functionally identical ambiguous expressions, eight years ago. I don’t know why the debate is resurging now and why we still haven’t gotten tired of it.</p>
+<p>But life is short, so since we’re here anyway, let’s make some additional memes.</p>
+<h3 id="asking-the-computer">Asking the computer</h3>
+<p>Some of my coworkers had the idea to ask some programming languages what the answer was. The results were underwhelming.</p>
+<pre><code>$ python3
+Python 3.6.7 (default, Oct 22 2018, 11:32:17)
+[GCC 8.2.0] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; 8/2(2+2)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+TypeError: &#39;int&#39; object is not callable</code></pre>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/multiplication">→ read more<span class="offscreen"> Multiplication by Juxtaposition</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/writing" class="post-link">Writing for the Mundane</a></h3>
 		
 		<p class="post-meta">
@@ -203,6 +243,40 @@ Environment: Ubuntu 16.04+latex</code></pre>
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/2019-hunt" class="post-link">2019 MIT Mystery Hunt</a></h3>
+		
+		<p class="post-meta">
+		
+		2019-01-31
+		(435 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>(this post is sketchily backdated from February 2020)</p>
+<p>Fourth year with ✈✈✈ Galactic Trendsetters ✈✈✈. Past: <a href="//blog.vero.site/post/2018-hunt">2018</a>, <a href="//blog.vero.site/post/january">2017</a>, <a href="//blog.vero.site/post/whoosh">2016</a>, writing with Random in <a href="//blog.vero.site/post/hunt">2015</a>). Evidently I was unable to find the time or motivation to blog about this, and I can’t remember any particularly good stories, so let me just slip this backdated list post in the archives.</p>
+<p>The theme in a few sentences: The hunt organizers declare a new Molasses Awareness Day, but because they didn’t follow the proper procedure, throwing the world of Holidays into chaos, where “chaos” means molasses. This resulted in lots of puzzle-to-meta matching, since puzzles were in Holiday towns but metas were at lampposts between two towns.</p>
+<p>Highlights of puzzles I solved:</p>
+<ul>
+<li><strong>A Good Walk Spoiled</strong> (Holi): Happens to be about a topic I know well and find interesting. Fun steps. Justified use of substitution ciphers; the pasting into quipqiup was worth it.</li>
+<li><strong>State Machine</strong> (President’s): A one-aha! one-step puzzle. Maybe more unfortunate because apparently this was not the only puzzle to use a specific aspect of a specific source material, but I didn’t know about that other puzzle so it’s fine.</li>
+<li><strong>Clued Connections</strong> (Pi): I went to sleep near the end of this puzzle, so I didn’t see it through, but Floorpi was collectively called out by it.</li>
+<li><strong>I Can’t Deal with These Endless Numbers</strong> (Patriot’s): Incredible.</li>
+<li><strong>Loaded</strong> (Arbor): Simple and self-contained enough.</li>
+</ul>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/2019-hunt">→ read more<span class="offscreen"> 2019 MIT Mystery Hunt</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/prose-passion" class="post-link">The Prose and the Passion</a></h3>
 		
 		<p class="post-meta">
@@ -224,7 +298,7 @@ Environment: Ubuntu 16.04+latex</code></pre>
 
 <p>I was pretty torn between this and “The Future Soon” as the Year-End Song on this blog, but in the end I think I feel more threatened by the bland existence of the soulless adult than inspired by the starry-eyed-idealism-with-misogynist-undertones of the twelve-year-old, plus I get to show you the best kinetic typography video I have ever seen.</p>
 <p>Halfway through 2018 I thought this would be the year of ephemeral phases. I felt like I went through a different phase every month — <a href="https://dominion.games/">Online Dominion</a> in April, crosswords in June, <a href="https://en.wikipedia.org/wiki/Only_Connect">Only Connect</a> in July, <a href="https://www.jonathancoulton.com/">Jonathan Coulton</a> in August, a brief stint of trying really hard to barre my guitar chords in October. Somewhere in the middle, I discovered Kittens Game (“the Dark Souls of Incremental Gaming”) and my summer internship mentor got me to pick up Pokémon Go again. A few intense periods of typographical study were interspersed, which involved watching the above music video dozens of times, teaching a Splash class on typography, and developing a new awareness of how <a href="https://en.wikipedia.org/wiki/Avenir_%28typeface%29">Avenir</a> was <em>everywhere</em>. During the last month, I went hard on <a href="https://adventofcode.com/">Advent of Code</a> and got second place, apparently the only person to make it on every single leaderboard. I also did a related <a href="https://kara71.github.io/Advent-of-Golf-2018/">golf side contest</a> and poured a couple more hours into <a href="https://github.com/betaveros/paradoc">Paradoc</a>, my personal golfing language, for rather unclear gain. At least I got a lot of GitHub followers?</p>
-<p>It would turn out, though, that a lot of these phases had more staying power than I expected. Pokémon Go is a much better game than it was two years ago and has actually fostered a significant real-life community, which seems like one of the best possible outcomes of an augmented reality game, and I’ve found a steady pace to play at. I spread the Only Connect bug and people on my hall, intrigued by the format but annoyed by the overwhelmingly British trivia<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, started writing and hosting full games for each other, with our own MIT-slanted set of trivia. One of us developed a custom <a href="https://github.com/krawthekrow/pi-connect">site</a> and <a href="https://github.com/krawthekrow/pi-connect-maker">tool</a> to host these games. It took me a while to warm up to Jonathan Coulton’s latest album, but since it happened, I cannot get <a href="https://www.youtube.com/watch?v=DXuxwWm4huM">Ordinary Man</a> or <a href="https://www.youtube.com/watch?v=Vig5byZx2Ew">Sunshine</a> out of my head; I’m still listening to JoCo as I finish typing up this post. Although I never got back to the peak of my crossword frenzy, I still study crosswordese from time to time and compose crosswords for some special occasions, like <a href="/christmas-somewhere.puz">this one (.puz file)</a>.</p>
+<p>It would turn out, though, that a lot of these phases had more staying power than I expected. Pokémon Go is a much better game than it was two years ago and has actually fostered a significant real-life community, which seems like one of the best possible outcomes of an augmented reality game, and I’ve found a steady pace to play at. I spread the Only Connect bug and people on my hall, intrigued by the format but annoyed by the overwhelmingly British trivia<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, started writing and hosting full games for each other, with our own MIT-slanted set of trivia. One of us developed a custom <a href="https://github.com/krawthekrow/pi-connect">site</a> and <a href="https://github.com/krawthekrow/pi-connect-maker">tool</a> to host these games. It took me a while to warm up to Jonathan Coulton’s latest album, but since it happened, I cannot get <a href="https://www.youtube.com/watch?v=DXuxwWm4huM">Ordinary Man</a> or <a href="https://www.youtube.com/watch?v=Vig5byZx2Ew">Sunshine</a> out of my head; I’m still listening to JoCo as I finish typing up this post. Although I never got back to the peak of my crossword frenzy, I still study crosswordese from time to time and compose crosswords for some special occasions, like <a href="/misc/christmas-somewhere.puz">this one (.puz file)</a>.</p>
 <p>The academics and technical aspects of this year have all blurred together, but I think my interests are finally crystallizing:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/prose-passion">→ read more<span class="offscreen"> The Prose and the Passion</span></a>
@@ -289,69 +363,6 @@ Environment: Ubuntu 16.04+latex</code></pre>
 </article>
 
 		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/proprietary-format" class="post-link">Proprietary Format</a></h3>
-		
-		<h4 class="post-subtitle">Google CTF 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-06-28
-		(4166 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>The villains are communicating with their own proprietary file format. Figure out what it is.</p>
-<pre><code>$ nc proprietary.ctfcompetition.com 1337</code></pre>
-</blockquote>
-<p>We get a server that will talk to us on a port and a <code>flag.ctf</code> file that’s definitely not a binary. It’s a <a href="https://en.wikipedia.org/wiki/Black_box">black-box</a> reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.</p>
-<p>For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not <code>P6</code>, it complains:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/proprietary-format">→ read more<span class="offscreen"> Proprietary Format</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/cat-chat" class="post-link">Cat Chat</a></h3>
-		
-		<h4 class="post-subtitle">Google CTF 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-06-28
-		(2706 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>You discover this cat enthusiast chat app, but the annoying thing about it is that you’re always banned when you start talking about dogs. Maybe if you would somehow get to know the admin’s password, you could fix that.</p>
-</blockquote>
-<p>This challenge is a simple chat app written in NodeJS. The home page redirects you to a chat room labeled with a random UUID. Anybody can join the same chat room with the URL.</p>
-<p><img src="/img/cat-chat-0.png" alt="Fresh Cat Chat room" /></p>
-<p>In a chat room, you can chat and issue two commands, <code>/name</code> to set your name and <code>/report</code> to report that somebody is talking about dogs. After anybody in the chat room issues <code>/report</code>, the admin shows up, listens for a while, and bans anybody who mentions the word “dog”.</p>
-<p>There are two more commands, <code>/secret</code> and <code>/ban</code>, which are in the server source code and also described in comments in the HTML source if you didn’t notice:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/cat-chat">→ read more<span class="offscreen"> Cat Chat</span></a>
-	</footer>
-</article>
-
-		
 	
 	
 	<footer class="list-footer">
@@ -368,7 +379,7 @@ Environment: Ubuntu 16.04+latex</code></pre>
 	
 </section>
 <footer class="site-footer">
-	<p>© 2017-2019 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2020 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://posativ.org/isso/">Isso</a>,

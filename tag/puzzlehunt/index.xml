@@ -6,10 +6,23 @@
     <description>Recent content in puzzlehunt on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Sep 2019 10:34:38 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 03 Feb 2020 23:24:47 -0500</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/tag/puzzlehunt/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>2020 MIT Mystery Hunt</title>
+      <link>//blog.vero.site/post/2020-hunt</link>
+      <pubDate>Mon, 03 Feb 2020 23:24:47 -0500</pubDate>
+      
+      <guid>//blog.vero.site/post/2020-hunt</guid>
+      <description>&lt;p&gt;Fifth year with ✈✈✈ Galactic Trendsetters ✈✈✈ (previously: &lt;a href=&#34;//blog.vero.site/post/2019-hunt&#34;&gt;2019&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/2018-hunt&#34;&gt;2018&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/january&#34;&gt;2017&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/whoosh&#34;&gt;2016&lt;/a&gt;; writing with Random in &lt;a href=&#34;//blog.vero.site/post/hunt&#34;&gt;2015&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;We won!&lt;/p&gt;
+&lt;p&gt;But apparently I’m still really busy, so I’ll probably just focus on a few highlights of things I personally experienced and get this post out the door.&lt;/p&gt;
+&lt;p&gt;The theme in a few sentences: As suggested by &lt;a href=&#34;https://www.reddit.com/r/mysteryhunt/comments/eo475t/you_are_cordially_invited/&#34;&gt;the invitation&lt;/a&gt; sent out to teams, there was a wedding. It turned out to actually be a real wedding between two prolific puzzle writers on Left Out, the organizing team. To the surprise of everybody who expected either one, three, or maybe five subversions of this announcement, the wedding actually succeeded (a COIN that would prevent all love in the universe was briefly reported missing, but then immediately found by the bride). Instead, we joined the newlyweds on a trip to an amusement park called Penny Park, which we learned was struggling and closing this weekend. It was up to help its regain its popularity and stay open by solving puzzles. The &lt;a href=&#34;https://www.reddit.com/r/mysteryhunt/&#34;&gt;Mystery Hunt subreddit&lt;/a&gt; has lots of other cool links and discussions, including this &lt;a href=&#34;https://public.flourish.studio/visualisation/1267425/&#34;&gt;animated bar chart&lt;/a&gt;, so I won’t spend more time here.&lt;/p&gt;
+&lt;p&gt;I’m pretty sure the best story I personally experienced was how we solved the metameta, the biggest puzzle that stood between us and winning hunt, and the moment at which we went, holy smokes we might have won Mystery Hunt! We got all the pennies required for the final metameta at Sunday 5:48:09am, and it took us until 12:47:30pm, just under &lt;em&gt;seven hours later&lt;/em&gt;, to solve it…&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Introduction to Puzzlehunts</title>
@@ -33,6 +46,25 @@
 &lt;h3 id=&#34;what-is-a-puzzlehunt&#34;&gt;What is a Puzzlehunt?&lt;/h3&gt;
 &lt;p&gt;A &lt;strong&gt;puzzlehunt&lt;/strong&gt;&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; is an event where people, usually in teams, solve a series of &lt;strong&gt;puzzles&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;This is not a very useful definition. The more interesting question is, what is the kind of “puzzle”&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; that appears in a puzzlehunt? The concept of a puzzlehunt puzzle is fuzzy and difficult to define precisely. Just about any hard rule one might try to state will be broken by some puzzle, sometimes deliberately. Still, here are some common features of puzzlehunt puzzles:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2019 MIT Mystery Hunt</title>
+      <link>//blog.vero.site/post/2019-hunt</link>
+      <pubDate>Thu, 31 Jan 2019 19:39:22 -0500</pubDate>
+      
+      <guid>//blog.vero.site/post/2019-hunt</guid>
+      <description>&lt;p&gt;(this post is sketchily backdated from February 2020)&lt;/p&gt;
+&lt;p&gt;Fourth year with ✈✈✈ Galactic Trendsetters ✈✈✈. Past: &lt;a href=&#34;//blog.vero.site/post/2018-hunt&#34;&gt;2018&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/january&#34;&gt;2017&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/whoosh&#34;&gt;2016&lt;/a&gt;, writing with Random in &lt;a href=&#34;//blog.vero.site/post/hunt&#34;&gt;2015&lt;/a&gt;). Evidently I was unable to find the time or motivation to blog about this, and I can’t remember any particularly good stories, so let me just slip this backdated list post in the archives.&lt;/p&gt;
+&lt;p&gt;The theme in a few sentences: The hunt organizers declare a new Molasses Awareness Day, but because they didn’t follow the proper procedure, throwing the world of Holidays into chaos, where “chaos” means molasses. This resulted in lots of puzzle-to-meta matching, since puzzles were in Holiday towns but metas were at lampposts between two towns.&lt;/p&gt;
+&lt;p&gt;Highlights of puzzles I solved:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A Good Walk Spoiled&lt;/strong&gt; (Holi): Happens to be about a topic I know well and find interesting. Fun steps. Justified use of substitution ciphers; the pasting into quipqiup was worth it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;State Machine&lt;/strong&gt; (President’s): A one-aha! one-step puzzle. Maybe more unfortunate because apparently this was not the only puzzle to use a specific aspect of a specific source material, but I didn’t know about that other puzzle so it’s fine.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Clued Connections&lt;/strong&gt; (Pi): I went to sleep near the end of this puzzle, so I didn’t see it through, but Floorpi was collectively called out by it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;I Can’t Deal with These Endless Numbers&lt;/strong&gt; (Patriot’s): Incredible.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Loaded&lt;/strong&gt; (Arbor): Simple and self-contained enough.&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>

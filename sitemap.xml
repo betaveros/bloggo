@@ -4,25 +4,54 @@
   
   <url>
     <loc>//blog.vero.site/tags</loc>
-    <lastmod>2019-12-31T16:24:31+08:00</lastmod>
+    <lastmod>2020-02-03T23:24:47-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>//blog.vero.site/post/2020-hunt</loc>
+    <lastmod>2020-02-03T23:24:47-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/</loc>
-    <lastmod>2019-12-31T16:24:31+08:00</lastmod>
+    <lastmod>2020-02-03T23:24:47-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/categories</loc>
-    <lastmod>2019-12-31T16:24:31+08:00</lastmod>
+    <lastmod>2020-02-03T23:24:47-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/mit</loc>
+    <lastmod>2020-02-03T23:24:47-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/post</loc>
-    <lastmod>2019-12-31T16:24:31+08:00</lastmod>
+    <lastmod>2020-02-03T23:24:47-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/puzzle</loc>
+    <lastmod>2020-02-03T23:24:47-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/puzzlehunt</loc>
+    <lastmod>2020-02-03T23:24:47-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/category/puzzles</loc>
+    <lastmod>2020-02-03T23:24:47-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -90,24 +119,6 @@
   <url>
     <loc>//blog.vero.site/post/puzzlehunts</loc>
     <lastmod>2019-09-02T10:34:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/tag/puzzle</loc>
-    <lastmod>2019-09-02T10:34:38-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/tag/puzzlehunt</loc>
-    <lastmod>2019-09-02T10:34:38-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/category/puzzles</loc>
-    <lastmod>2019-09-02T10:34:38-04:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -210,6 +221,11 @@
   </url>
   
   <url>
+    <loc>//blog.vero.site/post/2019-hunt</loc>
+    <lastmod>2019-01-31T19:39:22-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/post/prose-passion</loc>
     <lastmod>2018-12-31T21:05:59+08:00</lastmod>
   </url>
@@ -280,12 +296,6 @@
   <url>
     <loc>//blog.vero.site/post/2018-hunt</loc>
     <lastmod>2018-01-16T19:39:22-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/tag/mit</loc>
-    <lastmod>2018-01-16T19:39:22-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

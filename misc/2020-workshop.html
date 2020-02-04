@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<style>
+.coin {
+display: block;
+width: 150px;
+height: 150px;
+position: relative;
+border: 1px solid black;
+background-color: rgba(64, 0, 0, 0.2);
+text-align: center;
+}
+
+
+.coin .center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.coin[rot="0"] .N , .coin[rot="1"] .NW, .coin[rot="2"] .W , .coin[rot="3"] .SW, .coin[rot="4"] .S , .coin[rot="5"] .SE, .coin[rot="6"] .E , .coin[rot="7"] .NE { font-size: 60%; max-width: 33%; position: absolute; top: 0; left: 50%;    transform: translateX(-50%); }
+.coin[rot="0"] .NE, .coin[rot="1"] .N , .coin[rot="2"] .NW, .coin[rot="3"] .W , .coin[rot="4"] .SW, .coin[rot="5"] .S , .coin[rot="6"] .SE, .coin[rot="7"] .E  { font-size: 60%; max-width: 33%; position: absolute; top: 0; right: 0; }
+.coin[rot="0"] .E , .coin[rot="1"] .NE, .coin[rot="2"] .N , .coin[rot="3"] .NW, .coin[rot="4"] .W , .coin[rot="5"] .SW, .coin[rot="6"] .S , .coin[rot="7"] .SE { font-size: 60%; max-width: 33%; position: absolute; top: 50%; right: 0;   transform: translateY(-50%); }
+.coin[rot="0"] .SE, .coin[rot="1"] .E , .coin[rot="2"] .NE, .coin[rot="3"] .N , .coin[rot="4"] .NW, .coin[rot="5"] .W , .coin[rot="6"] .SW, .coin[rot="7"] .S  { font-size: 60%; max-width: 33%; position: absolute; bottom: 0; right: 0; }
+.coin[rot="0"] .S , .coin[rot="1"] .SE, .coin[rot="2"] .E , .coin[rot="3"] .NE, .coin[rot="4"] .N , .coin[rot="5"] .NW, .coin[rot="6"] .W , .coin[rot="7"] .SW { font-size: 60%; max-width: 33%; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); }
+.coin[rot="0"] .SW, .coin[rot="1"] .S , .coin[rot="2"] .SE, .coin[rot="3"] .E , .coin[rot="4"] .NE, .coin[rot="5"] .N , .coin[rot="6"] .NW, .coin[rot="7"] .W  { font-size: 60%; max-width: 33%; position: absolute; bottom: 0; left: 0; }
+.coin[rot="0"] .W , .coin[rot="1"] .SW, .coin[rot="2"] .S , .coin[rot="3"] .SE, .coin[rot="4"] .E , .coin[rot="5"] .NE, .coin[rot="6"] .N , .coin[rot="7"] .NW { font-size: 60%; max-width: 33%; position: absolute; top: 50%; left: 0;    transform: translateY(-50%); }
+.coin[rot="0"] .NW, .coin[rot="1"] .W , .coin[rot="2"] .SW, .coin[rot="3"] .S , .coin[rot="4"] .SE, .coin[rot="5"] .E , .coin[rot="6"] .NE, .coin[rot="7"] .N  { font-size: 60%; max-width: 33%; position: absolute; top: 0; left: 0; }
+
+.coin button { display: none; }
+.coin:hover button { display: inline-block; }
+.coin button.ccw { position: absolute; top: -20px; left: 0; }
+.coin button.cw { position: absolute; top: -20px; right: 0; }
+
+.coin:hover::after { position: absolute; top: -30px; left: 50%; transform: translate(-50%); content: "rot(" attr(rot) ")"; }
+</style>
+post-hunt note: I left this page as I had it during hunt. Several labels are surely wrong. Part of the point of this page is for you to View Source and appreciate the horrible pile of HTML/CSS/JavaScript hacks.
+<button id="reset">reset</button>
+<div class="coin" id="GC" ><div class="center">GC             South   </div><div class="W"> Castle                  </div><div class="N"> Fish              </div><div class="E"> Star              </div></div>
+<div class="coin" id="SF" ><div class="center">SF             West    </div><div class="NE"> Dove                   </div><div class="E"> Book              </div><div class="SE"> Luggage          </div></div>
+<div class="coin" id="Sp" ><div class="center">Sp             East    </div><div class="N"> Fortune Cookies         </div><div class="NW"> Shells           </div><div class="S"> Saturn            </div></div>
+<div class="coin" id="WH" ><div class="center">WH             East    </div><div class="NW"> Cinnamon Bun           </div><div class="W"> Angel             </div><div class="SW"> Head             </div></div>
+<div class="coin" id="BV" ><div class="center">BV             North   </div><div class="W"> Bandaged Hand           </div><div class="S"> Spiral            </div><div class="E"> Bicycle           </div></div>
+<div class="coin" id="YL" ><div class="center">YL             South   </div><div class="NW"> Door                   </div><div class="N"> Paper             </div><div class="NE"> Honeypot         </div></div>
+<div class="coin" id="BT" ><div class="center">BT             North   </div><div class="SW"> Chair                  </div><div class="S"> Raincloud         </div><div class="SE"> Computer         </div></div>
+<div class="coin" id="CP1"><div class="center">CP1            SE      </div><div class="N"> Phone                   </div><div class="W"> Music             </div><div class="SW"> Water Tower      </div></div>
+<div class="coin" id="CP2"><div class="center">CP2            East    </div><div class="N"> Tissue                  </div><div class="W"> Compass Rose      </div><div class="S"> Iron              </div></div>
+<div class="coin" id="SA1"><div class="center">SA1            West    </div><div class="N"> Lion                    </div><div class="NE"> Treasure Chest   </div><div class="S"> Radio             </div></div>
+<div class="coin" id="SA2"><div class="center">SA2            East    </div><div class="N"> Rock Shelter            </div><div class="SW"> Brackets         </div><div class="S"> Bomb              </div></div>
+<div class="coin" id="CB1"><div class="center">CB1            East    </div><div class="NE"> Pig                    </div><div class="E"> Taxi              </div><div class="S"> Waves             </div></div>
+<div class="coin" id="CB2"><div class="center">CB2            East    </div><div class="N"> Tank???                 </div><div class="E"> Marriage?         </div><div class="S"> Bucket            </div></div>
+<div class="coin" id="CC1"><div class="center">CC1            North   </div><div class="NW"> Cow                    </div><div class="W"> Sheriff Star      </div><div class="S"> Flag?             </div></div>
+<div class="coin" id="CC2"><div class="center">CC2            North   </div><div class="N"> Club                    </div><div class="E"> Swan              </div><div class="SE"> Foot             </div></div>
+<div class="coin" id="PP" ><div class="center">PP             West    </div><div class="N"> Cake                    </div><div class="SE"> Top Hat          </div><div class="S"> Crown             </div></div>
+
+  <script>
+  let positions = JSON.parse(window.localStorage.getItem('positions')) || {};
+  let rotations = JSON.parse(window.localStorage.getItem('rotations')) || {};
+
+  $( function() {
+
+    $('#reset').click(function() {
+        positions = {};
+        rotations = {};
+        window.localStorage.removeItem('positions');
+        window.localStorage.removeItem('rotations');
+
+        $(".coin").each(function() { $(this).attr('rot', 0).css({ top: 0, left: 0 }); });
+    });
+
+    $(".coin").each(function() {
+      let id = $(this).attr('id');
+      $(this).attr('rot', rotations[id] || 0);
+      let that = this;
+      let ccw = $("<button class='ccw'>ccw</button>");
+      let cw = $("<button class='cw'>cw</button>");
+      ccw.click(function() {
+        rotations[id] = ((rotations[id] || 0) + 7) % 8;
+        console.log(rotations);
+        window.localStorage.setItem('rotations', JSON.stringify(rotations));
+        $(that).attr('rot', rotations[id]);
+      });
+      cw.click(function() {
+        rotations[id] = ((rotations[id] || 0) + 1) % 8;
+        console.log(rotations);
+        window.localStorage.setItem('rotations', JSON.stringify(rotations));
+        $(that).attr('rot', rotations[id]);
+      });
+      $(this).append(ccw);
+      $(this).append(cw);
+
+      $(this).css(positions[id] || {});
+    });
+    $( ".coin" ).draggable({
+       stop: function(event, ui) {
+         positions[ui.helper.attr('id')] = ui.position;
+         console.log(positions);
+         window.localStorage.setItem('positions', JSON.stringify(positions));
+       },
+    });
+  } );
+  </script>

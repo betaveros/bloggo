@@ -52,6 +52,60 @@
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/thoroughly-stripped" class="post-link">Thoroughly Stripped</a></h3>
+		
+		<h4 class="post-subtitle">CSAW CTF 2017 Finals (Forensics, 200 pts)</h4>
+		
+		<p class="post-meta">
+		
+		2017-11-12
+		(1142 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Woo, first CTF writeup. I got the opportunity to participate in the 2017 CSAW CTF finals with Don’t Hack Alone.</p>
+<blockquote>
+<p>Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.</p>
+</blockquote>
+<p>We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.</p>
+<p>Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from <a href="https://github.com/betaveros/xxb"><code>xxb</code></a> but <code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/thoroughly-stripped">→ read more<span class="offscreen"> Thoroughly Stripped</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/hello-again" class="post-link">Hello, Again</a></h3>
+		
+		<p class="post-meta">
+		
+		2017-11-07
+		(1930 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/meta">Meta</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>And here we are.</p>
+<p>This is the first post on this blog after I migrated off WordPress for a static solution.</p>
+<p>At first, I wanted to set things up on Amazon Web Services (AWS), which was an adventure. There are lots of online posts about how to do this, but Amazon’s services change quickly and there was often outdated information. For instance, Amazon had a wizard that led you through setting up a static site, which I clicked on. It helpfully handled a lot of grunt work, but now I was out of sync with all of the guides. Oh well.</p>
+<p>I think things are confusing partly because there are four AWS components all interacting to make a static site happen:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/hello-again">→ read more<span class="offscreen"> Hello, Again</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/remigration" class="post-link">Remigration</a></h3>
 		
 		<p class="post-meta">
@@ -250,58 +304,11 @@
 		<a class="read-more" href="//blog.vero.site/post/time-money-1">→ read more<span class="offscreen"> Time, Money, and All That Good Stuff: Part 1 of ∞</span></a>
 	</footer>
 </article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/musings-pressure" class="post-link">Musings on Time Pressure</a></h3>
-		
-		<p class="post-meta">
-		
-		2016-08-15
-		(375 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/meta">Meta</a>, <a href="/category/thoughts">Thoughts</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>I hate doing things under time pressure, but I have to admit I do a lot more things when time pressure exists. One of the things is writing. Another is posting the things I write. They aren’t very good, but they’re better than writing that doesn’t exist.</p>
-<p>(in case you forgot, I’m still posting this pretty much only because <a href="//blog.vero.site/post/no-excuses">I made myself post once every weekend</a>)</p>
-<p>It’s interesting that I can impose time pressure on myself by declaring commitment devices by fiat and it works. Other people have developed other methods of doing this — I recently discovered <a href="http://www.themostdangerouswritingapp.com/">The Most Dangerous Writing App</a>, which puts time pressure on you to type every five seconds or it deletes everything you wrote. There are many other ways it’s done.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/musings-pressure">→ read more<span class="offscreen"> Musings on Time Pressure</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/bcodex" class="post-link">020315040524</a></h3>
-		
-		<p class="post-meta">
-		
-		2016-08-08
-		(3056 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>, <a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p><code>--... ---.. ....- ..... ..--- ----- ....- ....- ...-- -.... ...-- -.... ...-- . ....- ....- ..--- ----- ....- ..... ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -.... ....- ....- ..--- ----- ...-- ..-. ....- ----- ..--- ----- ...-- ..--- ...-- ..-. ....- ..... ...-- .- ...-- ..... ....- ----- ....- ..... ...-- -.... ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ...-- ..-. ...-- ---.. ....- ....- ....- ..... ..--- ----- ...-- -.. ...-- .- ...-- -.-. ...-- -.... ..--- ----- ...-- --... ...-- .- ...-- ..-. ...-- ..... ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ....- ....- ....- ----- ...-- . ...-- -.... ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- ....- ....- ----- ....- ----- ...-- -.. ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ....- ---.. ...-- ..-. ..... -.-. ....- ..... ....- ----- ..... -.-. ...-- -.... ...-- ..--- ....- ...-- ....- ..... ...-- ----. ..... -... ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- .- ....- ..... ..... -..</code></p>
-<p><code>..--- ..... ....- ----- ...-- ..... ...-- ..--- ....- .- ..--- ----- --... ---.. ..--- ----- ...-- ..... ...-- .- ...-- ..... ..--- ----- ...-- ..--- ..--- ----- ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- --... ---.. ..--- ----- ....- ---.. ...-- ..--- ...-- ..-. ....- ..... ...-- -.... ...-- ..... ..--- ----- ....- ..... ....- ----- ..--- ----- ...-- ..... ....- ----- ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ..--- ----- ...-- -.. ....- ----- ...-- ..-. ...-- ---.. ..--- ----- ....- ..... ...-- .- ...-- . ...-- -.... -.... ----. ..--- ----- --... ---.. ..--- ----- ...-- ....- ....- ----- ...-- . ....- .---- ...-- .- ...-- -.. ...-- -.... ...-- ..... ..--- -----</code> <a href="https://github.com/betaveros/bcodex"><code>...-- ...-- ...-- ....- ....- ----- ...-- ..... ...-- -.... ....- ----.</code></a> <code>..--- ----- ...-- --... ....- ...-- ....- ----- ...-- . ..--- ----- --... --... ...-- ..--- ....- ....- ...-- -.-. ...-- -.... ...-- -.. ...-- -.. ..--- ----- ....- ..... ....- ----- ..--- ----- --... ----. ...-- ..--- ....- --... ...-- ..--- ..--- ....- ...-- ....- ....- ...-- ...-- .- ....- .---- ....- ..... ..--- ----- ....- ....- ....- ----- ..--- ----- ...-- .- ....- ..... ..--- ----- ...-- ....- ....- ----- ....- -.... ...-- -.. ...-- ..... ..--- ----- ....- ...-- ....- -.... ...-- ..-. ..--- ----- ...-- .- ...-- ..-. ..--- ----- ...-- ..--- ...-- ..-. ....- .- ..--- ----- ...-- . ....- ----- ...-- ..... ...-- -.... ....- ...-- ...-- ..-. ..--- ----- ...-- ...-- ....- ...-- ....- ----- ....- ---.. ....- ....- ...-- -.... ....- ...-- ..... -.. ..--- -----</code> <a href="http://betaveros.github.io/bcodex/"><code>..--- .- ....- ----- ....- -.... ..--- ----- ...-- ....- ...-- ..--- ...-- ..-. ..--- ----- ....- ..... ....- ...-- ....- .- ..--- ----- ...-- .- ....- ..... ..--- ----- ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -----</code></a></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/bcodex">→ read more<span class="offscreen"> 020315040524</span></a>
-	</footer>
-</article>
 <footer class="list-footer">
 		<nav class="pagination">
 			<h3 class="offscreen">Pagination</h3><a class="pagination-previous" href="/post/page/3">← newer posts</a><a class="pagination-next" href="/post/page/5">older posts →</a></nav>
 	</footer></section><footer class="site-footer">
-	<p>© 2017-2019 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2020 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://posativ.org/isso/">Isso</a>,
