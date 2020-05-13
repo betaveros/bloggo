@@ -9,7 +9,7 @@
 The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension shellme.so.
 $link = mysqli_connect(&amp;#39;localhost&amp;#39;, &amp;#39;shellql&amp;#39;, &amp;#39;shellql&amp;#39;, &amp;#39;shellql&amp;#39;);  if (isset($_POST[&amp;#39;shell&amp;#39;])) { if (strlen($_POST[&amp;#39;shell&amp;#39;]) &amp;lt;= 1000) { echo $_POST[&amp;#39;shell&amp;#39;]; shellme($_POST[&amp;#39;shell&amp;#39;]); } exit(); } The extension basically just executes $_POST[&#39;shell&#39;] as shellcode after a strict SECCOMP call, prctl(22, 1). This means that we can only use the four syscalls read, write, and exit, and sigreturn, where the latter two aren’t particularly useful.
  Disassembled innermost function of interest in shellme.so  The goal is to read the flag from the open MySQL connection.
-" /><meta name="generator" content="Hugo 0.56.0-DEV" />
+" /><meta name="generator" content="Hugo 0.65.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/shellql" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />

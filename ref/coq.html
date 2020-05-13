@@ -5,7 +5,7 @@
 <title>Coq Reference</title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="" /><meta name="generator" content="Hugo 0.56.0-DEV" />
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.65.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/ref/coq" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -55,7 +55,7 @@
 		<p class="post-meta">
 		
 		
-		(3849 words)
+		(4335 words)
 		
 		<span class="post-categories">
 			filed under
@@ -88,7 +88,7 @@
 </ul>
 <h3 id="how-to-fish">How to fish</h3>
 <ul>
-<li>Use the queries. <code>Search &quot;foo&quot;.</code> <code>Check foo.</code> <code>About foo.</code> <code>Compute foo.</code> To look up notation (e.g. what does <code>&lt;&gt;</code> mean?) use <code>Locate</code> (e.g. <code>Locate &quot;&lt;&gt;&quot;</code>).</li>
+<li>Use the queries. <code>Search &quot;foo&quot;.</code> <code>Check foo.</code> <code>About foo.</code> <code>Compute foo.</code> <code>Print foo.</code> To look up notation (e.g. what does <code>&lt;&gt;</code> mean?) use <code>Locate</code> (e.g. <code>Locate &quot;&lt;&gt;&quot;</code>).</li>
 <li>To look up a simple abstract theorem about natural numbers or equality without knowing what it’s called, <code>SearchPattern</code> is useful. For example, I was looking to prove <code>x &lt;&gt; y</code> given <code>y &lt;&gt; x</code>. <code>SearchPattern (_ &lt;&gt; _ -&gt; _ &lt;&gt; _).</code> found the theorem for me (it was called <code>not_eq_sym</code>). Similarly <code>SearchRewrite</code> on some expression pattern searches for theorems you could use to rewrite that expression.</li>
 </ul>
 <h3 id="how-to-use-hypotheses">How to use hypotheses</h3>
@@ -124,11 +124,14 @@ Side note: <code>I</code> is the name for the unique thing of type <code>True</c
 <p>Sidebar: <code>congruence.</code> generalizes <code>discriminate</code> and <code>injection</code> in some way.</p>
 <h3 id="modifying-the-goal-with-existing-facts">Modifying the goal with existing facts</h3>
 <ul>
-<li><code>apply H.</code> sets the goal to P if <code>H</code> is “P implies our goal” (or, directly proves a Prop that directly follows from a theorem; see above). <code>H</code> can also take more than one argument or premise, in which case <code>apply H.</code> opens up one subgoal per premise. (So in fact, finishing a goal via “<code>apply H.</code>” is just the special case where there are zero premises.)</li>
+<li><code>apply H.</code> sets the goal to P if <code>H</code> is “P implies our goal” (or, directly proves a Prop that directly follows from a theorem; see above). <code>H</code> can also take more than one argument or premise, in which case <code>apply H.</code> opens up one subgoal per premise. (So in fact, finishing a goal via “<code>apply H.</code>” is just the special case where there are zero premises.)
+<ul>
+<li><code>eapply</code> is similar to <code>apply</code>, but it uses existential variables when it can’t figure out some of the variables, and just expects you to fill those in later. This was really hard for me for me to understand, but here’s an artificial example: let’s say you want to prove an equality <code>a = b</code> by the transitive property. <code>a = b</code> matches the conclusion of the built-in theorem <code>eq_trans</code>, which is <code>x = y -&gt; y = z -&gt; x = z</code>. However, <code>apply eq_trans.</code> will fail, because Coq can’t figure out what you want <code>y</code> to be. You could solve this by explicitly specifying what <code>y</code> is by passing some arguments to <code>eq_trans</code>. Alternatively, you can <code>eapply eq_trans.</code> and Coq will create a new existential variable to pass as <code>y</code>. Later, if you implicitly use any tactic that implies something about that variable, Coq will collapse or elaborate that variable.</li>
+</ul></li>
 <li><code>simpl.</code> simplifies the expression. It’s often not necessary in a finished proof, but can help clarify what the goal looks like in the interactive process.</li>
 <li><code>rewrite -&gt; H.</code> resp. <code>rewrite &lt;- H.</code> If H is something that says “A = B”, replace A with B in the goal, resp., B with A. If <code>H</code> requires some hypotheses, it will open up those hypotheses as subgoals, coming last.</li>
 <li><code>rewrite -&gt; H by tactic.</code> resp. <code>rewrite &lt;- H by tactic.</code> As above but immediately solve the subgoals.</li>
-<li><code>subst x.</code> substitutes <code>x</code> everywhere it appears. If you defined <code>x := expr</code> or got an equation like <code>x = expr</code> then this will replace <code>x</code> with <code>expr</code> everywhere and then get rid of <code>x</code>. This is useful if you had two variables <code>x</code> and <code>y</code> introduced in different places in your proof, proved they were equal, and want to fully get rid of one from your context.</li>
+<li><code>subst x.</code> substitutes <code>x</code> everywhere it appears. If you defined <code>x := expr</code> or got an equation like <code>x = expr</code> then this will replace <code>x</code> with <code>expr</code> everywhere and then get rid of <code>x</code>. This is useful if you had two variables <code>x</code> and <code>y</code> introduced in different places in your proof, proved they were equal, and want to fully get rid of one from your context. You can write <code>subst.</code> without <code>x</code> and it will do it automatically.</li>
 <li><code>unfold f.</code> Unfold some function f in the goal; approximately, inline it. This may be required if <code>f</code> is a <code>match</code> expression; Coq won’t automatically “simplify” expressions with <code>f</code> since they might actually get more complicated.</li>
 <li><code>replace term with term'.</code> Replace <code>term</code> with <code>term'</code> in the goal, and adds a new goal to prove that <code>term = term'</code>, putting it last.</li>
 <li><code>replace term with term' by tactic.</code> Same, but prove that new goal immediately with a tactic.</li>
@@ -261,9 +264,41 @@ Argument A is implicit</code></pre>
   | H : Some ?a = Some ?b |- _ =&gt;
         inversion H; subst b
   end.</code></pre>
+<p>If you want to pattern-match on any expression anywhere, use <code>context[ ]</code>.</p>
+<pre><code>Ltac destruct_if :=
+  match goal with
+  | |- context[if ?a then _ else _] =&gt; destruct a
+  end.</code></pre>
+<p>If you only want to do something if some variable <code>?x</code> is a variable, you can use <code>is_var x</code> before the tactic. <code>match</code> backtracks and tries matching its pattern to more hypotheses; it also tries the next branch if the branch pattern doesn’t match or if the tactics fail. Alternate: <code>lazymatch</code> doesn’t backtrack from tactic failures.</p>
+<p><code>progress</code> on some tactic only works if the tactic makes progress.</p>
+<p><code>idtac</code> is a tactic that does nothing, plus you can pass arguments to debug.</p>
+<p>The <code>fail</code> tactic takes a number, the number of levels to propagate the failure up, and then extra debugging stuff.</p>
+<p><code>first [ t1 | t2 | ... ]</code> takes some tactics and does the first one that succeeds.</p>
+<p><code>type of X</code> gives the, well, type of <code>X</code></p>
+<p>Ltac is also a functional programming language! Use <code>constr:(...)</code> to break back into Gallina. Note that <code>match</code> patterns are implicitly Gallina.</p>
+<pre class="coq"><code>(* can&#39;t infer T sad *)
+Ltac map T f l :=
+  let rec map_impl l :=
+    match l with
+    | nil =&gt; constr:(@nil T)
+    | ?h :: ?t =&gt; let h&#39; := f h in let t&#39; := map_impl t in constr:(h&#39; :: t&#39;)
+  end in map_impl.
+
+Goal False.
+let ls := map (nat * nat)%type ltac:(fun x -&gt; constr:((x, x))) (1 :: 2 :: 3 :: nil) in pose ls.</code></pre>
+<p>You can’t do <code>;</code> in functional programming Ltac, it turns into a procedure thing.</p>
 <p>Brackets are super precise. This applies these three tactics respectively to the three focused goals. There must be exactly three. You can omit tactics to do <code>idtac</code>, the identity tactic.</p>
 <pre><code>[&gt; tactic1 | tactic2 | tactic3 ]</code></pre>
 <p>Note that in a proof script you have to apply to all focused goals so it would look like <code>all: [&gt; tactic1 | tactic2 | tactic3 ]</code> although this is a silly way to do it. If you’re putting this after a semicolon, you can drop the <code>&gt;</code>. I’m not sure how this works.</p>
+<h3 id="frap-tactics">FRAP tactics</h3>
+<ul>
+<li><code>simplify.</code> improves on <code>simpl.</code></li>
+<li><code>cases expr.</code> improves on <code>destruct expr.</code> (No patterns though.)</li>
+<li><code>invert x.</code> improves on <code>inversion x.</code></li>
+<li><code>linear_arithmetic.</code> improves on <code>lia.</code></li>
+<li><code>propositional.</code> handles and simplifies things based on propositional logic: conjunctions, disjunctions, implications…</li>
+<li><code>first_order.</code> handles and simplifies things based on first order logic. It’s more powerful, but riskier; it might run forever.</li>
+</ul>
 </article>
 	<footer class="post-footer">
 		

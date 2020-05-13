@@ -9,7 +9,7 @@
 Note on notation: I’m going to use \(\text{Stab}(x)\) instead of \(G_x\) for the stabilizer subgroup and \(\text{Cl}(x)\) instead of \(^Gx\) for the conjugacy classes. For the orbit of \(x\) I’ll stick with the norm and use \(Gx\), although it’s only used in confusing summation notation that I’ll explain with words too.
 We keep using this silly counting argument which I thought was something like Burnside’s lemma but actually is a lot simpler, just partitioning the set into orbits and slapping the orbit-stabilizer theorem on.
 If \(G\) is the group and \(S\) is the set then
-" /><meta name="generator" content="Hugo 0.56.0-DEV" />
+" /><meta name="generator" content="Hugo 0.65.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/sylow" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -78,6 +78,7 @@ If \(G\) is the group and \(S\) is the set then
 \]</span></p>
 <p>where in the sum, <span class="math inline">\(x\)</span> ranges over a set of representatives of the orbits, i.e. exactly one <span class="math inline">\(x\)</span> is taken from each orbit, i.e. <span class="math inline">\(Gx\)</span> is equal to each orbit exactly once. Anyway, that sum is a terrible abuse of notation so I’ll just leave it out and explain things in English.</p>
 <p>Below, let <span class="math inline">\(p\)</span> denote some fixed prime.</p>
+<!--more-->
 <h3 id="cauchys-lemma">Cauchy’s Lemma</h3>
 <p>Let <span class="math inline">\(G\)</span> be a finite abelian group. Then if <span class="math inline">\(p \mid \vert G\vert\)</span> then <span class="math inline">\(G\)</span> has a subgroup of order <span class="math inline">\(p\)</span>.</p>
 <p>Proof: Induct on the order of <span class="math inline">\(G\)</span>.</p>

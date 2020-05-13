@@ -10,7 +10,7 @@ nc pwn.chal.csaw.io 1005
  Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with security professionals who probably have decades of experience and who follow security developments for a living or whatever, there remains a competition where scrubs like me can apply our extremely basic CTF skills and still feel kinda smart by earning points. Now that I’ve graduated and am no longer eligible, our team was pretty small and I didn’t dedicate the full weekend to the CTF, but it means I got to do the really easy challenges in the categories that I was the worst at, by which I mean pwn.
 baby_boi is pretty much the simplest possible modern ROP (the modern security protections NX and ASLR are not artificially disabled, but you get everything you need to work around them). We even get source code.
 #include &amp;lt;stdio.h&amp;gt; #include &amp;lt;stdlib.h&amp;gt;  int main(int argc, char **argv[]) { char buf[32]; printf(&amp;quot;Hello!\n&amp;quot;); printf(&amp;quot;Here I am: %p\n&amp;quot;, printf); gets(buf); } So there’s nothing novel here for experienced pwners, but I feel like there is a shortage of tutorials that walk you through how to solve a textbook ROP the way you’d want to solve it in a CTF, so here is a writeup.
-" /><meta name="generator" content="Hugo 0.56.0-DEV" />
+" /><meta name="generator" content="Hugo 0.65.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/baby-boi" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />

@@ -15,7 +15,7 @@ It’s also very uncontroversial that that remainder should have no copies of b,
 \[|\texttt{a \% b}| &amp;lt; |\texttt{b}|. \tag{2}\]
 Every programming language I can think of satisfies these two constraints.1 So far so good. However, these two constraints don’t uniquely determine the values of a % b when a isn’t divisible by b; there are two possible values for a % b, one positive and one negative. Concretely, we could express \(-5\) as either \((-1) \cdot 3 &#43; (-2)\) or \((-2) \cdot 3 &#43; 1\), so (-5) % 3 could be -2 or 1.
 It’s still mostly uncontroversial that, if a and b are both positive, then a % b should be nonnegative as well; we could call this constraint (3).2 However, if a is negative and b is positive, programming languages start to diverge in their behavior. Why?
-" /><meta name="generator" content="Hugo 0.56.0-DEV" />
+" /><meta name="generator" content="Hugo 0.65.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/modulo" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -65,7 +65,7 @@ It’s still mostly uncontroversial that, if a and b are both positive, then a %
 		<p class="post-meta">
 		
 		2020-02-04
-		(3813 words)
+		(3836 words)
 		
 		<span class="post-categories">
 			filed under
@@ -209,7 +209,7 @@ Page 18 of the IBM 704 manual
 </ul>
 <p>So, using nonrestoring division, sign-of-divisor modulus seems easier or more efficient to implement in hardware than sign-of-dividend remainder. Wikipedia continues on to describe SRT division, which is even faster, but it appears to share the property of nonrestoring division that the dividend bounces around positive and negative values, making the algorithm work equally well on positive and negative initial dividends. All in all, this increases my confidence that backwards compatibility is the main reason that sign-of-dividend remainder is popular today.</p>
 <h3 id="some-other-possible-sign-behaviors">Some Other Possible Sign Behaviors</h3>
-<p>For completeness, we’ll mention some other options for implementing division and modulo that are neither of the above two. For one, you could say that the remainder should <em>always</em> be nonnegative. A few languages take this option, e.g. <a href="http://www.r6rs.org/final/html/r6rs/r6rs-Z-H-14.html#node_sec_11.7.3.1">Scheme</a>. This is also a plausible choice, but the drawback is that there is no simple description of the corresponding quotient forced by (1): you have to round down if the divisor is positive and round up if the divisor is negative.</p>
+<p>For completeness, we’ll mention some other options for implementing division and modulo that are neither of the above two. For one, you could say that the remainder should <em>always</em> be nonnegative. A few languages take this option, e.g. <a href="http://www.r6rs.org/final/html/r6rs/r6rs-Z-H-14.html#node_sec_11.7.3.1">Scheme</a>. <ins datetime="2020-04-16T11:30:03-0400">Rust offers this behavior in a family of methods on primitives, <code>.div_euclid</code> and <code>.rem_euclid</code> (and other variants); the <a href="https://github.com/rust-lang/rfcs/pull/2169">RFC</a> has a detailed discussion.</ins> This is also a plausible choice, but the drawback is that there is no simple description of the corresponding quotient forced by (1): you have to round down if the divisor is positive and round up if the divisor is negative.</p>
 <p>Scheme also offers a fourth option of <code>div0</code> and <code>mod0</code>, which, as mentioned in an early footnote, is unusual for violating (3): it tries to minimize the magnitude of the remainder,<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> which corresponds to rounding division to the closest integer. This option is suggested for floating-point numbers in the <a href="http://python-history.blogspot.com/2010/08/why-pythons-integer-division-floors.html">Python History blog post</a>, because magnitude-minimization is valuable when working with floating-point numbers.</p>
 <p>A summary of the four options covered:</p>
 <!--
@@ -311,6 +311,8 @@ Magnitude reduction is good for floating-point precision
 			
 			<a class="pagination-previous" href="//blog.vero.site/post/2020-hunt">← 2020 MIT Mystery Hunt</a>
 			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/45">45/101 →</a>
 			
 		</nav>
 	</footer>

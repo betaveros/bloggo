@@ -6,7 +6,7 @@
 
 <meta name="author" content="betaveros" />
 <meta name="description" content="What do you do when you get a bunch of files like this from a zipfile?
-   I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing.   Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester." /><meta name="generator" content="Hugo 0.56.0-DEV" />
+   I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing.   Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester." /><meta name="generator" content="Hugo 0.65.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/unicode-forensics" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -94,7 +94,8 @@ I’ve blurred the messed-up file names because I’m not convinced it’s impos
 <p>So the problem remained, until…</p>
 <hr />
 <p>The resolution is very anticlimactic; it took me half a week to think of getting at the files programmatically straight from the zip archive, instead of unzipping first. Python spat out half the file names from the zip file as <code>unicode</code> and the other half as <code>str</code>. From there it was easy guessing.</p>
-<script type="application/javascript" src="//gist.github.com/betaveros/cea1a430266ae8f124c8.js"></script>
+<script type="application/javascript" src="https://gist.github.com/betaveros/cea1a430266ae8f124c8.js"></script>
+
 <p>There were still three file names that failed, but they were easy to fix manually.</p>
 <p>I’m not sure why I eventually decided to blog about this anymore, honestly. Especially compared to my 12 other drafts. Oops.</p>
 <ins datetime="2015-05-18T23:23:41+00:00">

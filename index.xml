@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bounded-Error Log</title>
@@ -6,10 +6,20 @@
     <description>Recent content on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 04 Feb 2020 18:00:58 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2020 23:06:51 -0400</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>45/101</title>
+      <link>//blog.vero.site/post/45</link>
+      <pubDate>Tue, 12 May 2020 23:06:51 -0400</pubDate>
+      
+      <guid>//blog.vero.site/post/45</guid>
+      <description>&lt;p&gt;Not a very completionist run. I graded myself pretty strictly though — both sides of every “and” need to count; “all” means literally all; fuzzy actions and phrases require full psychological commitment to qualify.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/45.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/45.jpg&#34; alt=&#34;&amp;quot;101 Thiings To Do Before You Graduate&amp;quot; poster with 45 things crossed off&#34; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Signed Modulo</title>
@@ -50,7 +60,7 @@
       
       <guid>//blog.vero.site/post/startup-lag</guid>
       <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/cPAbx5kgCJo&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/cPAbx5kgCJo&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 
 &lt;p&gt;This is a weird song choice — I have not even watched the movie. But there is a story, and there is a thematic correspondence.&lt;/p&gt;
@@ -324,7 +334,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
       
       <guid>//blog.vero.site/post/prose-passion</guid>
       <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/y4sOfO8Ei1g&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/y4sOfO8Ei1g&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 
 &lt;p&gt;I was pretty torn between this and “The Future Soon” as the Year-End Song on this blog, but in the end I think I feel more threatened by the bland existence of the soulless adult than inspired by the starry-eyed-idealism-with-misogynist-undertones of the twelve-year-old, plus I get to show you the best kinetic typography video I have ever seen.&lt;/p&gt;
@@ -488,7 +498,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
       <description>&lt;p&gt;I think this is the right video for this year.&lt;/p&gt;
 
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/lX44CAz-JhU&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/lX44CAz-JhU&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 
 &lt;p&gt;I love the music and the animation. The music video spells out the central conceit somewhat explicitly, but I think the lyrics by themselves have a hint of ambiguity — is it a harmful addiction that you just can’t escape from, or an essential part of your identity that you just can’t deny?&lt;/p&gt;
@@ -585,7 +595,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
       
       <guid>//blog.vero.site/post/change</guid>
       <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/LRP8d7hhpoQ&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/LRP8d7hhpoQ&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 
 &lt;p&gt;It seems to me like lots of people want this year to be over. Among all the other things, 2016 is also apparently the year I totally abandon this blog and put off certain planned posts by several months.&lt;/p&gt;
@@ -831,7 +841,7 @@ Con: the advisor knows something about the classes you want to take and can help
       <description>&lt;p&gt;I wasn’t sure what would be the right song for 2015 until I set foot on MIT. Then it was a no-brainer.&lt;/p&gt;
 
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/KThlYHfIVa8&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/KThlYHfIVa8&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Where do I even begin?&lt;/p&gt;
@@ -959,7 +969,6 @@ ETA 11/17 16:15 UTC−5: Adjusted spacing between the bottom numbers after feedb
       
       <guid>//blog.vero.site/post/sharpies</guid>
       <description>&lt;p&gt;As readers of this blog probably know, I am not an MITAdmissions blogger. It was kind of disappointing at the moment, but now I rarely think about it except when I come up with good reasons why I shouldn&amp;rsquo;t be an MITAdmissions blogger. One reason is that I am not very good at coming up with advice that could generalize to a wide audience, even an audience only as wide as people at or coming to the &amp;lsquo;Tvte. &lt;em&gt;(There can be only one!)&lt;/em&gt; This by itself probably wouldn&amp;rsquo;t be so bad because there&amp;rsquo;s plenty of generalizable advice to go around, but I also don&amp;rsquo;t like repeating well-known stuff. Don&amp;rsquo;t skip class, except when you really know when you&amp;rsquo;re doing, which you probably think you do when you skip class. Get enough sleep, maintain good study habits, set aside time to keep up with old friends, back up your zarking data, alternate alcoholic and nonalcoholic drinks, do not forget the factor of one-half when computing the area of a triangle. You get the picture.&lt;/p&gt;
-
 &lt;p&gt;There&amp;rsquo;s only one piece of advice I can say that I believe is generalizable to any degree, and in particular I think my past self would have appreciated and also had not heard, even in passing, from any other source: Get a Sharpie.&lt;/p&gt;</description>
     </item>
     
@@ -1502,7 +1511,7 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
 &lt;p&gt;Let’s listen to some more music.&lt;/p&gt;
 
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/fgtwncI3RuM&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/fgtwncI3RuM&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;</description>
     </item>
     
@@ -1709,7 +1718,7 @@ I think you fail to understand how anti-intellectual american society is
 &lt;p&gt;&lt;em&gt;shrugs&lt;/em&gt; Whatever, enjoy the music or stop reading now if you want.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1: Simon &amp;amp; Garfunkel - Scarborough Fair/Canticle&lt;/strong&gt; 
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/-Jj4s9I-53g&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/-Jj4s9I-53g&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 &lt;/p&gt;</description>
     </item>
@@ -1969,7 +1978,7 @@ Anyway, if you happen to run into a pair of these, please be careful, and please
       <description>&lt;p&gt;As per &lt;a href=&#34;http://mitadmissions.org/blogs/entry/50_things&#34;&gt;item 3 of 50&lt;/a&gt;:&lt;/p&gt;
 
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/zAC_teyfrHU&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/zAC_teyfrHU&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.infinitelooper.com/?v=zAC_teyfrHU&#34;&gt;InfiniteLooper version&lt;/a&gt;&lt;/p&gt;
@@ -2275,7 +2284,7 @@ the correlation of HSGPA [high-school GPA] and FYGPA [first-year GPA in college]
       <description>&lt;p&gt;Random video! Although I feel that I’ve heard it earlier, my first conscious memory of getting linked to it is from &lt;a href=&#34;http://usamoarchive.wordpress.com/2012/03/01/youre-older-than-youve-ever-been/&#34;&gt;this post&lt;/a&gt;. At first I thought it would be the right background music for this post, but upon further reflection I think it mainly suited me while I was writing this post. Well, it’s topical if you mentally replace “day” with “year”.&lt;/p&gt;
 
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/q2bo_u_YmW8&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/q2bo_u_YmW8&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Anyway. Around this time a year ago, I paused my participation in big high-school competitions, for a variety of reasons.&lt;/p&gt;
@@ -3740,6 +3749,16 @@ I’m too lazy to reinstall all of them, so here are the ones I recognize that I
     </item>
     
     <item>
+      <title>init</title>
+      <link>//blog.vero.site/ref/init</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/init</guid>
+      <description>1  Firefox  LeechBlock, Xmarks, HTTPS Everywhere, uBlock Origin Formerly: Pentadactyl (nightlies), LastPass, Disconnect, All-in-One Sidebar  Dropbox (db.tt) (g)Vim / MacVim  NeoBundle; jellybeans, syntastic, airline, fugitive, unite.vim, nerdtree, … Make sure you change your home folder and other paths in your .vimrc if necessary.  LaTeX VLC Anki Geogebra, CaRMetal osu! Gargoyle MuseScore μTorrent VeraCrypt Gyazo  h4xx0r Be aware of homebrew options.
+ git (clone my stuff) fish_shell languages: haskell (stash), scala python things: beautifulsoup4, fn, ipython, numpy, pwntools, requests, scipy, virtualenv docs: kramdown, pandoc command-line: mu, fasd, ack / the_silver_searcher, openssl, tmux, ffmpeg, heroku, binutils, coreutils, tiny-fugue command-line more for fun: cowsay, figlet, cloc, sloccount idk: ant, go, ruby, rust  Mac  Use bottom-right of track pad for right-click; disable natural scrolling Set Caps Lock to Control In Mission Control &amp;gt; Hot Corners, set the lower-right corner to Mission Control  mkdir ~/bin ~/tmp</description>
+    </item>
+    
+    <item>
       <title>Iverson Bracket</title>
       <link>//blog.vero.site/ref/iverson</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -3805,8 +3824,7 @@ f_\epsilon(x) = \begin{cases} 0 &amp;amp; \text{if } |x| \geq \epsilon \\ 1 - \l
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//blog.vero.site/ref/paper</guid>
-      <description>1in = 2.54cm
- A4= 21.0cm × 29.7cm= 8.27in × 11.69in A4 &amp;minus; 1in margins= 15.92cm × 24.62cm= 6.27in × 9.69in Letter= 21.59cm × 27.94cm= 8.5in × 11in  </description>
+      <description>1in = 2.54cm</description>
     </item>
     
     <item>
@@ -3852,16 +3870,6 @@ If \(x, y, z &amp;gt; 0\) then
       
       <guid>//blog.vero.site/ref/stash</guid>
       <description>rustc -C prefer-dynamic .meter-text { white-space: pre-wrap; } launchctl stop com.apple.pboard launchctl start com.apple.pboard # requires ImageMagick functionimg() { identify -format &amp;#39;&amp;lt;img src=&amp;quot;%f&amp;quot; width=&amp;quot;%w&amp;quot; height=&amp;quot;%h&amp;quot; /&amp;gt;&amp;#39; $1 } :%s/\%xa0/ /ge :%s/\%u2019/&amp;#39;/ge :%s/\%u201c/&amp;quot;/ge :%s/\%u201d/&amp;quot;/ge ifconfig en0 | grep ether sudo ifconfig en1 ether 12:34:56:78:9a:bc while [[ $(date +%Y) -ne 2015]];do figlet $(($(date -j 0101000015 +%s)-$(date +%s)));sleep 1;clear;done;figlet Happy New Year! javascript:(function(x){function%20f(n){return%20Math.round(n*1000)/1000;}alert(&amp;quot;HP:%20&amp;quot;+f(x.hp)+&amp;quot;\nMP:%20&amp;quot;+f(x.mp)+&amp;quot;\nEXP:%20&amp;quot;+f(x.exp)+&amp;quot;\nGP:%20&amp;quot;+f(x.gp));}(angular.element(document.querySelector(&amp;#39;.hero-stats&amp;#39;)).scope().user.stats)); alias kd=&amp;#39;ruby --external-encoding UTF-8 -S kramdown&amp;#39; alias please=&amp;quot;sudo&amp;quot; sage: R = PolynomialRing(QQ, &amp;#39;x&amp;#39;) sage: f = R.</description>
-    </item>
-    
-    <item>
-      <title>init</title>
-      <link>//blog.vero.site/ref/init</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>//blog.vero.site/ref/init</guid>
-      <description>1  Firefox  LeechBlock, Xmarks, HTTPS Everywhere, uBlock Origin Formerly: Pentadactyl (nightlies), LastPass, Disconnect, All-in-One Sidebar  Dropbox (db.tt) (g)Vim / MacVim  NeoBundle; jellybeans, syntastic, airline, fugitive, unite.vim, nerdtree, … Make sure you change your home folder and other paths in your .vimrc if necessary.  LaTeX VLC Anki Geogebra, CaRMetal osu! Gargoyle MuseScore μTorrent VeraCrypt Gyazo  h4xx0r Be aware of homebrew options.
- git (clone my stuff) fish_shell languages: haskell (stash), scala python things: beautifulsoup4, fn, ipython, numpy, pwntools, requests, scipy, virtualenv docs: kramdown, pandoc command-line: mu, fasd, ack / the_silver_searcher, openssl, tmux, ffmpeg, heroku, binutils, coreutils, tiny-fugue command-line more for fun: cowsay, figlet, cloc, sloccount idk: ant, go, ruby, rust  Mac  Use bottom-right of track pad for right-click; disable natural scrolling Set Caps Lock to Control In Mission Control &amp;gt; Hot Corners, set the lower-right corner to Mission Control  mkdir ~/bin ~/tmp</description>
     </item>
     
   </channel>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bounded-Error Log</title>
@@ -6,7 +6,7 @@
     <description>Recent content on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Feb 2020 23:24:47 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2020 23:06:51 -0400</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>MIT</title>
       <link>//blog.vero.site/tag/mit</link>
-      <pubDate>Mon, 03 Feb 2020 23:24:47 -0500</pubDate>
+      <pubDate>Tue, 12 May 2020 23:06:51 -0400</pubDate>
       
       <guid>//blog.vero.site/tag/mit</guid>
       <description></description>
@@ -129,7 +129,7 @@
     </item>
     
     <item>
-      <title>javascript</title>
+      <title>JavaScript</title>
       <link>//blog.vero.site/tag/javascript</link>
       <pubDate>Fri, 07 Dec 2018 16:44:20 -0500</pubDate>
       
@@ -408,20 +408,20 @@
     </item>
     
     <item>
-      <title>CIMC 2015</title>
-      <link>//blog.vero.site/tag/cimc-2015</link>
-      <pubDate>Tue, 11 Aug 2015 23:32:37 +0800</pubDate>
-      
-      <guid>//blog.vero.site/tag/cimc-2015</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Chinese</title>
       <link>//blog.vero.site/tag/chinese</link>
       <pubDate>Tue, 11 Aug 2015 23:32:37 +0800</pubDate>
       
       <guid>//blog.vero.site/tag/chinese</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CIMC 2015</title>
+      <link>//blog.vero.site/tag/cimc-2015</link>
+      <pubDate>Tue, 11 Aug 2015 23:32:37 +0800</pubDate>
+      
+      <guid>//blog.vero.site/tag/cimc-2015</guid>
       <description></description>
     </item>
     
@@ -516,20 +516,20 @@
     </item>
     
     <item>
-      <title>English</title>
-      <link>//blog.vero.site/tag/english</link>
-      <pubDate>Fri, 24 Jul 2015 20:27:44 +0800</pubDate>
-      
-      <guid>//blog.vero.site/tag/english</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>dragons</title>
       <link>//blog.vero.site/tag/dragons</link>
       <pubDate>Fri, 24 Jul 2015 20:27:44 +0800</pubDate>
       
       <guid>//blog.vero.site/tag/dragons</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>English</title>
+      <link>//blog.vero.site/tag/english</link>
+      <pubDate>Fri, 24 Jul 2015 20:27:44 +0800</pubDate>
+      
+      <guid>//blog.vero.site/tag/english</guid>
       <description></description>
     </item>
     
@@ -723,7 +723,7 @@
     </item>
     
     <item>
-      <title>lits</title>
+      <title>LITS</title>
       <link>//blog.vero.site/tag/lits</link>
       <pubDate>Mon, 30 Mar 2015 20:01:26 +0800</pubDate>
       

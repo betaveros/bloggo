@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Refs on Bounded-Error Log</title>
@@ -34,6 +34,16 @@ GHC notably has array, bytestring, template-haskell, transformers.
 Additional libraries notably include attoparsec, HTTP, HUnit, mtl, parsec, QuickCheck, text, vector.
 Still, come to think of it, these libraries may well have updated since the platform release…
 I’m too lazy to reinstall all of them, so here are the ones I recognize that I care about, minus containers because it mysteriously threatens to break ghc-7.</description>
+    </item>
+    
+    <item>
+      <title>init</title>
+      <link>//blog.vero.site/ref/init</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/init</guid>
+      <description>1  Firefox  LeechBlock, Xmarks, HTTPS Everywhere, uBlock Origin Formerly: Pentadactyl (nightlies), LastPass, Disconnect, All-in-One Sidebar  Dropbox (db.tt) (g)Vim / MacVim  NeoBundle; jellybeans, syntastic, airline, fugitive, unite.vim, nerdtree, … Make sure you change your home folder and other paths in your .vimrc if necessary.  LaTeX VLC Anki Geogebra, CaRMetal osu! Gargoyle MuseScore μTorrent VeraCrypt Gyazo  h4xx0r Be aware of homebrew options.
+ git (clone my stuff) fish_shell languages: haskell (stash), scala python things: beautifulsoup4, fn, ipython, numpy, pwntools, requests, scipy, virtualenv docs: kramdown, pandoc command-line: mu, fasd, ack / the_silver_searcher, openssl, tmux, ffmpeg, heroku, binutils, coreutils, tiny-fugue command-line more for fun: cowsay, figlet, cloc, sloccount idk: ant, go, ruby, rust  Mac  Use bottom-right of track pad for right-click; disable natural scrolling Set Caps Lock to Control In Mission Control &amp;gt; Hot Corners, set the lower-right corner to Mission Control  mkdir ~/bin ~/tmp</description>
     </item>
     
     <item>
@@ -102,8 +112,7 @@ f_\epsilon(x) = \begin{cases} 0 &amp;amp; \text{if } |x| \geq \epsilon \\ 1 - \l
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//blog.vero.site/ref/paper</guid>
-      <description>1in = 2.54cm
- A4= 21.0cm × 29.7cm= 8.27in × 11.69in A4 &amp;minus; 1in margins= 15.92cm × 24.62cm= 6.27in × 9.69in Letter= 21.59cm × 27.94cm= 8.5in × 11in  </description>
+      <description>1in = 2.54cm</description>
     </item>
     
     <item>
@@ -139,16 +148,6 @@ If \(x, y, z &amp;gt; 0\) then
       
       <guid>//blog.vero.site/ref/stash</guid>
       <description>rustc -C prefer-dynamic .meter-text { white-space: pre-wrap; } launchctl stop com.apple.pboard launchctl start com.apple.pboard # requires ImageMagick functionimg() { identify -format &amp;#39;&amp;lt;img src=&amp;quot;%f&amp;quot; width=&amp;quot;%w&amp;quot; height=&amp;quot;%h&amp;quot; /&amp;gt;&amp;#39; $1 } :%s/\%xa0/ /ge :%s/\%u2019/&amp;#39;/ge :%s/\%u201c/&amp;quot;/ge :%s/\%u201d/&amp;quot;/ge ifconfig en0 | grep ether sudo ifconfig en1 ether 12:34:56:78:9a:bc while [[ $(date +%Y) -ne 2015]];do figlet $(($(date -j 0101000015 +%s)-$(date +%s)));sleep 1;clear;done;figlet Happy New Year! javascript:(function(x){function%20f(n){return%20Math.round(n*1000)/1000;}alert(&amp;quot;HP:%20&amp;quot;+f(x.hp)+&amp;quot;\nMP:%20&amp;quot;+f(x.mp)+&amp;quot;\nEXP:%20&amp;quot;+f(x.exp)+&amp;quot;\nGP:%20&amp;quot;+f(x.gp));}(angular.element(document.querySelector(&amp;#39;.hero-stats&amp;#39;)).scope().user.stats)); alias kd=&amp;#39;ruby --external-encoding UTF-8 -S kramdown&amp;#39; alias please=&amp;quot;sudo&amp;quot; sage: R = PolynomialRing(QQ, &amp;#39;x&amp;#39;) sage: f = R.</description>
-    </item>
-    
-    <item>
-      <title>init</title>
-      <link>//blog.vero.site/ref/init</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>//blog.vero.site/ref/init</guid>
-      <description>1  Firefox  LeechBlock, Xmarks, HTTPS Everywhere, uBlock Origin Formerly: Pentadactyl (nightlies), LastPass, Disconnect, All-in-One Sidebar  Dropbox (db.tt) (g)Vim / MacVim  NeoBundle; jellybeans, syntastic, airline, fugitive, unite.vim, nerdtree, … Make sure you change your home folder and other paths in your .vimrc if necessary.  LaTeX VLC Anki Geogebra, CaRMetal osu! Gargoyle MuseScore μTorrent VeraCrypt Gyazo  h4xx0r Be aware of homebrew options.
- git (clone my stuff) fish_shell languages: haskell (stash), scala python things: beautifulsoup4, fn, ipython, numpy, pwntools, requests, scipy, virtualenv docs: kramdown, pandoc command-line: mu, fasd, ack / the_silver_searcher, openssl, tmux, ffmpeg, heroku, binutils, coreutils, tiny-fugue command-line more for fun: cowsay, figlet, cloc, sloccount idk: ant, go, ruby, rust  Mac  Use bottom-right of track pad for right-click; disable natural scrolling Set Caps Lock to Control In Mission Control &amp;gt; Hot Corners, set the lower-right corner to Mission Control  mkdir ~/bin ~/tmp</description>
     </item>
     
   </channel>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Bounded-Error Log</title>
@@ -6,10 +6,19 @@
     <description>Recent content in Categories on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 04 Feb 2020 18:00:58 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2020 23:06:51 -0400</lastBuildDate>
     
 	<atom:link href="//blog.vero.site/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>life</title>
+      <link>//blog.vero.site/category/life</link>
+      <pubDate>Tue, 12 May 2020 23:06:51 -0400</pubDate>
+      
+      <guid>//blog.vero.site/category/life</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>CS</title>
@@ -35,15 +44,6 @@
       <pubDate>Mon, 03 Feb 2020 23:24:47 -0500</pubDate>
       
       <guid>//blog.vero.site/category/puzzles</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>life</title>
-      <link>//blog.vero.site/category/life</link>
-      <pubDate>Tue, 31 Dec 2019 16:24:31 +0800</pubDate>
-      
-      <guid>//blog.vero.site/category/life</guid>
       <description></description>
     </item>
     

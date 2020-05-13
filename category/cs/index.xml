@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CS on Bounded-Error Log</title>
@@ -529,7 +529,7 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
       <description>&lt;p&gt;Random video! Although I feel that I’ve heard it earlier, my first conscious memory of getting linked to it is from &lt;a href=&#34;http://usamoarchive.wordpress.com/2012/03/01/youre-older-than-youve-ever-been/&#34;&gt;this post&lt;/a&gt;. At first I thought it would be the right background music for this post, but upon further reflection I think it mainly suited me while I was writing this post. Well, it’s topical if you mentally replace “day” with “year”.&lt;/p&gt;
 
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/q2bo_u_YmW8&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/q2bo_u_YmW8&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Anyway. Around this time a year ago, I paused my participation in big high-school competitions, for a variety of reasons.&lt;/p&gt;
@@ -716,6 +716,16 @@ I’m too lazy to reinstall all of them, so here are the ones I recognize that I
     </item>
     
     <item>
+      <title>init</title>
+      <link>//blog.vero.site/ref/init</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/init</guid>
+      <description>1  Firefox  LeechBlock, Xmarks, HTTPS Everywhere, uBlock Origin Formerly: Pentadactyl (nightlies), LastPass, Disconnect, All-in-One Sidebar  Dropbox (db.tt) (g)Vim / MacVim  NeoBundle; jellybeans, syntastic, airline, fugitive, unite.vim, nerdtree, … Make sure you change your home folder and other paths in your .vimrc if necessary.  LaTeX VLC Anki Geogebra, CaRMetal osu! Gargoyle MuseScore μTorrent VeraCrypt Gyazo  h4xx0r Be aware of homebrew options.
+ git (clone my stuff) fish_shell languages: haskell (stash), scala python things: beautifulsoup4, fn, ipython, numpy, pwntools, requests, scipy, virtualenv docs: kramdown, pandoc command-line: mu, fasd, ack / the_silver_searcher, openssl, tmux, ffmpeg, heroku, binutils, coreutils, tiny-fugue command-line more for fun: cowsay, figlet, cloc, sloccount idk: ant, go, ruby, rust  Mac  Use bottom-right of track pad for right-click; disable natural scrolling Set Caps Lock to Control In Mission Control &amp;gt; Hot Corners, set the lower-right corner to Mission Control  mkdir ~/bin ~/tmp</description>
+    </item>
+    
+    <item>
       <title>Java Clipboards and Data Transfer</title>
       <link>//blog.vero.site/ref/java-clipboards</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -734,16 +744,6 @@ Some basic classes. The class Clipboard is a clipboard, obviously. Its content i
       
       <guid>//blog.vero.site/ref/stash</guid>
       <description>rustc -C prefer-dynamic .meter-text { white-space: pre-wrap; } launchctl stop com.apple.pboard launchctl start com.apple.pboard # requires ImageMagick functionimg() { identify -format &amp;#39;&amp;lt;img src=&amp;quot;%f&amp;quot; width=&amp;quot;%w&amp;quot; height=&amp;quot;%h&amp;quot; /&amp;gt;&amp;#39; $1 } :%s/\%xa0/ /ge :%s/\%u2019/&amp;#39;/ge :%s/\%u201c/&amp;quot;/ge :%s/\%u201d/&amp;quot;/ge ifconfig en0 | grep ether sudo ifconfig en1 ether 12:34:56:78:9a:bc while [[ $(date +%Y) -ne 2015]];do figlet $(($(date -j 0101000015 +%s)-$(date +%s)));sleep 1;clear;done;figlet Happy New Year! javascript:(function(x){function%20f(n){return%20Math.round(n*1000)/1000;}alert(&amp;quot;HP:%20&amp;quot;+f(x.hp)+&amp;quot;\nMP:%20&amp;quot;+f(x.mp)+&amp;quot;\nEXP:%20&amp;quot;+f(x.exp)+&amp;quot;\nGP:%20&amp;quot;+f(x.gp));}(angular.element(document.querySelector(&amp;#39;.hero-stats&amp;#39;)).scope().user.stats)); alias kd=&amp;#39;ruby --external-encoding UTF-8 -S kramdown&amp;#39; alias please=&amp;quot;sudo&amp;quot; sage: R = PolynomialRing(QQ, &amp;#39;x&amp;#39;) sage: f = R.</description>
-    </item>
-    
-    <item>
-      <title>init</title>
-      <link>//blog.vero.site/ref/init</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>//blog.vero.site/ref/init</guid>
-      <description>1  Firefox  LeechBlock, Xmarks, HTTPS Everywhere, uBlock Origin Formerly: Pentadactyl (nightlies), LastPass, Disconnect, All-in-One Sidebar  Dropbox (db.tt) (g)Vim / MacVim  NeoBundle; jellybeans, syntastic, airline, fugitive, unite.vim, nerdtree, … Make sure you change your home folder and other paths in your .vimrc if necessary.  LaTeX VLC Anki Geogebra, CaRMetal osu! Gargoyle MuseScore μTorrent VeraCrypt Gyazo  h4xx0r Be aware of homebrew options.
- git (clone my stuff) fish_shell languages: haskell (stash), scala python things: beautifulsoup4, fn, ipython, numpy, pwntools, requests, scipy, virtualenv docs: kramdown, pandoc command-line: mu, fasd, ack / the_silver_searcher, openssl, tmux, ffmpeg, heroku, binutils, coreutils, tiny-fugue command-line more for fun: cowsay, figlet, cloc, sloccount idk: ant, go, ruby, rust  Mac  Use bottom-right of track pad for right-click; disable natural scrolling Set Caps Lock to Control In Mission Control &amp;gt; Hot Corners, set the lower-right corner to Mission Control  mkdir ~/bin ~/tmp</description>
     </item>
     
   </channel>
