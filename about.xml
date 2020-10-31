@@ -5,10 +5,6 @@
     <link>//blog.vero.site/about</link>
     <description>Recent content in About on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="//blog.vero.site/about.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="//blog.vero.site/about.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

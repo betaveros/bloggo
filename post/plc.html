@@ -9,7 +9,7 @@
 You can access this challenge at https://wargames.ret2.systems/csaw_2018_plc_challenge
  A much belated post. This is a pwn challenge on a custom online wargaming platform. We are provided with the assembly of what’s ostensibly a programmable logic controller (PLC) for a centrifuge in a nuclear reactor. The challenge looks like it’s still up, so you can take a look and follow along.
 This was the first ROP (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like until, no pwntools utilities for packing/unpacking numbers, … no one_gadget), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use gdb (or fictionalized web knockoffs thereof).
-" /><meta name="generator" content="Hugo 0.65.0-DEV" />
+" /><meta name="generator" content="Hugo 0.76.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/plc" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -26,6 +26,7 @@ This was the first ROP (okay, spoiler, it’s a ROP) I ever pulled off live duri
 
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
+
 <!--[if lte IE 11]>
     <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
 <![endif]-->
@@ -434,12 +435,15 @@ This was the first ROP (okay, spoiler, it’s a ROP) I ever pulled off live duri
 	<a href="https://pages.github.com/">GitHub Pages</a>, and
 	<a href="https://www.cloudflare.com/">CloudFlare</a>.
 	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
 </footer>
 
 <script src="/katex/katex.min.js"></script>
 <script src="/katex/contrib/auto-render.min.js"></script>
 <script>renderMathInElement(document.body);</script>
 <script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 

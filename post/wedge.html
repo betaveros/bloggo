@@ -9,7 +9,7 @@
 Note on notation: to be maximally clear, I have bolded all my vectors and put tiny arrows on them. Normal letters are usually reals, uppercase letters are usually bigger matrices. Also, \(\cdot^T\) denotes the transpose of a matrix.
 Let \(\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m\) be elements of \(\mathbb{R}^n\) where \(m \leq n\), i.e. column vectors with \(n\) real elements. Let \(V = [\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m]\). This means pasting the column vectors together to make an \(n \times m\) matrix (\(n\) rows \(m\) columns).
 Consider the thing \(\vec{\textbf{v}}_1 \wedge \vec{\textbf{v}}_2 \wedge \cdots \wedge \vec{\textbf{v}}_m\), which can be visualized as the hyperparallelogram \(\left\{\sum_{i=1}^{m} t_i\vec{\textbf{v}}_i \,\middle\vert\, t_i \in [0,1], i = 1, 2, \ldots, m \right\}\) but is apparently a different thing in a different vector space of things. We wonder how to compute the hyperarea of this hyperparallelogram.
-" /><meta name="generator" content="Hugo 0.65.0-DEV" />
+" /><meta name="generator" content="Hugo 0.76.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/wedge" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -26,6 +26,7 @@ Consider the thing \(\vec{\textbf{v}}_1 \wedge \vec{\textbf{v}}_2 \wedge \cdots 
 
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
+
 <!--[if lte IE 11]>
     <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
 <![endif]-->
@@ -142,12 +143,15 @@ D = \det\left( \begin{bmatrix} C &amp; \textbf{0} \\ \textbf{0} &amp; I_{n-m} \e
 	<a href="https://pages.github.com/">GitHub Pages</a>, and
 	<a href="https://www.cloudflare.com/">CloudFlare</a>.
 	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
 </footer>
 
 <script src="/katex/katex.min.js"></script>
 <script src="/katex/contrib/auto-render.min.js"></script>
 <script>renderMathInElement(document.body);</script>
 <script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 

@@ -9,7 +9,7 @@
 Of course, this is a CTF, so the challenge is all about breaking the theoretical guarantees of the type system. When we submit code, it’s evaluated in a context with a private integer variable flag; our code is typechecked, executed, and printed, but only if its type is public. The goal is to break the type system and write code that produces a public value that depends on flag, so that we can exfiltrate flag itself.
 In all, there are three progressively harder Wolf problems, named Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the flag of the challenge before it, so that you need to solve them in order (unless you can somehow blindly exploit servers running SML programs).
 Wolf Overview Let’s first go over the Wolf syntax and semantics. (There are small differences between the three problems, but they’re syntactically identical and only semantically differ in cases that we’ll naturally get to.) The examples folder has some examples of valid code:
-let x = (5 :&amp;gt; private int) in 6" /><meta name="generator" content="Hugo 0.65.0-DEV" />
+let x = (5 :&amp;gt; private int) in 6" /><meta name="generator" content="Hugo 0.76.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/doggo" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -26,6 +26,7 @@ let x = (5 :&amp;gt; private int) in 6" /><meta name="generator" content="Hugo 0
 
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
+
 <!--[if lte IE 11]>
     <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
 <![endif]-->
@@ -318,12 +319,15 @@ let f = (fn (x: private unit) =&gt; m := 1; x) :&gt; private (private unit -&gt;
 	<a href="https://pages.github.com/">GitHub Pages</a>, and
 	<a href="https://www.cloudflare.com/">CloudFlare</a>.
 	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
 </footer>
 
 <script src="/katex/katex.min.js"></script>
 <script src="/katex/contrib/auto-render.min.js"></script>
 <script>renderMathInElement(document.body);</script>
 <script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 

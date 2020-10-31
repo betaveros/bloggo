@@ -9,7 +9,7 @@
 The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension shellme.so.
 $link = mysqli_connect(&amp;#39;localhost&amp;#39;, &amp;#39;shellql&amp;#39;, &amp;#39;shellql&amp;#39;, &amp;#39;shellql&amp;#39;);  if (isset($_POST[&amp;#39;shell&amp;#39;])) { if (strlen($_POST[&amp;#39;shell&amp;#39;]) &amp;lt;= 1000) { echo $_POST[&amp;#39;shell&amp;#39;]; shellme($_POST[&amp;#39;shell&amp;#39;]); } exit(); } The extension basically just executes $_POST[&#39;shell&#39;] as shellcode after a strict SECCOMP call, prctl(22, 1). This means that we can only use the four syscalls read, write, and exit, and sigreturn, where the latter two aren’t particularly useful.
  Disassembled innermost function of interest in shellme.so  The goal is to read the flag from the open MySQL connection.
-" /><meta name="generator" content="Hugo 0.65.0-DEV" />
+" /><meta name="generator" content="Hugo 0.76.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/shellql" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -26,6 +26,7 @@ $link = mysqli_connect(&amp;#39;localhost&amp;#39;, &amp;#39;shellql&amp;#39;, &
 
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
+
 <!--[if lte IE 11]>
     <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
 <![endif]-->
@@ -179,12 +180,15 @@ $link = mysqli_connect(&amp;#39;localhost&amp;#39;, &amp;#39;shellql&amp;#39;, &
 	<a href="https://pages.github.com/">GitHub Pages</a>, and
 	<a href="https://www.cloudflare.com/">CloudFlare</a>.
 	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
 </footer>
 
 <script src="/katex/katex.min.js"></script>
 <script src="/katex/contrib/auto-render.min.js"></script>
 <script>renderMathInElement(document.body);</script>
 <script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 

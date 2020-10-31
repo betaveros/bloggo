@@ -11,7 +11,7 @@ isPrime = liftA2 (&amp;amp;&amp;amp;) (liftA2 ($) (all . ((.) (0 /=)) . rem) (fl
 Also, for some reason, you can do this in Haskell:
 ghci&amp;gt; let 2 &#43; 2 = 5 in 2 &#43; 2 5 (via Haskell for the Evil Genius)
 Okay, but seriously now. I wrote this about my journey to learn functional programming in the programming babble post half a year ago:
- The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes). " /><meta name="generator" content="Hugo 0.65.0-DEV" />
+ The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes). " /><meta name="generator" content="Hugo 0.76.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/haskell" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -28,6 +28,7 @@ Okay, but seriously now. I wrote this about my journey to learn functional progr
 
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
+
 <!--[if lte IE 11]>
     <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
 <![endif]-->
@@ -142,12 +143,15 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
 	<a href="https://pages.github.com/">GitHub Pages</a>, and
 	<a href="https://www.cloudflare.com/">CloudFlare</a>.
 	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
 </footer>
 
 <script src="/katex/katex.min.js"></script>
 <script src="/katex/contrib/auto-render.min.js"></script>
 <script>renderMathInElement(document.body);</script>
 <script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 

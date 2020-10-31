@@ -5,11 +5,7 @@
     <link>//blog.vero.site/ref</link>
     <description>Recent content in Refs on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="//blog.vero.site/ref/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="//blog.vero.site/ref/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Coq Reference</title>
       <link>//blog.vero.site/ref/coq</link>

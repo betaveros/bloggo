@@ -13,7 +13,7 @@ Now imagine it isn’t a word search.
  — Mike Develin, via Thomas Snyder (aka Dr. Sudoku)   This post aims to be a fairly comprehensive introduction to puzzlehunts and their puzzles, a single post where I can just point people. I erred towards comprehensiveness in this post because I am not aware of any similar resources, especially for puzzlers interested in trying harder puzzlehunts who might not know any more experienced puzzlers to solve with. It’s possible to start solving some puzzles after reading much shorter guides, e.g. Puzzled Pint’s “Puzzling Basics” (PDF), so feel free to skip around, stop reading midway through, or bookmark this to read only after you’ve spent more time solving.
 What is a Puzzlehunt? A puzzlehunt1 is an event where people, usually in teams, solve a series of puzzles.
 This is not a very useful definition. The more interesting question is, what is the kind of “puzzle”2 that appears in a puzzlehunt? The concept of a puzzlehunt puzzle is fuzzy and difficult to define precisely. Just about any hard rule one might try to state will be broken by some puzzle, sometimes deliberately. Still, here are some common features of puzzlehunt puzzles:
-" /><meta name="generator" content="Hugo 0.65.0-DEV" />
+" /><meta name="generator" content="Hugo 0.76.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/puzzlehunts" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -30,6 +30,7 @@ This is not a very useful definition. The more interesting question is, what is 
 
 <link rel="stylesheet" href="/css/bundle.css" />
 <link rel="stylesheet" href="/katex/katex.min.css" />
+
 <!--[if lte IE 11]>
     <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
 <![endif]-->
@@ -63,7 +64,7 @@ This is not a very useful definition. The more interesting question is, what is 
 		<p class="post-meta">
 		
 		2019-09-02
-		(7078 words)
+		(7608 words)
 		
 		<span class="post-categories">
 			filed under
@@ -188,7 +189,19 @@ This is not a very useful definition. The more interesting question is, what is 
 <p>Again, even though most puzzles are one-of-a-kind, some genres of puzzle do tend to appear a lot. There will often be some kind of additional modification or twist on top of the standard way a puzzle from such a genre works, but even so it helps to know how those standard puzzles work first, so here’s a list. I will not describe genres that are as common and as simple as word searches, rebuses, and mazes. Nevertheless, I think there are some puzzle genres that are worth pointing out explicitly.</p>
 <p><strong>This list is absolutely not exhaustive.</strong> Nothing is off-limits for puzzlehunts, really.</p>
 <ul>
-<li><p><strong>Crosswords</strong> are a common puzzle genre that I will assume I don’t need to explain. However, many puzzlehunt puzzles feature crosswords with gimmicks: maybe you have to write more than one letter, or something that’s not a letter, in some squares; maybe you also write letters on black squares, or outside the grid; maybe some of the clues or some of the crosses are wrong. Think sort of like the Thursday crosswords of the New York Times, but potentially more extreme. When these gimmicks appear, they are often involved in extraction. (Some puzzlehunt crosswords are completely normal, but I think they’re actually pretty rare.)</p>
+<li><p><strong>Crosswords</strong> are a common puzzle genre where you put words and phrases into a grid. I won’t explain the gist of how crosswords work, but I will mention some conventions that may not be so obvious:</p>
+<ul>
+<li><p>Clues must match the answer in <strong>tense</strong>, <strong>part of speech</strong>, and <strong>pluralization</strong>. “Consumed” can clue ATE but not EAT or EATING; “Circle parts” can be a clue for ARCS, but not ARC or ARCED. Beware of words that can be multiple parts of speech; “Angle” is a fine clue for FISH, where both words have to be interpreted as verbs. A common rule of thumb is that you must be able to write a sentence where you can replace the clue with the answer and get an equally grammatical sentence with the same meaning.</p>
+<ul>
+<li><p>An exception is clues that describe the answer in a sentence, referring to the answer as “it” or “they” or some other pronoun. For example, “It may get a good licking” could clue crossword constructors’ favorite cookie, OREO, even though that sentence is definitely not a noun like OREO is.</p></li>
+<li><p>Parenthesized words after a clue can mean words you have to add after both the clue and the answer to get synonymous phrases. For example, neither “Force” nor “Force open” are great clues for PRY, but “Force (open)” is reasonable because “force open” and “pry open” have roughly the same meaning.</p></li>
+<li><p>Clues in quotes often mean that the clue and answer are things you might say that have roughly the same meaning. “‘Don’t worry about me’” has appeared many times in the NYT as a clue for I’M OK.</p></li>
+</ul></li>
+<li><p>If the answer is an <strong>abbreviation</strong>, the clue usually must also include an abbreviation, or otherwise explicitly suggest the answer is abbreviated (e.g. “briefly” or “for short”). However, the abbreviation can be something innocuous like “e.g.”. An example is “Cape Canaveral org.” to clue NASA. However, not all clues with abbreviations have abbreviations as answers, and if the answer is a very common abbreviation that people say without thinking of it as one, it may be exempt from this rule.</p></li>
+<li><p>Generally, clues and answers cannot repeat any major words. For example, “Relative of a green pepper” would not clue “RED PEPPER” because they both use the word “pepper”. This also applies to abbreviations: “Space org.” is a bad clue for NASA, because the S of NASA stands for “space”. This mistake is known in some puzzle circles as “TETCBN”, or “The Error That Cannot Be Named”, because pointing out that a clue has this error often gives a major clue to the answer. Quoted clues often try the hardest to satisfy this rule, carefully dancing around using the same pronouns as the answer: clues like “I’m fine”, “I’m all right”, or even “I didn’t break anything” for I’M OK would be considered bad because they all use the pronoun “I”, which is in the answer (but “me” in the clue is fine). Particularly common words like “the” may be exempt in clues for longer phrases.</p></li>
+</ul>
+<p>New York Times’ <a href="https://www.nytimes.com/guides/crosswords/how-to-solve-a-crossword-puzzle">How to Solve a Crossword Puzzle</a> has a more in-depth list of other conventions and clue types, as well as tricks and traps that may appear in more difficult clues.</p>
+<p>In addition, many puzzlehunt puzzles feature crosswords with gimmicks: maybe you have to write more than one letter, or something that’s not a letter, in some squares; maybe you also write letters on black squares, or outside the grid; maybe some of the clues or some of the crosses are wrong. Think sort of like the Thursday crosswords of the New York Times, but potentially more extreme. When these gimmicks appear, they are often involved in extraction. (Some puzzlehunt crosswords are completely normal, but I think they’re actually pretty rare.)</p>
 <p>Occasionally you will also see <em>diagramless crosswords</em>, where you only get the numbered clues but not the grid. Part of the puzzle is to reconstruct the grid using the answers you can solve and the standard conventions for how American crosswords are laid out and numbered.</p></li>
 <li><p><strong>Wordplay</strong> is an umbrella term I put here to mean manipulations of words and letters such as adding letters to the ends of words, inserting words in other words, homophones, or palindromes. A somewhat standard kind of puzzle just consists of clues for words or groups of words with some wordplay relationship along these lines; you then have to figure out the words and the relationship. But a lot of these techniques also appear in cryptic crossword clues:</p></li>
 <li><p><strong>Cryptic (crossword) clues</strong> are a type of clue for words or phrases. Outside of puzzlehunts, they are generally found as the clues in <a href="https://en.wikipedia.org/wiki/Cryptic_crossword">cryptic crosswords</a>, a somewhat British<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> genre of puzzle. Each clue is sort of its own small wordplay puzzle, combining a definition of the answer with a wordplay description of it. On top of all that, most of the gimmicks that might appear in normal crosswords in puzzlehunts can also appear in cryptic crosswords.</p>
@@ -257,6 +270,10 @@ Update: <a href="https://puzzling.stackexchange.com/questions/45984/cryptic-clue
 
 </div>
 <p><em>Thanks to the many members of Puzzlers Club who testsolved and helped improve this post!</em></p>
+<p>Changelog:</p>
+<ul>
+<li>2020-06-29: Added info about (non-cryptic) crosswords.</li>
+</ul>
 <section class="footnotes">
 <hr />
 <ol>
@@ -309,12 +326,15 @@ Update: <a href="https://puzzling.stackexchange.com/questions/45984/cryptic-clue
 	<a href="https://pages.github.com/">GitHub Pages</a>, and
 	<a href="https://www.cloudflare.com/">CloudFlare</a>.
 	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
 </footer>
 
 <script src="/katex/katex.min.js"></script>
 <script src="/katex/contrib/auto-render.min.js"></script>
 <script>renderMathInElement(document.body);</script>
 <script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
