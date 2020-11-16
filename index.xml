@@ -6,7 +6,20 @@
     <description>Recent content on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 May 2020 23:06:51 -0400</lastBuildDate><atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 16 Nov 2020 00:25:50 -0800</lastBuildDate><atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43; Rvalue References: The Unnecessarily Detailed Guide</title>
+      <link>//blog.vero.site/post/rvalue-references</link>
+      <pubDate>Mon, 16 Nov 2020 00:25:50 -0800</pubDate>
+      
+      <guid>//blog.vero.site/post/rvalue-references</guid>
+      <description>&lt;p&gt;By a strange quirk of fate, I have started writing C++ for a living.&lt;/p&gt;
+&lt;p&gt;Learning C++ was about as complicated as I think I expected it to be. By line count, I’ve written a lot of C++ for programming competitions, but I knew that I had only ever used a small cross-section of the language: basic control flow and variables, STL containers and algorithms, structs on which you mechanically define &lt;code&gt;bool operator&amp;lt;(const T&amp;amp; other) const&lt;/code&gt; so STL algorithms can order them, and the very occasional macro or templated helper function. There were many features I wasn’t even aware existed.&lt;/p&gt;
+&lt;p&gt;In the process of learning C++ professionally, one rabbit hole I fell into quickly was C++11’s defining feature, the &lt;em&gt;rvalue reference&lt;/em&gt;, and how it can be used to implement &lt;em&gt;move semantics&lt;/em&gt; and &lt;em&gt;perfect forwarding&lt;/em&gt;. By poring over a copy of the widely recommended book &lt;a href=&#34;https://www.amazon.com/Effective-Modern-Specific-Ways-Improve/dp/1491903996&#34;&gt;&lt;cite&gt;Effective Modern C++&lt;/cite&gt;&lt;/a&gt;, by Scott Meyers, and a few dozen StackOverflow answers and blog posts, I roughly understood it after a few days, but still had a sort of blind-men-feeling-the-elephant feeling. I was confused about what lay under some of the abstractions I had been using, unsure of the full shape of the pitfalls that some of the guides had pointed out to me, and generally uncomfortable that there were still many small variations of the code I had seen that I couldn’t predict the behavior of. It took many more days to work myself out of there, and I wished I had had a guide that explained rvalue references and their applications to a bit more depth than what might be necessary for day-to-day use. So here’s my attempt to explain rvalue references in my own fundamental I-want-to-know-how-things-work-no-&lt;em&gt;really&lt;/em&gt; style.&lt;/p&gt;
+&lt;h3 id=&#34;executive-summary&#34;&gt;Executive Summary&lt;/h3&gt;
+&lt;p&gt;I got… pretty carried away when writing this post, and a lot of it is just for my own understanding, which may or may not be useful to readers. Here’s a much more concise rundown (assuming you know basic C++ already):&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>45/101</title>
       <link>//blog.vero.site/post/45</link>
