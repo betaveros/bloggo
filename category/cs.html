@@ -62,6 +62,37 @@ Category → CS
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/advent-leaderboard" class="post-link">Advent of Code: How to Leaderboard</a></h3>
+		
+		<p class="post-meta">
+		
+		2020-11-24
+		(5697 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p><a href="https://adventofcode.com/">Advent of Code</a> (briefly, “AoC”) is a series of 25 festive programming puzzles<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> released daily December 1–25. Each puzzle has two parts, which use the same text input and are related; to solve a part, you submit the right output corresponding to the input on the website.</p>
+<p>If you’re reading this, I suspect there’s a good chance you knew that already, but in case you’re new to Advent of Code, let me try to briefly explain why I like Advent of Code, from the perspective of somebody who’s spent a lot of their life so far doing programming competitions.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<ul>
+<li>The event has a fantastic community surrounding it. I’m the most familiar with <a href="https://www.reddit.com/r/adventofcode/">the subreddit</a>, which is full of helpful people, interesting discussions, non-programming community games, and the occasional <a href="https://www.reddit.com/r/adventofcode/comments/e6iw6l/day_5_browserbased_interactive_intcode_processor/">wonderfully</a>, <a href="https://www.reddit.com/r/adventofcode/comments/e7ylwd/i_solved_day_8_entirely_in_minecraft/">spectacularly</a> <a href="https://www.reddit.com/r/adventofcode/comments/eb79s0/2019_day_10_blowing_up_asteroids_in_unity/">overengineered</a> <a href="https://www.reddit.com/r/adventofcode/comments/ea8mif/2019_day_13_excel_did_you_think_i_would_give_up/">solution</a> to a puzzle; but I know there are also many smaller chatrooms and subcommunities focused on, say, specific timezones or programming languages.</li>
+<li>Another aspect is the unique two-part format of each puzzle. Even though they use the same input, you don’t get to see the second part until after you’ve solved the first one, a feature that Eric Wastl (AoC’s creator) has taken full advantage of in designing puzzles. The second part is often a surprising twist on the first part, which keeps you on your toes and challenges you to keep your code moderately general or refactorable in a way that I think almost no other programming challenges do. This sometimes even happens between days in a calendar, when a puzzle turns out to be about some model of computation you implemented two or five or ten days ago — hope you kept your code and remember how it works!</li>
+<li>Finally, AoC also has some non-rigorous puzzles that force you to use your intuition and “human intelligence”, either by interpreting the problem statement heuristically or writing code to let you explore the input. There are quite a few puzzles where it’s infeasible to write code that handles every step of obtaining the output from the input. The result is that Advent of Code can feature quite a few challenges that I’ve found particularly compelling because I think they simply could not be posed on any other contest platform.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></li>
+</ul>
+<p>These are the things that make AoC stand out to me, but it also does a lot of other things well — the challenges are fun, approachable, and varied even aside from their interrelations; there is a long, dramatic story tying everything together (although it’s an <a href="https://tvtropes.org/pmwiki/pmwiki.php/Main/ExcusePlot">Excuse Plot</a> if there ever was such a thing); and, although this is obviously subjective, I find the website’s minimalist-adjacent, terminal-esque aesthetic really charming (there is a <em>lot</em> of detail in <a href="https://adventofcode.com/2019">2019’s calendar</a>… after you solve everything). I’ve only done the last two years of Advent of Code, but it really seems like a one-of-a-kind event to me.</p>
+<p>Anyway, one particular feature Advent of Code has is a leaderboard, which you can get on by being one of the first 100 people worldwide to solve each puzzle. The competition is fierce — every year, thousands of people compete to get on the leaderboard. Near the start of AoC 2019, <a href="https://gist.github.com/mcpower/87427528b9ba5cac6f0c679370789661">mcpower</a> (<a href="https://www.reddit.com/r/adventofcode/comments/e2wjhf/tips_for_getting_on_the_advent_of_code_leaderboard/">reddit discussion</a>) and <a href="https://kevinyap.ca/2019/12/going-fast-in-advent-of-code/">Kevin Yap</a> (<a href="https://www.reddit.com/r/adventofcode/comments/e82f7a/going_fast_in_advent_of_code/">reddit discussion</a>) wrote some articles about how to do this, both of which are worth reading. I also thought about writing such an article and started a draft, but I didn’t get it anywhere close to publishable before AoC had concluded, at which point I assumed few people would be interested. But here it is now.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/advent-leaderboard">→ read more<span class="offscreen"> Advent of Code: How to Leaderboard</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/rvalue-references" class="post-link">C&#43;&#43; Rvalue References: The Unnecessarily Detailed Guide</a></h3>
 		
 		<h4 class="post-subtitle">Move semantics, perfect forwarding, and... everything else</h4>
@@ -69,7 +100,7 @@ Category → CS
 		<p class="post-meta">
 		
 		2020-11-16
-		(11114 words)
+		(12004 words)
 		
 		<span class="post-categories">
 			filed under
@@ -82,6 +113,7 @@ Category → CS
 	<p>By a strange quirk of fate, I have started writing C++ for a living.</p>
 <p>Learning C++ was about as complicated as I think I expected it to be. By line count, I’ve written a lot of C++ for programming competitions, but I knew that I had only ever used a small cross-section of the language: basic control flow and variables, STL containers and algorithms, structs on which you mechanically define <code>bool operator&lt;(const T&amp; other) const</code> so STL algorithms can order them, and the very occasional macro or templated helper function. There were many features I wasn’t even aware existed.</p>
 <p>In the process of learning C++ professionally, one rabbit hole I fell into quickly was C++11’s defining feature, the <em>rvalue reference</em>, and how it can be used to implement <em>move semantics</em> and <em>perfect forwarding</em>. By poring over a copy of the widely recommended book <a href="https://www.amazon.com/Effective-Modern-Specific-Ways-Improve/dp/1491903996"><cite>Effective Modern C++</cite></a>, by Scott Meyers, and a few dozen StackOverflow answers and blog posts, I roughly understood it after a few days, but still had a sort of blind-men-feeling-the-elephant feeling. I was confused about what lay under some of the abstractions I had been using, unsure of the full shape of the pitfalls that some of the guides had pointed out to me, and generally uncomfortable that there were still many small variations of the code I had seen that I couldn’t predict the behavior of. It took many more days to work myself out of there, and I wished I had had a guide that explained rvalue references and their applications to a bit more depth than what might be necessary for day-to-day use. So here’s my attempt to explain rvalue references in my own fundamental I-want-to-know-how-things-work-no-<em>really</em> style.</p>
+<p>(If this vision doesn’t resonate with you, there are many other posts explaining rvalue references out there that you might prefer. Feel free to just skim the executive summary and/or check out some of the linked articles in the Background section.)</p>
 <h3 id="executive-summary">Executive Summary</h3>
 <p>I got… pretty carried away when writing this post, and a lot of it is just for my own understanding, which may or may not be useful to readers. Here’s a much more concise rundown (assuming you know basic C++ already):</p>
 	<footer class="post-footer">
@@ -354,36 +386,6 @@ Environment: Ubuntu 16.04+latex</code></pre>
 <p>So here’s the guide I wish I had. I think. It’s been months since I started it (as usual, for posts on this blog) and it is probably incomplete. However, I haven’t written React/Redux deeply in a while, so I didn’t have much motivation to continue to investigate the incomplete bits; and the perfect is the enemy of the good, so here it is.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/react-redux">→ read more<span class="offscreen"> React and Redux the Hard FP Way</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/plc" class="post-link">PLC</a></h3>
-		
-		<h4 class="post-subtitle">CSAW CTF Qualifiers 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-09-30
-		(3590 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>We’ve burrowed ourselves deep within the facility, gaining access to the programable logic controllers (PLC) that drive their nuclear enrichment centrifuges. Kinetic damage is necessary, we need you to neutralize these machines.</p>
-<p>You can access this challenge at <a href="https://wargames.ret2.systems/csaw_2018_plc_challenge">https://wargames.ret2.systems/csaw_2018_plc_challenge</a></p>
-</blockquote>
-<p>A much belated post. This is a pwn challenge on a custom online wargaming platform. We are provided with the assembly of what’s ostensibly a programmable logic controller (PLC) for a centrifuge in a nuclear reactor. The challenge looks like it’s still up, so you can take a look and follow along.</p>
-<p>This was the first <a href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a> (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like <code>until</code>, no pwntools utilities for packing/unpacking numbers, … no <code>one_gadget</code>), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use <code>gdb</code> (or fictionalized web knockoffs thereof).</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/plc">→ read more<span class="offscreen"> PLC</span></a>
 	</footer>
 </article>
 

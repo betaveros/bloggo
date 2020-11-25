@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>Advent of Code: How to Leaderboard</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="Advent of Code (briefly, “AoC”) is a series of 25 festive programming puzzles1 released daily December 1–25. Each puzzle has two parts, which use the same text input and are related; to solve a part, you submit the right output corresponding to the input on the website.
+If you’re reading this, I suspect there’s a good chance you knew that already, but in case you’re new to Advent of Code, let me try to briefly explain why I like Advent of Code, from the perspective of somebody who’s spent a lot of their life so far doing programming competitions.2
+ The event has a fantastic community surrounding it. I’m the most familiar with the subreddit, which is full of helpful people, interesting discussions, non-programming community games, and the occasional wonderfully, spectacularly overengineered solution to a puzzle; but I know there are also many smaller chatrooms and subcommunities focused on, say, specific timezones or programming languages. Another aspect is the unique two-part format of each puzzle. Even though they use the same input, you don’t get to see the second part until after you’ve solved the first one, a feature that Eric Wastl (AoC’s creator) has taken full advantage of in designing puzzles. The second part is often a surprising twist on the first part, which keeps you on your toes and challenges you to keep your code moderately general or refactorable in a way that I think almost no other programming challenges do. This sometimes even happens between days in a calendar, when a puzzle turns out to be about some model of computation you implemented two or five or ten days ago — hope you kept your code and remember how it works! Finally, AoC also has some non-rigorous puzzles that force you to use your intuition and “human intelligence”, either by interpreting the problem statement heuristically or writing code to let you explore the input. There are quite a few puzzles where it’s infeasible to write code that handles every step of obtaining the output from the input. The result is that Advent of Code can feature quite a few challenges that I’ve found particularly compelling because I think they simply could not be posed on any other contest platform.3  These are the things that make AoC stand out to me, but it also does a lot of other things well — the challenges are fun, approachable, and varied even aside from their interrelations; there is a long, dramatic story tying everything together (although it’s an Excuse Plot if there ever was such a thing); and, although this is obviously subjective, I find the website’s minimalist-adjacent, terminal-esque aesthetic really charming (there is a lot of detail in 2019’s calendar… after you solve everything). I’ve only done the last two years of Advent of Code, but it really seems like a one-of-a-kind event to me.
+Anyway, one particular feature Advent of Code has is a leaderboard, which you can get on by being one of the first 100 people worldwide to solve each puzzle. The competition is fierce — every year, thousands of people compete to get on the leaderboard. Near the start of AoC 2019, mcpower (reddit discussion) and Kevin Yap (reddit discussion) wrote some articles about how to do this, both of which are worth reading. I also thought about writing such an article and started a draft, but I didn’t get it anywhere close to publishable before AoC had concluded, at which point I assumed few people would be interested. But here it is now.
+" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/advent-leaderboard" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Advent of Code: How to Leaderboard</h1>
+		
+		<p class="post-meta">
+		
+		2020-11-24
+		(5697 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p><a href="https://adventofcode.com/">Advent of Code</a> (briefly, “AoC”) is a series of 25 festive programming puzzles<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> released daily December 1–25. Each puzzle has two parts, which use the same text input and are related; to solve a part, you submit the right output corresponding to the input on the website.</p>
+<p>If you’re reading this, I suspect there’s a good chance you knew that already, but in case you’re new to Advent of Code, let me try to briefly explain why I like Advent of Code, from the perspective of somebody who’s spent a lot of their life so far doing programming competitions.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<ul>
+<li>The event has a fantastic community surrounding it. I’m the most familiar with <a href="https://www.reddit.com/r/adventofcode/">the subreddit</a>, which is full of helpful people, interesting discussions, non-programming community games, and the occasional <a href="https://www.reddit.com/r/adventofcode/comments/e6iw6l/day_5_browserbased_interactive_intcode_processor/">wonderfully</a>, <a href="https://www.reddit.com/r/adventofcode/comments/e7ylwd/i_solved_day_8_entirely_in_minecraft/">spectacularly</a> <a href="https://www.reddit.com/r/adventofcode/comments/eb79s0/2019_day_10_blowing_up_asteroids_in_unity/">overengineered</a> <a href="https://www.reddit.com/r/adventofcode/comments/ea8mif/2019_day_13_excel_did_you_think_i_would_give_up/">solution</a> to a puzzle; but I know there are also many smaller chatrooms and subcommunities focused on, say, specific timezones or programming languages.</li>
+<li>Another aspect is the unique two-part format of each puzzle. Even though they use the same input, you don’t get to see the second part until after you’ve solved the first one, a feature that Eric Wastl (AoC’s creator) has taken full advantage of in designing puzzles. The second part is often a surprising twist on the first part, which keeps you on your toes and challenges you to keep your code moderately general or refactorable in a way that I think almost no other programming challenges do. This sometimes even happens between days in a calendar, when a puzzle turns out to be about some model of computation you implemented two or five or ten days ago — hope you kept your code and remember how it works!</li>
+<li>Finally, AoC also has some non-rigorous puzzles that force you to use your intuition and “human intelligence”, either by interpreting the problem statement heuristically or writing code to let you explore the input. There are quite a few puzzles where it’s infeasible to write code that handles every step of obtaining the output from the input. The result is that Advent of Code can feature quite a few challenges that I’ve found particularly compelling because I think they simply could not be posed on any other contest platform.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></li>
+</ul>
+<p>These are the things that make AoC stand out to me, but it also does a lot of other things well — the challenges are fun, approachable, and varied even aside from their interrelations; there is a long, dramatic story tying everything together (although it’s an <a href="https://tvtropes.org/pmwiki/pmwiki.php/Main/ExcusePlot">Excuse Plot</a> if there ever was such a thing); and, although this is obviously subjective, I find the website’s minimalist-adjacent, terminal-esque aesthetic really charming (there is a <em>lot</em> of detail in <a href="https://adventofcode.com/2019">2019’s calendar</a>… after you solve everything). I’ve only done the last two years of Advent of Code, but it really seems like a one-of-a-kind event to me.</p>
+<p>Anyway, one particular feature Advent of Code has is a leaderboard, which you can get on by being one of the first 100 people worldwide to solve each puzzle. The competition is fierce — every year, thousands of people compete to get on the leaderboard. Near the start of AoC 2019, <a href="https://gist.github.com/mcpower/87427528b9ba5cac6f0c679370789661">mcpower</a> (<a href="https://www.reddit.com/r/adventofcode/comments/e2wjhf/tips_for_getting_on_the_advent_of_code_leaderboard/">reddit discussion</a>) and <a href="https://kevinyap.ca/2019/12/going-fast-in-advent-of-code/">Kevin Yap</a> (<a href="https://www.reddit.com/r/adventofcode/comments/e82f7a/going_fast_in_advent_of_code/">reddit discussion</a>) wrote some articles about how to do this, both of which are worth reading. I also thought about writing such an article and started a draft, but I didn’t get it anywhere close to publishable before AoC had concluded, at which point I assumed few people would be interested. But here it is now.</p>
+<h3 id="meta">Meta</h3>
+<p>Before we get to that, however: as <a href="https://www.reddit.com/r/adventofcode/comments/e2wjhf/tips_for_getting_on_the_advent_of_code_leaderboard/f90ksek/">AoC’s creator wrote</a>, getting on the leaderboard might not be the most suitable goal for everybody. There are lots of ways to do Advent of Code. If you ask me, the best one is whatever you think you’ll get the most out of. You could try it with a new or nontraditional programming language, or text editor, or keyboard layout. You could aim for something other than getting the answer as quickly as possible: maybe optimize your programs for speed, conciseness, readability, or some personal sense of aesthetics. To get a sense of the massive variety of approaches others have taken, you might scroll through the posts flaired with <a href="https://www.reddit.com/r/adventofcode/search?q=flair_name%3A%22Upping%20the%20Ante%22&amp;restrict_sr=1">Upping the Ante</a> in the subreddit.</p>
+<p>Every now and then somebody posts on the subreddit that seeing how slow they are at Advent of Code compared to the people on the leaderboard makes them feel like a worse programmer. I would like to assure such people that this means nothing of the sort. On my first try on the <a href="https://adventofcode.com/2019/day/1">very first part of AoC 2019</a>, I was trying to write this code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1">s <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="cf">for</span> line <span class="kw">in</span> input_lines:</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">    s <span class="op">+=</span> <span class="bu">int</span>(line) <span class="op">//</span> <span class="dv">3</span> <span class="op">-</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">submit(<span class="dv">1</span>, s)</a></code></pre></div>
+<p>Instead, I wrote this code:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" data-line-number="1">s <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="cf">for</span> line <span class="kw">in</span> input_lines:</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">    s <span class="op">+=</span> <span class="bu">int</span>(line) <span class="op">//</span> <span class="dv">3</span> <span class="op">-</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">    submit(<span class="dv">1</span>, s)</a></code></pre></div>
+<p>This was enough to prevent me from getting on the part 1 leaderboard. What a difference a tab makes!<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> Getting on the leaderboard is affected as much by programming skill as it is by the tiniest of mistakes and mental lapses, the kind that everybody makes. Razor-thin differences in time can translate to massive swings in leaderboard placing. Not to mention, the programming skills that are relevant to solving Advent of Code puzzles quickly are fairly narrow and not all that reflective of general programming ability; I am nowhere close to the world’s best programmer.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> So I wouldn’t take anybody’s leaderboard position <em>too</em> seriously. With all that said, it’s pretty fun if you approach it with the right attitude.</p>
+<p>This post is structured as more of a grab bag of suggestions, loosely in descending order of “efficiency” — earlier items improve your leaderboard chances more for the same amount of effort, in my opinion. Obviously, your mileage may vary.</p>
+<h3 id="be-free-when-puzzles-are-released">Be free when puzzles are released</h3>
+<p>As silly as this is, it’s definitely the most important requirement if you want to have a chance of getting on the leaderboard, so I think it has to come first.</p>
+<p>For most of December 2018 and the first half of December 2019, I was a college student on the east coast of the U.S., and doing AoC at midnight wasn’t a big deal. I started traveling halfway through December 2019 and did day 17 on a plane with incredibly fragile wi-fi that I had to pay for (6th/2nd).</p>
+<figure>
+<a href="/img/advent-17.jpg"><img src="/img/advent-17.jpg" alt="Photo of laptop with Advent of Code solution beneath an airplane monitor" /></a>
+</figure>
+<p>I did all the later days at 1pm local time, including discreetly doing day 22 from my phone, SSHed into a tmux session on an MIT server, while I was at a relative’s wedding (45th/24th).</p>
+<figure>
+<a href="/img/advent-22.png"><img src="/img/advent-22.png" alt="Mobile screenshot with success message from submitting Advent of Code" width="360" height="640" /></a>
+<figcaption>
+the emoji used to redact my session cookie is from <a href="https://mutant.tech/">Mutant Standard</a> by Dzuk, CC BY-NC-SA 4.0
+</figcaption>
+</figure>
+<p>Knowing that those two days were coming up was why I expected to be less competitive than I was in 2018, but I guess I got lucky. I cannot recommend everybody go to the same lengths to do Advent of Code on time. You’ll have to decide for yourself whether it’s worth it.</p>
+<h3 id="dont-write-bugs">Don’t write bugs</h3>
+<p>This sounds like facetious advice — arguably, software engineering would be trivial if you could just <em>choose</em> to not write bugs — but I do kind of mean it. Bugs are the single factor that will slow down your time-to-solve the most while still being relatively easy to fix. (“Not knowing how to solve the problem” will slow you down far more, of course, but fixing that tends to be a lot harder.)</p>
+<p>A slightly more useful, less obvious way to phrase this advice, which is also the best advice I’ve ever gotten in competitive programming, is to <strong>make it hard for yourself to write bugs.</strong> The efficiency and conciseness of your code are both worth trading off (in moderation) in pursuit of this goal. When you write code, think of it as code that you’re handing off to yourself a few seconds or minutes in the future. Your future self will not have the clear memory of the code you’re writing that you do right now; they will be thinking about other things. You’re participating in an <a href="http://scp-wiki.wikidot.com/introductory-antimemetics">asynchronous research loop</a><a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>, albeit one with pretty low stakes, fortunately.</p>
+<p>I don’t have a step-by-step procedure for not writing bugs, because different programmers will be more likely to write different kinds of bugs and will need different strategies for avoiding them. But here are some possible implications, which are things I try to do, that could be a potential starting point:</p>
+<ul>
+<li><p>Try to name your variables consistently — not just within a function or a source file, but across all your AoC solutions and solutions for similar programming challenges. The ideal scheme will allow you to mentally rederive the variables you named a few minutes ago from long-term memory or even instinct instead of looking back at your source code, and will let you predict the type and meaning of variables you’re working with from their names. For example: Whenever I do a binary search, my current lower and upper bounds are almost always <code>lo</code> and <code>hi</code>. Whenever possible I will index two-dimensional tables with <code>r</code> (row) and <code>c</code> (column), as opposed to <code>x</code> and <code>y</code>, which “go the other way” if the input is provided as a list of lines, as is common. I use the variable <code>seen</code> a lot to collect a set of visited nodes or locations in a search.</p>
+<p>When you encounter a new or problem-specific concept, pick a name quickly and stick to it. In <a href="https://adventofcode.com/2019/day/20">2019 Day 20</a> part 2, for example, you have to search a “three-dimensional” space, where the third dimension of how inwards or outwards of a layer you’re on doesn’t have a precise name. I don’t think I even consciously thought the words “three-dimensional” before deciding to call that “coordinate” <code>z</code>, which allowed me to assign unmistakeable names to a bunch of variables involving the concept. More interestingly, in my solution to <a href="https://adventofcode.com/2019/day/14">2019 Day 14</a> I referred to each (integer, chemical) pair as an <code>ingredient</code>, each chemical as a <code>thing</code>, and each reaction as a <code>recipe</code>. In hindsight, these names made no sense, especially considering that none of them appeared in the problem description, but they fit in my head and allowed me to distinguish their types more clearly than the actual problem’s words.</p></li>
+<li><p>Strive to avoid awkward indexing and opportunities for off-by-one errors. If a problem gives you indices for a one-indexed list or array, it’s often less bug-prone to create a list or array that’s one bigger than what you need and just not use index 0 of it, than to remember to subtract 1 every time you use a problem-provided index. You can also just use a dictionary or hash map. If you do want to convert to 0-based indexing, convert it in a single place as far as possible so you can then forget about it, most plausibly on the boundary of your program — right after reading input and right before writing output. Write both parts of that conversion code in one sweep before going to work on the rest of the solution, so there’s no chance of you converting in one direction but not the other.</p></li>
+<li><p>More generally, learn to recognize the places you often write bugs, and stay alert or slow down when writing them. For me, I often find myself in scenarios where copy-pasting code is faster than refactoring the code into a loop, but it’s also riskier, so I try to reserve extra vigilance for those scenarios. It still doesn’t save me every single time, but I’m getting better at it.</p></li>
+</ul>
+<h3 id="if-you-have-bugs-catch-them-early">If you have bugs, catch them early</h3>
+<p>An ounce of prevention is worth a pound of cure, but sometimes a pound of cure is your only option. Bugs happen. Catch them.</p>
+<p>mcpower writes in bold, “don’t validate the input.” I agree with this in the sense that you shouldn’t be wasting any effort verifying promises made by the problem statement, because those promises will not be broken. However, you may wish to verify constraints derived from those promises, because your code might be broken, or because you might copy your code later into a position where those promises might no longer hold.</p>
+<p>An example from 2019: Over multiple days, the AoC puzzles slowly introduced us to features in the “Intcode” computer, which used sequences of integers as instructions. One feature introduced in day 5 was that each instruction included three digits called the “parameter modes”, which could only be 0 or 1; furthermore, the last parameter mode in each instruction could never be 1. So you could choose not to read or validate the last parameter mode, just assuming it was 0, and successfully solve those two days’ puzzles. Nevertheless, asserting that the last parameter mode was 0 could be beneficial:</p>
+<ol type="1">
+<li>Firstly, it might let you catch intermediate bugs faster, like if you had mistakenly parsed the parameter modes in reverse order.</li>
+<li>Secondly and more importantly, your assertion would have failed in Day 9, which introduced the digit 2 as an option for all parameter modes, reminding you to add support for it there instead of silently doing the wrong thing. I saw a few people bit by this bug on the subreddit.</li>
+</ol>
+<p>This kind of issue is rare in non–Advent of Code challenges, which is why I think it’s particularly worth calling out. Sometimes a problem will allow you to make some correct, simplifying assumptions when first coding a solution, but the problem will invalidate those assumptions in part 2 or in a later day, which you can’t see until later.</p>
+<p>When you know you have a bug but not where it is, there’s often a strategic choice between rereading your code to look for the bug and manually testing your code against a test case, either from the Advent of Code website or manually generated. The former is much faster if it succeeds, but less reliable, so it’s usually good to start there and switch to the latter after some time. Unfortunately I don’t have great advice for figuring out when to switch, but both are useful skills.</p>
+<p>I will say that, if you do test things, make sure you’re testing them on the right input and are correct about what the expected output or behavior is. While doing <a href="https://adventofcode.com/2019/day/20">2019 Day 20</a> part 2, I sunk a bunch of time into testing my program on the second example and trying to figure out why it wasn’t terminating. I failed to realize that the problem said:</p>
+<blockquote>
+<p>In the second example above, there is no path that brings you to ZZ at the outermost level.</p>
+</blockquote>
+<p>Not terminating was actually the <em>correct</em> behavior for my program; I wasted a bunch of time debugging when there was nothing to debug. Don’t be like me.</p>
+<h3 id="get-comfortable-with-your-language-standard-library-and-editor">Get comfortable with your language, standard library, and editor</h3>
+<p>People often suggest that, to code quickly, you should choose a concise programming language that you know well enough to write without looking stuff up. I don’t think either of those things are <em>necessary</em>, but the catch is that you still have to get code from your head into your computer anyway. Having an efficient editor and workflow, maybe with powerful autocomplete, heavy usage of macros, or particularly deep language integration, can compensate for using a more verbose programming language or one you’re less familiar with.</p>
+<p>With that said, I use Python anyway, which I think is pretty popular on the leaderboard and fits both of the first two criteria for me. If you are also using Python, things I would suggest knowing from the base language and standard library:</p>
+<ul>
+<li>Obviously, know the basics like operators, control flow, and function definitions. Make sure you are deeply comfortable with tuples, lists, slices, packing/unpacking assignments and argument lists, list comprehensions and generator expressions. This includes their performance.</li>
+<li>Know most of the <a href="https://docs.python.org/3/library/functions.html">built-in functions</a> and the <a href="https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range">operations on sequence types</a> and <a href="https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str">on strings</a>. The ones more related to types or metaprogramming probably won’t be too useful in Advent of Code, but almost everything else is helpful.</li>
+<li>Know how to use Counter, defaultdict, and deque from the <a href="https://docs.python.org/3/library/collections.html">collections</a> library.</li>
+<li>Be familiar with <a href="https://docs.python.org/3/library/itertools.html">itertools</a> and <a href="https://docs.python.org/3/library/re.html">re (regexes)</a>.</li>
+</ul>
+<p>Equally importantly, know what you don’t know. If you’re not sure what a function does exactly or what order its arguments go in, don’t use it without looking it up. (To my future self: atan2’s arguments are <code>y, x</code> in that order. Please.)</p>
+<p>In any language, you should be good at editing half-abstracted half-copy-pasted code, because often it will be faster to write than the properly structured code with all the right abstractions. A common way this arises is writing code for handling the four neighbors to a cell in a square grid in some similar fashion. I am a lifelong Vimmer and find features like repeat (<code>.</code>), macros (<code>q</code> and <code>@</code>), and block visual mode (<code>Ctrl-V</code>) particularly useful for this kind of thing, but most popular code editors have facilities that can achieve similar effects. Try to learn them.</p>
+<figure>
+<video controls autoplay>
+<source src="/misc/vim.mp4" type="video/mp4" />
+Sorry, your browser doesn’t support embedded videos. </video>
+<figcaption>
+Some Vim tricks: incrementing with <code>g CTRL-A</code>, inserting around block visual mode…
+</figcaption>
+</figure>
+<h3 id="get-comfortable-with-common-algorithms-and-data-structures">Get comfortable with common algorithms and data structures</h3>
+<p>It’s tough for me to write this section because there’s no well-defined canon of what algorithms and data structures are “common”, in particular, “common enough to appear in Advent of Code”. Even if there were, since I’ve already spent years learning competitive programming to the college-level <abbr title="International Collegiate Programming Contest">ICPC</abbr> and beyond, which is way overkill, I would be pretty poorly-calibrated on what topics belong in the “common” anyway. But if I were to attempt to list some anyway, here are some things I think you must know how to use and do if you want a shot at solving every AoC problem by yourself:</p>
+<ul>
+<li>arrays and hash tables (well, their implementations in your favored programming language);</li>
+<li>recursion and backtracking;</li>
+<li>sorting (well, how to use your programming language’s <code>sort</code> function) and binary search;</li>
+<li>basic graph algorithms like <a href="https://en.wikipedia.org/wiki/Depth-first_search"><abbr title="depth-first search">DFS</abbr></a>, <a href="https://en.wikipedia.org/wiki/Breadth-first_search"><abbr title="breadth-first search">BFS</abbr></a>, and <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra</a>;</li>
+<li>basic dynamic programming;</li>
+<li>basic number theory, including modular arithmetic and GCDs/LCMs.</li>
+</ul>
+<p>Things that I can remember being useful in past AoCs but that might not be strictly necessary:</p>
+<ul>
+<li>disjoint-set union;</li>
+<li>topological sorting;</li>
+<li>some heuristic search strategies like hill-climbing.</li>
+</ul>
+<p>For those who want something more systematic than just a list of terms to Google, I would tentatively suggest the <a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/index.htm">MIT 6.006 OCW course</a> and/or some of the <a href="https://teachyourselfcs.com/#algorithms">recommendations on Teach Yourself Computer Science</a>. And practicing on past AoC problems is always good.</p>
+<h3 id="build-your-own-standard-library">Build your own standard library</h3>
+<p>Some things you’ll do a lot in AoC probably won’t be in your programming language standard library because they’re not that broadly applicable. Particular examples include specific kinds of string parsing and functions for working with adjacent cells in a grid. If you can identify these recurring computations and prepare functions to perform them ahead of time, you’ll be that much faster when actually doing AoC live.</p>
+<p>One example that stuck with me is when <a href="https://gist.github.com/mcpower/87427528b9ba5cac6f0c679370789661#my-code">mcpower wrote</a>:</p>
+<blockquote>
+<p>The <code>ints</code> (gets all integers from a string) function was used a lot - thanks again, mserrano!</p>
+</blockquote>
+<p>This <code>ints</code> function takes a string, parses out all the integers from it with a regex, and returns a list of those integers. I did not look at other people’s standard libraries for a long time while building my own, but incredibly, I had written a function with <strong>identical behavior and name</strong>. That’s a testament to how often this kind of string parsing is useful in AoC.</p>
+<p>If you practice on past AoC problems, you should quickly get a sense of the kinds of utilities you might be useful. You can also find many Advent of Code utility libraries online, for example on the <a href="https://github.com/Bogdanp/awesome-advent-of-code">Awesome Advent of Code repository</a>. I wouldn’t recommend copying anybody else’s standard library wholesale, because you want to be extremely comfortable with it and you won’t be able to turn to Google for help using it. However, it can be quite useful to look at them for inspiration and take the bits and pieces you think are useful.</p>
+<p>This is not to mention the instances when concepts repeat and evolve between days. In my first year, 2018, I was surprised to see a small assembly language introduced in <a href="https://adventofcode.com/2018/day/16">Day 16</a> become relevant again on <a href="https://adventofcode.com/2018/day/19">Day 19</a> and then <a href="https://adventofcode.com/2018/day/21">Day 21</a>. Then in 2019, we had puzzles instructed us to work with Intcode programs on days <a href="https://adventofcode.com/2019/day/2">2</a>, <a href="https://adventofcode.com/2019/day/5">5</a>, <a href="https://adventofcode.com/2019/day/7">7</a>, <a href="https://adventofcode.com/2019/day/9">9</a>, <a href="https://adventofcode.com/2019/day/11">11</a>, <a href="https://adventofcode.com/2019/day/13">13</a>, <a href="https://adventofcode.com/2019/day/15">15</a>, <a href="https://adventofcode.com/2019/day/17">17</a>, <a href="https://adventofcode.com/2019/day/19">19</a>, <a href="https://adventofcode.com/2019/day/21">21</a>, <a href="https://adventofcode.com/2019/day/23">23</a>, and <a href="https://adventofcode.com/2019/day/25">25</a>. I have no idea what 2020’s calendar will bring, but cleaning up your code from previous days in case you need to reuse or modify it is probably not a bad idea.</p>
+<h3 id="dont-be-afraid-to-put-yourself-in-the-loop">Don’t be afraid to put yourself in the loop</h3>
+<p>This is one of the ways Advent of Code departs from traditional programming contests most significantly: instead of giving constraints on every input you get and expecting you to write a program that handles the fully general problem, including all corner cases, Advent of Code gives you a <em>single</em> test case that you have to handle.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+<p>Firstly, this implies that if you want to be able to quickly assess whether your algorithm is fast enough, you’ll have to analyze your input yourself. For those of you coming from other programming competitions, you won’t be able to just scan the problem description for an inequality like “N ≤ 100,000” and estimate that Θ(N²) will be too slow but Θ(N log N) will be fast enough; you’ll have to compute N yourself and then do the estimation. In addition, occasionally, your input will be a special case is significantly easier than the general problem. <a href="https://adventofcode.com/2019/day/16">2019 Day 16 Part 2</a> was a somewhat infamous case of this, where the size of the first seven digits of people’s input signals made the problem much easier (extended <a href="https://www.reddit.com/r/adventofcode/comments/eh8s3d/aoc_2019_wording_issues_and_improvements/">reddit discussion</a>). <a href="https://adventofcode.com/2018/day/20">2018 Day 20</a> (both parts) was another case where the puzzle input’s structure was less obvious — a lot of solutions on the <a href="https://www.reddit.com/r/adventofcode/comments/a7uk3f/2018_day_20_solutions/">solution megathread</a> give the wrong output for even very simple inputs like <code>^(N|)E$</code> or <code>^(N|ENW)$</code>, but still succeeded on the actual puzzle input because it was generated to have such nice structure (extended <a href="https://www.reddit.com/r/adventofcode/comments/a7w4dj/2018_day_20_why_does_this_work/">reddit discussion</a>).<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> These situations can be frustrating when you feel like many people got onto the leaderboard ahead of you without “truly solving” the problem, and I can imagine also being pretty annoyed if I had entirely missed any leaderboard due to one of these situations, but I don’t think there’s a clear line between them and the kind of puzzles using hyperspecifically-crafted inputs I think make AoC uniquely compelling, so I’ve accepted that it just comes with the territory.</p>
+<p>A further implication is that, when it comes time to actually solve the challenge and submit an answer, your program does not have to do all the work of getting from input to output for you. You can use your favorite text editor or ocular organs to manually preprocess the input, postprocess the output, or both. There are some challenges where the need for these tactics is obvious, e.g. <a href="https://adventofcode.com/2019/day/8">2019 Day 8</a> and <a href="https://adventofcode.com/2019/day/11">Day 11</a> and <a href="https://adventofcode.com/2018/day/10">2018 day 10</a>.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> All of those problems involved drawing 2D graphics of some alphanumeric characters and then submitting those characters as the answer. It’s relatively easy to write a program that would render the graphic, but much more difficult and not at all worth it to write a program to parse those graphics into the characters that are the ultimate answer. <a href="https://adventofcode.com/2019/day/17">2019 Day 17 Part 2</a> (<a href="https://www.reddit.com/r/adventofcode/comments/ebr7dg/2019_day_17_solutions/">solution thread</a>) is another example. The problem has a couple moving parts, but there’s a particular subtask of breaking a path into a main routine and functions that’s really hard to do programmatically with any generality. However, the path is so short that manually breaking it down is feasible.</p>
+<p>Some less obvious examples where I personally got some mileage out of manual preprocessing, but wouldn’t expect everybody to:</p>
+<ul>
+<li>On <a href="https://adventofcode.com/2019/day/20">2018 Day 24</a>, I didn’t want to parse the input programmatically, so I manually preprocessed it in Vim. You can see the preprocessed input inline in <a href="https://www.reddit.com/r/adventofcode/comments/a91ysq/2018_day_24_solutions/ecfzj20/">the code I submitted to reddit</a>.</li>
+<li>On <a href="https://adventofcode.com/2019/day/20">2019 Day 20</a>, under time pressure, I couldn’t think of a simple way to tell whether a labeled spot was an inner connection or an outer connection, so I manually replaced all the inner <code>.</code> connections in the input with a different character and tested that.</li>
+</ul>
+<p>The advantage of preprocessing input in a text editor is that the feedback loop is almost instantaneous: you’re always staring at the result of all the preprocessing you’ve done so far. The disadvantage is of course that it’s less reliably repeatable. If you later have to preprocess sample inputs in the same manner to test your code on them, you might find that you’ve slowed yourself down on net.</p>
+<p>Yet another way you can put yourself in the loop is by using output from early versions of the program to inform later versions. For example, say you’re trying to count something in a loop, but you’re not quite sure if your count is off by 1 from what the puzzle is asking for. Instead of carefully reasoning through how your loop count relates to the problem statement, it may be faster to run your code on a sample input, see how far off your answer is, and copy the difference back in to your program. Or, if your program is trying to optimize something over a large search space but is too slow, you can keep a copy of it running and printing information while making the code more efficient or adding features to prune the search space. When the new version of your code is ready, you can initialize it with the running copy’s intermediate state or best result to speed it up. Regardless of exact implementation, though, the overarching principle is the same: The entity that has to convert your AoC input into the correct output isn’t the program you’re writing, but the computational system comprising you, the program you’re writing, and any other tools you have at your disposal. Don’t squander any part of that system.</p>
+<h3 id="go-fast">Go fast</h3>
+<p>Cut whatever corners you need to get your code out faster. Write hacks. Copy-paste code. Hardcode constants. Mutate data unreservedly. Use exceptions for control flow. Coerce booleans to integers and use them as indexes. Represent data as strings even when you definitely shouldn’t. Be proud.</p>
+<p>Beware that cutting corners often produces more opportunities for bugs to occur. If whatever you’re doing isn’t considered best practices, there’s probably a reason for that, and often it’s precisely because it’s more likely to produce buggy code, which can easily slow you down by more than the amount of time you saved. That’s why I put this section so late in the list of suggestions and so far after the “Don’t write bugs” section. But if you’re 100% confident about how your hacky code will work, or if you think the “best practices” alternative to your hacky approach is significantly more verbose, don’t hesitate.</p>
+<h3 id="read-the-problem-quickly">Read the problem quickly</h3>
+<p>To be honest, I’m not sure if I can faithfully describe my strategy for reading AoC problems — it just goes by so quickly. But in broad strokes, I think I start by aggressively jumping back and forth between the prose and examples, whichever one seems easier to understand, until I have the big picture of what’s going on. After that, I read through the prose again more systematically, skimming “pure flavor” things that don’t look relevant, to make my understanding more precise and make sure I’ve seen any gotchas or corner cases.</p>
+<p>If you read a few AoC problems from this year or a previous one, you should start to develop an intuition for what things are “pure flavor” and what things are problem-relevant, which is really useful for going fast. But it can also lead you astray, especially for some of the “squishier” problems that involve non-rigorous human heuristics. For example, on <a href="https://adventofcode.com/2019/day/25">2019 Day 25</a> I thought I understood enough of the text adventure to write a program to interact with it, but completely missed the “in-game instruction”:</p>
+<blockquote>
+<p>The standard configuration for these starships is for all droids to weigh exactly the same amount to make them easier to detect. If you need to get past such a sensor, you might be able to reach the correct weight by carrying items from the environment.</p>
+</blockquote>
+<p>This made that day’s puzzle substantially harder for me, because I ended up playing the text adventure “blind” as if I were supposed to figure out the mechanics purely from interacting from it. So I can’t say much more than that there’s a balance to strike in terms of how aggressively you should skim. (And if you do skip the story to leaderboard-race, you should go back and read the story after you finish. It’s pretty entertaining. And don’t forget to admire the front page ASCII art, either.)</p>
+<h3 id="automate-as-many-interactions-with-the-website-as-you-can">Automate as many interactions with the website as you can</h3>
+<p>We’re getting to the options where you spend potentially hours of prep work to shave seconds off each day’s time. On the other hand, that shaving can be fairly reliable. Basically, for every puzzle you’ll be spending time clicking around, switching windows, and performing other such UI operations. Time spent on those tasks is time that you aren’t using to solve the problem, so the more you can reduce it, the better.</p>
+<p>There are a lot of choices for such automation infrastructure to be found on the <a href="https://www.reddit.com/r/adventofcode/">subreddit</a> and linked from the <a href="https://github.com/Bogdanp/awesome-advent-of-code#project-templates">awesome repo</a>. Personally, the (extremely ugly, unpublished) downloader I hacked together 2018 and 2019 requires no user interaction after midnight to automatically download the input and show me some summary statistics. I can also automatically submit answers from my solution script, but it prompts me y/n right before submitting anything so I can sanity-check the answer and not submit anything I don’t intend.</p>
+<h3 id="keep-improving">Keep improving</h3>
+<p>To conclude the list, here’s the most open-ended suggestion: After solving each day’s problem, try to reflect on how you could have gone faster. For maximum effect, screen record yourself, then review the recording. What utilities could you have added to your personal library that would have made your life easier? What bugs did you write, and how could you have prevented yourself from writing them or caught them sooner? Looking at other solutions on the reddit megathread, are there any that would have been easier or faster to implement? How could you have come up with them or prepared enough code to write them?</p>
+<h3 id="have-fun">Have fun!</h3>
+<p>If you pull out all the stops and follow every single suggestion above as far as it’ll take you, you could easily sink a full-time job’s worth of time into preparing for Advent of Code. Most of us aren’t that free,<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> so again, only you can decide how much time you think is worth spending on optimizing your Advent of Code runs. Regardless of how you decide to approach Advent of Code, I hope this post was helpful in some way, and if you decide the leaderboard is what you want to aim for, I hope to see you there.</p>
+<p>Stay safe and happy coding!</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>In this post I will follow the AoC website and use “puzzle” to refer to the challenges they release daily, basically just “problems that you write a program to solve”. I have to say this because usually on this blog, if I wrote “programming puzzle”, I would be referring to something like <a href="https://web.mit.edu/puzzle/www/2014/puzzle/callooh_callay_world/">Callooh Callay, World!</a> or <a href="https://www.mit.edu/~puzzle/2020/puzzle/hackin_the_beanstalk/">Hackin’ the Beanstalk</a>. Oh well, occupational hazard.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>I started participating in programming competitions in middle school and went through mostly the usual suspects: IOI, ICPC, Codeforces, Google Code Jam. I’m a lot less active now, though. (Also, Advent of Code is not at all primarily a programming competition, it’s just that there are just enough affordances to let people who want to treat it like one do so.)<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>The closest thing I can think of is <a href="https://ipsc.ksp.sk/">Internet Problem Solving Contest</a>, which has sadly and mysteriously not run in 2019 or 2020. And, I don’t know, some Codeforces April Fools contests have bits of this.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>Yes, I indent “personal” Python code with tabs in defiance of <a href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a>. (It’s four spaces in public repositories I expect collaborators on because consistency is the most important factor in a team, and four spaces here to render more predictably, but I just like the editor experience with tabs more.)<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>I’m nowhere close to the world’s best competitive programmer, either — there are dozens of people, some of who I know personally, who I am sure could do better than me if they chose to do Advent of Code on time every day. But more on that shortly.<a href="#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>If this pothole is confusing, the phrase is from the <a href="https://qntm.org/introductory">abandoned draft</a>, which probably makes the concept a bit more explicit.<a href="#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>Internet Problem Solving Contest also does this and takes the specific-input-file thing even further. I haven’t done all the recent ones, but the most extreme example I’m reminded of is 2013’s practice problem <a href="https://ipsc.ksp.sk/2013/practice/problems/p.html">Plus one</a>. You’ll have to download the input files and look at them yourself to understand.<a href="#fnref7" class="footnote-back">↩</a></p></li>
+<li id="fn8"><p>It happens that on both days, I placed on the leaderboard with what I believe were fully generally correct solutions, and I got away with it unscathed in the latter case, but doing so definitely slowed me down in the former case.<a href="#fnref8" class="footnote-back">↩</a></p></li>
+<li id="fn9"><p>2018 Day 10 also illustrates another way Advent of Code problems sometimes differ from the majority of programming contests: some aspects of some problems won’t be rigorously defined, and you’ll have to find a definition that makes sense but is rigorous enough to translate into code yourself. In this case, you are supposed to simulate a bunch of moving stars and figure out when they “align” to form the alphanumeric message. But, unless you want to manually look at thousands of star diagrams to find the legible message, it’s up to you to operationalize this concept of alignment well enough to implement in code.<a href="#fnref9" class="footnote-back">↩</a></p></li>
+<li id="fn10"><p>Although, due to certain global circumstances, some of us might have more free time than in a typical December 🤔<a href="#fnref10" class="footnote-back">↩</a></p></li>
+</ol>
+</section></article>
+	<footer class="post-footer">
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/rvalue-references">← C&#43;&#43; Rvalue References: The Unnecessarily Detailed Guide</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2020 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>
