@@ -53,6 +53,29 @@
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/and-i-feel-fine" class="post-link">…And I Feel Fine</a></h3>
+		
+		<p class="post-meta">
+		
+		2020-12-31
+		(591 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	It’s a strange and darkly funny story — Tim Minchin wrote the album this is from, Apart Together, well before the pandemic hit and social distancing became the norm, and I assume I am not alone in finding that the song resonates unusually strongly as a result.1 By Jove, it resonates.
+Nobody needs me to say that it’s been a rough year. People have been complaining that each of the last few years were terrible, and looking forward to the next one, and being disappointed — as if years were coherent bundles of quality, and there was any reason to expect discontinuities in how things are going to occur around January 1st — and as if there were additionally any reason to expect such discontinuities, if they did exist, to be positive ones.
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/and-i-feel-fine">→ read more<span class="offscreen"> …And I Feel Fine</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/advent-leaderboard" class="post-link">Advent of Code: How to Leaderboard</a></h3>
 		
 		<p class="post-meta">
@@ -323,50 +346,11 @@ Intro: Bob is cool too</p>
 		<a class="read-more" href="//blog.vero.site/post/unagi">→ read more<span class="offscreen"> unagi</span></a>
 	</footer>
 </article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/baby-boi" class="post-link">baby_boi (A Textbook CTF ROP Tutorial)</a></h3>
-		
-		<h4 class="post-subtitle">CSAW CTF Qualifiers 2019</h4>
-		
-		<p class="post-meta">
-		
-		2019-09-15
-		(1867 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>Welcome to pwn.</p>
-<p><code>nc pwn.chal.csaw.io 1005</code></p>
-</blockquote>
-<p>Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with security professionals who probably have decades of experience and who follow security developments for a living or whatever, there remains a competition where scrubs like me can apply our extremely basic CTF skills and still feel kinda smart by earning points. Now that I’ve graduated and am no longer eligible, our team was pretty small and I didn’t dedicate the full weekend to the CTF, but it means I got to do the really easy challenges in the categories that I was the worst at, by which I mean pwn.</p>
-<p><code>baby_boi</code> is pretty much the simplest possible modern ROP (the modern security protections NX and ASLR are not artificially disabled, but you get everything you need to work around them). We even get source code.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv[]) {</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">char</span> buf[<span class="dv">32</span>];</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">  printf(<span class="st">&quot;Hello!</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">  printf(<span class="st">&quot;Here I am: %p</span><span class="sc">\n</span><span class="st">&quot;</span>, printf);</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">  gets(buf);</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">}</a></code></pre></div>
-<p>So there’s nothing novel here for experienced pwners, but I feel like there is a shortage of tutorials that walk you through how to solve a textbook ROP the way you’d want to solve it in a CTF, so here is a writeup.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/baby-boi">→ read more<span class="offscreen"> baby_boi (A Textbook CTF ROP Tutorial)</span></a>
-	</footer>
-</article>
 <footer class="list-footer">
 		<nav class="pagination">
 			<h3 class="offscreen">Pagination</h3><a class="pagination-next" href="/post/page/2">older posts →</a></nav>
 	</footer></section><footer class="site-footer">
-	<p>© 2017-2020 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2021 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://posativ.org/isso/">Isso</a>,

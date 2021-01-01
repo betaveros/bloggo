@@ -3,17 +3,43 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>//blog.vero.site/post/advent-leaderboard</loc>
-    <lastmod>2020-11-24T19:13:19-08:00</lastmod>
+    <loc>//blog.vero.site/tags</loc>
+    <lastmod>2020-12-31T23:59:00-08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>//blog.vero.site/</loc>
-    <lastmod>2020-11-24T19:13:19-08:00</lastmod>
+    <lastmod>2020-12-31T23:59:00-08:00</lastmod>
   </url>
   
   <url>
     <loc>//blog.vero.site/categories</loc>
+    <lastmod>2020-12-31T23:59:00-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/category/life</loc>
+    <lastmod>2020-12-31T23:59:00-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post</loc>
+    <lastmod>2020-12-31T23:59:00-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/tag/year-end-post</loc>
+    <lastmod>2020-12-31T23:59:00-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post/and-i-feel-fine</loc>
+    <lastmod>2020-12-31T23:59:00-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post/advent-leaderboard</loc>
     <lastmod>2020-11-24T19:13:19-08:00</lastmod>
   </url>
   
@@ -23,28 +49,12 @@
   </url>
   
   <url>
-    <loc>//blog.vero.site/post</loc>
-    <lastmod>2020-11-24T19:13:19-08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//blog.vero.site/post/rvalue-references</loc>
     <lastmod>2020-11-16T00:25:50-08:00</lastmod>
   </url>
   
   <url>
-    <loc>//blog.vero.site/tags</loc>
-    <lastmod>2020-05-12T23:06:51-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>//blog.vero.site/post/45</loc>
-    <lastmod>2020-05-12T23:06:51-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/category/life</loc>
     <lastmod>2020-05-12T23:06:51-04:00</lastmod>
   </url>
   
@@ -85,11 +95,6 @@
   
   <url>
     <loc>//blog.vero.site/post/startup-lag</loc>
-    <lastmod>2019-12-31T16:24:31+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/tag/year-end-post</loc>
     <lastmod>2019-12-31T16:24:31+08:00</lastmod>
   </url>
   
