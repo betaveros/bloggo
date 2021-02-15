@@ -53,6 +53,33 @@
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/refrain" class="post-link">refrain</a></h3>
+		
+		<h4 class="post-subtitle">0CTF/TCTF 2019 Quals</h4>
+		
+		<p class="post-meta">
+		
+		2019-03-27
+		(2427 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<pre><code>http://111.186.63.17/perf.data.gz
+
+Environment: Ubuntu 16.04+latex</code></pre>
+<p>In this challenge, we get a gzipped file called <code>perf.data</code> and a minimal description of an environment. Googling this reveals that <code>perf.data</code> is a record format of the <code>perf</code> tool, a Linux profiler. Installing <code>perf</code> allows us to read <code>perf.data</code> and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is <code>perf report -D</code>, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the <code>perf record</code> was run against.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/refrain">→ read more<span class="offscreen"> refrain</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/olympiads" class="post-link">Olympiads: The Infinitely Overdue Retrospective</a></h3>
 		
 		<p class="post-meta">
@@ -317,34 +344,6 @@
 <p>The goal is to read the flag from the open MySQL connection.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/shellql">→ read more<span class="offscreen"> shellql</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/messy-desk" class="post-link">Messy Desk</a></h3>
-		
-		<h4 class="post-subtitle">PlaidCTF 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-05-06
-		(1000 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>This challenge is a video of somebody’s messy desk, with what is apparently the audio from a <a href="https://www.youtube.com/watch?v=WwnI0RS6J5A">Futurama clip</a>. The desk is indeed extremely messy and full of things that aren’t particularly useful for us, but close examination reveals a QR code reflected in the globe in the middle.</p>
-<p>The challenge is all about getting that QR code. After trying our best to clean up the image, we ended up with this:</p>
-<figure>
-<img src="/img/messy-qr.png" alt="Maximally enhanced image of the QR code" /><figcaption>Maximally enhanced image of the QR code</figcaption>
-</figure>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/messy-desk">→ read more<span class="offscreen"> Messy Desk</span></a>
 	</footer>
 </article>
 <footer class="list-footer">

@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>2021 MIT Mystery Hunt</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="Note: if you are viewing this shortly after it’s published and somehow don’t want to be spoiled on Mystery Hunt, make sure this spoiler formatting shows up: this text should be spoilered; if it doesn’t, try shift-refreshing. (There are Correct Ways to fix this, but I’m too lazy to do them. Sorry.)
+Well, we did it.
+✈✈✈ Galactic Trendsetters ✈✈✈ ran an MIT Mystery Hunt.
+Somehow, it slipped my mind until trying to write the 2020 year-end post that I’d probably want to write a post on all this. In fact, there was one major project that I started in 2019, but that I didn’t think of mentioning in my 2019 year-end post because it wasn’t ready to be announced at that time, and that I almost forgot that I had never mentioned. But this post is a pretty good place to announce it.
+Planning Mystery Hunt is a massive year-long endeavor. I didn’t have any leadership or otherwise high-responsibility roles, which made sense because I was busy writing a masters thesis for the first four months of Mystery Hunt planning. Because of that, and because I know many many other people on our team have written and will be writing blog posts (Rahul’s post, Nathan’s post, CJ’s post, maybe more to come?) I will focus on the things I did specifically. (So there is minimal discussion of the theme, overall organization, or big decisions like our COVID-19 response; I think the linked posts cover these well already.)
+Puzzle-Writing Software One part I did largely have “ownership” of, and that I sank a lot of time into, was maintaining our software for writing puzzles — the website where authors submitted puzzle ideas and drafts, testsolvers tested puzzles, and editors tracked and discussed the statuses of all the puzzles. This role was largely a continuation of me owning the same component for Galactic Puzzle Hunt since 2018, which itself grew out of the comparative advantage of having worked on it a little when writing with Random Fish for the 2015 MIT Mystery Hunt. There is some life lesson about specialization or pigeonholing to be learned here. But, to start at the beginning:
+Puzzletron is a piece of PHP software used for organizing puzzle writing for puzzlehunts. The first commit on GitHub says it was imported from Metaphysical Plant in 2011; it’s likely older. There are active commits each year until January 2018, and AMA responses from Setec (2019) and Left Out (2020) mentioning it, so I believe most if not all Mystery Hunt writing teams used and improved Puzzletron and passed it down over those years.
+" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/2021-hunt" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">2021 MIT Mystery Hunt</h1>
+		
+		<p class="post-meta">
+		
+		2021-02-13
+		(5903 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>Note: if you are viewing this shortly after it’s published and somehow don’t want to be spoiled on Mystery Hunt, make sure this spoiler formatting shows up: <span class="spoiler">this text should be spoilered</span>; if it doesn’t, try shift-refreshing. (There are Correct Ways to fix this, but I’m too lazy to do them. Sorry.)</p>
+<hr />
+<p>Well, we did it.</p>
+<p><a href="https://perpendicular.institute/">✈✈✈ Galactic Trendsetters ✈✈✈ ran an MIT Mystery Hunt.</a></p>
+<p>Somehow, it slipped my mind until trying to write the 2020 year-end post that I’d probably want to write a post on all this. In fact, there was one major project that I started in 2019, but that I didn’t think of mentioning in my 2019 year-end post because it wasn’t ready to be announced at that time, and that I almost forgot that I had never mentioned. But this post is a pretty good place to announce it.</p>
+<p>Planning Mystery Hunt is a massive year-long endeavor. I didn’t have any leadership or otherwise high-responsibility roles, which made sense because I was busy writing a masters thesis for the first four months of Mystery Hunt planning. Because of that, and because I know many many other people on our team have written and will be writing blog posts (<a href="https://fortenf.org/e/2021/01/28/mystery-hunt-2021-part-1.html">Rahul’s post</a>, <a href="http://www.npinsker.me/puzzles/retrospective">Nathan’s post</a>, <a href="https://mitadmissions.org/blogs/entry/two-hundred-puzzles-2/">CJ’s post</a>, maybe more to come?) I will focus on the things I did specifically. (So there is minimal discussion of the theme, overall organization, or big decisions like our COVID-19 response; I think the linked posts cover these well already.)</p>
+<h3 id="puzzle-writing-software">Puzzle-Writing Software</h3>
+<p>One part I did largely have “ownership” of, and that I sank a lot of time into, was maintaining our software for writing puzzles — the website where authors submitted puzzle ideas and drafts, testsolvers tested puzzles, and editors tracked and discussed the statuses of all the puzzles. This role was largely a continuation of me owning the same component for Galactic Puzzle Hunt since 2018, which itself grew out of the comparative advantage of having worked on it a little when <a href="//blog.vero.site/post/hunt">writing with Random Fish for the 2015 MIT Mystery Hunt</a>. There is some life lesson about specialization or pigeonholing to be learned here. But, to start at the beginning:</p>
+<p><a href="https://github.com/mysteryhunt/puzzle-editing/">Puzzletron</a> is a piece of PHP software used for organizing puzzle writing for puzzlehunts. The <a href="https://github.com/mysteryhunt/puzzle-editing/commit/f67a67d63aa78708c4ca94132f1dce9dbbc116ac">first commit on GitHub</a> says it was imported from Metaphysical Plant in 2011; it’s likely older. There are active commits each year until January 2018, and AMA responses from <a href="https://www.reddit.com/r/mysteryhunt/comments/am5s1d/were_setec_astronomy_and_we_just_ran_a_mystery/efjrzs4/">Setec (2019)</a> and <a href="https://www.reddit.com/r/mysteryhunt/comments/eucu3x/ama_we_are_left_out_design_team_for_the_2020/ffnzq80/?utm_source=reddit&amp;utm_medium=web2x&amp;context=3">Left Out (2020)</a> mentioning it, so I believe most if not all Mystery Hunt writing teams used and improved Puzzletron and passed it down over those years.</p>
+<p>Puzzletron was, in particular, one of the few things I touched in my minor participation in the writing and running of the 2015 MIT Mystery Hunt. I liked tweaking the colors and styles. I did not like working with PHP. Certainly back then I had a very negative impression of the language, enough so to pothole the “PHP” to eevee’s <a href="https://eev.ee/blog/2012/04/09/php-a-fractal-of-bad-design/">famous critique on its design</a>, but my (extremely secondhand) impression today is that modern PHP has improved a lot and sports some pretty good features and frameworks.</p>
+<p>Unfortunately, Puzzletron is very, very much not modern PHP. It only ran on some 5.x version, which was still full of language landmines and is now years after its end of life; one particular incident I remembered was that one of my commits broke Puzzletron by proxy because a slightly older version of the PHP parser didn’t understand the concept of indexing into an expression. All the SQL queries were strung together with <code>sprintf</code> and <code>mysql_real_escape_string</code>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> There were dozens of magic numbers, gobs of copy-pasted code, and a wonderful permissions system consisting of 12 non-mutually-exclusive roles that each granted you some subset of 11 distinct permissions according to this handy table.</p>
+<figure>
+<table style="font-size: 40%">
+<thead>
+<tr>
+<th>
+id
+</th>
+<th>
+name
+</th>
+<th>
+see<wbr>All<wbr>Puzzles
+</th>
+<th>
+become<wbr>Editor
+</th>
+<th>
+administer<wbr>Server
+</th>
+<th>
+change<wbr>Answers
+</th>
+<th>
+be<wbr>Test<wbr>Admin
+</th>
+<th>
+be<wbr>Blind
+</th>
+<th>
+be<wbr>Lurker
+</th>
+<th>
+change<wbr>Puzzle<wbr>Status
+</th>
+<th>
+auto<wbr>Sub<wbr>When<wbr>Editing
+</th>
+<th>
+become<wbr>Round<wbr>Captain
+</th>
+<th>
+become<wbr>Approver
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+2
+</td>
+<td>
+Puzzle Herder
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td>
+3
+</td>
+<td>
+Director
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td>
+4
+</td>
+<td>
+Discussion Editor
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td>
+6
+</td>
+<td>
+Chief Testing Admin
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td>
+7
+</td>
+<td>
+Producer
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td>
+8
+</td>
+<td>
+Server Admin
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td>
+9
+</td>
+<td>
+Editor in Chief
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td>
+10
+</td>
+<td>
+Server Maintainer
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td>
+13
+</td>
+<td>
+Testing Admin
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td>
+14
+</td>
+<td>
+Approval Editor
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td>
+15
+</td>
+<td>
+Cohesion Editor
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td>
+16
+</td>
+<td>
+Round Captain
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>
+if you can’t read any of the text… I guess that’s the point
+</figcaption>
+</figure>
+<p>One particularly endearing button had a bold red warning above it saying, “Please don’t press this button”. I commented out the button.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode diff"><code class="sourceCode diff"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">diff --git a/postprod.php b/postprod.php</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">index fd1d564..02353ae 100644</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="dt">--- a/postprod.php</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="dt">+++ b/postprod.php</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="dt">@@ -15,6 +15,8 @@ head(&quot;postprod&quot;);</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"> $puzzles = getPuzzlesInPostprodAndLater($uid);</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"> displayQueue($uid, $puzzles, &quot;notes finallinks&quot;, FALSE);</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"> ?&gt;</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="va">+There used to be a button here, but I removed it.</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="va">+&lt;!--</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">     &lt;hr&gt;</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">     &lt;br&gt;</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">     &lt;div class=&quot;warning&quot;&gt;Warning: Please don&#39;t press this button. If you were supposed to press this button, you would know.&lt;/div&gt;</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="dt">@@ -23,6 +25,7 @@ displayQueue($uid, $puzzles, &quot;notes finallinks&quot;, FALSE);</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">     &lt;input type=&quot;submit&quot; name=&quot;postprodAll&quot; value=&quot;Re-postprod ALL puzzles (THIS CANNOT BE UNDONE) [This will take a LONG TIME!]&quot;&gt;</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">     &lt;/form&gt;</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">     &lt;br&gt;</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="va">+--&gt;</span></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"> &lt;?php</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"> // End the HTML</a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"> foot();</a></code></pre></div>
+<p>Cheap technical shots aside, even in everyday usage, it was incredibly easy to misclick a link and accidentally spoil yourself on any puzzle; communication within testsolving groups and between them and puzzle authors was unnecessarily limited; and, despite figuring out a mostly reasonable subset of permissions to use, we still found that the permission system and a few other artificial restrictions in the code got in the way more than they helped.</p>
+<p>Now, I want to be clear that I don’t think this reflects negatively on any of Puzzletron’s past developers in any way and that I am still deeply grateful to all of them for passing down such a tool. The maximalist feature set is to be expected of a tool that’s been passed down through so many different teams, each of which would have used it for exactly one iteration of the full hunt-writing cycle. Teams would naturally add features they want, but sensibly avoid the low-reward high-risk endeavor of removing or refactoring code from a codebase they’d only be using for one year; plus, you’d never know if a future team might want a feature you’re removing. And despite all its flaws, Puzzletron still worked a lot better for organizing GPH 2018 and 2019 than the ad-hoc Google Sheets–based approach we used in 2017; and without having used it and knowing what things worked and what things didn’t, I doubt we could have designed a system anywhere as good as what we ended up with.</p>
+<p>But, design such a system we did — as the person on the Galactic Puzzle Hunt writing team who was the most familiar with Puzzletron, I decided in summer 2019 that, at least for organizing the writing of GPH 2020, a grounds-up redesign and rewrite would serve us better than continuing to use Puzzletron, and it was within my ability. (It certainly didn’t help that <a href="https://www.nearlyfreespeech.net/">NearlyFreeSpeech</a>, where I had hosted Puzzletron the previous year, no longer offered any PHP version that was compatible with it — for good reason!) So I decided to do that.</p>
+<p>It was a very nice side project: precisely scoped, immediately practical, and meant for a user base I was firmly embedded in. I didn’t go full <a href="https://web.mit.edu/6.813/www/sp18/">6.813</a> on this project, with paper prototypes and live user testing and such, but I sent out a feedback form in mid-July and a few people filled it out. By early August, I had sent out a six-page design doc for review, settled on the name of <strong>Puzzlord</strong>,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> and started on the implementation.</p>
+<figure>
+<a href="/img/puzzlord-1.png"><img src="/img/puzzlord-1.png" alt="Early screenshot of Puzzlord" /></a>
+<figcaption>
+Early screenshot of Puzzlord, 2019/08/04
+</figcaption>
+</figure>
+<p>In a few days:</p>
+<figure>
+<a href="/img/puzzlord-2.png"><img src="/img/puzzlord-2.png" alt="Slightly later screenshot of Puzzlord" /></a>
+<figcaption>
+Slightly later screenshot of Puzzlord, 2019/08/07. (They say you can learn a lot about a person from the sample text they put in formatted textboxes. I don’t know why this one is in Chrome, but I assume I was testing browser compatibility.)
+</figcaption>
+</figure>
+<p>For full contrast, here’s what it looked like just now:</p>
+<figure>
+<a href="/img/puzzlord-things.png"><img src="/img/puzzlord-things.png" alt="Puzzlord screenshot after Mystery Hunt" /></a>
+<figcaption>
+Screenshot of Puzzlord just now, 2021/02/14
+</figcaption>
+</figure>
+<p>From a technical standpoint, Puzzlord is not really that interesting at all. There were no scaling concerns or unusual UI demands, so we just used Django and artisanal handcrafted HTML templates. But the language and framework were things I and others on ✈✈✈ GT ✈✈✈ were more comfortable in than PHP, and it also provided an opportunity for me to redesign a lot of pain points from Puzzletron, some of which I already mentioned:</p>
+<ul>
+<li>Improved spoiler safety: Puzzlord always shows you an interstitial and makes you click a button before spoiling you on any puzzle.</li>
+<li><p>Testsolve sessions, a concept that Puzzletron just didn’t have: you could only testsolve a puzzle as an individual, and if you wanted to testsolve with your friends you’d each individually find the puzzle and click the testsolve button and communicate out-of-band.</p>
+<p>Instead, in Puzzlord, you can create a testsolving session, representing one attempt by some user or group of users to testsolve a specific puzzle, and leave comments on it for both the other testsolvers in that session and for anybody spoiled on the puzzle. You could drop a link to your solving spreadsheet both for the other testsolvers to see and for the puzzle authors to review. This abstraction is pretty obvious in hindsight, but it’s definitely one of those things where we benefited from having Puzzletron as a negative example.</p></li>
+<li>Drastically simpler permissions: in place of the 132-entry matrix, we had three roles — you could be a normal user, an editor, or a superuser — and one custom permission, the ability to view and assign answers. (We get the logic allowing only superusers to access the Django admin interface for free from Django.)</li>
+<li>No uploading files: In Puzzletron, all puzzles and solutions were uploaded files. However, for most puzzles, we found it far easier to author them in Google docs, because it was easier to format and revise the puzzle on the fly and to have multiple authors collaboratively write the puzzle. Even puzzles that were non-document files were often easier to revise if they were presented as links. For example, if I stored a puzzle file in my Dropbox and shared a link to it in Puzzletron/Puzzlord, I could change that file on my computer and know that the link would automatically update. And dynamic puzzles that had to be hosted elsewhere simply had to be links. In all those cases, the only reasonable way to put the puzzle in Puzzletron was to make and upload a small text file containing a URL, which was annoying both to view and to make.</li>
+<li><p>Expanded space of puzzle statuses: One simple disagreement we had with Puzzletron when writing GPH was that we generally preferred factchecking to come after postprodding,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> because postprodding could introduce mistakes that we also wanted a chance to catch. That was very easy to fix when re-listing the statuses. A more subtle issue was that it sometimes wasn’t clear who was responsible for taking the next steps on a puzzle, so sometimes a puzzle would languish indefinitely in a state when two people would deadlock waiting for each other to do something about a puzzle. People also brought up examples of other issue trackers that had much clearer conceptions of blockers. I tried to solve this just by splitting up some of the existing statuses so that statuses would, at least in theory, unambiguously indicate who the puzzle was blocked on. It’s not yet clear if this was the right approach, but I haven’t thought of anything clearly better either.</p></li>
+</ul>
+<p>In late September, we deployed Puzzlord for GPH 2020 and started submitting puzzle ideas to it.</p>
+<p>Then, of course, we won Mystery Hunt.</p>
+<p>Although that threw a wrench in our plans, it was a slam-dunk to start a new instance of Puzzlord to organize Mystery Hunt writing. I kept developing the tool over the course of this hunt, though much less intensely, and several other people contributed major features like the postprodding code. There are still dozens of issues we’d like to fix that have been queued up from last year, and its feature set isn’t a strict superset of Puzzletron, but I think that overall, we definitely had a better time writing a hunt with it than we would have with Puzzletron. And just like Puzzletron, <a href="https://github.com/galacticpuzzlehunt/puzzlord">Puzzlord is open-source on GitHub</a>! I hope it will be as useful to the puzzle community as Puzzletron was to us in earlier years.</p>
+<h3 id="puzzles">Puzzles</h3>
+<p>Maybe this is what you’re actually here for.</p>
+<p>I have author status on 13 (or maybe 20,639?) puzzles that went into the hunt, which break down as:</p>
+<ul>
+<li>Eight (or maybe 20,634?) puzzles as sole author, more or less</li>
+<li>One puzzle, <a href="https://perpendicular.institute/puzzle/lime-sand-season/">Lime Sand Season</a>, as an approximate half co-author</li>
+<li>Two puzzles, <a href="https://perpendicular.institute/puzzle/ignorance/">Ignorance</a> and <a href="https://perpendicular.institute/puzzle/you-learn-something-new-every-day/">You Learn Something New Every Day</a>, as non-lead coauthor in a small group (4 and 3 people)</li>
+<li>One puzzle, the <a href="https://perpendicular.institute/round/green-building/">Green Building</a> meta, as an implementation/post-production–only coauthor</li>
+<li>Two puzzles, <a href="https://perpendicular.institute/puzzle/look-at-what-we-drew/">Look at What We Drew</a> and <a href="https://perpendicular.institute/puzzle/thank-you-to-our-sponsors/">Thank You to Our Sponsors</a>, as a non-lead coauthor in a big group</li>
+</ul>
+<p>I also made a handful of the Green Building navigation puzzles, including the invisible maze that I’m sure everybody, including me, hated (I just hope it was the enjoyable kind of hate).</p>
+<p>I’m not sure if this will sound strange with these numbers, but I think my puzzle output wasn’t as high as I hoped or expected. My puzzle ideas text file was and is still very long, but I ran out of the <em>really good</em> ideas in it pretty quickly. At least one idea I’ve had for a while didn’t pan out. Admittedly, I mostly dropped all my puzzle ideas heavy on math, programming, or video games, because the quota for those types were (predictably) quickly filled out by other members of our team.</p>
+<p>To the extent there is a “magnum opus” I wrote this hunt, it would have to be <a href="https://perpendicular.institute/puzzle/how-to-run-a-puzzlehunt/"><strong>How to Run a Puzzlehunt</strong></a>. You can read my long author’s notes on that one, but the short version of it is that I led the creation of an entire new puzzlehunt, the <a href="https://dp.puzzlehunt.net/">DP Puzzle Hunt</a>, to publicize a resource used by that puzzle. (Of course, this reason was in addition to all the <a href="https://dp.puzzlehunt.net/wrapup.html#design-goals-and-philosophy">goals and philosophy</a> we discussed in that puzzlehunt’s wrap-up, which I fully stand by; I just couldn’t mention this additional reason then, naturally.) Somehow, this makes DP Puzzle Hunt’s <a href="https://dp.puzzlehunt.net/puzzle/finding-myself.html">second-round meta</a> my first published metapuzzle, after something like a decade of puzzlehunting and six years of puzzlewriting. I don’t know to what extent DPPH actually helped with accomplishing this ulterior objective, but I was happy to have an excuse to write a puzzlehunt and experience all the moving parts on a much smaller scale.</p>
+<p>The other big “puzzle” I wrote was <a href="https://perpendicular.institute/puzzle/infinite-3/"><strong>Unchained</strong></a> (link to #3), the first Infinite Corridor puzzle or category thereof. As the author notes mention, I had held this puzzle idea for at least three years but hadn’t found an implementation that I was satisfied with. The Infinite meta masked some of its issues quite well. Based on the general feedback I’ve read I think the other puzzles in that round all outshone it, but I’m happy to have provided a traditional puzzle that grounded the set of five by being self-contained, non-interactive, and non-self-referential. Also, <span class="spoiler">listening to a lot of (extremely broadly defined) popular music</span> is one of the more enjoyable forms of data gathering I’ve gotten to do in puzzle-writing research, and it gave me a lot of nostalgia and a few new discoveries to cherish.</p>
+<p>One thing I’m less sure about was the puzzle’s difficulty, particularly given its unlock position. Since I had held the idea (and lived in fear of it being sniped by other puzzlehunts) for so long, I probably intuitively underestimated its difficulty; feedback from puzzle editors and from testsolves all suggested the one realization (from my perspective) was not at all easy. Considering it as a hunt puzzle in the abstract, I was okay with that and chose to stick with a deliberately obtuse title to preserve the sanctity of the aha! step. But after it was slotted in as the first unlock in one of the two earliest main rounds, it’s possible that a stronger clue in the title would have improved it.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<p>And also, it had so many errata! This is impossible to discuss without spoilers, so out of an abundance of caution I’ll hide it, although it’s just two paragraphs:</p>
+<button class="unhide" data-unhide="unchained-spoiler" data-rehide="Hide Unchained spoilers">
+Show Unchained spoilers
+</button>
+<div id="unchained-spoiler" class="hidden">
+<p>Most Unchained mistakes were just dumb mistakes on my behalf, where I casually misheard, misremembered, or mistranscribed a preposition, contraction, or homophone, and it slipped past my factcheckers (who were amazing and caught many more errors than ended up in the puzzle). But it doesn’t help that there often aren’t canonical places to get lyrics online, and lyric sites disagree with each other often and could also just be wrong.</p>
+<p>For example, we got an erratum report for <a href="https://youtu.be/0WxDrVUrSvI?t=52">Smile (Lily Allen), at 0:52</a>. The lyric to be extracted was: <code>now you're calling [me up on the phone] / so you can have a little whine and a moan / ??? only because you're feeling alone</code> What goes in the <code>???</code>? According to my ears, it’s <span class="spoiler">  it’s  </span>, but it’s not completely unambiguous and every lyric site I found has <span class="spoiler">and it’s</span>, which I assume the person reporting the erratum also had. In the end I polled a Discord channel with a link to the video and people agreed with me, so I let the puzzle stand. (But there were far more cases where I got a report, looked it up on a few lyric sites, listened to the music video, and decided I was wrong.)</p>
+</div>
+<p>On the bright side, I probably hold the world record for “most puzzles in a puzzlehunt affected by factual errata”,<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> so I got that going for me.</p>
+<p>I solo-wrote quite a few more puzzles that I think weren’t particularly inspired. On the other hand, I do think it’s cool that Mystery Hunt finally forced me to learn how to write an uninspired puzzle, the kind based on one mildly interesting idea or data set and little else. In approximately decreasing order of how much I’d recommend them:</p>
+<ul>
+<li><a href="https://perpendicular.institute/puzzle/15x15/">15×15</a> is interesting and silly, and hopefully short if you have crossword experience. One piece of feedback called it “what we wish crossword-solving could be like”, which is pretty much exactly what I was going for. (We also got some “bug reports” through the feedback part of the site. I was half-expecting bug reports, but not through that particular site feature, so I didn’t notice them there until much later and wasn’t able to reply nonchalantly, “The puzzle is correct as written.” I hope nobody was stuck waiting for a response that never came.)</li>
+<li><a href="https://perpendicular.institute/puzzle/recursion/">Recursion</a> is a particularly minimal puzzle, one aha! and nothing else.</li>
+<li><a href="https://perpendicular.institute/puzzle/things/">Things</a> has provoked some funny reactions from testsolvers.</li>
+<li><a href="https://perpendicular.institute/puzzle/countries/">Countries</a> is also pretty simple. However, I got some really positive feedback from Randall Munroe (wow!), so here it goes.</li>
+<li><a href="https://perpendicular.institute/puzzle/illiterate-programming/">Illiterate Programming</a> is an idea I’ve also kept around for a while. I think it’s a cool idea, but unfortunately there is a sort-of erratum (<span class="spoiler">SERVICE is a keyword in many versions of COBOL, including the first Google result, although I think it is sufficiently version-dependent in a way that the actual keyword wasn’t that I wouldn’t call it a full erratum</span>).</li>
+<li>I think in terms of the aha!, <a href="https://perpendicular.institute/puzzle/fish-hybridization/">Fish Hybridization</a> is the least interesting puzzle on this list, but it’s built on a solid foundation of terrible puns all the way down.</li>
+</ul>
+<p>The only puzzle I feel like “enough of a coauthor” on to fit on this list is <a href="https://perpendicular.institute/puzzle/lime-sand-season/">Lime Sand Season</a>, one of the very last puzzles to be written. I wrote the first draft with Anderson in about three hours one night and got it testsolved. Although the core stayed the same, we actually put a lot of work into revising the variety and distribution of <span class="spoiler">poets and poems</span> in ways that are hard to quantify. That puzzle would probably go near the top of this list in recommendation.</p>
+<p>I did contribute one somewhat notable subpuzzle to <a href="https://perpendicular.institute/puzzle/ignorance/">Ignorance</a>, namely Sum and Product. I didn’t expect as much positive reception for that subpuzzle as I got, because I generated the puzzle by blindly throwing things at the wall (a metaphor for a Python script) until something stuck, and because it turns out that a <a href="https://en.wikipedia.org/wiki/Sum_and_Product_Puzzle">Sum and Product</a> already exists. (We discussed omitting the large constant, since anybody who could concretely demonstrate an erratum in the puzzle without the constant would also necessarily have found a major mathematical counterexample, so the accuracy of a hunt puzzle would probably not be very high on their list of concerns. But since the puzzle relied on a slight strengthening of the most common version of the conjecture instead of the vanilla version, and the big number was funny, we decided to keep it in.) Anyway, the whole puzzle is amazing too.</p>
+<p>I testsolved a lot of puzzles. I think my favorite regular puzzle (speaking of large constants) is definitely <a href="https://perpendicular.institute/puzzle/math-1001003/">1000000000000000000000000000000000000000000000000000000000000000000001000000000000116</a>. It’s a puzzle idea that seems obvious in hindsight, centered on an inimitable realization that made me go “oh, that’s how it works… wait, you want us to solve <em>what</em>?”, executed brilliantly through the final step. <a href="https://perpendicular.institute/puzzle/so-you-think-you-can-count/">So You Think You Can Count?</a> (alas, not currently playable) is an incredible “teamwork time” puzzle, and the <a href="https://perpendicular.institute/round/tunnels/">Tunnels meta</a> is really cool (although I testsolved a somewhat harder version). Other highlights I testsolved significantly include:</p>
+<ul>
+<li><a href="https://perpendicular.institute/puzzle/nutraumatic/">Nutraumatic</a>: Interactive puzzles are great, ’nuff said.</li>
+<li><a href="https://perpendicular.institute/puzzle/altered-beasts/">Altered Beasts</a>: I wasn’t expecting to be impressed by this puzzle — the genre of “mangled clues” it uses is a pretty stock puzzle type that I think can get dull after a few — but it took this concept to a transcendent level.</li>
+<li><a href="https://perpendicular.institute/puzzle/le-chiffre-ind%C3%A9chiffrable/">Le Chiffre Indéchiffrable</a>: I didn’t rate this puzzle very highly when I testsolved it, but offhandedly made a certain suggestion that the author ran with and turned the puzzle into possibly the single puzzle in the entire hunt that made me think “why didn’t I write that?” the most strongly. You can read the author notes.</li>
+</ul>
+<p>I tested <a href="https://perpendicular.institute/puzzle/circular-reasoning/">Circular Reasoning</a> and <a href="https://perpendicular.institute/puzzle/pcluers/">PClueRS</a> in much larger groups, so I don’t personally remember them as sharply, but the feedback for them I’ve heard has been universally positive, so I’ll mention them too. Some other noteworthy puzzles:</p>
+<ul>
+<li><a href="https://perpendicular.institute/puzzle/the-imo-shortlist/">The IMO Shortlist</a>: The topic, presentation format, and difficulty are all what you’d expect from the title.</li>
+<li><a href="https://perpendicular.institute/puzzle/super-mystery-world/">Super Mystery World</a>: I bought Super Mario Maker 2 to testsolve this puzzle, spent about four hours in a single sitting just to beat all the levels at least once, and then spent four more hours actually solving it, both with quite a few other people watching/co-solving. That was <em>quite</em> an experience. I would probably feel like it’s the <a href="//blog.vero.site/post/2020-hunt">Domino Maze</a> of our hunt if I had done it during the actual hunt, although I think the puzzle may have been made a bit easier since my testsolve.</li>
+<li><a href="https://perpendicular.institute/puzzle/bake-off/">Bake Off</a>: Bizarrely, this is the first time I baked this kind of object! I was too lazy to make icing, but I scrounged up some food coloring from the recesses of my apartment and smeared it everywhere.</li>
+</ul>
+<button class="unhide" data-unhide="bake-off-spoiler" data-rehide="Hide Bake Off gallery">
+Show Bake Off gallery
+</button>
+<div id="bake-off-spoiler" class="hidden">
+<figure>
+<a href="/img/cookie-1.jpg"><img src="/img/cookie-1.jpg" alt="Photo of cookie" /></a>
+<figcaption>
+Poor attempt at making a <span class="spoiler">thinking emoji</span>
+</figcaption>
+</figure>
+<figure>
+<a href="/img/cookie-2.jpg"><img src="/img/cookie-2.jpg" alt="Photo of cookie" /></a>
+<figcaption>
+<span class="spoiler">Four-leaf clover</span> (I hope it’s pretty obvious…)
+</figcaption>
+</figure>
+<figure>
+<a href="/img/cookie-3.jpg"><img src="/img/cookie-3.jpg" alt="Photo of cookie" /></a>
+<figcaption>
+<span class="spoiler">Pizza</span>
+</figcaption>
+</figure>
+<figure>
+<a href="/img/cookie-4.jpg"><img src="/img/cookie-4.jpg" alt="Photo of cookie" /></a>
+<figcaption>
+<span class="spoiler">Waffle</span>
+</figcaption>
+</figure>
+<figure>
+<a href="/img/cookie-5.jpg"><img src="/img/cookie-5.jpg" alt="Photo of cookie" /></a>
+<figcaption>
+<span class="spoiler">Dragon</span>
+</figcaption>
+</figure>
+<figure>
+<a href="/img/cookie-6.jpg"><img src="/img/cookie-6.jpg" alt="Photo of cookie" /></a>
+<figcaption>
+Not an emoji, just having fun.
+</figcaption>
+</figure>
+<figure>
+<a href="/img/cookie-7.jpg"><img src="/img/cookie-7.jpg" alt="Photo of cookie" /></a>
+<figcaption>
+Remake of emoji #1, applying everything I had learned up to that point
+</figcaption>
+</figure>
+</div>
+<h3 id="plot">Plot</h3>
+<p>I acted in the Mystery Hunt! I had a minor named role as “Max Matsuoka”, who had little backstory or plot significance, but got to answer the first, highly-upvoted question in the <a href="https://www.youtube.com/watch?v=aZ2ihFvauSM">kickoff</a> Q&amp;A. He also got to confusedly ask “What is going on?” in several iterations of another early skit, which is very on-brand for me. Finally, Max holds the distinction of being the only named character whose first name was shared with a real person active in ✈✈✈ Galactic Trendsetters ✈✈✈; that same person also helped with skits, although not as an actor. In hindsight, this may not have been the best idea.</p>
+<p>I also understudied as the deadpan snarker with a yellow wardrobe, Skylar Holstein. I am not sure I knew what the word <a href="https://en.wikipedia.org/wiki/Understudy">“understudy”</a> meant before all this. For context, the last time I had anything resembling an acting role was during my Dropbox internship in the summer of 2016, when I portrayed a banker in the Hack Week musical. I think acting is fun, but it’s the kind of fun where if I made a list of all the fun things I want to do in life, it would probably be around twentieth place. I learned a lot about acting techniques, pronunciation, and clothing, for example the dozens of features of the <a href="https://en.wikipedia.org/wiki/Dress_shirt">dress shirt</a>. And I got to try not to break character in front of a few teams I knew. 10/10 would do again.</p>
+<p>Honestly, it still boggles my mind how the story team came up with such a good plot under such severe constraints, including the fact that everything had to happen over video call, but also just the general structure of the rounds and metapuzzles, which were already well underway before we realized what had to happen. As only a minor character and understudy, I don’t actually show up on most of <a href="https://perpendicular.institute/story">the recorded interactions</a>, but (or maybe <em>because</em> of that) I think you should watch them anyway.</p>
+<h3 id="everything-else">Everything else</h3>
+<p>I did small tasks in many other parts of the hunt in addition to all the other things I described above, with increasing frequency as it loomed closer. I drew a few assets for the projection device, like the ladder, the connection icons, and the Lobby 10 bench; I also fixed a few z-ordering bugs. I edited random diagrams and strung together random words from physics papers for the opening slides.</p>
+<figure>
+<a href="/img/hunt-keynote.png"><img src="/img/hunt-keynote.png" alt="Keynote slide with physics buzzwords" /></a>
+<figcaption>
+<a href="https://commons.wikimedia.org/wiki/File:Th%C3%A9orie_des_cordes-%C3%A9chelle.PNG">String theory graphic</a> in the public domain. <a href="https://www.flaticon.com/free-icon/telescope_899824">Telescope</a> made by <a href="https://www.flaticon.com/authors/srip" title="srip">srip</a> and <a href="https://www.flaticon.com/free-icon/satellite_1025123">satellite</a> made by <a href="https://www.freepik.com" title="Freepik">Freepik</a>, both from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>. The remaining thing recolored and otherwise mangled, with my apologies, from this <a href="https://commons.wikimedia.org/wiki/File:DUMAND.svg">diagram of the DUMAND system</a>, CC BY-3.0 by Egmason (I have no idea what it does. Something about neutrinos?)
+</figcaption>
+</figure>
+<p>And then… hunt happened.</p>
+<p>God, it’s a blur. Running skits and interactions, answering hints and contact HQ requests, refreshing the leaderboard, watching answer submissions come in, examining the Unchained source material really carefully (perhaps an unnecessarily spoiler-avoidant way to say <span class="spoiler">listening to the songs to see what their lyrics were</span>) to verify errata, wandering around the Projection Device and emoting at people I recognized, the very occasional check-in with teams. I also got to watch a lot of logistical and technical fires occur and get put out, but there wasn’t much I could help with. (The nice thing about owning Puzzlord, as opposed to nearly any other component of the hunt, is that it becomes almost entirely inconsequential once hunt starts. There were never any problems I had to respond to quickly.)</p>
+<p>I have to say I didn’t really expect the feeling of… sheer presence, from seeing other people in the projection device. It was obviously going to be a thing in hindsight, but it’s not a feeling you get from wandering the projection device alone while debugging or testing puzzles ahead of the hunt, not even if you’re wandering with other ✈✈✈ GT ✈✈✈ members because most of the time you already know they would be online. But during the real hunt, once people had started unlocking the projection device, ⟂IW came alive in a way I was not emotionally prepared for. I recognized usernames of actual people, people who I knew were exploring the world for the first time, and knew that they would recognize me. It seems likely I bumped into more people I knew than I would have on a normal on-campus Mystery Hunt. Certainly, I virtually met a lot of remote solvers who I couldn’t have met on MIT’s campus and assume they all met way more people than they would normally. And that could easily have been me years ago. I may have been too busy during the hunt for all this to fully sink in, but I’m finally starting to realize the extraordinary advantage of running our particular hunt during what would have been interminable lockdown for many solvers.</p>
+<p>I don’t have that many screenshots, so mostly I will just cheat and <a href="https://mitadmissions.org/blogs/entry/two-hundred-puzzles-2/#wholesome-virtual-moments">link to CJ’s screenshots</a> (make sure to click left/right on the galleries). Among the screenshots I do have and want to publish here is a powerful spreadsheet:</p>
+<figure>
+<a href="/img/hunt-ttbnl-redacted.png"><img src="/img/hunt-ttbnl-redacted.png" alt="Screenshot of The Team Formerly Known As the Team Formerly Known As the Team Formerly Known As the Team To Be Named Later's spreadsheet with lots of smobsters" /></a>
+<figcaption>
+Part of The Team Formerly Known As the Team Formerly Known As the Team Formerly Known As the Team To Be Named Later’s spreadsheet when doing the final puzzle
+</figcaption>
+</figure>
+<p>The second is the screenshot I took of the post-hunt period when we told everybody to enter the projection device:</p>
+<figure>
+<a href="/img/hunt-chaos.png"><img src="/img/hunt-chaos.png" alt="Screenshot of hundreds of participants' avatars in the Green Building" /></a>
+<figcaption>
+Post-hunt chaos. (Can you find me?)
+</figcaption>
+</figure>
+<p>Every time I look at this picture, I recognize additional names or usernames that I hadn’t seen before.</p>
+<h4 id="parting-thoughts">Parting Thoughts</h4>
+<p>That feeling of having been working for months, then just standing back from it and just beholding everything we’ve done, is incredible and I will miss it. The positive feedback we’ve gotten has been overwhelming. But at least I get the prize of being able to return as a solver to Mystery Hunt next year.</p>
+<p>Huge thank-yous to <a href="https://perpendicular.institute/credits">every other member of ✈✈✈ Galactic Trendsetters ✈✈✈</a>. There is no place for me to stop listing roles and names where I can be happy, but I have to try anyway. Thanks to:</p>
+<ul>
+<li>The story director, Lillian, for absolutely knocking it out the park with the plot and scripts; and Theo, Ian, Kat, Josh, Connor, Amanda, and everybody else on the cast and crew for their dedication, particularly Phillip and (the real) Max for their masterful Zoom management. I had never realized a puzzlehunt story could have such nuanced characters, nor that it could make me laugh and tear up as I did.</li>
+<li>Ben, Nathan, Herman, Kat, Damien, Evan, and everybody else who worked on the MMO, plus DD, Cami, Andy, Lennart, and everybody else who worked on art. You all poured your heart and soul into the place to allow it to come to life the way it did during Hunt, and it shows. I Have Truly Found ⟂IW.</li>
+<li>The editors in chief, Rahul and Jon; factchecking lead Danny, copy-editing lead Seth, and testsolving lead Rob; and Anderson, Lewis, and all the other puzzle editors and authors, for making the puzzles happen, and for continuing to push the boundaries of what puzzlehunt puzzles can be without allowing any other aspect to be compromised.</li>
+<li>CJ, Yannick, and Mark for their dedication to the endgame runaround in spite of the Boston weather. I couldn’t have experienced the moment the MMO was unlocked the same way as most teams, as my exposure was spread out through the full ideation and development process, but the first time we ran through a test of the runaround I was floored. I can still see the stones in front of the Student Center and the lights on Mass Ave from those moments, and I was on campus again. I can only imagine what the one-shot full hunt weekend experience must have felt like.</li>
+<li>Justine, Colin, Jingyi, Curtis, and everybody else who designed and contributed to the events and interactions, plus Toomas, Steven, Sam, Joanna, Jenna, Jason, Mitchell, Daniel, Chris, Charles, Amon, Alan, Adam, and countless other people who built and fixed hunt infrastructure, ran those events and interactions, answered hints and questions, and kept the hunt going through heavy team traffic and that unforgiving pandemic. The kinds of human communication and collaboration you enabled are an irreplaceable component of hunt that we all need right now, and the passion, creativity, and humanity you infused it all with is deeply inspiring.</li>
+<li>And, of course, Jakob and Josh for their unwavering leadership through the entire process. You kept the team together through some tough decisions without any good choices, on top of the thousands of moving parts in an exceptionally ambitious Mystery Hunt.</li>
+</ul>
+<p>Here’s to Palindrome running an amazing hunt in 2022. See you then!</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>This <em>might</em> have actually been done correctly so as to prevent any SQL injection, but I <a href="https://github.com/mysteryhunt/puzzle-editing/commit/80341b37b846233c2b63e829de670c73eb396d6e">fixed a bug</a> in 2015 in which you could impersonate any user on nearly any page by specifying their user ID (a small positive integer) in a POST argument, so I do not have high faith that there aren’t other vulnerabilities.</p>
+<p>And to be fair, Mystery Hunt isn’t a setting where the security stakes are high. We generally trusted everybody on our team, and there’s little to gain from breaking in for anybody, insider or outsider. You could leak the puzzles and just spoil a lot of people without gaining anything yourself, or you could keep them to yourself to gain a competitive advantage and then… earn the “prize” of having to write the next year’s hunt?</p>
+<p>Still, instead of trying to carefully reason through possible attacker motivations, I think it’s easier to at least do basic due diligence, where you use off-the-shelf authentication if possible and keep SQL statements firmly away from the concatenation operator.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>I think the origin of this name is that I tried concatenating a bunch of role-playing game/Race for the Galaxy–esque words to the word “puzzle” and making a shortlist of ones that didn’t have too many Google results. From that list, somebody pointed out that “Puzzlelord” could be contracted to be very similar to <a href="https://bulbapedia.bulbagarden.net/wiki/Guzzlord_%28Pok%C3%A9mon%29">Guzzlord, a Pokémon</a>. It was immediately compelling because it was short, descriptive, and mostly free of namespace collisions.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>This refers to “post-production”, the process of formatting a puzzle so it can be displayed exactly as desired on the final hunt website. Typically this is done by writing HTML, but sometimes it’s much more involved.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>One category of hintier titles I considered was “Makin’ Bacon Pancakes” or some variant/allusion thereof (switching the <span class="spoiler">five-bit binary out for the Bacon cipher</span>, of course). But I never seriously pursued that title or had it testsolved, so I’m not at all calibrated on if that title would nudge, in particular, if hearing <a href="https://www.youtube.com/watch?v=rBGBKH6wxk4">that song</a> (or its… <a href="https://www.youtube.com/watch?v=cUYSGojUuAU">more famous remix</a>) would make you go “oh, there are only <span class="spoiler">two notes!</span>” and lead you to break in.</p>
+<p>I believe a much earlier version of the puzzle, from years ago, had the title “Alternative Expressions” and a different obfuscation technique whereby the lyrics would be synonym-substituted to be very verbose. Anyway, that didn’t work out.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>Maybe “puzzle” needs to be defined with some criterion like needing to have an answer that’s individually accepted by some kind of answer checker, so as to exclude subpuzzles of 10,000-Puzzle Geometric Objects. But also maybe none of those puzzles has had announced errata and it doesn’t matter.<a href="#fnref5" class="footnote-back">↩</a></p></li>
+</ol>
+</section></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/mit"><span class="tag">MIT</span></a></li>
+			
+			<li><a href="/tag/puzzle"><span class="tag">Puzzle</span></a></li>
+			
+			<li><a href="/tag/puzzlehunt"><span class="tag">Puzzlehunt</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/and-i-feel-fine">← …And I Feel Fine</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2021 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>
