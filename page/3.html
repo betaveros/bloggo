@@ -17,6 +17,7 @@
 
 <meta name="robots" content="index,follow" />
 <meta name="referrer" content="origin-when-cross-origin" />
+<meta name="theme-color" content="#330000" />
 
 <link rel="icon" href="/favicon.ico" />
 
@@ -55,6 +56,32 @@
 	</header>
 	
 	
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/username" class="post-link">How to Choose an MIT Username</a></h3>
+		
+		<p class="post-meta">
+		
+		2019-06-13
+		(2994 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/thoughts">Thoughts</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>I wanted to write a post after two years at college about everything I had learned. I didn’t, firstly because I didn’t make it a priority, and secondly because trying to write about everything I’ve learned at MIT over any nontrivial length of time is the kind of poorly scoped endeavor that I could never complete to my own satisfaction.</p>
+<p>Two years came and went, and now it’s been two more years and I’ve learned even more things, not to mention, actually graduated. Jeez. I tried to self-impose a deadline for the big post, but it didn’t work out. There were still too many higher priorities, most of which were also natural consequences of graduating. I also couldn’t bring myself to cut anything, because unlike most of the stuff I haphazardly throw onto this blog, I can actually imagine an audience for just about everything I wanted to write about.</p>
+<p>Finally I decided that I would break it into lots of small posts on specific topics. This way, at least the perfectionism can’t bleed between posts too much. The first topic I wanted to write about is simple, mundane, and also fairly limited in scope itself: how to choose your MIT username.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/username">→ read more<span class="offscreen"> How to Choose an MIT Username</span></a>
+	</footer>
+</article>
+
 		
 			<article class="post-entry">
 	<header class="post-header">
@@ -328,49 +355,6 @@ Environment: Ubuntu 16.04+latex</code></pre>
 </article>
 
 		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/shellql" class="post-link">shellql</a></h3>
-		
-		<h4 class="post-subtitle">DEF CON CTF Qualifiers 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-05-13
-		(1217 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>The hardest challenge of not very many I solved in this CTF. What a struggle! I have a long way to improve. It was pretty fun though. (I solved “You Already Know”, and got the essence of “ghettohackers: Throwback”, but didn’t guess the right flag format and believe I was asleep when they released the hint about it.)</p>
-<p>The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension <code>shellme.so</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode php"><code class="sourceCode php"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">$link</span> = <span class="fu">mysqli_connect</span><span class="ot">(</span><span class="st">&#39;localhost&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">);</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">if</span> <span class="ot">(</span><span class="kw">isset</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]))</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">{</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">   <span class="kw">if</span> <span class="ot">(</span><span class="fu">strlen</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">])</span> &lt;= <span class="dv">1000</span><span class="ot">)</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">   {</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">      <span class="kw">echo</span> <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">];</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">      shellme<span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]);</span></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">   }</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">   <span class="kw">exit</span><span class="ot">();</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">}</a></code></pre></div>
-<p>The extension basically just executes <code>$_POST['shell']</code> as shellcode after a strict SECCOMP call, <a href="http://man7.org/linux/man-pages/man2/prctl.2.html">prctl</a>(<a href="https://elixir.bootlin.com/linux/v4.16.8/source/include/uapi/linux/prctl.h#L68">22</a>, <a href="https://elixir.bootlin.com/linux/v4.1/source/include/uapi/linux/seccomp.h#L10">1</a>). This means that we can only use the four syscalls <code>read</code>, <code>write</code>, and <code>exit</code>, and <code>sigreturn</code>, where the latter two aren’t particularly useful.</p>
-<figure>
-<img src="/img/shell_this.png" alt="Disassembled innermost function of interest in shellme.so" /><figcaption>Disassembled innermost function of interest in <code>shellme.so</code></figcaption>
-</figure>
-<p>The goal is to read the flag from the open MySQL connection.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/shellql">→ read more<span class="offscreen"> shellql</span></a>
-	</footer>
-</article>
-
-		
 	
 	
 	<footer class="list-footer">
@@ -390,6 +374,7 @@ Environment: Ubuntu 16.04+latex</code></pre>
 	<p>© 2017-2021 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://www.goatcounter.com/">GoatCounter</a>,
 	<a href="https://posativ.org/isso/">Isso</a>,
 	<a href="https://pages.github.com/">GitHub Pages</a>, and
 	<a href="https://www.cloudflare.com/">CloudFlare</a>.

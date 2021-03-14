@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>//blog.vero.site/post/blogging-advice</loc>
+    <lastmod>2021-03-14T00:24:46-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/</loc>
+    <lastmod>2021-03-14T00:24:46-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/categories</loc>
+    <lastmod>2021-03-14T00:24:46-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/category/meta</loc>
+    <lastmod>2021-03-14T00:24:46-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//blog.vero.site/post</loc>
+    <lastmod>2021-03-14T00:24:46-08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//blog.vero.site/tags</loc>
     <lastmod>2021-02-13T16:07:56-08:00</lastmod>
     <priority>0</priority>
@@ -14,22 +39,7 @@
   </url>
   
   <url>
-    <loc>//blog.vero.site/</loc>
-    <lastmod>2021-02-13T16:07:56-08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/categories</loc>
-    <lastmod>2021-02-13T16:07:56-08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//blog.vero.site/tag/mit</loc>
-    <lastmod>2021-02-13T16:07:56-08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/post</loc>
     <lastmod>2021-02-13T16:07:56-08:00</lastmod>
   </url>
   
@@ -325,11 +335,6 @@
   
   <url>
     <loc>//blog.vero.site/post/hello-again</loc>
-    <lastmod>2017-11-07T00:27:42-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//blog.vero.site/category/meta</loc>
     <lastmod>2017-11-07T00:27:42-05:00</lastmod>
   </url>
   
