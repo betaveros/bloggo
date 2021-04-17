@@ -59,6 +59,40 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/sql-select" class="post-link">SQL Selects the Hard FP Way</a></h3>
+		
+		<p class="post-meta">
+		
+		2021-04-16
+		(3630 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>This post is motivated by reasons very similar to the ones that motivated my <a href="//blog.vero.site/post/react-redux">React and Redux “tutorial”</a>. Again, it should be more accurately but less informatively titled “How I wish SQL SELECTs were explained to me”. Again, it does not imply that this method of explanation is suitable for anybody else. One difference is that this time, I mostly only wanted to learn about SQL SELECTs to the extent it would help me perform and optimize queries in Django’s ORM, but to prevent this post from languishing forever in my drafts folder, that material has been sectioned off into a possible future post, because I figured out what I wanted, ran out of steam, and am now trying to learn TLA⁺. Just me things.</p>
+<h3 id="background">Background</h3>
+<p>The SQL standard is confusing and almost never completely implemented; there are huge inconsistencies between SQL implementations. I will focus on SQLite because it’s popular and easy to play with, but generally try to stay away from unpopular or nonstandard features. <a href="https://www.sqlite.org/lang_select.html">SQLite’s SELECT documentation</a> is good reading for <em>one</em> particular SQL implementation.</p>
+<p>A SQL database is a place where you store and query a bunch of data that’s organized into tables. A table is a homogeneous list of rows. A row is a heterogeneous tuple of values of various simple data types. The data types supported depend on the SQL implementation; typical examples are integers and strings of various sizes, floating point numbers, and dates/datetimes. All of these types can be nullable; NULL is a SQL value that can appear just about anywhere. (Like many of the other SQL features, NULL is handled somewhat inconsistently across SQL implementations, but as a first-order approximation it’s closer to a floating-point NaN than, say, Java’s “null”. We’ll talk more about it later.) However, note that you can’t have a variable-size list of other things in a row. And just to make sure it’s clear, all the rows in a given table must have the same data types in the same order.</p>
+<p>A “column” is just what you’d intuitively expect it to be: it’s the homogeneous list of all values in a particular position in each row of a table, which all have the same data type. One thing I haven’t mentioned yet is that table columns all have names. This is true both for tables stored in the database and for the ephemeral tables that are the output of queries.</p>
+<p>Since I’ll also be referring to more complex types like lists and tuples often seen in conventional programming languages, I’ll call these simple data types “scalar types” and values of those types “scalars”. This is not SQL terminology; documentation usually just calls these “data types”. Here’s <a href="https://www.sqlite.org/datatype3.html">SQLite’s page on data types</a>.</p>
+<p>To play along, install SQLite and run it. You should get dropped into a connection to an ephemeral in-memory database, which is plenty enough for our purposes. Make a table and mutter some magic incantations to make the output a little prettier for us:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">CREATE</span> <span class="kw">TABLE</span> a (<span class="kw">id</span> <span class="dt">int</span>);</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">INSERT</span> <span class="kw">INTO</span> a <span class="kw">VALUES</span> (<span class="dv">1</span>), (<span class="dv">2</span>), (<span class="dv">3</span>), (<span class="dv">4</span>);</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">.headers <span class="kw">on</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">.mode <span class="kw">column</span></a></code></pre></div>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/sql-select">→ read more<span class="offscreen"> SQL Selects the Hard FP Way</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/blogging-advice" class="post-link">Blogging Advice For People Exactly Like Me</a></h3>
 		
 		<p class="post-meta">
@@ -330,34 +364,6 @@
 </figure>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/startup-lag">→ read more<span class="offscreen"> Startup Lag</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/advent-rocket" class="post-link">Rocket Equation</a></h3>
-		
-		<h4 class="post-subtitle">Advent of Code 2019, Day 1</h4>
-		
-		<p class="post-meta">
-		
-		2019-12-01
-		(992 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/math">Math</a>, <a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>It’s December, so it’s time for a lot of things, including <a href="https://adventofcode.com/">Advent of Code</a>. I will not be able to be as competitive as I was last year, and already lost a lot of points to a really silly mistake on day 1, but I’ll be playing when I can and <a href="https://github.com/betaveros/advent-of-code-golf-2019">golfing</a> the problems when I have time (so far: 7 + 14 bytes).</p>
-<p>As one might expect, <a href="https://adventofcode.com/2019/day/1">Day 1</a> is not too complex, but the second part can be analyzed to some mathematical depth and was discussed a bit on Reddit; plus, it occurred to me recently that I set up KaTeX on my blog but never used it, so I was looking for an excuse to write some equations anyway.</p>
-<p>The problem statement for part 2, in brief: We are tasked with calculating the total mass of fuel required to launch a rocket module of a given mass. For something of mass <span class="math inline">\(m\)</span>, one can compute the directly required mass of fuel by dividing <span class="math inline">\(m\)</span> by 3, rounding down, and subtracting 2; if the result is negative, it is taken to be 0 instead. However, the directly required fuel also requires fuel itself, calculated from its own mass by the same procedure, and that required fuel requires fuel based on its own mass, and so on until you reach fuel with 0 requirement.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/advent-rocket">→ read more<span class="offscreen"> Rocket Equation</span></a>
 	</footer>
 </article>
 

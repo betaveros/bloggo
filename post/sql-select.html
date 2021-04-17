@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>SQL Selects the Hard FP Way</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="This post is motivated by reasons very similar to the ones that motivated my React and Redux “tutorial”. Again, it should be more accurately but less informatively titled “How I wish SQL SELECTs were explained to me”. Again, it does not imply that this method of explanation is suitable for anybody else. One difference is that this time, I mostly only wanted to learn about SQL SELECTs to the extent it would help me perform and optimize queries in Django’s ORM, but to prevent this post from languishing forever in my drafts folder, that material has been sectioned off into a possible future post, because I figured out what I wanted, ran out of steam, and am now trying to learn TLA⁺. Just me things.
+Background The SQL standard is confusing and almost never completely implemented; there are huge inconsistencies between SQL implementations. I will focus on SQLite because it’s popular and easy to play with, but generally try to stay away from unpopular or nonstandard features. SQLite’s SELECT documentation is good reading for one particular SQL implementation.
+A SQL database is a place where you store and query a bunch of data that’s organized into tables. A table is a homogeneous list of rows. A row is a heterogeneous tuple of values of various simple data types. The data types supported depend on the SQL implementation; typical examples are integers and strings of various sizes, floating point numbers, and dates/datetimes. All of these types can be nullable; NULL is a SQL value that can appear just about anywhere. (Like many of the other SQL features, NULL is handled somewhat inconsistently across SQL implementations, but as a first-order approximation it’s closer to a floating-point NaN than, say, Java’s “null”. We’ll talk more about it later.) However, note that you can’t have a variable-size list of other things in a row. And just to make sure it’s clear, all the rows in a given table must have the same data types in the same order.
+A “column” is just what you’d intuitively expect it to be: it’s the homogeneous list of all values in a particular position in each row of a table, which all have the same data type. One thing I haven’t mentioned yet is that table columns all have names. This is true both for tables stored in the database and for the ephemeral tables that are the output of queries.
+Since I’ll also be referring to more complex types like lists and tuples often seen in conventional programming languages, I’ll call these simple data types “scalar types” and values of those types “scalars”. This is not SQL terminology; documentation usually just calls these “data types”. Here’s SQLite’s page on data types.
+To play along, install SQLite and run it. You should get dropped into a connection to an ephemeral in-memory database, which is plenty enough for our purposes. Make a table and mutter some magic incantations to make the output a little prettier for us:
+CREATE TABLE a (id int); INSERT INTO a VALUES (1), (2), (3), (4); .headers on .mode column" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/sql-select" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="theme-color" content="#330000" />
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">SQL Selects the Hard FP Way</h1>
+		
+		<p class="post-meta">
+		
+		2021-04-16
+		(3630 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>This post is motivated by reasons very similar to the ones that motivated my <a href="//blog.vero.site/post/react-redux">React and Redux “tutorial”</a>. Again, it should be more accurately but less informatively titled “How I wish SQL SELECTs were explained to me”. Again, it does not imply that this method of explanation is suitable for anybody else. One difference is that this time, I mostly only wanted to learn about SQL SELECTs to the extent it would help me perform and optimize queries in Django’s ORM, but to prevent this post from languishing forever in my drafts folder, that material has been sectioned off into a possible future post, because I figured out what I wanted, ran out of steam, and am now trying to learn TLA⁺. Just me things.</p>
+<h3 id="background">Background</h3>
+<p>The SQL standard is confusing and almost never completely implemented; there are huge inconsistencies between SQL implementations. I will focus on SQLite because it’s popular and easy to play with, but generally try to stay away from unpopular or nonstandard features. <a href="https://www.sqlite.org/lang_select.html">SQLite’s SELECT documentation</a> is good reading for <em>one</em> particular SQL implementation.</p>
+<p>A SQL database is a place where you store and query a bunch of data that’s organized into tables. A table is a homogeneous list of rows. A row is a heterogeneous tuple of values of various simple data types. The data types supported depend on the SQL implementation; typical examples are integers and strings of various sizes, floating point numbers, and dates/datetimes. All of these types can be nullable; NULL is a SQL value that can appear just about anywhere. (Like many of the other SQL features, NULL is handled somewhat inconsistently across SQL implementations, but as a first-order approximation it’s closer to a floating-point NaN than, say, Java’s “null”. We’ll talk more about it later.) However, note that you can’t have a variable-size list of other things in a row. And just to make sure it’s clear, all the rows in a given table must have the same data types in the same order.</p>
+<p>A “column” is just what you’d intuitively expect it to be: it’s the homogeneous list of all values in a particular position in each row of a table, which all have the same data type. One thing I haven’t mentioned yet is that table columns all have names. This is true both for tables stored in the database and for the ephemeral tables that are the output of queries.</p>
+<p>Since I’ll also be referring to more complex types like lists and tuples often seen in conventional programming languages, I’ll call these simple data types “scalar types” and values of those types “scalars”. This is not SQL terminology; documentation usually just calls these “data types”. Here’s <a href="https://www.sqlite.org/datatype3.html">SQLite’s page on data types</a>.</p>
+<p>To play along, install SQLite and run it. You should get dropped into a connection to an ephemeral in-memory database, which is plenty enough for our purposes. Make a table and mutter some magic incantations to make the output a little prettier for us:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">CREATE</span> <span class="kw">TABLE</span> a (<span class="kw">id</span> <span class="dt">int</span>);</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">INSERT</span> <span class="kw">INTO</span> a <span class="kw">VALUES</span> (<span class="dv">1</span>), (<span class="dv">2</span>), (<span class="dv">3</span>), (<span class="dv">4</span>);</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">.headers <span class="kw">on</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">.mode <span class="kw">column</span></a></code></pre></div>
+<p>(The first two commands are SQL and probably portable. The last two “dot-commands” are extremely SQLite-specific.)</p>
+<p>Note: SQL is not case-sensitive. In this post, I’ll type all the keywords in uppercase for clarity and consistency with more documentation, but if I were you and just experimenting, I would type <code>create table a (id int);</code> and so on.</p>
+<h3 id="overview">Overview</h3>
+<p><code>SELECT</code> statements are the main way one gets information out of a database. For the purposes of this post, a <code>SELECT</code> statement looks like this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">SELECT</span> (optionally, <span class="kw">DISTINCT</span>) (<span class="dv">1</span>+ result <span class="kw">columns</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="kw">FROM</span> (<span class="dv">1</span>+ <span class="kw">tables</span> <span class="kw">or</span> subqueries)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">    (<span class="kw">some</span> kind <span class="kw">of</span>) <span class="kw">JOIN</span> <span class="dv">0</span>+ other <span class="kw">tables</span> <span class="kw">ON</span> <span class="kw">some</span> condition</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">  <span class="kw">WHERE</span> <span class="kw">some</span> condition</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">  <span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">some</span> expressions</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">    <span class="kw">HAVING</span> <span class="kw">some</span> condition</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw">ORDER</span> <span class="kw">BY</span> (<span class="dv">1</span>+ expressions)</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw">LIMIT</span> expression OFFSET expression</a></code></pre></div>
+<p>Only <code>SELECT</code> and <code>FROM</code> are required; everything else is optional. There are several features I have omitted and am not talking about, to keep things simple and because I have never used them. There are operators you can use to combine multiple result tables that have the exact same column types: <code>UNION</code>, <code>UNION ALL</code>, <code>INTERSECT</code>, <code>EXCEPT</code>. There are also window functions, which are sort of spiritually related to <code>GROUP BY</code>, and many others.</p>
+<h3 id="select">SELECT</h3>
+<p>At its core, <code>SELECT (thing) FROM (table);</code> is a map (in the higher-order-function sense), or a list comprehension, of the rows from <code>(table)</code>. You can write an expression in terms of the column names; it will be evaluated for each row. Try these.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">SELECT</span> <span class="dv">1</span> <span class="kw">FROM</span> a;</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">SELECT</span> <span class="kw">id</span> <span class="kw">FROM</span> a;</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">SELECT</span> <span class="kw">id</span> * <span class="kw">id</span> <span class="kw">FROM</span> a;</a></code></pre></div>
+<p>You can select more than one expression at once to produce a table with more than one column. In general, these expressions are called <em>result expressions</em>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">SELECT</span> <span class="dv">1</span>, <span class="kw">id</span>, <span class="kw">id</span> * <span class="kw">id</span> <span class="kw">FROM</span> a;</a></code></pre></div>
+<p>You can rename the columns of the resulting table with <code>AS</code>. (If you don’t rename them, the column names will just be the literal string that’s the expression you wrote.)</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">SELECT</span> <span class="kw">id</span> * <span class="kw">id</span> <span class="kw">AS</span> id_squared <span class="kw">FROM</span> a;</a></code></pre></div>
+<p><code>*</code> is just shorthand for “all the columns from the table”. If you want to get the whole table, you can just “map with the identity”:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">SELECT</span> * <span class="kw">FROM</span> a;</a></code></pre></div>
+<p>Before we dig deeper into SELECT, it’s worth spending a moment on SQL expressions. Generally, SQL supports the basic arithmetic and comparison operators. Conditional expressions seem to be somewhat standardized as <code>CASE</code>/<code>WHEN</code>/<code>THEN</code>/<code>ELSE</code>/<code>END</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">SELECT</span> <span class="kw">CASE</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">    <span class="kw">WHEN</span> <span class="kw">id</span> = <span class="dv">1</span> <span class="kw">THEN</span> <span class="dv">11111</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">    <span class="kw">WHEN</span> <span class="kw">id</span> = <span class="dv">2</span> <span class="kw">THEN</span> <span class="dv">22222</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">    <span class="kw">WHEN</span> <span class="kw">id</span> = <span class="dv">3</span> <span class="kw">THEN</span> <span class="dv">33333</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">    <span class="kw">ELSE</span> <span class="dv">44444</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw">END</span> <span class="kw">FROM</span> a;</a></code></pre></div>
+<p>The whitespace/indentation is not significant and is just for clarity. Omitting the <code>ELSE</code> clause makes the default <code>NULL</code>. Most SQL implementations have a bunch of other expressions and functions, but if you want to write any nontrivial expression, look it up for your implementation specifically; it varies widely. I don’t think even string concatenation or taking the min/max of two numbers has a consistent syntax.</p>
+<p>Speaking of inconsistent expressions, let’s talk about NULL, the SQL scalar value that can appear almost anywhere because every data type is nullable, and how it works in expressions. As a reminder, its closest counterpart in other programming languages is likely a floating-point NaN rather than something actually called “null”. In SQL, NULL is falsy, but doing any arithmetic and comparison operations on it and anything else produces another NULL. In particular, NULL is not equal to itself! (More precisely, NULL = NULL is NULL again, which is falsy; but note that by the same token, it’s also not not-equal to itself.) Well, except when NULL <em>is</em> equal to NULL in other cases. Here’s <a href="https://sqlite.org/nulls.html">SQLite’s page on NULL handling</a>. To check if a value is NULL, use the special syntax <code>value IS NULL</code> or <code>value IS NOT NULL</code>.</p>
+<p>In general, though, a simple result expression is basically implicitly a function <code>a.row -&gt; s</code> for some scalar type <code>s</code>. A single <code>*</code> is shorthand that expands into many result expressions, one per column. There is also the shorthand <code>a.*</code>, which expands into one result expression per column from that particular table.</p>
+<p>One SQL feature that also involves grouping/aggregation I won’t go into depth about is the “window function”. Using a window function doesn’t change the number of rows in the result, but rows can contain values that were computed by aggregating over multiple rows in the source table; the ranges of rows being aggregated over will thus typically repeat or overlap.</p>
+<h3 id="joins">Joins</h3>
+<p>After <code>FROM</code>, where we had a table, we can instead have several tables, each <code>JOIN</code>ed to the previous in one of a few ways. If you <code>INNER JOIN</code> two tables and do nothing else, you’re just taking the Cartesian product, much like a nested list comprehension. <code>JOIN</code> and <code>INNER JOIN</code> are equivalent.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb8-1" data-line-number="1">sqlite&gt; <span class="kw">SELECT</span> *, a.id + b.id <span class="kw">FROM</span> a <span class="kw">JOIN</span> a <span class="kw">AS</span> b;</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">id</span>          <span class="kw">id</span>          a.id + b.id</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="co">----------  ----------  -----------</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="dv">1</span>           <span class="dv">1</span>           <span class="dv">2</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="dv">1</span>           <span class="dv">2</span>           <span class="dv">3</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="dv">1</span>           <span class="dv">3</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="dv">1</span>           <span class="dv">4</span>           <span class="dv">5</span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="dv">2</span>           <span class="dv">1</span>           <span class="dv">3</span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="dv">2</span>           <span class="dv">2</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="dv">2</span>           <span class="dv">3</span>           <span class="dv">5</span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="dv">2</span>           <span class="dv">4</span>           <span class="dv">6</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="dv">3</span>           <span class="dv">1</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="dv">3</span>           <span class="dv">2</span>           <span class="dv">5</span></a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="dv">3</span>           <span class="dv">3</span>           <span class="dv">6</span></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="dv">3</span>           <span class="dv">4</span>           <span class="dv">7</span></a>
+<a class="sourceLine" id="cb8-16" data-line-number="16"><span class="dv">4</span>           <span class="dv">1</span>           <span class="dv">5</span></a>
+<a class="sourceLine" id="cb8-17" data-line-number="17"><span class="dv">4</span>           <span class="dv">2</span>           <span class="dv">6</span></a>
+<a class="sourceLine" id="cb8-18" data-line-number="18"><span class="dv">4</span>           <span class="dv">3</span>           <span class="dv">7</span></a>
+<a class="sourceLine" id="cb8-19" data-line-number="19"><span class="dv">4</span>           <span class="dv">4</span>           <span class="dv">8</span></a></code></pre></div>
+<p>Completely unnecessarily, a lot of tutorials treat “self-joins” (where you join a table with itself instead of a different table) specially. We’re not going to because there’s really no conceptual difference (although admittedly, there is the notational inconvenience that you have to alias one of the tables to be able to refer to it unambiguously) and because we save creating a table of sample data. A Cartesian product is a Cartesian product is a Cartesian product.</p>
+<p>Of course, in the vast majority of use cases, you don’t just want the full Cartesian product of two tables or anything close to it. When you really, really do, implementations sometimes offer another term called CROSS JOIN. Sometimes this is exactly equivalent to JOIN and sometimes it’s not, but from what I can gather, it strongly connotes that you really want the full Cartesian product, rather than being a typical join where the number of returned rows is on the order of just the number of rows on one side or another.</p>
+<h3 id="inner-and-outer-joins">Inner and Outer Joins</h3>
+<p>This is where most tutorials start giving technically incomplete explanations with Venn diagrams and whatever. Screw that.</p>
+<p>You can add <code>ON</code> followed by a <em>predicate</em> to any <code>JOIN</code>. The predicate is an expression that filters the Cartesian product. That’s it.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb9-1" data-line-number="1">sqlite&gt; <span class="kw">SELECT</span> *, a.id + b.id <span class="kw">FROM</span> a <span class="kw">JOIN</span> a <span class="kw">AS</span> b <span class="kw">ON</span> a.id &lt; b.id;</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">id</span>          <span class="kw">id</span>          a.id + b.id</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">----------  ----------  -----------</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="dv">1</span>           <span class="dv">2</span>           <span class="dv">3</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="dv">1</span>           <span class="dv">3</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="dv">1</span>           <span class="dv">4</span>           <span class="dv">5</span></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="dv">2</span>           <span class="dv">3</span>           <span class="dv">5</span></a>
+<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="dv">2</span>           <span class="dv">4</span>           <span class="dv">6</span></a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="dv">3</span>           <span class="dv">4</span>           <span class="dv">7</span></a></code></pre></div>
+<p><code>LEFT JOIN</code> aka <code>LEFT OUTER JOIN</code> is much the same except that it forces every row from the left table to show up at least once. Concretely, if a row from the left table would be completely filtered out from the Cartesian product, <code>LEFT JOIN</code> will add back a copy of that row combined with an imaginary all-NULL row from the right table, as seen in the bottom row here. (The blank in the second column is a NULL; I couldn’t figure out how to make SQLite show NULLs explicitly.)</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb10-1" data-line-number="1">sqlite&gt; <span class="kw">SELECT</span> * <span class="kw">FROM</span> a <span class="kw">LEFT</span> <span class="kw">JOIN</span> a <span class="kw">AS</span> b <span class="kw">ON</span> a.id &lt; b.id;</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">id</span>          <span class="kw">id</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">----------  ----------</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="dv">1</span>           <span class="dv">2</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="dv">1</span>           <span class="dv">3</span></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="dv">1</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="dv">2</span>           <span class="dv">3</span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="dv">2</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="dv">3</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="dv">4</span></a></code></pre></div>
+<p>(<code>RIGHT JOIN</code> is just <code>LEFT JOIN</code> but with the arguments flipped, so it forces every row from the right table to show up at least once. <code>FULL JOIN</code> is the union of both: it forces all rows from both sides to show up at least once. SQLite doesn’t even support these two.)</p>
+<p>You can join tables and joined products of tables. They follow the same rules.</p>
+<h3 id="joins-typically">Joins, Typically</h3>
+<p>Okay, although that’s (I believe) a complete formal description of what the result of a <code>JOIN</code> is, it’s extremely unrepresentative of typical usages of <code>JOIN</code>, both in terms of performance and intuitive meaning.</p>
+<p>Most joins most people care about are across <strong>foreign keys</strong>. That’s a setup in which some table <code>a</code> has a <em>unique</em> column like <code>id</code> (every row has a distinct value of <code>id</code>), and somewhere else you’ll have another table called <code>b</code> with a column <code>a_id</code> that “means” “the row in <code>a</code> with that <code>id</code>”. The SQL database might even be configured to enforce this, in which case it won’t allow you to insert rows in <code>b</code> with <code>a_id</code> values that aren’t actually <code>id</code>s of some row in <code>a</code>. But no matter whether or how it’s enforced, the upshot is that every row in <code>b</code> is associated with exactly one row of <code>a</code>. In this case, we call <code>a_id</code> a “foreign key”.</p>
+<p>A typical join across a foreign key looks like <code>SELECT * FROM b JOIN a ON b.a_id = a.id;</code>. Assuming the database is internally consistent, this <code>SELECT</code> will return exactly one row for every row in <code>b</code>. Sometimes <code>a_id</code> is nullable. Then <code>SELECT * FROM b JOIN a ON b.a_id = a.id;</code> will include one row for every row in <code>b</code> that has an associated row in <code>a</code>. Often, you don’t want that and would rather have exactly one row per <code>b</code>, in which case you can do a LEFT JOIN as mentioned above: <code>SELECT * FROM b LEFT JOIN a ON b.a_id = a.id;</code>. In either of these special (but very common) cases, combining the <code>JOIN</code> and filtering with <code>ON</code> has produced something very similar to a regular map or list comprehension across rows of <code>b</code>.</p>
+<p>However, often you will also want to join across a foreign key “backwards”. The query <code>SELECT * FROM a JOIN b ON a.id = b.a_id;</code> is effectively identical to the first query in the above paragraph, just with the columns swapped. However, replacing <code>JOIN</code> with <code>LEFT JOIN</code> in this query has a different effect; it will force every row from <code>a</code> to appear at least once. And generally, sometimes we’ll want to do this because it will make more sense to view a more complicated query we’re writing as a flatmap over rows of <code>a</code> instead of a map over rows of <code>b</code> (e.g. if we join additional tables or add a <code>GROUP BY</code> clause — see below).</p>
+<h3 id="where">WHERE</h3>
+<p><code>WHERE</code> followed by a predicate is a clause that filters the rows we’ve SELECTed thus far. It’s almost exactly like <code>ON</code>, except that <code>WHERE</code> can be used on non-JOINs, so you’ll use it much more often. Can you spot why they differ? It’s because the “add back copies of filtered-out rows” operation performed by <code>LEFT JOIN</code> and friends comes after <code>ON</code> but before <code>WHERE</code>, so if you replace an <code>ON</code> clause with a <code>WHERE</code> clause you deprive <code>LEFT JOIN</code> of its chance to add rows back. In the following example that was very similar to our first <code>ON</code> example, no row has <code>a.id = 4</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb11-1" data-line-number="1">sqlite&gt; <span class="kw">SELECT</span> * <span class="kw">FROM</span> a <span class="kw">LEFT</span> <span class="kw">JOIN</span> a <span class="kw">AS</span> b <span class="kw">WHERE</span> a.id &lt; b.id;</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">id</span>          <span class="kw">id</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">----------  ----------</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="dv">1</span>           <span class="dv">2</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="dv">1</span>           <span class="dv">3</span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="dv">1</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="dv">2</span>           <span class="dv">3</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="dv">2</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="dv">3</span>           <span class="dv">4</span></a></code></pre></div>
+<h3 id="aggregation">Aggregation</h3>
+<p>This is where things get weird.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb12-1" data-line-number="1">sqlite&gt; <span class="kw">SELECT</span> <span class="fu">SUM</span>(<span class="kw">id</span>) <span class="kw">FROM</span> a;</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="fu">SUM</span>(<span class="kw">id</span>)</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">----------</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="dv">10</span></a></code></pre></div>
+<p>This is obviously not a map: <code>a</code> has three rows, but the query only returned one. It’s actually a <del>catamorphism</del> fold (aka reduce)! You can also precompose and postcompose things onto the fold. Note the difference:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb13-1" data-line-number="1">sqlite&gt; <span class="kw">SELECT</span> <span class="fu">SUM</span>(<span class="kw">id</span>) + <span class="dv">1</span> <span class="kw">FROM</span> a;</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="fu">SUM</span>(<span class="kw">id</span>) + <span class="dv">1</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co">-----------</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="dv">11</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">sqlite&gt; <span class="kw">SELECT</span> <span class="fu">SUM</span>(<span class="kw">id</span> + <span class="dv">1</span>) <span class="kw">FROM</span> a;</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="fu">SUM</span>(<span class="kw">id</span> + <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">-----------</span></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="dv">14</span></a></code></pre></div>
+<p>The first query computes (1 + 2 + 3 + 4) + 1; the second query computes (1 + 1) + (2 + 1) + (3 + 1) + (4 + 1).</p>
+<p><code>SUM</code> and functions like it that cause folds are called “aggregation functions”. It’s not that obvious what their “type” is. At first glance it looks like SUM takes a number and outputs a number, but you can’t just, for example, compose it with itself willy-nilly:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb14-1" data-line-number="1">sqlite&gt; <span class="kw">SELECT</span> <span class="fu">SUM</span>(<span class="fu">SUM</span>(<span class="kw">id</span>)) <span class="kw">FROM</span> a;</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">Error: misuse <span class="kw">of</span> aggregate <span class="kw">function</span> <span class="fu">SUM</span>()</a></code></pre></div>
+<p>The basic idea:</p>
+<ul>
+<li>Every expression is either aggregate or nonaggregate.</li>
+<li>If you <code>SELECT</code> an aggregate expression, you’ll get a single row, whereas if you <code>SELECT</code> a nonaggregate expression, you’ll get one row for each row in the source table.</li>
+<li>Most expressions (e.g. constants or column names) are nonaggregate.</li>
+<li>Aggregation functions convert nonaggregate expressions to aggregate expressions; they can’t be called on aggregate expressions.</li>
+<li>Aggregate expressions are “stronger” than nonaggregate expressions when they interact in any other case. If any result expression or subexpression thereof in a <code>SELECT</code> is an aggregation expression, the entire <code>SELECT</code> becomes an aggregation. If there are also nonaggregate result expressions, or if aggregation expressions and nonaggregate expressions are combined anywhere, the nonaggregate expression will just be <strong>evaluated at an arbitrary row</strong>.</li>
+</ul>
+<p>Consider this query:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">SELECT</span> <span class="fu">SUM</span>(<span class="kw">id</span>), <span class="kw">id</span> <span class="kw">FROM</span> a;</a></code></pre></div>
+<p>It returns a single row whose first element is the sum of all <code>id</code>s in <code>a</code>, but whose second element is the <code>id</code> from an arbitrary row. Other operators may even work the same way:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">SELECT</span> <span class="fu">SUM</span>(<span class="kw">id</span>) + <span class="kw">id</span> <span class="kw">FROM</span> a;</a></code></pre></div>
+<p>will return a single row that consists of the sum of all <code>id</code>s in <code>a</code> plus the <code>id</code> from an arbitrary row.</p>
+<p>There aren’t that many aggregation functions you can count on existing. I think the intersection of SQLite, MySQL, and Postgres is <code>COUNT</code>, <code>SUM</code>, <code>MIN</code>, <code>MAX</code>, and <code>AVG</code> (average). <code>COUNT</code> counts the number of times its argument is truthy, but one of the most commonly useful special cases <code>COUNT(*)</code> just counts the number of rows. The others are hopefully self-explanatory, with one caveat: <strong>Other than <code>COUNT</code></strong>, the aggregation functions all ignore <code>NULL</code>s, and <strong>return <code>NULL</code> when folded over zero non-<code>NULL</code> arguments</strong>. This makes sense for <code>MIN</code>, <code>MAX</code>, and <code>AVG</code>, but not necessarily for <code>SUM</code> (which you might expect to return 0), so be aware. (This is what the SQL standard requires, so it is what it is. SQLite actually has a <code>TOTAL</code> function that’s exactly like <code>SUM</code> except that it returns 0 when folded over zero non-NULL arguments, but this is again SQLite-specific.)</p>
+<h3 id="grouping">Grouping</h3>
+<p>The arbitrary-row thing might not seem generally useful at first, but you don’t have to fold over the <em>entire</em> result set. You can instead <code>GROUP BY</code> some expressions. In such cases, the rows are partitioned into groups on which the expressions being GROUPed BY (as a tuple expression) have the same values. The folds occur over those partitions, and the result contains one row per group.</p>
+<p>Below, I group the rows into <code>(1, 3)</code> and <code>(2, 4)</code> and take the sum of squares across them.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb17-1" data-line-number="1">sqlite&gt; <span class="kw">SELECT</span> <span class="fu">SUM</span>(<span class="kw">id</span> * <span class="kw">id</span>) <span class="kw">FROM</span> a <span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">id</span> % <span class="dv">2</span>;</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="fu">SUM</span>(<span class="kw">id</span> * <span class="kw">id</span>)</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="co">------------</span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="dv">20</span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="dv">10</span></a></code></pre></div>
+<p>As before, any non-aggregation result expressions will be evaluated at an arbitrary row in the group. This is what the below query gives me, but I shouldn’t depend on the <code>id</code> of either row being 4 and 3 instead of 2 and 1.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb18-1" data-line-number="1">sqlite&gt; <span class="kw">SELECT</span> <span class="kw">id</span>, <span class="fu">SUM</span>(<span class="kw">id</span> * <span class="kw">id</span>) <span class="kw">FROM</span> a <span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">id</span> % <span class="dv">2</span>;</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">id</span>          <span class="fu">SUM</span>(<span class="kw">id</span> * <span class="kw">id</span>)</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="co">----------  ------------</span></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="dv">4</span>           <span class="dv">20</span></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="dv">3</span>           <span class="dv">10</span></a></code></pre></div>
+<p>However, note that selecting nonaggregate expressions that are equal to expressions that are being grouped by, or pure functions thereof, do not introduce arbitrariness, and thus are particularly useful. This query is predictable and potentially useful:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb19-1" data-line-number="1">sqlite&gt; <span class="kw">SELECT</span> <span class="kw">id</span> % <span class="dv">2</span>, <span class="fu">SUM</span>(<span class="kw">id</span> * <span class="kw">id</span>) <span class="kw">FROM</span> a <span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">id</span> % <span class="dv">2</span>;</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw">id</span> % <span class="dv">2</span>      <span class="fu">SUM</span>(<span class="kw">id</span> * <span class="kw">id</span>)</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="co">----------  ------------</span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="dv">0</span>           <span class="dv">20</span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="dv">1</span>           <span class="dv">10</span></a></code></pre></div>
+<p>A <code>GROUP BY</code> clause can be followed by a <code>HAVING</code> clause, which is just a filter on the groups rather than the individual rows. I don’t have enough rows in our table to give a great example, but:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb20-1" data-line-number="1">sqlite&gt; <span class="kw">SELECT</span> <span class="kw">id</span> % <span class="dv">2</span>, <span class="fu">SUM</span>(<span class="kw">id</span> * <span class="kw">id</span>) <span class="kw">FROM</span> a <span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">id</span> % <span class="dv">2</span> <span class="kw">HAVING</span> <span class="kw">id</span> % <span class="dv">2</span> != <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw">id</span> % <span class="dv">2</span>      <span class="fu">SUM</span>(<span class="kw">id</span> * <span class="kw">id</span>)</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="co">----------  ------------</span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="dv">0</span>           <span class="dv">20</span></a></code></pre></div>
+<h3 id="sorting-and-slicing">Sorting and Slicing</h3>
+<p>Next, we have clauses to sort and slice the resulting list of rows: <code>ORDER BY</code>, <code>LIMIT</code>, and <code>OFFSET</code>. The basic syntax is pretty self-explanatory.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb21-1" data-line-number="1">sqlite&gt; <span class="kw">SELECT</span> *, a.id + b.id <span class="kw">FROM</span> a <span class="kw">JOIN</span> a <span class="kw">AS</span> b <span class="kw">ORDER</span> <span class="kw">BY</span> a.id + b.id;</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">id</span>          <span class="kw">id</span>          a.id + b.id</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="co">----------  ----------  -----------</span></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="dv">1</span>           <span class="dv">1</span>           <span class="dv">2</span></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="dv">1</span>           <span class="dv">2</span>           <span class="dv">3</span></a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="dv">2</span>           <span class="dv">1</span>           <span class="dv">3</span></a>
+<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="dv">1</span>           <span class="dv">3</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb21-8" data-line-number="8"><span class="dv">2</span>           <span class="dv">2</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="dv">3</span>           <span class="dv">1</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb21-10" data-line-number="10"><span class="dv">1</span>           <span class="dv">4</span>           <span class="dv">5</span></a>
+<a class="sourceLine" id="cb21-11" data-line-number="11"><span class="dv">2</span>           <span class="dv">3</span>           <span class="dv">5</span></a>
+<a class="sourceLine" id="cb21-12" data-line-number="12"><span class="dv">3</span>           <span class="dv">2</span>           <span class="dv">5</span></a>
+<a class="sourceLine" id="cb21-13" data-line-number="13"><span class="dv">4</span>           <span class="dv">1</span>           <span class="dv">5</span></a>
+<a class="sourceLine" id="cb21-14" data-line-number="14"><span class="dv">2</span>           <span class="dv">4</span>           <span class="dv">6</span></a>
+<a class="sourceLine" id="cb21-15" data-line-number="15"><span class="dv">3</span>           <span class="dv">3</span>           <span class="dv">6</span></a>
+<a class="sourceLine" id="cb21-16" data-line-number="16"><span class="dv">4</span>           <span class="dv">2</span>           <span class="dv">6</span></a>
+<a class="sourceLine" id="cb21-17" data-line-number="17"><span class="dv">3</span>           <span class="dv">4</span>           <span class="dv">7</span></a>
+<a class="sourceLine" id="cb21-18" data-line-number="18"><span class="dv">4</span>           <span class="dv">3</span>           <span class="dv">7</span></a>
+<a class="sourceLine" id="cb21-19" data-line-number="19"><span class="dv">4</span>           <span class="dv">4</span>           <span class="dv">8</span></a>
+<a class="sourceLine" id="cb21-20" data-line-number="20">sqlite&gt; <span class="kw">SELECT</span> *, a.id + b.id <span class="kw">FROM</span> a <span class="kw">JOIN</span> a <span class="kw">AS</span> b <span class="kw">ORDER</span> <span class="kw">BY</span> a.id + b.id <span class="kw">LIMIT</span> <span class="dv">3</span>;</a>
+<a class="sourceLine" id="cb21-21" data-line-number="21"><span class="kw">id</span>          <span class="kw">id</span>          a.id + b.id</a>
+<a class="sourceLine" id="cb21-22" data-line-number="22"><span class="co">----------  ----------  -----------</span></a>
+<a class="sourceLine" id="cb21-23" data-line-number="23"><span class="dv">1</span>           <span class="dv">1</span>           <span class="dv">2</span></a>
+<a class="sourceLine" id="cb21-24" data-line-number="24"><span class="dv">1</span>           <span class="dv">2</span>           <span class="dv">3</span></a>
+<a class="sourceLine" id="cb21-25" data-line-number="25"><span class="dv">2</span>           <span class="dv">1</span>           <span class="dv">3</span></a>
+<a class="sourceLine" id="cb21-26" data-line-number="26">sqlite&gt; <span class="kw">SELECT</span> *, a.id + b.id <span class="kw">FROM</span> a <span class="kw">JOIN</span> a <span class="kw">AS</span> b <span class="kw">ORDER</span> <span class="kw">BY</span> a.id + b.id <span class="kw">LIMIT</span> <span class="dv">3</span> OFFSET <span class="dv">3</span>;</a>
+<a class="sourceLine" id="cb21-27" data-line-number="27"><span class="kw">id</span>          <span class="kw">id</span>          a.id + b.id</a>
+<a class="sourceLine" id="cb21-28" data-line-number="28"><span class="co">----------  ----------  -----------</span></a>
+<a class="sourceLine" id="cb21-29" data-line-number="29"><span class="dv">1</span>           <span class="dv">3</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb21-30" data-line-number="30"><span class="dv">2</span>           <span class="dv">2</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb21-31" data-line-number="31"><span class="dv">3</span>           <span class="dv">1</span>           <span class="dv">4</span></a></code></pre></div>
+<p>You can order by multiple expressions. After each expression, you can write ASC or DESC to say if you’re sorting in ascending or descending order.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb22-1" data-line-number="1">sqlite&gt; <span class="kw">SELECT</span> *, a.id + b.id <span class="kw">FROM</span> a <span class="kw">JOIN</span> a <span class="kw">AS</span> b <span class="kw">ORDER</span> <span class="kw">BY</span> b.id <span class="kw">DESC</span>, a.id <span class="kw">DESC</span>;</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="kw">id</span>          <span class="kw">id</span>          a.id + b.id</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="co">----------  ----------  -----------</span></a>
+<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="dv">4</span>           <span class="dv">4</span>           <span class="dv">8</span></a>
+<a class="sourceLine" id="cb22-5" data-line-number="5"><span class="dv">3</span>           <span class="dv">4</span>           <span class="dv">7</span></a>
+<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="dv">2</span>           <span class="dv">4</span>           <span class="dv">6</span></a>
+<a class="sourceLine" id="cb22-7" data-line-number="7"><span class="dv">1</span>           <span class="dv">4</span>           <span class="dv">5</span></a>
+<a class="sourceLine" id="cb22-8" data-line-number="8"><span class="dv">4</span>           <span class="dv">3</span>           <span class="dv">7</span></a>
+<a class="sourceLine" id="cb22-9" data-line-number="9"><span class="dv">3</span>           <span class="dv">3</span>           <span class="dv">6</span></a>
+<a class="sourceLine" id="cb22-10" data-line-number="10"><span class="dv">2</span>           <span class="dv">3</span>           <span class="dv">5</span></a>
+<a class="sourceLine" id="cb22-11" data-line-number="11"><span class="dv">1</span>           <span class="dv">3</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb22-12" data-line-number="12"><span class="dv">4</span>           <span class="dv">2</span>           <span class="dv">6</span></a>
+<a class="sourceLine" id="cb22-13" data-line-number="13"><span class="dv">3</span>           <span class="dv">2</span>           <span class="dv">5</span></a>
+<a class="sourceLine" id="cb22-14" data-line-number="14"><span class="dv">2</span>           <span class="dv">2</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb22-15" data-line-number="15"><span class="dv">1</span>           <span class="dv">2</span>           <span class="dv">3</span></a>
+<a class="sourceLine" id="cb22-16" data-line-number="16"><span class="dv">4</span>           <span class="dv">1</span>           <span class="dv">5</span></a>
+<a class="sourceLine" id="cb22-17" data-line-number="17"><span class="dv">3</span>           <span class="dv">1</span>           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb22-18" data-line-number="18"><span class="dv">2</span>           <span class="dv">1</span>           <span class="dv">3</span></a>
+<a class="sourceLine" id="cb22-19" data-line-number="19"><span class="dv">1</span>           <span class="dv">1</span>           <span class="dv">2</span></a></code></pre></div>
+<p>SQL implementations differ on how NULL is sorted: it could be smaller or greater than everything else. Some implementations let you write <code>NULLS FIRST</code> or <code>NULLS LAST</code> after <code>ASC</code> or <code>DESC</code> to specify this, but it’s not universal. You can always work around this with explicitly testing for <code>NULL</code> and using the <code>CASE</code> expression mentioned much earlier.</p>
+<h3 id="nested-queries">Nested Queries</h3>
+<p>A <code>SELECT</code> query is itself an expression. You can use them in many places inside an outer <code>SELECT</code> query, just by wrapping it in parentheses; they’re called <em>subqueries</em>.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb23-1" data-line-number="1">sqlite&gt; <span class="kw">SELECT</span> <span class="kw">id</span> + (<span class="kw">SELECT</span> <span class="fu">SUM</span>(<span class="kw">id</span>) <span class="kw">FROM</span> a) <span class="kw">FROM</span> a;</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw">id</span> + (<span class="kw">SELECT</span> <span class="fu">SUM</span>(<span class="kw">id</span>) <span class="kw">FROM</span> a)</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="co">----------------------------</span></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="dv">11</span></a>
+<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="dv">12</span></a>
+<a class="sourceLine" id="cb23-6" data-line-number="6"><span class="dv">13</span></a>
+<a class="sourceLine" id="cb23-7" data-line-number="7"><span class="dv">14</span></a></code></pre></div>
+<p>You can even use variables from the outside query! That’s called a <a href="https://en.wikipedia.org/wiki/Correlated_subquery">correlated subquery</a>. It’s probably more expensive because it has to run a subquery for every value taken by those outside variables, but the database may be able to figure out how to do it more efficiently.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">SELECT</span> <span class="kw">id</span> + (<span class="kw">SELECT</span> <span class="fu">SUM</span>(b.id) <span class="kw">FROM</span> a <span class="kw">AS</span> b <span class="kw">WHERE</span> b.id &gt; a.id) <span class="kw">FROM</span> a;</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="kw">id</span> + (<span class="kw">select</span> <span class="fu">sum</span>(b.id) <span class="kw">from</span> a <span class="kw">as</span> b <span class="kw">where</span> b.id &gt; a.id)</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3"><span class="co">-----------------------------------------------------</span></a>
+<a class="sourceLine" id="cb24-4" data-line-number="4"><span class="dv">10</span></a>
+<a class="sourceLine" id="cb24-5" data-line-number="5"><span class="dv">9</span></a>
+<a class="sourceLine" id="cb24-6" data-line-number="6"><span class="dv">7</span></a></code></pre></div>
+<p>Unfortunately, subqueries can only return a table with a single row and a single column.</p></article>
+	<footer class="post-footer">
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/blogging-advice">← Blogging Advice For People Exactly Like Me</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2021 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://www.goatcounter.com/">GoatCounter</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>

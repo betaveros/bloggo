@@ -6,7 +6,26 @@
     <description>Recent content in Posts on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 14 Mar 2021 00:24:46 -0800</lastBuildDate><atom:link href="//blog.vero.site/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Apr 2021 19:41:49 -0700</lastBuildDate><atom:link href="//blog.vero.site/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SQL Selects the Hard FP Way</title>
+      <link>//blog.vero.site/post/sql-select</link>
+      <pubDate>Fri, 16 Apr 2021 19:41:49 -0700</pubDate>
+      
+      <guid>//blog.vero.site/post/sql-select</guid>
+      <description>&lt;p&gt;This post is motivated by reasons very similar to the ones that motivated my &lt;a href=&#34;//blog.vero.site/post/react-redux&#34;&gt;React and Redux “tutorial”&lt;/a&gt;. Again, it should be more accurately but less informatively titled “How I wish SQL SELECTs were explained to me”. Again, it does not imply that this method of explanation is suitable for anybody else. One difference is that this time, I mostly only wanted to learn about SQL SELECTs to the extent it would help me perform and optimize queries in Django’s ORM, but to prevent this post from languishing forever in my drafts folder, that material has been sectioned off into a possible future post, because I figured out what I wanted, ran out of steam, and am now trying to learn TLA⁺. Just me things.&lt;/p&gt;
+&lt;h3 id=&#34;background&#34;&gt;Background&lt;/h3&gt;
+&lt;p&gt;The SQL standard is confusing and almost never completely implemented; there are huge inconsistencies between SQL implementations. I will focus on SQLite because it’s popular and easy to play with, but generally try to stay away from unpopular or nonstandard features. &lt;a href=&#34;https://www.sqlite.org/lang_select.html&#34;&gt;SQLite’s SELECT documentation&lt;/a&gt; is good reading for &lt;em&gt;one&lt;/em&gt; particular SQL implementation.&lt;/p&gt;
+&lt;p&gt;A SQL database is a place where you store and query a bunch of data that’s organized into tables. A table is a homogeneous list of rows. A row is a heterogeneous tuple of values of various simple data types. The data types supported depend on the SQL implementation; typical examples are integers and strings of various sizes, floating point numbers, and dates/datetimes. All of these types can be nullable; NULL is a SQL value that can appear just about anywhere. (Like many of the other SQL features, NULL is handled somewhat inconsistently across SQL implementations, but as a first-order approximation it’s closer to a floating-point NaN than, say, Java’s “null”. We’ll talk more about it later.) However, note that you can’t have a variable-size list of other things in a row. And just to make sure it’s clear, all the rows in a given table must have the same data types in the same order.&lt;/p&gt;
+&lt;p&gt;A “column” is just what you’d intuitively expect it to be: it’s the homogeneous list of all values in a particular position in each row of a table, which all have the same data type. One thing I haven’t mentioned yet is that table columns all have names. This is true both for tables stored in the database and for the ephemeral tables that are the output of queries.&lt;/p&gt;
+&lt;p&gt;Since I’ll also be referring to more complex types like lists and tuples often seen in conventional programming languages, I’ll call these simple data types “scalar types” and values of those types “scalars”. This is not SQL terminology; documentation usually just calls these “data types”. Here’s &lt;a href=&#34;https://www.sqlite.org/datatype3.html&#34;&gt;SQLite’s page on data types&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To play along, install SQLite and run it. You should get dropped into a connection to an ephemeral in-memory database, which is plenty enough for our purposes. Make a table and mutter some magic incantations to make the output a little prettier for us:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode sql&#34;&gt;&lt;code class=&#34;sourceCode sql&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; data-line-number=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;CREATE&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;TABLE&lt;/span&gt; a (&lt;span class=&#34;kw&#34;&gt;id&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;);&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; data-line-number=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;INSERT&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;INTO&lt;/span&gt; a &lt;span class=&#34;kw&#34;&gt;VALUES&lt;/span&gt; (&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;), (&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;), (&lt;span class=&#34;dv&#34;&gt;3&lt;/span&gt;), (&lt;span class=&#34;dv&#34;&gt;4&lt;/span&gt;);&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-3&#34; data-line-number=&#34;3&#34;&gt;.headers &lt;span class=&#34;kw&#34;&gt;on&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; data-line-number=&#34;4&#34;&gt;.mode &lt;span class=&#34;kw&#34;&gt;column&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
     <item>
       <title>Blogging Advice For People Exactly Like Me</title>
       <link>//blog.vero.site/post/blogging-advice</link>
