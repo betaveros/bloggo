@@ -22,6 +22,7 @@ Category → CS
 <meta name="robots" content="index,follow" />
 <meta name="referrer" content="origin-when-cross-origin" />
 <meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
 
 <link rel="icon" href="/favicon.ico" />
 
@@ -62,6 +63,45 @@ Category → CS
 		</h2>
 	</header>
 	<article class="content"></article><article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/discord-color" class="post-link">What Color Should My Discord Roles/Reactions Be?</a></h3>
+		
+		<p class="post-meta">
+		
+		2021-06-28
+		(1653 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>I subscribed to Discord Nitro a month ago, but only recently did I start thinking about the full range of powers the subscription granted me. I could create my own reactions, dump them in my personal server, and use them to react anywhere.</p>
+<p>However, when I finally started trying to create some reactions, I hit an interesting snag: Discord can be used in dark and light mode,<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and a reaction will have the same color on both modes. If I wanted my reaction to be as clearly readable in both modes as possible, what color should I make it?</p>
+<p>(I could, of course, just outline my reaction with a contrasting color, but let’s say that’s cheating. With the limited space in a reaction, outlining isn’t that great of a solution anyway.)</p>
+<p>Now, one can’t <em>really</em> just compute the “contrast of two colors” given only their RGB components; there’s no universally agreed-on definition of <a href="https://en.wikipedia.org/wiki/Contrast_(vision)">contrast in vision</a>, and even if there were one, the contrast of two given colors would depend on the color space and possibly the viewer’s biology. But, to get a concrete answer to this question, we can use the standard sRGB model and the W3C’s definitions of <a href="https://www.w3.org/TR/WCAG/#dfn-contrast-ratio">contrast ratio</a> and <a href="https://www.w3.org/TR/WCAG/#dfn-relative-luminance">relative luminance</a>.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> As of time of writing on my computer,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Discord reactions have background <span style="padding:0.15em 0.4em;background-color:#2f3136;color:white">#2f3136</span> on dark mode and <span style="padding:0.15em 0.4em;background-color:#f2f3f5">#f2f3f5</span> on light mode. Reactions you’ve reacted with have background <span style="padding:0.15em 0.4em;background-color:#3b405a;color:white">#3b405a</span> on dark mode and <span style="padding:0.15em 0.4em;background-color:#e7e9fd">#e7e9fd</span> on light mode. Because the dark mode background gets lighter and the light mode background gets darker, we’ll use the latter colors so we’re optimizing the worst-case contrast.</p>
+<p>There are smarter approaches, but the 256<sup>3</sup> = 16,777,216 possible 8-bit colors are perfectly feasible to brute force, so I wrote a short Python script to check all of them, which is at the bottom of this post. Under the parameters I’ve outlined, the optimal color for a Discord reaction is <span style="padding:0.15em 0.4em;background-color:#ff4103">rgb(255, 65, 3) or #ff4103.</span> A demo:</p>
+<table>
+<tr>
+<td style="background-color:#3b405a;color:#ff4103">
+#ff4103 <strong>#ff4103</strong> ●<br> <small><abbr title="Contrast Ratio">CR</abbr>: 2.90738237</small>
+</td>
+<td style="background-color:#e7e9fd;color:#ff4103">
+#ff4103 <strong>#ff4103</strong> ● <br> <small><abbr title="Contrast Ratio">CR</abbr>: 2.90738217</small>
+</td>
+</tr>
+</table>
+<p>That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that.</p>
+<p>After playing with a few ways to get a spread of options, I settled on categorizing colors into six buckets of saturation and twelve buckets of hue in the <a href="https://en.wikipedia.org/wiki/HSL_and_HSV#Formal_derivation">simple HSV model</a>, and then finding the optimal color within each bucket. Here is a table of my results:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/discord-color">→ read more<span class="offscreen"> What Color Should My Discord Roles/Reactions Be?</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
 	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/sql-select" class="post-link">SQL Selects the Hard FP Way</a></h3>
 		
@@ -367,34 +407,6 @@ Traceback (most recent call last):
 TypeError: &#39;int&#39; object is not callable</code></pre>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/multiplication">→ read more<span class="offscreen"> Multiplication by Juxtaposition</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/refrain" class="post-link">refrain</a></h3>
-		
-		<h4 class="post-subtitle">0CTF/TCTF 2019 Quals</h4>
-		
-		<p class="post-meta">
-		
-		2019-03-27
-		(2427 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<pre><code>http://111.186.63.17/perf.data.gz
-
-Environment: Ubuntu 16.04+latex</code></pre>
-<p>In this challenge, we get a gzipped file called <code>perf.data</code> and a minimal description of an environment. Googling this reveals that <code>perf.data</code> is a record format of the <code>perf</code> tool, a Linux profiler. Installing <code>perf</code> allows us to read <code>perf.data</code> and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is <code>perf report -D</code>, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the <code>perf record</code> was run against.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/refrain">→ read more<span class="offscreen"> refrain</span></a>
 	</footer>
 </article>
 

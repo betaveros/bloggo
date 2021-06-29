@@ -18,6 +18,7 @@
 <meta name="robots" content="index,follow" />
 <meta name="referrer" content="origin-when-cross-origin" />
 <meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
 
 <link rel="icon" href="/favicon.ico" />
 
@@ -56,6 +57,47 @@
 	</header>
 	
 	
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/xanthous" class="post-link">[IOI 2014 Part 4] Shades of Xanthous</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-09-06
+		(2655 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>No, I didn’t forget. Not for one minute. I was doing homework. I am very happy because that means I was actually carrying out my priorities as I envisioned them. I’ve probably edited this post too many times, though. Meh. But it’s the first weekend after finishing summer homework, so here we go again!</p>
+<p>Fun fact: This is by far my favorite post title in the entire series. Possibly in the entire history of this blog.</p>
+<hr />
+<p>In the morning of the last day of official IOI activities, there were a bunch of cultural activities, e.g. writing Chinese characters calligraphically, doing tricks with the diabolo, or picking up beans with chopsticks, and noncultural activities, e.g. getting somebody to pour water into a cup on your head while he or she was blindfolded. Due to the last activity I got wet, but my shirt dried really quickly. And alas, even though I had taken calligraphy summer classes a long time ago, my calligraphy was awful — robotic, lifeless strokes without the right aesthetic proportions to make up for it. Blargh.</p>
+<p>Anyway, lunch followed, and then it was time for the closing ceremony, in the same building as the other ceremonies and contests. Our team caught the ending song of in a Chinese musical being rehearsed as we walked into the auditorium. While we waited for everybody, we milled about waving flags that our various teachers had brought, including not only Taiwan’s flag but also flags of my school, thoughtfully brought by teachers who had volunteered. A little later our leader told us that all the leaders had discussed the matter during a meeting and decided that we shouldn’t bring any flags to the stage while receiving our medals, so we were going to have to make do with being patriotic and school-respecting off stage.</p>
+<p>There were a few performances, including two aboriginal music performances and the musical we had seen rehearsed ealier, which was a fun rock musical rendition of some Chinese tale that seemed to have been sharply abridged, giving it the plot depth of a Wikipedia stub-article synopsis — a conflict, boy-meets-girl-and-falls-in-love, and a lamenting Aesop song conclusion with thrillingly vague general applicability. But the singing and counterpointing and atmosphere were good. I guess it was proportional to the relative importance of the performance to the closing ceremony. The program interleaved them with the long-awaited medal presentations: one round of bronze medalists, one round of silver, one round of gold.</p>
+<p>Dum-dum-dum-dum, medals! The home team advantage was really obvious here; the cheering and the medal-presenter handshakes were both significantly more forceful for Taiwan’s medalists.</p>
+<figure>
+<a href="/img/gold.jpg"><img src="/img/gold.jpg" alt="I think our leader made this. Thanks." /></a>
+<figcaption>
+I think our leader made this. Thanks.
+</figcaption>
+</figure>
+<p>Naturally, after the normal medals had been exhausted, the three full scorers received bags with prizes that may forever remain unknown to my sorry self, as well as a standing ovation from everybody in the auditorium. The orchestra had been going through ABBA songs during the ceremony, and very considerately played “The Winner Takes It All” for this part. It was impossible not to mentally fill in the lyrics.</p>
+<blockquote>
+The winner takes it all<br />The loser has to fall<br />It’s simple and it’s plain<br />Why should I complaiiiiiiiin?
+</blockquote>
+<p>Speeches followed. Most were just average forgettable speeches, but Forster gave another speech that was somehow even better than the one he gave at the opening ceremony, with nonstop golden quotables such as:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/xanthous">→ read more<span class="offscreen"> [IOI 2014 Part 4] Shades of Xanthous</span></a>
+	</footer>
+</article>
+
 		
 			<article class="post-entry">
 	<header class="post-header">
@@ -309,43 +351,6 @@ These claims sound a bit hyperbolic, but they are actually working on me. Most n
 <p>As a degenerate case, 1-ominoes are banned as well.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/puzzle-45">→ read more<span class="offscreen"> Puzzle 45 / Fillomino [No-Path]</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/cabal" class="post-link">Adventures in Cabal Installations</a></h3>
-		
-		<p class="post-meta">
-		
-		2014-04-13
-		(1550 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>First Google Code Jam!</p>
-<p>The format of this competition, allowing us to run programs on our own machines, brought up a very interesting issue for me: what programming language should I be using? (I had had similar considerations for IPSC 2013, but GCJ’s problems are closer to the traditional ACM-ICPC style.)</p>
-<p>The obvious choice is C++, the language I use for roughly every other competition, but its safety (or lack thereof) is not very appealing. I need speed, but not <em>that much</em> speed. Unfortunately I still haven’t gotten around to learning any other friendlier mid-level languages (on the list: D, Go, or Rust), so I have no close substitutes for C++ right now.</p>
-<p>Python is certainly available for a reliable arbitrary-length integer type, if nothing else.</p>
-<p>As for non-candidates, Java has <code>BigInteger</code> and memory safety, but all in all I decided the benefits are too minor and it’s too ugly without operator overloading. Scala is probably way too slow. So I don’t expect to be writing either language.</p>
-<p>The only difficult choice I have to make is, of course, Haskell — which can be quite fast, even while it’s ridiculously type-safe and expressive and referentially transparent and easy to reason about, once you’ve:</p>
-<ul>
-<li>figured out how to do the problem</li>
-<li>scrapped step 1 and <em>actually</em> figured out how to do the problem <em>functionally</em></li>
-<li>gotten the thing to compile</li>
-</ul>
-<p>Even if I can handle step 1, step 2 is by no means a simple task, as my struggle to implement a mere <a href="//blog.vero.site/post/haskell">Sieve of Eratosthenes</a> efficiently shows. That is fun, but not at all intuitive; I am doubtful I can do this under contest conditions. It is extremely difficult to transfer my skills in learning how to implement, say, a segment tree or treap into this language.</p>
-<p>But! Google links to the <a href="http://www.go-hero.net/jam/10/round/0">programming language breakdown for 2010 Qualification Round</a> as an example, and much to my surprise, Haskell ranks somewhere between sixth and tenth place in popularity (depending on what you sort by), so there are functional superprogrammers who can presumably do something like this.</p>
-<p>As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/cabal">→ read more<span class="offscreen"> Adventures in Cabal Installations</span></a>
 	</footer>
 </article>
 

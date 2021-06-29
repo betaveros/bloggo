@@ -22,6 +22,7 @@ Category → CS
 <meta name="robots" content="index,follow" />
 <meta name="referrer" content="origin-when-cross-origin" />
 <meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
 
 <link rel="icon" href="/favicon.ico" />
 
@@ -62,6 +63,36 @@ Category → CS
 		</h2>
 	</header>
 	<article class="content"></article><article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/thoroughly-stripped" class="post-link">Thoroughly Stripped</a></h3>
+		
+		<h4 class="post-subtitle">CSAW CTF 2017 Finals (Forensics, 200 pts)</h4>
+		
+		<p class="post-meta">
+		
+		2017-11-12
+		(1142 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Woo, first CTF writeup. I got the opportunity to participate in the 2017 CSAW CTF finals with Don’t Hack Alone.</p>
+<blockquote>
+<p>Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.</p>
+</blockquote>
+<p>We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.</p>
+<p>Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from <a href="https://github.com/betaveros/xxb"><code>xxb</code></a> but <code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/thoroughly-stripped">→ read more<span class="offscreen"> Thoroughly Stripped</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
 	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/bcodex" class="post-link">020315040524</a></h3>
 		
@@ -315,47 +346,6 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
 <p><code>foreach</code> is the nice addition though. Not only can you iterate over arrays and stuff, but range loops go like:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/c-to-d">→ read more<span class="offscreen"> C/C&#43;&#43; to D</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/hoj-cp" class="post-link">HOJ 226: CP (中)</a></h3>
-		
-		<p class="post-meta">
-		
-		2014-12-15
-		(227 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>This post was written in Traditional Mandarin Chinese for my fellow competitive programmers in Taiwan.</p>
-<p><a href="http://hoj.twbbs.org/judge/problem/view/226">題目在這裡，HOJ 226</a></p>
-<p>有關的題目出現於NPSC 2014 高中組決賽pD。</p>
-<p>前置要求：treap (split, merge)跟在上面實作區段操作（請參考資訊枝幹）。</p>
-<p>這裡沒有完整的解答code，因為AC是要用血汗換來的才值得 :-)</p>
-<h2 id="treap">Treap</h2>
-<p>我討厭單字母<code>l</code>的變數名稱（跟<code>1</code>太像了。我沒有被這個雷過，這只是自己對自己程式碼可讀性的要求），所以我的子樹叫做<code>lc</code>(left child)，<code>rc</code>(right child)。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">struct</span> Treap {</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">    Treap * lc;</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">    Treap * rc;</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="dt">unsigned</span> pri;</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="dt">char</span> val;</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="dt">int</span> size;</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">};</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="dt">int</span> size(Treap * a) { <span class="cf">return</span> a ? a-&gt;size : <span class="dv">0</span>; }</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="dt">void</span> pull(Treap * a) {</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">    <span class="cf">if</span> (a) a-&gt;size = <span class="dv">1</span> + size(a-&gt;lc) + size(a-&gt;rc);</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">}</a></code></pre></div>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/hoj-cp">→ read more<span class="offscreen"> HOJ 226: CP (中)</span></a>
 	</footer>
 </article>
 

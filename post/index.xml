@@ -6,7 +6,32 @@
     <description>Recent content in Posts on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Apr 2021 19:41:49 -0700</lastBuildDate><atom:link href="//blog.vero.site/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Jun 2021 20:17:51 -0700</lastBuildDate><atom:link href="//blog.vero.site/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What Color Should My Discord Roles/Reactions Be?</title>
+      <link>//blog.vero.site/post/discord-color</link>
+      <pubDate>Mon, 28 Jun 2021 20:17:51 -0700</pubDate>
+      
+      <guid>//blog.vero.site/post/discord-color</guid>
+      <description>&lt;p&gt;I subscribed to Discord Nitro a month ago, but only recently did I start thinking about the full range of powers the subscription granted me. I could create my own reactions, dump them in my personal server, and use them to react anywhere.&lt;/p&gt;
+&lt;p&gt;However, when I finally started trying to create some reactions, I hit an interesting snag: Discord can be used in dark and light mode,&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; and a reaction will have the same color on both modes. If I wanted my reaction to be as clearly readable in both modes as possible, what color should I make it?&lt;/p&gt;
+&lt;p&gt;(I could, of course, just outline my reaction with a contrasting color, but let’s say that’s cheating. With the limited space in a reaction, outlining isn’t that great of a solution anyway.)&lt;/p&gt;
+&lt;p&gt;Now, one can’t &lt;em&gt;really&lt;/em&gt; just compute the “contrast of two colors” given only their RGB components; there’s no universally agreed-on definition of &lt;a href=&#34;https://en.wikipedia.org/wiki/Contrast_(vision)&#34;&gt;contrast in vision&lt;/a&gt;, and even if there were one, the contrast of two given colors would depend on the color space and possibly the viewer’s biology. But, to get a concrete answer to this question, we can use the standard sRGB model and the W3C’s definitions of &lt;a href=&#34;https://www.w3.org/TR/WCAG/#dfn-contrast-ratio&#34;&gt;contrast ratio&lt;/a&gt; and &lt;a href=&#34;https://www.w3.org/TR/WCAG/#dfn-relative-luminance&#34;&gt;relative luminance&lt;/a&gt;.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; As of time of writing on my computer,&lt;a href=&#34;#fn3&#34; class=&#34;footnote-ref&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; Discord reactions have background &lt;span style=&#34;padding:0.15em 0.4em;background-color:#2f3136;color:white&#34;&gt;#2f3136&lt;/span&gt; on dark mode and &lt;span style=&#34;padding:0.15em 0.4em;background-color:#f2f3f5&#34;&gt;#f2f3f5&lt;/span&gt; on light mode. Reactions you’ve reacted with have background &lt;span style=&#34;padding:0.15em 0.4em;background-color:#3b405a;color:white&#34;&gt;#3b405a&lt;/span&gt; on dark mode and &lt;span style=&#34;padding:0.15em 0.4em;background-color:#e7e9fd&#34;&gt;#e7e9fd&lt;/span&gt; on light mode. Because the dark mode background gets lighter and the light mode background gets darker, we’ll use the latter colors so we’re optimizing the worst-case contrast.&lt;/p&gt;
+&lt;p&gt;There are smarter approaches, but the 256&lt;sup&gt;3&lt;/sup&gt; = 16,777,216 possible 8-bit colors are perfectly feasible to brute force, so I wrote a short Python script to check all of them, which is at the bottom of this post. Under the parameters I’ve outlined, the optimal color for a Discord reaction is &lt;span style=&#34;padding:0.15em 0.4em;background-color:#ff4103&#34;&gt;rgb(255, 65, 3) or #ff4103.&lt;/span&gt; A demo:&lt;/p&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td style=&#34;background-color:#3b405a;color:#ff4103&#34;&gt;
+#ff4103 &lt;strong&gt;#ff4103&lt;/strong&gt; ●&lt;br&gt; &lt;small&gt;&lt;abbr title=&#34;Contrast Ratio&#34;&gt;CR&lt;/abbr&gt;: 2.90738237&lt;/small&gt;
+&lt;/td&gt;
+&lt;td style=&#34;background-color:#e7e9fd;color:#ff4103&#34;&gt;
+#ff4103 &lt;strong&gt;#ff4103&lt;/strong&gt; ● &lt;br&gt; &lt;small&gt;&lt;abbr title=&#34;Contrast Ratio&#34;&gt;CR&lt;/abbr&gt;: 2.90738217&lt;/small&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that.&lt;/p&gt;
+&lt;p&gt;After playing with a few ways to get a spread of options, I settled on categorizing colors into six buckets of saturation and twelve buckets of hue in the &lt;a href=&#34;https://en.wikipedia.org/wiki/HSL_and_HSV#Formal_derivation&#34;&gt;simple HSV model&lt;/a&gt;, and then finding the optimal color within each bucket. Here is a table of my results:&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>SQL Selects the Hard FP Way</title>
       <link>//blog.vero.site/post/sql-select</link>

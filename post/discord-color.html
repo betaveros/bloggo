@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>What Color Should My Discord Roles/Reactions Be?</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="I subscribed to Discord Nitro a month ago, but only recently did I start thinking about the full range of powers the subscription granted me. I could create my own reactions, dump them in my personal server, and use them to react anywhere.
+However, when I finally started trying to create some reactions, I hit an interesting snag: Discord can be used in dark and light mode,1 and a reaction will have the same color on both modes. If I wanted my reaction to be as clearly readable in both modes as possible, what color should I make it?
+(I could, of course, just outline my reaction with a contrasting color, but let’s say that’s cheating. With the limited space in a reaction, outlining isn’t that great of a solution anyway.)
+Now, one can’t really just compute the “contrast of two colors” given only their RGB components; there’s no universally agreed-on definition of contrast in vision, and even if there were one, the contrast of two given colors would depend on the color space and possibly the viewer’s biology. But, to get a concrete answer to this question, we can use the standard sRGB model and the W3C’s definitions of contrast ratio and relative luminance.2 As of time of writing on my computer,3 Discord reactions have background #2f3136 on dark mode and #f2f3f5 on light mode. Reactions you’ve reacted with have background #3b405a on dark mode and #e7e9fd on light mode. Because the dark mode background gets lighter and the light mode background gets darker, we’ll use the latter colors so we’re optimizing the worst-case contrast.
+There are smarter approaches, but the 2563 = 16,777,216 possible 8-bit colors are perfectly feasible to brute force, so I wrote a short Python script to check all of them, which is at the bottom of this post. Under the parameters I’ve outlined, the optimal color for a Discord reaction is rgb(255, 65, 3) or #ff4103. A demo:
+  #ff4103 #ff4103 ●
+CR: 2.90738237  #ff4103 #ff4103 ● CR: 2.90738217    That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that.
+After playing with a few ways to get a spread of options, I settled on categorizing colors into six buckets of saturation and twelve buckets of hue in the simple HSV model, and then finding the optimal color within each bucket. Here is a table of my results:
+" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/discord-color" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">What Color Should My Discord Roles/Reactions Be?</h1>
+		
+		<p class="post-meta">
+		
+		2021-06-28
+		(1653 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>I subscribed to Discord Nitro a month ago, but only recently did I start thinking about the full range of powers the subscription granted me. I could create my own reactions, dump them in my personal server, and use them to react anywhere.</p>
+<p>However, when I finally started trying to create some reactions, I hit an interesting snag: Discord can be used in dark and light mode,<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and a reaction will have the same color on both modes. If I wanted my reaction to be as clearly readable in both modes as possible, what color should I make it?</p>
+<p>(I could, of course, just outline my reaction with a contrasting color, but let’s say that’s cheating. With the limited space in a reaction, outlining isn’t that great of a solution anyway.)</p>
+<p>Now, one can’t <em>really</em> just compute the “contrast of two colors” given only their RGB components; there’s no universally agreed-on definition of <a href="https://en.wikipedia.org/wiki/Contrast_(vision)">contrast in vision</a>, and even if there were one, the contrast of two given colors would depend on the color space and possibly the viewer’s biology. But, to get a concrete answer to this question, we can use the standard sRGB model and the W3C’s definitions of <a href="https://www.w3.org/TR/WCAG/#dfn-contrast-ratio">contrast ratio</a> and <a href="https://www.w3.org/TR/WCAG/#dfn-relative-luminance">relative luminance</a>.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> As of time of writing on my computer,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Discord reactions have background <span style="padding:0.15em 0.4em;background-color:#2f3136;color:white">#2f3136</span> on dark mode and <span style="padding:0.15em 0.4em;background-color:#f2f3f5">#f2f3f5</span> on light mode. Reactions you’ve reacted with have background <span style="padding:0.15em 0.4em;background-color:#3b405a;color:white">#3b405a</span> on dark mode and <span style="padding:0.15em 0.4em;background-color:#e7e9fd">#e7e9fd</span> on light mode. Because the dark mode background gets lighter and the light mode background gets darker, we’ll use the latter colors so we’re optimizing the worst-case contrast.</p>
+<p>There are smarter approaches, but the 256<sup>3</sup> = 16,777,216 possible 8-bit colors are perfectly feasible to brute force, so I wrote a short Python script to check all of them, which is at the bottom of this post. Under the parameters I’ve outlined, the optimal color for a Discord reaction is <span style="padding:0.15em 0.4em;background-color:#ff4103">rgb(255, 65, 3) or #ff4103.</span> A demo:</p>
+<table>
+<tr>
+<td style="background-color:#3b405a;color:#ff4103">
+#ff4103 <strong>#ff4103</strong> ●<br> <small><abbr title="Contrast Ratio">CR</abbr>: 2.90738237</small>
+</td>
+<td style="background-color:#e7e9fd;color:#ff4103">
+#ff4103 <strong>#ff4103</strong> ● <br> <small><abbr title="Contrast Ratio">CR</abbr>: 2.90738217</small>
+</td>
+</tr>
+</table>
+<p>That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that.</p>
+<p>After playing with a few ways to get a spread of options, I settled on categorizing colors into six buckets of saturation and twelve buckets of hue in the <a href="https://en.wikipedia.org/wiki/HSL_and_HSV#Formal_derivation">simple HSV model</a>, and then finding the optimal color within each bucket. Here is a table of my results:</p>
+<figure>
+<figcaption>
+Colors with optimal contrast between <span style="padding:0.15em 0.4em;background-color:#3b405a;color:white">#3b405a</span> and <span style="padding:0.15em 0.4em;background-color:#e7e9fd">#e7e9fd</span>
+</figcaption>
+<table style="color:black">
+<tr>
+<td style="background-color: rgb(151, 133, 133)">
+#978585<br><small>2.90731886</small>
+</td>
+<td style="background-color: rgb(161, 131, 115)">
+#a18373<br><small>2.90735283</small>
+</td>
+<td style="background-color: rgb(181, 124, 94)">
+#b57c5e<br><small>2.90737786</small>
+</td>
+<td style="background-color: rgb(207, 109, 96)">
+#cf6d60<br><small>2.90737862</small>
+</td>
+<td style="background-color: rgb(246, 76, 56)">
+#f64c38<br><small>2.90737549</small>
+</td>
+<td style="background-color: rgb(255, 65, 3)">
+<strong>#ff4103<br><small>2.90738217</small></strong>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(142, 137, 122)">
+#8e897a<br><small>2.90737477</small>
+</td>
+<td style="background-color: rgb(157, 133, 109)">
+#9d856d<br><small>2.90737104</small>
+</td>
+<td style="background-color: rgb(150, 137, 86)">
+#968956<br><small>2.90737552</small>
+</td>
+<td style="background-color: rgb(170, 130, 77)">
+#aa824d<br><small>2.907379</small>
+</td>
+<td style="background-color: rgb(184, 125, 45)">
+#b87d2d<br><small>2.90736999</small>
+</td>
+<td style="background-color: rgb(202, 116, 0)">
+#ca7400<br><small>2.90736562</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(135, 139, 123)">
+#878b7b<br><small>2.90728821</small>
+</td>
+<td style="background-color: rgb(125, 143, 106)">
+#7d8f6a<br><small>2.90722126</small>
+</td>
+<td style="background-color: rgb(138, 141, 81)">
+#8a8d51<br><small>2.90737653</small>
+</td>
+<td style="background-color: rgb(131, 144, 55)">
+#839037<br><small>2.90733573</small>
+</td>
+<td style="background-color: rgb(137, 143, 28)">
+#898f1c<br><small>2.9073784</small>
+</td>
+<td style="background-color: rgb(130, 145, 20)">
+#829114<br><small>2.90737881</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(129, 141, 119)">
+#818d77<br><small>2.90722528</small>
+</td>
+<td style="background-color: rgb(113, 146, 103)">
+#719267<br><small>2.90732567</small>
+</td>
+<td style="background-color: rgb(104, 149, 82)">
+#689552<br><small>2.90738011</small>
+</td>
+<td style="background-color: rgb(95, 151, 73)">
+#5f9749<br><small>2.9073809</small>
+</td>
+<td style="background-color: rgb(65, 156, 39)">
+#419c27<br><small>2.9073757</small>
+</td>
+<td style="background-color: rgb(44, 158, 22)">
+#2c9e16<br><small>2.90737771</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(125, 141, 131)">
+#7d8d83<br><small>2.90726098</small>
+</td>
+<td style="background-color: rgb(99, 148, 114)">
+#639472<br><small>2.90736328</small>
+</td>
+<td style="background-color: rgb(96, 148, 121)">
+#609479<br><small>2.90737402</small>
+</td>
+<td style="background-color: rgb(69, 153, 104)">
+#459968<br><small>2.90738071</small>
+</td>
+<td style="background-color: rgb(29, 157, 86)">
+#1d9d56<br><small>2.90736982</small>
+</td>
+<td style="background-color: rgb(19, 158, 71)">
+#139e47<br><small>2.90737571</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(130, 139, 138)">
+#828b8a<br><small>2.90727344</small>
+</td>
+<td style="background-color: rgb(111, 144, 134)">
+#6f9086<br><small>2.90737368</small>
+</td>
+<td style="background-color: rgb(90, 148, 133)">
+#5a9485<br><small>2.90735873</small>
+</td>
+<td style="background-color: rgb(70, 151, 130)">
+#469782<br><small>2.90736751</small>
+</td>
+<td style="background-color: rgb(49, 153, 130)">
+#319982<br><small>2.90737959</small>
+</td>
+<td style="background-color: rgb(2, 154, 141)">
+#029a8d<br><small>2.90737947</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(123, 140, 146)">
+#7b8c92<br><small>2.90692524</small>
+</td>
+<td style="background-color: rgb(119, 141, 146)">
+#778d92<br><small>2.90736748</small>
+</td>
+<td style="background-color: rgb(96, 142, 178)">
+#608eb2<br><small>2.90738074</small>
+</td>
+<td style="background-color: rgb(79, 146, 168)">
+#4f92a8<br><small>2.90738036</small>
+</td>
+<td style="background-color: rgb(46, 151, 154)">
+#2e979a<br><small>2.90738097</small>
+</td>
+<td style="background-color: rgb(24, 147, 196)">
+#1893c4<br><small>2.90738057</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(131, 138, 145)">
+#838a91<br><small>2.90732608</small>
+</td>
+<td style="background-color: rgb(126, 138, 157)">
+#7e8a9d<br><small>2.90735634</small>
+</td>
+<td style="background-color: rgb(123, 131, 209)">
+#7b83d1<br><small>2.90736636</small>
+</td>
+<td style="background-color: rgb(86, 139, 209)">
+#568bd1<br><small>2.90737779</small>
+</td>
+<td style="background-color: rgb(68, 140, 218)">
+#448cda<br><small>2.90737252</small>
+</td>
+<td style="background-color: rgb(26, 136, 255)">
+#1a88ff<br><small>2.90730834</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(137, 135, 156)">
+#89879c<br><small>2.90732849</small>
+</td>
+<td style="background-color: rgb(141, 130, 183)">
+#8d82b7<br><small>2.90735461</small>
+</td>
+<td style="background-color: rgb(132, 128, 211)">
+#8480d3<br><small>2.90736855</small>
+</td>
+<td style="background-color: rgb(131, 119, 252)">
+#8377fc<br><small>2.90737702</small>
+</td>
+<td style="background-color: rgb(169, 85, 255)">
+#a955ff<br><small>2.62724564</small>
+</td>
+<td style="background-color: rgb(148, 42, 255)">
+#942aff<br><small>1.95183847</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(146, 132, 157)">
+#92849d<br><small>2.90731696</small>
+</td>
+<td style="background-color: rgb(163, 123, 175)">
+#a37baf<br><small>2.907341</small>
+</td>
+<td style="background-color: rgb(192, 104, 195)">
+#c068c3<br><small>2.90737642</small>
+</td>
+<td style="background-color: rgb(196, 92, 229)">
+#c45ce5<br><small>2.90737929</small>
+</td>
+<td style="background-color: rgb(227, 45, 249)">
+#e32df9<br><small>2.90737724</small>
+</td>
+<td style="background-color: rgb(233, 25, 252)">
+#e919fc<br><small>2.90738152</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(156, 130, 144)">
+#9c8290<br><small>2.90734675</small>
+</td>
+<td style="background-color: rgb(177, 120, 152)">
+#b17898<br><small>2.90737112</small>
+</td>
+<td style="background-color: rgb(197, 102, 189)">
+#c566bd<br><small>2.90738078</small>
+</td>
+<td style="background-color: rgb(213, 95, 165)">
+#d55fa5<br><small>2.90738203</small>
+</td>
+<td style="background-color: rgb(230, 71, 190)">
+#e647be<br><small>2.90738136</small>
+</td>
+<td style="background-color: rgb(240, 19, 236)">
+#f013ec<br><small>2.90737953</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(156, 131, 135)">
+#9c8387<br><small>2.9071286</small>
+</td>
+<td style="background-color: rgb(175, 122, 144)">
+#af7a90<br><small>2.90733165</small>
+</td>
+<td style="background-color: rgb(204, 105, 147)">
+#cc6993<br><small>2.90737618</small>
+</td>
+<td style="background-color: rgb(215, 96, 151)">
+#d76097<br><small>2.90738093</small>
+</td>
+<td style="background-color: rgb(251, 57, 130)">
+#fb3982<br><small>2.90737999</small>
+</td>
+<td style="background-color: rgb(255, 42, 148)">
+#ff2a94<br><small>2.90671668</small>
+</td>
+</tr>
+</table>
+</figure>
+<p>Note the lower contrast ratios in some of the highly saturated purple cells: red and blue don’t contribute enough to luminance to produce enough contrast from the dark background. Some of them are actually so low that pure black contrasts more with the dark background (and obviously far more with the light background).</p>
+<p>Personally, I like the color <span style="padding:0.15em 0.4em;background-color:#f64c38;color:black">#f64c38</span> right next to the color I identified as “optimal”. It’s still pretty saturated, but in an image the size of a Discord reaction, I find it tolerable.</p>
+<h3 id="discord-roles">Discord Roles</h3>
+<p>The exact same methodology can be adapted to find the optimal color of a Discord role. This is a question that has been investigated before, from a source that I found both unexpected and completely unsurprising: the <a href="https://research.blaseball-reference.com/">Society for Internet Blaseball Research</a> published a report titled <a href="https://research.blaseball-reference.com/Improving_Accessibility__Contrast_in_Discord_Team_Roles_1.2.pdf">Mutually Arising: Improving accessibility in Discord team role color contrast (PDF)</a>. Unlike them, though, I’m not constrained to following any existing colors or having to contrast different role colors, so I can just brute-force the entire color space again.</p>
+<p>In dark mode, the main chat area’s background color is <span style="padding:0.15em 0.4em;background-color:#36393f;color:white">#36393f</span> and is lighter than the sidebar color, but in light mode, the sidebar’s background color <span style="padding:0.15em 0.4em;background-color:#f2f3f5">#f2f3f5</span> is darker than the main chat area’s background color. Colored usernames are displayed in the main chat and the sidebar, so we’ll use those two colors.</p>
+<figure>
+<figcaption>
+Colors with optimal contrast between <span style="padding:0.15em 0.4em;background-color:#36393f;color:white">#36393f</span> and <span style="padding:0.15em 0.4em;background-color:#f2f3f5">#f2f3f5</span>
+</figcaption>
+<table style="color:black">
+<tr>
+<td style="background-color: rgb(144, 133, 129)">
+#908581<br><small>3.22885521</small>
+</td>
+<td style="background-color: rgb(159, 129, 114)">
+#9f8172<br><small>3.22913619</small>
+</td>
+<td style="background-color: rgb(205, 106, 104)">
+#cd6a68<br><small>3.2291472</small>
+</td>
+<td style="background-color: rgb(180, 123, 68)">
+#b47b44<br><small>3.22915923</small>
+</td>
+<td style="background-color: rgb(205, 109, 64)">
+#cd6d40<br><small>3.2291583</small>
+</td>
+<td style="background-color: rgb(199, 114, 33)">
+#c77221<br><small>3.22915821</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(137, 135, 131)">
+#898783<br><small>3.22898816</small>
+</td>
+<td style="background-color: rgb(146, 134, 110)">
+#92866e<br><small>3.22911463</small>
+</td>
+<td style="background-color: rgb(162, 130, 84)">
+#a28254<br><small>3.22914074</small>
+</td>
+<td style="background-color: rgb(142, 138, 63)">
+#8e8a3f<br><small>3.22915361</small>
+</td>
+<td style="background-color: rgb(151, 136, 31)">
+#97881f<br><small>3.22915935</small>
+</td>
+<td style="background-color: rgb(187, 121, 19)">
+#bb7913<br><small>3.22915934</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(131, 138, 117)">
+#838a75<br><small>3.22915533</small>
+</td>
+<td style="background-color: rgb(129, 140, 97)">
+#818c61<br><small>3.22913777</small>
+</td>
+<td style="background-color: rgb(132, 140, 83)">
+#848c53<br><small>3.22912369</small>
+</td>
+<td style="background-color: rgb(108, 147, 50)">
+#6c9332<br><small>3.22908373</small>
+</td>
+<td style="background-color: rgb(115, 146, 28)">
+#73921c<br><small>3.22914719</small>
+</td>
+<td style="background-color: rgb(136, 141, 1)">
+#888d01<br><small>3.22911826</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(127, 139, 118)">
+#7f8b76<br><small>3.22901735</small>
+</td>
+<td style="background-color: rgb(125, 140, 112)">
+#7d8c70<br><small>3.22909715</small>
+</td>
+<td style="background-color: rgb(118, 143, 93)">
+#768f5d<br><small>3.22913547</small>
+</td>
+<td style="background-color: rgb(58, 154, 55)">
+#3a9a37<br><small>3.22915844</small>
+</td>
+<td style="background-color: rgb(51, 155, 38)">
+#339b26<br><small>3.22914616</small>
+</td>
+<td style="background-color: rgb(21, 157, 6)">
+#159d06<br><small>3.22915524</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(123, 139, 130)">
+#7b8b82<br><small>3.22901303</small>
+</td>
+<td style="background-color: rgb(113, 142, 123)">
+#718e7b<br><small>3.22913699</small>
+</td>
+<td style="background-color: rgb(91, 148, 98)">
+#5b9462<br><small>3.22907559</small>
+</td>
+<td style="background-color: rgb(57, 154, 58)">
+#399a3a<br><small>3.22915831</small>
+</td>
+<td style="background-color: rgb(44, 154, 84)">
+#2c9a54<br><small>3.22913751</small>
+</td>
+<td style="background-color: rgb(3, 157, 40)">
+#039d28<br><small>3.22915326</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(125, 138, 135)">
+#7d8a87<br><small>3.22912012</small>
+</td>
+<td style="background-color: rgb(105, 143, 131)">
+#698f83<br><small>3.22912601</small>
+</td>
+<td style="background-color: rgb(75, 147, 141)">
+#4b938d<br><small>3.22913981</small>
+</td>
+<td style="background-color: rgb(65, 148, 143)">
+#41948f<br><small>3.22913438</small>
+</td>
+<td style="background-color: rgb(26, 153, 117)">
+#1a9975<br><small>3.22914554</small>
+</td>
+<td style="background-color: rgb(11, 155, 92)">
+#0b9b5c<br><small>3.22915786</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(128, 137, 137)">
+#808989<br><small>3.22914971</small>
+</td>
+<td style="background-color: rgb(114, 140, 142)">
+#728c8e<br><small>3.22915953</small>
+</td>
+<td style="background-color: rgb(91, 142, 165)">
+#5b8ea5<br><small>3.22913831</small>
+</td>
+<td style="background-color: rgb(84, 142, 174)">
+#548eae<br><small>3.22913265</small>
+</td>
+<td style="background-color: rgb(35, 149, 157)">
+#23959d<br><small>3.22915726</small>
+</td>
+<td style="background-color: rgb(34, 138, 231)">
+#228ae7<br><small>3.22915974</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(132, 134, 154)">
+#84869a<br><small>3.22891109</small>
+</td>
+<td style="background-color: rgb(118, 136, 168)">
+#7688a8<br><small>3.22910931</small>
+</td>
+<td style="background-color: rgb(117, 129, 213)">
+#7581d5<br><small>3.22915501</small>
+</td>
+<td style="background-color: rgb(88, 136, 209)">
+#5888d1<br><small>3.22915032</small>
+</td>
+<td style="background-color: rgb(48, 132, 254)">
+#3084fe<br><small>3.22914904</small>
+</td>
+<td style="background-color: rgb(31, 133, 255)">
+#1f85ff<br><small>3.22913804</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(135, 135, 137)">
+#878789<br><small>3.22898604</small>
+</td>
+<td style="background-color: rgb(150, 125, 176)">
+#967db0<br><small>3.22908146</small>
+</td>
+<td style="background-color: rgb(154, 114, 224)">
+#9a72e0<br><small>3.22914979</small>
+</td>
+<td style="background-color: rgb(145, 114, 239)">
+#9172ef<br><small>3.22913814</small>
+</td>
+<td style="background-color: rgb(169, 85, 255)">
+#a955ff<br><small>2.99380305</small>
+</td>
+<td style="background-color: rgb(148, 42, 255)">
+#942aff<br><small>2.22416202</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(145, 130, 153)">
+#918299<br><small>3.22897811</small>
+</td>
+<td style="background-color: rgb(161, 122, 167)">
+#a17aa7<br><small>3.22911498</small>
+</td>
+<td style="background-color: rgb(181, 105, 204)">
+#b569cc<br><small>3.22915756</small>
+</td>
+<td style="background-color: rgb(203, 79, 235)">
+#cb4feb<br><small>3.22915243</small>
+</td>
+<td style="background-color: rgb(209, 70, 241)">
+#d146f1<br><small>3.22915316</small>
+</td>
+<td style="background-color: rgb(233, 16, 245)">
+#e910f5<br><small>3.22913484</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(153, 128, 146)">
+#998092<br><small>3.22909464</small>
+</td>
+<td style="background-color: rgb(173, 117, 164)">
+#ad75a4<br><small>3.22909518</small>
+</td>
+<td style="background-color: rgb(180, 111, 178)">
+#b46fb2<br><small>3.22915634</small>
+</td>
+<td style="background-color: rgb(209, 90, 183)">
+#d15ab7<br><small>3.22915698</small>
+</td>
+<td style="background-color: rgb(231, 64, 188)">
+#e740bc<br><small>3.22915923</small>
+</td>
+<td style="background-color: rgb(253, 5, 180)">
+#fd05b4<br><small>3.22915035</small>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(149, 131, 132)">
+#958384<br><small>3.22899029</small>
+</td>
+<td style="background-color: rgb(166, 123, 144)">
+#a67b90<br><small>3.22915584</small>
+</td>
+<td style="background-color: rgb(200, 104, 147)">
+#c86893<br><small>3.229159</small>
+</td>
+<td style="background-color: rgb(215, 98, 109)">
+<strong>#d7626d<br><small>3.22915995</small></strong>
+</td>
+<td style="background-color: rgb(241, 74, 87)">
+#f14a57<br><small>3.22914762</small>
+</td>
+<td style="background-color: rgb(254, 35, 144)">
+#fe2390<br><small>3.22915422</small>
+</td>
+</tr>
+</table>
+</figure>
+<p>Here’s the optimal color, apparently:</p>
+<table>
+<tr>
+<td style="background-color:#36393f;color:#d7626d">
+#d7626d <strong>#d7626d</strong> ●<br> <small><abbr title="Contrast Ratio">CR</abbr>: 3.22916018</small>
+</td>
+<td style="background-color:#f2f3f5;color:#d7626d">
+#d7626d <strong>#d7626d</strong> ● <br> <small><abbr title="Contrast Ratio">CR</abbr>: 3.22915995</small>
+</td>
+</tr>
+</table>
+<h3 id="interactive">Interactive</h3>
+<p>Type an arbitrary CSS color to visually see it against these different backgrounds.</p>
+<p><input type="text" id="discol-in" name="discol-in" value="#f64c38"/></p>
+<table id="discol-table">
+<tr>
+<td style="background-color:#36393f">
+Discord Dark, <strong>main chat</strong> ●
+</td>
+<td style="background-color:#ffffff">
+Discord Light, <strong>main chat</strong> ●
+</td>
+</tr>
+<tr>
+<td style="background-color:#2f3136">
+Discord Dark, <strong>sidebar or inactive reaction</strong> ●
+</td>
+<td style="background-color:#f2f3f5">
+Discord Light, <strong>sidebar or inactive reaction</strong> ●
+</td>
+</tr>
+<tr>
+<td style="background-color:#3b405a">
+Discord Dark, <strong>active reaction</strong> ●
+</td>
+<td style="background-color:#e7e9fd">
+Discord Light, <strong>active reaction</strong> ●
+</td>
+</tr>
+</table>
+<p>There are a bajillion tools to automatically compute contrast ratios online. Two I like are <a href="https://webaim.org/resources/contrastchecker/">WebAIM’s Contrast Checker</a> and Lea Verou’s <a href="https://contrast-ratio.com/">contrast-ratio.com</a>.</p>
+<script type="text/javascript">
+function update() {
+document.getElementById("discol-table").style.color = document.getElementById("discol-in").value;
+}
+document.getElementById("discol-in").addEventListener("change", update);
+document.getElementById("discol-in").addEventListener("keydown", update);
+document.getElementById("discol-in").addEventListener("keyup", update);
+update();
+</script>
+<h3 id="appendix-my-python-script">Appendix: my Python script</h3>
+<p>Not the best code I’ve written, but not the worst either. Polished only enough that I’m okay publishing it. I tweaked the script after generating the above tables so it also considers colors that are darker than both or lighter than both target colors, which I think generalizes better in a sense.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="im">from</span> typing <span class="im">import</span> List, Tuple, Optional</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># https://www.w3.org/TR/WCAG20-TECHS/G17.html</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">def</span> luminance_component(c0: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">    c <span class="op">=</span> c0 <span class="op">/</span> <span class="dv">255</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="co"># https://github.com/w3c/wcag/issues/360#issuecomment-498615230</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="cf">if</span> c <span class="op">&lt;=</span> <span class="fl">0.04045</span>: <span class="co"># or 0.03928, this literally doesn&#39;t matter for 8-bit colors</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">        <span class="cf">return</span> c <span class="op">/</span> <span class="fl">12.92</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">    <span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">        <span class="cf">return</span> ((c <span class="op">+</span> <span class="fl">0.055</span>) <span class="op">/</span> <span class="fl">1.055</span>) <span class="op">**</span> <span class="fl">2.4</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="kw">def</span> luminance(r: <span class="bu">int</span>, g: <span class="bu">int</span>, b: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">    R, G, B <span class="op">=</span> <span class="bu">map</span>(luminance_component, (r, g, b))</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">    <span class="cf">return</span> <span class="fl">0.2126</span> <span class="op">*</span> R <span class="op">+</span> <span class="fl">0.7152</span> <span class="op">*</span> G <span class="op">+</span> <span class="fl">0.0722</span> <span class="op">*</span> B</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">Color <span class="op">=</span> Tuple[<span class="bu">int</span>, <span class="bu">int</span>, <span class="bu">int</span>]</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="kw">def</span> contrast_ratio(rgb1: Color, rgb2: Color) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">    lum1 <span class="op">=</span> luminance(<span class="op">*</span>rgb1)</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">    lum2 <span class="op">=</span> luminance(<span class="op">*</span>rgb2)</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">    <span class="cf">return</span> (<span class="bu">max</span>(lum1, lum2) <span class="op">+</span> <span class="fl">0.05</span>) <span class="op">/</span> (<span class="bu">min</span>(lum1, lum2) <span class="op">+</span> <span class="fl">0.05</span>)</a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb1-22" data-line-number="22"><span class="kw">def</span> worst_case_ratio(c1: Color, c2: Color, cb: Color) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
+<a class="sourceLine" id="cb1-23" data-line-number="23">    <span class="co">&quot;The worse ratio between c1:cb and c2:cb.&quot;</span></a>
+<a class="sourceLine" id="cb1-24" data-line-number="24">    <span class="cf">return</span> <span class="bu">min</span>(contrast_ratio(c1, cb), contrast_ratio(c2, cb))</a>
+<a class="sourceLine" id="cb1-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb1-26" data-line-number="26"><span class="kw">def</span> report(light: Color, dark: Color) <span class="op">-&gt;</span> <span class="va">None</span>:</a>
+<a class="sourceLine" id="cb1-27" data-line-number="27">    <span class="bu">print</span>(light, dark, contrast_ratio(light, dark))</a>
+<a class="sourceLine" id="cb1-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb1-29" data-line-number="29"><span class="kw">def</span> hue(r: <span class="bu">int</span>, g: <span class="bu">int</span>, b: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
+<a class="sourceLine" id="cb1-30" data-line-number="30">    mx <span class="op">=</span> <span class="bu">max</span>(r, g, b)</a>
+<a class="sourceLine" id="cb1-31" data-line-number="31">    c <span class="op">=</span> <span class="bu">max</span>(r, g, b) <span class="op">-</span> <span class="bu">min</span>(r, g, b)</a>
+<a class="sourceLine" id="cb1-32" data-line-number="32">    <span class="cf">if</span> c <span class="op">==</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="dv">0</span> <span class="co"># whatever</span></a>
+<a class="sourceLine" id="cb1-33" data-line-number="33">    <span class="cf">if</span> mx <span class="op">==</span> r: <span class="cf">return</span> ((g <span class="op">-</span> b) <span class="op">/</span> c) <span class="op">%</span> <span class="dv">6</span></a>
+<a class="sourceLine" id="cb1-34" data-line-number="34">    <span class="cf">elif</span> mx <span class="op">==</span> g: <span class="cf">return</span> ((b <span class="op">-</span> r) <span class="op">/</span> c) <span class="op">+</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb1-35" data-line-number="35">    <span class="cf">else</span>: <span class="cf">return</span> ((r <span class="op">-</span> g) <span class="op">/</span> c) <span class="op">+</span> <span class="dv">4</span></a>
+<a class="sourceLine" id="cb1-36" data-line-number="36"></a>
+<a class="sourceLine" id="cb1-37" data-line-number="37"><span class="kw">def</span> saturation(r: <span class="bu">int</span>, g: <span class="bu">int</span>, b: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
+<a class="sourceLine" id="cb1-38" data-line-number="38">    mx <span class="op">=</span> <span class="bu">max</span>(r, g, b)</a>
+<a class="sourceLine" id="cb1-39" data-line-number="39">    <span class="cf">if</span> mx <span class="op">==</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb1-40" data-line-number="40">    <span class="cf">return</span> <span class="dv">1</span> <span class="op">-</span> <span class="bu">min</span>(r, g, b) <span class="op">/</span> mx</a>
+<a class="sourceLine" id="cb1-41" data-line-number="41"></a>
+<a class="sourceLine" id="cb1-42" data-line-number="42"><span class="kw">def</span> solve(color1: Color, color2: Color) <span class="op">-&gt;</span> <span class="va">None</span>:</a>
+<a class="sourceLine" id="cb1-43" data-line-number="43">    saturation_buckets <span class="op">=</span> <span class="dv">6</span></a>
+<a class="sourceLine" id="cb1-44" data-line-number="44">    hue_buckets <span class="op">=</span> <span class="dv">12</span></a>
+<a class="sourceLine" id="cb1-45" data-line-number="45">    <span class="co"># Table of (score, color)</span></a>
+<a class="sourceLine" id="cb1-46" data-line-number="46">    buckets: List[List[Optional[Tuple[<span class="bu">float</span>, Color]]]] <span class="op">=</span> [[<span class="va">None</span>] <span class="op">*</span> saturation_buckets <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(hue_buckets)]</a>
+<a class="sourceLine" id="cb1-47" data-line-number="47"></a>
+<a class="sourceLine" id="cb1-48" data-line-number="48">    best_score <span class="op">=</span> <span class="fl">0.0</span></a>
+<a class="sourceLine" id="cb1-49" data-line-number="49">    <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">256</span>):</a>
+<a class="sourceLine" id="cb1-50" data-line-number="50">        <span class="cf">for</span> g <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">256</span>):</a>
+<a class="sourceLine" id="cb1-51" data-line-number="51">            <span class="cf">for</span> b <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">256</span>):</a>
+<a class="sourceLine" id="cb1-52" data-line-number="52">                color <span class="op">=</span> (r, g, b)</a>
+<a class="sourceLine" id="cb1-53" data-line-number="53">                score <span class="op">=</span> worst_case_ratio(color1, color2, color)</a>
+<a class="sourceLine" id="cb1-54" data-line-number="54">                hi <span class="op">=</span> <span class="bu">int</span>(hue(r, g, b) <span class="op">/</span> <span class="dv">6</span> <span class="op">*</span> hue_buckets)</a>
+<a class="sourceLine" id="cb1-55" data-line-number="55">                si <span class="op">=</span> <span class="bu">min</span>(saturation_buckets <span class="op">-</span> <span class="dv">1</span>, <span class="bu">int</span>(saturation(r, g, b) <span class="op">*</span> saturation_buckets))</a>
+<a class="sourceLine" id="cb1-56" data-line-number="56">                cb <span class="op">=</span> buckets[hi][si]</a>
+<a class="sourceLine" id="cb1-57" data-line-number="57">                <span class="cf">if</span> cb <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> score <span class="op">&gt;</span> cb[<span class="dv">0</span>]:</a>
+<a class="sourceLine" id="cb1-58" data-line-number="58">                    buckets[hi][si] <span class="op">=</span> (score, color)</a>
+<a class="sourceLine" id="cb1-59" data-line-number="59">                    best_score <span class="op">=</span> <span class="bu">max</span>(best_score, score)</a>
+<a class="sourceLine" id="cb1-60" data-line-number="60"></a>
+<a class="sourceLine" id="cb1-61" data-line-number="61">    <span class="bu">print</span>(<span class="st">&quot;Best colors for contrast between&quot;</span>, color1, <span class="st">&quot;and&quot;</span>, color2)</a>
+<a class="sourceLine" id="cb1-62" data-line-number="62">    <span class="bu">print</span>(<span class="st">&quot;&lt;table&gt;&quot;</span>)</a>
+<a class="sourceLine" id="cb1-63" data-line-number="63">    <span class="cf">for</span> cs <span class="kw">in</span> buckets:</a>
+<a class="sourceLine" id="cb1-64" data-line-number="64">        <span class="bu">print</span>(<span class="st">&quot;&lt;tr&gt;&quot;</span>)</a>
+<a class="sourceLine" id="cb1-65" data-line-number="65">        <span class="cf">for</span> c <span class="kw">in</span> cs:</a>
+<a class="sourceLine" id="cb1-66" data-line-number="66">            <span class="cf">if</span> c <span class="kw">is</span> <span class="va">None</span>:</a>
+<a class="sourceLine" id="cb1-67" data-line-number="67">                <span class="bu">print</span>(<span class="st">&quot;&lt;td&gt;n/a&lt;/td&gt;&quot;</span>)</a>
+<a class="sourceLine" id="cb1-68" data-line-number="68">                <span class="cf">continue</span></a>
+<a class="sourceLine" id="cb1-69" data-line-number="69"></a>
+<a class="sourceLine" id="cb1-70" data-line-number="70">            score, color <span class="op">=</span> c</a>
+<a class="sourceLine" id="cb1-71" data-line-number="71">            r, g, b <span class="op">=</span> color</a>
+<a class="sourceLine" id="cb1-72" data-line-number="72">            txt <span class="op">=</span> <span class="st">&quot;#</span><span class="sc">{:02x}{:02x}{:02x}</span><span class="st">&lt;br&gt;&lt;small&gt;</span><span class="sc">{:.9}</span><span class="st">&lt;/small&gt;&quot;</span>.<span class="bu">format</span>(r, g, b, score)</a>
+<a class="sourceLine" id="cb1-73" data-line-number="73">            <span class="cf">if</span> score <span class="op">==</span> best_score:</a>
+<a class="sourceLine" id="cb1-74" data-line-number="74">                txt <span class="op">=</span> <span class="st">&quot;&lt;strong&gt;</span><span class="sc">{}</span><span class="st">&lt;/strong&gt;&quot;</span>.<span class="bu">format</span>(txt)</a>
+<a class="sourceLine" id="cb1-75" data-line-number="75">            <span class="bu">print</span>(<span class="st">&#39;&lt;td style=&quot;background-color: rgb</span><span class="sc">{}</span><span class="st">&quot;&gt;</span><span class="sc">{}</span><span class="st">&lt;/td&gt;&#39;</span>.<span class="bu">format</span>(color, txt))</a>
+<a class="sourceLine" id="cb1-76" data-line-number="76">        <span class="bu">print</span>(<span class="st">&quot;&lt;/tr&gt;&quot;</span>)</a>
+<a class="sourceLine" id="cb1-77" data-line-number="77">    <span class="bu">print</span>(<span class="st">&quot;&lt;/table&gt;&quot;</span>)</a>
+<a class="sourceLine" id="cb1-78" data-line-number="78"></a>
+<a class="sourceLine" id="cb1-79" data-line-number="79">discord_dark_bg <span class="op">=</span> (<span class="bn">0x36</span>, <span class="bn">0x39</span>, <span class="bn">0x3f</span>)</a>
+<a class="sourceLine" id="cb1-80" data-line-number="80">discord_dark_sidebar_bg <span class="op">=</span> (<span class="bn">0x2f</span>, <span class="bn">0x31</span>, <span class="bn">0x36</span>)</a>
+<a class="sourceLine" id="cb1-81" data-line-number="81">discord_dark_react_bg <span class="op">=</span> (<span class="bn">0x2f</span>, <span class="bn">0x31</span>, <span class="bn">0x36</span>)</a>
+<a class="sourceLine" id="cb1-82" data-line-number="82">discord_dark_reacted_bg <span class="op">=</span> (<span class="bn">0x3b</span>, <span class="bn">0x40</span>, <span class="bn">0x5a</span>)</a>
+<a class="sourceLine" id="cb1-83" data-line-number="83">discord_light_bg <span class="op">=</span> (<span class="bn">0xfa</span>, <span class="bn">0xfa</span>, <span class="bn">0xfa</span>)</a>
+<a class="sourceLine" id="cb1-84" data-line-number="84">discord_light_sidebar_bg <span class="op">=</span> (<span class="bn">0xf2</span>, <span class="bn">0xf3</span>, <span class="bn">0xf5</span>)</a>
+<a class="sourceLine" id="cb1-85" data-line-number="85">discord_light_react_bg <span class="op">=</span> (<span class="bn">0xf2</span>, <span class="bn">0xf3</span>, <span class="bn">0xf5</span>)</a>
+<a class="sourceLine" id="cb1-86" data-line-number="86">discord_light_reacted_bg <span class="op">=</span> (<span class="bn">0xe7</span>, <span class="bn">0xe9</span>, <span class="bn">0xfd</span>)</a>
+<a class="sourceLine" id="cb1-87" data-line-number="87"></a>
+<a class="sourceLine" id="cb1-88" data-line-number="88">solve(discord_dark_reacted_bg, discord_light_reacted_bg)</a>
+<a class="sourceLine" id="cb1-89" data-line-number="89">solve(discord_dark_bg, discord_light_sidebar_bg)</a></code></pre></div>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Apparently, it also has a hidden <a href="https://discord.fandom.com/wiki/AMOLED_optimized_mode">AMOLED mode</a> available on Android only.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>There is some debate over the constant 0.03928: apparently <a href="https://github.com/w3c/wcag/issues/360">it’s outdated and the new constant should be 0.04045</a>. However, this has literally zero effect on any color with a six-hex-digit code. It only affects a tiny fraction of colors on systems that represent color components with 10 or more bits. That said, there are real systems with that much color depth.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>I would be surprised if this varied a lot between devices, but not surprised if it slightly varied. According to the Electron inspector, the reacted-reaction background on dark mode is composed from a color with some alpha atop another color. I could be being A/B-tested at any point, or there might be device/OS-specific tweaks. And, of course, this is all liable to change in future Discord redesigns.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+</ol>
+</section></article>
+	<footer class="post-footer">
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/sql-select">← SQL Selects the Hard FP Way</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2021 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://www.goatcounter.com/">GoatCounter</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>
