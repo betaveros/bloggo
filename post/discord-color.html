@@ -11,7 +11,7 @@ However, when I finally started trying to create some reactions, I hit an intere
 Now, one can’t really just compute the “contrast of two colors” given only their RGB components; there’s no universally agreed-on definition of contrast in vision, and even if there were one, the contrast of two given colors would depend on the color space and possibly the viewer’s biology. But, to get a concrete answer to this question, we can use the standard sRGB model and the W3C’s definitions of contrast ratio and relative luminance.2 As of time of writing on my computer,3 Discord reactions have background #2f3136 on dark mode and #f2f3f5 on light mode. Reactions you’ve reacted with have background #3b405a on dark mode and #e7e9fd on light mode. Because the dark mode background gets lighter and the light mode background gets darker, we’ll use the latter colors so we’re optimizing the worst-case contrast.
 There are smarter approaches, but the 2563 = 16,777,216 possible 8-bit colors are perfectly feasible to brute force, so I wrote a short Python script to check all of them, which is at the bottom of this post. Under the parameters I’ve outlined, the optimal color for a Discord reaction is rgb(255, 65, 3) or #ff4103. A demo:
   #ff4103 #ff4103 ●
-CR: 2.90738237  #ff4103 #ff4103 ● CR: 2.90738217    That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that.
+CR: 2.90738237  #ff4103 #ff4103 ● CR: 2.90738217    That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that. (It’s highly doubtful that the formulae I used were intended to have this degree of precision in the first place.)
 After playing with a few ways to get a spread of options, I settled on categorizing colors into six buckets of saturation and twelve buckets of hue in the simple HSV model, and then finding the optimal color within each bucket. Here is a table of my results:
 " /><meta name="generator" content="Hugo 0.76.0-DEV" />
 
@@ -66,7 +66,7 @@ After playing with a few ways to get a spread of options, I settled on categoriz
 		<p class="post-meta">
 		
 		2021-06-28
-		(1653 words)
+		(1673 words)
 		
 		<span class="post-categories">
 			filed under
@@ -90,7 +90,7 @@ After playing with a few ways to get a spread of options, I settled on categoriz
 </td>
 </tr>
 </table>
-<p>That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that.</p>
+<p>That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that. (It’s highly doubtful that the formulae I used were intended to have this degree of precision in the first place.)</p>
 <p>After playing with a few ways to get a spread of options, I settled on categorizing colors into six buckets of saturation and twelve buckets of hue in the <a href="https://en.wikipedia.org/wiki/HSL_and_HSV#Formal_derivation">simple HSV model</a>, and then finding the optimal color within each bucket. Here is a table of my results:</p>
 <figure>
 <figcaption>

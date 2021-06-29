@@ -28,7 +28,7 @@
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
-&lt;p&gt;That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that.&lt;/p&gt;
+&lt;p&gt;That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that. (It’s highly doubtful that the formulae I used were intended to have this degree of precision in the first place.)&lt;/p&gt;
 &lt;p&gt;After playing with a few ways to get a spread of options, I settled on categorizing colors into six buckets of saturation and twelve buckets of hue in the &lt;a href=&#34;https://en.wikipedia.org/wiki/HSL_and_HSV#Formal_derivation&#34;&gt;simple HSV model&lt;/a&gt;, and then finding the optimal color within each bucket. Here is a table of my results:&lt;/p&gt;</description>
     </item>
     
