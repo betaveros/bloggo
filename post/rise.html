@@ -9,7 +9,7 @@
 I screwed myself over on the first mock test by committing to a bad implementation method on a problem that was hard to get points on. My method seemed simple, but the memory usage leaked out in a way that was confusing and hard to patch; unfortunately, I tried to patch it in increasingly desperate and convoluted ways rather than scrapping the method, and thus missed out on many of the points elsewhere.
 During the second test I failed to read the last problem carefully and spent too much of my time on the second problem, once again missing out on a lot of relatively easy points. I had optimized and optimized and pushed my quadratic runtime down to linearithmic, which would allow me to get the points for the last subtask — or so I thought. But with 10 minutes left I had all but one testcase right, and after desperately rereading my code, I realized that I had a string comparison stuck in an inner loop that could make my runtime degenerate to quadratic if the input string had lots of the same digit. In order to have a solidly linearithmic algorithm, I would have to implement a suffix array. Ten minutes? I gave up. (The problem setters told me afterwards that hashing would have worked too; I didn’t think of that at all. Oops.) I spent the 10 minutes reading the last problem and still failed to read it carefully. So that did not go very well.
 But, as the title probably gave away, during the third and fourth mock tests everything went much better than expected. :)
-" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/rise" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />

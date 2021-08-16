@@ -5,7 +5,7 @@
 <title>Coq Reference</title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/ref/coq" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -91,7 +91,7 @@
 </ul>
 <h3 id="how-to-fish">How to fish</h3>
 <ul>
-<li>Use the queries. <code>Search &quot;foo&quot;.</code> <code>Check foo.</code> <code>About foo.</code> <code>Compute foo.</code> <code>Print foo.</code> To look up notation (e.g. what does <code>&lt;&gt;</code> mean?) use <code>Locate</code> (e.g. <code>Locate &quot;&lt;&gt;&quot;</code>).</li>
+<li>Use the queries. <code>Search "foo".</code> <code>Check foo.</code> <code>About foo.</code> <code>Compute foo.</code> <code>Print foo.</code> To look up notation (e.g. what does <code>&lt;&gt;</code> mean?) use <code>Locate</code> (e.g. <code>Locate "&lt;&gt;"</code>).</li>
 <li>To look up a simple abstract theorem about natural numbers or equality without knowing what it’s called, <code>SearchPattern</code> is useful. For example, I was looking to prove <code>x &lt;&gt; y</code> given <code>y &lt;&gt; x</code>. <code>SearchPattern (_ &lt;&gt; _ -&gt; _ &lt;&gt; _).</code> found the theorem for me (it was called <code>not_eq_sym</code>). Similarly <code>SearchRewrite</code> on some expression pattern searches for theorems you could use to rewrite that expression.</li>
 </ul>
 <h3 id="how-to-use-hypotheses">How to use hypotheses</h3>
@@ -155,7 +155,7 @@ Side note: <code>I</code> is the name for the unique thing of type <code>True</c
 <ul>
 <li><code>constructor.</code> splits the goal into cases if it’s some kind of product type. It’s actually basically just <code>apply</code>ing the constructor. When the goal is a sum type, <code>constructor N.</code> for some number <code>N</code> more precisely chooses to prove the <code>N</code>th constructor.</li>
 <li><code>f_equal.</code>, when the goal is to prove that two calls to the same function are equal, splits into proving that each of the corresponding arguments are equal. (Note that the original goal being true very much doesn’t imply these goals are all true, although it does if the function is a constructor.)</li>
-<li><code>destruct expr as [pattern].</code> splits <code>expr</code> apart, possibly breaking into cases, depending on what constructor <code>expr</code> is. Here <code>[pattern]</code> should be an “intro pattern of disjunctions and conjunctions”. If <code>expr</code> is a product then <code>[pattern]</code> could be <code>[H1 H2]</code>; if <code>expr</code> is a sum then <code>[pattern]</code> could be <code>[H1 | H2]</code>; this could be nested, e.g. <code>[H1 H2 | H3 H4 H5 | ]</code> if it’s a sum of cases with 2, 3, and 0 fields, respectively (and this is what I mean elsewhere by <code>[pattern]</code>). You can even omit “as …” if there’s nothing to destruct to.</li>
+<li><code>destruct expr as [pattern].</code> splits <code>expr</code> apart, possibly breaking into cases, depending on what constructor <code>expr</code> is. Here <code>[pattern]</code> should be an “intro pattern of disjunctions and conjunctions”. If <code>expr</code> is a product then <code>[pattern]</code> could be <code>[H1 H2]</code>; if <code>expr</code> is a sum then <code>[pattern]</code> could be <code>[H1 | H2]</code>; this could be nested, e.g. <code>[H1 H2 | H3 H4 H5 | ]</code> if it’s a sum of cases with 2, 3, and 0 fields, respectively (and this is what I mean elsewhere by <code>[pattern]</code>). You can even omit “as …” if there’s nothing to destruct to.</li>
 <li><code>destruct expr eqn:Hname.</code> does the same, but also giving you a hypothesis with name <code>Hname</code> that states that <code>expr</code> equals what the case is.</li>
 <li><code>induction n as [pattern].</code> splits into base case and induction hypothesis based on what constructor <code>n</code> is. Every branch of the pattern comes with an induction hypothesis. Note: <code>induction</code> behind the scenes is just <code>apply</code> on the “inductive principle” Coq generated when it or you declared the type of <code>n</code>. It seems to have the name of the type of <code>n</code> concatenated with <code>_ind</code>.</li>
 </ul>
@@ -234,13 +234,13 @@ Argument A is implicit</code></pre>
 - (* handle case 2 *)
 - (* handle case 3 *)</code></pre>
 <p>Software Foundations introduces you to the three bullets <code>-</code>, <code>+</code>, and <code>*</code>, but you can get more by repeating any of these: <code>--</code>, <code>++</code>, <code>**</code>, <code>---</code>, etc. Whether you’d want to is another matter.</p></li>
-<li><p><code>{</code> <code>}</code> serve a similar goal. <code>{</code> narrows down to a single subgoal; <code>}</code> forces you to have finished it. They can be arbitrarily nested, and reset the bullet context so you can reuse the same bullets inside and outside <code>{}</code>s. Also note that finishing one subgoal with <code>}</code> doesn’t require you to start the next one with <code>{</code>. Sometimes something like this will make sense, especially if the tactic splits into two cases with really different “weight” (e.g. <code>assert</code>ing a relatively easy lemma before continuing).</p>
+<li><p><code>{</code> <code>}</code> serve a similar goal. <code>{</code> narrows down to a single subgoal; <code>}</code> forces you to have finished it. They can be arbitrarily nested, and reset the bullet context so you can reuse the same bullets inside and outside <code>{}</code>s. Also note that finishing one subgoal with <code>}</code> doesn’t require you to start the next one with <code>{</code>. Sometimes something like this will make sense, especially if the tactic splits into two cases with really different “weight” (e.g. <code>assert</code>ing a relatively easy lemma before continuing).</p>
 <pre><code>(* some tactic that splits into two cases *)
 { (* handle case 1 *) }
 (* handle case 2 *)</code></pre></li>
 <li><code>1:</code>, <code>2:</code>, etc. solves a specifically numbered subgoal with a tactic or bracketed logic. I like to use this when my goal splits into two or more cases where a particular case is very easy and I don’t want to spend a layer of bullets on this split. I have no idea whether this is good style. For example, if my goal splits into two cases and the second case can be proven with <code>reflexivity</code> but the first case is very complex, I might do <code>split. 2: reflexivity.</code> and then continue with the proof of case 1. Comma-separated numbers and ranges denoted with hyphens both work. Cases are 1-indexed.</li>
 <li><code>;</code> (semicolon) solves all subgoals with the same tactic. For example, you could use <code>split; reflexivity.</code> to prove something like <code>a = a /\ b = b</code>.</li>
-<li><code>repeat</code> some tacic e.g. <code>repeat rewrite -&gt; H.</code> repeats a tactic until it fails.</li>
+<li><code>repeat</code> some tacic e.g. <code>repeat rewrite -&gt; H.</code> repeats a tactic until it fails.</li>
 <li><p><code>all:</code> applies a tactic to all subgoals. This is like <code>;</code> but you get to pause beforehand, and also is how you use goal-reordering tactics.</p></li>
 </ul>
 <p>You can try tactics but not fail if they don’t apply. This is likely only useful acting on multiple subgoals at once, so most likely after <code>;</code> or <code>all:</code>. I think they should probably be used sparingly. Or maybe in custom tactics.</p>

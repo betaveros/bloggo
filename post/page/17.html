@@ -5,7 +5,7 @@
 <title>Posts | Bounded-Error Log</title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -54,6 +54,29 @@
 		<h2 class="list-label">Posts</h2>
 	</header>
 	<article class="content"></article><article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-42" class="post-link">Puzzle 42 / Fillomino [Greater-Than]</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-07-19
+		(60 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Oops, I forgot the “puzzles” category was semi-reserved for puzzles I constructed/wrote, because among other things an LMI bot is following it. Anyway, if this makes up for anything, I have a puzzle that I’ve procrastinated posting for very, very long.</p>
+<p>This is a <a href="http://www.nikoli.co.jp/en/puzzles/fillomino.html">Fillomino</a> puzzle. Inequality signs in the grid must be satisfied by the two numbers they touch.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/puzzle-42">→ read more<span class="offscreen"> Puzzle 42 / Fillomino [Greater-Than]</span></a>
+	</footer>
+</article>
+<article class="post-entry">
 	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/rankk-stats" class="post-link">Rankk Solving Statistics</a></h3>
 		
@@ -149,12 +172,12 @@
 </blockquote>
 <p>Functional programming is terribly addicting! Partly I think the completely different way of thinking makes it feel like learning programming, and falling in love with it, all over again. Partly there’s this evil sense of satisfaction from using <code>$</code>s (and later <code>&lt;$&gt;</code>s and <code>=&lt;&lt;</code>s and <code>&amp;&amp;&amp;</code>s) to improve readability for initiated Haskellers and worsen it for everybody else. Partly it’s because <a href="http://learnyouahaskell.com/"><i>Learn You a Haskell for Great Good!</i></a> is such a fun read — there are too many funny bits to list but my favorite so far is when the author analyzes the first verse of Avril Lavigne’s <em>Girlfriend</em>.</p>
 <p>Although I think my code in Haskell tends to be more readable than in other languages, code obfuscation in Haskell is almost natural: all you have to do is refactor the wrong function to be “pointfree”, which means that even though it’s a function that takes arguments, you define it without parameters by manipulating and joining a bunch of other functions. Example (plus a few other tiny obfuscations):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" data-line-number="1">isPrime <span class="fu">=</span> liftA2 (<span class="fu">&amp;&amp;</span>) (liftA2 (<span class="fu">$</span>) (all <span class="fu">.</span> ((<span class="fu">.</span>) (<span class="dv">0</span> <span class="fu">/=</span>)) <span class="fu">.</span> rem) (flip</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">    takeWhile [<span class="dv">2</span><span class="fu">..</span>] <span class="fu">.</span> (flip (<span class="fu">.</span>) <span class="fu">$</span> liftA2 (<span class="fu">*</span>) id id) <span class="fu">.</span> (<span class="fu">&gt;=</span>))) ((<span class="fu">&lt;</span>) <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" title="1">isPrime <span class="ot">=</span> liftA2 (<span class="op">&amp;&amp;</span>) (liftA2 (<span class="op">$</span>) (<span class="fu">all</span> <span class="op">.</span> ((<span class="op">.</span>) (<span class="dv">0</span> <span class="op">/=</span>)) <span class="op">.</span> <span class="fu">rem</span>) (<span class="fu">flip</span></a>
+<a class="sourceLine" id="cb1-2" title="2">    <span class="fu">takeWhile</span> [<span class="dv">2</span><span class="op">..</span>] <span class="op">.</span> (<span class="fu">flip</span> (<span class="op">.</span>) <span class="op">$</span> liftA2 (<span class="op">*</span>) <span class="fu">id</span> <span class="fu">id</span>) <span class="op">.</span> (<span class="op">&gt;=</span>))) ((<span class="op">&lt;</span>) <span class="dv">1</span>)</a></code></pre></div>
 <p>QQ wordpress why no Haskell highlighting <ins>(Editor’s note from 2017: The migration should highlight this now!)</ins></p>
 <p>Also, for some reason, you can do this in Haskell:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb2-1" data-line-number="1">ghci<span class="fu">&gt;</span> <span class="kw">let</span> <span class="dv">2</span> <span class="fu">+</span> <span class="dv">2</span> <span class="fu">=</span> <span class="dv">5</span> <span class="kw">in</span> <span class="dv">2</span> <span class="fu">+</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="dv">5</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb2-1" title="1">ghci<span class="op">&gt;</span> <span class="kw">let</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span> <span class="ot">=</span> <span class="dv">5</span> <span class="kw">in</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="dv">5</span></a></code></pre></div>
 <p>(via <a href="http://www.yellosoft.us/evilgenius/">Haskell for the Evil Genius</a>)</p>
 <hr />
 <p>Okay, but seriously now. I wrote this about my journey to learn functional programming in the <a href="//blog.vero.site/post/programming">programming babble post</a> half a year ago:</p>
@@ -280,28 +303,6 @@ Transcript since the resolution is far from awesome: “Most angiosperms have al
 <p>This is a Samurai <a href="http://www.nikoli.co.jp/en/puzzles/fillomino.html">Fillomino</a>, which means each grid satisfies the constraints on its own. Write a number in every empty cell so that, in each square grid, every group of cells with the same number that is connected through its edges has that number of cells. Note that the two grids must contain the same numbers where they overlap, but the grouping should be considered independently. I’d explain this really carefully if it weren’t the main gimmick of this puzzle.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/puzzle-40">→ read more<span class="offscreen"> Puzzle 40 / Fillomino [Samurai]</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/google-reader-powering-down" class="post-link">Google Reader Powering Down</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-03-14
-		(146 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Google just announced <a href="http://googlereader.blogspot.tw/2013/03/powering-down-google-reader.html">it’s shutting down Google Reader</a> in three and a half months… I am participating in the friendly Reddit DDoS-hug of all the alternatives (<a href="http://www.reddit.com/r/AskReddit/comments/1a8zgj/what_are_some_good_web_rss_readers_to_replace/c8v71t5">list</a>, but scroll around in the thread for a few more). Darn.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/google-reader-powering-down">→ read more<span class="offscreen"> Google Reader Powering Down</span></a>
 	</footer>
 </article>
 <footer class="list-footer">

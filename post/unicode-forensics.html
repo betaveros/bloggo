@@ -6,7 +6,7 @@
 
 <meta name="author" content="betaveros" />
 <meta name="description" content="What do you do when you get a bunch of files like this from a zipfile?
-   I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing.   Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester." /><meta name="generator" content="Hugo 0.76.0-DEV" />
+   I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing.   Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester." /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/unicode-forensics" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -87,7 +87,7 @@ I’ve blurred the messed-up file names because I’m not convinced it’s impos
 <p>Fumble, mumble, search. Oh, I want <code>unicodedata.normalize('NFC', _)</code>.</p>
 <p><code>u'\xed\xac\xee\xe5\xe2\u2202_\xe8W\xf1n.pdf'</code> Attempt at UTF-8 rendition: <code>í¬îåâ∂_èWñn.pdf</code></p>
 <p>Although the byte sequences are totally different, they look the same, which is the point. <em>holds up fist</em> This… is… UNICODE!!!</p>
-<p>Anyway, the code points in the normalized version make more sense. Except for that conspicuous <code>\u2202</code> or <code>∂</code>, of course. Indeed, although it looks promising, if we now try e.g. <code>codecs.encode(_, 'windows-1252')</code> we get,</p>
+<p>Anyway, the code points in the normalized version make more sense. Except for that conspicuous <code>\u2202</code> or <code>∂</code>, of course. Indeed, although it looks promising, if we now try e.g. <code>codecs.encode(_, 'windows-1252')</code> we get,</p>
 <p><code>UnicodeEncodeError: 'charmap' codec can't encode character u'\u2202' in position 5: character maps to</code></p>
 <p>One can get around this by passing a third argument to <code>encode</code> to make it ignore or replace the invalid parts, but the result of the first couple of codepoints, after further pseudomagical decoding and encoding, is still nonsense. Alas.</p>
 <p>I continued to try passing the filenames in and out of <code>codecs.encode</code> and <code>codecs.decode</code> with various combinations of <code>utf_8</code> and <code>latin_1</code> and <code>big5</code> and <code>windows-1252</code>, to no avail.</p>

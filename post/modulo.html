@@ -15,7 +15,7 @@ It’s also very uncontroversial that that remainder should have no copies of b,
 \[|\texttt{a \% b}| &amp;lt; |\texttt{b}|. \tag{2}\]
 Every programming language I can think of satisfies these two constraints.1 So far so good. However, these two constraints don’t uniquely determine the values of a % b when a isn’t divisible by b; there are two possible values for a % b, one positive and one negative. Concretely, we could express \(-5\) as either \((-1) \cdot 3 &#43; (-2)\) or \((-2) \cdot 3 &#43; 1\), so (-5) % 3 could be -2 or 1.
 It’s still mostly uncontroversial that, if a and b are both positive, then a % b should be nonnegative as well; we could call this constraint (3).2 However, if a is negative and b is positive, programming languages start to diverge in their behavior. Why?
-" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/modulo" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -172,36 +172,36 @@ Page 18 of the IBM 704 manual
 <h3 id="division-algorithms-and-sign">Division Algorithms and Sign</h3>
 <p>Wikipedia has pretty nice descriptions of the <a href="https://en.wikipedia.org/wiki/Division_algorithm#Slow_division_methods">“slow” division algorithms</a> used to do division and modulo in hardware. Here, though, I’ll try to present these algorithms with pseudocode that’s even less efficient but even conceptually simpler than what Wikipedia has.</p>
 <p>First, “restoring division”:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1">r <span class="op">=</span> dividend</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">q <span class="op">=</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="cf">for</span> i <span class="im">from</span> ((bit width of r) <span class="op">-</span> <span class="dv">1</span>) down to <span class="dv">0</span>:</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="co"># the following shift must use a wider integer to not overflow</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="co"># (and in practice, divisor will be shifted left at the start</span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">    <span class="co"># and shifted right once each loop)</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">    new_r <span class="op">=</span> r <span class="op">-</span> (divisor <span class="op">&lt;&lt;</span> i)</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">    <span class="cf">if</span> r <span class="op">&gt;=</span> <span class="dv">0</span>:</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">        q <span class="op">+=</span> (<span class="dv">1</span> <span class="op">&lt;&lt;</span> i)</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">        r <span class="op">=</span> new_r</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1">r <span class="op">=</span> dividend</a>
+<a class="sourceLine" id="cb1-2" title="2">q <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb1-3" title="3"></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="cf">for</span> i <span class="im">from</span> ((bit width of r) <span class="op">-</span> <span class="dv">1</span>) down to <span class="dv">0</span>:</a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="co"># the following shift must use a wider integer to not overflow</span></a>
+<a class="sourceLine" id="cb1-6" title="6">    <span class="co"># (and in practice, divisor will be shifted left at the start</span></a>
+<a class="sourceLine" id="cb1-7" title="7">    <span class="co"># and shifted right once each loop)</span></a>
+<a class="sourceLine" id="cb1-8" title="8">    new_r <span class="op">=</span> r <span class="op">-</span> (divisor <span class="op">&lt;&lt;</span> i)</a>
+<a class="sourceLine" id="cb1-9" title="9">    <span class="cf">if</span> r <span class="op">&gt;=</span> <span class="dv">0</span>:</a>
+<a class="sourceLine" id="cb1-10" title="10">        q <span class="op">+=</span> (<span class="dv">1</span> <span class="op">&lt;&lt;</span> i)</a>
+<a class="sourceLine" id="cb1-11" title="11">        r <span class="op">=</span> new_r</a></code></pre></div>
 <p>Basically, for each power-of-two multiple of the divisor starting from the largest, you try to subtract it from the dividend; if the difference is nonnegative, you write down 1 in your quotient and set the new dividend to that difference; otherwise, you write down 0 in your quotient and keep the dividend unchanged. The division is called “restoring” because you can equivalently think of it as always subtracting the divisor’s multiple from the dividend, but then backtracking and “restoring” the old dividend if you got a negative result.</p>
 <p>This algorithm assumes that the dividend and divisor are both nonnegative. There isn’t a nice way to make it sign-agnostic, so I think it favors sign-of-dividend remainder. However, it is not the best hardware division algorithm in practice.</p>
 <p>Consider <a href="https://en.wikipedia.org/wiki/Division_algorithm#Non-restoring_division">non-restoring division</a>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" data-line-number="1">r <span class="op">=</span> dividend</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">q <span class="op">=</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="cf">for</span> i <span class="im">from</span> ((bit width of r) <span class="op">-</span> <span class="dv">1</span>) down to <span class="dv">0</span>:</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">    <span class="co"># Same caveats as above: shift must use wider integer,</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">    <span class="co"># divisor wouldn&#39;t be shifted dynamically.</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">    <span class="co"># Also, instead of adding numbers to q, we&#39;d store the sign of each</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">    <span class="co"># addition as individual bits and convert it to a two&#39;s-complement number</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">    <span class="co"># in a single step at the end.</span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11">    <span class="cf">if</span> r <span class="op">&gt;=</span> <span class="dv">0</span>:</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">        q <span class="op">+=</span> (<span class="dv">1</span> <span class="op">&lt;&lt;</span> i)</a>
-<a class="sourceLine" id="cb2-13" data-line-number="13">        r <span class="op">-=</span> (divisor <span class="op">&lt;&lt;</span> i)</a>
-<a class="sourceLine" id="cb2-14" data-line-number="14">    <span class="cf">else</span>:</a>
-<a class="sourceLine" id="cb2-15" data-line-number="15">        q <span class="op">-=</span> (<span class="dv">1</span> <span class="op">&lt;&lt;</span> i)</a>
-<a class="sourceLine" id="cb2-16" data-line-number="16">        r <span class="op">+=</span> (divisor <span class="op">&lt;&lt;</span> i)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" title="1">r <span class="op">=</span> dividend</a>
+<a class="sourceLine" id="cb2-2" title="2">q <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb2-3" title="3"></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="cf">for</span> i <span class="im">from</span> ((bit width of r) <span class="op">-</span> <span class="dv">1</span>) down to <span class="dv">0</span>:</a>
+<a class="sourceLine" id="cb2-5" title="5">    <span class="co"># Same caveats as above: shift must use wider integer,</span></a>
+<a class="sourceLine" id="cb2-6" title="6">    <span class="co"># divisor wouldn&#39;t be shifted dynamically.</span></a>
+<a class="sourceLine" id="cb2-7" title="7"></a>
+<a class="sourceLine" id="cb2-8" title="8">    <span class="co"># Also, instead of adding numbers to q, we&#39;d store the sign of each</span></a>
+<a class="sourceLine" id="cb2-9" title="9">    <span class="co"># addition as individual bits and convert it to a two&#39;s-complement number</span></a>
+<a class="sourceLine" id="cb2-10" title="10">    <span class="co"># in a single step at the end.</span></a>
+<a class="sourceLine" id="cb2-11" title="11">    <span class="cf">if</span> r <span class="op">&gt;=</span> <span class="dv">0</span>:</a>
+<a class="sourceLine" id="cb2-12" title="12">        q <span class="op">+=</span> (<span class="dv">1</span> <span class="op">&lt;&lt;</span> i)</a>
+<a class="sourceLine" id="cb2-13" title="13">        r <span class="op">-=</span> (divisor <span class="op">&lt;&lt;</span> i)</a>
+<a class="sourceLine" id="cb2-14" title="14">    <span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb2-15" title="15">        q <span class="op">-=</span> (<span class="dv">1</span> <span class="op">&lt;&lt;</span> i)</a>
+<a class="sourceLine" id="cb2-16" title="16">        r <span class="op">+=</span> (divisor <span class="op">&lt;&lt;</span> i)</a></code></pre></div>
 <p>Whereas restoring division tries to subtract multiples of the divisor and then undoes its work if the answer is negative, nonrestoring division unapologetically subtracts or adds multiples of the divisor depending on the sign of the dividend to try to send it closer to 0. This fun algorithm produces a <code>q</code> in the form of a binary representation with digits from the set <span class="math inline">\(\{+1, -1\}\)</span>; fortunately, this is not hard to convert back to a normal binary number. It also produces a remainder <code>r</code> in the range <code>-divisor &lt;= r &lt; divisor</code>, whose sign is not terribly meaningful.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a></p>
 <p>Nonrestoring division works because after adding or subtracting <code>divisor &lt;&lt; i</code>, the value of <code>n</code> is in the range <code>-(divisor &lt;&lt; i) &lt;= n &lt; (divisor &lt;&lt; i)</code> (check this). It’s kind of funny because if you do an easy division like divide 5 by 3 as a pair of 32-bit integers, the first thing it will do is compute the very small number <span class="math inline">\(5 - 3 \cdot 2^{31}\)</span>, stick that in <code>r</code>, and then spend literally all of its remaining iterations correcting back up towards 0, which it just manages to do. But it works, and in fact, it works equally well for positive and negative dividends.</p>
 <p>Nonrestoring division doesn’t work, however, with a negative divisor. So it makes sense to check if the divisor is negative, remove the sign, run the algorithm, and then use the initial sign of the divisor to guide the final sign correction if necessary. This makes nonrestoring division a good fit for computing a sign-of-divisor remainder. Also, the rest of the algorithm is quite a good fit for two’s-complement arithmetic. Addition, subtraction, and shifting are all easy. Checking if <code>n &gt;= 0</code> is the easiest nontrivial comparison to do in two’s-complement; simply check if the most significant bit of <code>n</code> is unset. And if the <span class="math inline">\(\{+1, -1\}\)</span> “bits” of <code>q</code> are stored as <code>1</code> and <code>0</code> in <code>q</code>, you can recover a normal two’s-complement number simply as <code>q - ~q</code>, which equals <code>2*q + 1</code> and actually requires no bit operations.</p>
@@ -212,7 +212,7 @@ Page 18 of the IBM 704 manual
 </ul>
 <p>So, using nonrestoring division, sign-of-divisor modulus seems easier or more efficient to implement in hardware than sign-of-dividend remainder. Wikipedia continues on to describe SRT division, which is even faster, but it appears to share the property of nonrestoring division that the dividend bounces around positive and negative values, making the algorithm work equally well on positive and negative initial dividends. All in all, this increases my confidence that backwards compatibility is the main reason that sign-of-dividend remainder is popular today.</p>
 <h3 id="some-other-possible-sign-behaviors">Some Other Possible Sign Behaviors</h3>
-<p>For completeness, we’ll mention some other options for implementing division and modulo that are neither of the above two. For one, you could say that the remainder should <em>always</em> be nonnegative. A few languages take this option, e.g. <a href="http://www.r6rs.org/final/html/r6rs/r6rs-Z-H-14.html#node_sec_11.7.3.1">Scheme</a>. <ins datetime="2020-04-16T11:30:03-0400">Rust offers this behavior in a family of methods on primitives, <code>.div_euclid</code> and <code>.rem_euclid</code> (and other variants); the <a href="https://github.com/rust-lang/rfcs/pull/2169">RFC</a> has a detailed discussion.</ins> This is also a plausible choice, but the drawback is that there is no simple description of the corresponding quotient forced by (1): you have to round down if the divisor is positive and round up if the divisor is negative.</p>
+<p>For completeness, we’ll mention some other options for implementing division and modulo that are neither of the above two. For one, you could say that the remainder should <em>always</em> be nonnegative. A few languages take this option, e.g. <a href="http://www.r6rs.org/final/html/r6rs/r6rs-Z-H-14.html#node_sec_11.7.3.1">Scheme</a>. <ins datetime="2020-04-16T11:30:03-0400">Rust offers this behavior in a family of methods on primitives, <code>.div_euclid</code> and <code>.rem_euclid</code> (and other variants); the <a href="https://github.com/rust-lang/rfcs/pull/2169">RFC</a> has a detailed discussion.</ins> This is also a plausible choice, but the drawback is that there is no simple description of the corresponding quotient forced by (1): you have to round down if the divisor is positive and round up if the divisor is negative.</p>
 <p>Scheme also offers a fourth option of <code>div0</code> and <code>mod0</code>, which, as mentioned in an early footnote, is unusual for violating (3): it tries to minimize the magnitude of the remainder,<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> which corresponds to rounding division to the closest integer. This option is suggested for floating-point numbers in the <a href="http://python-history.blogspot.com/2010/08/why-pythons-integer-division-floors.html">Python History blog post</a>, because magnitude-minimization is valuable when working with floating-point numbers.</p>
 <p>A summary of the four options covered:</p>
 <!--

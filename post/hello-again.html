@@ -9,7 +9,7 @@
 This is the first post on this blog after I migrated off WordPress for a static solution.
 At first, I wanted to set things up on Amazon Web Services (AWS), which was an adventure. There are lots of online posts about how to do this, but Amazon’s services change quickly and there was often outdated information. For instance, Amazon had a wizard that led you through setting up a static site, which I clicked on. It helpfully handled a lot of grunt work, but now I was out of sync with all of the guides. Oh well.
 I think things are confusing partly because there are four AWS components all interacting to make a static site happen:
-" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/hello-again" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -77,7 +77,7 @@ I think things are confusing partly because there are four AWS components all in
 <p>I think things are confusing partly because there are four AWS components all interacting to make a static site happen:</p>
 <ul>
 <li><p>Amazon S3: Simple Storage Service. Stores your files and serves them, but from a really long URL. Amazon has a command-line client <code>aws</code> that will let you push things by typing something like:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="ex">aws</span> s3 sync --acl <span class="st">&quot;public-read&quot;</span> --sse <span class="st">&quot;AES256&quot;</span> public/ s3://aws-website-blogverosite-zld83</a></code></pre></div></li>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="ex">aws</span> s3 sync --acl <span class="st">&quot;public-read&quot;</span> --sse <span class="st">&quot;AES256&quot;</span> public/ s3://aws-website-blogverosite-zld83</a></code></pre></div></li>
 <li>Amazon Certificate Manager: Does what you think it does, manages certificates. It will also issue you a HTTPS certificate for a domain you control by emailing you.</li>
 <li>Amazon CloudFront: Distributes content through the content delivery network and serves your website from a reasonable domain. You can load a certificate if it’s issued from Amazon Certificate Manager in the region <code>us-east-1</code>, and serve it using SNI for free.</li>
 <li><p>Amazon Route 53: DNS service, which lets you point your domain to the CloudFront servers.</p></li>

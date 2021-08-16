@@ -8,7 +8,7 @@
 <meta name="description" content="Okay did I mention how I sucked at the command line? This is part of the journey towards stopping. Yes, I’m on a Mac and it’s not very *nix-y in some ways but it’s enough for me for now.
 Today’s story starts when I learned about gdb, the pure-command-line GNU Debugger, which is incredibly cool. I have tried and failed to learn how to use the debug function on many of my IDEs; I found shotgunning printf statements as needed faster. This may well be the first time I found a command-line tool so much more intuitive than the GUI-equipped programs. Wow.
 Then I learned that for some reason the gdb on this computer was 6.3, which is 1.2~1.5 major versions behind (depending on how you count) and missing a frustrating amount of features. (The one that the current Code::Blocks installer installs is also something like 6.4. Blech.)
-" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/debug" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -76,7 +76,7 @@ Then I learned that for some reason the gdb on this computer was 6.3, which is 1
 <p>Okay, great. Well, I can download <code>gdb</code>… I can change to the right directory and type <code>make</code>, even though I don’t think I’ve ever done so without being destroyed by weird dependencies… I can wait through the resulting explosion of unreadable computer-y text (this would be a lot more authentic background image for the news on “hackers” compared to whatever they’re showing)… I can <code>make install</code> which will, as the readme file says, install by default into <code>/usr/bin/local</code>…</p>
 <p>Hmm, permission denied? That’s right, I need to <code>sudo make install</code>! I have just blown myself away with my expertise.</p>
 <p>Darn, <code>gdb --version</code> still gives me 6.4.</p>
-<p>Lesson number two: Mac OS X has this really complicated routine for deciding what your <code>$PATH</code> environment variable is, which is from what I know just where the computer looks for each program name (e.g. <code>gdb</code>) you attempt to run. The list appears to be:</p>
+<p>Lesson number two: Mac OS X has this really complicated routine for deciding what your <code>$PATH</code> environment variable is, which is from what I know just where the computer looks for each program name (e.g. <code>gdb</code>) you attempt to run. The list appears to be:</p>
 <ol type="1">
 <li><code>/etc/paths</code>, text file with one directory per line</li>
 <li><code>/etc/manpaths</code>, ditto above</li>

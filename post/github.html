@@ -7,7 +7,7 @@
 <meta name="author" content="betaveros" />
 <meta name="description" content="Yay?
 Right now I feel about this a lot like I felt about getting Twitter. Nobody I know personally is there, but all the “famous” “technological” people are, and something like 90% of the open-source projects I bump into are too.
-Just like Twitter, I barely know how to use Git either, but that’s okay. For version control I’m going all command-line now! Last time I tried to link stuff up with Eclipse everything exploded, but after I ran git init from the terminal this time, it’s highlighting things red and green everywhere like it’s suddenly begging me not to forsake it for the command line." /><meta name="generator" content="Hugo 0.76.0-DEV" />
+Just like Twitter, I barely know how to use Git either, but that’s okay. For version control I’m going all command-line now! Last time I tried to link stuff up with Eclipse everything exploded, but after I ran git init from the terminal this time, it’s highlighting things red and green everywhere like it’s suddenly begging me not to forsake it for the command line." /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/github" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -73,20 +73,20 @@ Just like Twitter, I barely know how to use Git either, but that’s okay. For v
 <p>Right now I feel about this a lot like I felt about <a href="//blog.vero.site/post/twitter-bandwagon">getting Twitter</a>. Nobody I know personally is there, but all the “famous” “technological” people are, and something like 90% of the open-source projects I bump into are too.</p>
 <p>Just like Twitter, I barely know how to use Git either, but that’s okay. For version control I’m going all command-line now! Last time I tried to link stuff up with Eclipse everything exploded, but after I ran <code>git init</code> from the terminal this time, it’s highlighting things red and green everywhere like it’s suddenly begging me not to forsake it for the command line. Nice try, Eclipse. You can’t even get your “presentation compiler” to stop crashing.</p>
 <p>Anyway, I’m recoding my grid-puzzle-drawing project from scratch (Step 3 of writing a complex program, according to Knuth) and having a lot of fun (ab)using Scala monads.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode scala"><code class="sourceCode scala"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">def</span> <span class="fu">tryToInt</span>(str: String): Either[String, Int] = {</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="kw">try</span> {</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">    <span class="fu">Right</span>(str.<span class="fu">toInt</span>)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  } <span class="kw">catch</span> {</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="kw">case</span> e: NumberFormatException =&gt; <span class="fu">Left</span>(<span class="st">&quot;Error: cannot parse int: &quot;</span> + str)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">  }</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">}</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw">def</span> <span class="fu">tryToInts</span>(strs: Seq[String]): Either[String, Seq[Int]] = {</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">  ((strs map tryToInt).<span class="fu">foldLeft</span></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">    (<span class="fu">Right</span>(List.<span class="fu">empty</span>): Either[String, Seq[Int]])</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">    ((collected, next) =&gt;</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">      <span class="kw">for</span> (c &lt;- collected.<span class="fu">right</span>; n &lt;- next.<span class="fu">right</span>)</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13">        <span class="kw">yield</span> (c :+ n)))</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">}</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode scala"><code class="sourceCode scala"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">def</span> <span class="fu">tryToInt</span>(str: String): Either[String, Int] = {</a>
+<a class="sourceLine" id="cb1-2" title="2">  <span class="kw">try</span> {</a>
+<a class="sourceLine" id="cb1-3" title="3">    <span class="fu">Right</span>(str.<span class="fu">toInt</span>)</a>
+<a class="sourceLine" id="cb1-4" title="4">  } <span class="kw">catch</span> {</a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="kw">case</span> e: NumberFormatException =&gt; <span class="fu">Left</span>(<span class="st">&quot;Error: cannot parse int: &quot;</span> + str)</a>
+<a class="sourceLine" id="cb1-6" title="6">  }</a>
+<a class="sourceLine" id="cb1-7" title="7">}</a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="kw">def</span> <span class="fu">tryToInts</span>(strs: Seq[String]): Either[String, Seq[Int]] = {</a>
+<a class="sourceLine" id="cb1-9" title="9">  ((strs map tryToInt).<span class="fu">foldLeft</span></a>
+<a class="sourceLine" id="cb1-10" title="10">    (<span class="fu">Right</span>(List.<span class="fu">empty</span>): Either[String, Seq[Int]])</a>
+<a class="sourceLine" id="cb1-11" title="11">    ((collected, next) =&gt;</a>
+<a class="sourceLine" id="cb1-12" title="12">      <span class="kw">for</span> (c &lt;- collected.<span class="fu">right</span>; n &lt;- next.<span class="fu">right</span>)</a>
+<a class="sourceLine" id="cb1-13" title="13">        <span class="kw">yield</span> (c :+ n)))</a>
+<a class="sourceLine" id="cb1-14" title="14">}</a></code></pre></div>
 </article>
 	<footer class="post-footer">
 		

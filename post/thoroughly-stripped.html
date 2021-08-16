@@ -9,7 +9,7 @@
  Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.
  We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.
 Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from xxb but xxd -c 20 thoroughlyStripped is quite sufficient.)
-" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/thoroughly-stripped" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -106,9 +106,9 @@ Next, we examine the hexdump and look for any clues. There are a bunch of ASCII 
 5d                      pop    rbp
 c3                      ret</code></pre>
 <p>So for instance, the first chunk looks like <code>554889e5be66488d3d161820e8b1feffff905dc3</code> (with some null bytes inserted, in the original executable), and gives this garbage assembly:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> <span class="st">&quot;554889e5be66488d3d161820e8b1feffff905dc3&quot;</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(disasm(unhex(s), arch<span class="op">=</span><span class="st">&quot;amd64&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" title="1"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> <span class="st">&quot;554889e5be66488d3d161820e8b1feffff905dc3&quot;</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(disasm(unhex(s), arch<span class="op">=</span><span class="st">&quot;amd64&quot;</span>))</a></code></pre></div>
 <pre class="small"><code>   0:   55                      push   rbp
    1:   48 89 e5                mov    rbp,rsp
    4:   be 66 48 8d 3d          mov    esi,0x3d8d4866
@@ -136,14 +136,14 @@ c3                      ret</code></pre>
 (00000528) feff ffe8 38ff ffff e8bb feff ffe8 46ff ffff e8c9 | ????8?????????F?????
 (0000053c) feff ffe8 54ff ffff e85f feff ffe8 62ff ffff</code></pre>
 <p>We can parse these offsets and, since each relative call is 5 bytes, add 5 to each subsequent offset to obtain a fixed offset against some point in memory, which it seems pretty reasonable to assume will be the first function that does something with the character <code>f</code>. If we normalize these fixed offsets against their start, we see that all the distances are multiples of 24, so this also confirms that each chunk was originally 24 bytes before the null bytes were removed. Dividing and indexing tells us which characters were used in each of the invoked function calls, which is just the flag, and 200 points.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python breakword"><code class="sourceCode python"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> deduplicated_flag <span class="op">=</span> <span class="st">&quot;flag</span><span class="sc">{sty_incoekd}</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> <span class="st">&quot;e85ffeffffe872feffffe885feffffe898feffffe8abfeffffe8befeffffe8d1feffffe86cfeffffe8dffeffffe8f2feffffe805ffffffe818ffffffe8e3feffffe826ffffffe839ffffffe82cfeffffe827feffffe842ffffffe84dfeffffe838ffffffe8bbfeffffe846ffffffe8c9feffffe854ffffffe85ffeffffe862ffffff&quot;</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="op">&gt;&gt;&gt;</span> offsets <span class="op">=</span> [u32(unhex(chunk[<span class="dv">2</span>:]), sign<span class="op">=</span><span class="st">&quot;signed&quot;</span>) <span class="cf">for</span> chunk <span class="kw">in</span> group(<span class="dv">10</span>, s)]</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="op">&gt;&gt;&gt;</span> normalized_offsets <span class="op">=</span> [off <span class="op">-</span> offsets[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">5</span><span class="op">*</span>i <span class="cf">for</span> i, off <span class="kw">in</span> <span class="bu">enumerate</span>(offsets)]</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="op">&gt;&gt;&gt;</span> <span class="cf">assert</span> <span class="bu">all</span>(off <span class="op">%</span> <span class="dv">24</span> <span class="op">==</span> <span class="dv">0</span> <span class="cf">for</span> off <span class="kw">in</span> normalized_offsets)</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span> <span class="st">&#39;&#39;</span>.join(deduplicated_flag[off <span class="op">//</span> <span class="dv">24</span>] <span class="cf">for</span> off <span class="kw">in</span> normalized_offsets)</a>
-<a class="sourceLine" id="cb7-8" data-line-number="8">flag{stay_in_college_kids}</a></code></pre></div></article>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python breakword"><code class="sourceCode python"><a class="sourceLine" id="cb7-1" title="1"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="op">&gt;&gt;&gt;</span> deduplicated_flag <span class="op">=</span> <span class="st">&quot;flag</span><span class="sc">{sty_incoekd}</span><span class="st">&quot;</span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> <span class="st">&quot;e85ffeffffe872feffffe885feffffe898feffffe8abfeffffe8befeffffe8d1feffffe86cfeffffe8dffeffffe8f2feffffe805ffffffe818ffffffe8e3feffffe826ffffffe839ffffffe82cfeffffe827feffffe842ffffffe84dfeffffe838ffffffe8bbfeffffe846ffffffe8c9feffffe854ffffffe85ffeffffe862ffffff&quot;</span></a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="op">&gt;&gt;&gt;</span> offsets <span class="op">=</span> [u32(unhex(chunk[<span class="dv">2</span>:]), sign<span class="op">=</span><span class="st">&quot;signed&quot;</span>) <span class="cf">for</span> chunk <span class="kw">in</span> group(<span class="dv">10</span>, s)]</a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="op">&gt;&gt;&gt;</span> normalized_offsets <span class="op">=</span> [off <span class="op">-</span> offsets[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">5</span><span class="op">*</span>i <span class="cf">for</span> i, off <span class="kw">in</span> <span class="bu">enumerate</span>(offsets)]</a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="op">&gt;&gt;&gt;</span> <span class="cf">assert</span> <span class="bu">all</span>(off <span class="op">%</span> <span class="dv">24</span> <span class="op">==</span> <span class="dv">0</span> <span class="cf">for</span> off <span class="kw">in</span> normalized_offsets)</a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span> <span class="st">&#39;&#39;</span>.join(deduplicated_flag[off <span class="op">//</span> <span class="dv">24</span>] <span class="cf">for</span> off <span class="kw">in</span> normalized_offsets)</a>
+<a class="sourceLine" id="cb7-8" title="8">flag{stay_in_college_kids}</a></code></pre></div></article>
 	<footer class="post-footer">
 		
 		<ul class="post-tags">

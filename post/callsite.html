@@ -8,7 +8,7 @@
 <meta name="description" content=" Call me maybe? nc rev.chal.csaw.io 1001
  A rev with a nasty binary. There are so many functions. I do not like this binary.
    Static Analysis After staring at the sea of functions in IDA for a little bit, I gave up and tried dumb things instead.
-" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/callsite" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -122,7 +122,7 @@ GS  0000  SS  002B</code></pre>
 <figure>
 <a href="/img/callsite-sub.png"><img src="/img/callsite-sub.png" alt="Screenshot of IDA Pro on the subroutine" /></a>
 </figure>
-<p>There’s some <code>&quot;%lx&quot;</code> energy floating around, corroborating how our first argument was interpreted as hexadecimal to obtain an address. As for <code>&quot;aa&quot;</code>, which suspiciously appears at the start of the string we saw pointed to by our registers as well as the string literal being compared against, fortenforge figured out that the C <a href="http://man7.org/linux/man-pages/man3/crypt.3.html">crypt</a> function was being called on the second argument we passed to <code>callsite</code>, and the result was this suspicious string. <code>crypt</code> is an ancient DES-based hash function with a salt of exactly two characters, which happened to be <code>aa</code> in this case. So it seems like we should reverse the hash <code>aaGr6xly5gT42</code> to figure out what the second argument should be.</p>
+<p>There’s some <code>"%lx"</code> energy floating around, corroborating how our first argument was interpreted as hexadecimal to obtain an address. As for <code>"aa"</code>, which suspiciously appears at the start of the string we saw pointed to by our registers as well as the string literal being compared against, fortenforge figured out that the C <a href="http://man7.org/linux/man-pages/man3/crypt.3.html">crypt</a> function was being called on the second argument we passed to <code>callsite</code>, and the result was this suspicious string. <code>crypt</code> is an ancient DES-based hash function with a salt of exactly two characters, which happened to be <code>aa</code> in this case. So it seems like we should reverse the hash <code>aaGr6xly5gT42</code> to figure out what the second argument should be.</p>
 <p>We fed the hash to <a href="https://hashcat.net/hashcat/">hashcat</a> for maybe an hour before fortenforge also realized we could probably just cut the Gordian knot by jumping to the code after the check at <code>0x400cbb</code>. I did so, and:</p>
 <pre><code>$ nc rev.chal.csaw.io 1001
 Give me two args, space separated:

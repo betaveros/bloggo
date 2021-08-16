@@ -8,12 +8,12 @@
 <meta name="description" content="Some notes.
 I’m assuming you want to use D largely, but not entirely, for competitive programming. That’s me right now.
 Basics Syntax is very similar. Function definitions, semicolon-terminated statements, variable declarations, and so on. You can declare int main() {...} or void main() {...} or something with arguments.
-Basic types like bool and int and double are all there. Wonderfully, long is 64 bits. Instead of unsigned whatever, just prefix a u, e.g. uint.
+Basic types like bool and int and double are all there. Wonderfully, long is 64 bits. Instead of unsigned whatever, just prefix a u, e.g. uint.
 Arithmetic operators and bit operators are all there too, including unsigned right shift &amp;gt;&amp;gt;&amp;gt;. Although ^ is still xor, D has exponentiation as ^^. Sadly, % is still same-sign remainder; there’s no true mod.
 import std.stdio; Casts look like cast(int) x;
 Control Flow if, while, for, do, and even switch all work as you’d expect, along with break and continue.
 foreach is the nice addition though. Not only can you iterate over arrays and stuff, but range loops go like:
-" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/c-to-d" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -79,32 +79,32 @@ foreach is the nice addition though. Not only can you iterate over arrays and st
 <p>I’m assuming you want to use D largely, but not entirely, for competitive programming. That’s me right now.</p>
 <h3 id="basics">Basics</h3>
 <p>Syntax is very similar. Function definitions, semicolon-terminated statements, variable declarations, and so on. You can declare <code>int main() {...}</code> or <code>void main() {...}</code> or something with arguments.</p>
-<p>Basic types like <code>bool</code> and <code>int</code> and <code>double</code> are all there. Wonderfully, <code>long</code> is 64 bits. Instead of <code>unsigned</code> whatever, just prefix a <code>u</code>, e.g. <code>uint</code>.</p>
+<p>Basic types like <code>bool</code> and <code>int</code> and <code>double</code> are all there. Wonderfully, <code>long</code> is 64 bits. Instead of <code>unsigned</code> whatever, just prefix a <code>u</code>, e.g. <code>uint</code>.</p>
 <p>Arithmetic operators and bit operators are all there too, including unsigned right shift <code>&gt;&gt;&gt;</code>. Although <code>^</code> is still xor, D has exponentiation as <code>^^</code>. Sadly, <code>%</code> is still same-sign remainder; there’s no true mod.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">import</span> std.stdio;</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">import</span> std.stdio;</a></code></pre></div>
 <p>Casts look like <code>cast(int) x;</code></p>
 <h3 id="control-flow">Control Flow</h3>
 <p><code>if</code>, <code>while</code>, <code>for</code>, <code>do</code>, and even <code>switch</code> all work as you’d expect, along with <code>break</code> and <code>continue</code>.</p>
 <p><code>foreach</code> is the nice addition though. Not only can you iterate over arrays and stuff, but range loops go like:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">foreach</span> (i; <span class="dv">0</span> .. <span class="dv">10</span>) writeln(i);</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">foreach</span> (i; <span class="dv">0</span> .. <span class="dv">10</span>) writeln(i);</a></code></pre></div>
 <p>If you want both the index and the element (a la <code>zipWithIndex</code>):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">foreach</span> (i, e; array) writeln(i, e);</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">foreach</span> (i, e; array) writeln(i, e);</a></code></pre></div>
 <p>And to modify the element in place:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">foreach</span> (<span class="kw">ref</span> e; array) e += <span class="dv">4</span>;</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">foreach</span> (<span class="kw">ref</span> e; array) e += <span class="dv">4</span>;</a></code></pre></div>
 <p>This <code>ref</code> is also the syntax to pass something by reference to a function, by the way. Functions are otherwise pretty much the same.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="dt">void</span> func(<span class="kw">ref</span> <span class="dt">int</span> x) { x += <span class="dv">4</span>; }</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb5-1" title="1"><span class="dt">void</span> func(<span class="kw">ref</span> <span class="dt">int</span> x) { x += <span class="dv">4</span>; }</a></code></pre></div>
 <h3 id="io">I/O</h3>
 <p>You have access to <code>scanf</code> and <code>printf</code>, for some weird reason.</p>
 <p>But D’s alternatives are <code>readf</code> and <code>writef</code>. They also have variants <code>writefln</code> to add a newline. You often won’t even need <code>writef</code> anyway, since <code>write</code> and <code>writeln</code> take any number of arguments and turn them into strings before printing.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="dt">int</span> n = <span class="dv">100</span>;</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">writeln(<span class="st">&quot;Case #1: &quot;</span>, n, <span class="st">&quot; is the answer.&quot;</span>);</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb6-1" title="1"><span class="dt">int</span> n = <span class="dv">100</span>;</a>
+<a class="sourceLine" id="cb6-2" title="2">writeln(<span class="st">&quot;Case #1: &quot;</span>, n, <span class="st">&quot; is the answer.&quot;</span>);</a></code></pre></div>
 <p>Two gotchas with <code>readf</code>:</p>
 <ol>
 <li>
 <p><strong><code>readf</code> specifiers don’t skip white space</strong>, so where you’d write:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb7-1" data-line-number="1">scanf(<span class="st">&quot;%d%d&quot;</span>, &amp;a, &amp;b);</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb7-1" title="1">scanf(<span class="st">&quot;%d%d&quot;</span>, &amp;a, &amp;b);</a></code></pre></div>
 <p>you should write:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb8-1" data-line-number="1">readf(<span class="st">&quot; %d %d&quot;</span>, &amp;a, &amp;b);</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb8-1" title="1">readf(<span class="st">&quot; %d %d&quot;</span>, &amp;a, &amp;b);</a></code></pre></div>
 </li>
 <li>
 <strong><code>readf</code> on a string reads to end of input.</strong>
@@ -114,13 +114,13 @@ foreach is the nice addition though. Not only can you iterate over arrays and st
 <p>Call functions like <code>stderr.writef(...)</code> for debug output.</p>
 <h3 id="i-just-want-my-int-scanning-macro-so-i-dont-forget-my-ampersands-please">I just want my int-scanning macro so I don’t forget my ampersands, please</h3>
 <p>I can do better: <code>readf</code> infers the type of whatever you give it. This variadic magic fits on an 80-character line. After seeing this, just thinking about <code>cstdio</code> code makes me angry.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="dt">void</span> scan(T...)(<span class="kw">ref</span> T args) { <span class="kw">foreach</span> (<span class="kw">ref</span> arg; args) readf(<span class="st">&quot; %s&quot;</span>, &amp;arg); }</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb9-1" title="1"><span class="dt">void</span> scan(T...)(<span class="kw">ref</span> T args) { <span class="kw">foreach</span> (<span class="kw">ref</span> arg; args) readf(<span class="st">&quot; %s&quot;</span>, &amp;arg); }</a></code></pre></div>
 <h3 id="arrays">Arrays</h3>
 <p><code>int[100008] a;</code> gives you a static (fixed-length) array.</p>
 <p><code>int[] b;</code> gives you a dynamic (variable-length) array. It’s sort of like C++’s STL <code>vector</code>. Actually, it’s properly called a slice, and you can read more about it in the <a href="http://dlang.org/d-array-article.html">D Slices</a> article, which gets linked quite often in the forum.</p>
 <p>Unfortunately after a tragic experience on Codeforces, I’ve discovered its reallocation semantics seems somewhat slow when compared to similar uses of C++ <code>vector</code> for one big problem: <strong>after you pop an element off the back or otherwise decrease the length, the slice must be reallocated to insert more elements</strong>. So far, I’ve found <code>std.container.Array</code> better fits such needs. But if you only push things in, iterate across them, or delete everything at once, I think slices are okay.</p>
 <p>Declare <code>Array</code>s like:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb10-1" data-line-number="1">Array!<span class="dt">int</span> a;</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb10-1" title="1">Array!<span class="dt">int</span> a;</a></code></pre></div>
 <p>You use a bang for templates in D.</p>
 <p>Anyway, in general, binary <code>~</code> is the append or concatenate operator; you can append elements by writing <code>b ~= 3;</code> or <code>b ~= [5, 7];</code> For slices, experimenting shows that D does roughly double the slice after each reallocation so that this is amortized O(1), as you’d hope, although I can’t find any documentation saying so. You can get the length with <code>b.length</code>.</p>
 <p><code>Array</code>s, on the other hand, multiply their capacities by 3/2 on reallocation.</p>
@@ -131,43 +131,43 @@ foreach is the nice addition though. Not only can you iterate over arrays and st
 <p>This is so far the one place D has disappointed me relative to C++, and only mildly. Your best bet is <code>DList</code> (doubly-linked list) from <code>std.container</code>. The type looks like <code>DList!int</code>. As above, you can <code>.front</code>, <code>.popFront()</code>, and also <code>.insertFront(x)</code>, and same for <code>back</code> and cognates, of course.</p>
 <p>You can also <code>.empty</code>, but sadly, you can’t get the length of a <code>DList</code>. But now that I think about it, <code>.empty</code> is often enough anyway if you’re BFSing or whatever, and you can always maintain the length yourself somewhere.</p>
 <p>You can declare associative arrays by putting stuff between the same square brackets you used for arrays. These are <strong>hash tables, not ordered.</strong> The type is just e.g.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="bu">string</span>[<span class="dt">int</span>] map; <span class="co">// int to string map</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb11-1" title="1"><span class="bu">string</span>[<span class="dt">int</span>] map; <span class="co">// int to string map</span></a></code></pre></div>
 <p>Test for key inclusion Pythonically with <code>in</code>, as:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">if</span> (key <span class="kw">in</span> map) map[key] += <span class="dv">1</span>;</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">if</span> (key <span class="kw">in</span> map) map[key] += <span class="dv">1</span>;</a></code></pre></div>
 <p>It also supports <code>.length</code>; <code>.keys</code> and <code>.values</code> (dynamic array copies); <code>.byKey()</code> and <code>.byValue()</code> and <code>.byKeyValue()</code> (iterable-ish things, not copies); <code>.get</code> (pass a second default value to return if )</p>
 <p>There is a <a href="http://dlang.org/phobos/std_container.html#.RedBlackTree"><code>RedBlackTree</code></a> and a <a href="http://dlang.org/phobos/std_container.html#.BinaryHeap"><code>BinaryHeap</code></a> in <code>std.container</code>.</p>
 <h3 id="structs">Structs</h3>
 <p>As you’d expect, but no semicolon.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">struct</span> Pt {</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">    <span class="dt">int</span> x;</a>
-<a class="sourceLine" id="cb13-3" data-line-number="3">    <span class="dt">int</span> y;</a>
-<a class="sourceLine" id="cb13-4" data-line-number="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">struct</span> Pt {</a>
+<a class="sourceLine" id="cb13-2" title="2">    <span class="dt">int</span> x;</a>
+<a class="sourceLine" id="cb13-3" title="3">    <span class="dt">int</span> y;</a>
+<a class="sourceLine" id="cb13-4" title="4">}</a></code></pre></div>
 <p>You get <code>==</code> and a constructor <code>Pt(42, 1337)</code> for free.</p>
 <h3 id="debug">Debug</h3>
 <p>Sweet: just surround a block with <code>debug</code>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">debug</span> {</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">    <span class="co">// code here</span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">debug</span> {</a>
+<a class="sourceLine" id="cb14-2" title="2">    <span class="co">// code here</span></a>
+<a class="sourceLine" id="cb14-3" title="3">}</a></code></pre></div>
 <p>Compile with <code>-debug</code> to enable.</p>
 <p>You also get <code>assert(...);</code>, which is normally enabled; you compile with <code>-release</code> to disable.</p>
 <h3 id="pairstuples">Pairs/Tuples</h3>
 <p>Not as beautiful as I’d hoped, but certainly not worse than C++. The import is</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">import</span> std.typecons;</a></code></pre></div>
-<p>The type looks like <code>Tuple!(int, string)</code>. Construct as <code>tuple(1337, &quot;hi&quot;)</code>. Access elements with <code>[0]</code>, <code>[1]</code> and so on.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">import</span> std.typecons;</a></code></pre></div>
+<p>The type looks like <code>Tuple!(int, string)</code>. Construct as <code>tuple(1337, "hi")</code>. Access elements with <code>[0]</code>, <code>[1]</code> and so on.</p>
 <p>The nice thing is that these are real tuples that can hold more than two things, I guess.</p>
 <p>Also, interestingly, you can <code>foreach</code>-iterate across a tuple, which gets expanded at compile-time.</p>
 <h3 id="alias">Alias</h3>
 <p>D’s alternatives to <code>typedef</code>s and some other things.</p>
 <p><code>alias Weight = double;</code></p>
 <h3 id="sorting-and-other-algorithms">Sorting and Other Algorithms</h3>
-<div class="sourceCode" id="cb16"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">import</span> std.algorithm;</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">import</span> std.algorithm;</a></code></pre></div>
 <p>No <code>s.begin(), s.end()</code> nonsense. Just <code>sort(array)</code>. Optionally, you can specify a comparator with either a string or a function:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb17-1" data-line-number="1">sort!<span class="st">&quot;a &gt; b&quot;</span>(array);</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb17-3" data-line-number="3">sort!((x, y) =&gt; x &gt; y)(array);</a>
-<a class="sourceLine" id="cb17-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="dt">bool</span> myComp(<span class="dt">int</span> x, <span class="dt">int</span> y) @safe <span class="kw">pure</span> <span class="kw">nothrow</span> { <span class="kw">return</span> x &gt; y; }</a>
-<a class="sourceLine" id="cb17-6" data-line-number="6">sort!myComp(array);</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb17-1" title="1">sort!<span class="st">&quot;a &gt; b&quot;</span>(array);</a>
+<a class="sourceLine" id="cb17-2" title="2"></a>
+<a class="sourceLine" id="cb17-3" title="3">sort!((x, y) =&gt; x &gt; y)(array);</a>
+<a class="sourceLine" id="cb17-4" title="4"></a>
+<a class="sourceLine" id="cb17-5" title="5"><span class="dt">bool</span> myComp(<span class="dt">int</span> x, <span class="dt">int</span> y) @safe <span class="kw">pure</span> <span class="kw">nothrow</span> { <span class="kw">return</span> x &gt; y; }</a>
+<a class="sourceLine" id="cb17-6" title="6">sort!myComp(array);</a></code></pre></div>
 <p>The string made me kind of uncomfortable at first, but I guess that’s my reflex to JavaScript string callbacks and the same concerns don’t apply here. There’s no <code>eval</code>ing, it’s all compile time, and local variables don’t leak; any expression involving <code>a</code> and <code>b</code> works.</p>
 <p>What else is there? <code>min</code> and <code>max</code>, which support more than 2 arguments; <code>swap</code>; <code>fill(array, val)</code>; <code>sum</code>.</p>
 <h3 id="extra-things">Extra Things</h3>
@@ -175,16 +175,16 @@ foreach is the nice addition though. Not only can you iterate over arrays and st
 <p>D has <code>const</code>, which has the same meaning as in C++ (you can’t modify the variable through <em>this</em> pointer) but it also has two more powerful modifiers: <code>immutable</code> (this variable is guaranteed not-modifiable through any pointer) and <code>enum</code> (compile-time constants, as if <code>#define</code>d). If you write <code>enum x = ...</code> you can force D to calculate the expression at compile-time, even if it’s very complicated involving function calls and whatnot</p>
 <p>Other function parameter modifiers than <code>ref</code> include <code>in</code>, <code>out</code>, <code>lazy</code>.</p>
 <p>The <code>case</code>s of <code>switch</code> has some extra goodies. You can write</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">case</span> <span class="dv">2</span>: .. <span class="kw">case</span> <span class="dv">5</span>:</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">case</span> <span class="dv">2</span>: .. <span class="kw">case</span> <span class="dv">5</span>:</a></code></pre></div>
 <p>or</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">case</span> <span class="dv">2</span>, <span class="dv">4</span>:</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">case</span> <span class="dv">2</span>, <span class="dv">4</span>:</a></code></pre></div>
 <p>Also, remember how you strangely import stuff from <code>std.array</code> and then you can call things on arrays? This is actually <strong>Uniform Function Call Syntax</strong> (UFCS) sugar; you can write <code>array.front</code> to call <code>front(array)</code>. Of course, you can directly call <code>front(array)</code> too. This is how the <code>std.array</code> functions work.</p>
 <p>You can even do it yourself, although I probably wouldn’t advise it:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="dt">int</span> foo(<span class="dt">int</span> a, <span class="dt">int</span> b) {</a>
-<a class="sourceLine" id="cb20-2" data-line-number="2">    <span class="kw">return</span> a + b + <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb20-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb20-4" data-line-number="4">writeln(<span class="fl">3.f</span>oo(<span class="dv">4</span>));</a></code></pre></div>
-<p>There are functional goodies <code>filter</code>, <code>map</code>, <code>reduce</code>, which are also called like <code>sort</code>, with the bang <code>!</code> template-ish syntax. UFCS lets you chain functional goodies like <code>array.map!&quot;a + 1&quot;.filter!&quot;a &gt; 5&quot;</code> if you want to. You can call <code>reduce(seed, array)</code> (= foldl) or <code>reduce(array)</code> (= foldl1).</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb20-1" title="1"><span class="dt">int</span> foo(<span class="dt">int</span> a, <span class="dt">int</span> b) {</a>
+<a class="sourceLine" id="cb20-2" title="2">    <span class="kw">return</span> a + b + <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb20-3" title="3">}</a>
+<a class="sourceLine" id="cb20-4" title="4">writeln(<span class="fl">3.f</span>oo(<span class="dv">4</span>));</a></code></pre></div>
+<p>There are functional goodies <code>filter</code>, <code>map</code>, <code>reduce</code>, which are also called like <code>sort</code>, with the bang <code>!</code> template-ish syntax. UFCS lets you chain functional goodies like <code>array.map!"a + 1".filter!"a &gt; 5"</code> if you want to. You can call <code>reduce(seed, array)</code> (= foldl) or <code>reduce(array)</code> (= foldl1).</p>
 <p>These goodies work on “ranges”, not just arrays, which are things that allow sequential access in general, like how C++ uses pairs of generators. Note that <code>filter</code> and <code>map</code> return lazy ranges; you can call <code>array</code> on the results (after importing <code>std.array</code>) to convert it to an array.</p>
 <p><code>std.range</code> has lots of other more basic things you’d expect in a functional language:</p>
 <ul>
@@ -194,47 +194,47 @@ foreach is the nice addition though. Not only can you iterate over arrays and st
 <li><code>chunks(n)</code> cuts the source into chunks of length n</li>
 <li><code>only</code> yields a range of its varargs.</li>
 </ul>
-<p>The function <code>to</code> from <code>std.conv</code> does conversions between types, and is quite good at it, e.g. <code>to!int</code> and <code>to!string</code>.</p>
+<p>The function <code>to</code> from <code>std.conv</code> does conversions between types, and is quite good at it, e.g. <code>to!int</code> and <code>to!string</code>.</p>
 <p>Operator overloading is a bit weird (but see <a href="http://dlang.org/rationale.html">D’s rationale</a>):</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">import</span> std.stdio;</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">import</span> std.algorithm;</a>
-<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="kw">import</span> std.array;</a>
-<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="kw">struct</span> Pt {</a>
-<a class="sourceLine" id="cb21-5" data-line-number="5">    <span class="dt">int</span> x, y;</a>
-<a class="sourceLine" id="cb21-6" data-line-number="6">    Pt opBinary(<span class="bu">string</span> op)(<span class="kw">in</span> Pt o)</a>
-<a class="sourceLine" id="cb21-7" data-line-number="7">        <span class="kw">if</span> (op == <span class="st">&quot;+&quot;</span>) <span class="co">// this is checked at compile time</span></a>
-<a class="sourceLine" id="cb21-8" data-line-number="8">    {</a>
-<a class="sourceLine" id="cb21-9" data-line-number="9">        <span class="kw">return</span> Pt(x + o.x, y + o.x);</a>
-<a class="sourceLine" id="cb21-10" data-line-number="10">    }</a>
-<a class="sourceLine" id="cb21-11" data-line-number="11">    <span class="dt">int</span> opCmp()(<span class="kw">const</span> <span class="kw">ref</span> Pt o) <span class="kw">const</span> {</a>
-<a class="sourceLine" id="cb21-12" data-line-number="12">        <span class="kw">if</span> (x != o.x) <span class="kw">return</span> x &lt; o.x ? -<span class="dv">1</span> : <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb21-13" data-line-number="13">        <span class="kw">if</span> (y != o.y) <span class="kw">return</span> y &lt; o.y ? -<span class="dv">1</span> : <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb21-14" data-line-number="14">        <span class="kw">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb21-15" data-line-number="15">    }</a>
-<a class="sourceLine" id="cb21-16" data-line-number="16">}</a>
-<a class="sourceLine" id="cb21-17" data-line-number="17"><span class="dt">void</span> main() {</a>
-<a class="sourceLine" id="cb21-18" data-line-number="18">    Pt[] ps = [ Pt(<span class="dv">1</span>, <span class="dv">2</span>), Pt(<span class="dv">3</span>, <span class="dv">4</span>), Pt(<span class="dv">1</span>, <span class="dv">5</span>), Pt(<span class="dv">3</span>, <span class="dv">2</span>) ];</a>
-<a class="sourceLine" id="cb21-19" data-line-number="19">    sort(ps);</a>
-<a class="sourceLine" id="cb21-20" data-line-number="20">    writeln(ps);</a>
-<a class="sourceLine" id="cb21-21" data-line-number="21">    ps = ps.map!(a =&gt; a + Pt(<span class="dv">100</span>, <span class="dv">100</span>)).array;</a>
-<a class="sourceLine" id="cb21-22" data-line-number="22">    Pt res = ps.reduce!<span class="st">&quot;a + b&quot;</span>;</a>
-<a class="sourceLine" id="cb21-23" data-line-number="23">    writeln(ps);</a>
-<a class="sourceLine" id="cb21-24" data-line-number="24">    writeln(res);</a>
-<a class="sourceLine" id="cb21-25" data-line-number="25">}</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">import</span> std.stdio;</a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="kw">import</span> std.algorithm;</a>
+<a class="sourceLine" id="cb21-3" title="3"><span class="kw">import</span> std.array;</a>
+<a class="sourceLine" id="cb21-4" title="4"><span class="kw">struct</span> Pt {</a>
+<a class="sourceLine" id="cb21-5" title="5">    <span class="dt">int</span> x, y;</a>
+<a class="sourceLine" id="cb21-6" title="6">    Pt opBinary(<span class="bu">string</span> op)(<span class="kw">in</span> Pt o)</a>
+<a class="sourceLine" id="cb21-7" title="7">        <span class="kw">if</span> (op == <span class="st">&quot;+&quot;</span>) <span class="co">// this is checked at compile time</span></a>
+<a class="sourceLine" id="cb21-8" title="8">    {</a>
+<a class="sourceLine" id="cb21-9" title="9">        <span class="kw">return</span> Pt(x + o.x, y + o.x);</a>
+<a class="sourceLine" id="cb21-10" title="10">    }</a>
+<a class="sourceLine" id="cb21-11" title="11">    <span class="dt">int</span> opCmp()(<span class="kw">const</span> <span class="kw">ref</span> Pt o) <span class="kw">const</span> {</a>
+<a class="sourceLine" id="cb21-12" title="12">        <span class="kw">if</span> (x != o.x) <span class="kw">return</span> x &lt; o.x ? -<span class="dv">1</span> : <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb21-13" title="13">        <span class="kw">if</span> (y != o.y) <span class="kw">return</span> y &lt; o.y ? -<span class="dv">1</span> : <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb21-14" title="14">        <span class="kw">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb21-15" title="15">    }</a>
+<a class="sourceLine" id="cb21-16" title="16">}</a>
+<a class="sourceLine" id="cb21-17" title="17"><span class="dt">void</span> main() {</a>
+<a class="sourceLine" id="cb21-18" title="18">    Pt[] ps = [ Pt(<span class="dv">1</span>, <span class="dv">2</span>), Pt(<span class="dv">3</span>, <span class="dv">4</span>), Pt(<span class="dv">1</span>, <span class="dv">5</span>), Pt(<span class="dv">3</span>, <span class="dv">2</span>) ];</a>
+<a class="sourceLine" id="cb21-19" title="19">    sort(ps);</a>
+<a class="sourceLine" id="cb21-20" title="20">    writeln(ps);</a>
+<a class="sourceLine" id="cb21-21" title="21">    ps = ps.map!(a =&gt; a + Pt(<span class="dv">100</span>, <span class="dv">100</span>)).array;</a>
+<a class="sourceLine" id="cb21-22" title="22">    Pt res = ps.reduce!<span class="st">&quot;a + b&quot;</span>;</a>
+<a class="sourceLine" id="cb21-23" title="23">    writeln(ps);</a>
+<a class="sourceLine" id="cb21-24" title="24">    writeln(res);</a>
+<a class="sourceLine" id="cb21-25" title="25">}</a></code></pre></div>
 <p><code>opCmp</code> is three-valued, and the comparison operators <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code> are derived from it. Unfortunately, there doesn’t seem to be a more convenient way to write this that is still as fast; you can do <code>cmp(only(x, y), only(o.x, o.y))</code>, using <code>cmp</code> from <code>std.algorithm</code> for lexicographical comparison and <code>only</code> from <code>std.range</code> to create a lazy range, but it still takes 3 to 4 times as much time. (This version is then 3 to 4 times faster than if you <code>cmp([x, y], [o.x, o.y])</code>.)</p>
 <p>Pleasingly, structs have a built-in definition of <code>==</code>.</p>
-<p>Note, by the way, we can’t use <code>map!&quot;a + Pt(100,100)&quot;</code> because “Pt” isn’t available in the thing that compiles the string into the function.</p>
+<p>Note, by the way, we can’t use <code>map!"a + Pt(100,100)"</code> because “Pt” isn’t available in the thing that compiles the string into the function.</p>
 <h4 id="template">Template</h4>
 <p>Okay, I added a few more imports, but this is still much shorter than my C++ template.</p>
 <p>I don’t need any of the range-loop macros or scanning macros or debug macros or <code>(s).begin(), (s).end()</code> macros or vector-dumping function (vectors have nice <code>to!string</code> already) or typedefs.</p>
 <p>I might need to add a <code>minify</code> and <code>maxify</code>, but the definitions of those will be shorter than C++ too. w00t. For now (this’ll get updated later):</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">import</span> std.stdio, std.array, std.range, std.string, std.typecons;</a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="kw">import</span> std.algorithm, std.container, std.math, std.numeric, std.random;</a>
-<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="dt">void</span> scan(T...)(<span class="kw">ref</span> T args) { <span class="kw">foreach</span> (<span class="kw">ref</span> arg; args) readf(<span class="st">&quot; %s&quot;</span>, &amp;arg); }</a>
-<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="dt">void</span> minify(T)(<span class="kw">ref</span> T a, <span class="kw">in</span> T b) { <span class="kw">if</span> (a &gt; b) a = b; }</a>
-<a class="sourceLine" id="cb22-5" data-line-number="5"><span class="dt">void</span> maxify(T)(<span class="kw">ref</span> T a, <span class="kw">in</span> T b) { <span class="kw">if</span> (a &lt; b) a = b; }</a>
-<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="dt">void</span> ewriteln(T...)(T args) { stderr.writeln(<span class="st">&quot;</span><span class="sc">\033</span><span class="st">[35m&quot;</span>, args, <span class="st">&quot;</span><span class="sc">\033</span><span class="st">[0m&quot;</span>); }</a>
-<a class="sourceLine" id="cb22-7" data-line-number="7"><span class="dt">int</span> ilen(T)(<span class="kw">const</span> <span class="kw">ref</span> T a) { <span class="kw">return</span> <span class="kw">cast</span>(<span class="dt">int</span>)(T.<span class="dt">length</span>); }</a></code></pre></div></article>
+<div class="sourceCode" id="cb22"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">import</span> std.stdio, std.array, std.range, std.string, std.typecons;</a>
+<a class="sourceLine" id="cb22-2" title="2"><span class="kw">import</span> std.algorithm, std.container, std.math, std.numeric, std.random;</a>
+<a class="sourceLine" id="cb22-3" title="3"><span class="dt">void</span> scan(T...)(<span class="kw">ref</span> T args) { <span class="kw">foreach</span> (<span class="kw">ref</span> arg; args) readf(<span class="st">&quot; %s&quot;</span>, &amp;arg); }</a>
+<a class="sourceLine" id="cb22-4" title="4"><span class="dt">void</span> minify(T)(<span class="kw">ref</span> T a, <span class="kw">in</span> T b) { <span class="kw">if</span> (a &gt; b) a = b; }</a>
+<a class="sourceLine" id="cb22-5" title="5"><span class="dt">void</span> maxify(T)(<span class="kw">ref</span> T a, <span class="kw">in</span> T b) { <span class="kw">if</span> (a &lt; b) a = b; }</a>
+<a class="sourceLine" id="cb22-6" title="6"><span class="dt">void</span> ewriteln(T...)(T args) { stderr.writeln(<span class="st">&quot;</span><span class="sc">\033</span><span class="st">[35m&quot;</span>, args, <span class="st">&quot;</span><span class="sc">\033</span><span class="st">[0m&quot;</span>); }</a>
+<a class="sourceLine" id="cb22-7" title="7"><span class="dt">int</span> ilen(T)(<span class="kw">const</span> <span class="kw">ref</span> T a) { <span class="kw">return</span> <span class="kw">cast</span>(<span class="dt">int</span>)(T.<span class="dt">length</span>); }</a></code></pre></div></article>
 	<footer class="post-footer">
 		
 	</footer>

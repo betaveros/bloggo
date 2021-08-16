@@ -11,7 +11,7 @@
 前置要求：treap (split, merge)跟在上面實作區段操作（請參考資訊枝幹）。
 這裡沒有完整的解答code，因為AC是要用血汗換來的才值得 :-)
 Treap 我討厭單字母l的變數名稱（跟1太像了。我沒有被這個雷過，這只是自己對自己程式碼可讀性的要求），所以我的子樹叫做lc(left child)，rc(right child)。
-struct Treap { Treap * lc; Treap * rc; unsigned pri; char val; int size; };  int size(Treap * a) { return a ? a-&amp;gt;size : 0; } void pull(Treap * a) { if (a) a-&amp;gt;size = 1 &#43; size(a-&amp;gt;lc) &#43; size(a-&amp;gt;rc); }" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+struct Treap { Treap * lc; Treap * rc; unsigned pri; char val; int size; };  int size(Treap * a) { return a ? a-&amp;gt;size : 0; } void pull(Treap * a) { if (a) a-&amp;gt;size = 1 &#43; size(a-&amp;gt;lc) &#43; size(a-&amp;gt;rc); }" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/hoj-cp" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -80,18 +80,18 @@ struct Treap { Treap * lc; Treap * rc; unsigned pri; char val; int size; };  int
 <p>這裡沒有完整的解答code，因為AC是要用血汗換來的才值得 :-)</p>
 <h2 id="treap">Treap</h2>
 <p>我討厭單字母<code>l</code>的變數名稱（跟<code>1</code>太像了。我沒有被這個雷過，這只是自己對自己程式碼可讀性的要求），所以我的子樹叫做<code>lc</code>(left child)，<code>rc</code>(right child)。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">struct</span> Treap {</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">    Treap * lc;</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">    Treap * rc;</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="dt">unsigned</span> pri;</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="dt">char</span> val;</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="dt">int</span> size;</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">};</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="dt">int</span> size(Treap * a) { <span class="cf">return</span> a ? a-&gt;size : <span class="dv">0</span>; }</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="dt">void</span> pull(Treap * a) {</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">    <span class="cf">if</span> (a) a-&gt;size = <span class="dv">1</span> + size(a-&gt;lc) + size(a-&gt;rc);</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">}</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">struct</span> Treap {</a>
+<a class="sourceLine" id="cb1-2" title="2">    Treap * lc;</a>
+<a class="sourceLine" id="cb1-3" title="3">    Treap * rc;</a>
+<a class="sourceLine" id="cb1-4" title="4">    <span class="dt">unsigned</span> pri;</a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="dt">char</span> val;</a>
+<a class="sourceLine" id="cb1-6" title="6">    <span class="dt">int</span> size;</a>
+<a class="sourceLine" id="cb1-7" title="7">};</a>
+<a class="sourceLine" id="cb1-8" title="8"></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="dt">int</span> size(Treap * a) { <span class="cf">return</span> a ? a-&gt;size : <span class="dv">0</span>; }</a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="dt">void</span> pull(Treap * a) {</a>
+<a class="sourceLine" id="cb1-11" title="11">    <span class="cf">if</span> (a) a-&gt;size = <span class="dv">1</span> + size(a-&gt;lc) + size(a-&gt;rc);</a>
+<a class="sourceLine" id="cb1-12" title="12">}</a></code></pre></div>
 <h2 id="持久化copy-on-write">持久化／Copy-On-Write</h2>
 <h3 id="一般來說">一般來說</h3>
 <p>純粹只想關treap的話可以跳掉這段。</p>
@@ -107,17 +107,17 @@ y = (1)→(2)→(42)</code></pre>
 <p>這樣本來要做11個新的節點來表示<code>y</code>，現在只要3個。不過這樣做的前提就是，你不可以之後偷偷改掉<code>x</code>後面的節點存些什麼，如果這樣做就必須承受<code>y</code>也被改掉的結果。</p>
 <h3 id="用到treap上面">用到treap上面</h3>
 <p>以前在merge裡面寫</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" data-line-number="1">a-&gt;rc = merge(a-&gt;rc, b);</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">pull(a);</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="cf">return</span> a;</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" title="1">a-&gt;rc = merge(a-&gt;rc, b);</a>
+<a class="sourceLine" id="cb5-2" title="2">pull(a);</a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="cf">return</span> a;</a></code></pre></div>
 <p>現在要假設別的地方可能會用a代表同一個區段，為了不改到那些別的地方，我們不能修改a，所以只好回傳新的Treap，把它的子節點換掉。</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" data-line-number="1">Treap * aa = <span class="kw">new</span> Treap();</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">aa-&gt;lc = a-&gt;lc;</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">aa-&gt;rc = merge(a-&gt;rc, b);</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">aa-&gt;pri = a-&gt;pri;</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">aa-&gt;val = a-&gt;val;</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">pull(aa);</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="cf">return</span> aa;</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" title="1">Treap * aa = <span class="kw">new</span> Treap();</a>
+<a class="sourceLine" id="cb6-2" title="2">aa-&gt;lc = a-&gt;lc;</a>
+<a class="sourceLine" id="cb6-3" title="3">aa-&gt;rc = merge(a-&gt;rc, b);</a>
+<a class="sourceLine" id="cb6-4" title="4">aa-&gt;pri = a-&gt;pri;</a>
+<a class="sourceLine" id="cb6-5" title="5">aa-&gt;val = a-&gt;val;</a>
+<a class="sourceLine" id="cb6-6" title="6">pull(aa);</a>
+<a class="sourceLine" id="cb6-7" title="7"><span class="cf">return</span> aa;</a></code></pre></div>
 <p>所有會改掉現存的Treap改成類似的做法之後，好處是在任何時候，你如果把一個節點做完，那它跟它下面所有的東西就永遠代表同一段資料（除非你電腦壞掉）。 所以一個節點可以用在兩個或更多的地方來表示同一段資料，把之後在一邊操作它不會影響到它在別的地方代表什麼，因為操作改的節點都是剛剛新做的節點。</p>
 <p>這樣，你就可以放心的把一個Treap重複merge到不同的地方了。 例如，你可以<code>merge(m, m)</code>把一個區段複製成兩倍，但記憶體不會用到兩倍。</p>
 <h2 id="引用計數">引用計數</h2>
@@ -127,21 +127,21 @@ y = (1)→(2)→(42)</code></pre>
 <p>我是苦苦的手刻引用計數才過的：記錄每一個treap有幾個指標指向它，如果到0就把treap delete掉。</p>
 <p>我本來以為可以用STL的<code>shared_ptr</code>，不過聽說有人寫了發現太慢了。我不知道有沒有更好的做法。</p>
 <p>基本上，引用計數就是加入一個欄位：</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="dt">int</span> refs;</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb7-1" title="1"><span class="dt">int</span> refs;</a></code></pre></div>
 <p>之後在適當的地方呼叫：</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="dt">void</span> takeRef(Treap * t) {</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">    <span class="cf">if</span> (t) t-&gt;refs++;</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">}</a></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="dt">void</span> dropRef(Treap * t) {</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">    <span class="cf">if</span> (t) {</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">        t-&gt;refs--;</a>
-<a class="sourceLine" id="cb9-4" data-line-number="4">        <span class="cf">if</span> (t-&gt;refs &lt;= <span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">            dropRef(t-&gt;lc);</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6">            dropRef(t-&gt;rc);</a>
-<a class="sourceLine" id="cb9-7" data-line-number="7">            <span class="kw">delete</span> t;</a>
-<a class="sourceLine" id="cb9-8" data-line-number="8">        }</a>
-<a class="sourceLine" id="cb9-9" data-line-number="9">    }</a>
-<a class="sourceLine" id="cb9-10" data-line-number="10">}</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb8-1" title="1"><span class="dt">void</span> takeRef(Treap * t) {</a>
+<a class="sourceLine" id="cb8-2" title="2">    <span class="cf">if</span> (t) t-&gt;refs++;</a>
+<a class="sourceLine" id="cb8-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb9-1" title="1"><span class="dt">void</span> dropRef(Treap * t) {</a>
+<a class="sourceLine" id="cb9-2" title="2">    <span class="cf">if</span> (t) {</a>
+<a class="sourceLine" id="cb9-3" title="3">        t-&gt;refs--;</a>
+<a class="sourceLine" id="cb9-4" title="4">        <span class="cf">if</span> (t-&gt;refs &lt;= <span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb9-5" title="5">            dropRef(t-&gt;lc);</a>
+<a class="sourceLine" id="cb9-6" title="6">            dropRef(t-&gt;rc);</a>
+<a class="sourceLine" id="cb9-7" title="7">            <span class="kw">delete</span> t;</a>
+<a class="sourceLine" id="cb9-8" title="8">        }</a>
+<a class="sourceLine" id="cb9-9" title="9">    }</a>
+<a class="sourceLine" id="cb9-10" title="10">}</a></code></pre></div>
 <p>適當的地方並不明顯。這邊要debug很久很久很久（至少如果你是我的話）。</p>
 <h2 id="randomized-binary-search-tree">Randomized Binary (Search) Tree</h2>
 <p>但這題跟NPSC那題直接用最普通的treap都有一個問題，就是複製區間的時候如果連priority一起複製就會失去讓treap保持指數深度的隨機性質。但你又沒辦法隨機生出一個在樹堆裡有一樣「大小含義」的priority。不能用跟生新的節點時一樣的隨機，因為大的Treap要通常比小的Treap的priority大。（或者比較小，看你heap性質選擇哪個方向。）</p>
@@ -154,11 +154,11 @@ y = (1)→(2)→(42)</code></pre>
 <p>隨機是一件很神奇的東西。</p>
 <h3 id="奇怪的另解">奇怪的另解</h3>
 <p>其實我第一次AC這一題的時候還沒放棄Treap，而是複製了一個Treap就用奇怪的方式幫它隨機產生一個priority。（這樣連heap性質都不保，真恐怖。不過不會影響正確性。)</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="dt">int</span> randomPriority(<span class="dt">int</span> size) {</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">    rseed = <span class="bn">0xdefaced</span> * rseed + <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">    <span class="dt">unsigned</span> <span class="dt">int</span> q = <span class="bn">0xffffffffu</span> / (<span class="dt">unsigned</span> <span class="dt">int</span>) size;</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">    <span class="cf">return</span> r % q;</a>
-<a class="sourceLine" id="cb10-5" data-line-number="5">}</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb10-1" title="1"><span class="dt">int</span> randomPriority(<span class="dt">int</span> size) {</a>
+<a class="sourceLine" id="cb10-2" title="2">    rseed = <span class="bn">0xdefaced</span> * rseed + <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb10-3" title="3">    <span class="dt">unsigned</span> <span class="dt">int</span> q = <span class="bn">0xffffffff</span><span class="bu">u</span> / (<span class="dt">unsigned</span> <span class="dt">int</span>) size;</a>
+<a class="sourceLine" id="cb10-4" title="4">    <span class="cf">return</span> r % q;</a>
+<a class="sourceLine" id="cb10-5" title="5">}</a></code></pre></div>
 <p>這樣的速度顯著的比較慢（55626ms vs 32490ms），不過AC就是AC吧！我沒有試著用數學角度研究這樣的Treap複雜度如何。（注意這樣是假設merge的時候，priority較小的子樹當根。）</p></article>
 	<footer class="post-footer">
 		

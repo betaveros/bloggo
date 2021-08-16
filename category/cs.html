@@ -9,7 +9,7 @@ Category → CS
 </title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/category/cs" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -41,7 +41,7 @@ Category → CS
 </button>
 <nav class="site-menu collapsed">
 	<h2 class="offscreen">Main Menu</h2>
-	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item  is-active"><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
 </nav>
 <nav class="social-menu collapsed">
 	<h2 class="offscreen">Social Networks</h2>
@@ -125,10 +125,10 @@ Category → CS
 <p>A “column” is just what you’d intuitively expect it to be: it’s the homogeneous list of all values in a particular position in each row of a table, which all have the same data type. One thing I haven’t mentioned yet is that table columns all have names. This is true both for tables stored in the database and for the ephemeral tables that are the output of queries.</p>
 <p>Since I’ll also be referring to more complex types like lists and tuples often seen in conventional programming languages, I’ll call these simple data types “scalar types” and values of those types “scalars”. This is not SQL terminology; documentation usually just calls these “data types”. Here’s <a href="https://www.sqlite.org/datatype3.html">SQLite’s page on data types</a>.</p>
 <p>To play along, install SQLite and run it. You should get dropped into a connection to an ephemeral in-memory database, which is plenty enough for our purposes. Make a table and mutter some magic incantations to make the output a little prettier for us:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">CREATE</span> <span class="kw">TABLE</span> a (<span class="kw">id</span> <span class="dt">int</span>);</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">INSERT</span> <span class="kw">INTO</span> a <span class="kw">VALUES</span> (<span class="dv">1</span>), (<span class="dv">2</span>), (<span class="dv">3</span>), (<span class="dv">4</span>);</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">.headers <span class="kw">on</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">.mode <span class="kw">column</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">CREATE</span> <span class="kw">TABLE</span> a (<span class="kw">id</span> <span class="dt">int</span>);</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">INSERT</span> <span class="kw">INTO</span> a <span class="kw">VALUES</span> (<span class="dv">1</span>), (<span class="dv">2</span>), (<span class="dv">3</span>), (<span class="dv">4</span>);</a>
+<a class="sourceLine" id="cb1-3" title="3">.headers <span class="kw">on</span></a>
+<a class="sourceLine" id="cb1-4" title="4">.<span class="kw">mode</span> <span class="kw">column</span></a></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/sql-select">→ read more<span class="offscreen"> SQL Selects the Hard FP Way</span></a>
 	</footer>
@@ -356,15 +356,15 @@ Intro: Bob is cool too</p>
 </blockquote>
 <p>Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with security professionals who probably have decades of experience and who follow security developments for a living or whatever, there remains a competition where scrubs like me can apply our extremely basic CTF skills and still feel kinda smart by earning points. Now that I’ve graduated and am no longer eligible, our team was pretty small and I didn’t dedicate the full weekend to the CTF, but it means I got to do the really easy challenges in the categories that I was the worst at, by which I mean pwn.</p>
 <p><code>baby_boi</code> is pretty much the simplest possible modern ROP (the modern security protections NX and ASLR are not artificially disabled, but you get everything you need to work around them). We even get source code.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv[]) {</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">char</span> buf[<span class="dv">32</span>];</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">  printf(<span class="st">&quot;Hello!</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">  printf(<span class="st">&quot;Here I am: %p</span><span class="sc">\n</span><span class="st">&quot;</span>, printf);</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">  gets(buf);</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">}</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" title="1"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></a>
+<a class="sourceLine" id="cb1-3" title="3"></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv[]) {</a>
+<a class="sourceLine" id="cb1-5" title="5">  <span class="dt">char</span> buf[<span class="dv">32</span>];</a>
+<a class="sourceLine" id="cb1-6" title="6">  printf(<span class="st">&quot;Hello!</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
+<a class="sourceLine" id="cb1-7" title="7">  printf(<span class="st">&quot;Here I am: %p</span><span class="sc">\n</span><span class="st">&quot;</span>, printf);</a>
+<a class="sourceLine" id="cb1-8" title="8">  gets(buf);</a>
+<a class="sourceLine" id="cb1-9" title="9">}</a></code></pre></div>
 <p>So there’s nothing novel here for experienced pwners, but I feel like there is a shortage of tutorials that walk you through how to solve a textbook ROP the way you’d want to solve it in a CTF, so here is a writeup.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/baby-boi">→ read more<span class="offscreen"> baby_boi (A Textbook CTF ROP Tutorial)</span></a>

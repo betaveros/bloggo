@@ -5,7 +5,7 @@
 <title>Posts | Bounded-Error Log</title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -54,6 +54,27 @@
 		<h2 class="list-label">Posts</h2>
 	</header>
 	<article class="content"></article><article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/anki-trick" class="post-link">One Weird Anki Trick</a></h3>
+		
+		<p class="post-meta">
+		
+		2021-08-16
+		(568 words)
+		
+		</p>
+	</header>
+	
+	<p>Imagine you had a button you could press whenever you saw or heard something you wanted to remember. By holding that button down for about a minute, you’ll be able to remember that thing <em>forever</em>. There are no undesirable side effects. Sounds like a pretty good deal, right?</p>
+<p>There’s only one catch: you have to regularly find new things to press the button on. If you stop for more than a few days, the effects wear off. If you ask me, it still seems almost too good to be true! But it’s not. It’s the magic of <a href="https://en.wikipedia.org/wiki/Spaced_repetition">spaced repetition</a>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>I had known about this magic for a long time and read blog posts from all directions telling me to use it, typically but not necessarily through <a href="https://apps.ankiweb.net/">Anki</a>. Examples include Nicky Case’s <a href="https://ncase.me/remember/">interactive guide</a> and Alexey Guzey’s <a href="https://guzey.com/things/software/anki/">guide</a>; and because this has been so well-covered, I won’t go into how or why spaced repetition works or how one would use Anki in this post. Still, for a long time, I found the one “catch” to be of the -22 variety: I didn’t use Anki regularly because I didn’t have any flash cards of things I wanted to remember; but I didn’t make any flash cards of things I wanted to remember because, given that I didn’t use Anki regularly, making those flash cards wouldn’t actually help me remember those things.</p>
+<p>Here is the One Weird Anki Trick that got me to finally turn spaced repetition into a habit: I created an Anki deck with a bunch of amusing but utterly useless cards,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> in order to make studying the Anki deck an entertaining activity I actually wanted to do. (Getting the mobile app and syncing my deck online also helped a lot.) Only after I started to habitually check my Anki deck did I start adding cards for the things I actually wanted to learn. I keep everything in one deck,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> so that my fun cards are spread out among my “work” cards, and when I find myself losing motivation, I add more useless entertainment cards.</p>
+<p>That’s it. That’s the whole post.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/anki-trick">→ read more<span class="offscreen"> One Weird Anki Trick</span></a>
+	</footer>
+</article>
+<article class="post-entry">
 	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/discord-color" class="post-link">What Color Should My Discord Roles/Reactions Be?</a></h3>
 		
@@ -115,10 +136,10 @@
 <p>A “column” is just what you’d intuitively expect it to be: it’s the homogeneous list of all values in a particular position in each row of a table, which all have the same data type. One thing I haven’t mentioned yet is that table columns all have names. This is true both for tables stored in the database and for the ephemeral tables that are the output of queries.</p>
 <p>Since I’ll also be referring to more complex types like lists and tuples often seen in conventional programming languages, I’ll call these simple data types “scalar types” and values of those types “scalars”. This is not SQL terminology; documentation usually just calls these “data types”. Here’s <a href="https://www.sqlite.org/datatype3.html">SQLite’s page on data types</a>.</p>
 <p>To play along, install SQLite and run it. You should get dropped into a connection to an ephemeral in-memory database, which is plenty enough for our purposes. Make a table and mutter some magic incantations to make the output a little prettier for us:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">CREATE</span> <span class="kw">TABLE</span> a (<span class="kw">id</span> <span class="dt">int</span>);</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">INSERT</span> <span class="kw">INTO</span> a <span class="kw">VALUES</span> (<span class="dv">1</span>), (<span class="dv">2</span>), (<span class="dv">3</span>), (<span class="dv">4</span>);</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">.headers <span class="kw">on</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">.mode <span class="kw">column</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">CREATE</span> <span class="kw">TABLE</span> a (<span class="kw">id</span> <span class="dt">int</span>);</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">INSERT</span> <span class="kw">INTO</span> a <span class="kw">VALUES</span> (<span class="dv">1</span>), (<span class="dv">2</span>), (<span class="dv">3</span>), (<span class="dv">4</span>);</a>
+<a class="sourceLine" id="cb1-3" title="3">.headers <span class="kw">on</span></a>
+<a class="sourceLine" id="cb1-4" title="4">.<span class="kw">mode</span> <span class="kw">column</span></a></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/sql-select">→ read more<span class="offscreen"> SQL Selects the Hard FP Way</span></a>
 	</footer>
@@ -322,32 +343,6 @@
 <p>It’s still mostly uncontroversial that, if <code>a</code> and <code>b</code> are both positive, then <code>a % b</code> should be nonnegative as well; we could call this constraint (3).<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> However, if <code>a</code> is negative and <code>b</code> is positive, programming languages start to diverge in their behavior. Why?</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/modulo">→ read more<span class="offscreen"> Signed Modulo</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/2020-hunt" class="post-link">2020 MIT Mystery Hunt</a></h3>
-		
-		<p class="post-meta">
-		
-		2020-02-03
-		(1469 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Fifth year with ✈✈✈ Galactic Trendsetters ✈✈✈ (previously: <a href="//blog.vero.site/post/2019-hunt">2019</a>, <a href="//blog.vero.site/post/2018-hunt">2018</a>, <a href="//blog.vero.site/post/january">2017</a>, <a href="//blog.vero.site/post/whoosh">2016</a>; writing with Random in <a href="//blog.vero.site/post/hunt">2015</a>).</p>
-<p>We won!</p>
-<p>But apparently I’m still really busy, so I’ll probably just focus on a few highlights of things I personally experienced and get this post out the door.</p>
-<p>The theme in a few sentences: As suggested by <a href="https://www.reddit.com/r/mysteryhunt/comments/eo475t/you_are_cordially_invited/">the invitation</a> sent out to teams, there was a wedding. It turned out to actually be a real wedding between two prolific puzzle writers on Left Out, the organizing team. To the surprise of everybody who expected either one, three, or maybe five subversions of this announcement, the wedding actually succeeded (a COIN that would prevent all love in the universe was briefly reported missing, but then immediately found by the bride). Instead, we joined the newlyweds on a trip to an amusement park called Penny Park, which we learned was struggling and closing this weekend. It was up to help its regain its popularity and stay open by solving puzzles. The <a href="https://www.reddit.com/r/mysteryhunt/">Mystery Hunt subreddit</a> has lots of other cool links and discussions, including this <a href="https://public.flourish.studio/visualisation/1267425/">animated bar chart</a>, so I won’t spend more time here.</p>
-<p>I’m pretty sure the best story I personally experienced was how we solved the metameta, the biggest puzzle that stood between us and winning hunt, and the moment at which we went, holy smokes we might have won Mystery Hunt! We got all the pennies required for the final metameta at Sunday 5:48:09am, and it took us until 12:47:30pm, just under <em>seven hours later</em>, to solve it…</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/2020-hunt">→ read more<span class="offscreen"> 2020 MIT Mystery Hunt</span></a>
 	</footer>
 </article>
 <footer class="list-footer">

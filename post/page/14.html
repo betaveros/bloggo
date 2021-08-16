@@ -5,7 +5,7 @@
 <title>Posts | Bounded-Error Log</title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -54,6 +54,35 @@
 		<h2 class="list-label">Posts</h2>
 	</header>
 	<article class="content"></article><article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/midnight" class="post-link">Thoughts at Midnight</a></h3>
+		
+		<p class="post-meta">
+		
+		2015-02-07
+		(3317 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/thoughts">Thoughts</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>These are the thoughts that sometimes keep me awake at night.</p>
+<p>These are things I don’t want to think about. These are things I’ve spent hours thinking about, never productively. They are worrying, but unlike typical worries in my life, it is fundamentally impractical to take steps to resolve or mitigate them, after which I may rest assured that I’ve done my best. The reason is that they also happen to be either untestable/unfalsifiable or only testable if one incurs absurd and irreversible costs, mainly dying.</p>
+<p>Sometimes I explain them away to myself successfully and move on. Sometimes I read what I’ve written and think about these thoughts and do the cognitive equivalent of looking at them funny, as I’m expecting most readers to feel if they get that far — why would anybody be bothered, or afraid, or soul-crushingly panicked about these things? Life is so busy, there are literally more than sixty-four items on my HabitRPG to-do list, and besides, there are so many serious global issues humanity is actually facing right now, and people who are actually deprived of basic rights and resources and have to struggle to stay alive. How can I possibly be bothered by these absurd remote thoughts?</p>
+<p>But I know that other times I do feel those emotions exactly. And if I stare <em>just right</em>, I can feel those emotions bubbling beneath the surface in me. Sometimes I can’t explain the issues away to myself, and a deep soul-sucking pang grows in my stomach. I’m irrational — I’m afraid of some of these thoughts — and I have submitted to the fact that there are some edges of my irrationality that would not be worth the effort to fix if just not thinking about them is better.</p>
+<p>Sometimes these thoughts make me wish I were not so rational. Sometimes they even make me wish I were religious; it would be easier if (I believed) consciousness were, somehow, special. I suspect if I tried really hard, I could make myself believe something like that sincerely. But I think that’s a betrayal of myself I’m not willing to take. I think there are better ways to remain happy.</p>
+<p>I want to maximize happiness. Thinking about more general moral principles will help with that, but the remoteness of these particular thoughts is such that I doubt I’ll ever have to make a choice that would benefit from me having thought about them. At least, I think the chance is small enough to not be worth the negative utility spent thinking about them.</p>
+<p>So: “There is nothing to fear but fear itself.”</p>
+<p>But I feel frustrated: not thinking about something just doesn’t seem like a solution. I don’t know how to come to terms with just how irrational happiness fundamentally is. And I still can’t resist thinking about them sometimes…</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/midnight">→ read more<span class="offscreen"> Thoughts at Midnight</span></a>
+	</footer>
+</article>
+<article class="post-entry">
 	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/hunt" class="post-link">2015 MIT Mystery Hunt</a></h3>
 		
@@ -124,9 +153,9 @@ Anyway, if you happen to run into a pair of these, please be careful, and please
 <p>I’m assuming you want to use D largely, but not entirely, for competitive programming. That’s me right now.</p>
 <h3 id="basics">Basics</h3>
 <p>Syntax is very similar. Function definitions, semicolon-terminated statements, variable declarations, and so on. You can declare <code>int main() {...}</code> or <code>void main() {...}</code> or something with arguments.</p>
-<p>Basic types like <code>bool</code> and <code>int</code> and <code>double</code> are all there. Wonderfully, <code>long</code> is 64 bits. Instead of <code>unsigned</code> whatever, just prefix a <code>u</code>, e.g. <code>uint</code>.</p>
+<p>Basic types like <code>bool</code> and <code>int</code> and <code>double</code> are all there. Wonderfully, <code>long</code> is 64 bits. Instead of <code>unsigned</code> whatever, just prefix a <code>u</code>, e.g. <code>uint</code>.</p>
 <p>Arithmetic operators and bit operators are all there too, including unsigned right shift <code>&gt;&gt;&gt;</code>. Although <code>^</code> is still xor, D has exponentiation as <code>^^</code>. Sadly, <code>%</code> is still same-sign remainder; there’s no true mod.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">import</span> std.stdio;</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">import</span> std.stdio;</a></code></pre></div>
 <p>Casts look like <code>cast(int) x;</code></p>
 <h3 id="control-flow">Control Flow</h3>
 <p><code>if</code>, <code>while</code>, <code>for</code>, <code>do</code>, and even <code>switch</code> all work as you’d expect, along with <code>break</code> and <code>continue</code>.</p>
@@ -228,18 +257,18 @@ edit: This poll has been removed, it wasn’t very interesting anyway.
 <p>這裡沒有完整的解答code，因為AC是要用血汗換來的才值得 :-)</p>
 <h2 id="treap">Treap</h2>
 <p>我討厭單字母<code>l</code>的變數名稱（跟<code>1</code>太像了。我沒有被這個雷過，這只是自己對自己程式碼可讀性的要求），所以我的子樹叫做<code>lc</code>(left child)，<code>rc</code>(right child)。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">struct</span> Treap {</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">    Treap * lc;</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">    Treap * rc;</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="dt">unsigned</span> pri;</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="dt">char</span> val;</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="dt">int</span> size;</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">};</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="dt">int</span> size(Treap * a) { <span class="cf">return</span> a ? a-&gt;size : <span class="dv">0</span>; }</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="dt">void</span> pull(Treap * a) {</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">    <span class="cf">if</span> (a) a-&gt;size = <span class="dv">1</span> + size(a-&gt;lc) + size(a-&gt;rc);</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">}</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">struct</span> Treap {</a>
+<a class="sourceLine" id="cb1-2" title="2">    Treap * lc;</a>
+<a class="sourceLine" id="cb1-3" title="3">    Treap * rc;</a>
+<a class="sourceLine" id="cb1-4" title="4">    <span class="dt">unsigned</span> pri;</a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="dt">char</span> val;</a>
+<a class="sourceLine" id="cb1-6" title="6">    <span class="dt">int</span> size;</a>
+<a class="sourceLine" id="cb1-7" title="7">};</a>
+<a class="sourceLine" id="cb1-8" title="8"></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="dt">int</span> size(Treap * a) { <span class="cf">return</span> a ? a-&gt;size : <span class="dv">0</span>; }</a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="dt">void</span> pull(Treap * a) {</a>
+<a class="sourceLine" id="cb1-11" title="11">    <span class="cf">if</span> (a) a-&gt;size = <span class="dv">1</span> + size(a-&gt;lc) + size(a-&gt;rc);</a>
+<a class="sourceLine" id="cb1-12" title="12">}</a></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/hoj-cp">→ read more<span class="offscreen"> HOJ 226: CP (中)</span></a>
 	</footer>
@@ -322,28 +351,6 @@ edit: This poll has been removed, it wasn’t very interesting anyway.
 Mnemonic Here’s my mnemonic table for digits, inspired by an old Martin Gardner column. I wrote from memory the first 132 digits of 2012! correctly at IMO 2012 with this table. I had remembered more, but unfortunately, if I recall correctly, I confused myself over whether I had encoded a 5 or a 2 by the S of “nose”, because this is supposed to be more of a phonetic code than a spelling one — otherwise double letters would be confusing and lots of randomly appearing digraphs would be wasted, because English is weird.
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/numbers">→ read more<span class="offscreen"> Numbers</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/outtakes" class="post-link">[IOI 2014 Outtakes]</a></h3>
-		
-		<p class="post-meta">
-		
-		2014-09-07
-		(504 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	Miscellaneous observations that didn’t make it into a compelling narrative, sometimes because I have forgotten exactly when they happened, sometimes because I only remembered when they happened after blogging about it, sometimes because it just seemed too tangential, sometimes just because of the circumference of the mooooooooooooooooon! (That made no sense and I’m not going to remember what I’m alluding to in a few months.)   During the first day a guy came into the secret computer room that the Taiwan team had concealed themselves in, saw us watching anime (SAO 2 among others), and innocently asked, “Are you the Japanese team?
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/outtakes">→ read more<span class="offscreen"> [IOI 2014 Outtakes]</span></a>
 	</footer>
 </article>
 <footer class="list-footer">

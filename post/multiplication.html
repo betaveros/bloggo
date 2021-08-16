@@ -11,7 +11,7 @@ At the risk of belaboring the obvious, the core dispute here is not really mathe
 This debate is not even new. The internet had fun arguing over 48÷2(9&#43;3) and 6÷2(1&#43;2), which are functionally identical ambiguous expressions, eight years ago. I don’t know why the debate is resurging now and why we still haven’t gotten tired of it.
 But life is short, so since we’re here anyway, let’s make some additional memes.
 Asking the computer Some of my coworkers had the idea to ask some programming languages what the answer was. The results were underwhelming.
-$ python3 Python 3.6.7 (default, Oct 22 2018, 11:32:17) [GCC 8.2.0] on linux Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information. &amp;gt;&amp;gt;&amp;gt; 8/2(2&#43;2) Traceback (most recent call last): File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt; TypeError: &amp;#39;int&amp;#39; object is not callable" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+$ python3 Python 3.6.7 (default, Oct 22 2018, 11:32:17) [GCC 8.2.0] on linux Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information. &amp;gt;&amp;gt;&amp;gt; 8/2(2&#43;2) Traceback (most recent call last): File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt; TypeError: &amp;#39;int&amp;#39; object is not callable" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/multiplication" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -140,15 +140,15 @@ Loaded GHCi configuration from /home/akriloth/.ghci
         (maybe you haven&#39;t applied a function to enough arguments?)
     • In a stmt of an interactive GHCi command: print it</code></pre>
 <p>This gets at the essence of why Haskell can’t evaluate the expression, and how we might go about making it work. What is the type of an integer literal like <code>2</code> in Haskell?</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb7-1" data-line-number="1">λ<span class="fu">&gt;</span> <span class="fu">:</span>t <span class="dv">2</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Num</span> t <span class="ot">=&gt;</span> t</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb7-1" title="1">λ<span class="op">&gt;</span> <span class="op">:</span>t <span class="dv">2</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Num</span> t <span class="ot">=&gt;</span> t</a></code></pre></div>
 <p>The integer literal can actually be of any type that is an instance of the <em>typeclass</em> <code>Num</code>. If you’re more used to object-oriented programming languages, you can think of a typeclass as like an interface; it declares the types of some operations,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> and any types that are instances of the typeclass must provide concrete implementations of those operations with matching types. So it’s actually not impossible that an integer literal could be a function; all we would need is for the type of a function to be an instance of <code>Num</code>. It just isn’t, yet, and that’s what Haskell is ultimately complaining about, above.</p>
 <p>Let’s make it one. I’m also going to start writing things in a Haskell source file to make things neater. (This should go without saying, but don’t use this code in production.)</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="ot">{-# LANGUAGE FlexibleInstances #-}</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">instance</span> <span class="dt">Num</span> a <span class="ot">=&gt;</span> <span class="dt">Num</span> (a <span class="ot">-&gt;</span> a) <span class="kw">where</span></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">    fromInteger x <span class="fu">=</span> (fromInteger x <span class="fu">*</span>)</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb10-5" data-line-number="5">main <span class="fu">=</span> print (<span class="dv">8</span><span class="fu">/</span><span class="dv">2</span>(<span class="dv">2</span><span class="fu">+</span><span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb10-1" title="1"><span class="ot">{-# LANGUAGE FlexibleInstances #-}</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw">instance</span> <span class="dt">Num</span> a <span class="ot">=&gt;</span> <span class="dt">Num</span> (a <span class="ot">-&gt;</span> a) <span class="kw">where</span></a>
+<a class="sourceLine" id="cb10-3" title="3">    <span class="fu">fromInteger</span> x <span class="ot">=</span> (<span class="fu">fromInteger</span> x <span class="op">*</span>)</a>
+<a class="sourceLine" id="cb10-4" title="4"></a>
+<a class="sourceLine" id="cb10-5" title="5">main <span class="ot">=</span> <span class="fu">print</span> (<span class="dv">8</span><span class="op">/</span><span class="dv">2</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>))</a></code></pre></div>
 <p>There are actually several more functions that one should define to make a type a proper instance of <code>Num</code>, which Haskell would warn us about if our code managed to compile, but the only function we need to define to get Haskell to treat numeric literals as our type is <code>fromInteger</code>. The type of <code>fromInteger</code> is <code>Num a =&gt; Integer -&gt; a</code>: for any type that’s an instance of <code>Num</code>, it converts that type to <code>Integer</code>, which is Haskell’s concrete built-in arbitrary-precision integer type.</p>
 <p>So, what we’re doing concretely above is telling Haskell how to convert an <code>Integer</code> to a function of type <code>a -&gt; a</code>, where <code>a</code> is any type that’s an instance of the typeclass <code>Num</code>. A function of type <code>a -&gt; a</code> is a function that takes in one argument of type <code>a</code> and returns one value of type <code>a</code>. To do this, we convert <code>x</code> from an <code>Integer</code> to a value of type <code>a</code>, and then partially apply the multiplication function <code>*</code> to it, which produces a function that will multiply its argument by the value we’ve already provided. Because type inference is magic, everything works.</p>
 <p>Just kidding:</p>
@@ -229,18 +229,18 @@ meme.hs:5:19: error:
         (maybe you haven&#39;t applied a function to enough arguments?)
       Probable fix: use a type annotation to specify what ‘a0’, ‘t0’ should be.</code></pre>
 <p>And indeed, we can make it compile by explicitly annotating the type of the <code>2</code> that we want to be a function:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="ot">{-# LANGUAGE FlexibleInstances #-}</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">instance</span> <span class="dt">Num</span> a <span class="ot">=&gt;</span> <span class="dt">Num</span> (a <span class="ot">-&gt;</span> a) <span class="kw">where</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3">    fromInteger x <span class="fu">=</span> (fromInteger x <span class="fu">*</span>)</a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb13-5" data-line-number="5">main <span class="fu">=</span> print (<span class="dv">8</span><span class="fu">/</span>(<span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>)(<span class="dv">2</span><span class="fu">+</span><span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb13-1" title="1"><span class="ot">{-# LANGUAGE FlexibleInstances #-}</span></a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="kw">instance</span> <span class="dt">Num</span> a <span class="ot">=&gt;</span> <span class="dt">Num</span> (a <span class="ot">-&gt;</span> a) <span class="kw">where</span></a>
+<a class="sourceLine" id="cb13-3" title="3">    <span class="fu">fromInteger</span> x <span class="ot">=</span> (<span class="fu">fromInteger</span> x <span class="op">*</span>)</a>
+<a class="sourceLine" id="cb13-4" title="4"></a>
+<a class="sourceLine" id="cb13-5" title="5">main <span class="ot">=</span> <span class="fu">print</span> (<span class="dv">8</span><span class="op">/</span>(<span class="dv">2</span><span class="ot"> ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>)(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>))</a></code></pre></div>
 <p>This compiles (with a warning), and it’s an established way of achieving this<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. But it feels like cheating; we had to insert a random type annotation in the middle of our expression, which feels a bit like inserting the <code>*</code>.</p>
 <p>Fortunately, there is a different approach that works, a <a href="https://chrisdone.com/posts/haskell-constraint-trick/">“trick” using the equality constraint</a>:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="ot">{-# LANGUAGE GADTs #-}</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">instance</span> (a <span class="fu">~</span> b, <span class="dt">Num</span> b) <span class="ot">=&gt;</span> <span class="dt">Num</span> (a <span class="ot">-&gt;</span> b) <span class="kw">where</span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">    fromInteger x <span class="fu">=</span> (fromInteger x <span class="fu">*</span>)</a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5">main <span class="fu">=</span> print (<span class="dv">8</span><span class="fu">/</span><span class="dv">2</span>(<span class="dv">2</span><span class="fu">+</span><span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb14-1" title="1"><span class="ot">{-# LANGUAGE GADTs #-}</span></a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="kw">instance</span> (a <span class="op">~</span> b, <span class="dt">Num</span> b) <span class="ot">=&gt;</span> <span class="dt">Num</span> (a <span class="ot">-&gt;</span> b) <span class="kw">where</span></a>
+<a class="sourceLine" id="cb14-3" title="3">    <span class="fu">fromInteger</span> x <span class="ot">=</span> (<span class="fu">fromInteger</span> x <span class="op">*</span>)</a>
+<a class="sourceLine" id="cb14-4" title="4"></a>
+<a class="sourceLine" id="cb14-5" title="5">main <span class="ot">=</span> <span class="fu">print</span> (<span class="dv">8</span><span class="op">/</span><span class="dv">2</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>))</a></code></pre></div>
 <p>The equality constraint is the <code>a ~ b</code> part, which states that <code>a</code> and <code>b</code> must be the same type (and which we need to enable a totally different language extension to make Haskell support). The difference between this instance and the previous one is that this instance will always be chosen whenever Haskell needs to find a <code>Num</code> instance for a function type. Only <em>after</em> Haskell has decided to use the instance does it check that the constraints are satisfied. In contrast, with the old <code>Num a =&gt; Num (a -&gt; a)</code> instance, Haskell checks that the input and output types are equal <em>before</em> deciding to use it, and this check fails. For further reading, you can consult this <a href="https://stackoverflow.com/questions/11553705/haskell-equality-constraint-in-instance">SO question on the equality constraint</a> and the post it links to, or this <a href="https://blog.infinitenegativeutility.com/2017/1/haskell-type-equality-constraints">post on Equality Constraints</a>, which abuses integer literals in a different way.</p>
 <p>With this change, we can finally figure out what Haskell thinks the value of the original mathematical expression is:</p>
 <pre><code>$ ghc meme.hs
@@ -249,45 +249,45 @@ $ ./meme
 <p>Voilà! Juxtaposition binds more tightly than division.</p>
 <h3 id="a-proper-implementation">A proper implementation</h3>
 <p>Don’t like warnings? Want to be extra faithful to the original problem and use the obelus for division? You only need to declare six functions to be a full-fledged instance of <code>Num</code>, and Unicode mathematical operators are perfectly legitimate infix operators in Haskell, so we have you covered.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="ot">{-# LANGUAGE GADTs #-}</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">instance</span> (a <span class="fu">~</span> b, <span class="dt">Num</span> b) <span class="ot">=&gt;</span> <span class="dt">Num</span> (a <span class="ot">-&gt;</span> b) <span class="kw">where</span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">    (fromInteger x) y <span class="fu">=</span> fromInteger x <span class="fu">*</span> y</a>
-<a class="sourceLine" id="cb16-4" data-line-number="4">    (a <span class="fu">+</span> b) c <span class="fu">=</span> a c <span class="fu">+</span> b c</a>
-<a class="sourceLine" id="cb16-5" data-line-number="5">    (a <span class="fu">-</span> b) c <span class="fu">=</span> a c <span class="fu">-</span> b c</a>
-<a class="sourceLine" id="cb16-6" data-line-number="6">    (a <span class="fu">*</span> b) c <span class="fu">=</span> a (b c)</a>
-<a class="sourceLine" id="cb16-7" data-line-number="7">    (abs a) b <span class="fu">=</span> abs (a b) <span class="fu">*</span> signum b</a>
-<a class="sourceLine" id="cb16-8" data-line-number="8">    (signum a) b <span class="fu">=</span> signum (a b) <span class="fu">*</span> abs b</a>
-<a class="sourceLine" id="cb16-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb16-10" data-line-number="10">(÷) <span class="fu">=</span> (<span class="fu">/</span>)</a>
-<a class="sourceLine" id="cb16-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb16-12" data-line-number="12">main <span class="fu">=</span> print (8÷<span class="dv">2</span>(<span class="dv">2</span><span class="fu">+</span><span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb16-1" title="1"><span class="ot">{-# LANGUAGE GADTs #-}</span></a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="kw">instance</span> (a <span class="op">~</span> b, <span class="dt">Num</span> b) <span class="ot">=&gt;</span> <span class="dt">Num</span> (a <span class="ot">-&gt;</span> b) <span class="kw">where</span></a>
+<a class="sourceLine" id="cb16-3" title="3">    (<span class="fu">fromInteger</span> x) y <span class="ot">=</span> <span class="fu">fromInteger</span> x <span class="op">*</span> y</a>
+<a class="sourceLine" id="cb16-4" title="4">    (a <span class="op">+</span> b) c <span class="ot">=</span> a c <span class="op">+</span> b c</a>
+<a class="sourceLine" id="cb16-5" title="5">    (a <span class="op">-</span> b) c <span class="ot">=</span> a c <span class="op">-</span> b c</a>
+<a class="sourceLine" id="cb16-6" title="6">    (a <span class="op">*</span> b) c <span class="ot">=</span> a (b c)</a>
+<a class="sourceLine" id="cb16-7" title="7">    (<span class="fu">abs</span> a) b <span class="ot">=</span> <span class="fu">abs</span> (a b) <span class="op">*</span> <span class="fu">signum</span> b</a>
+<a class="sourceLine" id="cb16-8" title="8">    (<span class="fu">signum</span> a) b <span class="ot">=</span> <span class="fu">signum</span> (a b) <span class="op">*</span> <span class="fu">abs</span> b</a>
+<a class="sourceLine" id="cb16-9" title="9"></a>
+<a class="sourceLine" id="cb16-10" title="10">(÷) <span class="ot">=</span> (<span class="op">/</span>)</a>
+<a class="sourceLine" id="cb16-11" title="11"></a>
+<a class="sourceLine" id="cb16-12" title="12">main <span class="ot">=</span> <span class="fu">print</span> (8÷<span class="dv">2</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>))</a></code></pre></div>
 <p>Want all that in impeccable point-free style? It makes more sense for some of the functions than for others, but whatever floats your boat:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="ot">{-# LANGUAGE GADTs #-}</span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">import</span> <span class="dt">Control.Applicative</span> (liftA2, (&lt;*&gt;))</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="kw">instance</span> (a <span class="fu">~</span> b, <span class="dt">Num</span> b) <span class="ot">=&gt;</span> <span class="dt">Num</span> (a <span class="ot">-&gt;</span> b) <span class="kw">where</span></a>
-<a class="sourceLine" id="cb17-5" data-line-number="5">    fromInteger <span class="fu">=</span> (<span class="fu">*</span>) <span class="fu">.</span> fromInteger</a>
-<a class="sourceLine" id="cb17-6" data-line-number="6">    (<span class="fu">+</span>) <span class="fu">=</span> liftA2 (<span class="fu">+</span>)</a>
-<a class="sourceLine" id="cb17-7" data-line-number="7">    (<span class="fu">-</span>) <span class="fu">=</span> liftA2 (<span class="fu">-</span>)</a>
-<a class="sourceLine" id="cb17-8" data-line-number="8">    (<span class="fu">*</span>) <span class="fu">=</span> (<span class="fu">.</span>)</a>
-<a class="sourceLine" id="cb17-9" data-line-number="9">    abs <span class="fu">=</span> (<span class="fu">&lt;*&gt;</span> signum) <span class="fu">.</span> (((<span class="fu">*</span>) <span class="fu">.</span> abs) <span class="fu">.</span>)</a>
-<a class="sourceLine" id="cb17-10" data-line-number="10">    signum <span class="fu">=</span> (<span class="fu">&lt;*&gt;</span> abs) <span class="fu">.</span> (((<span class="fu">*</span>) <span class="fu">.</span> signum) <span class="fu">.</span>)</a>
-<a class="sourceLine" id="cb17-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb17-12" data-line-number="12">(÷) <span class="fu">=</span> (<span class="fu">/</span>)</a>
-<a class="sourceLine" id="cb17-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb17-14" data-line-number="14">main <span class="fu">=</span> print (8÷<span class="dv">2</span>(<span class="dv">2</span><span class="fu">+</span><span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb17-1" title="1"><span class="ot">{-# LANGUAGE GADTs #-}</span></a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="kw">import</span> <span class="dt">Control.Applicative</span> (liftA2, (&lt;*&gt;))</a>
+<a class="sourceLine" id="cb17-3" title="3"></a>
+<a class="sourceLine" id="cb17-4" title="4"><span class="kw">instance</span> (a <span class="op">~</span> b, <span class="dt">Num</span> b) <span class="ot">=&gt;</span> <span class="dt">Num</span> (a <span class="ot">-&gt;</span> b) <span class="kw">where</span></a>
+<a class="sourceLine" id="cb17-5" title="5">    <span class="fu">fromInteger</span> <span class="ot">=</span> (<span class="op">*</span>) <span class="op">.</span> <span class="fu">fromInteger</span></a>
+<a class="sourceLine" id="cb17-6" title="6">    (<span class="op">+</span>) <span class="ot">=</span> liftA2 (<span class="op">+</span>)</a>
+<a class="sourceLine" id="cb17-7" title="7">    (<span class="op">-</span>) <span class="ot">=</span> liftA2 (<span class="op">-</span>)</a>
+<a class="sourceLine" id="cb17-8" title="8">    (<span class="op">*</span>) <span class="ot">=</span> (<span class="op">.</span>)</a>
+<a class="sourceLine" id="cb17-9" title="9">    <span class="fu">abs</span> <span class="ot">=</span> (<span class="op">&lt;*&gt;</span> <span class="fu">signum</span>) <span class="op">.</span> (((<span class="op">*</span>) <span class="op">.</span> <span class="fu">abs</span>) <span class="op">.</span>)</a>
+<a class="sourceLine" id="cb17-10" title="10">    <span class="fu">signum</span> <span class="ot">=</span> (<span class="op">&lt;*&gt;</span> <span class="fu">abs</span>) <span class="op">.</span> (((<span class="op">*</span>) <span class="op">.</span> <span class="fu">signum</span>) <span class="op">.</span>)</a>
+<a class="sourceLine" id="cb17-11" title="11"></a>
+<a class="sourceLine" id="cb17-12" title="12">(÷) <span class="ot">=</span> (<span class="op">/</span>)</a>
+<a class="sourceLine" id="cb17-13" title="13"></a>
+<a class="sourceLine" id="cb17-14" title="14">main <span class="ot">=</span> <span class="fu">print</span> (8÷<span class="dv">2</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>))</a></code></pre></div>
 <p>Of course, the downside is that many nonsensical expressions now typecheck and give nonsensical results:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb18-1" data-line-number="1">λ<span class="fu">&gt;</span> (<span class="fu">+</span><span class="dv">4</span>) (<span class="fu">+</span><span class="dv">9</span>) <span class="dv">2</span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="dv">19</span></a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb18-1" title="1">λ<span class="op">&gt;</span> (<span class="op">+</span><span class="dv">4</span>) (<span class="op">+</span><span class="dv">9</span>) <span class="dv">2</span></a>
+<a class="sourceLine" id="cb18-2" title="2"><span class="dv">19</span></a></code></pre></div>
 <h3 id="bonus-round-scala">Bonus round: Scala</h3>
 <p>All we need to do is tell Scala it can implicitly convert any <code>Int</code> into a function that multiplies its argument by that <code>Int</code>.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode scala"><code class="sourceCode scala"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">import</span> scala.<span class="fu">language</span>.<span class="fu">implicitConversions</span></a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="kw">object</span> Meme <span class="kw">extends</span> App {</a>
-<a class="sourceLine" id="cb19-4" data-line-number="4">  <span class="kw">implicit</span> <span class="kw">def</span> <span class="fu">int2mul</span>(x: Int) = (y: Int) =&gt; x * y</a>
-<a class="sourceLine" id="cb19-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb19-6" data-line-number="6">  <span class="fu">println</span>(<span class="dv">8</span>/<span class="dv">2</span>(<span class="dv">2</span>+<span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb19-7" data-line-number="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode scala"><code class="sourceCode scala"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">import</span> scala.<span class="fu">language</span>.<span class="fu">implicitConversions</span></a>
+<a class="sourceLine" id="cb19-2" title="2"></a>
+<a class="sourceLine" id="cb19-3" title="3"><span class="kw">object</span> Meme <span class="kw">extends</span> App {</a>
+<a class="sourceLine" id="cb19-4" title="4">  <span class="kw">implicit</span> <span class="kw">def</span> <span class="fu">int2mul</span>(x: Int) = (y: Int) =&gt; x * y</a>
+<a class="sourceLine" id="cb19-5" title="5"></a>
+<a class="sourceLine" id="cb19-6" title="6">  <span class="fu">println</span>(<span class="dv">8</span>/<span class="dv">2</span>(<span class="dv">2</span>+<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb19-7" title="7">}</a></code></pre></div>
 <pre><code>$ scalac Meme.scala
 $ scala Meme
 1</code></pre>
@@ -295,25 +295,25 @@ $ scala Meme
 <section class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>If you’re following along at home, I got the prompt by putting <code>:set prompt &quot;λ&gt; &quot;</code> in <code>~/.ghci</code>. See <a href="http://dev.stephendiehl.com/hask/#ghci">What I Wish I Knew When Learning Haskell on GHCi</a>.</p>
+<li id="fn1"><p>If you’re following along at home, I got the prompt by putting <code>:set prompt "λ&gt; "</code> in <code>~/.ghci</code>. See <a href="http://dev.stephendiehl.com/hask/#ghci">What I Wish I Knew When Learning Haskell on GHCi</a>.</p>
 <p>Also, I’m using GHC, the Glasgow Haskell Compiler, and I refer to it as Haskell just to keep things simple. This may be considered technically incorrect since there are other Haskell implementations and I’m using lots of GHC extensions that aren’t part of the Haskell specification, but GHC is very canonical.<a href="#fnref1" class="footnote-back">↩</a></p></li>
 <li id="fn2"><p>Typically these operations are functions, but they don’t have to be. For example, the <code>Bounded</code> typeclass defines “operations” of the following two types:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">class</span> <span class="dt">Bounded</span> a <span class="kw">where</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="ot">  minBound ::</span> a</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="ot">  maxBound ::</span> a</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">class</span> <span class="dt">Bounded</span> a <span class="kw">where</span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="ot">  minBound ::</span> a</a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="ot">  maxBound ::</span> a</a></code></pre></div>
 <p><a href="http://www.learnyouahaskell.com/types-and-typeclasses">Learn You a Haskell</a> describes these as “polymorphic constants”. They are constants of type <code>a</code>, which differ depending on the type.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb9-1" data-line-number="1">λ<span class="fu">&gt;</span><span class="ot"> minBound ::</span> <span class="dt">Int</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="fu">-</span><span class="dv">9223372036854775808</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">λ<span class="fu">&gt;</span><span class="ot"> maxBound ::</span> <span class="dt">Int</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="dv">9223372036854775807</span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">λ<span class="fu">&gt;</span><span class="ot"> minBound ::</span> <span class="dt">Bool</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="dt">False</span></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7">λ<span class="fu">&gt;</span><span class="ot"> maxBound ::</span> <span class="dt">Bool</span></a>
-<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="dt">True</span></a>
-<a class="sourceLine" id="cb9-9" data-line-number="9">λ<span class="fu">&gt;</span><span class="ot"> minBound ::</span> <span class="dt">Char</span></a>
-<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="ch">&#39;\NUL&#39;</span></a>
-<a class="sourceLine" id="cb9-11" data-line-number="11">λ<span class="fu">&gt;</span><span class="ot"> maxBound ::</span> <span class="dt">Char</span></a>
-<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="ch">&#39;\1114111&#39;</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb9-1" title="1">λ<span class="op">&gt;</span><span class="ot"> minBound ::</span> <span class="dt">Int</span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="op">-</span><span class="dv">9223372036854775808</span></a>
+<a class="sourceLine" id="cb9-3" title="3">λ<span class="op">&gt;</span><span class="ot"> maxBound ::</span> <span class="dt">Int</span></a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="dv">9223372036854775807</span></a>
+<a class="sourceLine" id="cb9-5" title="5">λ<span class="op">&gt;</span><span class="ot"> minBound ::</span> <span class="dt">Bool</span></a>
+<a class="sourceLine" id="cb9-6" title="6"><span class="dt">False</span></a>
+<a class="sourceLine" id="cb9-7" title="7">λ<span class="op">&gt;</span><span class="ot"> maxBound ::</span> <span class="dt">Bool</span></a>
+<a class="sourceLine" id="cb9-8" title="8"><span class="dt">True</span></a>
+<a class="sourceLine" id="cb9-9" title="9">λ<span class="op">&gt;</span><span class="ot"> minBound ::</span> <span class="dt">Char</span></a>
+<a class="sourceLine" id="cb9-10" title="10"><span class="ch">&#39;\NUL&#39;</span></a>
+<a class="sourceLine" id="cb9-11" title="11">λ<span class="op">&gt;</span><span class="ot"> maxBound ::</span> <span class="dt">Char</span></a>
+<a class="sourceLine" id="cb9-12" title="12"><span class="ch">&#39;\1114111&#39;</span></a></code></pre></div>
 <p>The word “operation” is from the Haskell spec.<a href="#fnref2" class="footnote-back">↩</a></p></li>
 <li id="fn3"><p><a href="https://stackoverflow.com/questions/27754902/is-there-a-way-to-overload-juxtaposition-in-ghc/27755045#27755045">“Is there a way to overload juxtaposition in ghc?”</a>, 2015.<a href="#fnref3" class="footnote-back">↩</a></p></li>
 </ol>

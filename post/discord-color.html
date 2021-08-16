@@ -13,7 +13,7 @@ There are smarter approaches, but the 2563 = 16,777,216 possible 8-bit colors ar
   #ff4103 #ff4103 ●
 CR: 2.90738237  #ff4103 #ff4103 ● CR: 2.90738217    That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that. (It’s highly doubtful that the formulae I used were intended to have this degree of precision in the first place.)
 After playing with a few ways to get a spread of options, I settled on categorizing colors into six buckets of saturation and twelve buckets of hue in the simple HSV model, and then finding the optimal color within each bucket. Here is a table of my results:
-" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/discord-color" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -643,95 +643,95 @@ update();
 </script>
 <h3 id="appendix-my-python-script">Appendix: my Python script</h3>
 <p>Not the best code I’ve written, but not the worst either. Polished only enough that I’m okay publishing it. I tweaked the script after generating the above tables so it also considers colors that are darker than both or lighter than both target colors, which I think generalizes better in a sense.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="im">from</span> typing <span class="im">import</span> List, Tuple, Optional</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># https://www.w3.org/TR/WCAG20-TECHS/G17.html</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">def</span> luminance_component(c0: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">    c <span class="op">=</span> c0 <span class="op">/</span> <span class="dv">255</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="co"># https://github.com/w3c/wcag/issues/360#issuecomment-498615230</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="cf">if</span> c <span class="op">&lt;=</span> <span class="fl">0.04045</span>: <span class="co"># or 0.03928, this literally doesn&#39;t matter for 8-bit colors</span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">        <span class="cf">return</span> c <span class="op">/</span> <span class="fl">12.92</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">    <span class="cf">else</span>:</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">        <span class="cf">return</span> ((c <span class="op">+</span> <span class="fl">0.055</span>) <span class="op">/</span> <span class="fl">1.055</span>) <span class="op">**</span> <span class="fl">2.4</span></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="kw">def</span> luminance(r: <span class="bu">int</span>, g: <span class="bu">int</span>, b: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">    R, G, B <span class="op">=</span> <span class="bu">map</span>(luminance_component, (r, g, b))</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13">    <span class="cf">return</span> <span class="fl">0.2126</span> <span class="op">*</span> R <span class="op">+</span> <span class="fl">0.7152</span> <span class="op">*</span> G <span class="op">+</span> <span class="fl">0.0722</span> <span class="op">*</span> B</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">Color <span class="op">=</span> Tuple[<span class="bu">int</span>, <span class="bu">int</span>, <span class="bu">int</span>]</a>
-<a class="sourceLine" id="cb1-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="kw">def</span> contrast_ratio(rgb1: Color, rgb2: Color) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
-<a class="sourceLine" id="cb1-18" data-line-number="18">    lum1 <span class="op">=</span> luminance(<span class="op">*</span>rgb1)</a>
-<a class="sourceLine" id="cb1-19" data-line-number="19">    lum2 <span class="op">=</span> luminance(<span class="op">*</span>rgb2)</a>
-<a class="sourceLine" id="cb1-20" data-line-number="20">    <span class="cf">return</span> (<span class="bu">max</span>(lum1, lum2) <span class="op">+</span> <span class="fl">0.05</span>) <span class="op">/</span> (<span class="bu">min</span>(lum1, lum2) <span class="op">+</span> <span class="fl">0.05</span>)</a>
-<a class="sourceLine" id="cb1-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb1-22" data-line-number="22"><span class="kw">def</span> worst_case_ratio(c1: Color, c2: Color, cb: Color) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
-<a class="sourceLine" id="cb1-23" data-line-number="23">    <span class="co">&quot;The worse ratio between c1:cb and c2:cb.&quot;</span></a>
-<a class="sourceLine" id="cb1-24" data-line-number="24">    <span class="cf">return</span> <span class="bu">min</span>(contrast_ratio(c1, cb), contrast_ratio(c2, cb))</a>
-<a class="sourceLine" id="cb1-25" data-line-number="25"></a>
-<a class="sourceLine" id="cb1-26" data-line-number="26"><span class="kw">def</span> report(light: Color, dark: Color) <span class="op">-&gt;</span> <span class="va">None</span>:</a>
-<a class="sourceLine" id="cb1-27" data-line-number="27">    <span class="bu">print</span>(light, dark, contrast_ratio(light, dark))</a>
-<a class="sourceLine" id="cb1-28" data-line-number="28"></a>
-<a class="sourceLine" id="cb1-29" data-line-number="29"><span class="kw">def</span> hue(r: <span class="bu">int</span>, g: <span class="bu">int</span>, b: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
-<a class="sourceLine" id="cb1-30" data-line-number="30">    mx <span class="op">=</span> <span class="bu">max</span>(r, g, b)</a>
-<a class="sourceLine" id="cb1-31" data-line-number="31">    c <span class="op">=</span> <span class="bu">max</span>(r, g, b) <span class="op">-</span> <span class="bu">min</span>(r, g, b)</a>
-<a class="sourceLine" id="cb1-32" data-line-number="32">    <span class="cf">if</span> c <span class="op">==</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="dv">0</span> <span class="co"># whatever</span></a>
-<a class="sourceLine" id="cb1-33" data-line-number="33">    <span class="cf">if</span> mx <span class="op">==</span> r: <span class="cf">return</span> ((g <span class="op">-</span> b) <span class="op">/</span> c) <span class="op">%</span> <span class="dv">6</span></a>
-<a class="sourceLine" id="cb1-34" data-line-number="34">    <span class="cf">elif</span> mx <span class="op">==</span> g: <span class="cf">return</span> ((b <span class="op">-</span> r) <span class="op">/</span> c) <span class="op">+</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb1-35" data-line-number="35">    <span class="cf">else</span>: <span class="cf">return</span> ((r <span class="op">-</span> g) <span class="op">/</span> c) <span class="op">+</span> <span class="dv">4</span></a>
-<a class="sourceLine" id="cb1-36" data-line-number="36"></a>
-<a class="sourceLine" id="cb1-37" data-line-number="37"><span class="kw">def</span> saturation(r: <span class="bu">int</span>, g: <span class="bu">int</span>, b: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
-<a class="sourceLine" id="cb1-38" data-line-number="38">    mx <span class="op">=</span> <span class="bu">max</span>(r, g, b)</a>
-<a class="sourceLine" id="cb1-39" data-line-number="39">    <span class="cf">if</span> mx <span class="op">==</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb1-40" data-line-number="40">    <span class="cf">return</span> <span class="dv">1</span> <span class="op">-</span> <span class="bu">min</span>(r, g, b) <span class="op">/</span> mx</a>
-<a class="sourceLine" id="cb1-41" data-line-number="41"></a>
-<a class="sourceLine" id="cb1-42" data-line-number="42"><span class="kw">def</span> solve(color1: Color, color2: Color) <span class="op">-&gt;</span> <span class="va">None</span>:</a>
-<a class="sourceLine" id="cb1-43" data-line-number="43">    saturation_buckets <span class="op">=</span> <span class="dv">6</span></a>
-<a class="sourceLine" id="cb1-44" data-line-number="44">    hue_buckets <span class="op">=</span> <span class="dv">12</span></a>
-<a class="sourceLine" id="cb1-45" data-line-number="45">    <span class="co"># Table of (score, color)</span></a>
-<a class="sourceLine" id="cb1-46" data-line-number="46">    buckets: List[List[Optional[Tuple[<span class="bu">float</span>, Color]]]] <span class="op">=</span> [[<span class="va">None</span>] <span class="op">*</span> saturation_buckets <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(hue_buckets)]</a>
-<a class="sourceLine" id="cb1-47" data-line-number="47"></a>
-<a class="sourceLine" id="cb1-48" data-line-number="48">    best_score <span class="op">=</span> <span class="fl">0.0</span></a>
-<a class="sourceLine" id="cb1-49" data-line-number="49">    <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">256</span>):</a>
-<a class="sourceLine" id="cb1-50" data-line-number="50">        <span class="cf">for</span> g <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">256</span>):</a>
-<a class="sourceLine" id="cb1-51" data-line-number="51">            <span class="cf">for</span> b <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">256</span>):</a>
-<a class="sourceLine" id="cb1-52" data-line-number="52">                color <span class="op">=</span> (r, g, b)</a>
-<a class="sourceLine" id="cb1-53" data-line-number="53">                score <span class="op">=</span> worst_case_ratio(color1, color2, color)</a>
-<a class="sourceLine" id="cb1-54" data-line-number="54">                hi <span class="op">=</span> <span class="bu">int</span>(hue(r, g, b) <span class="op">/</span> <span class="dv">6</span> <span class="op">*</span> hue_buckets)</a>
-<a class="sourceLine" id="cb1-55" data-line-number="55">                si <span class="op">=</span> <span class="bu">min</span>(saturation_buckets <span class="op">-</span> <span class="dv">1</span>, <span class="bu">int</span>(saturation(r, g, b) <span class="op">*</span> saturation_buckets))</a>
-<a class="sourceLine" id="cb1-56" data-line-number="56">                cb <span class="op">=</span> buckets[hi][si]</a>
-<a class="sourceLine" id="cb1-57" data-line-number="57">                <span class="cf">if</span> cb <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> score <span class="op">&gt;</span> cb[<span class="dv">0</span>]:</a>
-<a class="sourceLine" id="cb1-58" data-line-number="58">                    buckets[hi][si] <span class="op">=</span> (score, color)</a>
-<a class="sourceLine" id="cb1-59" data-line-number="59">                    best_score <span class="op">=</span> <span class="bu">max</span>(best_score, score)</a>
-<a class="sourceLine" id="cb1-60" data-line-number="60"></a>
-<a class="sourceLine" id="cb1-61" data-line-number="61">    <span class="bu">print</span>(<span class="st">&quot;Best colors for contrast between&quot;</span>, color1, <span class="st">&quot;and&quot;</span>, color2)</a>
-<a class="sourceLine" id="cb1-62" data-line-number="62">    <span class="bu">print</span>(<span class="st">&quot;&lt;table&gt;&quot;</span>)</a>
-<a class="sourceLine" id="cb1-63" data-line-number="63">    <span class="cf">for</span> cs <span class="kw">in</span> buckets:</a>
-<a class="sourceLine" id="cb1-64" data-line-number="64">        <span class="bu">print</span>(<span class="st">&quot;&lt;tr&gt;&quot;</span>)</a>
-<a class="sourceLine" id="cb1-65" data-line-number="65">        <span class="cf">for</span> c <span class="kw">in</span> cs:</a>
-<a class="sourceLine" id="cb1-66" data-line-number="66">            <span class="cf">if</span> c <span class="kw">is</span> <span class="va">None</span>:</a>
-<a class="sourceLine" id="cb1-67" data-line-number="67">                <span class="bu">print</span>(<span class="st">&quot;&lt;td&gt;n/a&lt;/td&gt;&quot;</span>)</a>
-<a class="sourceLine" id="cb1-68" data-line-number="68">                <span class="cf">continue</span></a>
-<a class="sourceLine" id="cb1-69" data-line-number="69"></a>
-<a class="sourceLine" id="cb1-70" data-line-number="70">            score, color <span class="op">=</span> c</a>
-<a class="sourceLine" id="cb1-71" data-line-number="71">            r, g, b <span class="op">=</span> color</a>
-<a class="sourceLine" id="cb1-72" data-line-number="72">            txt <span class="op">=</span> <span class="st">&quot;#</span><span class="sc">{:02x}{:02x}{:02x}</span><span class="st">&lt;br&gt;&lt;small&gt;</span><span class="sc">{:.9}</span><span class="st">&lt;/small&gt;&quot;</span>.<span class="bu">format</span>(r, g, b, score)</a>
-<a class="sourceLine" id="cb1-73" data-line-number="73">            <span class="cf">if</span> score <span class="op">==</span> best_score:</a>
-<a class="sourceLine" id="cb1-74" data-line-number="74">                txt <span class="op">=</span> <span class="st">&quot;&lt;strong&gt;</span><span class="sc">{}</span><span class="st">&lt;/strong&gt;&quot;</span>.<span class="bu">format</span>(txt)</a>
-<a class="sourceLine" id="cb1-75" data-line-number="75">            <span class="bu">print</span>(<span class="st">&#39;&lt;td style=&quot;background-color: rgb</span><span class="sc">{}</span><span class="st">&quot;&gt;</span><span class="sc">{}</span><span class="st">&lt;/td&gt;&#39;</span>.<span class="bu">format</span>(color, txt))</a>
-<a class="sourceLine" id="cb1-76" data-line-number="76">        <span class="bu">print</span>(<span class="st">&quot;&lt;/tr&gt;&quot;</span>)</a>
-<a class="sourceLine" id="cb1-77" data-line-number="77">    <span class="bu">print</span>(<span class="st">&quot;&lt;/table&gt;&quot;</span>)</a>
-<a class="sourceLine" id="cb1-78" data-line-number="78"></a>
-<a class="sourceLine" id="cb1-79" data-line-number="79">discord_dark_bg <span class="op">=</span> (<span class="bn">0x36</span>, <span class="bn">0x39</span>, <span class="bn">0x3f</span>)</a>
-<a class="sourceLine" id="cb1-80" data-line-number="80">discord_dark_sidebar_bg <span class="op">=</span> (<span class="bn">0x2f</span>, <span class="bn">0x31</span>, <span class="bn">0x36</span>)</a>
-<a class="sourceLine" id="cb1-81" data-line-number="81">discord_dark_react_bg <span class="op">=</span> (<span class="bn">0x2f</span>, <span class="bn">0x31</span>, <span class="bn">0x36</span>)</a>
-<a class="sourceLine" id="cb1-82" data-line-number="82">discord_dark_reacted_bg <span class="op">=</span> (<span class="bn">0x3b</span>, <span class="bn">0x40</span>, <span class="bn">0x5a</span>)</a>
-<a class="sourceLine" id="cb1-83" data-line-number="83">discord_light_bg <span class="op">=</span> (<span class="bn">0xfa</span>, <span class="bn">0xfa</span>, <span class="bn">0xfa</span>)</a>
-<a class="sourceLine" id="cb1-84" data-line-number="84">discord_light_sidebar_bg <span class="op">=</span> (<span class="bn">0xf2</span>, <span class="bn">0xf3</span>, <span class="bn">0xf5</span>)</a>
-<a class="sourceLine" id="cb1-85" data-line-number="85">discord_light_react_bg <span class="op">=</span> (<span class="bn">0xf2</span>, <span class="bn">0xf3</span>, <span class="bn">0xf5</span>)</a>
-<a class="sourceLine" id="cb1-86" data-line-number="86">discord_light_reacted_bg <span class="op">=</span> (<span class="bn">0xe7</span>, <span class="bn">0xe9</span>, <span class="bn">0xfd</span>)</a>
-<a class="sourceLine" id="cb1-87" data-line-number="87"></a>
-<a class="sourceLine" id="cb1-88" data-line-number="88">solve(discord_dark_reacted_bg, discord_light_reacted_bg)</a>
-<a class="sourceLine" id="cb1-89" data-line-number="89">solve(discord_dark_bg, discord_light_sidebar_bg)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="im">from</span> typing <span class="im">import</span> List, Tuple, Optional</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="co"># https://www.w3.org/TR/WCAG20-TECHS/G17.html</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">def</span> luminance_component(c0: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
+<a class="sourceLine" id="cb1-4" title="4">    c <span class="op">=</span> c0 <span class="op">/</span> <span class="dv">255</span></a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="co"># https://github.com/w3c/wcag/issues/360#issuecomment-498615230</span></a>
+<a class="sourceLine" id="cb1-6" title="6">    <span class="cf">if</span> c <span class="op">&lt;=</span> <span class="fl">0.04045</span>: <span class="co"># or 0.03928, this literally doesn&#39;t matter for 8-bit colors</span></a>
+<a class="sourceLine" id="cb1-7" title="7">        <span class="cf">return</span> c <span class="op">/</span> <span class="fl">12.92</span></a>
+<a class="sourceLine" id="cb1-8" title="8">    <span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb1-9" title="9">        <span class="cf">return</span> ((c <span class="op">+</span> <span class="fl">0.055</span>) <span class="op">/</span> <span class="fl">1.055</span>) <span class="op">**</span> <span class="fl">2.4</span></a>
+<a class="sourceLine" id="cb1-10" title="10"></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="kw">def</span> luminance(r: <span class="bu">int</span>, g: <span class="bu">int</span>, b: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
+<a class="sourceLine" id="cb1-12" title="12">    R, G, B <span class="op">=</span> <span class="bu">map</span>(luminance_component, (r, g, b))</a>
+<a class="sourceLine" id="cb1-13" title="13">    <span class="cf">return</span> <span class="fl">0.2126</span> <span class="op">*</span> R <span class="op">+</span> <span class="fl">0.7152</span> <span class="op">*</span> G <span class="op">+</span> <span class="fl">0.0722</span> <span class="op">*</span> B</a>
+<a class="sourceLine" id="cb1-14" title="14"></a>
+<a class="sourceLine" id="cb1-15" title="15">Color <span class="op">=</span> Tuple[<span class="bu">int</span>, <span class="bu">int</span>, <span class="bu">int</span>]</a>
+<a class="sourceLine" id="cb1-16" title="16"></a>
+<a class="sourceLine" id="cb1-17" title="17"><span class="kw">def</span> contrast_ratio(rgb1: Color, rgb2: Color) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
+<a class="sourceLine" id="cb1-18" title="18">    lum1 <span class="op">=</span> luminance(<span class="op">*</span>rgb1)</a>
+<a class="sourceLine" id="cb1-19" title="19">    lum2 <span class="op">=</span> luminance(<span class="op">*</span>rgb2)</a>
+<a class="sourceLine" id="cb1-20" title="20">    <span class="cf">return</span> (<span class="bu">max</span>(lum1, lum2) <span class="op">+</span> <span class="fl">0.05</span>) <span class="op">/</span> (<span class="bu">min</span>(lum1, lum2) <span class="op">+</span> <span class="fl">0.05</span>)</a>
+<a class="sourceLine" id="cb1-21" title="21"></a>
+<a class="sourceLine" id="cb1-22" title="22"><span class="kw">def</span> worst_case_ratio(c1: Color, c2: Color, cb: Color) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
+<a class="sourceLine" id="cb1-23" title="23">    <span class="co">&quot;The worse ratio between c1:cb and c2:cb.&quot;</span></a>
+<a class="sourceLine" id="cb1-24" title="24">    <span class="cf">return</span> <span class="bu">min</span>(contrast_ratio(c1, cb), contrast_ratio(c2, cb))</a>
+<a class="sourceLine" id="cb1-25" title="25"></a>
+<a class="sourceLine" id="cb1-26" title="26"><span class="kw">def</span> report(light: Color, dark: Color) <span class="op">-&gt;</span> <span class="va">None</span>:</a>
+<a class="sourceLine" id="cb1-27" title="27">    <span class="bu">print</span>(light, dark, contrast_ratio(light, dark))</a>
+<a class="sourceLine" id="cb1-28" title="28"></a>
+<a class="sourceLine" id="cb1-29" title="29"><span class="kw">def</span> hue(r: <span class="bu">int</span>, g: <span class="bu">int</span>, b: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
+<a class="sourceLine" id="cb1-30" title="30">    mx <span class="op">=</span> <span class="bu">max</span>(r, g, b)</a>
+<a class="sourceLine" id="cb1-31" title="31">    c <span class="op">=</span> <span class="bu">max</span>(r, g, b) <span class="op">-</span> <span class="bu">min</span>(r, g, b)</a>
+<a class="sourceLine" id="cb1-32" title="32">    <span class="cf">if</span> c <span class="op">==</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="dv">0</span> <span class="co"># whatever</span></a>
+<a class="sourceLine" id="cb1-33" title="33">    <span class="cf">if</span> mx <span class="op">==</span> r: <span class="cf">return</span> ((g <span class="op">-</span> b) <span class="op">/</span> c) <span class="op">%</span> <span class="dv">6</span></a>
+<a class="sourceLine" id="cb1-34" title="34">    <span class="cf">elif</span> mx <span class="op">==</span> g: <span class="cf">return</span> ((b <span class="op">-</span> r) <span class="op">/</span> c) <span class="op">+</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb1-35" title="35">    <span class="cf">else</span>: <span class="cf">return</span> ((r <span class="op">-</span> g) <span class="op">/</span> c) <span class="op">+</span> <span class="dv">4</span></a>
+<a class="sourceLine" id="cb1-36" title="36"></a>
+<a class="sourceLine" id="cb1-37" title="37"><span class="kw">def</span> saturation(r: <span class="bu">int</span>, g: <span class="bu">int</span>, b: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</a>
+<a class="sourceLine" id="cb1-38" title="38">    mx <span class="op">=</span> <span class="bu">max</span>(r, g, b)</a>
+<a class="sourceLine" id="cb1-39" title="39">    <span class="cf">if</span> mx <span class="op">==</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb1-40" title="40">    <span class="cf">return</span> <span class="dv">1</span> <span class="op">-</span> <span class="bu">min</span>(r, g, b) <span class="op">/</span> mx</a>
+<a class="sourceLine" id="cb1-41" title="41"></a>
+<a class="sourceLine" id="cb1-42" title="42"><span class="kw">def</span> solve(color1: Color, color2: Color) <span class="op">-&gt;</span> <span class="va">None</span>:</a>
+<a class="sourceLine" id="cb1-43" title="43">    saturation_buckets <span class="op">=</span> <span class="dv">6</span></a>
+<a class="sourceLine" id="cb1-44" title="44">    hue_buckets <span class="op">=</span> <span class="dv">12</span></a>
+<a class="sourceLine" id="cb1-45" title="45">    <span class="co"># Table of (score, color)</span></a>
+<a class="sourceLine" id="cb1-46" title="46">    buckets: List[List[Optional[Tuple[<span class="bu">float</span>, Color]]]] <span class="op">=</span> [[<span class="va">None</span>] <span class="op">*</span> saturation_buckets <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(hue_buckets)]</a>
+<a class="sourceLine" id="cb1-47" title="47"></a>
+<a class="sourceLine" id="cb1-48" title="48">    best_score <span class="op">=</span> <span class="fl">0.0</span></a>
+<a class="sourceLine" id="cb1-49" title="49">    <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">256</span>):</a>
+<a class="sourceLine" id="cb1-50" title="50">        <span class="cf">for</span> g <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">256</span>):</a>
+<a class="sourceLine" id="cb1-51" title="51">            <span class="cf">for</span> b <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">256</span>):</a>
+<a class="sourceLine" id="cb1-52" title="52">                color <span class="op">=</span> (r, g, b)</a>
+<a class="sourceLine" id="cb1-53" title="53">                score <span class="op">=</span> worst_case_ratio(color1, color2, color)</a>
+<a class="sourceLine" id="cb1-54" title="54">                hi <span class="op">=</span> <span class="bu">int</span>(hue(r, g, b) <span class="op">/</span> <span class="dv">6</span> <span class="op">*</span> hue_buckets)</a>
+<a class="sourceLine" id="cb1-55" title="55">                si <span class="op">=</span> <span class="bu">min</span>(saturation_buckets <span class="op">-</span> <span class="dv">1</span>, <span class="bu">int</span>(saturation(r, g, b) <span class="op">*</span> saturation_buckets))</a>
+<a class="sourceLine" id="cb1-56" title="56">                cb <span class="op">=</span> buckets[hi][si]</a>
+<a class="sourceLine" id="cb1-57" title="57">                <span class="cf">if</span> cb <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> score <span class="op">&gt;</span> cb[<span class="dv">0</span>]:</a>
+<a class="sourceLine" id="cb1-58" title="58">                    buckets[hi][si] <span class="op">=</span> (score, color)</a>
+<a class="sourceLine" id="cb1-59" title="59">                    best_score <span class="op">=</span> <span class="bu">max</span>(best_score, score)</a>
+<a class="sourceLine" id="cb1-60" title="60"></a>
+<a class="sourceLine" id="cb1-61" title="61">    <span class="bu">print</span>(<span class="st">&quot;Best colors for contrast between&quot;</span>, color1, <span class="st">&quot;and&quot;</span>, color2)</a>
+<a class="sourceLine" id="cb1-62" title="62">    <span class="bu">print</span>(<span class="st">&quot;&lt;table&gt;&quot;</span>)</a>
+<a class="sourceLine" id="cb1-63" title="63">    <span class="cf">for</span> cs <span class="kw">in</span> buckets:</a>
+<a class="sourceLine" id="cb1-64" title="64">        <span class="bu">print</span>(<span class="st">&quot;&lt;tr&gt;&quot;</span>)</a>
+<a class="sourceLine" id="cb1-65" title="65">        <span class="cf">for</span> c <span class="kw">in</span> cs:</a>
+<a class="sourceLine" id="cb1-66" title="66">            <span class="cf">if</span> c <span class="kw">is</span> <span class="va">None</span>:</a>
+<a class="sourceLine" id="cb1-67" title="67">                <span class="bu">print</span>(<span class="st">&quot;&lt;td&gt;n/a&lt;/td&gt;&quot;</span>)</a>
+<a class="sourceLine" id="cb1-68" title="68">                <span class="cf">continue</span></a>
+<a class="sourceLine" id="cb1-69" title="69"></a>
+<a class="sourceLine" id="cb1-70" title="70">            score, color <span class="op">=</span> c</a>
+<a class="sourceLine" id="cb1-71" title="71">            r, g, b <span class="op">=</span> color</a>
+<a class="sourceLine" id="cb1-72" title="72">            txt <span class="op">=</span> <span class="st">&quot;#</span><span class="sc">{:02x}{:02x}{:02x}</span><span class="st">&lt;br&gt;&lt;small&gt;</span><span class="sc">{:.9}</span><span class="st">&lt;/small&gt;&quot;</span>.<span class="bu">format</span>(r, g, b, score)</a>
+<a class="sourceLine" id="cb1-73" title="73">            <span class="cf">if</span> score <span class="op">==</span> best_score:</a>
+<a class="sourceLine" id="cb1-74" title="74">                txt <span class="op">=</span> <span class="st">&quot;&lt;strong&gt;</span><span class="sc">{}</span><span class="st">&lt;/strong&gt;&quot;</span>.<span class="bu">format</span>(txt)</a>
+<a class="sourceLine" id="cb1-75" title="75">            <span class="bu">print</span>(<span class="st">&#39;&lt;td style=&quot;background-color: rgb</span><span class="sc">{}</span><span class="st">&quot;&gt;</span><span class="sc">{}</span><span class="st">&lt;/td&gt;&#39;</span>.<span class="bu">format</span>(color, txt))</a>
+<a class="sourceLine" id="cb1-76" title="76">        <span class="bu">print</span>(<span class="st">&quot;&lt;/tr&gt;&quot;</span>)</a>
+<a class="sourceLine" id="cb1-77" title="77">    <span class="bu">print</span>(<span class="st">&quot;&lt;/table&gt;&quot;</span>)</a>
+<a class="sourceLine" id="cb1-78" title="78"></a>
+<a class="sourceLine" id="cb1-79" title="79">discord_dark_bg <span class="op">=</span> (<span class="bn">0x36</span>, <span class="bn">0x39</span>, <span class="bn">0x3f</span>)</a>
+<a class="sourceLine" id="cb1-80" title="80">discord_dark_sidebar_bg <span class="op">=</span> (<span class="bn">0x2f</span>, <span class="bn">0x31</span>, <span class="bn">0x36</span>)</a>
+<a class="sourceLine" id="cb1-81" title="81">discord_dark_react_bg <span class="op">=</span> (<span class="bn">0x2f</span>, <span class="bn">0x31</span>, <span class="bn">0x36</span>)</a>
+<a class="sourceLine" id="cb1-82" title="82">discord_dark_reacted_bg <span class="op">=</span> (<span class="bn">0x3b</span>, <span class="bn">0x40</span>, <span class="bn">0x5a</span>)</a>
+<a class="sourceLine" id="cb1-83" title="83">discord_light_bg <span class="op">=</span> (<span class="bn">0xfa</span>, <span class="bn">0xfa</span>, <span class="bn">0xfa</span>)</a>
+<a class="sourceLine" id="cb1-84" title="84">discord_light_sidebar_bg <span class="op">=</span> (<span class="bn">0xf2</span>, <span class="bn">0xf3</span>, <span class="bn">0xf5</span>)</a>
+<a class="sourceLine" id="cb1-85" title="85">discord_light_react_bg <span class="op">=</span> (<span class="bn">0xf2</span>, <span class="bn">0xf3</span>, <span class="bn">0xf5</span>)</a>
+<a class="sourceLine" id="cb1-86" title="86">discord_light_reacted_bg <span class="op">=</span> (<span class="bn">0xe7</span>, <span class="bn">0xe9</span>, <span class="bn">0xfd</span>)</a>
+<a class="sourceLine" id="cb1-87" title="87"></a>
+<a class="sourceLine" id="cb1-88" title="88">solve(discord_dark_reacted_bg, discord_light_reacted_bg)</a>
+<a class="sourceLine" id="cb1-89" title="89">solve(discord_dark_bg, discord_light_sidebar_bg)</a></code></pre></div>
 <section class="footnotes">
 <hr />
 <ol>
@@ -754,6 +754,8 @@ update();
 			
 			<a class="pagination-previous" href="//blog.vero.site/post/sql-select">← SQL Selects the Hard FP Way</a>
 			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/anki-trick">One Weird Anki Trick →</a>
 			
 		</nav>
 	</footer>

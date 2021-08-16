@@ -9,7 +9,7 @@ Category → CS
 </title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="" /><meta name="generator" content="Hugo 0.76.0-DEV" />
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.88.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/category/cs" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -41,7 +41,7 @@ Category → CS
 </button>
 <nav class="site-menu collapsed">
 	<h2 class="offscreen">Main Menu</h2>
-	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item  is-active"><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
 </nav>
 <nav class="social-menu collapsed">
 	<h2 class="offscreen">Social Networks</h2>
@@ -86,18 +86,18 @@ Category → CS
 <p>這裡沒有完整的解答code，因為AC是要用血汗換來的才值得 :-)</p>
 <h2 id="treap">Treap</h2>
 <p>我討厭單字母<code>l</code>的變數名稱（跟<code>1</code>太像了。我沒有被這個雷過，這只是自己對自己程式碼可讀性的要求），所以我的子樹叫做<code>lc</code>(left child)，<code>rc</code>(right child)。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">struct</span> Treap {</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">    Treap * lc;</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">    Treap * rc;</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="dt">unsigned</span> pri;</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="dt">char</span> val;</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="dt">int</span> size;</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">};</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="dt">int</span> size(Treap * a) { <span class="cf">return</span> a ? a-&gt;size : <span class="dv">0</span>; }</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="dt">void</span> pull(Treap * a) {</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">    <span class="cf">if</span> (a) a-&gt;size = <span class="dv">1</span> + size(a-&gt;lc) + size(a-&gt;rc);</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">}</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">struct</span> Treap {</a>
+<a class="sourceLine" id="cb1-2" title="2">    Treap * lc;</a>
+<a class="sourceLine" id="cb1-3" title="3">    Treap * rc;</a>
+<a class="sourceLine" id="cb1-4" title="4">    <span class="dt">unsigned</span> pri;</a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="dt">char</span> val;</a>
+<a class="sourceLine" id="cb1-6" title="6">    <span class="dt">int</span> size;</a>
+<a class="sourceLine" id="cb1-7" title="7">};</a>
+<a class="sourceLine" id="cb1-8" title="8"></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="dt">int</span> size(Treap * a) { <span class="cf">return</span> a ? a-&gt;size : <span class="dv">0</span>; }</a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="dt">void</span> pull(Treap * a) {</a>
+<a class="sourceLine" id="cb1-11" title="11">    <span class="cf">if</span> (a) a-&gt;size = <span class="dv">1</span> + size(a-&gt;lc) + size(a-&gt;rc);</a>
+<a class="sourceLine" id="cb1-12" title="12">}</a></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/hoj-cp">→ read more<span class="offscreen"> HOJ 226: CP (中)</span></a>
 	</footer>
@@ -326,12 +326,12 @@ Category → CS
 </blockquote>
 <p>Functional programming is terribly addicting! Partly I think the completely different way of thinking makes it feel like learning programming, and falling in love with it, all over again. Partly there’s this evil sense of satisfaction from using <code>$</code>s (and later <code>&lt;$&gt;</code>s and <code>=&lt;&lt;</code>s and <code>&amp;&amp;&amp;</code>s) to improve readability for initiated Haskellers and worsen it for everybody else. Partly it’s because <a href="http://learnyouahaskell.com/"><i>Learn You a Haskell for Great Good!</i></a> is such a fun read — there are too many funny bits to list but my favorite so far is when the author analyzes the first verse of Avril Lavigne’s <em>Girlfriend</em>.</p>
 <p>Although I think my code in Haskell tends to be more readable than in other languages, code obfuscation in Haskell is almost natural: all you have to do is refactor the wrong function to be “pointfree”, which means that even though it’s a function that takes arguments, you define it without parameters by manipulating and joining a bunch of other functions. Example (plus a few other tiny obfuscations):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" data-line-number="1">isPrime <span class="fu">=</span> liftA2 (<span class="fu">&amp;&amp;</span>) (liftA2 (<span class="fu">$</span>) (all <span class="fu">.</span> ((<span class="fu">.</span>) (<span class="dv">0</span> <span class="fu">/=</span>)) <span class="fu">.</span> rem) (flip</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">    takeWhile [<span class="dv">2</span><span class="fu">..</span>] <span class="fu">.</span> (flip (<span class="fu">.</span>) <span class="fu">$</span> liftA2 (<span class="fu">*</span>) id id) <span class="fu">.</span> (<span class="fu">&gt;=</span>))) ((<span class="fu">&lt;</span>) <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" title="1">isPrime <span class="ot">=</span> liftA2 (<span class="op">&amp;&amp;</span>) (liftA2 (<span class="op">$</span>) (<span class="fu">all</span> <span class="op">.</span> ((<span class="op">.</span>) (<span class="dv">0</span> <span class="op">/=</span>)) <span class="op">.</span> <span class="fu">rem</span>) (<span class="fu">flip</span></a>
+<a class="sourceLine" id="cb1-2" title="2">    <span class="fu">takeWhile</span> [<span class="dv">2</span><span class="op">..</span>] <span class="op">.</span> (<span class="fu">flip</span> (<span class="op">.</span>) <span class="op">$</span> liftA2 (<span class="op">*</span>) <span class="fu">id</span> <span class="fu">id</span>) <span class="op">.</span> (<span class="op">&gt;=</span>))) ((<span class="op">&lt;</span>) <span class="dv">1</span>)</a></code></pre></div>
 <p>QQ wordpress why no Haskell highlighting <ins>(Editor’s note from 2017: The migration should highlight this now!)</ins></p>
 <p>Also, for some reason, you can do this in Haskell:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb2-1" data-line-number="1">ghci<span class="fu">&gt;</span> <span class="kw">let</span> <span class="dv">2</span> <span class="fu">+</span> <span class="dv">2</span> <span class="fu">=</span> <span class="dv">5</span> <span class="kw">in</span> <span class="dv">2</span> <span class="fu">+</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="dv">5</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb2-1" title="1">ghci<span class="op">&gt;</span> <span class="kw">let</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span> <span class="ot">=</span> <span class="dv">5</span> <span class="kw">in</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="dv">5</span></a></code></pre></div>
 <p>(via <a href="http://www.yellosoft.us/evilgenius/">Haskell for the Evil Genius</a>)</p>
 <hr />
 <p>Okay, but seriously now. I wrote this about my journey to learn functional programming in the <a href="//blog.vero.site/post/programming">programming babble post</a> half a year ago:</p>
