@@ -112,5 +112,15 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
 &lt;p&gt;Three years ago NPSC was the only programming contest I really knew of; now I’ve participated in quite a few more, both online and locally, but it’s still the only contest I’ve entered that gives you real-time verdicts. I believe it inherits this from being modeled after ACM-ICPC, but that’s for college people and I’m less clear on how it works. All the other contests, namely &lt;a href=&#34;https://www.topcoder.com/&#34;&gt;TopCoder&lt;/a&gt;, &lt;a href=&#34;http://www.codeforces.com/&#34;&gt;CodeForces&lt;/a&gt;, &lt;a href=&#34;http://usaco.org/&#34;&gt;USACO&lt;/a&gt;, and the other local individual competition (there doesn’t appear to be an English name so for the purpose of this post I’ll just call it “Nameless Local”; there’s a nation-wide competition in one-and-a-half weeks!), have system tests after the contest that don’t allow you to resubmit afterwards.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; They all give pretests that you get to know about right away, just to catch super-silly non-algorithmic mistakes like failing to remove the debug statements or reading input from the wrong place, but these contain weak test cases and don’t guarantee that the solution will pass the system tests and get full score.&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>diagrams Reference</title>
+      <link>//blog.vero.site/ref/diagrams</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/diagrams</guid>
+      <description>diagrams is a nifty Haskell library for making vector diagrams. I keep coming back to it to generate graphics for puzzles:
+ the very old A Signature Puzzle from this blog A Fork in the Road (DP Puzzle Hunt) Symbols (Galactic Puzzle Hunt 2020) (to be published)  I got sick of relearning it every time, and I think there’s some small chance other people will find it useful too, so I wrote something up.</description>
+    </item>
+    
   </channel>
 </rss>

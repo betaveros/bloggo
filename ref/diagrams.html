@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>diagrams Reference</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/ref/diagrams" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">diagrams Reference</h1>
+		
+		<h2 class="post-subtitle">(the Haskell library)</h2>
+		
+		<p class="post-meta">
+		
+		
+		(6371 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p><a href="https://diagrams.github.io/"><code>diagrams</code></a> is a nifty Haskell library for making vector diagrams. I keep coming back to it to generate graphics for puzzles:</p>
+<ul>
+<li>the very old <a href="https://blog.vero.site/post/signature-puzzle">A Signature Puzzle</a> from this blog</li>
+<li><a href="https://dp.puzzlehunt.net/puzzle/a-fork-in-the-road.html">A Fork in the Road</a> (DP Puzzle Hunt)</li>
+<li><a href="https://2020.galacticpuzzlehunt.com/puzzle/symbols">Symbols</a> (Galactic Puzzle Hunt 2020)</li>
+<li>(to be published)</li>
+</ul>
+<p>I got sick of relearning it every time, and I think there’s some small chance other people will find it useful too, so I wrote something up. This post is a sort of reference that tries to compromise between the <a href="https://diagrams.github.io/doc/quickstart.html">quick start tutorial</a> and <a href="https://diagrams.github.io/doc/manual.html">manual</a> on one hand, and the API reference on the other, to try to be deeper and more comprehensive than the former, but also flow better and be easier to navigate than the latter. Some types are just really intimidating when fully written out…</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" title="1"><span class="ot">circle ::</span> (<span class="dt">TrailLike</span> t, <span class="dt">V</span> t <span class="op">~</span> <span class="dt">V2</span>, <span class="dt">N</span> t <span class="op">~</span> n, <span class="dt">Transformable</span> t) <span class="ot">=&gt;</span> n <span class="ot">-&gt;</span> t</a></code></pre></div>
+<p>To avoid unhelpfully generic types, I will deal concretely with two-dimensional diagrams that measure everything in <code>Double</code>, and will frequently abbreviate complex types with an asterisk, like I will write <code>V2*</code> for <code>V2 Double</code>. I will introduce these aliases along the way for easy greppability. They’re not legal Haskell, of course.</p>
+<p>This reference assumes basic-to-intermediate Haskell knowledge. Some of the more intermediate stuff includes:</p>
+<ul>
+<li>Monoids, and that the Haskell <code>Monoid</code> operator is <code>&lt;&gt;</code></li>
+<li>Typeclasses. I will sometimes write fake type signatures as abbreviations for typeclass restrictions: for example, <code>TrailLike</code> is a typeclass, and I might say or write that a function returns <code>TrailLike</code> when I really mean <code>TrailLike t =&gt; t</code>, any type <code>t</code> that is in that typeclass.</li>
+</ul>
+<p>van Laarhoven lenses may help, but mostly I’ll try to black-box them.</p>
+<h3 id="basic-types">Basic Types</h3>
+<p>Haddock reference: <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Types.html">Diagrams.TwoD.Types</a>.</p>
+<ul>
+<li><p><strong>Vectors</strong>: <code>V2 Double</code> (which I’ll abbreviate <code>V2*</code>) is the standard two-coordinate vector type. By default, the first coordinate <code>x</code> goes right and the second coordinate <code>y</code> goes <strong>up</strong> (as is typical in mathematics, but not graphics — tells your something about the provenance of this library). This type actually comes from the <a href="https://hackage.haskell.org/package/linear-1.20.5/docs/Linear-V2.html#t:V2"><code>linear</code> package</a>, which shows you how deep the rabbit hole goes.</p>
+<p><code>V2*</code> is <a href="https://hackage.haskell.org/package/linear-1.20.5/docs/Linear-Vector.html#t:Additive">Additive</a>, which gives you:</p>
+<ul>
+<li><code>zero :: V2*</code></li>
+<li><code>negated :: V2* -&gt; V2*</code></li>
+<li>vector-vector operations <code>^+^</code>, <code>^-^</code></li>
+<li>vector-scalar operations <code>*^</code>, <code>^*</code>, <code>^/</code> (the vector goes on the side of the <code>^</code>)</li>
+<li><code>lerp :: Double -&gt; V2* -&gt; V2* -&gt; V2*</code> (linear interpolation, 0 is the first vector and 1 is the second)</li>
+</ul>
+<p>among others. It’s also <code>Num</code>, so you can directly do arithmetic between vectors, which vectorizes componentwise (e.g. <code>V2 x y * V2 x' y' == V2 (x * x') (y * y')</code>). You can directly construct and pattern-match as <code>V2 x y</code>, or use <code>r2 :: (Double, Double) -&gt; V2 Double</code> or its inverse <code>unr2</code>. Provided constants include basis vectors <code>unitX, unitY :: V2*</code> and their negations <code>unit_X, unit_Y :: Double</code> (which I can’t really recommend because they look really confusing). (Lenses: there’s the isomorphisms <code>r2Iso :: Iso' (V2*) (Double, Double)</code>, and <code>Linear.V2</code> provides lenses <code>_x</code> and <code>_y</code> if you want them.)</p>
+<p><a href="https://hackage.haskell.org/package/linear-1.21.5/docs/Linear-Metric.html">Linear.Metric</a> has some functions for measuring vectors and doing other metric space operations, among them <code>norm :: V2* -&gt; Double</code>, <code>quadrance :: V2* -&gt; Double</code> (norm squared, slightly more efficient), <code>normalize :: V2* -&gt; V2*</code> (convert to unit vector or zero), <code>dot :: V2* -&gt; V2* -&gt; Double</code>, and <code>project :: V2* -&gt; V2* -&gt; V2*</code>.</p></li>
+<li><p><strong>Points</strong>: <code>Point V2 Double</code> (synonymized as <code>P2 Double</code>, I’ll abbreviate <code>P2*</code>) is the type of a point, distinguished from a vector at the type level. (It’s also from <code>linear</code>, <a href="https://hackage.haskell.org/package/linear-1.21.5/docs/Linear-Affine.html">Linear.Affine</a>.) Convert from/to coordinates with <code>p2 :: (Double, Double) -&gt; P2*</code> and inverse <code>unp2</code>; <code>origin :: P2*</code> is the, well, origin. <code>P2*</code> is also <code>Additive</code> so you can still add and subtract points, but I would say that semantically, you probably shouldn’t, although interpolation makes sense. Instead, Linear.Affine gives you operators <code>(.-.) :: P2* -&gt; P2* -&gt; V2*</code> and <code>(.+^), (.-^) :: P2* -&gt; V2* -&gt; P2*</code> (the vector still goes on the side of the <code>^</code>, the point goes on the side of the <code>.</code>). You can probably also use <code>translate :: V2* -&gt; P2* -&gt; P2*</code>; see <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Transform.html">Transform</a>. (Lenses: there’s the isomorphisms <code>p2Iso :: Iso' (P2*) (Double, Double)</code>, and the same lenses <code>_x</code> and <code>_y</code> work by typeclass stuff.)</p></li>
+<li><p><strong>Angles</strong> (<a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Angle.html">Diagrams.Angle</a>): <code>Angle Double</code> (which I’ll call <code>Angle*</code>, internally just a newtype over <code>Double</code>) is the, well, angle type. In keeping with the mathematical flavor, angles are measured counterclockwise, starting from the positive x-axis when that’s relevant. <code>diagrams</code> provides van Laarhoven isomorphisms <code>turn</code>, <code>rad</code>, <code>deg</code>, which means you can construct an angle as <code>((1/3) @@ turn)</code> and deconstruct with <code>^.</code>, like <code>a ^. rad</code>. (<code>(@@)</code> is a <code>diagrams</code> custom operator that’s just flipped <code>review</code> for a van Laarhoven <a href="https://hackage.haskell.org/package/lens-5.0.1/docs/Control-Lens-Review.html"><code>Review</code></a>, which an isomorphism is, because an isomorphism is everything.) Constant angles include <code>fullTurn</code> and <code>halfTurn</code>; angles are also <code>Additive</code>, so you can use the operators <code>(^+^)</code>, <code>(^-^)</code>, <code>negated</code>, <code>(*^)</code>, <code>(^*)</code>, <code>(^/)</code> from above on them too.</p></li>
+<li><p><strong>Directions</strong> (<a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Direction.html">Diagrams.Direction</a>): <code>Direction V2 Double</code> (I’ll abbreviate <code>Direction*</code>) is a vector without the magnitude. You can convert from a vector with <code>direction :: V2* -&gt; Direction*</code>, convert a direction to a unit vector with <code>fromDirection :: Direction* -&gt; V2*</code>, and do a few other operations, but most functions that use directions have versions that work with vectors instead, so I won’t go into depth in these. I’m just mentioning it for completeness.</p></li>
+</ul>
+<p>The <a href="https://diagrams.github.io/doc/vector.html">vectors and points guide</a> has lots more stuff.</p>
+<h3 id="segments-trails-paths-diagrams">Segments, Trails, Paths, Diagrams</h3>
+<p>From points, we can make more complex structures.</p>
+<ul>
+<li><p><strong>Segments</strong> (<a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Segment.html#t:Segment">Diagrams.Segment</a>): A <code>Segment Closed V2 Double</code> (<code>Segment*</code>) is basically an “atomic path” that can’t be broken down further. It has no location and describes relative movement only. Brief types: <code>straight :: V2* -&gt; Segment*</code>, <code>bezier3 :: V2* -&gt; V2* -&gt; V2* -&gt; Segment*</code> (construct a bezier starting at the origin with those two control points and the third as the endpoint). There are more helpers there, but other than those two, you should rarely need to use them. You will rarely need to manipulate segments directly and can usually just work at trails or higher abstractions.</p></li>
+<li><p><strong>Trails</strong> (<a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Trail.html">Diagrams.Trail</a>): A trail is, roughly, a list of segments, semantically concatenated so each one starts where the previous one ends. It still does not have location and describes relative movement only. It can be closed, <code>Trail' Loop V2 Double</code> (I’ll call it <code>Loop*</code>) or open, <code>Trail' Line V2 Double</code> (I’ll call it <code>Line*</code>). An un-primed <code>Trail V2 Double</code> (I’ll call it <code>Trail*</code>) existentially holds one or the other. I’ll also denote <code>Trail'*</code> as “either <code>Loop*</code> or <code>Line*</code>” (implemented with a typeclass). You can convert between them as:</p>
+<ul>
+<li><code>wrapLine :: Line* -&gt; Trail*</code>, <code>wrapLoop :: Loop* -&gt; Trail*</code>, <code>wrapTrail :: Trail'* -&gt; Trail*</code></li>
+<li><code>cutLoop :: Loop* -&gt; Line*</code> cuts the loop at its starting point, making that “coincidentally” both the start and the end.</li>
+<li><code>closeLine, glueLine :: Line* -&gt; Loop*</code>: The first adds a line segment from the last point to the start; the second forcibly moves the last point to the start, but you should use it if you constructed a Line you know is Really Closed so as not to add a length-0 segment.</li>
+</ul>
+<p>There are many functions for destructing trails/loops/lines, but most of them are rarely useful, so I will just mention two sets of functions:</p>
+<ul>
+<li><code>trailVertices</code>/<code>lineVertices</code>/<code>loopVertices</code> convert a <code>Located</code> <code>Trail*</code>/<code>Line*</code>/<code>Loop*</code> to a list of vertices <code>[P2*]</code>, roughly the points at which the curve is not differentiable. For a loop, the resulting list doesn’t contain the starting/ending point twice (only at the start, not at the end); <code>cutLoop</code> if you do want it twice. <code>Located</code> (<a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Located.html">Diagrams.Located</a>) really just means “with an accompanying absolute position” (literally, it’s a <code>data</code> with two fields, check the docs if you want); the fields are <code>loc</code> and <code>unLoc</code>, and one can be constructed with <code>at :: a -&gt; P2* -&gt; Located a</code> (meant to be used infix). However, you may not need to touch it at all; see the next section.</li>
+<li><code>explodeTrail :: Located Trail* -&gt; [Located Trail*]</code> deconstructs a trail into smaller trails, one per segment. (Note: Even with a fixed vector space, that type is fake and the real type is far more polymorphic; see the next section.)</li>
+</ul>
+<p>I also want to mention <code>reverseTrail</code>/<code>reverseLine</code>/<code>reverseLoop</code>, which do what you expect.</p>
+<p><code>Line*</code> is a <code>Monoid</code> with start-where-the-previous-ends concatenation. <code>Loop*</code> is not a <code>Monoid</code>, but <code>Trail</code> is a <code>Monoid</code> that does <code>cutLoop</code> if necessary and then concatenates the <code>Line*</code>s, with a special case to make the empty <code>Line*</code> a true identity.</p>
+<p>(You’ll note I haven’t described how to make a trail from segments. It’s because the functions for doing that are too polymorphic. See the next section.)</p></li>
+<li><p><strong>Paths</strong> (<a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Path.html">Diagrams.Path</a>: A path is a collection of <strong>located trails</strong> (i.e., trails with accompanying absolute positions; see above). Path’s type is <code>Path V2 Double</code>, which I’ll abbreviate <code>Path*</code>. You can <code>pathFromTrailAt :: Trail* -&gt; Point* -&gt; Path*</code>. <code>Path*</code> is a <code>Monoid</code> by superposition.</p></li>
+<li><p><strong>Diagrams</strong>: A diagram is… well, it depends on the backend, exactly, but it’s basically “something you can render to a screen”. Type <code>QDiagram b V2 Double Any</code>, or just <code>Diagram b</code>, where <code>b</code> is the “backend” you’re using and can just be written <code>B</code> in the usual setup — the idea is that you can switch what backend to use just by changing a package import. I’ll just call it <code>Diagram*</code>. <code>Diagram*</code> is also a <code>Monoid</code> by superposition. (A slightly annoying thing: <code>a &lt;&gt; b</code> has <code>a</code> above <code>b</code> by “z-index”, which makes sense, except that this implies <code>a</code> will be before <code>b</code> in the SVG output, which can make you sad if you care about, say, allowing good copy-paste from the SVG. The result is similar for other combinators.)</p>
+<p>The abstractions before the diagram have no concept of color or line width or anything of the sort, they’re all just infinitesimal abstract lines and curves in space. To convert them to a diagram, call one of the “stroke” functions in <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Path.html">Diagrams.TwoD.Path</a>: <code>strokeLine, strokeLoop, strokeTrail, strokePath</code> take what you’d expect and convert it to a <code>Diagram</code>.</p>
+<p>Note: Don’t confuse “stroke” with the concept of stroking in other graphics terminology, where you draw along a path as opposed to filling it. There is no separate function to fill a line/loop/trail. Instead, you “stroke” it to convert it to a diagram with a default line width and fill style, set the line width to <code>none</code>, and set the fill style to whatever you want.</p>
+<p>I will also mention an additional instantiation of <code>Diagram</code>: <code>Diagram NullBackend V2 Double</code>, aliased <code>D V2 Double</code>, is a diagram that lacks that a backend and cannot be rendered. This type is still occasionally useful to write out explicitly when you want to create a diagram and then measure it somehow without rendering it; Haskell might complain that it’s underspecified.</p></li>
+</ul>
+<h3 id="traillike">TrailLike</h3>
+<p>So why did I skip explaining how to construct a trail? It’s because most functions that do so directly construct a “trail-like object” (<a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TrailLike.html">Diagrams.TrailLike</a>). It’s specified by a typeclass, <code>TrailLike t =&gt; t</code> (sometimes with additional constraints, but they usually won’t matter; now denoted <code>TrailLike*</code>), and can be any of a <code>Line*</code>, <code>Loop*</code>, <code>Trail*</code>, <code>Path*</code>, <code>Diagram*</code>, or others, including <code>Located</code> variants of any of them. (<code>cutLoop</code> and <code>glueLine</code> are used to coerce a trail into a <code>Line*</code> or <code>Loop*</code> if it’s actually the other kind.) Even <code>[P2]</code>, a list of points, is <code>TrailLike</code> — which is why you might not need to use <code>trailVertices</code> and friends at all. (Some <code>TrailLike</code>s have an absolute position and some don’t, so depending on what return type you use, if you pass absolute positions into the following functions they might or might not matter!)</p>
+<p>The functions to construct trails or any of the other abstractions above it:</p>
+<ul>
+<li><code>fromOffsets :: [V2*] -&gt; TrailLike*</code></li>
+<li><code>fromVertices :: [P2*] -&gt; TrailLike*</code></li>
+<li><code>fromSegments :: [Segment] -&gt; TrailLike*</code></li>
+<li><code>(~~) :: P2* -&gt; P2* -&gt; TrailLike*</code>: one line segment between two points</li>
+<li>advanced: <code>cubicSpline</code>, <code>bspline</code></li>
+</ul>
+<p>There are also many slightly high-level shapes, see <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Shapes.html">Diagrams.TwoD.Shapes</a> and <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Ellipse.html">Diagrams.TwoD.Ellipse</a>. All the following shapes are <strong>centered at the origin</strong>.</p>
+<ul>
+<li><code>circle :: Double -&gt; TrailLike*</code> constructs a circle from its radius. <code>unitCircle :: TrailLike*</code> is a convenience.</li>
+<li><code>triangle, square, pentagon, ..., dodecagon :: Double -&gt; TrailLike*</code> and <code>regPoly :: Int -&gt; Double -&gt; TrailLike*</code> construct regular polygons from a side length (oriented to have a “bottom edge”, the one with lowest <code>y</code>, parallel to the x-axis). <code>unitSquare :: TrailLike*</code> is a convenience.</li>
+<li><code>rect :: Double -&gt; Double -&gt; TrailLike*</code> (width, then height) constructs a rectangle.</li>
+<li><code>hrule, vrule :: Double -&gt; TrailLike*</code> construct horizontal and vertical line segments.</li>
+</ul>
+<p>Read the manual for more exotic shapes like rounded rectangles. <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Polygons.html">Diagrams.TwoD.Polygons</a> generates regular and other polygons with much more customizability and, in particular, lets you set the radius instead of the side length.</p>
+<h3 id="modifying-all-the-above-stuff">Modifying All The Above Stuff</h3>
+<p>You can apply affine transformations (which include translations, rotations, reflections, and scaling/homotheties) to all the above stuff (<a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Transform.html">Diagrams.TwoD.Transform</a>). Transformations preserve type, so monomorphizing these would suck; below, <code>tf</code> will be a type variable for approximately any transformable type (with typeclass in fact called <code>Transformable</code>). The common transformation functions are:</p>
+<ul>
+<li><code>rotate :: Angle* -&gt; tf -&gt; tf</code>; <code>rotateBy :: Double -&gt; tf -&gt; tf</code> is a convenience that takes units of full revolutions.</li>
+<li><code>scaleX, scaleY, scale :: Double -&gt; tf -&gt; tf</code></li>
+<li><code>translateX, translateY :: Double -&gt; tf -&gt; tf</code>; <code>translate :: V2* -&gt; tf -&gt; tf</code></li>
+<li><code>reflectX, reflectY, reflectXY :: tf -&gt; tf</code>. Note <code>reflectXY</code> sends (x,y) to (y,x).</li>
+</ul>
+<p>There is also a type <code>Transformation V2 Double</code> (or <code>T2 Double</code>) representing a reified affine transformation, which you can get by calling variants of the above functions with nouns as names, maybe store somewhere or do other fun transform-y stuff with, and then <code>transform :: T2* -&gt; tf -&gt; tf</code>.</p>
+<p>Note that affine transformations always act uniformly on line widths and other <em>measures</em>, no matter the orientation of the line. For example, if you attach a constant line width to a square and then stretch it into a rectangle, the rectangle will still have a constant line width all the way around it, instead of the short side becoming thicker. This is usually what you want anyway. (If the line width is in units that the transformation can affect, it gets scaled by the square root of the determinant. That’s just what you’d intuitively expect it to be.)</p>
+<p>(Measures are covered in a later section.)</p>
+<h3 id="combining-diagrams">Combining Diagrams</h3>
+<p>We already know that diagrams are a monoid by superposition, and technically with superposition and transformations you should already be able to draw anything you want, but it’s not nice.</p>
+<p>Where <code>diagrams</code> really shines is combining diagrams declaratively. You might think, “put this circle to the left of this square” or “draw an arrow from this circle to this circle”, and you can express this very simply in <code>diagrams</code>. This is implemented using the <em>envelope</em>, which is covered in more detail later. The packages <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Combinators.html">Diagrams.Combinators</a> and <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Combinators.html">Diagrams.TwoD.Combinators</a> have a bunch of functions:</p>
+<ul>
+<li><code>atop :: Diagram* -&gt; Diagram* -&gt; Diagram*</code> or the typical monoid <code>&lt;&gt;</code> stick on top of each other (and so <code>mconcat</code> superimposes a list).</li>
+<li><p><code>beside :: V2* -&gt; Diagram* -&gt; Diagram* -&gt; Diagram*</code>, and <code>(|||), (===) :: Diagram* -&gt; Diagram* -&gt; Diagram*</code> put two diagrams “next to” each other in a direction <code>v :: V2*</code> in the following sense: the second diagram is translated in the direction of <code>v</code> as little as possible such that there exists a line perpendicular to <code>v</code> separating the two diagrams. See the <a href="https://diagrams.github.io/doc/quickstart.html#envelopes">quickstart guide on envelopes</a> (and the sections before it) for an example.</p>
+<p>For <code>(|||)</code>, <code>v</code> goes right, and for <code>(===)</code>, <code>v</code> goes down; the idea is to be sort of self-illustrating:</p>
+<pre><code>             a
+a ||| b     ===
+             b</code></pre>
+<p>The n-ary versions are <code>cat :: V2* -&gt; [Diagram*] -&gt; Diagram*</code>, <code>hcat, vcat :: [Diagram*] -&gt; Diagram*</code>. For all those “beside” combinators, the origin is still the first or the left-hand-side diagram’s origin.</p>
+<p>There’s also <code>appends :: Diagram* -&gt; [(V2*, Diagram*)] -&gt; Diagram*</code>, which is a “simultaneous <code>beside</code>”: it simultaneously places all the diagrams in the list next to the first diagram in the accompanying direction, but without diagrams in the list affecting each other.</p></li>
+<li><p>Sometimes you want diagrams almost next to each other, but separated by some space. <code>hsep, vsep :: Double -&gt; [Diagram*] -&gt; Diagram*</code> separate the diagrams by that much space. <code>cat'</code> is a more generalized version with a lensed options data type. If <code>v :: V2*</code>, <code>d :: Double</code>, and <code>a :: [Diagram*]</code>, then:</p>
+<ul>
+<li><code>cat' v (with &amp; catMethod .~ Cat &amp; sep .~ d) a</code> puts all the diagrams next to each other in the direction of <code>v</code>, separated by <code>d</code>.</li>
+<li><code>cat' v (with &amp; catMethod .~ Distrib &amp; sep .~ d) a</code> doesn’t look at the envelopes at all; it just puts all the diagrams in a row in that direction, with each origin distance <code>d</code> from the previous. (So if <code>d = 0</code> it’s just superposition again.)</li>
+</ul></li>
+<li><p>As the last <code>cat'</code> overloading shows, you don’t always want to combine diagrams by their envelopes. <code>position :: [(P2*, Diagram*)] -&gt; Diagram*</code> and <code>atPoints :: [P2*] -&gt; [Diagram*] -&gt; Diagram*</code> just combine a bunch of diagrams by putting their origins at certain locations.</p></li>
+</ul>
+<p>The same packages also have some empty objects and some functions for adding space around a diagram:</p>
+<ul>
+<li><code>withEnvelope :: Diagram* -&gt; Diagram* -&gt; Diagram*</code> produces a diagram with the left diagram as its envelope, but the right diagram as its output.</li>
+<li><code>phantom :: Diagram* -&gt; Diagram*</code> produces a diagram with the same envelope and trace, but no output; it’s completely invisible.</li>
+<li><code>strut :: V2* -&gt; Diagram*</code> produces an invisible line segment (i.e. the envelope is a line segment but the digram is invisible). However, <code>strut</code> lacks a trace, if you ever use tracing.</li>
+<li><code>strutR2 :: V2* -&gt; Diagram*</code> does the same except with a trace. (Both exist because <code>strut</code> also works for higher dimensions and I oversimplified its type here.)</li>
+<li><code>strutX, strutY :: Double -&gt; Diagram*</code> produce horizontal and vertical invisible line segments.</li>
+<li><code>pad :: Double -&gt; Diagram* -&gt; Diagram*</code> proportionally expands/contracts the envelope wrt the origin. (The <code>Double</code> is the proportion, so <code>pad 2</code> on a 1×2 rectangle results in a 2×4-sized thing.)</li>
+<li><code>frame :: Double -&gt; Diagram* -&gt; Diagram*</code> adds an absolute amount of space in all directions.</li>
+</ul>
+<p>Finally, there’s a few functions for working with bounding rectangles:</p>
+<ul>
+<li><code>boundingRect :: Diagram* -&gt; TrailLike*</code> gives you the rectangle that bounds the diagram as any <code>TrailLike</code>.</li>
+<li><code>bg :: Colour Double -&gt; Diagram* -&gt; Diagram*</code> superimposes the diagram into a filled rectangle of that color (and no line width).</li>
+<li><code>bgFrame :: Double -&gt; Colour Double -&gt; Diagram* -&gt; Diagram*</code> combines <code>bg</code> and <code>frame</code>. I know I haven’t covered colors yet, but it makes the most sense here, and it’s a good segue into the next section:</li>
+</ul>
+<h3 id="bounding-and-sizing">Bounding and Sizing</h3>
+<p><a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Size.html">Diagrams.Size</a> and <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Size.html">Diagrams.TwoD.Size</a> have some functions for measuring and resizing a diagram along the coordinate axes.</p>
+<p>The mildly hidden <code>size :: Diagram* -&gt; V2*</code> from <a href="https://diagrams.github.io/haddock/diagrams-core/Diagrams-Core-Envelope.html">Diagrams.Core.Envelope</a> computes a vector containing the width and height of the diagram; the functions <code>width, height :: Diagram* -&gt; Double</code> from <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Size.html">Diagrams.TwoD.Size</a> give the components.</p>
+<p>For more structure, <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Size.html">Diagrams.Size</a> defines the type (that specializes into) <code>SizeSpec V2 Double</code>, which I’ll call <code>SizeSpec*</code> and which basically holds an optional width and height. You can construct one with <code>dims :: V2* -&gt; SizeSpec*</code>, <code>dims2D :: Double -&gt; Double -&gt; SizeSpec*</code>, <code>mkWidth, mkHeight :: Double -&gt; SizeSpec*</code>, or <code>absolute :: SizeSpec*</code>. You can use <code>sized :: SizeSpec* -&gt; Diagram* -&gt; Diagram*</code> to resize a diagram to fit the spec, or <code>sizedAs :: Diagram* -&gt; Diagram* -&gt; Diagram*</code> to resize the second diagram to fit inside the bounding box of the first. (This does not change the aspect ratio of the diagram, so e.g. resizing a 1×2 rectangle into a unit square will give you a 0.5×1 rectangle. It also does not do any translation. Optional and nonpositive dimensions are ignored, so e.g. <code>sized (mkWidth w)</code> will resize a <code>Diagram*</code> so that it has width <code>w</code> and height whatever is necessary to preserve the aspect ratio.)</p>
+<p><a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-BoundingBox.html">BoundingBox</a> defines a type <code>BoundingBox V2 Double</code>, which I’ll just abbreviate <code>BoundingBox*</code>. Unlike a <code>SizeSpec</code>, a <code>BoundingBox</code> has a location, but the box can also be empty, so <code>BoundingBox</code> has an optional layer in its internal representation. I think the most useful methods are <code>boundingBox :: Diagram* -&gt; BoundingBox*</code> and <code>boxFit :: BoundingBox* -&gt; Diagram* -&gt; Diagram*</code>, which rectilinearly transforms the diagram to have exactly that bounding box and may change the aspect ratio.</p>
+<h3 id="envelopes-and-traces">Envelopes and Traces</h3>
+<p>The sizes and bounding boxes in the preceding section actually all just use special cases of the <strong>envelope</strong>, the same feature used to <a href="https://diagrams.github.io/doc/quickstart.html#side-by-side">put diagrams <code>beside</code> each other</a>. Haddock: <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Envelope.html">Diagrams.Envelope</a>.</p>
+<p>The envelope extensionally tracks, for every orientation, the two closest lines in that orientation that would sandwich the diagram; another way to see it is that it projects the diagram onto a single dimension and takes the two points that are furthest apart. So, a shape has the same envelope as its convex hull. “Extensionally” means that it’s just a function, not some data structure of numbers. The envelope is used for <code>beside</code> and company; so when you put two things next to each other with, say, <code>|||</code>, you’ll always be able to draw a vertical line in the resulting diagram that separates the two envelopes.</p>
+<p>The diagram is a little cruder than the <strong>trace</strong>, which roughly lets you perform ray tracing: given any ray, i.e. any point and any direction, find all intersections of that ray with the figure. Haddock: <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Trace.html">Diagrams.Trace</a>.</p>
+<h3 id="debugging">Debugging</h3>
+<p><a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Model.html">Diagrams.TwoD.Model</a> has some “debugging” helpers: <code>showOrigin, showEnvelope, showTrace :: Diagram* -&gt; Diagram*</code> are simple functions to visually see where the origin, envelope and trace of a diagram is. There are customizable versions in that module as well.</p>
+<h3 id="aligning">Aligning</h3>
+<p><a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Align.html">Diagrams.Align</a> and <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Align.html">Diagrams.TwoD.Align</a> have functions for moving a diagram’s local origin to somewhere, typically the edge of its envelope or a center. The one I use the most often is <code>center :: Diagram* -&gt; Diagram*</code>, which just centers a diagram at the center of its bounding box.</p>
+<ul>
+<li><code>align :: V2* -&gt; Diagram* -&gt; Diagram*</code> moves the origin in that direction until it lies on the envelope; <code>centerV :: V2* -&gt; Diagram* -&gt; Diagram*</code> moves the origin parallel to that direction so it’s halfway between the edges.</li>
+<li><code>alignX :: Double -&gt; Diagram* -&gt; Diagram*</code> moves the origin horizontally to a fraction between the left and right edge of the boundary: −1 for the left edge, 0 for the center, 1 for the right edge.</li>
+<li><code>alignY :: Double -&gt; Diagram* -&gt; Diagram*</code> moves the origin vertically to a fraction between the bottom and top edge of the boundary: −1 for the bottom edge, 0 for the center, 1 for the top edge.</li>
+<li><code>alignL, alignR, alignT, alignB, alignTL, alignTR, alignBL, alignBR, centerX, centerY, centerXY :: Diagram* -&gt; Diagram*</code> move the local origin horizontally, vertically, or both, to an edge or center. (<code>center</code> and <code>centerXY</code> are the same in two dimensions.)</li>
+</ul>
+<h3 id="styling">Styling</h3>
+<p>The graphic aspects of diagrams — color, line width, and so on — are <strong>attributes</strong> and defined in <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Attributes.html">Diagrams.Attributes</a> and <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Attributes.html">Diagrams.TwoD.Attributes</a>.</p>
+<h4 id="color">Color</h4>
+<p><strong>Color</strong> is mostly outsourced to the <a href="https://hackage.haskell.org/package/colour-2.3.3">colour</a> package (note the British spelling). Many standard colors — think <code>black</code>, <code>red</code>, etc. all of type <code>Colour Double</code> — are automatically exported from <a href="https://hackage.haskell.org/package/colour-2.3.3/docs/Data-Colour-Names.html">Data.Colour.Names</a>. <a href="https://hackage.haskell.org/package/colour-2.3.3/docs/Data-Colour-SRGB.html">Data.Colour.SRGB</a> has other functions. The most convenient way to write an arbitrary color is likely <code>sRGB24read :: String -&gt; Colour Double</code> from <a href="https://hackage.haskell.org/package/colour-2.3.3/docs/Data-Colour-SRGB.html">Data.Colour.SRGB</a>, which takes a hex string like <code>"#00aaff"</code>. You can also use <code>sRGB :: Double -&gt; Double -&gt; Double -&gt; Colour Double</code>. Blending color can be achieved with <code>blend :: Double -&gt; Colour Double -&gt; Colour Double</code> (0 to 1). Should you want HSL or HSV, I think the way to get them is <a href="https://hackage.haskell.org/package/colour-2.3.3/docs/Data-Colour-RGBSpace-HSL.html">Data.Colour.RGBSpace.HSL</a>’s <code>hsl :: Double -&gt; Double -&gt; Double -&gt; RGB Double</code> or <a href="https://hackage.haskell.org/package/colour-2.3.3/docs/Data-Colour-RGBSpace-HSV.html">Data.Colour.RGBSpace.HSV</a>’s <code>hsv :: Double -&gt; Double -&gt; Double -&gt; RGB Double</code>, <code>uncurryRGB :: (a -&gt; a -&gt; a -&gt; b) -&gt; RGB a -&gt; b</code>, and <code>sRGB :: Double -&gt; Double -&gt; Double -&gt; Colour Double</code>. I think this is difficult because of stuff with color representation I haven’t really dug into. The <code>AlphaColour Double</code> is a slightly expanded color type that comes with an alpha channel.</p>
+<p><code>diagrams</code> functions generally take <code>Color c =&gt; c</code> (note the American spelling). <code>Color</code> is a <code>diagrams</code> typeclass filled by <code>Colour Double</code>, <code>AlphaColour Double</code>, and the existentially-one-or-the-other <code>SomeColor</code>. I’ll just abbreviate this as <code>Color*</code>.</p>
+<h4 id="measure">Measure</h4>
+<p><strong>Measure</strong> (<a href="https://diagrams.github.io/haddock/diagrams-core/Diagrams-Core-Measure.html">Diagrams.Core.Measure</a>) is the data type <code>diagrams</code> uses to represent line width, among other things. Internally, a measure can be any function <code>(Double, Double, Double) -&gt; Double</code>, which takes a “local scale”, a “normalized scale”, and a “global scale”; I mention this not because you need to think of it this way but to emphasize how flexible it is.</p>
+<ul>
+<li>“Local” units (<code>local :: Double -&gt; Measure*</code>) are measured in the diagram’s current vector space. These are the only units that aren’t scale-invariant.</li>
+<li>“Global” units (<code>global :: Double -&gt; Measure*</code>) are measured in the diagram’s final vector space.</li>
+<li>“Normalized” units (<code>normalized, normalised :: Double -&gt; Measure*</code>) are measured as fractions of the diagram’s final dimensions.</li>
+<li>“Output” units (<code>output :: Double -&gt; Measure*</code>) are measured in whatever absolute units the diagram is ultimatedly rendered in, for example, pixels.</li>
+</ul>
+<p>So, as an example, if you have a 10×10 square stroked with a line width of 1 “unit”, you scale it up by 10×, and then you render this as a 1000×1000 image:</p>
+<ul>
+<li>1 local unit would be 10 units in the final vector space, which is 100 pixels;</li>
+<li>1 global unit would be 1 unit in the final diagram space, which is 10 pixels;</li>
+<li>1 normalized unit would be the dimension of the final image, which is 1000 pixels;</li>
+<li>1 output unit would be exactly 1 pixel.</li>
+</ul>
+<h4 id="line-widths-line-colors-fill-colors">Line widths, line colors, fill colors</h4>
+<p><a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Attributes.html">Diagrams.Attributes</a> defines a lot of default measures. There’s <code>thin, medium, thick</code>, which are the maximum of some normalized value and 0.5 output units; <code>small, normal, large</code>, which are just some normalized value; a bunch of variants I won’t list; and <code>none</code>, a zero measure. And it defines the function <code>lw :: Measure -&gt; Diagram* -&gt; Diagram*</code> to set the line width of a diagram, and <code>lwG, lwN, lwO, lwL :: Double -&gt; Diagram* -&gt; Diagram*</code> as shorthand to use each of the above units.</p>
+<p><a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Attributes.html">Diagrams.TwoD.Attributes</a> has all the color-using functions:</p>
+<ul>
+<li>Line color: <code>lc :: Colour Double -&gt; Diagram* -&gt; Diagram*</code> and <code>lcA :: AlphaColour Double -&gt; Diagram* -&gt; Diagram*</code></li>
+<li>Fill color: <code>fc :: Colour Double -&gt; Diagram* -&gt; Diagram*</code> and <code>fcA :: AlphaColour Double -&gt; Diagram* -&gt; Diagram*</code></li>
+</ul>
+<p>When you apply any of these functions <code>lw</code>, <code>lc</code>, <code>fc</code> to a diagram, you apply it to every subdiagram that hasn’t had that particular attribute set yet.</p>
+<h3 id="names-and-subdiagrams">Names and Subdiagrams</h3>
+<p>Haddock: <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Names.html">Diagrams.Names</a>.</p>
+<p>You can <em>name</em> a diagram with <code>named :: IsName nm =&gt; nm -&gt; Diagram* -&gt; Diagram*</code>.</p>
+<ul>
+<li>What things are <code>IsName</code>? Most “value-y” things are names, including strings, integers, and small tuples thereof; it’s also super easy to define a type and derive your own. See <a href="https://diagrams.github.io/doc/manual.html#named-subdiagrams">Named Subdiagrams</a> in the manual. This gets existentially reified into the data type <code>Name</code>.</li>
+<li><p>What’s the point of a name? It enables you to look up a <code>Subdiagram*</code> later, with <code>lookupName :: Name -&gt; Diagram* -&gt; Maybe (Subdiagram*)</code>, or do it in an inner function with <code>withName :: Name -&gt; (Subdiagram* -&gt; Diagram* -&gt; Diagram*) -&gt; Diagram* -&gt; Diagram*</code>.</p>
+<p>You can extract the location where the diagram’s local origin ended up with <code>location :: Subdiagram* -&gt; P2*</code>. You can also query its envelope and trace in various ways.</p>
+<p>Quite a few functions I covered that I said take <code>Diagram*</code>s also take <code>Subdiagram*</code>s, thanks to typeclasses. Some ones I would imagine being somewhat useful are the querying functions in <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Envelope.html#g:3">Diagrams.Envelope</a> and <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-Trace.html#g:3">Diagrams.Trace</a>.</p></li>
+<li><p>Internally, names are actually sequences of “atomic names”; this is to help write qualified names. <code>(.&gt;) :: (IsName nm1, IsName nm2) =&gt; nm1 -&gt; nm2 -&gt; Name</code> joins atomic components, and <code>(.&gt;&gt;) :: Name -&gt; Diagram* -&gt; Diagram*</code> pre-qualifies all names in a <code>Diagram*</code> with a name. <code>localize :: Diagram* -&gt; Diagram*</code> hides all names in a diagram so they can’t be referred to from outside that call.</p></li>
+</ul>
+<h3 id="arrows">Arrows</h3>
+<p><a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Arrow.html">Diagrams.TwoD.Arrow</a>.</p>
+<ul>
+<li><code>arrowV :: V2* -&gt; Diagram*</code>: arrow from origin with said displacement.</li>
+<li><code>arrowAt :: P2* -&gt; V2* -&gt; Diagram*</code></li>
+<li><p><code>arrowBetween :: P2* -&gt; P2* -&gt; Diagram*</code></p></li>
+<li><code>connect :: Name* -&gt; Name* -&gt; Diagram* -&gt; Diagram*</code>: connect the origins of two subdiagrams</li>
+<li><code>connectOutside :: Name* -&gt; Name* -&gt; Diagram* -&gt; Diagram*</code>: connect with an arrow on the line from origin to origin, but that starts and ends on the subdiagrams’ boundaries, computed with ray tracing</li>
+<li><p><code>connectPerim :: Name* -&gt; Name* -&gt; Angle* -&gt; Angle* -&gt; Diagram* -&gt; Diagram*</code>: connect the points on the boundaries of two subdiagrams specified by the angles (counterclockwise from the positive x-axis).</p></li>
+</ul>
+<p>All these have primed versions that take an <code>ArrowOpts</code> as an additional first argument. <code>ArrowOpts</code> is another lensed options type. An example option struct is <code>(with &amp; arrowHead .~ dart &amp; arrowTail .~ dart)</code>.</p>
+<p><a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Arrowheads.html">Diagrams.TwoD.Arrowheads</a> has a bunch of arrowheads (note that the arrowhead only specifies its shape, not its scale; set the <code>headLength</code> or <code>tailLength</code> option to customize that).</p>
+<p>The <a href="https://diagrams.github.io/doc/arrow.html">arrows tutorial</a> has actual examples.</p>
+<h3 id="text">Text</h3>
+<p>Haddock: <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Text.html">Diagrams.TwoD.Text</a>.</p>
+<p>The simplest way to produce text is <code>text :: String -&gt; Diagram*</code>, which is approximately centered. Note that this takes up no space. There’s also <code>alignedText :: Double -&gt; Double -&gt; String -&gt; Diagram*</code>, but it doesn’t exactly work in the standard SVG backend; if you want something vertically centered, you might want to <code>translateY</code> by a small negative amount. I don’t have a great systematic solution; just eyeball it.</p>
+<p>You can style text with these functions:</p>
+<ul>
+<li><code>font :: String -&gt; Diagram* -&gt; Diagram*</code> adds a font</li>
+<li><code>fontSize :: Measure -&gt; Diagram* -&gt; Diagram*</code> sets a font size</li>
+<li><code>italic :: Diagram* -&gt; Diagram*</code>, <code>oblique :: Diagram* -&gt; Diagram*</code></li>
+<li><code>bold :: Diagram* -&gt; Diagram*</code></li>
+</ul>
+<p>There are many other weights in this module.</p>
+<h3 id="offset">Offset</h3>
+<p>I’ve never used the <a href="https://diagrams.github.io/haddock/diagrams-lib/Diagrams-TwoD-Offset.html">Diagrams.TwoD.Offset</a> module, but it exists.</p>
+<h3 id="output">Output</h3>
+<p>I’ll focus on the SVG renderer.</p>
+<p>The tutorial teaches you <code>mainWith :: Diagram* -&gt; IO ()</code> (from <a href="https://diagrams.github.io/haddock/diagrams-svg/Diagrams-Backend-SVG-CmdLine.html">Diagrams.Backend.SVG.CmdLine</a>; it’s actually way more polymorphic than that), which makes a program that lets you customize the diagram a lot with command-line options. But eventually I found that I preferred keeping more of the configuration inside the code.</p>
+<p>Haddock: <a href="https://diagrams.github.io/haddock/diagrams-svg/Diagrams-Backend-SVG.html">Diagrams.Backend.SVG</a></p>
+<p>The simplest way to make your program produce an SVG is <code>renderSVG :: FilePath -&gt; SizeSpec* -&gt; Diagram* -&gt; IO ()</code> (<code>FilePath</code> is an alias for <code>String</code>). We saw <code>SizeSpec*</code> in the Bounding section, but I’ll reproduce the functions here:</p>
+<ul>
+<li><code>dims :: V2* -&gt; SizeSpec*</code></li>
+<li><code>dims2D :: Double -&gt; Double -&gt; SizeSpec*</code></li>
+<li><code>mkWidth, mkHeight :: Double -&gt; SizeSpec*</code></li>
+<li><code>absolute :: SizeSpec*</code></li>
+</ul>
+<p>In particular <code>absolute</code> just means “just output whatever dimensions the diagram is in its units”.</p>
+<h3 id="appendix-van-laarhoven-lenses">Appendix: van Laarhoven lenses</h3>
+<p>There are entirely too many lenses tutorials out there and I don’t remember which of them are worth recommending, so I wrote somthing up.</p>
+<p>Pretend we’re writing old-fashioned Java for a bit. Here’s a plain Java class:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">public</span> <span class="kw">class</span> Person {</a>
+<a class="sourceLine" id="cb3-2" title="2">    <span class="kw">private</span> <span class="bu">String</span> name;</a>
+<a class="sourceLine" id="cb3-3" title="3">    <span class="kw">private</span> <span class="dt">int</span> age;</a>
+<a class="sourceLine" id="cb3-4" title="4"></a>
+<a class="sourceLine" id="cb3-5" title="5">    <span class="bu">String</span> <span class="fu">getName</span>() { <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">name</span>; }</a>
+<a class="sourceLine" id="cb3-6" title="6">    <span class="dt">void</span> <span class="fu">setName</span>(<span class="bu">String</span> name) { <span class="kw">this</span>.<span class="fu">name</span> = name; }</a>
+<a class="sourceLine" id="cb3-7" title="7">    <span class="dt">int</span> <span class="fu">getAge</span>() { <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">age</span>; }</a>
+<a class="sourceLine" id="cb3-8" title="8">    <span class="dt">void</span> <span class="fu">setName</span>(<span class="bu">String</span> name) { <span class="kw">this</span>.<span class="fu">name</span> = name; }</a>
+<a class="sourceLine" id="cb3-9" title="9">}</a></code></pre></div>
+<p>Intuitively, <code>Person</code> has two “fields”, called <code>name</code> and <code>age</code>; and we might still say this as a description of <code>Person</code>’s public interface even if <code>Person</code> did not represent that data internally. That’s Encapsulation™! So, intuitively, a “field” is a pair of a getter and a setter.</p>
+<p>In a language like Haskell, where stuff is immutable, the setter would instead be a function that takes a Person and a new name or age, and returns the updated Person. So <code>Person</code>’s interface would be shaped like this:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">data</span> <span class="dt">Person</span> <span class="ot">=</span> <span class="dt">Person</span> <span class="dt">String</span> <span class="dt">Int</span></a>
+<a class="sourceLine" id="cb4-2" title="2"></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co">-- implementations not shown</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="ot">getName ::</span> <span class="dt">Person</span> <span class="ot">-&gt;</span> <span class="dt">String</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="ot">setName ::</span> <span class="dt">Person</span> <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Person</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="ot">getAge ::</span> <span class="dt">Person</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="ot">setAge ::</span> <span class="dt">Person</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Person</span></a></code></pre></div>
+<p>Conceptually, a <em>lens</em> is the idea of a “field” we just described. A lens from type <code>s</code> to type <code>a</code> is equivalent to a pair of a getter, a function of type <code>s -&gt; a</code>, and a setter, a function of type <code>s -&gt; a -&gt; s</code>. And there are libraries that define a <code>Lens s a</code> as a simple data type that directly includes a pair of those functions, and provide utilities for working with them and composing them.</p>
+<p>However, a more sophisticated approach is provided by van Laarhoven lenses. A van Laarhoven lens is defined as follows:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">type</span> <span class="dt">Lens&#39;</span> s a <span class="ot">=</span> <span class="kw">forall</span> f<span class="op">.</span> <span class="dt">Functor</span> f <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> f a) <span class="ot">-&gt;</span> s <span class="ot">-&gt;</span> f s</a></code></pre></div>
+<p>This is not at all intuitive, but this type is <strong>exactly isomorphic</strong> to having a getter and setter as described above. That is, given this type, you can implement a getter and setter, and vice versa. The key advantages are:</p>
+<ul>
+<li>van Laarhoven lenses compose really nicely: it’s literally just function composition. That is, if you had some class <code>Book</code> with a field <code>author</code> of type <code>Person</code>, you can get a lens representing “the <code>name</code> field of the <code>author</code> field of the <code>Book</code>” just by composing the <code>name</code> field and <code>author</code> field lenses as ordinary functions.</li>
+<li>You can define a universe of lens-like types (“optics”) with different constraints than <code>Functor</code>, which compose equally nicely and give you something exactly as strong as what you could have hoped for. The most interesting example is probably <code>Prism' s a</code>, which is isomorphic to a pair of functions <code>a -&gt; s</code> and <code>s -&gt; Maybe a</code>: it’s approximately the sum-product dual of a <code>Lens'</code>, representing that <code>s</code> has a case of type <code>a</code> as well as possibly others. A more general optic is <code>Traversal'</code>, which roughly represents a “(possibly empty) list of fields”. Every <code>Lens'</code> is a <code>Traversal'</code> that just happens to point to exactly one field, and every <code>Prism'</code> is a <code>Traversal'</code> that happens to point to at most one field that would also be enough to fully recover the original data. The key point is that you can compose any <code>Lens'</code>, <code>Prism'</code>, or <code>Traversal'</code> with any other in either order and get (at least) a <code>Traversal'</code>.</li>
+</ul>
+<p>There are a lot of other optic types that look varying degrees of frivolous when you figure out what they’re isomorphic to and compare that to how intimidating their types are:</p>
+<ul>
+<li>a <code>Getter s a</code> is isomorphic to a function <code>s -&gt; a</code>.</li>
+<li>a <code>Fold s a</code> is isomorphic to a function <code>s -&gt; [a]</code> (though this is maybe an overly glib interpretation, since <code>Foldable</code> is isomorphic to <code>toList</code> but may have far more efficient and data-structure-specific implementations).</li>
+<li>a <code>Setter' s a</code> is isomorphic to a function <code>(a -&gt; a) -&gt; s -&gt; s</code>. Note that this is stronger than the intuitive “setter” we defined above, in that you can look at the old field value when deciding the new field value, but you still can’t “leak” it back to the caller (at least, without doing evil things to break Haskell’s purely functional nature); but also, that both this and the earlier definition allow you to set zero or multiple fields at once, which both make for a perfectly legal <code>Setter'</code> definition.</li>
+<li>a <code>Review s a</code> is isomorphic to a function <code>a -&gt; s</code>.</li>
+<li>an <code>Iso' s a</code> is isomorphic to a pair of functions <code>s -&gt; a</code> and <code>a -&gt; s</code> (it’s, well, an isomorphism), and is every other optic mentioned so far.</li>
+</ul>
+<p>(Why are some types primed with <code>'</code> and some types aren’t? Because there are unprimed versions of some optics that may permit type-changing updates; a <code>Lens' s a</code> is really a <code>Lens s s a a</code>, where a <code>Lens s t a b</code> is isomorphic to a pair of functions <code>s -&gt; a</code> and <code>s -&gt; b -&gt; t</code>. But that’s way more complexity than we need here.)</p>
+<p>But to repeat, the point of all this is that you can compose different optics with different guarantees and end up with an optic with exactly the guarantees you could have hoped for. That type of optic will even have a name and you can easily (for some definition of “easily”) write functions that require optics to be exactly as strong as they need to be.</p>
+<p>The key disadvantage is that the high-powered subtle type-level machinery that makes things work out this way nerd-snipes every type system aficionado into learning about it and working through it in their head when they could be writing production software. Also, the error messages are often bad.</p>
+<p>Anyway, to get a normal function out of an optic, you can use any of these functions/operators from the <code>lens</code> library:</p>
+<ul>
+<li><code>view g v</code> or <code>v ^. g</code> gets with a <code>Getter</code> <code>g</code></li>
+<li><code>toListOf f v</code> or <code>v ^.. f</code> gets the list of fields with a <code>Fold</code> <code>f</code></li>
+<li><code>preview p v</code> or <code>v ^? p</code> gets the <code>Maybe</code> field pointed to by a <code>Prism'</code> <code>p</code>, or more generally the first field of a <code>Fold</code></li>
+<li><code>review r v</code> reviews through a <code>Review</code> <code>r</code> (in the Lens library this is also provided as the operator <code>#</code>, but <code>diagrams</code> uses that for postfix application and provides <code>@@</code> instead, as well as <code>##</code>, a straight-up alias for <code>#</code>; <code>#</code> and <code>##</code> are not flipped, but <code>@@</code> is!)</li>
+<li><code>over s f v</code> or <code>(s %~ f) v</code> “updates” (all values) with a <code>Setter</code> <code>s</code> and a function <code>f :: field -&gt; field</code></li>
+<li><code>set s x v</code> or <code>(s .~ x) v</code> sets (all values) with a <code>Setter</code> <code>s</code> and a new field value <code>x</code></li>
+</ul>
+<p>There are hundreds more functions in the library: optics for common types, like <code>_1</code> or <code>_2</code> that are lenses pointing to a tuple’s components; functions for constructing optics like <code>to</code>, which turns a plain function into a <code>Getter</code>; shorthand operators for updating with common kinds of functions; a whole bunch of “indexed optics”. But the most common way you’ll probably use lenses in <code>diagrams</code> is to pass options to a function, in which case you really don’t need anything other than <code>.~</code>. <code>with</code> is an alias for <code>def</code>, the default type, and then you use lenses to update various parts of the options. See the diagrams manual on <a href="https://diagrams.github.io/doc/manual.html#faking-optional-named-arguments">faking optional named arguments</a>.</p>
+</article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/haskell"><span class="tag">Haskell</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/ref/hs">← Haskell Stash</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/ref/coq">Coq Reference →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2021 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://www.goatcounter.com/">GoatCounter</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>
