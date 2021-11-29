@@ -41,7 +41,7 @@ Category → CS
 </button>
 <nav class="site-menu collapsed">
 	<h2 class="offscreen">Main Menu</h2>
-	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/ref">References</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
 </nav>
 <nav class="social-menu collapsed">
 	<h2 class="offscreen">Social Networks</h2>
@@ -79,7 +79,14 @@ Category → CS
 		</p>
 	</header>
 	
-	rustc -C prefer-dynamic .meter-text { white-space: pre-wrap; } launchctl stop com.apple.pboard launchctl start com.apple.pboard # requires ImageMagick functionimg() { identify -format &#39;&lt;img src=&quot;%f&quot; width=&quot;%w&quot; height=&quot;%h&quot; /&gt;&#39; $1 } :%s/\%xa0/ /ge :%s/\%u2019/&#39;/ge :%s/\%u201c/&quot;/ge :%s/\%u201d/&quot;/ge ifconfig en0 | grep ether sudo ifconfig en1 ether 12:34:56:78:9a:bc while [[ $(date +%Y) -ne 2015]];do figlet $(($(date -j 0101000015 +%s)-$(date +%s)));sleep 1;clear;done;figlet Happy New Year! javascript:(function(x){function%20f(n){return%20Math.round(n*1000)/1000;}alert(&quot;HP:%20&quot;+f(x.hp)+&quot;\nMP:%20&quot;+f(x.mp)+&quot;\nEXP:%20&quot;+f(x.exp)+&quot;\nGP:%20&quot;+f(x.gp));}(angular.element(document.querySelector(&#39;.hero-stats&#39;)).scope().user.stats)); alias kd=&#39;ruby --external-encoding UTF-8 -S kramdown&#39; alias please=&quot;sudo&quot; sage: R = PolynomialRing(QQ, &#39;x&#39;) sage: f = R.
+	<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="ex">rustc</span> -C prefer-dynamic</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb2-1" title="1"><span class="fu">.meter-text</span> { <span class="kw">white-space</span>: <span class="dv">pre-wrap</span><span class="op">;</span> }</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="ex">launchctl</span> stop com.apple.pboard</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="ex">launchctl</span> start com.apple.pboard</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># requires ImageMagick</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">function</span><span class="fu"> img()</span> <span class="kw">{</span></a>
+<a class="sourceLine" id="cb4-3" title="3">    <span class="ex">identify</span> -format <span class="st">&#39;&lt;img src=&quot;%f&quot; width=&quot;%w&quot; height=&quot;%h&quot; /&gt;&#39;</span> <span class="va">$1</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="kw">}</span></a></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/ref/stash">→ read more<span class="offscreen"> Stash</span></a>
 	</footer>
@@ -92,7 +99,7 @@ Category → CS
 		<p class="post-meta">
 		
 		
-		(551 words)
+		(571 words)
 		
 		<span class="post-categories">
 			filed under
@@ -102,10 +109,24 @@ Category → CS
 		</p>
 	</header>
 	
-	(Ported from betaveros.stash. Wow, I get syntax highlighting and footnotes!)
-A quick brief guide. At least, that’s how I planned it.
-A lot of stuff is in the package java.awt.datatransfer. Class Toolkit is in java.awt.
-Some basic classes. The class Clipboard is a clipboard, obviously. Its content is/will be an instance of the class Transferable. Some content can be read as different types of objects depending on what you want; to choose which type you use an instance of DataFlavor.
+	<p>(Ported from betaveros.stash. Wow, I get syntax highlighting and footnotes! Probably years out of date though. I probably wrote this somewhere in 2012–2014, but am editing this parenthetical in 2021.)</p>
+<p>A quick brief guide. At least, that’s how I planned it.</p>
+<p>A lot of stuff is in the package <code>java.awt.datatransfer</code>. Class <code>Toolkit</code> is in <code>java.awt</code>.</p>
+<p>Some basic classes. The class <code>Clipboard</code> is a clipboard, obviously. Its content is/will be an instance of the class <code>Transferable</code>. Some content can be read as different types of objects depending on what you want; to choose which type you use an instance of <code>DataFlavor</code>. It provides three basic ones: <code>DataFlavor.imageFlavor</code>, <code>DataFlavor.javaFileListFlavor</code>, and <code>DataFlavor.stringFlavor</code>.</p>
+<p>Okay, now step by step. This is the low-level method.</p>
+<ol type="1">
+<li>Get the default clipboard with <code>Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();</code></li>
+<li>Get a transferable with <code>Transferable content = clipboard.getContents(null);</code> <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></li>
+<li>Check if <code>content</code> can be read as the kind of object you want with <code>(content != null) &amp;&amp; content.isDataFlavorSupported(someFlavor)</code></li>
+<li>If it does, get the object with <code>content.getTransferData(someFlavor)</code> <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</li>
+</ol>
+<p>If you just want a quick-and-dirty function:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb1-1" title="1"><span class="dt">static</span> <span class="bu">String</span> <span class="fu">getClipboard</span>()</a>
+<a class="sourceLine" id="cb1-2" title="2">        <span class="kw">throws</span> java.<span class="fu">awt</span>.<span class="fu">datatransfer</span>.<span class="fu">UnsupportedFlavorException</span>, <span class="bu">IOException</span> {</a>
+<a class="sourceLine" id="cb1-3" title="3">    <span class="kw">return</span> (<span class="bu">String</span>) java.<span class="fu">awt</span>.<span class="fu">Toolkit</span>.<span class="fu">getDefaultToolkit</span>()</a>
+<a class="sourceLine" id="cb1-4" title="4">        .<span class="fu">getSystemClipboard</span>()</a>
+<a class="sourceLine" id="cb1-5" title="5">        .<span class="fu">getData</span>(java.<span class="fu">awt</span>.<span class="fu">datatransfer</span>.<span class="fu">DataFlavor</span>.<span class="fu">stringFlavor</span>);</a>
+<a class="sourceLine" id="cb1-6" title="6">}</a></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/ref/java-clipboards">→ read more<span class="offscreen"> Java Clipboards and Data Transfer</span></a>
 	</footer>
@@ -128,8 +149,30 @@ Some basic classes. The class Clipboard is a clipboard, obviously. Its content i
 		</p>
 	</header>
 	
-	1  Firefox  LeechBlock, Xmarks, HTTPS Everywhere, uBlock Origin Formerly: Pentadactyl (nightlies), LastPass, Disconnect, All-in-One Sidebar  Dropbox (db.tt) (g)Vim / MacVim  NeoBundle; jellybeans, syntastic, airline, fugitive, unite.vim, nerdtree, … Make sure you change your home folder and other paths in your .vimrc if necessary.  LaTeX VLC Anki Geogebra, CaRMetal osu! Gargoyle MuseScore μTorrent VeraCrypt Gyazo  h4xx0r Be aware of homebrew options.
- git (clone my stuff) fish_shell languages: haskell (stash), scala python things: beautifulsoup4, fn, ipython, numpy, pwntools, requests, scipy, virtualenv docs: kramdown, pandoc command-line: mu, fasd, ack / the_silver_searcher, openssl, tmux, ffmpeg, heroku, binutils, coreutils, tiny-fugue command-line more for fun: cowsay, figlet, cloc, sloccount idk: ant, go, ruby, rust  Mac  Use bottom-right of track pad for right-click; disable natural scrolling Set Caps Lock to Control In Mission Control &gt; Hot Corners, set the lower-right corner to Mission Control  mkdir ~/bin ~/tmp
+	<h2 id="section">1</h2>
+<ul>
+<li><a href="https://www.mozilla.org/en-US/firefox/new/"><strong>Firefox</strong></a>
+<ul>
+<li><strong><a href="http://www.proginosko.com/leechblock.html#SECT2">LeechBlock</a>, <a href="https://download.xmarks.com/download">Xmarks</a></strong>, <a href="https://www.eff.org/https-everywhere">HTTPS Everywhere</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/">uBlock Origin</a></li>
+<li>Formerly: <a href="http://5digits.org/pentadactyl/">Pentadactyl</a> (<a href="http://5digits.org/nightlies">nightlies</a>), <a href="https://lastpass.com/misc_download2.php">LastPass</a>, <a href="https://disconnect.me/">Disconnect</a>, <a href="http://firefox.exxile.net/aios/">All-in-One Sidebar</a></li>
+</ul></li>
+<li><a href="https://www.dropbox.com/"><strong>Dropbox</strong></a> (<a href="http://db.tt/"><code>db.tt</code></a>)</li>
+<li><strong>(g)<a href="http://www.vim.org/">Vim</a></strong> / <a href="https://github.com/macvim-dev/macvim">MacVim</a>
+<ul>
+<li><strong><a href="https://github.com/Shougo/neobundle.vim">NeoBundle</a>; <a href="https://github.com/nanotech/jellybeans.vim">jellybeans</a>, <a href="https://github.com/scrooloose/syntastic">syntastic</a></strong>, airline, fugitive, unite.vim, nerdtree, …</li>
+<li>Make sure you change your home folder and other paths in your <code>.vimrc</code> if necessary.</li>
+</ul></li>
+<li><a href="http://www.latex-project.org/">LaTeX</a></li>
+<li><a href="https://www.videolan.org/vlc/">VLC</a></li>
+<li><a href="http://ankisrs.net/">Anki</a></li>
+<li><a href="http://www.geogebra.org/">Geogebra</a>, <a href="http://db-maths.nuxit.net/CaRMetal/index_en.html">CaRMetal</a></li>
+<li><a href="https://osu.ppy.sh/p/download">osu!</a></li>
+<li><a href="http://ccxvii.net/gargoyle/">Gargoyle</a></li>
+<li><a href="https://musescore.org/en">MuseScore</a></li>
+<li><a href="https://www.utorrent.com/">μTorrent</a></li>
+<li><a href="https://veracrypt.codeplex.com/">VeraCrypt</a></li>
+<li><a href="https://gyazo.com/">Gyazo</a></li>
+</ul>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/ref/init">→ read more<span class="offscreen"> init</span></a>
 	</footer>
@@ -142,7 +185,7 @@ Some basic classes. The class Clipboard is a clipboard, obviously. Its content i
 		<p class="post-meta">
 		
 		
-		(1769 words)
+		(1744 words)
 		
 		<span class="post-categories">
 			filed under
@@ -152,12 +195,7 @@ Some basic classes. The class Clipboard is a clipboard, obviously. Its content i
 		</p>
 	</header>
 	
-	Installation Notes Personal list of Hackage packages to install, in approximate decreasing order of priority.
-In Haskell Platform Changelog (in case there was any doubt)
-GHC notably has array, bytestring, template-haskell, transformers.
-Additional libraries notably include attoparsec, HTTP, HUnit, mtl, parsec, QuickCheck, text, vector.
-Still, come to think of it, these libraries may well have updated since the platform release…
-I’m too lazy to reinstall all of them, so here are the ones I recognize that I care about, minus containers because it mysteriously threatens to break ghc-7.
+	<p>Editor’s note: This is almost certainly years out of date. cabal has v2 commands and stuff now? Sorry.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/ref/hs">→ read more<span class="offscreen"> Haskell Stash</span></a>
 	</footer>
@@ -182,10 +220,68 @@ I’m too lazy to reinstall all of them, so here are the ones I recognize that I
 		</p>
 	</header>
 	
-	diagrams is a nifty Haskell library for making vector diagrams. I keep coming back to it to generate graphics for puzzles:
- the very old A Signature Puzzle from this blog A Fork in the Road (DP Puzzle Hunt) Symbols (Galactic Puzzle Hunt 2020) (to be published)  I got sick of relearning it every time, and I think there’s some small chance other people will find it useful too, so I wrote something up.
+	<p><a href="https://diagrams.github.io/"><code>diagrams</code></a> is a nifty Haskell library for making vector diagrams. I keep coming back to it to generate graphics for puzzles:</p>
+<ul>
+<li>the very old <a href="https://blog.vero.site/post/signature-puzzle">A Signature Puzzle</a> from this blog</li>
+<li><a href="https://dp.puzzlehunt.net/puzzle/a-fork-in-the-road.html">A Fork in the Road</a> (DP Puzzle Hunt)</li>
+<li><a href="https://2020.galacticpuzzlehunt.com/puzzle/symbols">Symbols</a> (Galactic Puzzle Hunt 2020)</li>
+<li>(to be published)</li>
+</ul>
+<p>I got sick of relearning it every time, and I think there’s some small chance other people will find it useful too, so I wrote something up. This post is a sort of reference that tries to compromise between the <a href="https://diagrams.github.io/doc/quickstart.html">quick start tutorial</a> and <a href="https://diagrams.github.io/doc/manual.html">manual</a> on one hand, and the API reference on the other, to try to be deeper and more comprehensive than the former, but also flow better and be easier to navigate than the latter. Some types are just really intimidating when fully written out…</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" title="1"><span class="ot">circle ::</span> (<span class="dt">TrailLike</span> t, <span class="dt">V</span> t <span class="op">~</span> <span class="dt">V2</span>, <span class="dt">N</span> t <span class="op">~</span> n, <span class="dt">Transformable</span> t) <span class="ot">=&gt;</span> n <span class="ot">-&gt;</span> t</a></code></pre></div>
+<p>To avoid unhelpfully generic types, I will deal concretely with two-dimensional diagrams that measure everything in <code>Double</code>, and will frequently abbreviate complex types with an asterisk, like I will write <code>V2*</code> for <code>V2 Double</code>. I will introduce these aliases along the way for easy greppability. They’re not legal Haskell, of course.</p>
+<p>This reference assumes basic-to-intermediate Haskell knowledge. Some of the more intermediate stuff includes:</p>
+<ul>
+<li>Monoids, and that the Haskell <code>Monoid</code> operator is <code>&lt;&gt;</code></li>
+<li>Typeclasses. I will sometimes write fake type signatures as abbreviations for typeclass restrictions: for example, <code>TrailLike</code> is a typeclass, and I might say or write that a function returns <code>TrailLike</code> when I really mean <code>TrailLike t =&gt; t</code>, any type <code>t</code> that is in that typeclass.</li>
+</ul>
+<p>van Laarhoven lenses may help, but mostly I’ll try to black-box them.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/ref/diagrams">→ read more<span class="offscreen"> diagrams Reference</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/ref/coq" class="post-link">Coq Reference</a></h3>
+		
+		<p class="post-meta">
+		
+		
+		(4335 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>It seems like a rite of passage to create one of these because there are so many Coq tactic cheat sheets out there and there’s just so much to learn. Here’s mine.</p>
+<p>This is mostly about tactics but I realized not really.</p>
+<p>Links:</p>
+<ul>
+<li><a href="https://coq.inria.fr/refman/proof-engine/tactics.html">Coq Tactics</a>. Authoritative but dense.</li>
+<li><a href="https://softwarefoundations.cis.upenn.edu/lf-current/index.html">Logical Foundations</a> (Software Foundations Volume 1). I think the order of ideas makes pedagogical sense but also makes it hard for me to look up particular tactics or concepts.</li>
+<li><p>Other Coq cheat sheets found by Googling “Coq cheat sheets”:</p>
+<ul>
+<li><a href="https://pjreddie.com/coq-tactics/">Coq Tactics Index</a> (Joseph Redmon)</li>
+<li><a href="https://www.cs.cornell.edu/courses/cs3110/2018sp/a5/coq-tactics-cheatsheet.html">Coq Tactics Cheatsheet</a> (Cornell CS3110)</li>
+<li><a href="http://adam.chlipala.net/itp/tactic-reference.html">Coq Tactics Quick Reference</a> (Adam Chlipala) / the <a href="http://adam.chlipala.net/frap/">Formal Reasoning About Programs</a> book also has a nice appendix</li>
+<li><a href="https://www.cis.upenn.edu/~rrand/popl_2016/reference.html">Coq Tactics</a> (UPenn ???)</li>
+</ul></li>
+</ul>
+<p>Meta-notes: I cover a lot of weak tactics because I like knowing exactly what my tools are doing. I try to use the variants of tactics that explicitly name things produced when possible. I am sure there is nomenclature I don’t understand precisely and use sloppily in this list; I am also sloppy with metavariables. Even things that are correct might be horrible style. There are likely other errors and omissions. They might be fixed one day. I’m putting this up nevertheless because it’s personally useful.</p>
+<h3 id="things-i-wish-i-knew-but-didnt-learn-from-software-foundations-or-coq-tactic-cheat-sheets">Things I wish I knew but didn’t learn from Software Foundations or Coq tactic cheat sheets</h3>
+<ul>
+<li>The first two sections are not about tactics per se but how to find theorems to use and how to use them. Knowing how to use all of these query commands is super useful.</li>
+<li>To clean up repeating subexpressions with “local variables”, I find <code>remember expr as X eqn:Hname.</code> easier to work with than <code>set (X := expr).</code></li>
+<li><code>pose proof expr as Hname.</code> adds <code>expr</code> to the context, with name <code>Hname</code>. Modus ponens where you know <code>H1</code> and <code>H2</code>, which is “<code>H1</code> implies <code>H3</code>”, is just <code>pose proof (H2 H1) as H3</code>.</li>
+<li>Software Foundations covers bullets and curly braces early, but I like subgoal specification with <code>1:</code>, <code>2:</code> etc., which can really help limit nesting depth. <code>2: (tactic that solves subgoal 2).</code> If you want more bullets, there are infinitely many, not just three. After <code>-</code> <code>+</code> <code>*</code> you can use <code>--</code> <code>++</code> <code>**</code> <code>---</code> etc.</li>
+</ul>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/ref/coq">→ read more<span class="offscreen"> Coq Reference</span></a>
 	</footer>
 </article>
 

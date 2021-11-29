@@ -41,7 +41,7 @@ Tag → haskell
 </button>
 <nav class="site-menu collapsed">
 	<h2 class="offscreen">Main Menu</h2>
-	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/ref">References</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
 </nav>
 <nav class="social-menu collapsed">
 	<h2 class="offscreen">Social Networks</h2>
@@ -272,8 +272,22 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
 		</p>
 	</header>
 	
-	diagrams is a nifty Haskell library for making vector diagrams. I keep coming back to it to generate graphics for puzzles:
- the very old A Signature Puzzle from this blog A Fork in the Road (DP Puzzle Hunt) Symbols (Galactic Puzzle Hunt 2020) (to be published)  I got sick of relearning it every time, and I think there’s some small chance other people will find it useful too, so I wrote something up.
+	<p><a href="https://diagrams.github.io/"><code>diagrams</code></a> is a nifty Haskell library for making vector diagrams. I keep coming back to it to generate graphics for puzzles:</p>
+<ul>
+<li>the very old <a href="https://blog.vero.site/post/signature-puzzle">A Signature Puzzle</a> from this blog</li>
+<li><a href="https://dp.puzzlehunt.net/puzzle/a-fork-in-the-road.html">A Fork in the Road</a> (DP Puzzle Hunt)</li>
+<li><a href="https://2020.galacticpuzzlehunt.com/puzzle/symbols">Symbols</a> (Galactic Puzzle Hunt 2020)</li>
+<li>(to be published)</li>
+</ul>
+<p>I got sick of relearning it every time, and I think there’s some small chance other people will find it useful too, so I wrote something up. This post is a sort of reference that tries to compromise between the <a href="https://diagrams.github.io/doc/quickstart.html">quick start tutorial</a> and <a href="https://diagrams.github.io/doc/manual.html">manual</a> on one hand, and the API reference on the other, to try to be deeper and more comprehensive than the former, but also flow better and be easier to navigate than the latter. Some types are just really intimidating when fully written out…</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" title="1"><span class="ot">circle ::</span> (<span class="dt">TrailLike</span> t, <span class="dt">V</span> t <span class="op">~</span> <span class="dt">V2</span>, <span class="dt">N</span> t <span class="op">~</span> n, <span class="dt">Transformable</span> t) <span class="ot">=&gt;</span> n <span class="ot">-&gt;</span> t</a></code></pre></div>
+<p>To avoid unhelpfully generic types, I will deal concretely with two-dimensional diagrams that measure everything in <code>Double</code>, and will frequently abbreviate complex types with an asterisk, like I will write <code>V2*</code> for <code>V2 Double</code>. I will introduce these aliases along the way for easy greppability. They’re not legal Haskell, of course.</p>
+<p>This reference assumes basic-to-intermediate Haskell knowledge. Some of the more intermediate stuff includes:</p>
+<ul>
+<li>Monoids, and that the Haskell <code>Monoid</code> operator is <code>&lt;&gt;</code></li>
+<li>Typeclasses. I will sometimes write fake type signatures as abbreviations for typeclass restrictions: for example, <code>TrailLike</code> is a typeclass, and I might say or write that a function returns <code>TrailLike</code> when I really mean <code>TrailLike t =&gt; t</code>, any type <code>t</code> that is in that typeclass.</li>
+</ul>
+<p>van Laarhoven lenses may help, but mostly I’ll try to black-box them.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/ref/diagrams">→ read more<span class="offscreen"> diagrams Reference</span></a>
 	</footer>

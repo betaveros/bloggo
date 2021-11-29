@@ -37,7 +37,7 @@
 </button>
 <nav class="site-menu collapsed">
 	<h2 class="offscreen">Main Menu</h2>
-	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/ref">References</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
 </nav>
 <nav class="social-menu collapsed">
 	<h2 class="offscreen">Social Networks</h2>
@@ -336,8 +336,7 @@ a ||| b     ===
 <li><code>over s f v</code> or <code>(s %~ f) v</code> “updates” (all values) with a <code>Setter</code> <code>s</code> and a function <code>f :: field -&gt; field</code></li>
 <li><code>set s x v</code> or <code>(s .~ x) v</code> sets (all values) with a <code>Setter</code> <code>s</code> and a new field value <code>x</code></li>
 </ul>
-<p>There are hundreds more functions in the library: optics for common types, like <code>_1</code> or <code>_2</code> that are lenses pointing to a tuple’s components; functions for constructing optics like <code>to</code>, which turns a plain function into a <code>Getter</code>; shorthand operators for updating with common kinds of functions; a whole bunch of “indexed optics”. But the most common way you’ll probably use lenses in <code>diagrams</code> is to pass options to a function, in which case you really don’t need anything other than <code>.~</code>. <code>with</code> is an alias for <code>def</code>, the default type, and then you use lenses to update various parts of the options. See the diagrams manual on <a href="https://diagrams.github.io/doc/manual.html#faking-optional-named-arguments">faking optional named arguments</a>.</p>
-</article>
+<p>There are hundreds more functions in the library: optics for common types, like <code>_1</code> or <code>_2</code> that are lenses pointing to a tuple’s components; functions for constructing optics like <code>to</code>, which turns a plain function into a <code>Getter</code>; shorthand operators for updating with common kinds of functions; a whole bunch of “indexed optics”. But the most common way you’ll probably use lenses in <code>diagrams</code> is to pass options to a function, in which case you really don’t need anything other than <code>.~</code>. <code>with</code> is an alias for <code>def</code>, the default type, and then you use lenses to update various parts of the options. See the diagrams manual on <a href="https://diagrams.github.io/doc/manual.html#faking-optional-named-arguments">faking optional named arguments</a>.</p></article>
 	<footer class="post-footer">
 		
 		<ul class="post-tags">

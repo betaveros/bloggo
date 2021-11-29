@@ -761,15 +761,55 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
     </item>
     
     <item>
+      <title>Color</title>
+      <link>//blog.vero.site/ref/color</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//blog.vero.site/ref/color</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.brucelindbloom.com/&#34;&gt;Bruce Lindbloom&lt;/a&gt; has a ton of equations, but I just want the big ones on one page. We’ll assume &lt;a href=&#34;https://en.wikipedia.org/wiki/SRGB&#34;&gt;sRGB&lt;/a&gt;, which implies using &lt;a href=&#34;https://en.wikipedia.org/wiki/Illuminant_D65&#34;&gt;D65&lt;/a&gt; as white (if you’re using Bruce Lindbloom’s calculator to check your implementation, make sure to set these).&lt;/p&gt;
+&lt;h3 id=&#34;rgb-linear-rgb&#34;&gt;RGB ↔ Linear RGB&lt;/h3&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(\Xi\)&lt;/span&gt; (one of &lt;span class=&#34;math inline&#34;&gt;\(R\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt;) be an RGB component in the range &lt;span class=&#34;math inline&#34;&gt;\([0, 1]\)&lt;/span&gt;. (This is an obnoxious variable choice, but I’m trying to not overload any variable names in this entire post.) If you have RGB values in &lt;span class=&#34;math inline&#34;&gt;\([0, 255]\)&lt;/span&gt;, divide them by 255. It can be converted to/from the &lt;strong&gt;linearized component&lt;/strong&gt; &lt;span class=&#34;math inline&#34;&gt;\(\xi\)&lt;/span&gt; (one of &lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(g\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(b\)&lt;/span&gt;) as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\xi = \begin{cases} \Xi/12.92 &amp;amp; \text{if }\Xi \leq 0.04045 \\ ((\Xi + 0.055)/1.055)^{2.4} &amp;amp; \text{if }\Xi &amp;gt; 0.04045 \end{cases}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\Xi = \begin{cases} 12.92\xi &amp;amp; \text{if }\xi \leq 0.0031308 \\ 1.055v^{1/2.4} - 0.055 &amp;amp; \text{if }\xi &amp;gt; 0.0031308 \end{cases}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This is called “companding”.&lt;/p&gt;
+&lt;p&gt;However, you can use &lt;span class=&#34;math inline&#34;&gt;\(\xi = \Xi^{2.4}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\Xi = \xi^{1/2.4}\)&lt;/span&gt; in a pinch.&lt;/p&gt;
+&lt;h3 id=&#34;linear-rgb-xyz&#34;&gt;Linear RGB ↔ XYZ&lt;/h3&gt;
+&lt;p&gt;Convert between XYZ and linearized RGB. Again, this assumes sRGB and D65.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{align*}
+X &amp;amp;= 0.4124564r + 0.3575761g + 0.1804375b \\
+Y &amp;amp;= 0.2126729r + 0.7151522g + 0.0721750b \\
+Z &amp;amp;= 0.0193339r + 0.1191920g + 0.9503041b
+\end{align*}\]&lt;/span&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Coq Reference</title>
       <link>//blog.vero.site/ref/coq</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//blog.vero.site/ref/coq</guid>
-      <description>It seems like a rite of passage to create one of these because there are so many Coq tactic cheat sheets out there and there’s just so much to learn. Here’s mine.
-This is mostly about tactics but I realized not really.
-Links:
- Coq Tactics. Authoritative but dense. Logical Foundations (Software Foundations Volume 1). I think the order of ideas makes pedagogical sense but also makes it hard for me to look up particular tactics or concepts.</description>
+      <description>&lt;p&gt;It seems like a rite of passage to create one of these because there are so many Coq tactic cheat sheets out there and there’s just so much to learn. Here’s mine.&lt;/p&gt;
+&lt;p&gt;This is mostly about tactics but I realized not really.&lt;/p&gt;
+&lt;p&gt;Links:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://coq.inria.fr/refman/proof-engine/tactics.html&#34;&gt;Coq Tactics&lt;/a&gt;. Authoritative but dense.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://softwarefoundations.cis.upenn.edu/lf-current/index.html&#34;&gt;Logical Foundations&lt;/a&gt; (Software Foundations Volume 1). I think the order of ideas makes pedagogical sense but also makes it hard for me to look up particular tactics or concepts.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Other Coq cheat sheets found by Googling “Coq cheat sheets”:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://pjreddie.com/coq-tactics/&#34;&gt;Coq Tactics Index&lt;/a&gt; (Joseph Redmon)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cs.cornell.edu/courses/cs3110/2018sp/a5/coq-tactics-cheatsheet.html&#34;&gt;Coq Tactics Cheatsheet&lt;/a&gt; (Cornell CS3110)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://adam.chlipala.net/itp/tactic-reference.html&#34;&gt;Coq Tactics Quick Reference&lt;/a&gt; (Adam Chlipala) / the &lt;a href=&#34;http://adam.chlipala.net/frap/&#34;&gt;Formal Reasoning About Programs&lt;/a&gt; book also has a nice appendix&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cis.upenn.edu/~rrand/popl_2016/reference.html&#34;&gt;Coq Tactics&lt;/a&gt; (UPenn ???)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Meta-notes: I cover a lot of weak tactics because I like knowing exactly what my tools are doing. I try to use the variants of tactics that explicitly name things produced when possible. I am sure there is nomenclature I don’t understand precisely and use sloppily in this list; I am also sloppy with metavariables. Even things that are correct might be horrible style. There are likely other errors and omissions. They might be fixed one day. I’m putting this up nevertheless because it’s personally useful.&lt;/p&gt;
+&lt;h3 id=&#34;things-i-wish-i-knew-but-didnt-learn-from-software-foundations-or-coq-tactic-cheat-sheets&#34;&gt;Things I wish I knew but didn’t learn from Software Foundations or Coq tactic cheat sheets&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The first two sections are not about tactics per se but how to find theorems to use and how to use them. Knowing how to use all of these query commands is super useful.&lt;/li&gt;
+&lt;li&gt;To clean up repeating subexpressions with “local variables”, I find &lt;code&gt;remember expr as X eqn:Hname.&lt;/code&gt; easier to work with than &lt;code&gt;set (X := expr).&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pose proof expr as Hname.&lt;/code&gt; adds &lt;code&gt;expr&lt;/code&gt; to the context, with name &lt;code&gt;Hname&lt;/code&gt;. Modus ponens where you know &lt;code&gt;H1&lt;/code&gt; and &lt;code&gt;H2&lt;/code&gt;, which is “&lt;code&gt;H1&lt;/code&gt; implies &lt;code&gt;H3&lt;/code&gt;”, is just &lt;code&gt;pose proof (H2 H1) as H3&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Software Foundations covers bullets and curly braces early, but I like subgoal specification with &lt;code&gt;1:&lt;/code&gt;, &lt;code&gt;2:&lt;/code&gt; etc., which can really help limit nesting depth. &lt;code&gt;2: (tactic that solves subgoal 2).&lt;/code&gt; If you want more bullets, there are infinitely many, not just three. After &lt;code&gt;-&lt;/code&gt; &lt;code&gt;+&lt;/code&gt; &lt;code&gt;*&lt;/code&gt; you can use &lt;code&gt;--&lt;/code&gt; &lt;code&gt;++&lt;/code&gt; &lt;code&gt;**&lt;/code&gt; &lt;code&gt;---&lt;/code&gt; etc.&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -778,8 +818,22 @@ Links:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//blog.vero.site/ref/diagrams</guid>
-      <description>diagrams is a nifty Haskell library for making vector diagrams. I keep coming back to it to generate graphics for puzzles:
- the very old A Signature Puzzle from this blog A Fork in the Road (DP Puzzle Hunt) Symbols (Galactic Puzzle Hunt 2020) (to be published)  I got sick of relearning it every time, and I think there’s some small chance other people will find it useful too, so I wrote something up.</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://diagrams.github.io/&#34;&gt;&lt;code&gt;diagrams&lt;/code&gt;&lt;/a&gt; is a nifty Haskell library for making vector diagrams. I keep coming back to it to generate graphics for puzzles:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the very old &lt;a href=&#34;https://blog.vero.site/post/signature-puzzle&#34;&gt;A Signature Puzzle&lt;/a&gt; from this blog&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://dp.puzzlehunt.net/puzzle/a-fork-in-the-road.html&#34;&gt;A Fork in the Road&lt;/a&gt; (DP Puzzle Hunt)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://2020.galacticpuzzlehunt.com/puzzle/symbols&#34;&gt;Symbols&lt;/a&gt; (Galactic Puzzle Hunt 2020)&lt;/li&gt;
+&lt;li&gt;(to be published)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I got sick of relearning it every time, and I think there’s some small chance other people will find it useful too, so I wrote something up. This post is a sort of reference that tries to compromise between the &lt;a href=&#34;https://diagrams.github.io/doc/quickstart.html&#34;&gt;quick start tutorial&lt;/a&gt; and &lt;a href=&#34;https://diagrams.github.io/doc/manual.html&#34;&gt;manual&lt;/a&gt; on one hand, and the API reference on the other, to try to be deeper and more comprehensive than the former, but also flow better and be easier to navigate than the latter. Some types are just really intimidating when fully written out…&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode haskell&#34;&gt;&lt;code class=&#34;sourceCode haskell&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;ot&#34;&gt;circle ::&lt;/span&gt; (&lt;span class=&#34;dt&#34;&gt;TrailLike&lt;/span&gt; t, &lt;span class=&#34;dt&#34;&gt;V&lt;/span&gt; t &lt;span class=&#34;op&#34;&gt;~&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;V2&lt;/span&gt;, &lt;span class=&#34;dt&#34;&gt;N&lt;/span&gt; t &lt;span class=&#34;op&#34;&gt;~&lt;/span&gt; n, &lt;span class=&#34;dt&#34;&gt;Transformable&lt;/span&gt; t) &lt;span class=&#34;ot&#34;&gt;=&amp;gt;&lt;/span&gt; n &lt;span class=&#34;ot&#34;&gt;-&amp;gt;&lt;/span&gt; t&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To avoid unhelpfully generic types, I will deal concretely with two-dimensional diagrams that measure everything in &lt;code&gt;Double&lt;/code&gt;, and will frequently abbreviate complex types with an asterisk, like I will write &lt;code&gt;V2*&lt;/code&gt; for &lt;code&gt;V2 Double&lt;/code&gt;. I will introduce these aliases along the way for easy greppability. They’re not legal Haskell, of course.&lt;/p&gt;
+&lt;p&gt;This reference assumes basic-to-intermediate Haskell knowledge. Some of the more intermediate stuff includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Monoids, and that the Haskell &lt;code&gt;Monoid&lt;/code&gt; operator is &lt;code&gt;&amp;lt;&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Typeclasses. I will sometimes write fake type signatures as abbreviations for typeclass restrictions: for example, &lt;code&gt;TrailLike&lt;/code&gt; is a typeclass, and I might say or write that a function returns &lt;code&gt;TrailLike&lt;/code&gt; when I really mean &lt;code&gt;TrailLike t =&amp;gt; t&lt;/code&gt;, any type &lt;code&gt;t&lt;/code&gt; that is in that typeclass.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;van Laarhoven lenses may help, but mostly I’ll try to black-box them.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -788,12 +842,7 @@ Links:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//blog.vero.site/ref/hs</guid>
-      <description>Installation Notes Personal list of Hackage packages to install, in approximate decreasing order of priority.
-In Haskell Platform Changelog (in case there was any doubt)
-GHC notably has array, bytestring, template-haskell, transformers.
-Additional libraries notably include attoparsec, HTTP, HUnit, mtl, parsec, QuickCheck, text, vector.
-Still, come to think of it, these libraries may well have updated since the platform release…
-I’m too lazy to reinstall all of them, so here are the ones I recognize that I care about, minus containers because it mysteriously threatens to break ghc-7.</description>
+      <description>&lt;p&gt;Editor’s note: This is almost certainly years out of date. cabal has v2 commands and stuff now? Sorry.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -802,8 +851,30 @@ I’m too lazy to reinstall all of them, so here are the ones I recognize that I
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//blog.vero.site/ref/init</guid>
-      <description>1  Firefox  LeechBlock, Xmarks, HTTPS Everywhere, uBlock Origin Formerly: Pentadactyl (nightlies), LastPass, Disconnect, All-in-One Sidebar  Dropbox (db.tt) (g)Vim / MacVim  NeoBundle; jellybeans, syntastic, airline, fugitive, unite.vim, nerdtree, … Make sure you change your home folder and other paths in your .vimrc if necessary.  LaTeX VLC Anki Geogebra, CaRMetal osu! Gargoyle MuseScore μTorrent VeraCrypt Gyazo  h4xx0r Be aware of homebrew options.
- git (clone my stuff) fish_shell languages: haskell (stash), scala python things: beautifulsoup4, fn, ipython, numpy, pwntools, requests, scipy, virtualenv docs: kramdown, pandoc command-line: mu, fasd, ack / the_silver_searcher, openssl, tmux, ffmpeg, heroku, binutils, coreutils, tiny-fugue command-line more for fun: cowsay, figlet, cloc, sloccount idk: ant, go, ruby, rust  Mac  Use bottom-right of track pad for right-click; disable natural scrolling Set Caps Lock to Control In Mission Control &amp;gt; Hot Corners, set the lower-right corner to Mission Control  mkdir ~/bin ~/tmp</description>
+      <description>&lt;h2 id=&#34;section&#34;&gt;1&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.mozilla.org/en-US/firefox/new/&#34;&gt;&lt;strong&gt;Firefox&lt;/strong&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://www.proginosko.com/leechblock.html#SECT2&#34;&gt;LeechBlock&lt;/a&gt;, &lt;a href=&#34;https://download.xmarks.com/download&#34;&gt;Xmarks&lt;/a&gt;&lt;/strong&gt;, &lt;a href=&#34;https://www.eff.org/https-everywhere&#34;&gt;HTTPS Everywhere&lt;/a&gt;, &lt;a href=&#34;https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/&#34;&gt;uBlock Origin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Formerly: &lt;a href=&#34;http://5digits.org/pentadactyl/&#34;&gt;Pentadactyl&lt;/a&gt; (&lt;a href=&#34;http://5digits.org/nightlies&#34;&gt;nightlies&lt;/a&gt;), &lt;a href=&#34;https://lastpass.com/misc_download2.php&#34;&gt;LastPass&lt;/a&gt;, &lt;a href=&#34;https://disconnect.me/&#34;&gt;Disconnect&lt;/a&gt;, &lt;a href=&#34;http://firefox.exxile.net/aios/&#34;&gt;All-in-One Sidebar&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.dropbox.com/&#34;&gt;&lt;strong&gt;Dropbox&lt;/strong&gt;&lt;/a&gt; (&lt;a href=&#34;http://db.tt/&#34;&gt;&lt;code&gt;db.tt&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;(g)&lt;a href=&#34;http://www.vim.org/&#34;&gt;Vim&lt;/a&gt;&lt;/strong&gt; / &lt;a href=&#34;https://github.com/macvim-dev/macvim&#34;&gt;MacVim&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/Shougo/neobundle.vim&#34;&gt;NeoBundle&lt;/a&gt;; &lt;a href=&#34;https://github.com/nanotech/jellybeans.vim&#34;&gt;jellybeans&lt;/a&gt;, &lt;a href=&#34;https://github.com/scrooloose/syntastic&#34;&gt;syntastic&lt;/a&gt;&lt;/strong&gt;, airline, fugitive, unite.vim, nerdtree, …&lt;/li&gt;
+&lt;li&gt;Make sure you change your home folder and other paths in your &lt;code&gt;.vimrc&lt;/code&gt; if necessary.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.latex-project.org/&#34;&gt;LaTeX&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.videolan.org/vlc/&#34;&gt;VLC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ankisrs.net/&#34;&gt;Anki&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.geogebra.org/&#34;&gt;Geogebra&lt;/a&gt;, &lt;a href=&#34;http://db-maths.nuxit.net/CaRMetal/index_en.html&#34;&gt;CaRMetal&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://osu.ppy.sh/p/download&#34;&gt;osu!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ccxvii.net/gargoyle/&#34;&gt;Gargoyle&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://musescore.org/en&#34;&gt;MuseScore&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.utorrent.com/&#34;&gt;μTorrent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://veracrypt.codeplex.com/&#34;&gt;VeraCrypt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gyazo.com/&#34;&gt;Gyazo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -812,10 +883,24 @@ I’m too lazy to reinstall all of them, so here are the ones I recognize that I
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//blog.vero.site/ref/java-clipboards</guid>
-      <description>(Ported from betaveros.stash. Wow, I get syntax highlighting and footnotes!)
-A quick brief guide. At least, that’s how I planned it.
-A lot of stuff is in the package java.awt.datatransfer. Class Toolkit is in java.awt.
-Some basic classes. The class Clipboard is a clipboard, obviously. Its content is/will be an instance of the class Transferable. Some content can be read as different types of objects depending on what you want; to choose which type you use an instance of DataFlavor.</description>
+      <description>&lt;p&gt;(Ported from betaveros.stash. Wow, I get syntax highlighting and footnotes! Probably years out of date though. I probably wrote this somewhere in 2012–2014, but am editing this parenthetical in 2021.)&lt;/p&gt;
+&lt;p&gt;A quick brief guide. At least, that’s how I planned it.&lt;/p&gt;
+&lt;p&gt;A lot of stuff is in the package &lt;code&gt;java.awt.datatransfer&lt;/code&gt;. Class &lt;code&gt;Toolkit&lt;/code&gt; is in &lt;code&gt;java.awt&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Some basic classes. The class &lt;code&gt;Clipboard&lt;/code&gt; is a clipboard, obviously. Its content is/will be an instance of the class &lt;code&gt;Transferable&lt;/code&gt;. Some content can be read as different types of objects depending on what you want; to choose which type you use an instance of &lt;code&gt;DataFlavor&lt;/code&gt;. It provides three basic ones: &lt;code&gt;DataFlavor.imageFlavor&lt;/code&gt;, &lt;code&gt;DataFlavor.javaFileListFlavor&lt;/code&gt;, and &lt;code&gt;DataFlavor.stringFlavor&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Okay, now step by step. This is the low-level method.&lt;/p&gt;
+&lt;ol type=&#34;1&#34;&gt;
+&lt;li&gt;Get the default clipboard with &lt;code&gt;Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Get a transferable with &lt;code&gt;Transferable content = clipboard.getContents(null);&lt;/code&gt; &lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Check if &lt;code&gt;content&lt;/code&gt; can be read as the kind of object you want with &lt;code&gt;(content != null) &amp;amp;&amp;amp; content.isDataFlavorSupported(someFlavor)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;If it does, get the object with &lt;code&gt;content.getTransferData(someFlavor)&lt;/code&gt; &lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If you just want a quick-and-dirty function:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode java&#34;&gt;&lt;code class=&#34;sourceCode java&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;dt&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;fu&#34;&gt;getClipboard&lt;/span&gt;()&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; title=&#34;2&#34;&gt;        &lt;span class=&#34;kw&#34;&gt;throws&lt;/span&gt; java.&lt;span class=&#34;fu&#34;&gt;awt&lt;/span&gt;.&lt;span class=&#34;fu&#34;&gt;datatransfer&lt;/span&gt;.&lt;span class=&#34;fu&#34;&gt;UnsupportedFlavorException&lt;/span&gt;, &lt;span class=&#34;bu&#34;&gt;IOException&lt;/span&gt; {&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-3&#34; title=&#34;3&#34;&gt;    &lt;span class=&#34;kw&#34;&gt;return&lt;/span&gt; (&lt;span class=&#34;bu&#34;&gt;String&lt;/span&gt;) java.&lt;span class=&#34;fu&#34;&gt;awt&lt;/span&gt;.&lt;span class=&#34;fu&#34;&gt;Toolkit&lt;/span&gt;.&lt;span class=&#34;fu&#34;&gt;getDefaultToolkit&lt;/span&gt;()&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; title=&#34;4&#34;&gt;        .&lt;span class=&#34;fu&#34;&gt;getSystemClipboard&lt;/span&gt;()&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-5&#34; title=&#34;5&#34;&gt;        .&lt;span class=&#34;fu&#34;&gt;getData&lt;/span&gt;(java.&lt;span class=&#34;fu&#34;&gt;awt&lt;/span&gt;.&lt;span class=&#34;fu&#34;&gt;datatransfer&lt;/span&gt;.&lt;span class=&#34;fu&#34;&gt;DataFlavor&lt;/span&gt;.&lt;span class=&#34;fu&#34;&gt;stringFlavor&lt;/span&gt;);&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-6&#34; title=&#34;6&#34;&gt;}&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -824,7 +909,14 @@ Some basic classes. The class Clipboard is a clipboard, obviously. Its content i
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//blog.vero.site/ref/stash</guid>
-      <description>rustc -C prefer-dynamic .meter-text { white-space: pre-wrap; } launchctl stop com.apple.pboard launchctl start com.apple.pboard # requires ImageMagick functionimg() { identify -format &amp;#39;&amp;lt;img src=&amp;quot;%f&amp;quot; width=&amp;quot;%w&amp;quot; height=&amp;quot;%h&amp;quot; /&amp;gt;&amp;#39; $1 } :%s/\%xa0/ /ge :%s/\%u2019/&amp;#39;/ge :%s/\%u201c/&amp;quot;/ge :%s/\%u201d/&amp;quot;/ge ifconfig en0 | grep ether sudo ifconfig en1 ether 12:34:56:78:9a:bc while [[ $(date +%Y) -ne 2015]];do figlet $(($(date -j 0101000015 +%s)-$(date +%s)));sleep 1;clear;done;figlet Happy New Year! javascript:(function(x){function%20f(n){return%20Math.round(n*1000)/1000;}alert(&amp;quot;HP:%20&amp;quot;+f(x.hp)+&amp;quot;\nMP:%20&amp;quot;+f(x.mp)+&amp;quot;\nEXP:%20&amp;quot;+f(x.exp)+&amp;quot;\nGP:%20&amp;quot;+f(x.gp));}(angular.element(document.querySelector(&amp;#39;.hero-stats&amp;#39;)).scope().user.stats)); alias kd=&amp;#39;ruby --external-encoding UTF-8 -S kramdown&amp;#39; alias please=&amp;quot;sudo&amp;quot; sage: R = PolynomialRing(QQ, &amp;#39;x&amp;#39;) sage: f = R.</description>
+      <description>&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode sh&#34;&gt;&lt;code class=&#34;sourceCode bash&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;ex&#34;&gt;rustc&lt;/span&gt; -C prefer-dynamic&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb2&#34;&gt;&lt;pre class=&#34;sourceCode css&#34;&gt;&lt;code class=&#34;sourceCode css&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb2-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;fu&#34;&gt;.meter-text&lt;/span&gt; { &lt;span class=&#34;kw&#34;&gt;white-space&lt;/span&gt;: &lt;span class=&#34;dv&#34;&gt;pre-wrap&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; }&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb3&#34;&gt;&lt;pre class=&#34;sourceCode sh&#34;&gt;&lt;code class=&#34;sourceCode bash&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb3-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;ex&#34;&gt;launchctl&lt;/span&gt; stop com.apple.pboard&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb3-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;ex&#34;&gt;launchctl&lt;/span&gt; start com.apple.pboard&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb4&#34;&gt;&lt;pre class=&#34;sourceCode sh&#34;&gt;&lt;code class=&#34;sourceCode bash&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb4-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;# requires ImageMagick&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb4-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;kw&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt; img()&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;{&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb4-3&#34; title=&#34;3&#34;&gt;    &lt;span class=&#34;ex&#34;&gt;identify&lt;/span&gt; -format &lt;span class=&#34;st&#34;&gt;&amp;#39;&amp;lt;img src=&amp;quot;%f&amp;quot; width=&amp;quot;%w&amp;quot; height=&amp;quot;%h&amp;quot; /&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;va&#34;&gt;$1&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb4-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;kw&#34;&gt;}&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
   </channel>

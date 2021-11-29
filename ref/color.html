@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>Color</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/ref/color" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/ref">References</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Color</h1>
+		
+		<p class="post-meta">
+		
+		
+		(741 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p><a href="http://www.brucelindbloom.com/">Bruce Lindbloom</a> has a ton of equations, but I just want the big ones on one page. We’ll assume <a href="https://en.wikipedia.org/wiki/SRGB">sRGB</a>, which implies using <a href="https://en.wikipedia.org/wiki/Illuminant_D65">D65</a> as white (if you’re using Bruce Lindbloom’s calculator to check your implementation, make sure to set these).</p>
+<h3 id="rgb-linear-rgb">RGB ↔ Linear RGB</h3>
+<p>Let <span class="math inline">\(\Xi\)</span> (one of <span class="math inline">\(R\)</span>, <span class="math inline">\(G\)</span>, and <span class="math inline">\(B\)</span>) be an RGB component in the range <span class="math inline">\([0, 1]\)</span>. (This is an obnoxious variable choice, but I’m trying to not overload any variable names in this entire post.) If you have RGB values in <span class="math inline">\([0, 255]\)</span>, divide them by 255. It can be converted to/from the <strong>linearized component</strong> <span class="math inline">\(\xi\)</span> (one of <span class="math inline">\(r\)</span>, <span class="math inline">\(g\)</span>, and <span class="math inline">\(b\)</span>) as:</p>
+<p><span class="math display">\[\xi = \begin{cases} \Xi/12.92 &amp; \text{if }\Xi \leq 0.04045 \\ ((\Xi + 0.055)/1.055)^{2.4} &amp; \text{if }\Xi &gt; 0.04045 \end{cases}\]</span></p>
+<p><span class="math display">\[\Xi = \begin{cases} 12.92\xi &amp; \text{if }\xi \leq 0.0031308 \\ 1.055v^{1/2.4} - 0.055 &amp; \text{if }\xi &gt; 0.0031308 \end{cases}\]</span></p>
+<p>This is called “companding”.</p>
+<p>However, you can use <span class="math inline">\(\xi = \Xi^{2.4}\)</span> and <span class="math inline">\(\Xi = \xi^{1/2.4}\)</span> in a pinch.</p>
+<h3 id="linear-rgb-xyz">Linear RGB ↔ XYZ</h3>
+<p>Convert between XYZ and linearized RGB. Again, this assumes sRGB and D65.</p>
+<p><span class="math display">\[\begin{align*}
+X &amp;= 0.4124564r + 0.3575761g + 0.1804375b \\
+Y &amp;= 0.2126729r + 0.7151522g + 0.0721750b \\
+Z &amp;= 0.0193339r + 0.1191920g + 0.9503041b
+\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{align*}
+r &amp;= \phantom{-}3.2404542X + -1.5371385Y + -0.4985314Z \\
+g &amp;=           -0.9692660X + \phantom{-}1.8760108Y + \phantom{-}0.0415560Z \\
+b &amp;= \phantom{-}0.0556434X + -0.2040259Y + \phantom{-}1.0572252Z
+\end{align*}\]</span></p>
+<p>Copy-pasteable:</p>
+<pre><code>X = 0.4124564*r + 0.3575761*g + 0.1804375*b
+Y = 0.2126729*r + 0.7151522*g + 0.0721750*b
+Z = 0.0193339*r + 0.1191920*g + 0.9503041*b
+
+r =  3.2404542X + -1.5371385Y + -0.4985314Z
+g = -0.9692660X +  1.8760108Y +  0.0415560Z
+b =  0.0556434X + -0.2040259Y +  1.0572252Z</code></pre>
+<p>If you need more decimal points, you can get them from <a href="https://drafts.csswg.org/css-color-4/conversions.js">conversions.js</a> in the CSSWG draft.</p>
+<h3 id="xyz-lab-and-luv">XYZ ↔ Lab and Luv</h3>
+<p>We use the reference white D65 <span class="math display">\[\begin{align*}X_r &amp;= 0.9504559270516716\\Y_r &amp;= 1.0\\Z_r &amp;= 1.0890577507598784.\end{align*}\]</span></p>
+<pre><code>X_r = 0.9504559270516716
+Y_r = 1.0
+Z_r = 1.0890577507598784</code></pre>
+<p>We also have constants <span class="math display">\[\begin{align*}\epsilon &amp;= 216/24389 = (6/29)^3\\\kappa &amp;= 24389/27 = (29/3)^3.\end{align*}\]</span> First normalize against the reference: <span class="math display">\[\begin{align*}x_r &amp;= X/X_r \\ y_r &amp;= Y/Y_r \\ z_r &amp;= Z/Z_r.\end{align*}\]</span> Then let <span class="math display">\[f(w) = \begin{cases} \sqrt[3]{w} &amp; \text{if }w &gt; \epsilon \\ \frac{\kappa w + 16}{116} &amp; \text{else} \end{cases}\]</span> and let <span class="math inline">\(f_x = f(x_r)\)</span>, <span class="math inline">\(f_y = f(y_r)\)</span>, <span class="math inline">\(f_z = f(z_r)\)</span>. Then <span class="math display">\[\begin{align*}
+L &amp;= 116f_y - 16 \\
+a^* &amp;= 500(f_x - f_y) \\
+b^* &amp;= 200(f_y - f_z).
+\end{align*}\]</span> (Out of caution, the star distinguishes <span class="math inline">\(b^*\)</span> from linearized blue component <span class="math inline">\(b\)</span>.) <span class="math inline">\(L\)</span> can actually be slightly simplified (<span class="math inline">\(L\)</span> is the same in the Lab and Luv representations), so some work can be shared between Lab and Luv: <span class="math display">\[L = \begin{cases} 116\sqrt[3]{y_r} - 16 &amp; \text{if }y_r &gt; \epsilon \\ \kappa y_r &amp; \text{else} \end{cases}.\]</span> But <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> have their own formulae. Let <span class="math display">\[\begin{align*} u_0 &amp;= \frac{4X_r}{X_r + 15Y_r + 3Z_r} \\ v_0 &amp;= \frac{9Y_r}{X_r + 15Y_r + 3Z_r}\end{align*}\]</span> (note that these only depend on the reference white, i.e. if we chose D65, they’re constants. Then <span class="math display">\[\begin{align*}
+u^* &amp;= 13L\left(\frac{4X}{X + 15Y + 3Z} - u_0\right) \\
+v^* &amp;= 13L\left(\frac{9Y}{X + 15Y + 3Z} - v_0\right)
+\end{align*}\]</span></p>
+<p>To invert from Lab to XYZ: <span class="math display">\[\begin{align*}
+f_y &amp;= \frac{L + 16}{116} \\
+f_z &amp;= f_y - \frac{b^*}{200} \\
+f_x &amp;= f_y + \frac{a^*}{500}
+\end{align*}\]</span> Then apply <span class="math display">\[f^{-1}(w) = \begin{cases} w^3 &amp; \text{if }w^3 &gt; \epsilon \\ \frac{116w - 16}{\kappa} &amp; \text{else} \end{cases}\]</span> to <span class="math inline">\(x_r = f^{-1}(f_x)\)</span>, <span class="math inline">\(y_r = f^{-1}(f_y)\)</span>, <span class="math inline">\(z_r = f^{-1}(f_z)\)</span>. Finally <span class="math display">\[\begin{align*}
+X &amp;= x_rX_r\\
+Y &amp;= y_rY_r\\
+Z &amp;= z_rZ_r.
+\end{align*}\]</span></p>
+<p>To invert from Luv to XYZ, let <span class="math display">\[\begin{align*}
+\alpha &amp;= \frac{1}{3}\left(\frac{52L}{u^* + 13Lu_0} - 1\right) \\
+Y &amp;= \begin{cases} \left(\frac{L + 16}{116}\right)^3 &amp;\text{if }L &gt; \kappa\epsilon \\ \frac{L}{\kappa} &amp;\text{else} \end{cases} \\
+X &amp;= \frac{117LY}{(3\alpha + 1)(v^* + 13Lv_0)} \\
+Z &amp;= X\alpha - 5Y
+\end{align*}\]</span></p>
+<h3 id="lab-lchab-luv-lchuv">Lab ↔ LCHab; Luv ↔ LCHuv</h3>
+<p>These are actually just naive polar-Cartesian transforms! The L is the same in all four. I’ll type them out for you anyway.</p>
+<p><span class="math display">\[\begin{align*}
+C_{ab} &amp;= \sqrt{a^2 + b^2} \\
+H_{ab} &amp;= \text{arctan}(b/a) \bmod{360^\circ} \\
+a &amp;= C_{ab} \cos H_{ab} \\
+b &amp;= C_{ab} \sin H_{ab}
+\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{align*}
+C_{uv} &amp;= \sqrt{u^2 + v^2} \\
+H_{uv} &amp;= \text{arctan}(v/u) \bmod{360^\circ} \\
+u &amp;= C_{uv} \cos H_{uv} \\
+v &amp;= C_{uv} \sin H_{uv}
+\end{align*}\]</span></p>
+<p>If you want things explicitly written out for code:</p>
+<p><span class="math display">\[\begin{align*}
+C_{ab} &amp;= \sqrt{a^2 + b^2} \\
+H_{ab} &amp;= \left(\frac{180^\circ}{\pi}\right)((\texttt{atan2}(b, a) + 2\pi) \,\texttt{\%}\, 2\pi) \\
+a &amp;= C_{ab} \cos \left(H_{ab} \cdot \frac{\pi}{180^\circ}\right) \\
+b &amp;= C_{ab} \sin \left(H_{ab} \cdot \frac{\pi}{180^\circ}\right)
+\end{align*}\]</span></p></article>
+	<footer class="post-footer">
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/ref/coq">← Coq Reference</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2021 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://www.goatcounter.com/">GoatCounter</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>
