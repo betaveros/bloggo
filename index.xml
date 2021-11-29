@@ -6,7 +6,30 @@
     <description>Recent content on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Aug 2021 01:35:57 -0700</lastBuildDate><atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 28 Nov 2021 18:24:18 -0800</lastBuildDate><atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Just Enough Elliptic Curves to Be Dangerous</title>
+      <link>//blog.vero.site/post/elliptic-curves</link>
+      <pubDate>Sun, 28 Nov 2021 18:24:18 -0800</pubDate>
+      
+      <guid>//blog.vero.site/post/elliptic-curves</guid>
+      <description>&lt;p&gt;A famous Trail of Bits post says to &lt;a href=&#34;https://blog.trailofbits.com/2019/07/08/fuck-rsa/&#34;&gt;stop using RSA&lt;/a&gt;: it’s simple enough to make people think they can implement it correctly, but full of invisible traps. In contrast, although elliptic curve cryptography (ECC) implementations could also fall into subtle traps, they usually don’t. The post conjectures that this is because ECC intimidates people into using cryptographically sound libraries instead of implementing their own.&lt;/p&gt;
+&lt;p&gt;If you do want to understand ECC just enough to produce your own trap-ridden implementation, though, this post aims to get you there. (Assuming some mathematical background chosen in a not particularly principled way, approximately what I had before writing this post.) Hence the title. Because I have a cryptographic conscience, I will still point out the traps I know of; but there are probably traps I don’t know about.&lt;/p&gt;
+&lt;p&gt;This post contains a lot of handwaving and straight-up giving up on proofs. You don’t need to know the proofs to be dangerous. The ethos is sort of like &lt;a href=&#34;https://web.evanchen.cc/napkin.html&#34;&gt;Napkin&lt;/a&gt;, but way shoddier and with zero pretense of pedagogical soundness. Still, here are some concrete questions that I learned the answer to while writing this post:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Why does the group law hold, sort of intuitively?&lt;/li&gt;
+&lt;li&gt;Why do people have to modify Curve25519 before using it to compute digital signatures?&lt;/li&gt;
+&lt;li&gt;What is a “quadratic twist” and why should I care about it to pick a secure elliptic curve?&lt;/li&gt;
+&lt;li&gt;How is it possible that an isogeny can be described surjective but not injective while mapping a finite elliptic curve to another elliptic curve of the same cardinality?&lt;/li&gt;
+&lt;li&gt;How many claws does an alligator have?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Elliptic curves have a lot of complicated algebra. If you ever studied algebra in high school and did exercises where you had to simplify or factor or graph some really complicated algebraic expression, and you learned that algebra is also the name of a field in higher mathematics, you might have assumed that working algebraists just dealt with even more complicated expressions. If you then studied algebra in college, you’d probably have realized that that’s not really what algebra is about at all; the difficulty comes from &lt;em&gt;new abstractions&lt;/em&gt;, like a bunch of the terms above.&lt;/p&gt;
+&lt;p&gt;Well… the study of elliptic curves involves a bunch of complicated expressions like what your high school self might have imagined. Sometimes, notes will just explode into a trainwreck of terms like&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{align*}\psi_1 &amp;amp;= 1 \\ \psi_2 &amp;amp;= 2y \\ \psi_3 &amp;amp;= 3x^4 + 6Ax^2 + 12Bx - A^2 \\ \psi_4 &amp;amp;= 4y(x^6 + 5Ax^4 + 20Bx^3 - 5A^2x^2 - 4ABx - A^3 - 8B^2).\end{align*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;“This is REAL Math, done by REAL Mathematicians,” one is tempted to quip. The &lt;a href=&#34;https://hyperelliptic.org/EFD/&#34;&gt;Explicit-Formulas Database&lt;/a&gt; is a fun place to take a gander through. I will copy formulas into this post from time to time when there’s something about them I want to call attention to, but in general we won’t do any complicated algebraic manipulations in this post. Just be prepared.&lt;/p&gt;
+&lt;p&gt;Because I’m focusing on conceptual understanding (and am lazy), this post contains almost no code, and definitely no code that’s runnable in any real programming language.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>One Weird Anki Trick</title>
       <link>//blog.vero.site/post/anki-trick</link>
