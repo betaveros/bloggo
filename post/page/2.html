@@ -55,6 +55,35 @@
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/rvalue-references" class="post-link">C&#43;&#43; Rvalue References: The Unnecessarily Detailed Guide</a></h3>
+		
+		<h4 class="post-subtitle">Move semantics, perfect forwarding, and... everything else</h4>
+		
+		<p class="post-meta">
+		
+		2020-11-16
+		(12004 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>By a strange quirk of fate, I have started writing C++ for a living.</p>
+<p>Learning C++ was about as complicated as I think I expected it to be. By line count, I’ve written a lot of C++ for programming competitions, but I knew that I had only ever used a small cross-section of the language: basic control flow and variables, STL containers and algorithms, structs on which you mechanically define <code>bool operator&lt;(const T&amp; other) const</code> so STL algorithms can order them, and the very occasional macro or templated helper function. There were many features I wasn’t even aware existed.</p>
+<p>In the process of learning C++ professionally, one rabbit hole I fell into quickly was C++11’s defining feature, the <em>rvalue reference</em>, and how it can be used to implement <em>move semantics</em> and <em>perfect forwarding</em>. By poring over a copy of the widely recommended book <a href="https://www.amazon.com/Effective-Modern-Specific-Ways-Improve/dp/1491903996"><cite>Effective Modern C++</cite></a>, by Scott Meyers, and a few dozen StackOverflow answers and blog posts, I roughly understood it after a few days, but still had a sort of blind-men-feeling-the-elephant feeling. I was confused about what lay under some of the abstractions I had been using, unsure of the full shape of the pitfalls that some of the guides had pointed out to me, and generally uncomfortable that there were still many small variations of the code I had seen that I couldn’t predict the behavior of. It took many more days to work myself out of there, and I wished I had had a guide that explained rvalue references and their applications to a bit more depth than what might be necessary for day-to-day use. So here’s my attempt to explain rvalue references in my own fundamental I-want-to-know-how-things-work-no-<em>really</em> style.</p>
+<p>(If this vision doesn’t resonate with you, there are many other posts explaining rvalue references out there that you might prefer. Feel free to just skim the executive summary and/or check out some of the linked articles in the Background section.)</p>
+<h3 id="executive-summary">Executive Summary</h3>
+<p>I got… pretty carried away when writing this post, and a lot of it is just for my own understanding, which may or may not be useful to readers. Here’s a much more concise rundown (assuming you know basic C++ already):</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/rvalue-references">→ read more<span class="offscreen"> C&#43;&#43; Rvalue References: The Unnecessarily Detailed Guide</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/45" class="post-link">45/101</a></h3>
 		
 		<p class="post-meta">
@@ -340,33 +369,6 @@ Intro: Bob is cool too</p>
 <p>This is not a very useful definition. The more interesting question is, what is the kind of “puzzle”<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> that appears in a puzzlehunt? The concept of a puzzlehunt puzzle is fuzzy and difficult to define precisely. Just about any hard rule one might try to state will be broken by some puzzle, sometimes deliberately. Still, here are some common features of puzzlehunt puzzles:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/puzzlehunts">→ read more<span class="offscreen"> Introduction to Puzzlehunts</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/cook" class="post-link">Cook Like You&#39;re Not on MasterChef</a></h3>
-		
-		<p class="post-meta">
-		
-		2019-08-23
-		(1591 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/thoughts">Thoughts</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<div class="series">
-<p>part of the “what I learned after four years at MIT” series, I guess?</p>
-</div>
-<p>When I was very young, I thought cooking was easy. I sliced plastic vegetables with a toy knife and then Velcroed them back together, ad infinitum. For at least some time, I wanted to be a chef when I grew up.</p>
-<p>When I was slightly less young, I thought cooking was hard. My reference points were mostly (1) my parents, who seemed to know how to make a million different dishes in inscrutable ways without thinking, and (2) MasterChef contestants (who I assume were better at cooking than my parents because they were, well, on MasterChef) messing things up and getting kicked off the show.</p>
-<p>Now, I think I probably elided some meaningful distinctions there in my youthful naïveté. Cooking food that will keep you from getting kicked off MasterChef is hard. Cooking edible food is easy.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Cooking storebought dumplings in particular is so stupidly easy it’s unfair. More generally, though, most recipes tolerate a lot of substitutions,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> number fudging,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> and even straight-up skipping pesky instructions, like the ones in baking recipes where you mix two sets of ingredients separately in specific orders. There are reasons for those steps, but ignoring them and dumping everything into the same mixing bowl usually won’t make your results inedible. You can also just decide to omit ingredients you don’t like. Probably the least tolerant ingredient measurements in recipes are the measurements of baking soda or baking powder, which by the way are different things, in baking recipes. But otherwise you’d really be surprised how many corners you can get away with cutting — I’ve even completely winged one baking soda/powder measurement with decent results. I think this is especially important to know for people from technical backgrounds like me, who have an instinct to treat the numbers in recipes as precisely measured, painstakingly optimized choices to produce the best dish. They usually aren’t, and even if they are optimized for the recipe author’s palate, they probably won’t be optimized for yours.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> And they certainly aren’t optimized for any tradeoffs you might want to make between food quality versus the time and effort you’re putting into cooking. Make the tradeoffs you want. You’re not on MasterChef.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/cook">→ read more<span class="offscreen"> Cook Like You&#39;re Not on MasterChef</span></a>
 	</footer>
 </article>
 <footer class="list-footer">

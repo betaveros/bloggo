@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>2022 MIT Mystery Hunt</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="Sixth year hunting with ✈✈✈ Galactic Trendsetters ✈✈✈! As last year’s writing team (previously: 2020, 2019, 2018, 2017, 2016, writing with Random in 2015) we had one final responsibility: running the traditional How to Hunt workshop shortly before this year’s hunt. I didn’t play a huge role in that, but I lurked and reminded myself some things about how new puzzlehunters think about puzzles, and I wrote Yet Another Puzzlehunt Spreadsheet Tutorial after casting around and being not entirely satisfied with the puzzlehunting spreadsheet tutorials I found. I think I actually understand ARRAYFORMULA now.
+And then, before we knew it, it was Hunt again.
+It’s really nice to get to solve Mystery Hunt again, and especially nice to do so on a team that was fairly actively trying not to win. GT generally tried not to add too many members this year, with some affiliated folks splitting off or hunting with other teams. During the hunt itself, we avoided backsolving puzzles that people were enjoying forward-solving, and encouraged people to be more confident before guessing answers. We ended up with a &amp;gt;50% guess accuracy1, much higher than some of our past participations, and at least for the puzzles I participated in that took more than a few incorrect answers, I think they were all reasonable guesses or honest mistakes (VALLICELLIANA is difficult to spell) rather than attempts at short-circuiting.
+Personally, I did the hunt as part of a roughly 10-person west coast contingent who met up in real life (and who all tested negative for COVID shortly before or after arrival). I think I got roughly three times as much sleep as I did during the 2020 hunt, when we won, and I felt freer to hop onto puzzles that were greatly oversaturated with solvers, such as A Number of Games and How to Install a Handle, or to try less hard looking for extraction steps after doing the fun meat of a puzzle. I think a lot of team members took a similar approach; based on our solve log, we solved no metas between 3am and noon (ET) on either day, and generally had much starker dead zones of activity in the mornings than in past years.
+" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/2022-hunt" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/ref">References</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">2022 MIT Mystery Hunt</h1>
+		
+		<p class="post-meta">
+		
+		2022-01-19
+		(3083 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>Sixth year hunting with ✈✈✈ Galactic Trendsetters ✈✈✈! As <a href="//blog.vero.site/post/2021-hunt">last year’s writing team</a> <small>(previously: <a href="//blog.vero.site/post/2020-hunt">2020</a>, <a href="//blog.vero.site/post/2019-hunt">2019</a>, <a href="//blog.vero.site/post/2018-hunt">2018</a>, <a href="//blog.vero.site/post/january">2017</a>, <a href="//blog.vero.site/post/whoosh">2016</a>, writing with Random in <a href="//blog.vero.site/post/hunt">2015</a>)</small> we had one final responsibility: running the traditional <a href="https://docs.google.com/presentation/d/1UNagEB8angIEJa7OqageeXj95UEuspAL0tDwekZJhzQ/edit#slide=id.p">How to Hunt workshop</a> shortly before this year’s hunt. I didn’t play a huge role in that, but I lurked and reminded myself some things about how new puzzlehunters think about puzzles, and I wrote <a href="https://docs.google.com/spreadsheets/d/1-KmLvmcydguI_RBJJqHihbewZmssmdNtlWFJIJZVXLk/edit#gid=0">Yet Another Puzzlehunt Spreadsheet Tutorial</a> after casting around and being not entirely satisfied with the puzzlehunting spreadsheet tutorials I found. I think I actually understand ARRAYFORMULA now.</p>
+<p>And then, before we knew it, it was Hunt again.</p>
+<p>It’s really nice to get to solve Mystery Hunt again, and especially nice to do so on a team that was fairly actively trying not to win. GT generally tried not to add too many members this year, with some affiliated folks splitting off or hunting with other teams. During the hunt itself, we avoided backsolving puzzles that people were enjoying forward-solving, and encouraged people to be more confident before guessing answers. We ended up with a &gt;50% guess accuracy<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, much higher than some of our past participations, and at least for the puzzles I participated in that took more than a few incorrect answers, I think they were all reasonable guesses or honest mistakes (<span class="spoiler">VALLICELLIANA</span> is difficult to spell) rather than attempts at short-circuiting.</p>
+<p>Personally, I did the hunt as part of a roughly 10-person west coast contingent who met up in real life (and who all tested negative for COVID shortly before or after arrival). I think I got roughly three times as much sleep as I did during the 2020 hunt, when we won, and I felt freer to hop onto puzzles that were greatly oversaturated with solvers, such as A Number of Games and How to Install a Handle, or to try less hard looking for extraction steps after doing the fun meat of a puzzle. I think a lot of team members took a similar approach; based on our solve log, we solved no metas between 3am and noon (ET) on either day, and generally had much starker dead zones of activity in the mornings than in past years.</p>
+<p>This year, after the <a href="https://www.starrats.org/">Star Rats</a> prologue hunt (which is pretty unprecedented as far as I’m aware, and really speaks to Palindrome going above and beyond), we learned during kickoff that Hayden Library had disappeared due to an attack on Bookspace, the interdimensional space connecting all books and their characters and worlds. We traveled into Bookspace to investigate the damage, fix it, and finally figure out how to get home. All the early puzzles were named and usually themed after a children’s book; each of the later rounds was themed after an entire genre of books, which made for wonderful and well-executed theming that was also diverse across the hunt. ✈✈✈ GT ✈✈✈ solved the final puzzle at 7:29pm on Sunday, solidly after HQ had formally closed but while they were still receptive to informal chatting. Given the ways we had slowed ourselves down, I felt the hunt was just about the perfect length.</p>
+<p>Non-spoilery highlights:</p>
+<ul>
+<li>There were a lot of great puzzles, but I think I have no trouble naming <a href="https://www.bookspace.world/puzzle/sorcery-for-dummies/">Sorcery for Dummies</a> as my favorite non-meta puzzle — among the ones I worked on, and putting aside the fact that the puzzle thematically involves vanquishing a dragon, of course. (Notably excluded from consideration is <a href="https://www.bookspace.world/puzzle/lists-of-large-integers/">Lists of Large Integers</a>: I’ve heard people I expect to have similar tastes to me generally liked it, but it was unlocked and solved while I was asleep.) I have had a soft spot for interactive puzzles for just about forever, but have never been great at articulating why, and this will go very high in the list of examples I use to try to explain it.</li>
+<li><a href="https://www.bookspace.world/puzzle/curious-and-determined/">Curious and Determined</a> has multiple very cool steps and might well have displaced Sorcery for me if it had a slightly nerfed final step (I would suggest solvers solve the puzzle as if it had <span class="spoiler">“→ (4 6)”</span> tacked onto the very end, though of course I don’t have any testsolves to evaluate the consequences of such a change).</li>
+<li><a href="https://www.bookspace.world/puzzle/how-to-install-a-handle/">How to Install a Handle</a> was very funny. I don’t know how to express this. 99% of the solve process is somebody stating something on voice chat and causing everybody else to crack up. For ✈✈✈ GT ✈✈✈, it was likely the most jumped-on feeder puzzle of the entire hunt (only possibly surpassed by the final few metas, when no other puzzles were useful).</li>
+<li>I didn’t think too much of <a href="https://www.bookspace.world/puzzle/once-is-happenstance/">Once is Happenstance</a> during the hunt, I think partly because I experienced the puzzle weirdly due to starting only after many other solvers had abandoned it, and partly because superficially the flavortext and presentation felt a tad clumsy to me. I just can’t convince myself that the optimal presentation for this puzzle uses four different non-grayscale colors. But aesthetic quibbles aside, I think everything in the puzzle does work together really well, and makes for an enjoyable solve with a fantastic punchline.</li>
+<li>I didn’t contribute anything to <a href="https://www.bookspace.world/puzzle/%E2%9D%A4%EF%B8%8F--%E2%98%AE%EF%B8%8F/">❤️ &amp; ☮️</a>, nor do I think I could have since I know nothing about the subject matter, but I have enough of an impression from cultural osmosis and caught enough cross-talk and links exchanged by others to appreciate the hilarious construction vicariously. I am glad that the puzzle taught me about the work that’s the centerpiece of the puzzle, which is stuck in my head now.</li>
+<li><a href="https://www.bookspace.world/puzzle/you-took-the-fifth/">You Took the Fifth</a>: An Ace Attorney puzzle! Maybe? I won’t say too much here to avoid spoiling, but as a big Ace Attorney fan I was proud to contribute a lot to this puzzle’s solve.</li>
+<li>Among metas, the second round’s metameta, <a href="https://www.bookspace.world/puzzle/the-ministry/">The Ministry</a>, was very neat. I have a bit more to say in the spoiler section, but not that much. I think it doesn’t need my praise.</li>
+</ul>
+<p>And now for the spoilery recap. I’ll just focus on some highlights instead of giving a comprehensive blow-by-blow of our progress through the hunt, but one theme I am realizing as I write this post is that we skipped <em>a lot</em> of cluephrases when solving. Heavy spoilers ahead!</p>
+<!--more-->
+<button class="unhide" data-unhide="spoiler" data-rehide="Hide spoilers">
+Show spoilers
+</button>
+<div id="spoiler" class="hidden">
+<p>In the intro round, I only remember working on two puzzles, Peter Pan and Where the Wild Things Are. The former was a fun and very on-brand-for-Palindrome variety cryptic to start the hunt off doing. Among the physical puzzle components, I mostly just did the maze. Together we did just about all of the puzzle, but we never extracted and it was backsolved after the meta. Alas, we had one column with one letter wrong among a few too many columns of indexing X into Y, and weren’t able to error-correct. (The Investigation meta was solved in parallel, so as a result I didn’t look at it during the hunt at all.)</p>
+<p>The Ministry round:</p>
+<ul>
+<li>The only second-round meta I worked on nontrivially was Herschel Hayden, where I basically just tried fitting an answer in what seemed like an underwhelming way, and it fit. The meta is completely understandable given that the feeders were constrained by the metameta, and I think is the strongest evidence to a solver that that’s the case, though. (I did some pretty detailed transcription work for the notes in the Alexei Lewis clip, all of which turned out not to be useful, which was a bit of a bummer. But transcribing music is a kind of grunt work I find relatively fun, so it wasn’t a big deal.)</li>
+<li>Then we moved on to the Ministry meta, which made me realize I’ve never really “taken in” what the Hayden mural depicts, even though I’ve probably looked at it hundreds of times when walking to and from class. Fortunately our team has a lot of MIT students and alumni who are less oblivious. I will take credit for persistently saying “the flavortext says ‘bit’ so we should try binary” though.</li>
+</ul>
+<p>Highlights from my experience in the Bookspace round:</p>
+<ul>
+<li>Frankenstein’s Music: I hadn’t heard of the specific mashup source before. I came in when the puzzle was mostly done and liked trying pop music ID, but only contributed a bit; for every song I recognized, there were two others where I just went, “Yeah I’ve heard this instrumental before but I just can’t place it!!” I am happy to learn about the mashup source though.</li>
+<li><p>Curious and Determined: I played the role of “glass cannon”<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> I had promised to ahead of the hunt and did almost none of the clue-solving work, but just unstuck the group by saying “these look like Rubik’s Cube cubelet color combinations” (it helped that I had recently been thinking about the fact that there are 26 noncentral cubes in a 3×3×3 cube for other reasons). I rejoined in the last step, where somebody had dug out the JavaScript I wrote to modify the cube on the <a href="https://www.mumspuzzlehunt.com/">MUMS Puzzle Hunt 2019 website</a> and hacked it to display our letters; we literally did the last step by manipulating the cube there through the console and that site’s keyboard shortcuts.</p>
+Then we got stuck on the final cluephrase for quite a few minutes. we tried interpreting X as the letter X (guessing WASSILY KANDINSKY, SUE GRAFTON, JOHN SINGER SARGENT) and as referring to Bert and Ernie (guessing DON SAHLIN, FRANK OZ, and JIM HENSON), but neither worked. Our list of possible guesses dwindled until we were debating either guessing the literal cluephrase to fish for partial confirmation, or guessing the entirely too galaxy-brained NICKI MINAJ. The literal cluephrase won our vote, and we did get partial confirmation that was just enough to get us to guess correctly on our next try (though even that guess was debated for a while).</li>
+<li>A Number of Games: Not a puzzle I could pass up. One big downside of traveling for Hunt was that I did not have my copy of <cite>Winning Ways</cite> Vol. 1 at hand to look things up in. I also made the massive blunder of confusing Col with Snort (which is also played by coloring regions, but has the exact opposite rule, that adjacent regions may not be different colors). Fortunately, that mistake made us unable to follow the instructions and becoming stuck instead of leading us down a false route. Eventually I corrected my mistake and the rest of the puzzle was not too difficult.</li>
+<li><p>Sorcery for Dummies: I jumped onto this puzzle when most of the transformations had already been identified; the first thing I worked on was nailing down the meaning of S spells, which took a while. I also helped other people identify the E transformation from a list of examples, at which point somebody produced an E word with a Scrabble score of more than 26 and maybe temporarily broke the website? Maybe not? I dunno. Other people vanquished most of the other enemies, but the biggest aha moment I experienced was when I manually brute-forced every transformation that could produce CYCLOPS, found four that all seemed useless due to requiring a bunch of seemingly unattainable C’s, and then after another brute-force look through the list realized that my S transformation actually could produce the intermediate I needed. (Fun fact: I ended up with the exact same three-word spell as the official solution.)</p>
+For extraction, we noticed the A–H ordering but never found the fodder word “POWERFUL”. We just got the answer by writing down what the transformations would did to an “abstract” input and finding a phrase that seemed plausible without trying too hard to check that it fit. Hopefully this sort of outlines why it was my favorite feeder of the hunt.</li>
+<li>This or That: I looked at this puzzle when just about all of the clues had been solved. We never saw the “ALTERNATE IN MARVEL” cluephrase, but, inspired by the vague conceptualization of American and British English as rivals, several people asked the key question “is there a good canonical way each DC superhero corresponds to a Marvel superhero?” anyway. Several other people responded “no” (for reasons I imagine I could agree with if I knew more about the subject matter, but since I don’t, I don’t know), but after everybody had been stuck for a while, I started a column with the header “illegal” and tried to do the correspondence anyway. It worked. Score one for “pursue an approach that doesn’t seem to work at first”.</li>
+<li>Eat Your Words: It took us extracting <em>every single letter</em> to understand the cluephrase, but that revelation was cool.</li>
+<li>You Took the Fifth: An Ace Attorney puzzle! Well, of course, it wasn’t “really” an Ace Attorney puzzle, but it was still plenty amusing and the Ace Attorney framing was there for a reason. And I got the lawyer aha too. I’m so much of an Ace Attorney fan I know actual lawyer stuff! I knew my long-running Patreon subscription to Boozy Badger would pay off eventually. (I did not know any of the specific phrases we needed when solving the puzzle, but I did know that the two typical components of a criminal offense are the <i>mens rea</i> and the <i>actus reus</i> and have filled the former into a crossword once, so it wasn’t a big leap.)</li>
+<li>Calculated Whisk: I got to fully use the Google Sheets knowledge I learned from writing the tutorial, by freestyling an ARRAYFORMULA that did the naïve digit transformation.</li>
+<li>I’ll Tumble 4 Ya: We did most of the puzzle and then had trouble doing the Tumbling. Fortunately, I have two precision backgammon dice stashed in my backpack for emergencies — the kind I usually have in mind is password generation, but solving puzzles works too. I set up a spreadsheet to track the mapping of die numbers to letters and tumbled my die successfully.</li>
+<li>Boom Shakashaka!: We did this over a screen share of MS Paint. This was a very “I haven’t gotten my fill of logic puzzles so I will hop on this one even though it already has too many solvers” puzzle.</li>
+<li>Heartford / The Masquerade Ball: This was the last thing I worked on before going to sleep on Sunday, when we made what progress we could on the logic, and the first thing I continued to work on after waking up, when the logic was mostly done but we were still missing the answer connection, so I went and read the Wikipedia article for enough of the actors until I figured it out. It’s a cute meta theme idea!</li>
+<li>Of course, at the point I had woken up, teammate had already won. I don’t have specific terribly interesting stories to tell here, but collectively we started focusing more on doing metas, backsolving, and generally making progress, with somewhat less emphasis on doing whatever puzzle seemed the most fun at the moment. I played the role of Extraction Squad for quite a few more feeder puzzles, including Spy Game, On Second Thought, and Star Wars Cosplay.</li>
+<li><p>The last regular meta I contributed to was Reference Point / Reference Desk: I think I said something about PINE and LONG being synonyms pretty quickly after we started officially staring at this meta. However, we solved the meta with 6/12 feeders that provided only letters in the word “SYNONYM”, enough that we were fairly confident that that word was in the answer, but without figuring out the ordering of the puzzles. We just guessed punny phrases that contained the word SYNONYM and the right number of letters, and got it on our third try. (I might not even have picked the correct likely word that “SYNONYM” was punning with if I were by myself, but fortunately other ✈✈✈ GT ✈✈✈ members are <em>much</em> better at puns.) We still didn’t figure out the order until heavily hinted by the writers long after we had finished the entire hunt, and in hindsight it still seems… extremely difficult (and possibly still unsuccessful at preventing our short-circuiting, as the author’s notes suggest it was designed to do). The meta property is extremely neat though, and I am impressed the author found a meta’s worth of phrases to write it with.</p></li>
+</ul>
+<p>As we wrapped up the Bookspace round, I don’t think we got any insight into the Battery Pack until we unlocked the small shell, although it certainly seems possible in hindsight; in any case, we didn’t find it too difficult, and got to move onto the final capstone, the Plot Device. We found most of the books, titled them, and solved many printer’s devilry clues without many sticking points, but the indexing took a while to find. I think I decided to look at the PDFs again as part of the “don’t forget to transcribe a list of blanks in the puzzle” initiative, and demonstrated one leaf changing its orientation to other people by tabbing between two PDFs. Despite this, I myself was less convinced that the leaf orientations actually mattered than a lot of the people I pointed it to, as it felt to me like the kind of thing that could arise from some accidents in postprodding — intuitively implausible, but I’ve seen weirder phenomena in front-end development. I was totally wrong, of course, but only really became convinced when we found that counting outward-oriented leaves gave numbers that had the “index nature”.</p>
+<p>Counting the leaves was actually very difficult and a heavily memed step on our spreadsheet. At one point, our headers for the number of outwards-pointing leaves and the result of indexing were as follows:</p>
+<figure>
+<a href="/img/sacred-leaves.png"><img src="/img/sacred-leaves.png" alt="Two spreadsheet cells; the first reads 'THE SACRED LEAVES' in harsh yellow-on-pink Comic Sans; the second reads 'THE SCRIPTURE FROM THE LEaVES' in white-on-orange Impact." width="219" height="35" /></a>
+</figure>
+<p>Nevertheless, it was a fun puzzle to solve massively in parallel and a high note to end on, and the west coast contingent had enough time to order food and play a bunch of Jackbox games before adjourning.</p>
+</div>
+<p>And that’s another year! Thanks to Palindrome for a beautifully-themed hunt, and congratulations to Teammate, whose online puzzlehunts the last two years have been incredible. I know I’m not alone in being very excited to see what they’ll come up with next year. See you then.</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I’m counting Plot Device partials — you know the ones — in neither the numerator nor the denominator, but can count other partials as Incorrect and still arrive at an accuracy &gt;50%.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>I made up this term but I basically mean it as the opposite of a tank in the “MMO theory of puzzlehunts”: a glass cannon is somebody who has very low endurance for gruntwork.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
+</section></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/mit"><span class="tag">MIT</span></a></li>
+			
+			<li><a href="/tag/puzzle"><span class="tag">Puzzle</span></a></li>
+			
+			<li><a href="/tag/puzzlehunt"><span class="tag">Puzzlehunt</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/coming">← ...And They Don&#39;t Stop Coming</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://www.goatcounter.com/">GoatCounter</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>
