@@ -3,22 +3,34 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>//blog.vero.site/tags</loc>
-    <lastmod>2022-01-19T19:52:19-08:00</lastmod>
+    <lastmod>2022-02-14T01:32:22-08:00</lastmod>
     <priority>0</priority>
+  </url><url>
+    <loc>//blog.vero.site/</loc>
+    <lastmod>2022-02-14T01:32:22-08:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/categories</loc>
+    <lastmod>2022-02-14T01:32:22-08:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/category/cs</loc>
+    <lastmod>2022-02-14T01:32:22-08:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/tag/ctf</loc>
+    <lastmod>2022-02-14T01:32:22-08:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/post</loc>
+    <lastmod>2022-02-14T01:32:22-08:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/post/ti1337se</loc>
+    <lastmod>2022-02-14T01:32:22-08:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/post/blazingfast</loc>
+    <lastmod>2022-02-14T01:32:15-08:00</lastmod>
   </url><url>
     <loc>//blog.vero.site/post/2022-hunt</loc>
     <lastmod>2022-01-19T19:52:19-08:00</lastmod>
   </url><url>
-    <loc>//blog.vero.site/</loc>
-    <lastmod>2022-01-19T19:52:19-08:00</lastmod>
-  </url><url>
-    <loc>//blog.vero.site/categories</loc>
-    <lastmod>2022-01-19T19:52:19-08:00</lastmod>
-  </url><url>
     <loc>//blog.vero.site/tag/mit</loc>
-    <lastmod>2022-01-19T19:52:19-08:00</lastmod>
-  </url><url>
-    <loc>//blog.vero.site/post</loc>
     <lastmod>2022-01-19T19:52:19-08:00</lastmod>
   </url><url>
     <loc>//blog.vero.site/tag/puzzle</loc>
@@ -47,9 +59,6 @@
   </url><url>
     <loc>//blog.vero.site/post/anki-trick</loc>
     <lastmod>2021-08-16T01:35:57-07:00</lastmod>
-  </url><url>
-    <loc>//blog.vero.site/category/cs</loc>
-    <lastmod>2021-06-28T20:17:51-07:00</lastmod>
   </url><url>
     <loc>//blog.vero.site/post/discord-color</loc>
     <lastmod>2021-06-28T20:17:51-07:00</lastmod>
@@ -91,9 +100,6 @@
     <lastmod>2019-12-01T13:38:14-05:00</lastmod>
   </url><url>
     <loc>//blog.vero.site/post/callsite</loc>
-    <lastmod>2019-09-16T01:18:58-04:00</lastmod>
-  </url><url>
-    <loc>//blog.vero.site/tag/ctf</loc>
     <lastmod>2019-09-16T01:18:58-04:00</lastmod>
   </url><url>
     <loc>//blog.vero.site/post/unagi</loc>

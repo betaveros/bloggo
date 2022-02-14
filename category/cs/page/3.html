@@ -64,6 +64,37 @@ Category → CS
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/doggo" class="post-link">Pupper/Doggo</a></h3>
+		
+		<h4 class="post-subtitle">PlaidCTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-05-06
+		(2909 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called <em>Wolf</em>. Concretely, every type in Wolf’s type system has an associated <em>secrecy</em>: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.</p>
+<p>Of course, this is a CTF, so the challenge is all about breaking the theoretical guarantees of the type system. When we submit code, it’s evaluated in a context with a private integer variable <code>flag</code>; our code is typechecked, executed, and printed, but only if its type is public. The goal is to break the type system and write code that produces a public value that depends on <code>flag</code>, so that we can exfiltrate <code>flag</code> itself.</p>
+<p>In all, there are three progressively harder Wolf problems, named Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the flag of the challenge before it, so that you need to solve them in order (unless you can somehow blindly exploit servers running SML programs).</p>
+<h3 id="wolf-overview">Wolf Overview</h3>
+<p>Let’s first go over the Wolf syntax and semantics. (There are small differences between the three problems, but they’re syntactically identical and only semantically differ in cases that we’ll naturally get to.) The <code>examples</code> folder has some examples of valid code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">let</span> x = (<span class="dv">5</span> :&gt; <span class="kw">private</span> <span class="dt">int</span>) <span class="kw">in</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="dv">6</span></a></code></pre></div>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/doggo">→ read more<span class="offscreen"> Pupper/Doggo</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/thoroughly-stripped" class="post-link">Thoroughly Stripped</a></h3>
 		
 		<h4 class="post-subtitle">CSAW CTF 2017 Finals (Forensics, 200 pts)</h4>
@@ -89,6 +120,32 @@ Category → CS
 <p>Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from <a href="https://github.com/betaveros/xxb"><code>xxb</code></a> but <code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/thoroughly-stripped">→ read more<span class="offscreen"> Thoroughly Stripped</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/sakura" class="post-link">Sakura</a></h3>
+		
+		<h4 class="post-subtitle">HITCON CTF 2017</h4>
+		
+		<p class="post-meta">
+		
+		2017-11-12
+		(703 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>(Okay, this post is backdated.)</p>
+<p>Disassembling the executable produces a huge amount of code. There are some basic obfuscations like a lot of trivial identity functions nested in each other, and a few functions that wrap around identity functions but just add some constant multiple of 16. Most of the meat is in one very large function, though. If you disassemble this function with IDA, you see a lot of variable initializations and then a lot of interesting loops that are quite similar:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/sakura">→ read more<span class="offscreen"> Sakura</span></a>
 	</footer>
 </article>
 
@@ -285,67 +342,6 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
    I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing.   Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester.
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/unicode-forensics">→ read more<span class="offscreen"> Adventures in Unicode Forensics</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-46" class="post-link">Puzzle 46 / Fillomino [LITS &#43; Extra Region &#43; Walls &#43; Anti-Walls &#43; Inequality &#43; Tapa &#43; Masyu]</a></h3>
-		
-		<p class="post-meta">
-		
-		2015-03-29
-		(258 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>, <a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-5:27 PM <strong>phenomist</strong>: do you use gridderface to make pretty puzzles?<br />
-…<br />
-5:52 PM <strong>phenomist</strong>: actually nvm excel is probably easier lol
-</blockquote>
-<p>Okay I’m sorry this is a horrible puzzle where the rules don’t make sense and I didn’t even get it testsolved. I just wanted an image to concisely demonstrate the capabilities of <a href="https://github.com/betaveros/gridderface">gridderface</a>, my puzzle marking and creation program, for the project homepage, after somebody expressed interest in using the program to write a puzzle. Then I got tremendously carried away.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/puzzle-46">→ read more<span class="offscreen"> Puzzle 46 / Fillomino [LITS &#43; Extra Region &#43; Walls &#43; Anti-Walls &#43; Inequality &#43; Tapa &#43; Masyu]</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/c-to-d" class="post-link">C/C&#43;&#43; to D</a></h3>
-		
-		<p class="post-meta">
-		
-		2015-01-14
-		(1997 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Some notes.</p>
-<p>I’m assuming you want to use D largely, but not entirely, for competitive programming. That’s me right now.</p>
-<h3 id="basics">Basics</h3>
-<p>Syntax is very similar. Function definitions, semicolon-terminated statements, variable declarations, and so on. You can declare <code>int main() {...}</code> or <code>void main() {...}</code> or something with arguments.</p>
-<p>Basic types like <code>bool</code> and <code>int</code> and <code>double</code> are all there. Wonderfully, <code>long</code> is 64 bits. Instead of <code>unsigned</code> whatever, just prefix a <code>u</code>, e.g. <code>uint</code>.</p>
-<p>Arithmetic operators and bit operators are all there too, including unsigned right shift <code>&gt;&gt;&gt;</code>. Although <code>^</code> is still xor, D has exponentiation as <code>^^</code>. Sadly, <code>%</code> is still same-sign remainder; there’s no true mod.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode d"><code class="sourceCode d"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">import</span> std.stdio;</a></code></pre></div>
-<p>Casts look like <code>cast(int) x;</code></p>
-<h3 id="control-flow">Control Flow</h3>
-<p><code>if</code>, <code>while</code>, <code>for</code>, <code>do</code>, and even <code>switch</code> all work as you’d expect, along with <code>break</code> and <code>continue</code>.</p>
-<p><code>foreach</code> is the nice addition though. Not only can you iterate over arrays and stuff, but range loops go like:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/c-to-d">→ read more<span class="offscreen"> C/C&#43;&#43; to D</span></a>
 	</footer>
 </article>
 

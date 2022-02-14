@@ -64,6 +64,48 @@ Tag → CTF
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/shellql" class="post-link">shellql</a></h3>
+		
+		<h4 class="post-subtitle">DEF CON CTF Qualifiers 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-05-13
+		(1217 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>The hardest challenge of not very many I solved in this CTF. What a struggle! I have a long way to improve. It was pretty fun though. (I solved “You Already Know”, and got the essence of “ghettohackers: Throwback”, but didn’t guess the right flag format and believe I was asleep when they released the hint about it.)</p>
+<p>The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension <code>shellme.so</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode php"><code class="sourceCode php"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">$link</span> = <span class="fu">mysqli_connect</span><span class="ot">(</span><span class="st">&#39;localhost&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">);</span></a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">if</span> <span class="ot">(</span><span class="kw">isset</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]))</span></a>
+<a class="sourceLine" id="cb1-4" title="4">{</a>
+<a class="sourceLine" id="cb1-5" title="5">   <span class="kw">if</span> <span class="ot">(</span><span class="fu">strlen</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">])</span> &lt;= <span class="dv">1000</span><span class="ot">)</span></a>
+<a class="sourceLine" id="cb1-6" title="6">   {</a>
+<a class="sourceLine" id="cb1-7" title="7">      <span class="kw">echo</span> <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">];</span></a>
+<a class="sourceLine" id="cb1-8" title="8">      shellme<span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]);</span></a>
+<a class="sourceLine" id="cb1-9" title="9">   }</a>
+<a class="sourceLine" id="cb1-10" title="10">   <span class="kw">exit</span><span class="ot">();</span></a>
+<a class="sourceLine" id="cb1-11" title="11">}</a></code></pre></div>
+<p>The extension basically just executes <code>$_POST['shell']</code> as shellcode after a strict SECCOMP call, <a href="http://man7.org/linux/man-pages/man2/prctl.2.html">prctl</a>(<a href="https://elixir.bootlin.com/linux/v4.16.8/source/include/uapi/linux/prctl.h#L68">22</a>, <a href="https://elixir.bootlin.com/linux/v4.1/source/include/uapi/linux/seccomp.h#L10">1</a>). This means that we can only use the four syscalls <code>read</code>, <code>write</code>, and <code>exit</code>, and <code>sigreturn</code>, where the latter two aren’t particularly useful.</p>
+<figure>
+<img src="/img/shell_this.png" alt="Disassembled innermost function of interest in shellme.so" /><figcaption>Disassembled innermost function of interest in <code>shellme.so</code></figcaption>
+</figure>
+<p>The goal is to read the flag from the open MySQL connection.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/shellql">→ read more<span class="offscreen"> shellql</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/doggo" class="post-link">Pupper/Doggo</a></h3>
 		
 		<h4 class="post-subtitle">PlaidCTF 2018</h4>
@@ -90,6 +132,35 @@ Tag → CTF
 <a class="sourceLine" id="cb1-2" title="2"><span class="dv">6</span></a></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/doggo">→ read more<span class="offscreen"> Pupper/Doggo</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/messy-desk" class="post-link">Messy Desk</a></h3>
+		
+		<h4 class="post-subtitle">PlaidCTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-05-06
+		(1000 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>This challenge is a video of somebody’s messy desk, with what is apparently the audio from a <a href="https://www.youtube.com/watch?v=WwnI0RS6J5A">Futurama clip</a>. The desk is indeed extremely messy and full of things that aren’t particularly useful for us, but close examination reveals a QR code reflected in the globe in the middle.</p>
+<p>The challenge is all about getting that QR code. After trying our best to clean up the image, we ended up with this:</p>
+<figure>
+<img src="/img/messy-qr.png" alt="Maximally enhanced image of the QR code" /><figcaption>Maximally enhanced image of the QR code</figcaption>
+</figure>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/messy-desk">→ read more<span class="offscreen"> Messy Desk</span></a>
 	</footer>
 </article>
 

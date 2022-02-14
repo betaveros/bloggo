@@ -60,6 +60,68 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/olympiads" class="post-link">Olympiads: The Infinitely Overdue Retrospective</a></h3>
+		
+		<p class="post-meta">
+		
+		2019-02-03
+		(5636 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>, <a href="/category/self-analysis">Self-Analysis</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>I put this question in my FAQ, because at least two people have asked me this question, and that’s how frequent a question needs to be to be on my FAQ: I got an IMO<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> gold medal in 2012, as a ninth grader, and an IOI gold medal in 2014, as an eleventh grader. I could have kept going to either, or even decided to try taking the IPhO or something, but I didn’t. Why not?</p>
+<p>The short answer: It was a rough utilitarian calculation. By continuing, I would probably displace somebody else who would gain more from being on an IMO/IOI team than I would. Besides, I wanted to do other things in high school, so I wasn’t losing much.</p>
+<p>I think the short answer actually captures most of my thinking when I made the decision back then, and it’s not really new; I said as much at <a href="//blog.vero.site/post/time">the end of 2013</a>. But behind it was a lot of complex thoughts and feelings that I’ve been ruminating over and trying to put into words for the better part of a decade. Hence, this post.</p>
+<hr />
+<p>There is a natural question that precedes the frequently asked one that I have never been asked, something I am now realizing I never honestly asked myself and never tried to answer deeply: Why did I participate in the IMO and the IOI in the first place?</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/olympiads">→ read more<span class="offscreen"> Olympiads: The Infinitely Overdue Retrospective</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/2019-hunt" class="post-link">2019 MIT Mystery Hunt</a></h3>
+		
+		<p class="post-meta">
+		
+		2019-01-31
+		(435 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>(this post is sketchily backdated from February 2020)</p>
+<p>Fourth year with ✈✈✈ Galactic Trendsetters ✈✈✈. Past: <a href="//blog.vero.site/post/2018-hunt">2018</a>, <a href="//blog.vero.site/post/january">2017</a>, <a href="//blog.vero.site/post/whoosh">2016</a>, writing with Random in <a href="//blog.vero.site/post/hunt">2015</a>). Evidently I was unable to find the time or motivation to blog about this, and I can’t remember any particularly good stories, so let me just slip this backdated list post in the archives.</p>
+<p>The theme in a few sentences: The hunt organizers declare a new Molasses Awareness Day, but because they didn’t follow the proper procedure, throwing the world of Holidays into chaos, where “chaos” means molasses. This resulted in lots of puzzle-to-meta matching, since puzzles were in Holiday towns but metas were at lampposts between two towns.</p>
+<p>Highlights of puzzles I solved:</p>
+<ul>
+<li><strong>A Good Walk Spoiled</strong> (Holi): Happens to be about a topic I know well and find interesting. Fun steps. Justified use of substitution ciphers; the pasting into quipqiup was worth it.</li>
+<li><strong>State Machine</strong> (President’s): A one-aha! one-step puzzle. Maybe more unfortunate because apparently this was not the only puzzle to use a specific aspect of a specific source material, but I didn’t know about that other puzzle so it’s fine.</li>
+<li><strong>Clued Connections</strong> (Pi): I went to sleep near the end of this puzzle, so I didn’t see it through, but Floorpi was collectively called out by it.</li>
+<li><strong>I Can’t Deal with These Endless Numbers</strong> (Patriot’s): Incredible.</li>
+<li><strong>Loaded</strong> (Arbor): Simple and self-contained enough.</li>
+</ul>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/2019-hunt">→ read more<span class="offscreen"> 2019 MIT Mystery Hunt</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/prose-passion" class="post-link">The Prose and the Passion</a></h3>
 		
 		<p class="post-meta">
@@ -284,38 +346,6 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/doggo" class="post-link">Pupper/Doggo</a></h3>
-		
-		<h4 class="post-subtitle">PlaidCTF 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-05-06
-		(2909 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called <em>Wolf</em>. Concretely, every type in Wolf’s type system has an associated <em>secrecy</em>: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.</p>
-<p>Of course, this is a CTF, so the challenge is all about breaking the theoretical guarantees of the type system. When we submit code, it’s evaluated in a context with a private integer variable <code>flag</code>; our code is typechecked, executed, and printed, but only if its type is public. The goal is to break the type system and write code that produces a public value that depends on <code>flag</code>, so that we can exfiltrate <code>flag</code> itself.</p>
-<p>In all, there are three progressively harder Wolf problems, named Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the flag of the challenge before it, so that you need to solve them in order (unless you can somehow blindly exploit servers running SML programs).</p>
-<h3 id="wolf-overview">Wolf Overview</h3>
-<p>Let’s first go over the Wolf syntax and semantics. (There are small differences between the three problems, but they’re syntactically identical and only semantically differ in cases that we’ll naturally get to.) The <code>examples</code> folder has some examples of valid code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">let</span> x = (<span class="dv">5</span> :&gt; <span class="kw">private</span> <span class="dt">int</span>) <span class="kw">in</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="dv">6</span></a></code></pre></div>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/doggo">→ read more<span class="offscreen"> Pupper/Doggo</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/messy-desk" class="post-link">Messy Desk</a></h3>
 		
 		<h4 class="post-subtitle">PlaidCTF 2018</h4>
@@ -340,35 +370,6 @@
 </figure>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/messy-desk">→ read more<span class="offscreen"> Messy Desk</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/on-delete-facebook" class="post-link">On #DeleteFacebook</a></h3>
-		
-		<p class="post-meta">
-		
-		2018-04-02
-		(9808 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/thoughts">Thoughts</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>It feels a little surreal watching #DeleteFacebook.</p>
-<p>On one hand, despite how hard it is to keep an issue trending in today’s fast news cycle, this issue has managed to continue burning for a while. Somewhat recently (March 21), we got two high-profile Facebook account deletions from <a href="https://twitter.com/brianacton/status/976231995846963201">Brian Acton (WhatsApp cofounder)</a> and <a href="https://techcrunch.com/2018/03/23/elon-musk-deletes-own-spacex-and-tesla-facebook-pages-after-deletefacebook/">Elon Musk</a>. Other apparent examples include <a href="https://www.usatoday.com/story/money/2018/03/28/playboy-dumps-facebook-amid-public-furor-over-users-data-leaks/465156002/">Playboy and Cher</a>, or see <a href="http://time.com/money/5220854/delete-facebook-celebrities-companies-cutting-ties-privacy/">Time</a> or <a href="https://www.cnet.com/news/several-companies-and-people-are-pulling-back-from-facebook/">CNET</a> for a few more. Facebook’s U.S. and Canada user base <a href="https://www.recode.net/2018/1/31/16957122/facebook-daily-active-user-decline-us-canda-q4-earnings-2018">declined for the first time last quarter</a>.</p>
-<p>On the other hand, for me and for a lot of people, the scandal just doesn’t seem that qualitatively different from things we’ve known about Facebook for a long time — its stance on privacy, its psychological effects, its willingness to manipulate the user experience. Why is this time different? (Here’s the <a href="https://www.reddit.com/r/NoStupidQuestions/comments/87u9ro/why_is_everyone_all_of_a_sudden_mad_at_facebook/">/r/NoStupidQuestions thread.</a> I don’t actually know which answer I believe the most.)</p>
-<p>Is this time really different? I’m not optimistic. The decline could simply be Facebook running out of potential users to add and space to grow. According to a recent Raymond James survey, about half of surveyed users did not plan to change how much they used Facebook, while only 8% would stop using it, and this may still be an overestimate of people who will actually leave or delete their accounts.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Mark Zuckerberg himself <a href="https://www.nytimes.com/2018/03/21/technology/mark-zuckerberg-q-and-a.html">told the New York Times</a>, “I don’t think we’ve seen a meaningful number of people act on [the #DeleteFacebook campaign]”.</p>
-<p>I myself have to admit upfront that, even though I <a href="//blog.vero.site/post/me-and-facebook">barely use Facebook any more</a> and have carefully contemplated deleting my Facebook account for a long time, I still haven’t pulled the trigger.</p>
-<p>Why? What will it take to change this?</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/on-delete-facebook">→ read more<span class="offscreen"> On #DeleteFacebook</span></a>
 	</footer>
 </article>
 

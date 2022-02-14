@@ -55,6 +55,63 @@
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/doggo" class="post-link">Pupper/Doggo</a></h3>
+		
+		<h4 class="post-subtitle">PlaidCTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-05-06
+		(2909 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called <em>Wolf</em>. Concretely, every type in Wolf’s type system has an associated <em>secrecy</em>: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.</p>
+<p>Of course, this is a CTF, so the challenge is all about breaking the theoretical guarantees of the type system. When we submit code, it’s evaluated in a context with a private integer variable <code>flag</code>; our code is typechecked, executed, and printed, but only if its type is public. The goal is to break the type system and write code that produces a public value that depends on <code>flag</code>, so that we can exfiltrate <code>flag</code> itself.</p>
+<p>In all, there are three progressively harder Wolf problems, named Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the flag of the challenge before it, so that you need to solve them in order (unless you can somehow blindly exploit servers running SML programs).</p>
+<h3 id="wolf-overview">Wolf Overview</h3>
+<p>Let’s first go over the Wolf syntax and semantics. (There are small differences between the three problems, but they’re syntactically identical and only semantically differ in cases that we’ll naturally get to.) The <code>examples</code> folder has some examples of valid code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">let</span> x = (<span class="dv">5</span> :&gt; <span class="kw">private</span> <span class="dt">int</span>) <span class="kw">in</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="dv">6</span></a></code></pre></div>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/doggo">→ read more<span class="offscreen"> Pupper/Doggo</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/on-delete-facebook" class="post-link">On #DeleteFacebook</a></h3>
+		
+		<p class="post-meta">
+		
+		2018-04-02
+		(9808 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/thoughts">Thoughts</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>It feels a little surreal watching #DeleteFacebook.</p>
+<p>On one hand, despite how hard it is to keep an issue trending in today’s fast news cycle, this issue has managed to continue burning for a while. Somewhat recently (March 21), we got two high-profile Facebook account deletions from <a href="https://twitter.com/brianacton/status/976231995846963201">Brian Acton (WhatsApp cofounder)</a> and <a href="https://techcrunch.com/2018/03/23/elon-musk-deletes-own-spacex-and-tesla-facebook-pages-after-deletefacebook/">Elon Musk</a>. Other apparent examples include <a href="https://www.usatoday.com/story/money/2018/03/28/playboy-dumps-facebook-amid-public-furor-over-users-data-leaks/465156002/">Playboy and Cher</a>, or see <a href="http://time.com/money/5220854/delete-facebook-celebrities-companies-cutting-ties-privacy/">Time</a> or <a href="https://www.cnet.com/news/several-companies-and-people-are-pulling-back-from-facebook/">CNET</a> for a few more. Facebook’s U.S. and Canada user base <a href="https://www.recode.net/2018/1/31/16957122/facebook-daily-active-user-decline-us-canda-q4-earnings-2018">declined for the first time last quarter</a>.</p>
+<p>On the other hand, for me and for a lot of people, the scandal just doesn’t seem that qualitatively different from things we’ve known about Facebook for a long time — its stance on privacy, its psychological effects, its willingness to manipulate the user experience. Why is this time different? (Here’s the <a href="https://www.reddit.com/r/NoStupidQuestions/comments/87u9ro/why_is_everyone_all_of_a_sudden_mad_at_facebook/">/r/NoStupidQuestions thread.</a> I don’t actually know which answer I believe the most.)</p>
+<p>Is this time really different? I’m not optimistic. The decline could simply be Facebook running out of potential users to add and space to grow. According to a recent Raymond James survey, about half of surveyed users did not plan to change how much they used Facebook, while only 8% would stop using it, and this may still be an overestimate of people who will actually leave or delete their accounts.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Mark Zuckerberg himself <a href="https://www.nytimes.com/2018/03/21/technology/mark-zuckerberg-q-and-a.html">told the New York Times</a>, “I don’t think we’ve seen a meaningful number of people act on [the #DeleteFacebook campaign]”.</p>
+<p>I myself have to admit upfront that, even though I <a href="//blog.vero.site/post/me-and-facebook">barely use Facebook any more</a> and have carefully contemplated deleting my Facebook account for a long time, I still haven’t pulled the trigger.</p>
+<p>Why? What will it take to change this?</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/on-delete-facebook">→ read more<span class="offscreen"> On #DeleteFacebook</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/2018-hunt" class="post-link">2018 MIT Mystery Hunt</a></h3>
 		
 		<p class="post-meta">
@@ -251,61 +308,6 @@
 <p>I brainstormed reasons why I’m not blogging. It took a while for me to find a reason that felt right, but I think it’s mostly the concern that I don’t have anything important to say, and I’m just spamming people’s inboxes or Facebook feeds. I make fun of my perfectonist tendencies, but they haven’t gone away and have been exacerbated by how public this blog feels now. There’s also a general feeling permeating life that I should be trying to present myself professionally to people, because like a diamond, the Internet is forever.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/step-back">→ read more<span class="offscreen"> Taking a Step Back</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/january" class="post-link">I guess January is puzzles month</a></h3>
-		
-		<p class="post-meta">
-		
-		2017-02-04
-		(718 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>And it’s not even January any more.</p>
-<p>(Thing negative two: Thing zero, which is at the bottom of this post, contains two puzzles by me. Skip there if that sounds interesting and text walls don’t.)</p>
-<p>Thing negative one: I abandoned this blog (again). The last month has been a mess and much of it is political stuff of the sort that I’m the worst/slowest at writing about.</p>
-<hr />
-<p>Thing one: I was on-site for a second MIT Mystery Hunt.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/january">→ read more<span class="offscreen"> I guess January is puzzles month</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/change" class="post-link">The More Things Change</a></h3>
-		
-		<p class="post-meta">
-		
-		2016-12-31
-		(1261 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/LRP8d7hhpoQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
-
-<p>It seems to me like lots of people want this year to be over. Among all the other things, 2016 is also apparently the year I totally abandon this blog and put off certain planned posts by several months.</p>
-<p>I guess this is what happens when you take five technical classes at MIT. The extracurriculars aren’t helping. And the fastest and most confident writing I do is still reactive, when there’s an externally-imposed deadline or when “somebody is wrong on the internet”. This blog isn’t.</p>
-<p>Oh well, time to make up for it in 2017.</p>
-<p>What happened this year? I’ll start with some serious categories:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/change">→ read more<span class="offscreen"> The More Things Change</span></a>
 	</footer>
 </article>
 <footer class="list-footer">

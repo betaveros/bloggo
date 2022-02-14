@@ -60,6 +60,86 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/baby-boi" class="post-link">baby_boi (A Textbook CTF ROP Tutorial)</a></h3>
+		
+		<h4 class="post-subtitle">CSAW CTF Qualifiers 2019</h4>
+		
+		<p class="post-meta">
+		
+		2019-09-15
+		(1867 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>Welcome to pwn.</p>
+<p><code>nc pwn.chal.csaw.io 1005</code></p>
+</blockquote>
+<p>Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with security professionals who probably have decades of experience and who follow security developments for a living or whatever, there remains a competition where scrubs like me can apply our extremely basic CTF skills and still feel kinda smart by earning points. Now that I’ve graduated and am no longer eligible, our team was pretty small and I didn’t dedicate the full weekend to the CTF, but it means I got to do the really easy challenges in the categories that I was the worst at, by which I mean pwn.</p>
+<p><code>baby_boi</code> is pretty much the simplest possible modern ROP (the modern security protections NX and ASLR are not artificially disabled, but you get everything you need to work around them). We even get source code.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" title="1"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></a>
+<a class="sourceLine" id="cb1-3" title="3"></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv[]) {</a>
+<a class="sourceLine" id="cb1-5" title="5">  <span class="dt">char</span> buf[<span class="dv">32</span>];</a>
+<a class="sourceLine" id="cb1-6" title="6">  printf(<span class="st">&quot;Hello!</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
+<a class="sourceLine" id="cb1-7" title="7">  printf(<span class="st">&quot;Here I am: %p</span><span class="sc">\n</span><span class="st">&quot;</span>, printf);</a>
+<a class="sourceLine" id="cb1-8" title="8">  gets(buf);</a>
+<a class="sourceLine" id="cb1-9" title="9">}</a></code></pre></div>
+<p>So there’s nothing novel here for experienced pwners, but I feel like there is a shortage of tutorials that walk you through how to solve a textbook ROP the way you’d want to solve it in a CTF, so here is a writeup.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/baby-boi">→ read more<span class="offscreen"> baby_boi (A Textbook CTF ROP Tutorial)</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/puzzlehunts" class="post-link">Introduction to Puzzlehunts</a></h3>
+		
+		<p class="post-meta">
+		
+		2019-09-02
+		(7866 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<div class="series">
+<p>not part of the ongoing series, but you can almost pretend it is. This sentence and the one before it are not a puzzle.</p>
+</div>
+<blockquote>
+<p>Imagine a word search.</p>
+<p>Now imagine you aren’t told what words to look for.</p>
+<p>Now imagine you aren’t told it’s a word search.</p>
+<p>Now imagine it isn’t a word search.</p>
+<footer>
+— <a href="http://www.gmpuzzles.com/blog/2013/04/ask-dr-sudoku-13-puzzle-hunting/">Mike Develin, via Thomas Snyder</a> (aka Dr. Sudoku)
+</footer>
+</blockquote>
+<p>This post aims to be a fairly comprehensive introduction to puzzlehunts and their puzzles, a single post where I can just point people. I erred towards comprehensiveness in this post because I am not aware of any similar resources, especially for puzzlers interested in trying harder puzzlehunts who might not know any more experienced puzzlers to solve with. It’s possible to start solving some puzzles after reading much shorter guides, e.g. Puzzled Pint’s <a href="http://www.puzzledpint.com/files/3513/8254/7894/2013_10_22_Puzzling_Basics_Infographic.pdf">“Puzzling Basics” (PDF)</a>, so feel free to skip around, stop reading midway through, or bookmark this to read only after you’ve spent more time solving.</p>
+<h3 id="what-is-a-puzzlehunt">What is a Puzzlehunt?</h3>
+<p>A <strong>puzzlehunt</strong><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> is an event where people, usually in teams, solve a series of <strong>puzzles</strong>.</p>
+<p>This is not a very useful definition. The more interesting question is, what is the kind of “puzzle”<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> that appears in a puzzlehunt? The concept of a puzzlehunt puzzle is fuzzy and difficult to define precisely. Just about any hard rule one might try to state will be broken by some puzzle, sometimes deliberately. Still, here are some common features of puzzlehunt puzzles:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/puzzlehunts">→ read more<span class="offscreen"> Introduction to Puzzlehunts</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/cook" class="post-link">Cook Like You&#39;re Not on MasterChef</a></h3>
 		
 		<p class="post-meta">
@@ -298,68 +378,6 @@ Environment: Ubuntu 16.04+latex</code></pre>
 <p>In this challenge, we get a gzipped file called <code>perf.data</code> and a minimal description of an environment. Googling this reveals that <code>perf.data</code> is a record format of the <code>perf</code> tool, a Linux profiler. Installing <code>perf</code> allows us to read <code>perf.data</code> and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is <code>perf report -D</code>, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the <code>perf record</code> was run against.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/refrain">→ read more<span class="offscreen"> refrain</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/olympiads" class="post-link">Olympiads: The Infinitely Overdue Retrospective</a></h3>
-		
-		<p class="post-meta">
-		
-		2019-02-03
-		(5636 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>, <a href="/category/self-analysis">Self-Analysis</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>I put this question in my FAQ, because at least two people have asked me this question, and that’s how frequent a question needs to be to be on my FAQ: I got an IMO<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> gold medal in 2012, as a ninth grader, and an IOI gold medal in 2014, as an eleventh grader. I could have kept going to either, or even decided to try taking the IPhO or something, but I didn’t. Why not?</p>
-<p>The short answer: It was a rough utilitarian calculation. By continuing, I would probably displace somebody else who would gain more from being on an IMO/IOI team than I would. Besides, I wanted to do other things in high school, so I wasn’t losing much.</p>
-<p>I think the short answer actually captures most of my thinking when I made the decision back then, and it’s not really new; I said as much at <a href="//blog.vero.site/post/time">the end of 2013</a>. But behind it was a lot of complex thoughts and feelings that I’ve been ruminating over and trying to put into words for the better part of a decade. Hence, this post.</p>
-<hr />
-<p>There is a natural question that precedes the frequently asked one that I have never been asked, something I am now realizing I never honestly asked myself and never tried to answer deeply: Why did I participate in the IMO and the IOI in the first place?</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/olympiads">→ read more<span class="offscreen"> Olympiads: The Infinitely Overdue Retrospective</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/2019-hunt" class="post-link">2019 MIT Mystery Hunt</a></h3>
-		
-		<p class="post-meta">
-		
-		2019-01-31
-		(435 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>(this post is sketchily backdated from February 2020)</p>
-<p>Fourth year with ✈✈✈ Galactic Trendsetters ✈✈✈. Past: <a href="//blog.vero.site/post/2018-hunt">2018</a>, <a href="//blog.vero.site/post/january">2017</a>, <a href="//blog.vero.site/post/whoosh">2016</a>, writing with Random in <a href="//blog.vero.site/post/hunt">2015</a>). Evidently I was unable to find the time or motivation to blog about this, and I can’t remember any particularly good stories, so let me just slip this backdated list post in the archives.</p>
-<p>The theme in a few sentences: The hunt organizers declare a new Molasses Awareness Day, but because they didn’t follow the proper procedure, throwing the world of Holidays into chaos, where “chaos” means molasses. This resulted in lots of puzzle-to-meta matching, since puzzles were in Holiday towns but metas were at lampposts between two towns.</p>
-<p>Highlights of puzzles I solved:</p>
-<ul>
-<li><strong>A Good Walk Spoiled</strong> (Holi): Happens to be about a topic I know well and find interesting. Fun steps. Justified use of substitution ciphers; the pasting into quipqiup was worth it.</li>
-<li><strong>State Machine</strong> (President’s): A one-aha! one-step puzzle. Maybe more unfortunate because apparently this was not the only puzzle to use a specific aspect of a specific source material, but I didn’t know about that other puzzle so it’s fine.</li>
-<li><strong>Clued Connections</strong> (Pi): I went to sleep near the end of this puzzle, so I didn’t see it through, but Floorpi was collectively called out by it.</li>
-<li><strong>I Can’t Deal with These Endless Numbers</strong> (Patriot’s): Incredible.</li>
-<li><strong>Loaded</strong> (Arbor): Simple and self-contained enough.</li>
-</ul>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/2019-hunt">→ read more<span class="offscreen"> 2019 MIT Mystery Hunt</span></a>
 	</footer>
 </article>
 

