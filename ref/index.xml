@@ -64,7 +64,7 @@ Z &amp;amp;= 0.0193339r + 0.1191920g + 0.9503041b
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//blog.vero.site/ref/diagrams</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://diagrams.github.io/&#34;&gt;&lt;code&gt;diagrams&lt;/code&gt;&lt;/a&gt; is a nifty Haskell library for making vector diagrams. I keep coming back to it to generate graphics for puzzles:&lt;/p&gt;
+      <description>&lt;p&gt;&lt;code&gt;&lt;a href=&#34;https://diagrams.github.io/&#34;&gt;diagrams&lt;/a&gt;&lt;/code&gt; is a nifty Haskell library for making vector diagrams. I keep coming back to it to generate graphics for puzzles:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;the very old &lt;a href=&#34;https://blog.vero.site/post/signature-puzzle&#34;&gt;A Signature Puzzle&lt;/a&gt; from this blog&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://dp.puzzlehunt.net/puzzle/a-fork-in-the-road.html&#34;&gt;A Fork in the Road&lt;/a&gt; (DP Puzzle Hunt)&lt;/li&gt;
@@ -104,7 +104,7 @@ Z &amp;amp;= 0.0193339r + 0.1191920g + 0.9503041b
 &lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://www.proginosko.com/leechblock.html#SECT2&#34;&gt;LeechBlock&lt;/a&gt;, &lt;a href=&#34;https://download.xmarks.com/download&#34;&gt;Xmarks&lt;/a&gt;&lt;/strong&gt;, &lt;a href=&#34;https://www.eff.org/https-everywhere&#34;&gt;HTTPS Everywhere&lt;/a&gt;, &lt;a href=&#34;https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/&#34;&gt;uBlock Origin&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Formerly: &lt;a href=&#34;http://5digits.org/pentadactyl/&#34;&gt;Pentadactyl&lt;/a&gt; (&lt;a href=&#34;http://5digits.org/nightlies&#34;&gt;nightlies&lt;/a&gt;), &lt;a href=&#34;https://lastpass.com/misc_download2.php&#34;&gt;LastPass&lt;/a&gt;, &lt;a href=&#34;https://disconnect.me/&#34;&gt;Disconnect&lt;/a&gt;, &lt;a href=&#34;http://firefox.exxile.net/aios/&#34;&gt;All-in-One Sidebar&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.dropbox.com/&#34;&gt;&lt;strong&gt;Dropbox&lt;/strong&gt;&lt;/a&gt; (&lt;a href=&#34;http://db.tt/&#34;&gt;&lt;code&gt;db.tt&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.dropbox.com/&#34;&gt;&lt;strong&gt;Dropbox&lt;/strong&gt;&lt;/a&gt; (&lt;code&gt;&lt;a href=&#34;http://db.tt/&#34;&gt;db.tt&lt;/a&gt;&lt;/code&gt;)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;(g)&lt;a href=&#34;http://www.vim.org/&#34;&gt;Vim&lt;/a&gt;&lt;/strong&gt; / &lt;a href=&#34;https://github.com/macvim-dev/macvim&#34;&gt;MacVim&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/Shougo/neobundle.vim&#34;&gt;NeoBundle&lt;/a&gt;; &lt;a href=&#34;https://github.com/nanotech/jellybeans.vim&#34;&gt;jellybeans&lt;/a&gt;, &lt;a href=&#34;https://github.com/scrooloose/syntastic&#34;&gt;syntastic&lt;/a&gt;&lt;/strong&gt;, airline, fugitive, unite.vim, nerdtree, …&lt;/li&gt;

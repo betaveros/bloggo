@@ -95,6 +95,35 @@ Category → CS
 
 		<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/messy-desk" class="post-link">Messy Desk</a></h3>
+		
+		<h4 class="post-subtitle">PlaidCTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-05-06
+		(1000 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>This challenge is a video of somebody’s messy desk, with what is apparently the audio from a <a href="https://www.youtube.com/watch?v=WwnI0RS6J5A">Futurama clip</a>. The desk is indeed extremely messy and full of things that aren’t particularly useful for us, but close examination reveals a QR code reflected in the globe in the middle.</p>
+<p>The challenge is all about getting that QR code. After trying our best to clean up the image, we ended up with this:</p>
+<figure>
+<img src="/img/messy-qr.png" alt="Maximally enhanced image of the QR code" /><figcaption>Maximally enhanced image of the QR code</figcaption>
+</figure>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/messy-desk">→ read more<span class="offscreen"> Messy Desk</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/thoroughly-stripped" class="post-link">Thoroughly Stripped</a></h3>
 		
 		<h4 class="post-subtitle">CSAW CTF 2017 Finals (Forensics, 200 pts)</h4>
@@ -117,7 +146,7 @@ Category → CS
 <p>Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.</p>
 </blockquote>
 <p>We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.</p>
-<p>Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from <a href="https://github.com/betaveros/xxb"><code>xxb</code></a> but <code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
+<p>Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from <code><a href="https://github.com/betaveros/xxb">xxb</a></code> but <code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/thoroughly-stripped">→ read more<span class="offscreen"> Thoroughly Stripped</span></a>
 	</footer>
@@ -318,30 +347,6 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
 <p>Step-by-step instructions:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/college-emails">→ read more<span class="offscreen"> College Emails</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/unicode-forensics" class="post-link">Adventures in Unicode Forensics</a></h3>
-		
-		<p class="post-meta">
-		
-		2015-05-17
-		(764 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>, <a href="/category/school">School</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	What do you do when you get a bunch of files like this from a zipfile?
-   I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing.   Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester.
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/unicode-forensics">→ read more<span class="offscreen"> Adventures in Unicode Forensics</span></a>
 	</footer>
 </article>
 

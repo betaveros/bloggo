@@ -64,7 +64,7 @@
 		<p class="post-meta">
 		
 		2022-02-14
-		(3737 words)
+		(3739 words)
 		
 		<span class="post-categories">
 			filed under
@@ -168,7 +168,7 @@
 <p>However, the two code objects have exactly the same bytecode.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb10-1" title="1"><span class="op">&gt;&gt;&gt;</span> co.co_code, co2.co_code</a>
 <a class="sourceLine" id="cb10-2" title="2">(b<span class="st">&#39;d</span><span class="ch">\x00</span><span class="st">S</span><span class="ch">\x00</span><span class="st">&#39;</span>, b<span class="st">&#39;d</span><span class="ch">\x00</span><span class="st">S</span><span class="ch">\x00</span><span class="st">&#39;</span>)</a></code></pre></div>
-<p>The details of how bytecode is structured is fairly unimportant, but if you’re curious, as of Python 3.6, all bytecode instructions are two bytes: one byte for the opcode and one byte for the argument. Many opcodes ignore their argument, as in the example above with <code>RETURN_VALUE</code>. Opcodes can also take multi-byte arguments, up to four, by prefixing “instructions” with a special opcode, <code>EXTENDED_ARG</code>.</p>
+<p>The details of how bytecode is structured is fairly unimportant, but if you’re curious, as of Python 3.6, all bytecode instructions are two bytes: one byte for the opcode and one byte for the argument. Many opcodes ignore their argument, as in the example above with <code>RETURN_VALUE</code>. Opcodes can also take multi-byte arguments, up to four, by prepending additional “instructions” that have a special opcode, <code>EXTENDED_ARG</code>.</p>
 <p>So if we look at the numeric values of each byte in this code object’s bytecode, we can read off the opcodes and arguments:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb11-1" title="1"><span class="op">&gt;&gt;&gt;</span> [n <span class="cf">for</span> n <span class="kw">in</span> co.co_code]</a>
 <a class="sourceLine" id="cb11-2" title="2">[<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">83</span>, <span class="dv">0</span>]</a></code></pre></div>
@@ -274,7 +274,7 @@
 <p>Intuitively, I expected that when this code functioned normally, it would get 0 and a lambda onto the stack and then put the top two elements of the stack into <code>x</code> and <code>y</code>. However, if the lambda never gets made then its “ingredients” would be on top of the stack and would go into <code>x</code> and <code>y</code> instead. And it does seem to do that. The server’s response to this code is:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb27-1" title="1">x <span class="op">=</span> <span class="op">&lt;</span>code <span class="bu">object</span> <span class="op">&lt;</span><span class="kw">lambda</span><span class="op">&gt;</span> at <span class="bn">0x7f59d0ddab30</span>, <span class="bu">file</span> <span class="st">&quot;&lt;math&gt;&quot;</span>, line <span class="dv">1</span><span class="op">&gt;</span></a>
 <a class="sourceLine" id="cb27-2" title="2">y <span class="op">=</span> <span class="op">&lt;</span><span class="kw">lambda</span><span class="op">&gt;</span></a></code></pre></div>
-<p>Once you get this result, it’s not really important to understand why since you can just use <code>x</code> in the rest of the exploit. But for the curious, let’s disassemble it and take a closer look:</p>
+<p>Once you get this result, it’s not really important to understand why, since you can just use <code>x</code> in the rest of the exploit. But for the curious, let’s disassemble it and take a closer look:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb28-1" title="1"><span class="op">&gt;&gt;&gt;</span> co <span class="op">=</span> <span class="bu">compile</span>(<span class="st">&#39;x, y = 0, lambda: ()&#39;</span>, <span class="st">&#39;&lt;math&gt;&#39;</span>, <span class="st">&#39;exec&#39;</span>)</a>
 <a class="sourceLine" id="cb28-2" title="2"><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> inst <span class="kw">in</span> dis.get_instructions(co): <span class="bu">print</span>(inst)</a>
 <a class="sourceLine" id="cb28-3" title="3">Instruction(opname<span class="op">=</span><span class="st">&#39;LOAD_CONST&#39;</span>, opcode<span class="op">=</span><span class="dv">100</span>, arg<span class="op">=</span><span class="dv">0</span>, argval<span class="op">=</span><span class="dv">0</span>, argrepr<span class="op">=</span><span class="st">&#39;0&#39;</span>, offset<span class="op">=</span><span class="dv">0</span>, starts_line<span class="op">=</span><span class="dv">1</span>, is_jump_target<span class="op">=</span><span class="va">False</span>)</a>
@@ -461,6 +461,8 @@
 			
 			<a class="pagination-previous" href="//blog.vero.site/post/blazingfast">← blazingfast</a>
 			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/interpret">Interpreting Some Toy Neural Networks →</a>
 			
 		</nav>
 	</footer>

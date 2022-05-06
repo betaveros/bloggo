@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>Interpreting Some Toy Neural Networks</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="I participated in the AGI Safety Fundamentals program recently. The program concludes with a flexible final project, with the default suggestion of “a piece of writing, roughly the length and scope of a typical blog post”, so naturally, I deleted all but the last two words and here we are.
+When I previously considered machine learning as a field of study, I came away with an impression that most effort and computation power was going into training bigger, more powerful models; whereas the inner workings of the models themselves, not to mention questions like why certain architectures or design choices work better than others, remained inscrutable and understudied. This impression always bothered me, and it definitely influenced me away from going into AI as a career. Of course, there are important, objective safety concerns around developing and designing models we don’t understand, many of which we discussed in the program; but my discomfort is mostly a completely unrelated nagging feeling I get whenever I’m relying on things I don’t understand.
+After the program and all the concurrent developments in AI (including AlphaCode, OpenAI’s math olympiad solver1, SayCan, and, of course, DALL-E 2), I still had this impression about the field at a very high level, but I also became more familiar with the subfield of interpretability — designs and tools that allow us to understand and explain decisions by ML systems, rather than treating them as black-boxed mappings from inputs to outputs — and confirmed that enough people study it to make it a thing. One quote from a post on the views of Chris Olah, noted interpretability researcher, captured my feeling particularly eloquently:
+ interpretability is very aligned with traditional scientific virtues—which can be quite motivating for many people—even if it isn’t very aligned with the present paradigm of machine learning.
+ I found the whole post insightful, and it happens that the bits before that in the passage were also relevant to me. I don’t have access to lots of compute!
+Inspired by that post and by a desire to actually write some code (which I figured might help me understand the inner workings of modern ML systems in a different sense), and after abandoning a few other project ideas that were far too ambitious, I decided to go through some parts of the fast.ai tutorial and riff on it to see how much progress I could make interpreting the models, and to write up the process in a blog post. I tried to capture my experience holistically, bugs and all, to serve as a data point for what it might feel like to start ML engineering (for the rare individuals with a background and inclinations just like mine2), and maybe entertain more experienced practitioners or influence their future tutorial recommendations. A much lower-priority goal was trying to produce “my version of the tutorial”, which would draw more liberally from an undergraduate math education3 and dive more deeply into technical details.
+" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/interpret" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/ref">References</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Interpreting Some Toy Neural Networks</h1>
+		
+		<p class="post-meta">
+		
+		2022-05-05
+		(9864 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>I participated in the <a href="https://www.eacambridge.org/agi-safety-fundamentals">AGI Safety Fundamentals</a> program recently. The program concludes with a flexible final project, with the default suggestion of “a piece of writing, roughly the length and scope of a typical blog post”, so naturally, I deleted all but the last two words and here we are.</p>
+<p>When I previously considered machine learning as a field of study, I came away with an impression that most effort and computation power was going into training bigger, more powerful models; whereas the inner workings of the models themselves, not to mention questions like why certain architectures or design choices work better than others, remained inscrutable and understudied. This impression always bothered me, and it definitely influenced me away from going into AI as a career. Of course, there are important, objective safety concerns around developing and designing models we don’t understand, many of which we discussed in the program; but my discomfort is mostly a completely unrelated nagging feeling I get whenever I’m relying on things I don’t understand.</p>
+<p>After the program and all the concurrent developments in AI (including <a href="https://www.deepmind.com/blog/competitive-programming-with-alphacode">AlphaCode</a>, OpenAI’s <a href="https://openai.com/blog/formal-math/">math olympiad solver</a><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, <a href="https://say-can.github.io/">SayCan</a>, and, of course, <a href="https://openai.com/dall-e-2/">DALL-E 2</a>), I still had this impression about the field at a very high level, but I also became more familiar with the subfield of <em>interpretability</em> — designs and tools that allow us to understand and explain decisions by ML systems, rather than treating them as black-boxed mappings from inputs to outputs — and confirmed that enough people study it to make it a thing. One quote from a post on the <a href="https://www.alignmentforum.org/posts/X2i9dQQK3gETCyqh2/chris-olah-s-views-on-agi-safety">views of Chris Olah</a>, noted interpretability researcher, captured my feeling particularly eloquently:</p>
+<blockquote>
+<p>interpretability is very aligned with traditional scientific virtues—which can be quite motivating for many people—even if it isn’t very aligned with the present paradigm of machine learning.</p>
+</blockquote>
+<p>I found the whole post insightful, and it happens that the bits before that in the passage were also relevant to me. I don’t have access to lots of compute!</p>
+<p>Inspired by that post and by a desire to actually write some code (which I figured might help me understand the inner workings of modern ML systems in a different sense), and after abandoning a few other project ideas that were far too ambitious, I decided to go through some parts of the <a href="https://course.fast.ai/">fast.ai tutorial</a> and riff on it to see how much progress I could make interpreting the models, and to write up the process in a blog post. I tried to capture my experience holistically, bugs and all, to serve as a data point for what it might feel like to start ML engineering (for the rare individuals with a background and inclinations just like mine<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>), and <em>maybe</em> entertain more experienced practitioners or influence their future tutorial recommendations. A much lower-priority goal was trying to produce “my version of the tutorial”, which would draw more liberally from an undergraduate math education<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> and dive more deeply into technical details.</p>
+<h3 id="technical-setup">Technical setup</h3>
+<p>The tutorial has detailed instructions on possible platforms to use, and initially, I was intimidated by how it read:</p>
+<blockquote>
+<p>We strongly suggest using one of the recommended online platforms for running the notebooks, and to <em>not</em> use your own computer, unless you’re very experienced with Linux system adminstration and handling GPU drivers, CUDA, and so forth.</p>
+</blockquote>
+<p>However, my personal experiences with two suggested platforms, Gradient and Colab, were both horrible. In both, the UI would regularly freeze or throw errors that I didn’t know how to debug because there was a notebook in the way, whereas I know how to debug installing Python packages on my computer.</p>
+<figure>
+<a href="/img/colab-error.png"><img src="/img/colab-error.png" alt="A screenshot of Google Colab with an error from executing the first cell, trying to pip install fastbook." /></a>
+</figure>
+<p>I think there is a reasonable chance all this was caused by using the free tier<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> and not being ready to commit, but I was not in fact ready to commit. I entertained the thought of giving up on implementation right there and just writing something more theoretical, but the <code>04_mnist_basics.ipynb</code> notebook I was spending the most time on opened with a little spiel about not giving up, staring me in the face…</p>
+<blockquote>
+<p>The story of deep learning is one of tenacity and grit by a handful of dedicated researchers.</p>
+</blockquote>
+<p>So I decided to try just running everything on my laptop. In fact, after looking at the secondarily recommended Anaconda installer and being a little skeeved out by the binary embedded in the shell script, I decided to stick with technologies I was familiar with all the way<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> and just use <code>pip</code>.</p>
+<p>Somewhat ironically, because my laptop doesn’t have a good GPU<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> and I was not ambitious enough to want to need one, I expected that it would be easier for me to get things working, as getting code to talk to GPU drivers seemed like a big source of difficulties. And indeed, I installed all the fast.ai libraries and a Jupyter notebook without much trouble. (I even considered not using a notebook at all, and just editing a Python script and rerunning it, but it took me about five minutes of trying that before deciding that trying to implement my first few neural nets without the easy interactivity would be a disastrous impediment.)</p>
+<p>It is my personal opinion that, if you’re not ambitious about big data, you can delete the word “very” from the tutorial’s “unless you’re very experienced with Linux” carveout. The following algorithm was basically all I needed to get PyTorch and fast.ai working:</p>
+<ol type="1">
+<li>Try to install a package.</li>
+<li>If there’s an error message, paste it into your favorite search engine.</li>
+<li>Follow the instructions in the first StackOverflow result.</li>
+<li>Go to step 1.</li>
+</ol>
+<p>To be fair, the algorithm probably understates the difficulty a bit. Sometimes you have to adapt the StackOverflow answer for your environment, or use the second answer instead if the first one is too old. Right now, <code>pip3</code> and <code>python3</code> point to different Python versions on my system, something I just haven’t felt bothered enough to deal with, so I sometimes replace <code>pip</code> with <code>python3.10 -m pip</code>. Because I use <a href="https://fishshell.com/">fish shell</a>, I have to add <code>.fish</code> to <code>. venv/bin/activate</code> instructions. And so on. But I still wouldn’t call myself “very” experienced.</p>
+<p>Anyway, with the libraries setup, it’s time to dive in.</p>
+<h3 id="mnist">MNIST</h3>
+<p>I decided to build a digit classifier, like in <a href="https://colab.research.google.com/github/fastai/fastbook/blob/master/04_mnist_basics.ipynb">Chapter 4</a><a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> (link to Colab notebook) — riveting, I know. At least, I wanted to use the full MNIST dataset instead of the toy dataset with 3s and 7s in the book. fast.ai’s <a href="https://docs.fast.ai/data.external.html">External data</a> page explains how I can acquire it, and by running this on my own computer, I can even print the actual path that this data got untarred to:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb1-2" title="2">path <span class="op">=</span> untar_data(URLs.MNIST)</a>
+<a class="sourceLine" id="cb1-3" title="3">path</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" title="1">Path(<span class="st">&#39;/home/akriloth/.fastai/data/mnist_png&#39;</span>)</a></code></pre></div>
+<p>Because this is on my own computer, I can actually <code>cd</code> to and <code>ls</code> this directory, instead of trying to figure out how to use the <code>pathlib.Path</code> API (as <a href="https://fastcore.fast.ai/xtras#Extensions-to-Pathlib.Path">monkey-patched</a> by fast.ai itself — monkey-patching? In <em>my</em> Python library?) I found this a lot more comfortable.</p>
+<p>Fun fact 1: “MNIST” stands for “Modified National Institute of Standards and Technology”. None of the letters describe how the dataset has handwritten digits, or that it’s a dataset at all.</p>
+<p>Fun fact 2: Some of the digits are horrible. Wikipedia refers to <a href="https://github.com/j05t/mnist%3E">j05t’s digit recognizer</a> on GitHub, which comes with a fascinating array of digits that it “fails to identify”:</p>
+<figure>
+<a href="/img/mnist-j05t-incorrect-predictions-blank.png" id="mnist-interactive"><img src="/img/mnist-j05t-incorrect-predictions-blank.png" alt="21 white-on-black images of particularly poorly written digits" /></a>
+<figcaption>
+How many digits can you correctly identify? <button class="btn" id="mnist-interactor">Reveal/Hide</button>
+</figcaption>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    let swap = "/img/mnist-j05t-incorrect-predictions.png";
+    document.getElementById('mnist-interactor').addEventListener('click', () => {
+        const a = document.getElementById('mnist-interactive');
+        const tmp = a.getAttribute('href');
+        a.setAttribute('href', swap);
+        a.getElementsByTagName('img')[0].setAttribute('src', swap);
+        swap = tmp;
+    });
+});
+</script>
+</figure>
+<p>Incidentally, while cross-referencing other tutorials, I noticed that the PyTorch tutorial uses <a href="https://www.kaggle.com/datasets/zalando-research/fashionmnist">Fashion-MNIST</a>, which is an attempt to replace MNIST as an elementary machine learning dataset — maybe for reasons like the above? Still, I was more interested in handwritten digits since humans are great at recognizing them but not so great at describing how they recognize them, so I decided to stick with MNIST.</p>
+<p>The <code>untar_data</code> step is idempotent, so it’s safe to put in a notebook where we might run it multiple times; and we can still look at an image in our notebook with something like:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" title="1">zero_ims <span class="op">=</span> (path<span class="op">/</span><span class="st">&#39;training&#39;</span><span class="op">/</span><span class="st">&#39;0&#39;</span>).ls()</a>
+<a class="sourceLine" id="cb3-2" title="2">zero_im <span class="op">=</span> Image.<span class="bu">open</span>(zero_ims[<span class="dv">0</span>])</a>
+<a class="sourceLine" id="cb3-3" title="3">zero_im</a></code></pre></div>
+<p>Or we can <code>cd</code> to it and use whatever image viewer we please. I usually reach for <code>gthumb</code> these days. Anyway, let’s convert the images to PyTorch tensors.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb4-1" title="1">training <span class="op">=</span> {}</a>
+<a class="sourceLine" id="cb4-2" title="2">testing <span class="op">=</span> {}</a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="cf">for</span> digit <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</a>
+<a class="sourceLine" id="cb4-4" title="4">    <span class="bu">print</span>(<span class="st">&#39;loading&#39;</span>, digit)</a>
+<a class="sourceLine" id="cb4-5" title="5">    training[digit] <span class="op">=</span> [tensor(Image.<span class="bu">open</span>(im_path)).<span class="bu">float</span>()<span class="op">/</span><span class="dv">255</span> <span class="cf">for</span> im_path <span class="kw">in</span> (path<span class="op">/</span><span class="st">&#39;training&#39;</span><span class="op">/</span><span class="bu">str</span>(digit)).ls()]</a>
+<a class="sourceLine" id="cb4-6" title="6">    testing[digit] <span class="op">=</span> [tensor(Image.<span class="bu">open</span>(im_path)).<span class="bu">float</span>()<span class="op">/</span><span class="dv">255</span> <span class="cf">for</span> im_path <span class="kw">in</span> (path<span class="op">/</span><span class="st">&#39;testing&#39;</span><span class="op">/</span><span class="bu">str</span>(digit)).ls()]</a></code></pre></div>
+<p>A PyTorch tensor is a multi-dimensional homogeneous array of numbers, similar to a numpy array and supporting similar <a href="https://pytorch.org/docs/stable/notes/broadcasting.html">broadcasting semantics</a>. Here, we divide a tensor by an integer to divide each element by that same integer. Howver, PyTorch tensors have a lot more “magic” in them than numpy arrays. Roughly, the main feature of interest is that PyTorch tensors “remember how they were computed” in order to support an automatic differentiation system, or <a href="https://pytorch.org/docs/stable/notes/autograd.html">autograd</a>. But more on that later; for the time being we can treat them as oddly named numpy arrays.</p>
+<p>The images have pixels from 0 to 255. We’re going to convert them to floats in <span class="math inline">\([0,1]\)</span> right away, so we don’t forget to do so later. I did, in fact, forget to do so while iterating on the code in this post, and ended up with some great bugs.</p>
+<h3 id="absolute-difference-from-mean">Absolute difference from mean</h3>
+<p>The first toy model we make in the fast.ai course is as follows: For each digit, take the average of every training image showing that digit to get an “ideal digit”. To predict what digit a future image is, we’ll just compute its distance to each “ideal digit” and pick the closest one. For the distance we’ll also follow the course and use the sum of absolute values of elementwise differences, i.e. the L¹ norm. However, the tutorial only does it for 3 and 7. Let’s do the analogous thing for all ten digits in our full data set.</p>
+<p>I don’t think I would describe this as machine learning, exactly. It’s just “machine”. Still, I found it useful practice.</p>
+<p>Average zero:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb5-1" title="1">z <span class="op">=</span> torch.stack(training[<span class="dv">0</span>]).<span class="bu">float</span>()</a></code></pre></div>
+<p><code>torch.stack</code> has type <code>Sequence[tensor] -&gt; tensor</code>. I didn’t know that Python actually sort-of-formally defines <a href="https://docs.python.org/3/glossary.html#term-sequence">“sequence”</a> — it’s an iterable that supports integer indexing and <code>len</code>. Then, we call <code>mean</code>, which takes an axis argument.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb6-1" title="1">show_image(z.mean(<span class="dv">0</span>))</a></code></pre></div>
+<p>Unlike the mundane digits in the course, my 0 had a vaguely psychedelic color scheme.</p>
+<figure>
+<a href="/img/mnist-0-viridis.png"><img src="/img/mnist-0-viridis.png" alt="A tilted, bright yellow-green figure 0 against a dark purple background"/></a>
+<figcaption>
+Average digit 0 in MNIST’s training data
+</figcaption>
+</figure>
+<p>It turns out this was because I hadn’t run the configuration step <code>matplotlib.rc('image', cmap='Greys')</code> beforehand. The scheme depends on the <a href="https://matplotlib.org/3.5.0/tutorials/colors/colormaps.html">colormap chosen by matplotlib</a>; the default is called <code>viridis</code> and has a lot of <a href="https://bids.github.io/colormap/">careful thought</a> behind it. Honestly, I kinda like it.</p>
+<p>Now that we know this works, let’s make all of the average digits.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb7-1" title="1">training_means <span class="op">=</span> torch.stack([</a>
+<a class="sourceLine" id="cb7-2" title="2">    (torch.stack(training[digit]).<span class="bu">float</span>()<span class="op">/</span><span class="dv">255</span>).mean(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb7-3" title="3">    <span class="cf">for</span> digit <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb7-4" title="4">])</a></code></pre></div>
+<p>This is a <code>10 × 28 × 28</code> tensor. If we had a <code>28 × 28</code> tensor <code>im</code>, how do we neatly compare it against each of these means and figure out which mean has the smallest sum of absolute differences from <code>im</code>?</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb8-1" title="1">(im <span class="op">-</span> training_means).<span class="bu">abs</span>().mean((<span class="dv">1</span>, <span class="dv">2</span>)).argmin().item()</a></code></pre></div>
+<p>When we compute <code>im - training_means</code>, the former is <code>28 × 28</code> and the latter is <code>10 × 28 × 28</code>, so the former broadcasts and we get a <code>10 × 28 × 28</code> tensor of differences. Then, we take its elementwise absolute value, and then we compute the mean along axes 1 and 2 (0-indexed), i.e. the two length-28 axes. The result is a length-<code>10</code> tensor. Finally, we take its <code>argmin</code>, the index at which the value is minimal. Finally finally, we have a zero-dimensional tensor with a number in it, but we want to get the underlying Python number out because it prints more nicely; <code>.item()</code> accomplishes this. (This is another difference from numpy, where <code>argmin</code> and similar operations would directly return <a href="https://numpy.org/doc/stable/reference/arrays.scalars.html">scalars</a>, but it makes sense in PyTorch’s case because scalars need to “remember how they were computed” just as much as higher-dimensional arrays.)</p>
+<p>To see how this model performs, let’s define a function for analyzing the accuracy of any predictor, so we can reuse it later:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">def</span> show_results(predictor):</a>
+<a class="sourceLine" id="cb9-2" title="2">    <span class="cf">for</span> name, data <span class="kw">in</span> [(<span class="st">&#39;testing&#39;</span>, testing), (<span class="st">&#39;training&#39;</span>, training)]:</a>
+<a class="sourceLine" id="cb9-3" title="3">        <span class="bu">print</span>(<span class="st">&#39;results on&#39;</span>, name)</a>
+<a class="sourceLine" id="cb9-4" title="4">        total_correct <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb9-5" title="5">        total_total <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb9-6" title="6">        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</a>
+<a class="sourceLine" id="cb9-7" title="7">            correct <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb9-8" title="8">            total <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb9-9" title="9">            <span class="cf">for</span> im <span class="kw">in</span> data[i]:</a>
+<a class="sourceLine" id="cb9-10" title="10">                correct <span class="op">+=</span> predictor(im) <span class="op">==</span> i</a>
+<a class="sourceLine" id="cb9-11" title="11">                total <span class="op">+=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb9-12" title="12">            <span class="bu">print</span>(i, <span class="st">&quot;:&quot;</span>, correct, <span class="st">&#39;/&#39;</span>, total, <span class="st">&#39;=&#39;</span>, correct<span class="op">/</span>total)</a>
+<a class="sourceLine" id="cb9-13" title="13">            total_correct <span class="op">+=</span> correct</a>
+<a class="sourceLine" id="cb9-14" title="14">            total_total <span class="op">+=</span> total</a>
+<a class="sourceLine" id="cb9-15" title="15">        <span class="bu">print</span>(total_correct, <span class="st">&#39;/&#39;</span>, total_total, <span class="st">&#39;=&#39;</span>, total_correct<span class="op">/</span>total_total)</a></code></pre></div>
+<p>If we assume the <code>predictor</code> works elementwise, we could optimize this function a lot, but I deliberately avoided it to try to minimize the risk of bugs in this function. We don’t run it often anyway.</p>
+<p>Much later, I realized that <code>show_results</code> is already the name of a function that fast.ai imports into the global scope, but I decided not to change my function’s name to faithfully represent my experience.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> To be honest, I don’t even understand why <code>show_results</code> is in scope; all the documentation I could find only have it as a method on various classes. Something <a href="https://fastcore.fast.ai/dispatch.html">type dispatch</a> something? Anyway, we can use it like so:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb10-1" title="1">show_results(<span class="kw">lambda</span> im: (im <span class="op">-</span> training_means).<span class="bu">abs</span>().mean((<span class="dv">1</span>, <span class="dv">2</span>)).argmin().item())</a></code></pre></div>
+<p>My closest-average code gets 66.85% accuracy on the test set and 65.13% on the training set. In theory, this is completely deterministic.</p>
+<p>Remember the bug I mentioned? When I first wrote this code, my prediction did something equivalent to:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb11-1" title="1">show_results(<span class="kw">lambda</span> im: (im <span class="op">-</span> training_means<span class="op">/</span><span class="dv">255</span>).<span class="bu">abs</span>().mean((<span class="dv">1</span>, <span class="dv">2</span>)).argmin().item())</a></code></pre></div>
+<p>This actually got <em>higher</em> accuracies of 72.44% and 71.18%. If avoiding and noticing these bugs is what machine learning engineering proficiency is about, it’s obviously something I don’t have (yet).</p>
+<h3 id="creating-a-trivial-linear-model">Creating a trivial linear model</h3>
+<p>We’re going to make the simplest neural network possible: a single layer of 10 neurons, each with weights and a bias and corresponding to a possible digit. I’m not sure if this even counts as a neural network, actually, but I guess we will add a nonlinearity at the end to interpret the outputs as probabilities.</p>
+<p>Let’s start by getting all our data into PyTorch tensors.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb12-1" title="1">train_x <span class="op">=</span> torch.cat([t.<span class="bu">float</span>()<span class="op">/</span><span class="dv">255</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>) <span class="cf">for</span> t <span class="kw">in</span> training[i]]).view(<span class="op">-</span><span class="dv">1</span>, <span class="dv">28</span><span class="op">*</span><span class="dv">28</span>)</a>
+<a class="sourceLine" id="cb12-2" title="2">train_y <span class="op">=</span> tensor([i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>) <span class="cf">for</span> _ <span class="kw">in</span> training[i]])</a>
+<a class="sourceLine" id="cb12-3" title="3">train_x.shape, train_y.shape</a></code></pre></div>
+<p>First, we <a href="https://pytorch.org/docs/stable/generated/torch.cat.html">concatenate</a> all the training images. Next, we <a href="https://pytorch.org/docs/stable/generated/torch.Tensor.view.html">view</a> the resulting tensor as a two-dimensional vector whose second dimension is 28 × 28 = 784, and first dimension is unspecified; <code>-1</code> means “pick whatever number makes the size work out”. This flattens each training image, originally a 28 × 28 tensor, into one length-784 vector, and gives us a tensor whose rows are those vectors.</p>
+<p><code>view</code> always gives a tensor that’s backed by the same memory as the tensor you call it on, so mutating either tensor affects the other. However, <code>view</code> might fail if this isn’t possible. The documentation is a little inscrutable, but most tensors can be <code>view</code>ed as any shape with the same size (number of elements). Tensors that can’t are <a href="https://stackoverflow.com/questions/26998223/what-is-the-difference-between-contiguous-and-non-contiguous-arrays/26999092#26999092">non-contiguous</a> (this answer is about numpy but the same principles apply) and will most often arise by transposing existing tensors, though being non-contiguous only prevents <code>view</code>-ing the non-contiguous dimensions.</p>
+<p>I also deviated a little from the fast.ai tutorial, which calls <code>.unsqueeze(1)</code> on <code>train_y</code>. <code><a href="https://pytorch.org/docs/stable/generated/torch.unsqueeze.html">unsqueeze</a></code> is one of the rare PyTorch functions whose name differs from its numpy counterpart, <code><a href="https://numpy.org/doc/stable/reference/generated/numpy.expand_dims.html">expand_dims</a></code>; it adds an axis, specified by the new axis’s (0-indexed, as usual) dimension. Here, it would convert the one-dimensional length-<i>n</i> tensor into an <i>n</i> × 1 tensor. I haven’t figured out the rationale for doing this, and <em>not</em> doing it seems to make our lives a little easier later.</p>
+<p>Actually, this kind of thing essentially caused the one bug I remember writing in that one machine learning course. Somewhere deep in my code, I did something like elemmentwise-multiplying a 10 × 1 array by a one-dimensional length-10 array, which broadcast them to produce a 10 × 10 array, and then computing the sum of the result. Naturally, that sum was wildly off with the value I actually wanted, which was the sum of the 10 elements of the elementwise product of the two arrays, and I didn’t notice it for the longest time.</p>
+<p>Now we’re going to define our one layer, an affine transformation <span class="math inline">\(\mathbb{R}^{784} \to \mathbb{R}^{10}\)</span>, as a matrix of weights (to multiply the input by) and a vector of biases (to add at the end).</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">def</span> init_params(size, std<span class="op">=</span><span class="fl">1.0</span>):</a>
+<a class="sourceLine" id="cb13-2" title="2">    <span class="cf">return</span> (torch.randn(size)<span class="op">*</span>std).requires_grad_()</a>
+<a class="sourceLine" id="cb13-3" title="3">weights <span class="op">=</span> init_params((<span class="dv">28</span><span class="op">*</span><span class="dv">28</span>, <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb13-4" title="4">bias <span class="op">=</span> init_params((<span class="dv">10</span>))</a></code></pre></div>
+<p>I glossed over the exact code in the tutorial here and got very tripped up later when my tensor sizes didn’t match up. If you’re familiar with linear algebra, you may be used to thinking of any given <span class="math inline">\(n \times m\)</span> matrix <span class="math inline">\(M\)</span> as a linear transformation <span class="math inline">\(\mathbb{R}^m \to \mathbb{R}^n\)</span>, given by <span class="math inline">\(x \mapsto Mx\)</span>. Matrix multiplication <span class="math inline">\(A \mapsto MA\)</span> can then be interpreted as applying the linear transformation <span class="math inline">\(x \mapsto Mx\)</span> column-wise to <span class="math inline">\(A\)</span>. That’s how I think of it, at least.</p>
+<p>The problem is that this requires us to consider <span class="math inline">\(A\)</span> as a sequence of column vectors, and PyTorch tensors (and numpy arrays, and so on) don’t really “want to” be thought of this way. A two-dimensional tensor “wants to” be considered as a sequence of row vectors, since you get row vectors when you iterate over it and when you index into it once; in fact, this works better with other aspects of mathematical notation, since matrix dimensions usually list the number of rows first and <span class="math inline">\(M_{ij}\)</span> usually means the <span class="math inline">\(i\)</span>th row, <span class="math inline">\(j\)</span>th column, matching <code>m[i][j]</code>.</p>
+<p>It’s possible to cling to our column-oriented mathematical intuition by sprinkling transposes everywhere in our code, but after thinking this through more I decided that, overall, it’s easier to get used to <span class="math inline">\(n \times m\)</span> matrices as actually representing transformations <span class="math inline">\(\mathbb{R}^n \to \mathbb{R}^m\)</span> via <span class="math inline">\(x \mapsto xM\)</span>, and to apply such matrices by multiplying them on the right. Hence why my <code>weights</code> has dimensions <span class="math inline">\(784 \times 10\)</span> instead. To the mathematician, this is all obviously isomorphic anyway.</p>
+<p>With the long aside on matrix shapes out of the way, the other stuff going on in this code is that:</p>
+<ul>
+<li><code><a href="https://pytorch.org/docs/stable/generated/torch.randn.html">randn</a></code> generates a tensor of the specified size, and fills it with random numbers from a normal distribution with mean 0 and variance 1</li>
+<li><code><a href="https://pytorch.org/docs/stable/generated/torch.Tensor.requires_grad_.html">requires_grad_()</a></code> marks that we will want to compute the gradient with respect to this value. The trailing underscore is a PyTorch convention that the method mutates the tensor in-place rather than returning a copy or view. This function is the first step to using the PyTorch autograd system I alluded to when introducing tensors.</li>
+</ul>
+<p>Before we do that, though, let’s try predicting with our uninitialized, completely random model:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb14-1" title="1">show_results(<span class="kw">lambda</span> im: (bias <span class="op">+</span> im.view(<span class="dv">28</span><span class="op">*</span><span class="dv">28</span>) <span class="op">@</span> weights).argmax().item())</a></code></pre></div>
+<p>The result of this will actually be quite random, but I did get around 10% accuracy on both datasets. You may notice widely varying accuracies on digits, which I was briefly surprised by but quickly understood to be caused by the random <code>bias</code> — the random model is predisposed to predict certain digits much more often than others, so it will naturally get those digits right more often.</p>
+<h3 id="training-the-trivial-linear-model">Training the trivial linear model</h3>
+<p>For completeness, I’ll recap the techniques and choices made by the fast.ai tutorial I’m copying (and which I understand to be very standard in ML): We want to optimize our model with <em>gradient descent</em>, where we take some function of our model we want to optimize, compute its derivative with respect to each parameter in our model (that is, each weight and bias), adjust each parameter in the direction suggested by that derivative, and repeat. To do this, we need a differentiable function to optimize. Accuracy isn’t differentiable (or rather, its derivative is 0 almost everywhere because it’s discrete-valued and a “step function” at its core), so instead we consider the softmax of the vector output by our model. Abstractly, softmax is the <span class="math inline">\(\mathbb{R}^n \to \mathbb{R}^n\)</span> function <span class="math display">\[\text{softmax}(z_1, \ldots, z_n) = \left(\frac{e^{z_1}}{e^{z_1} + \cdots + e^{z_n}}, \ldots, \frac{e^{z_n}}{e^{z_1} + \cdots + e^{z_n}}\right).\]</span> The <span class="math inline">\(i\)</span>th component can be thought of as a continuous version of “whether the argmax equals <span class="math inline">\(i\)</span>” (hence the name “softmax”): <span class="math display">\[\frac{e^{z_i}}{e^{z_1} + \cdots + e^{z_n}} \approx \begin{cases} 1 &amp; \text{if }z_i = \max(z_1, \ldots, z_n) \\ 0 &amp; \text{else} \end{cases}.\]</span> Note also that softmax’s outputs are always in <span class="math inline">\([0, 1]\)</span> and that the sum of the components of a softmax is always 1, which are other ways it’s like argmax (assuming ties are broken deterministically) and which we’ll come back to later. By replacing the “argmax equals <span class="math inline">\(i\)</span>” condition in our <code>show_results</code> function with this function, we can go from computing the discrete-valued accuracy to computing a continuous-valued “accuracy, but it’s continuous”.</p>
+<p>PyTorch comes with a <code>softmax</code> function, so we can take the softmax of our model’s outputs on the very first training image with:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb15-1" title="1">torch.softmax(bias <span class="op">+</span> train_x[<span class="dv">0</span>] <span class="op">@</span> weights, dim<span class="op">=</span><span class="dv">0</span>)</a></code></pre></div>
+<p>The result is a length-10 vector. Because <code>train_x</code> is in order, the correct digit for this image is <code>0</code>, so the first (that is, 0th) element of this vector represents “whether our model got the answer right, but it’s continuous”.</p>
+<p>To apply our model to every single image at once, we can just write <code>bias + train_x @ weights</code>. If we had a GPU, this is the kind of thing it would parallelize very effectively. Then we can <code>softmax</code> across each row, index out all the elements corresponding to the correct answers, and compute their average. I couldn’t find exactly where PyTorch documents this, but (I assume) it works just like what numpy calls <a href="https://numpy.org/doc/stable/user/basics.indexing.html#advanced-indexing">advanced indexing</a>.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb16-1" title="1">torch.softmax(bias <span class="op">+</span> train_x <span class="op">@</span> weights, dim<span class="op">=</span><span class="dv">1</span>)[<span class="bu">range</span>(<span class="dv">60000</span>), train_y].mean()</a></code></pre></div>
+<p>The event that prompted me to think really hard about tensor shapes was that I tried writing the above when <code>train_y</code> had been unsqueezed and was a <code>60000 × 1</code> tensor. My notebook promptly crashed. I believe this was because advanced indexing broadcasts the tensors being indexed with, resulting in trying to index into the tensor of softmaxes with <code>60000 × 60000</code> pairs. Unwanted broadcasting strikes again!</p>
+<p>Anyway, this “continuous accuracy” is also close to <code>0.1</code>. However, this value still won’t be the function we try to optimize directly. Why not?</p>
+<p>A glib response is that, if you try optimizing it, it “doesn’t work”; the accuracy doesn’t really go up. A longer explanation is that making our accuracy differentiable doesn’t mean that we’ve made it suitable for gradient descent. Just as accuracy’s derivative is 0 almost everywhere, softmax’s derivative is <em>approximately</em> 0 <em>approximately</em> almost everywhere, so the gradient will often fail to provide a strong signal on which way to adjust the parameters.</p>
+<figure>
+<a href="/img/sigmoid.png"><img src="/img/sigmoid.png" alt="A graph of the sigmoid function, which starts flat at y = 0 and around x = -5, smoothly increases with the steepest slope at x = 0, and flattens out again at y = 1 and x = 5." /></a>
+<figcaption>
+A sigmoid (softmax(0, x)), which looks totally flat outside x = ±5. (<code>x = np.linspace(-10, 10, 100); plt.plot(x, 1/(1+np.exp(-x)))</code>)
+</figcaption>
+</figure>
+<p>When we evaluate the model, it makes sense to award 0 points for being wrong and 1 point for being right because the result represents accuracy, a concept we’re familiar with; but when we train the model, we want gradient descent to change parameters when the model is wrong and not change them when the model is right, so we sort of want to artificially punish being wrong more than we want to reward being right.</p>
+<p>I think this is a fairly satisfying answer for why we don’t optimize the softmax directly, but to explain the choice of function we do optimize requires a longer diversion.</p>
+<h3 id="what-is-entropy">What is entropy?</h3>
+<p>For a random variable <span class="math inline">\(X\)</span> with outcomes <span class="math inline">\(x_1, \ldots, x_n\)</span>, the entropy of <span class="math inline">\(X\)</span> is given by <span class="math display">\[H(X) = -\sum_{i=1}^n P(x_i) \log P(x_i).\]</span> Entropy is a nonnegative quantity because probabilities are between 0 and 1, so their logs are negative. That’s fine and all, but I’m not here to regurgitate definitions, I’m here to try to explain them and convince you (and myself) that they make sense.</p>
+<p>There are many interpretations of <a href="https://en.wikipedia.org/wiki/Entropy_%28information_theory%29">entropy</a>, but the one that eventually made sense to me in this context is that entropy is a way to quantify the expected amount of “surprise”. When you experience an event with probability <span class="math inline">\(p\)</span>, we might say that you experience <span class="math inline">\(-\log p\)</span> units of surprise. This formulation already runs counter to typical usage since it implies that there’s no way to <em>not</em> be surprised when experiencing a random event. For example, if you just flip a coin over and over and keep observing the result, by our definition, you’re constantly experiencing <span class="math inline">\(\log 2\)</span> units of “surprise” per flip; whereas any normal human flipping coins over and over would probably be bored out of their mind. But let’s ignore that aspect.</p>
+<p>It makes sense that less likely events are more surprising, but why do we use the log instead of any other decreasing function, say <span class="math inline">\(1/p\)</span>? A short response is that it makes sense for winning the lottery twice to be twice as surprising as winning it once. Or does it? I have thought about this for long enough that I no longer know if this appeal to common sense holds any water.</p>
+<p>A slightly longer response, which also links entropy back to our machine learning context, is as follows: We are trying to build a system that can predict events. If you’re trying to predict events, you could informally describe your predictor as being “surprised” when it makes a prediction and the prediction turns out to be wrong; “surprise” is therefore bad, and is a quantity you want to minimize. Now, suppose you have some candidate systems for predicting two independent random variables, and you want to construct a system to predict both random variables at the same time. Then it would make sense for the best candidate for that task to just be a combination of the best candidate for predicting each individual random variable. By adopting entropy as your definition of surprise, any candidate’s “expected surprise” will just be the sum of its “expected surprise” on the first and second variables, so it’s optimal to combine the best candidates for predicting the individual variables, as desired.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
+<p>Now that we understand entropy, we can understand some useful related terms. The <a href="https://en.wikipedia.org/wiki/Cross_entropy">cross-entropy</a> between two probability distributions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>, or more precisely the cross-entropy of <span class="math inline">\(Q\)</span> relative to <span class="math inline">\(P\)</span>, is the expected value of surprise you experience if you believe the probability distribution is <span class="math inline">\(Q\)</span> when it’s actually <span class="math inline">\(P\)</span>: <span class="math display">\[H(P, Q) = -\sum_{i=1}^n P(x_i) \log Q(x_i).\]</span> That is, we say you experience “surprise” based on how probable you <em>think</em> the outcome is, but calculate expected value based on how probable the outcome <em>actually</em> is.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback–Leibler divergence</a> is the “excess” expected amount of surprise you experience if you believe the probability distribution is <span class="math inline">\(Q\)</span> when it’s actually <span class="math inline">\(P\)</span>: <span class="math display">\[\begin{align*}D_{\text{KL}}(P, Q) &amp;= H(P, Q) - H(P) \\ &amp;= -\sum_{i=1}^n P(x_i) (\log Q(x_i) - \log P(x_i)).\end{align*}\]</span> When I say “excess”, I’m implicitly relying on an assumption that, for fixed <span class="math inline">\(P\)</span>, the cross-entropy <span class="math inline">\(H(P, Q)\)</span> is minimal when <span class="math inline">\(Q = P\)</span>; that is, when you believe that the probability distribution is what it actually is, you’re minimizing the expected value of surprise you’ll experience when you observe the random variable. This fact is not obvious! For a different definition of entropy or surprise, you could totally imagine the math working out so that, say, somebody who believes unlikely events are even more unlikely than they actually are comes out ahead in terms of minimizing surprise. But the fact that this doesn’t happen for our definitions is known as <a href="https://en.wikipedia.org/wiki/Gibbs%27_inequality">Gibbs’ inequality</a>.</p>
+<p>This is good for our use cases in that, if we have a system that produces a probability distribution <span class="math inline">\(P\)</span>, minimizing either cross-entropy or the Kullback-Liebler divergence of <span class="math inline">\(P\)</span> relative to some actual probability distribution <span class="math inline">\(Q\)</span> can be considered as trying to get the system to have “true beliefs” about the probability distribution.</p>
+<h3 id="is-this-the-correct-way-to-think-about-entropy">Is this the correct way to think about entropy?</h3>
+<p>This is a massive tangent that you should probably skip.</p>
+<p>Haskell has a fun concept called monads:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">class</span> <span class="dt">Monad</span> m <span class="kw">where</span></a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="ot">    (&gt;&gt;=)  ::</span> m a <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> m b) <span class="ot">-&gt;</span> m b</a>
+<a class="sourceLine" id="cb17-3" title="3"><span class="ot">    return ::</span> a <span class="ot">-&gt;</span> m a</a></code></pre></div>
+<p>I will not explain them here because that’s not the point, but they are widely considered to be an infamously difficult concept to understand in Haskell, and hundreds of tutorials have been written about them trying to give intuitive explanations what they “really are”. Unfortunately, there really isn’t anything in most other programming languages, computational models, or the experiences of most Haskell newbies that are a perfect analogy for monads. If monads are containers, why can’t you get the value contained by an <code>IO</code>? If monads capture side effects, what is the free monad and how does <a href="https://hackage.haskell.org/package/tardis">Tardis</a> actually send side effects backwards in time? The idea that, after you’ve gotten an intuitive grasp for a new concept, you can explain your intuition in a tutorial and the reader will immediately understand it just as well, has been dubbed the <a href="https://byorgey.wordpress.com/2009/01/12/abstraction-intuition-and-the-monad-tutorial-fallacy/">“monad tutorial fallacy”</a> in this context.</p>
+<p>In the end I think the only really correct way to think of “monad” is “something that supports <code>&gt;&gt;= :: m a -&gt; (a -&gt; m b) -&gt; m b</code> and <code>return :: a -&gt; m a</code><a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>”, and the only way to understand “monad” is to think about that assertion and about various examples until it makes sense.</p>
+<p>This is my long-winded way of saying that, although I feel like I “understand” entropy a lot better after writing the previous section, it might not really be a shortcut for anybody else staring at <span class="math display">\[H(X) = -\sum_{i=1}^n P(x_i) \log P(x_i)\]</span> and playing with it until it makes sense.</p>
+<p>On the other hand, this section may also just be an overreaction to a pedagogical phenomenon that’s way rarer than I think it is, a la “Guy who has only seen <cite>The Boss Baby</cite>”. So who knows.</p>
+<h3 id="actually-choosing-our-loss-function">Actually choosing our loss function</h3>
+<p>Where we left off, we had computed all the correct elements of softmaxes:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb18-1" title="1">torch.softmax(bias <span class="op">+</span> train_x <span class="op">@</span> weights, dim<span class="op">=</span><span class="dv">1</span>)[<span class="bu">range</span>(<span class="dv">60000</span>), train_y]</a></code></pre></div>
+<p>We also explained why optimizing their mean isn’t what we want. Instead, we will be optimizing for their negative log:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb19-1" title="1"><span class="op">-</span>torch.log(torch.softmax(bias <span class="op">+</span> train_x <span class="op">@</span> weights, dim<span class="op">=</span><span class="dv">1</span>)[<span class="bu">range</span>(<span class="dv">60000</span>), train_y]).mean()</a></code></pre></div>
+<p>To make fully explicit the connection here to our long sidebar on entropy, we observe that softmax outputs a vector of positive reals that sum to 1, so we can interpret that vector as a probability distribution — how likely the model believes the image is to be each of the digits. In that case, the negative log of the softmax component corresponding to the correct answer is “how surprised” the model would be when we reveal the true digit corresponding to the image is. This can also be thought of as the cross-entropy of the model’s probability distribution relative to the true distribution of the digit, the latter of which is just that that digit is what it’s labeled as 100% of the time. A perfect model would always assign 100% probability to the correct digit and experience 0 surprise; but note that if that model were to be 100% confidently wrong about even one single digit, it would be <em>infinitely</em> surprised.</p>
+<p>In this ML context, the function we optimize for is called a “loss function”, and fast.ai’s <code>nn</code> has a <a href="https://docs.fast.ai/losses.html">loss function</a> for this, so we could have just written:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb20-1" title="1">nn.CrossEntropyLoss()(bias <span class="op">+</span> train_x <span class="op">@</span> weights, train_y)</a></code></pre></div>
+<p>You can also pass <code>reduction='none'</code> to recover the tensor of negative logs of individual softmax components:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb21-1" title="1">nn.CrossEntropyLoss(reduction<span class="op">=</span><span class="st">&#39;none&#39;</span>)(bias <span class="op">+</span> train_x <span class="op">@</span> weights, train_y)</a></code></pre></div>
+<p>With the loss function locked down, we only need one more thing to train our model, the optimization process itself.</p>
+<h3 id="stochastic-gradient-descent">Stochastic Gradient Descent</h3>
+<p>We could perform gradient descent by directly taking the expression for cross-entropy loss we got above, telling PyTorch to compute all the gradients, adjusting our parameters, and repeating.</p>
+<p>However, this makes every step very slow, since PyTorch will have to look at how every single training image and label affects the gradients; and we want to perform many steps of gradient descent, because the function we’re optimizing is nonlinear and the gradient should change a lot after each step. (If it were linear, there would be no need for gradient descent at all. We could just consider each parameter individually and set it to the extremum that optimizes our objective function.)</p>
+<p>Instead, we compute each gradient descent step using a <em>random subset</em> of our training data – hence, <em>stochastic</em> gradient descent. We’ll just copy the tutorial and use PyTorch’s <a href="https://pytorch.org/tutorials/beginner/basics/data_tutorial.html">DataLoader</a>, since code to choose many random subsets of a set isn’t particularly interesting.</p>
+<p>The same documentation lists some dataset classes that we could have used, so we could have avoided loading all the MNIST images into Python and converting them to tensors; but I guess it was educational. We also can get by very easily without the PyTorch dataset classes at all, because a dataset is just a sequence of (x, y) pairs:</p>
+<blockquote>
+<p>A custom Dataset class must implement three functions: <code>__init__</code>, <code>__len__</code>, and <code>__getitem__</code>.</p>
+</blockquote>
+<p>So we can make a dataset and a data loader like this:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb22-1" title="1">dset <span class="op">=</span> <span class="bu">list</span>(<span class="bu">zip</span>(train_x, train_y))</a>
+<a class="sourceLine" id="cb22-2" title="2">dl <span class="op">=</span> DataLoader(dset, batch_size<span class="op">=</span><span class="dv">256</span>, shuffle<span class="op">=</span><span class="va">True</span>)</a></code></pre></div>
+<p>Each time we iterate over the <code>DataLoader</code>, it will shuffle the data, divide it into size-256 batches, and serve them to us one by one. As a demonstration, we could get one batch with <code><a href="https://fastcore.fast.ai/basics.html#first">first</a></code>. Because of course fast.ai comes with such a helper.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb23-1" title="1">batch_x, batch_y <span class="op">=</span> first(dl)</a></code></pre></div>
+<p>Now we can finally perform one step of gradient descent. First, we compute the gradients with the magic function <code><a href="https://pytorch.org/docs/stable/generated/torch.Tensor.backward.html">tensor.backward</a></code>:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb24-1" title="1">nn.CrossEntropyLoss()(bias <span class="op">+</span> batch_x <span class="op">@</span> weights, batch_y).backward()</a></code></pre></div>
+<p>Remember, when I first described PyTorch tensors, how they “remember how they were computed”? It’s all for this call. Calling <code>backward</code> computes the gradient of the quantity you call it on with respect to each <a href="https://pytorch.org/docs/stable/generated/torch.Tensor.is_leaf.html">graph leaf</a> — basically, the tensors we created and called <code>.requires_grad_()</code> on. It records those gradients by mutating the <code><a href="https://pytorch.org/docs/stable/generated/torch.Tensor.grad.html#torch.Tensor.grad">.grad</a></code> property of each graph leaf, initializing that attribute to the zero tensor if necessary and then <strong>adding the computed gradient</strong> to that tensor. (It then deletes the relevant computation graph, that is, the information about how tensors were computed; we could have kept it by passing <code>retain_graph=True</code>.)</p>
+<p>Note that this means that we’re responsible for zeroing or deleting <code>grad</code> from each of our parameters between steps! Why does <code>backward</code> work this way? This <a href="https://discuss.pytorch.org/t/why-do-we-need-to-set-the-gradients-manually-to-zero-in-pytorch/4903">PyTorch forum discussion</a> goes into some example use cases where you want to accumulate gradients over multiple <code>backward</code> calls, but why is it the default behavior instead of something you enable by passing a flag to <code>backward</code>? I don’t have a satisfactory answer, but I also haven’t really gone through that entire discussion in detail. It does seem like a popular footgun though.</p>
+<p>In any case, after <code>backward</code> deposits the computed gradients on the tensors representing our parameters, we can adjust the parameters with them. We subtract the gradients because we are trying to minimize our loss function, plus we have to pick a <em>learning rate</em> — a constant to multiply the gradient by to decide how much to change each parameter by — but we’ll deal with that later and pick the trivial 1. Then, we clean up after ourselves to avoid the footgun.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb25-1" title="1">bias.data <span class="op">-=</span> bias.grad <span class="co"># * lr</span></a>
+<a class="sourceLine" id="cb25-2" title="2">weights.data <span class="op">-=</span> weights.grad <span class="co"># * lr</span></a>
+<a class="sourceLine" id="cb25-3" title="3">bias.grad.zero_()</a>
+<a class="sourceLine" id="cb25-4" title="4">weights.grad.zero_()</a></code></pre></div>
+<p>And that’s one step! All together now, here’s how we can optimize our model for ten <em>epochs</em> with a learning rate of 10. In the machine learning training process, an <strong>epoch</strong> refers to one pass through the full training data set, in whatever order or batches we choose.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb26-1" title="1">lr <span class="op">=</span> <span class="dv">10</span></a>
+<a class="sourceLine" id="cb26-2" title="2"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</a>
+<a class="sourceLine" id="cb26-3" title="3">    <span class="cf">for</span> batch <span class="kw">in</span> dl:</a>
+<a class="sourceLine" id="cb26-4" title="4">        batch_x, batch_y <span class="op">=</span> batch</a>
+<a class="sourceLine" id="cb26-5" title="5">        nn.CrossEntropyLoss()(bias <span class="op">+</span> batch_x <span class="op">@</span> weights, batch_y).backward()</a>
+<a class="sourceLine" id="cb26-6" title="6">        bias.data <span class="op">-=</span> bias.grad <span class="op">*</span> lr</a>
+<a class="sourceLine" id="cb26-7" title="7">        weights.data <span class="op">-=</span> weights.grad <span class="op">*</span> lr</a>
+<a class="sourceLine" id="cb26-8" title="8">        bias.grad.zero_()</a>
+<a class="sourceLine" id="cb26-9" title="9">        weights.grad.zero_()</a>
+<a class="sourceLine" id="cb26-10" title="10">    <span class="bu">print</span>(nn.CrossEntropyLoss()(bias <span class="op">+</span> train_x <span class="op">@</span> weights, train_y))</a>
+<a class="sourceLine" id="cb26-11" title="11"></a>
+<a class="sourceLine" id="cb26-12" title="12">show_results(<span class="kw">lambda</span> im: (bias <span class="op">+</span> im.view(<span class="dv">28</span><span class="op">*</span><span class="dv">28</span>, <span class="dv">1</span>) <span class="op">@</span> weights).argmax().item())</a></code></pre></div>
+<p>In practice, ten iterations is not <em>nearly</em> enough to get a good model. Instead of trying to pick the learning rate with a more principled approach, such as the “learning rate finder” described halfway through Chapter 5, I decided to just try some random numbers… and then accidentally spent an hour or so just repeatedly running this cell in my notebook, tweaking the learning rate and number of steps and watching the loss slowly creep down. Making numbers change monotonically is my siren song.</p>
+<p>One odd thing I experienced was that sometimes, when a low learning rate seemed to have stopped improving the loss, running a few epochs at a much higher learning rate and then reverting to the low rate would make the loss temporarily much higher but fairly reliably bring it back down to lower than the loss at which it was stuck at. I didn’t think about this very hard, but it doesn’t seem too unreasonable for local and global optima to just be that way, so I didn’t investigate in more detail. I ended up with a loss of 0.3325, a training accuracy of 90.82%, and a testing accuracy of 90.33%.</p>
+<p>I decided to save my work. PyTorch has built-in serialization and deserialization functions for this, called <code>save</code> and <code>load</code>.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb27-1" title="1"><span class="im">import</span> datetime</a>
+<a class="sourceLine" id="cb27-2" title="2">now <span class="op">=</span> datetime.datetime.now().strftime(<span class="st">&#39;%Y-%m-</span><span class="sc">%d</span><span class="st">-%H-%M-%S&#39;</span>)</a>
+<a class="sourceLine" id="cb27-3" title="3">torch.save(bias, <span class="ss">f&quot;bias-</span><span class="sc">{</span>now<span class="sc">}</span><span class="ss">.pt&quot;</span>)</a>
+<a class="sourceLine" id="cb27-4" title="4">torch.save(weights, <span class="ss">f&quot;weights-</span><span class="sc">{</span>now<span class="sc">}</span><span class="ss">.pt&quot;</span>)</a></code></pre></div>
+<p>Fun fact 3: After I did this and finished writing a lot of this post, I went over my code again and discovered that there was <em>still</em> an extra <code>/255</code> lurking in my code. Consequently, when I loaded my tensor back in and tried to connect it to my most recent code to fetch the dataset, the accuracy was abysmal. Fortunately, I divided my saved weights by 255 and everything was isomorphic.</p>
+<p>Also, as a security engineer (and as somebody fresh off a CTF challenge on this subject), I am obligated to mention that <code>torch.save</code>/<code>torch.load</code> use Python’s <a href="https://docs.python.org/3/library/pickle.html">pickle</a> internally, and it is trivial to construct data that <strong>executes arbitrary code when unpickled</strong>. (PyTorch may error with <code>Invalid magic number; corrupt file?</code> afterwards, but by then it’s too late.)</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb28-1" title="1"><span class="im">import</span> io, os, pickle</a>
+<a class="sourceLine" id="cb28-2" title="2"><span class="kw">class</span> Exploit:</a>
+<a class="sourceLine" id="cb28-3" title="3">    <span class="kw">def</span> __reduce__(<span class="va">self</span>): <span class="cf">return</span> os.system, (<span class="st">&quot;echo &#39;get hacked lol&#39;&quot;</span>,)</a>
+<a class="sourceLine" id="cb28-4" title="4"></a>
+<a class="sourceLine" id="cb28-5" title="5">torch.load(io.BytesIO(pickle.dumps(Exploit())))</a></code></pre></div>
+<p>I don’t recommend calling <code>torch.load</code> on files from untrusted sources.</p>
+<h3 id="interpreting-our-model">Interpreting our model</h3>
+<p>Let’s try to understand what’s going in our simple neural network.</p>
+<p>fast.ai has some really nice utilities for this. <code>show_images</code> takes an iterable of 2D tensors. With almost no effort, we can directly visualize the weights our training process produced.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb29-1" title="1">show_images(weights.T.view((<span class="dv">10</span>,<span class="dv">28</span>,<span class="dv">28</span>)))</a></code></pre></div>
+<figure>
+<a href="/img/mnist-linear-weights.png"><img src="/img/mnist-linear-weights.png" alt="10 blurry, generally yellow-on-green images with patterns resembling the digits 0 through 9" /></a>
+<figcaption>
+Our linear model’s <code>weights</code>
+</figcaption>
+</figure>
+<p>You can sort of see the digits in most of these neurons.</p>
+<p>Since this is so easy, we can investigate what happened earlier when we tried optimizing softmax directly. The results are really interesting! Here’s an example run:</p>
+<figure>
+<a href="/img/mnist-softmax-opt.png"><img src="/img/mnist-softmax-opt.png" alt="10 images with a mix of yellow, green, and blue backgrounds and combinations of distorted digits in each" /></a>
+<figcaption>
+The <code>weights</code> from an attempt to train our model’s softmax-based accuracy directly
+</figcaption>
+</figure>
+<p>The training process seems to have randomly “burned in” a few digits from the training set in each weight matrix. Although I didn’t investigate this in as much detail as I’d have liked to, I think my earlier hypothesis was roughly correct: doing gradient descent the softmax directly only makes significant steps when the model happens to be close to 50% confident about the correct digit, because that’s where the gradient is nonzero. This happens rarely and unpredictably, so the neural network reacts strongly to individual images that “got lucky”, resulting in these weights.</p>
+<p>Back to our “good” model now. I cribbed off <a href="https://distill.pub/2017/feature-visualization/">Feature Visualization</a> for other ideas on what to do. One idea is simply to look for the images in the dataset that the model most confidently recognizes as each digit:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb30-1" title="1">examples <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb30-2" title="2">labels <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb30-3" title="3"><span class="cf">for</span> digit <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</a>
+<a class="sourceLine" id="cb30-4" title="4">    confidences <span class="op">=</span> torch.softmax(bias <span class="op">+</span> train_x <span class="op">@</span> weights, dim<span class="op">=</span><span class="dv">1</span>)[:,digit]</a>
+<a class="sourceLine" id="cb30-5" title="5">    conf <span class="op">=</span> confidences.<span class="bu">max</span>().item()</a>
+<a class="sourceLine" id="cb30-6" title="6">    bi <span class="op">=</span> confidences.argmax().item()</a>
+<a class="sourceLine" id="cb30-7" title="7">    examples.append(train_x[bi].view((<span class="dv">28</span>,<span class="dv">28</span>)))</a>
+<a class="sourceLine" id="cb30-8" title="8">    labels.append(<span class="ss">f&quot;</span><span class="sc">{</span>digit<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>conf<span class="op">*</span><span class="dv">100</span><span class="sc">:.02f}</span><span class="ss">%)&quot;</span>)</a>
+<a class="sourceLine" id="cb30-9" title="9">show_images(examples, titles<span class="op">=</span>labels)</a></code></pre></div>
+<p>I switched back to the <code>Greys</code> color scheme to show these tensors since we’re actually analyzing them as inputs to our model.</p>
+<figure>
+<a href="/img/mnist-linear-samples.png"><img src="/img/mnist-linear-samples.png" alt="10 digits with thick strokes, with the labels: 0 (100.00%); 1 (99.92%); 2 (100.00%); 3 (100.00%); 4 (100.00%); 5 (99.99%); 6 (100.00%); 7 (100.00%); 8 (100.00%); 9 (99.98%)." /></a>
+<figcaption>
+Training images our linear model recognizes the most confidently as each digit
+</figcaption>
+</figure>
+<p>I think these images make a lot of sense: bold, clear strokes to provide a strong signal.</p>
+<p>Something creative we could do is to visualize the gradient of the loss with respect to each pixel in the image, superimposed on the images themselves. One small detail here, which isn’t strictly necessary but I think is good to know about, is that we call <code>detach</code> on our tensors to get detached copies that aren’t connected to the graph of computations and don’t have <code>requires_grad</code>. Without this, each time we calculate the gradients with <code>backward</code> to compute a gradient, it will also calculate the gradients for <code>bias</code> and <code>weights</code>, which is both wasteful and can cause errors if <code>bias</code>/<code>weights</code> are not directly graph leaves, because <code>backward</code> also deletes the computation graph. I also slam some <code>clone</code>/<code>detach</code>/<code>requires_grad_</code> on the image tensor itself just to be safe; all our tensors are small so it doesn’t matter.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb31-1" title="1">bias <span class="op">=</span> torch.load(<span class="st">&#39;bias-2022-05-02-00-42-40.pt&#39;</span>).detach()</a>
+<a class="sourceLine" id="cb31-2" title="2">weights <span class="op">=</span> torch.load(<span class="st">&#39;weights-2022-05-02-00-42-40.pt&#39;</span>).detach()</a>
+<a class="sourceLine" id="cb31-3" title="3">examples <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb31-4" title="4"><span class="cf">for</span> digit <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</a>
+<a class="sourceLine" id="cb31-5" title="5">    confidences <span class="op">=</span> torch.softmax(bias <span class="op">+</span> train_x <span class="op">@</span> weights, dim<span class="op">=</span><span class="dv">1</span>)[:,digit]</a>
+<a class="sourceLine" id="cb31-6" title="6">    <span class="bu">print</span>(confidences.shape, confidences.<span class="bu">min</span>(), confidences.<span class="bu">max</span>())</a>
+<a class="sourceLine" id="cb31-7" title="7">    conf <span class="op">=</span> confidences.<span class="bu">max</span>().item()</a>
+<a class="sourceLine" id="cb31-8" title="8">    bi <span class="op">=</span> confidences.argmax().item()</a>
+<a class="sourceLine" id="cb31-9" title="9">    img <span class="op">=</span> train_x[bi].clone().detach().requires_grad_()</a>
+<a class="sourceLine" id="cb31-10" title="10">    torch.softmax(bias <span class="op">+</span> img <span class="op">@</span> weights, dim<span class="op">=</span><span class="dv">0</span>)[digit].backward()</a>
+<a class="sourceLine" id="cb31-11" title="11">    x <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> img.view((<span class="dv">28</span>,<span class="dv">28</span>))</a>
+<a class="sourceLine" id="cb31-12" title="12">    g <span class="op">=</span> img.grad.view((<span class="dv">28</span>,<span class="dv">28</span>))</a>
+<a class="sourceLine" id="cb31-13" title="13">    g <span class="op">/=</span> g.<span class="bu">abs</span>().<span class="bu">max</span>()</a>
+<a class="sourceLine" id="cb31-14" title="14">    <span class="co"># g = -1 -&gt; (0,0,0.5) (0.5,0.5,1)</span></a>
+<a class="sourceLine" id="cb31-15" title="15">    <span class="co"># g =  0 -&gt; (0, 0, 0) (1,  1,  1)</span></a>
+<a class="sourceLine" id="cb31-16" title="16">    <span class="co"># g = 1  -&gt; (0.5,0,0) (1,0.5,0.5)</span></a>
+<a class="sourceLine" id="cb31-17" title="17">    base <span class="op">=</span> torch.stack([<span class="op">-</span>g.minimum(tensor(<span class="dv">0</span>))<span class="op">/</span><span class="dv">2</span>, torch.full((<span class="dv">28</span>,<span class="dv">28</span>),<span class="dv">0</span>), g.maximum(tensor(<span class="dv">0</span>))<span class="op">/</span><span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb31-18" title="18">    delta <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> g.<span class="bu">abs</span>() <span class="op">/</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb31-19" title="19">    examples.append(base <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> img.view((<span class="dv">28</span>,<span class="dv">28</span>))) <span class="op">*</span> delta)</a>
+<a class="sourceLine" id="cb31-20" title="20"></a>
+<a class="sourceLine" id="cb31-21" title="21">show_images(examples)</a></code></pre></div>
+<figure>
+<a href="/img/mnist-linear-samples-and-gradient.png"><img src="/img/mnist-linear-samples-and-gradient.png" alt="The same 10 digits with thick strokes from above with some red and blue coloring." /></a>
+<figcaption>
+The same digits, with the gradients of the model’s loss with respect to each pixel overlaid as color (blue is negative, red is positive)
+</figcaption>
+</figure>
+<p>I believe what I need to convert each (pixel, gradient) pair to a color is a “bivariate colormap”, but I couldn’t find one in a hurry, so I handrolled something hasty. The mapping is about as perceptually nonuniform as it gets, but it’s enough to give us a little more insight into the model’s behavior. Because blue means the gradient of the loss is negative, it means a higher number in the source image (darker, in our <code>Greys</code> visualization) there would the model more confident in that digit, and red means the opposite. As a sanity check to make sure we didn’t flip our signs, we can see that, for example, filling in the center of the 0 or adding a stroke to most areas near the 1 would make the model less confident in those images, which makes sense.</p>
+<p>Just for kicks, we can also look at the images the model is <em>least</em> confident in.</p>
+<figure>
+<a href="/img/mnist-linear-antisamples.png"><img src="/img/mnist-linear-antisamples.png" alt="A thick, narrow 0 labeled 0 (26.37%). A wispy, narrow 8 labeled 1 (22.85%). A 9 with a very short bottom stroke labeled 2 (22.14%). A tilted 0 labeled 3 (21.54%). A looped 2 with a short upper stroke labeled 4 (21.99%). An 8 with the bottom cut off labeled 5 (20.88%). A wide 2 labeled 6 (25.70%). An extremely wide, hooked 7 labeled 7 (23.77%). A shoddy 5 with part of the bottom stroke missing labeled 8 (23.83%). An extremely wide 5 labeled 9 (26.25%). " /></a>
+<figcaption>
+Training images our linear model recognizes the <em style="font-style: normal">least</em> confidently as each digit
+</figcaption>
+</figure>
+<p>We can also just optimize an image such that our model is maximally confident in its classification, using — you guessed it — gradient descent.</p>
+<p>We can use a pretty similar setup, except we don’t need to worry about batches and such, and we call <code>detach</code> a few times to be safe. We also want to clamp the image’s components to the <span class="math inline">\([0,1]\)</span> range to match our data without affecting any gradients or the computation graph, so we directly manipulate <code>.data</code> on our tensor.</p>
+<p>I have no idea if this is the “correct” way to do these things in PyTorch, but, as far as I can tell, it worked.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb32-1" title="1">bias <span class="op">=</span> torch.load(<span class="st">&#39;bias-2022-05-02-00-42-40.pt&#39;</span>).detach()</a>
+<a class="sourceLine" id="cb32-2" title="2">weights <span class="op">=</span> torch.load(<span class="st">&#39;weights-2022-05-02-00-42-40.pt&#39;</span>).detach()</a>
+<a class="sourceLine" id="cb32-3" title="3"><span class="co"># or, to get noninterfering copies of bias and weights from the same session:</span></a>
+<a class="sourceLine" id="cb32-4" title="4"><span class="co"># bias.clone().detach(), weights.clone().detach()</span></a>
+<a class="sourceLine" id="cb32-5" title="5">examples <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb32-6" title="6"><span class="cf">for</span> digit <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</a>
+<a class="sourceLine" id="cb32-7" title="7">    example <span class="op">=</span> torch.full((<span class="dv">28</span><span class="op">*</span><span class="dv">28</span>,), <span class="fl">0.5</span>).requires_grad_()</a>
+<a class="sourceLine" id="cb32-8" title="8">    lr <span class="op">=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb32-9" title="9">    conf <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb32-10" title="10">    its <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb32-11" title="11">    <span class="cf">while</span> conf <span class="op">&lt;</span> <span class="fl">0.9999</span>:</a>
+<a class="sourceLine" id="cb32-12" title="12">        c <span class="op">=</span> torch.softmax(bias <span class="op">+</span> example <span class="op">@</span> weights, dim<span class="op">=</span><span class="dv">0</span>)[digit]</a>
+<a class="sourceLine" id="cb32-13" title="13">        conf <span class="op">=</span> c.item()</a>
+<a class="sourceLine" id="cb32-14" title="14">        torch.log(c).backward()</a>
+<a class="sourceLine" id="cb32-15" title="15">        example.data <span class="op">+=</span> example.grad <span class="op">*</span> lr</a>
+<a class="sourceLine" id="cb32-16" title="16">        example.grad.zero_()</a>
+<a class="sourceLine" id="cb32-17" title="17">        example.data <span class="op">=</span> torch.maximum(torch.minimum(example.data, torch.tensor(<span class="dv">1</span>)), torch.tensor(<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb32-18" title="18">        its <span class="op">+=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb32-19" title="19">    examples.append(example.view((<span class="dv">28</span>,<span class="dv">28</span>)))</a>
+<a class="sourceLine" id="cb32-20" title="20">show_images(examples)</a></code></pre></div>
+<figure>
+<a href="/img/mnist-linear-examples.png"><img src="/img/mnist-linear-examples.png" alt="10 blurry, grayscale images with patterns resembling the digits 0 through 9"/></a>
+<figcaption>
+Images optimized to be recognized as each digit with &gt;99.99% confidence, produced with <code>lr = 1</code>
+</figcaption>
+</figure>
+<p>Interestingly, the example for 1 took more gradient descent steps to reach my target confidence than the rest of the digits combined.</p>
+<p>Unsurprisingly, these look mostly like the weights themselves. While they’re definitely pretty bizarre, you can sort of see the digits in them if you squint.</p>
+<p>We can repeat the experiment with different learning rates:</p>
+<figure>
+<a href="/img/mnist-linear-examples-10.png"><img src="/img/mnist-linear-examples-10.png" alt="10 grayscale images with gray borders and stark black-and-white patterns vaguely resembling the digits 0 through 9" /></a> <a href="/img/mnist-linear-examples-100.png"><img src="/img/mnist-linear-examples-100.png" alt="10 black-and-white images with noisy borders and even starker black-and-white patterns vaguely resembling the digits 0 through 9"/></a>
+<figcaption>
+Images optimized to be recognized as each digit with &gt;99.99% confidence, produced with <code>lr = 10</code> and <code>100</code> respectively
+</figcaption>
+</figure>
+<p>These are not as great, but you can still sort of imagine the digit in many of the images.</p>
+<p>We can also start gradient descent from a different image.</p>
+<figure>
+<a href="/img/mnist-linear-examples-zero.png"><img src="/img/mnist-linear-examples-zero.png" alt="10 images, each resembling the digit 0 with some gray additions and removals"/></a>
+<figcaption>
+Images optimized to be recognized as each digit with &gt;99.99% confidence, produced with <code>lr = 1</code> starting from a training 0
+</figcaption>
+</figure>
+<p>Since we have all this infrastructure, why not try to generate some <a href="https://openai.com/blog/adversarial-example-research/">adversarial examples</a>?</p>
+<p>I’ve always felt like there is or should be a deep duality between the existence of adversarial examples and AI safety. Adversarial examples are typically inputs obtained by slightly perturbing an existing input so that a model misclassifies (or mislabels, or otherwise errs) on them; but more deeply, adversarial examples are just about ways in which a neural network’s understanding diverges from human cognition or perception, because what “slightly perturbing” means is ultimately defined by the latter. If you take a 0 and change it until it looks like a 3 to the neural network, but it also now looks like a 3 to you, that’s not an adversarial example. And if we have a general way to get a neural network to not diverge from human cognition/perception, I think we’d have mostly solved AI safety.</p>
+<p>What I’m going to do is start from the first training image and then run gradient descent to optimize the classifier’s confidence that that image is some digit, as before, but also clamping each pixel to be within a fixed “tolerance” from what it was in the original image.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb33-1" title="1">examples <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb33-2" title="2">labels <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb33-3" title="3"><span class="cf">for</span> digit <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</a>
+<a class="sourceLine" id="cb33-4" title="4">    orig <span class="op">=</span> training[<span class="dv">0</span>][<span class="dv">0</span>].clone().detach().flatten()</a>
+<a class="sourceLine" id="cb33-5" title="5">    example <span class="op">=</span> orig.clone().detach().requires_grad_()</a>
+<a class="sourceLine" id="cb33-6" title="6">    upper_bound <span class="op">=</span> torch.minimum(torch.tensor(<span class="dv">1</span>), orig <span class="op">+</span> <span class="fl">0.25</span>)</a>
+<a class="sourceLine" id="cb33-7" title="7">    lower_bound <span class="op">=</span> torch.maximum(torch.tensor(<span class="dv">0</span>), orig <span class="op">-</span> <span class="fl">0.25</span>)</a>
+<a class="sourceLine" id="cb33-8" title="8">    lr <span class="op">=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb33-9" title="9">    conf <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb33-10" title="10">    it <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb33-11" title="11">    <span class="cf">while</span> it <span class="op">&lt;</span> <span class="dv">10000</span>:</a>
+<a class="sourceLine" id="cb33-12" title="12">        c <span class="op">=</span> torch.softmax(bias <span class="op">+</span> example <span class="op">@</span> weights, dim<span class="op">=</span><span class="dv">0</span>)[digit]</a>
+<a class="sourceLine" id="cb33-13" title="13">        conf <span class="op">=</span> c.item()</a>
+<a class="sourceLine" id="cb33-14" title="14">        torch.log(c).backward()</a>
+<a class="sourceLine" id="cb33-15" title="15">        example.data <span class="op">+=</span> example.grad <span class="op">*</span> lr</a>
+<a class="sourceLine" id="cb33-16" title="16">        example.grad.zero_()</a>
+<a class="sourceLine" id="cb33-17" title="17">        example.data <span class="op">=</span> torch.maximum(torch.minimum(example.data, upper_bound), lower_bound)</a>
+<a class="sourceLine" id="cb33-18" title="18">        it <span class="op">+=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb33-19" title="19">    examples.append(example.view((<span class="dv">28</span>,<span class="dv">28</span>)))</a>
+<a class="sourceLine" id="cb33-20" title="20"></a>
+<a class="sourceLine" id="cb33-21" title="21">    c <span class="op">=</span> torch.softmax(bias <span class="op">+</span> example <span class="op">@</span> weights, dim<span class="op">=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb33-22" title="22">    prediction <span class="op">=</span> c.argmax().item()</a>
+<a class="sourceLine" id="cb33-23" title="23">    confidence <span class="op">=</span> c.<span class="bu">max</span>().item()</a>
+<a class="sourceLine" id="cb33-24" title="24">    labels.append(<span class="ss">f&quot;</span><span class="sc">{</span>prediction<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>confidence<span class="op">*</span><span class="dv">100</span><span class="sc">:.02f}</span><span class="ss">%)&quot;</span>)</a>
+<a class="sourceLine" id="cb33-25" title="25">show_images(examples, titles<span class="op">=</span>labels)</a></code></pre></div>
+<figure>
+<a href="/img/mnist-linear-examples-zero-bounded.png"><img src="/img/mnist-linear-examples-zero-bounded.png" alt="10 images, each resembling the same digit 0 formed from black and dark gray pixels, with some gray pixels in the background, and labeled: 0 (99.99%), 0 (66.49%), 2 (97.55%), 3 (85.89%), 0 (70.36%), 5 (98.38%), 6 (81.88%), 0 (47.38%), 8 (60.05%), 0 (71.16%)." /></a>
+<figcaption>
+Images optimized to be recognized as each digit while clamped close to a model 0
+</figcaption>
+</figure>
+<p>As you can see, within the tolerance I chose, I wasn’t able to get the 0 misclassified as every other digit. I tried a few tolerance levels to pick one that was around the most interesting, where the adversary succeeds for some digits and fails for others. These adversarial examples aren’t that convincing — you can definitely perceive that there’s something shady going on with them — but I think all of them still look far more like a 0 than any other digit.</p>
+<p>The lowest tolerance for which I optimized the 0 image into being classified as something else was around ±0.15, with this image:</p>
+<figure>
+<a href="/img/mnist-linear-examples-zero-five.png"><img src="/img/mnist-linear-examples-zero-five.png" alt="Image of 0 with a mix of white and light gray pixels in the background" /></a>
+<figcaption>
+0-like image recognized as a 5 by our linear model (confidence 57.64%)
+</figcaption>
+</figure>
+<p>I must admit that I was a little disturbed to find that even our trivial neural network is clearly classifying images in ways that are bizarre to us. But while looking around on the subject, I discovered that <a href="https://arxiv.org/abs/1412.6572">Explaining and Harnessing Adversarial Examples</a>, one of the earliest papers on them, already observed and more or less explained this phenomenon.</p>
+<!-- [Intriguing properties of neural networks](https://arxiv.org/abs/1312.6199) -->
+<h3 id="speedrunning-a-real-two-layer-neural-network">Speedrunning a “real” two-layer neural network</h3>
+<p>I feel like I could spend weeks just continuing to investigate these simple neural networks and slowly making them more complicated<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>; but out of a desire to have something publishable by the “preferred submission date” deadline (which has been incredibly motivating and which I expect to be much less motivating if I don’t finish by then), I’m going to speedrun through the code necessary to add a second layer and cursorily apply some of the same interpretation techniques. Consider this sequel bait.</p>
+<p>We could, of course, just define two weights and bias tensors each, and copy-paste all our old code to work with all four at the same time; but I think it’s easier and more educational to just avail ourselves of some of the abstractions PyTorch and fast.ai provide. PyTorch defines the abstraction of <a href="https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module"><em>modules</em></a> (not to be confused with Python modules — great job naming your abstractions, folks), which contain parameters, specify an input-to-output transformation, and can be trained; and it also provides dozens of built-in modules in the <a href="https://pytorch.org/docs/stable/nn.html"><code>nn</code> module-in-the-sense-of-Python</a>. We can just specify our layers in order as <code>Module</code>s: two <code>Linear</code> modules, which both hold a <code>weight</code> and <code>bias</code> tensor, sandwiching a nonlinearity, <code>ReLU</code> (the <em>rectified linear unit</em> <span class="math inline">\(\text{ReLU(x)} := \max(0, x)\)</span>, which definitely wins the “most jargon-y name for a simple concept” award). Then we pass all of them to the <code>Sequential</code> module.</p>
+<p>Since I wanted to look at what each neuron was doing, I decided to use a quite small second layer, with only 20 neurons.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb34-1" title="1">simple_net <span class="op">=</span> nn.Sequential(</a>
+<a class="sourceLine" id="cb34-2" title="2">    nn.Linear(<span class="dv">28</span><span class="op">*</span><span class="dv">28</span>,<span class="dv">20</span>),</a>
+<a class="sourceLine" id="cb34-3" title="3">    nn.ReLU(),</a>
+<a class="sourceLine" id="cb34-4" title="4">    nn.Linear(<span class="dv">20</span>,<span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb34-5" title="5">)</a></code></pre></div>
+<p>One layer of abstraction up, fast.ai defines the <code><a href="https://docs.fast.ai/learner">Learner</a></code> abstraction, which packages up the gradient descent training loop nicely. We just need to plug in a bunch of things.</p>
+<p>The learner wants us to package both the training and testing/validation data for it:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb35-1" title="1">test_x <span class="op">=</span> torch.cat([t.<span class="bu">float</span>() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>) <span class="cf">for</span> t <span class="kw">in</span> testing[i]]).view(<span class="op">-</span><span class="dv">1</span>, <span class="dv">28</span><span class="op">*</span><span class="dv">28</span>)</a>
+<a class="sourceLine" id="cb35-2" title="2">test_y <span class="op">=</span> tensor([i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>) <span class="cf">for</span> _ <span class="kw">in</span> testing[i]])</a>
+<a class="sourceLine" id="cb35-3" title="3">valid_dset <span class="op">=</span> <span class="bu">list</span>(<span class="bu">zip</span>(test_x, test_y))</a>
+<a class="sourceLine" id="cb35-4" title="4">valid_dl <span class="op">=</span> DataLoader(valid_dset, batch_size<span class="op">=</span><span class="dv">256</span>)</a>
+<a class="sourceLine" id="cb35-5" title="5">dls <span class="op">=</span> DataLoaders(dl, valid_dl)</a></code></pre></div>
+<p>This is just a nice-to-have, but let’s also prepare a simple accuracy function so we can see how our optimization process is doing in each epoch:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">def</span> batch_accuracy(xb, yb):</a>
+<a class="sourceLine" id="cb36-2" title="2">    preds <span class="op">=</span> torch.argmax(xb, dim<span class="op">=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb36-3" title="3">    correct <span class="op">=</span> preds <span class="op">==</span> yb</a>
+<a class="sourceLine" id="cb36-4" title="4">    <span class="cf">return</span> correct.<span class="bu">float</span>().mean()</a></code></pre></div>
+<p>This is enough to declare a <code>Learner</code>:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb37-1" title="1">learn <span class="op">=</span> Learner(dls, simple_net, opt_func<span class="op">=</span>SGD,</a>
+<a class="sourceLine" id="cb37-2" title="2">                loss_func<span class="op">=</span>nn.CrossEntropyLoss(), metrics<span class="op">=</span>batch_accuracy)</a></code></pre></div>
+<p>And we run its training loop with one call, 10 epochs with a learning rate of 0.5:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb38-1" title="1">learn.fit(<span class="dv">10</span>, lr<span class="op">=</span><span class="fl">0.5</span>)</a></code></pre></div>
+<p>I got around 96% accuracy with no effort!</p>
+<p>I could not figure out how to get an actual prediction for a tensor I had into <code>Learner</code> — I feel like I want <code><a href="https://docs.fast.ai/learner#Learner.predict">learner.predict</a></code>, but it failed inscrutably with, apparently, a missing attribute on <code>DataLoaders</code>. Fortunately, I realized it’s not hard to drop back down a layer of abstraction; we can just evaluate our PyTorch module (which is also available as <code>learn.model</code>) with <code>forward</code>.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb39-1" title="1">show_results(<span class="kw">lambda</span> im: simple_net.forward(im.view(<span class="dv">28</span><span class="op">*</span><span class="dv">28</span>)).argmax().item())</a></code></pre></div>
+<p>Now to try some of the same things. We can do the equivalent of turning off <code>requires_grad_</code> by calling <code>.eval()</code> on our Module, which sets it to “evaluation mode” as opposed to “training mode”.</p>
+<p>The images from the training data that the model is the most confident about:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb40-1" title="1">simple_net.<span class="bu">eval</span>()</a>
+<a class="sourceLine" id="cb40-2" title="2">examples <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb40-3" title="3">labels <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb40-4" title="4"><span class="cf">for</span> digit <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</a>
+<a class="sourceLine" id="cb40-5" title="5">    confidences <span class="op">=</span> torch.softmax(simple_net.forward(train_x), dim<span class="op">=</span><span class="dv">1</span>)[:,digit]</a>
+<a class="sourceLine" id="cb40-6" title="6">    conf <span class="op">=</span> confidences.<span class="bu">max</span>().item()</a>
+<a class="sourceLine" id="cb40-7" title="7">    bi <span class="op">=</span> confidences.argmax().item()</a>
+<a class="sourceLine" id="cb40-8" title="8">    examples.append(train_x[bi].view((<span class="dv">28</span>,<span class="dv">28</span>)))</a>
+<a class="sourceLine" id="cb40-9" title="9">    labels.append(<span class="ss">f&quot;</span><span class="sc">{</span>digit<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>conf<span class="op">*</span><span class="dv">100</span><span class="sc">:.02f}</span><span class="ss">%)&quot;</span>)</a>
+<a class="sourceLine" id="cb40-10" title="10">matplotlib.rc(<span class="st">&#39;font&#39;</span>, size<span class="op">=</span><span class="dv">22</span>)</a>
+<a class="sourceLine" id="cb40-11" title="11">show_images(examples, titles<span class="op">=</span>labels)</a></code></pre></div>
+<figure>
+<a href="/img/mnist-two-layer-samples.png"><img src="/img/mnist-two-layer-samples.png" alt="10 digits with various thicknesses and orientations, with the labels: 0 (100.00%); 1 (100.00%); 2 (100.00%); 3 (100.00%); 4 (100.00%); 5 (100.00%); 6 (100.00%); 7 (100.00%); 8 (100.00%); 9 (100.00%)."/></a>
+<figcaption>
+Training images our two-layer model recognizes the most confidently as each digit
+</figcaption>
+</figure>
+<p>These are definitely more varied in style than the images the linear model was confident in.</p>
+<p>Let’s train some images to optimize the model’s confidence:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb41-1" title="1">examples <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb41-2" title="2"><span class="cf">for</span> digit <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</a>
+<a class="sourceLine" id="cb41-3" title="3">    example <span class="op">=</span> torch.full((<span class="dv">28</span><span class="op">*</span><span class="dv">28</span>,), <span class="fl">0.5</span>).requires_grad_()</a>
+<a class="sourceLine" id="cb41-4" title="4">    lr <span class="op">=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb41-5" title="5">    conf <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb41-6" title="6">    its <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb41-7" title="7">    <span class="cf">while</span> conf <span class="op">&lt;</span> <span class="fl">0.9999</span>:</a>
+<a class="sourceLine" id="cb41-8" title="8">        c <span class="op">=</span> torch.softmax(simple_net.forward(example), dim<span class="op">=</span><span class="dv">0</span>)[digit]</a>
+<a class="sourceLine" id="cb41-9" title="9">        conf <span class="op">=</span> c.item()</a>
+<a class="sourceLine" id="cb41-10" title="10">        torch.log(c).backward()</a>
+<a class="sourceLine" id="cb41-11" title="11">        example.data <span class="op">+=</span> example.grad <span class="op">*</span> lr</a>
+<a class="sourceLine" id="cb41-12" title="12">        example.grad.zero_()</a>
+<a class="sourceLine" id="cb41-13" title="13">        example.data <span class="op">=</span> torch.maximum(torch.minimum(example.data, torch.tensor(<span class="dv">1</span>)), torch.tensor(<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb41-14" title="14">        its <span class="op">+=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb41-15" title="15">    examples.append(example.view((<span class="dv">28</span>,<span class="dv">28</span>)))</a>
+<a class="sourceLine" id="cb41-16" title="16">show_images(examples)</a></code></pre></div>
+<figure>
+<a href="/img/mnist-two-layer-examples.png"><img src="/img/mnist-two-layer-examples.png" alt="10 black-and-white images, mostly of crisp black-and-white noise in the center surrounded by a grayish border." /></a>
+<figcaption>
+Images optimized to be recognized as each digit with &gt;99.99% confidence, produced with <code>lr = 1</code>
+</figcaption>
+</figure>
+<p>These are… a complete disaster.</p>
+<p>What of the adversarial examples, clamped close to a training 0? Here’s what we get with the same ±0.25 threshold:</p>
+<figure>
+<a href="/img/mnist-two-layer-examples-zero-bounded-25.png"><img src="/img/mnist-two-layer-examples-zero-bounded-25.png" alt="10 images, each resembling the same digit 0 formed from black and dark gray pixels, with some gray pixels in the background, and labeled: 0 (100.00%); 1 (72.45%); 2 (100.00%); 3 (99.91%); 4 (99.89%); 5 (100.00%); 6 (99.98%); 7 (99.96%); 8 (99.88%); 9 (99.98%)."/></a>
+<figcaption>
+Images optimized to be recognized as each digit while clamped close (within ±0.25) to a model 0
+</figcaption>
+</figure>
+<p>That threshold gives enough leeway to completely overwhelm the model’s predictions for all except the digit 1, and even then we can get the model to consider 1 unambiguously the most likely prediction. Clamping to ±0.125 is a more interesting threshold:</p>
+<figure>
+<a href="/img/mnist-two-layer-examples-zero-bounded-125.png"><img src="/img/mnist-two-layer-examples-zero-bounded-125.png" alt="10 images, each resembling the same digit 0 formed from black and dark gray pixels, with some barely distinguishable gray pixels in the background, and labeled: 0 (100.00%); 0 (66.84%); 2 (97.71%); 0 (89.27%); 0 (71.19%); 5 (96.30%); 6 (71.75%); 0 (73.20%); 0 (63.82%); 9 (76.56%)."/></a>
+<figcaption>
+Images optimized to be recognized as each digit while clamped close (within ±0.125) to a model 0
+</figcaption>
+</figure>
+<p>My unsurprising, albeit tentative, takeaway is that a two-layer neural net already behaves a lot more weirdly and is more resistant to interpretation than a one-layer one. (It also overfit a little — its accuracy was noticeably lower on the test set than the training set.)</p>
+<p>Incidentally, comparing the last two images made me wonder — perhaps our adversarial example thresholds should be <a href="https://blog.johnnovak.net/2016/09/21/what-every-coder-should-know-about-gamma/">gamma-aware</a>? This is left as an exercise to the reader.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Even the incredibly simple neural networks I built in this post behaved surprisingly and were more difficult to interpret than I expected. This left me rather ambivalent: on one hand, it’s great that there’s so much to explore and I never felt like I ran out of things to try even with minimal access to compute; but on the other, if even a 7,000-parameter model is so confusing, how on earth are we going to understand cutting-edge models with hundreds of billions of parameters?</p>
+<p>Speaking purely about just the coding experience, it showed me pitfalls and taught me lessons about ML implementation that I thought would only arise at much larger scales and training times. One post I had been pointed to that described how ML engineering differed from other software was <a href="http://amid.fish/reproducing-deep-rl">Lessons Learned Reproducing a Deep Reinforcement Learning Paper</a>. Having read this post much earlier, I think I was inspired to “notice confusion” more often, which I think helped me avoid some (but not enough) bugs; but a different suggestion I wrongly thought I could get by without was:</p>
+<blockquote>
+<p>For any project this long, detailed records of what you’ve tried and the ability to reproduce past experiments are an absolute must. Version control software can help, but a) managing large outputs can be painful, and b) requires extreme diligence. (For example, if you’ve set off some runs, then make a small change and launch another run, when you commit the results of the first runs, is it going to be clear which code was used?)</p>
+</blockquote>
+<p>Even though my project were nowhere as long, my simple experiments were already an absolute mess. The direst example was how I allowed <code>/255</code> to haphazardly drift through versions of my code and wreak havoc. Still, overall I think I certainly have a little more intuition and confidence about ML engineering now.</p>
+<p>At the same time, given the apparent universality of these struggles, I can’t help but wonder if there’s still a lot of room for improving the basic languages and tools for architecting neural networks. Maybe writing ML code today is like managing memory with C — you can do it, but most human programmers will experience a lot of foot-shooting on the way, and there are abstractions that can fix all this, but they hadn’t been invented or popularized yet.</p>
+<p>In any case, I learned a lot from writing this post and from the <a href="https://www.eacambridge.org/agi-safety-fundamentals">safety course</a>. Thanks to the organizers and those in my cohort, and if any of my readers not from the program think the field is interesting, I’d suggest checking it out (though it’s very different from the things I covered in this post).</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I will admit that I was rather alarmed when the first two papers/projects were announced, until I spent a little time poking at their results and was underwhelmed. Unfortunately I have not found the time to evaluate them rigorously enough to feel confident publishing anything about it.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>I did take an ML course in college (6.867, Fall 2016), whose course work included quite a bit of implementation, so I’m not completely new to this. However, my strongest memory of that course was trying to replicate a random paper for our final project, running our program for a few days, discovering a bug that invalidated all of our program’s results, and turning in a writeup with a bunch of incorrect results and graphs and why they were incorrect. I also haven’t touched any machine learning code since then.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>I understand why they chose to lean so heavily on the “high school math is sufficient” bit and why it’s good for many potential audiences, but too many paragraphs dedicated to re-explaining first-year calculus and linear algebra just disrupts the flow of the tutorial for me. In addition, it turns out there are a few places where standard conventions and intuitions I picked up in college led me astray; I try to call these out in the post.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>My default cynical assumption nowadays is that any service offering free compute will have all of it <a href="https://therecord.media/crypto-mining-gangs-are-running-amok-on-free-cloud-computing-platforms/">absorbed by cryptocurrency miners</a> or worse. If that hasn’t happened, why not?<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>Technically if I <em>really</em> wanted to go all the way, I would use TensorFlow and/or Keras, since that was what I used in the previously mentioned college course.</p>
+<p>I’m actually not that sure how TensorFlow and PyTorch compare these days. Obviously, there are a lot of articles online comparing them, but I don’t know the space well enough to evaluate their claims.<a href="#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>My friends tell me that just because I’ve acclimated to playing FFXIV at 15 to 20 fps doesn’t mean it’s a good way to play the game.<a href="#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>Incidentally, I was endlessly confused by how the book has twenty chapters, but the course has eight “video lessons”. Of course, it’s reasonable for a course to not correspond neatly to the book it’s based on, but also the tutorial says, “each video covers a chapter from the book.” Something seems mathematically off.<a href="#fnref7" class="footnote-back">↩</a></p></li>
+<li id="fn8"><p>(I’m lazy)<a href="#fnref8" class="footnote-back">↩</a></p></li>
+<li id="fn9"><p>How does this long prose argument “break symmetry” between <span class="math inline">\(\log\)</span> and any other decreasing function? It’s because we are implicitly using the definition that “best candidate” means “lowest expected value of surprise”, or more explicitly, “lowest expected value of the sum of surprises”. If you wanted the candidate that minimized the expected value of, say, the product of surprises on the two variables — which you might well want, in some contexts! — things might be different.</p>
+<p>I think this is still not an <em>entirely</em> convincing explanation. I would like to be able to formalize some weaker and more intuitively obvious conditions, things like that entropy should be monotonically decreasing wrt probability and that two systems’ expected entropy should compare the same way if you ask them to predict two independent copies of the same event, and somehow derive that <span class="math inline">\(\log\)</span> is the unique function satisfying them. But this is all I could come up with in the time I had.<a href="#fnref9" class="footnote-back">↩</a></p></li>
+<li id="fn10"><p>… and that satisfies the three laws</p>
+<ol type="1">
+<li><code>return x &gt;&gt;= f</code> ≡ <code>f x</code></li>
+<li><code>x &gt;&gt;= return</code> ≡ <code>x</code></li>
+<li><code>(x &gt;&gt;= f) &gt;&gt;= g</code> ≡ <code>x &gt;&gt;= (\y -&gt; f y &gt;&gt;= g)</code></li>
+</ol>
+<a href="#fnref10" class="footnote-back">↩</a></li>
+<li id="fn11"><p>It’s basically <code>next(iter(x), None)</code>: iterate over the collection and return the first element, or <code>None</code> if the iterator raises <code>StopIteration</code> immediately. To be fair, people sometimes complain that there isn’t a particularly Pythonic way to get an element from an iterable if you don’t care about which one – occasionally described as the claim that <a href="https://qntm.org/axiom">Python lacks the “axiom of choice”</a>.<a href="#fnref11" class="footnote-back">↩</a></p></li>
+<li id="fn12"><p>For example, I dabbled in regularization, but didn’t get far enough to have much to present. I used L¹ regularization because I remember from college it was effective at causing weights to be set to 0, which I figured would make the neural network simpler to interpret. Implementation-wise, this was much harder to get into fast.ai’s Learner than I expected; the best way I found was to add a <a href="https://docs.fast.ai/callback.core.html#Callback">Callback</a> with an <code>after_loss</code> hook that modifies <code>self.learn.loss_grad</code> based on <code>self.learn.model</code>.<a href="#fnref12" class="footnote-back">↩</a></p></li>
+</ol>
+</section></article>
+	<footer class="post-footer">
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/ti1337se">← TI-1337 Silver Edition</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://www.goatcounter.com/">GoatCounter</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>

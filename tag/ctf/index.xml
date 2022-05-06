@@ -319,7 +319,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.&lt;/p&gt;
-&lt;p&gt;Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from &lt;a href=&#34;https://github.com/betaveros/xxb&#34;&gt;&lt;code&gt;xxb&lt;/code&gt;&lt;/a&gt; but &lt;code&gt;xxd -c 20 thoroughlyStripped&lt;/code&gt; is quite sufficient.)&lt;/p&gt;</description>
+&lt;p&gt;Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from &lt;code&gt;&lt;a href=&#34;https://github.com/betaveros/xxb&#34;&gt;xxb&lt;/a&gt;&lt;/code&gt; but &lt;code&gt;xxd -c 20 thoroughlyStripped&lt;/code&gt; is quite sufficient.)&lt;/p&gt;</description>
     </item>
     
   </channel>

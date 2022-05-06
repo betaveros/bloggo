@@ -6,7 +6,23 @@
     <description>Recent content on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Feb 2022 01:32:22 -0800</lastBuildDate><atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 May 2022 23:26:13 -0700</lastBuildDate><atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Interpreting Some Toy Neural Networks</title>
+      <link>//blog.vero.site/post/interpret</link>
+      <pubDate>Thu, 05 May 2022 23:26:13 -0700</pubDate>
+      
+      <guid>//blog.vero.site/post/interpret</guid>
+      <description>&lt;p&gt;I participated in the &lt;a href=&#34;https://www.eacambridge.org/agi-safety-fundamentals&#34;&gt;AGI Safety Fundamentals&lt;/a&gt; program recently. The program concludes with a flexible final project, with the default suggestion of “a piece of writing, roughly the length and scope of a typical blog post”, so naturally, I deleted all but the last two words and here we are.&lt;/p&gt;
+&lt;p&gt;When I previously considered machine learning as a field of study, I came away with an impression that most effort and computation power was going into training bigger, more powerful models; whereas the inner workings of the models themselves, not to mention questions like why certain architectures or design choices work better than others, remained inscrutable and understudied. This impression always bothered me, and it definitely influenced me away from going into AI as a career. Of course, there are important, objective safety concerns around developing and designing models we don’t understand, many of which we discussed in the program; but my discomfort is mostly a completely unrelated nagging feeling I get whenever I’m relying on things I don’t understand.&lt;/p&gt;
+&lt;p&gt;After the program and all the concurrent developments in AI (including &lt;a href=&#34;https://www.deepmind.com/blog/competitive-programming-with-alphacode&#34;&gt;AlphaCode&lt;/a&gt;, OpenAI’s &lt;a href=&#34;https://openai.com/blog/formal-math/&#34;&gt;math olympiad solver&lt;/a&gt;&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;, &lt;a href=&#34;https://say-can.github.io/&#34;&gt;SayCan&lt;/a&gt;, and, of course, &lt;a href=&#34;https://openai.com/dall-e-2/&#34;&gt;DALL-E 2&lt;/a&gt;), I still had this impression about the field at a very high level, but I also became more familiar with the subfield of &lt;em&gt;interpretability&lt;/em&gt; — designs and tools that allow us to understand and explain decisions by ML systems, rather than treating them as black-boxed mappings from inputs to outputs — and confirmed that enough people study it to make it a thing. One quote from a post on the &lt;a href=&#34;https://www.alignmentforum.org/posts/X2i9dQQK3gETCyqh2/chris-olah-s-views-on-agi-safety&#34;&gt;views of Chris Olah&lt;/a&gt;, noted interpretability researcher, captured my feeling particularly eloquently:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;interpretability is very aligned with traditional scientific virtues—which can be quite motivating for many people—even if it isn’t very aligned with the present paradigm of machine learning.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I found the whole post insightful, and it happens that the bits before that in the passage were also relevant to me. I don’t have access to lots of compute!&lt;/p&gt;
+&lt;p&gt;Inspired by that post and by a desire to actually write some code (which I figured might help me understand the inner workings of modern ML systems in a different sense), and after abandoning a few other project ideas that were far too ambitious, I decided to go through some parts of the &lt;a href=&#34;https://course.fast.ai/&#34;&gt;fast.ai tutorial&lt;/a&gt; and riff on it to see how much progress I could make interpreting the models, and to write up the process in a blog post. I tried to capture my experience holistically, bugs and all, to serve as a data point for what it might feel like to start ML engineering (for the rare individuals with a background and inclinations just like mine&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;), and &lt;em&gt;maybe&lt;/em&gt; entertain more experienced practitioners or influence their future tutorial recommendations. A much lower-priority goal was trying to produce “my version of the tutorial”, which would draw more liberally from an undergraduate math education&lt;a href=&#34;#fn3&#34; class=&#34;footnote-ref&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; and dive more deeply into technical details.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>TI-1337 Silver Edition</title>
       <link>//blog.vero.site/post/ti1337se</link>
@@ -810,7 +826,7 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.&lt;/p&gt;
-&lt;p&gt;Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from &lt;a href=&#34;https://github.com/betaveros/xxb&#34;&gt;&lt;code&gt;xxb&lt;/code&gt;&lt;/a&gt; but &lt;code&gt;xxd -c 20 thoroughlyStripped&lt;/code&gt; is quite sufficient.)&lt;/p&gt;</description>
+&lt;p&gt;Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from &lt;code&gt;&lt;a href=&#34;https://github.com/betaveros/xxb&#34;&gt;xxb&lt;/a&gt;&lt;/code&gt; but &lt;code&gt;xxd -c 20 thoroughlyStripped&lt;/code&gt; is quite sufficient.)&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -4054,7 +4070,7 @@ Z &amp;amp;= 0.0193339r + 0.1191920g + 0.9503041b
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//blog.vero.site/ref/diagrams</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://diagrams.github.io/&#34;&gt;&lt;code&gt;diagrams&lt;/code&gt;&lt;/a&gt; is a nifty Haskell library for making vector diagrams. I keep coming back to it to generate graphics for puzzles:&lt;/p&gt;
+      <description>&lt;p&gt;&lt;code&gt;&lt;a href=&#34;https://diagrams.github.io/&#34;&gt;diagrams&lt;/a&gt;&lt;/code&gt; is a nifty Haskell library for making vector diagrams. I keep coming back to it to generate graphics for puzzles:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;the very old &lt;a href=&#34;https://blog.vero.site/post/signature-puzzle&#34;&gt;A Signature Puzzle&lt;/a&gt; from this blog&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://dp.puzzlehunt.net/puzzle/a-fork-in-the-road.html&#34;&gt;A Fork in the Road&lt;/a&gt; (DP Puzzle Hunt)&lt;/li&gt;
@@ -4104,7 +4120,7 @@ factor! append? fancy?   </description>
 &lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://www.proginosko.com/leechblock.html#SECT2&#34;&gt;LeechBlock&lt;/a&gt;, &lt;a href=&#34;https://download.xmarks.com/download&#34;&gt;Xmarks&lt;/a&gt;&lt;/strong&gt;, &lt;a href=&#34;https://www.eff.org/https-everywhere&#34;&gt;HTTPS Everywhere&lt;/a&gt;, &lt;a href=&#34;https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/&#34;&gt;uBlock Origin&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Formerly: &lt;a href=&#34;http://5digits.org/pentadactyl/&#34;&gt;Pentadactyl&lt;/a&gt; (&lt;a href=&#34;http://5digits.org/nightlies&#34;&gt;nightlies&lt;/a&gt;), &lt;a href=&#34;https://lastpass.com/misc_download2.php&#34;&gt;LastPass&lt;/a&gt;, &lt;a href=&#34;https://disconnect.me/&#34;&gt;Disconnect&lt;/a&gt;, &lt;a href=&#34;http://firefox.exxile.net/aios/&#34;&gt;All-in-One Sidebar&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.dropbox.com/&#34;&gt;&lt;strong&gt;Dropbox&lt;/strong&gt;&lt;/a&gt; (&lt;a href=&#34;http://db.tt/&#34;&gt;&lt;code&gt;db.tt&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.dropbox.com/&#34;&gt;&lt;strong&gt;Dropbox&lt;/strong&gt;&lt;/a&gt; (&lt;code&gt;&lt;a href=&#34;http://db.tt/&#34;&gt;db.tt&lt;/a&gt;&lt;/code&gt;)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;(g)&lt;a href=&#34;http://www.vim.org/&#34;&gt;Vim&lt;/a&gt;&lt;/strong&gt; / &lt;a href=&#34;https://github.com/macvim-dev/macvim&#34;&gt;MacVim&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/Shougo/neobundle.vim&#34;&gt;NeoBundle&lt;/a&gt;; &lt;a href=&#34;https://github.com/nanotech/jellybeans.vim&#34;&gt;jellybeans&lt;/a&gt;, &lt;a href=&#34;https://github.com/scrooloose/syntastic&#34;&gt;syntastic&lt;/a&gt;&lt;/strong&gt;, airline, fugitive, unite.vim, nerdtree, …&lt;/li&gt;
