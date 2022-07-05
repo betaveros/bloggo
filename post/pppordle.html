@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>🅿️🅿️🅿️ordle</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="Don’t you hate it when CTFs happen faster than you can write them up? This is probably the only PlaidCTF challenge I get to, unfortunately.1
+ Web is out, retro is in. Play your favorite word game from the comfort of your terminal!
+ It’s a terminal Wordle client!
+   I only solved the first half of this challenge. The two halves seem to be unrelated though. (Nobody solved the second half during the CTF.) The challenge was quite big code-wise, with more than a dozen files, so it’s hard to replicate the experience in a post like this, but here’s an attempt.
+" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/pppordle" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/ref">References</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">🅿️🅿️🅿️ordle</h1>
+		
+		<h2 class="post-subtitle">PlaidCTF 2022 (350 points)</h2>
+		
+		<p class="post-meta">
+		
+		2022-07-04
+		(1890 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>Don’t you hate it when CTFs happen faster than you can write them up? This is probably the only PlaidCTF challenge I get to, unfortunately.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<blockquote>
+<p>Web is out, retro is in. Play your favorite word game from the comfort of your terminal!</p>
+</blockquote>
+<p>It’s a terminal Wordle client!</p>
+<figure>
+<a href="/img/pppordle-1.png"><img src="/img/pppordle-1.png" alt="Screenshot of a terminal Wordle client. The puzzle has been solved with the answer COZEY." /></a>
+</figure>
+<p>I only solved the first half of this challenge. The two halves seem to be unrelated though. (Nobody solved the second half during the CTF.) The challenge was quite big code-wise, with more than a dozen files, so it’s hard to replicate the experience in a post like this, but here’s an attempt.</p>
+<p>There are four Wordle “levels”. To play the game, the client picks a level, makes a TLS connection to the server using some bundled certificates, and then sends guesses. The server responds to each guess with an “indicator”: a sequence of black, yellow, and green emoji. When the client guesses the word correctly, the server creates and sends a TLS certificate to it, and the client can present that certificate on a future connection to connect to the next level.</p>
+<p>We are provided with the source code for the client and the server, including the word lists and some other assets, as well as a bunch of dev certificates for local testing; we’re only missing the private key for the server’s root certificate (and, of course, the real flag).</p>
+<p>Level 1 is classic Wordle (albeit with answers drawn from a much worse word list). However, in Level 2 (which gives the first flag when solved), the “secret word” is a sequence of five random emojis drawn with replacement from a list of 236 emojis, for 732,082,482,176 possible answers; and you still only get six guesses. It’s not that obvious how to bound the probability of success if you play optimally, but a quick calculation to guide your intuition is that if you guess 25 distinct emoji for your first five guesses, the probability that all five answer emoji are among those guesses is around 0.001%. Connecting to the server also includes a delay, so brute force is not really an option here.</p>
+<p>Is there any other way to figure out the answer emoji? Let’s look at how they’re generated:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">func</span> emojiGenerator() (word []<span class="dt">rune</span>, attempts <span class="dt">int</span>) {</a>
+<a class="sourceLine" id="cb1-2" title="2">    <span class="kw">for</span> i := <span class="dv">0</span>; i &lt; <span class="dv">5</span>; i++ {</a>
+<a class="sourceLine" id="cb1-3" title="3">        word = <span class="bu">append</span>(word, unicode.ToUpper(level2Emojis[rand.Intn(<span class="bu">len</span>(level2Emojis))]))</a>
+<a class="sourceLine" id="cb1-4" title="4">    }</a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="kw">return</span> word, <span class="dv">6</span></a>
+<a class="sourceLine" id="cb1-6" title="6">}</a></code></pre></div>
+<p>The <code>rand</code> here is <code>"math/rand"</code>, which is enough to raise some eyebrows. The challenge contains a lot of other certificate management code that also uses random numbers, but the other code conspicuously imports <code>"crypto/rand"</code>, from which one can infer that <code>"math/rand"</code> is likely not cryptographically secure even without knowing anything about Go. Indeed, the <a href="https://pkg.go.dev/math/rand">math/rand documentation</a> says:</p>
+<blockquote>
+<p>Package rand implements pseudo-random number generators unsuitable for security-sensitive work.</p>
+<p>…</p>
+<p>This package’s outputs might be easily predictable regardless of how it’s seeded. For random numbers suitable for security-sensitive work, see the crypto/rand package.</p>
+</blockquote>
+<p>The default Go <code>Source</code> for <code>math/rand</code> actually isn’t seeded at all, so it’s completely deterministic! Unfortunately, the server does seed it with the current time:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">func</span> init() {</a>
+<a class="sourceLine" id="cb2-2" title="2">    rand.Seed(time.Now().UnixMilli())</a>
+<a class="sourceLine" id="cb2-3" title="3">}</a></code></pre></div>
+<p>Still, this is not <em>that</em> hard to predict. The CTF is only 24 hours long, so assuming the server’s clock is not wildly out of sync and that it started during the CTF, there are only 86,400,000 possible seeds. That’s already a lot less than 732,082,482,176.</p>
+<p>Another thing we can do is play games of 🅿️🅿️🅿️ordle Level 1, which shares its random number generator state with Level 2, and get information about the RNG state that way. This at least lets us do some amount of “local brute forcing” for the possible seed. However, if there is a smart way to derive the RNG state from a few samples mathematically (rather than just trying all states), I couldn’t see it. Our samples can at best tell us the seed modulo that length at some point in time, but the word list’s length is not a nice number, so it’s not clear how to use this information.</p>
+<p>Still, these insights were enough for me to write a prototype where I started a local server and guessed the word just from the approximate time and some Level 1 solutions. Unfortunately, the seed isn’t the only unpredictable piece of information we need; on the real server, the RNG seed is constantly advanced by all the other teams trying to solve the challenge.</p>
+<p>Is the state space still usefully bounded? As of time of writing, Go’s default <code>math/rand</code> RNG is not well-documented, but between a <a href="https://github.com/golang/go/issues/36133">GitHub issue</a> with some links and the <a href="https://github.com/golang/go/blob/master/src/math/rand/rng.go">source code</a>, it appears that the state space is a somewhat ridiculous 2<sup>64×607</sup> ≈ 10<sup>11,694</sup>. That is, shall we say, the opposite of less than 732,082,482,176. Ultimately, thinking about the state space as (initial seed) × (number of times the RNG has been advanced) still produces more reasonable bounds. To make up some numbers: Say we manage to catch the server within an hour of its restart, and that other teams have advanced the RNG at most 10,000 times. Then the number of RNG states we have to consider is 36,000,000,000. That’s a little less than 732,082,482,176, but it’s still well out of reach of brute force.</p>
+<p>How else can we reduce the search space?</p>
+<h3 id="what-time-is-it">What time is it?</h3>
+<p>One question I found useful to step back and contemplate is simply: why does the challenge have such an absurd amount of infrastructure for making and verifying SSL certificates? Surely there are simpler ways for a server to give clients something they can later use to prove they solved a level. Maybe we can use the server certificate somehow?</p>
+<p>Let’s look at a certificate. Here’s the one for this blog, at least when I was writing this post.</p>
+<figure>
+<a href="/img/cloudflare-cert.png"><img src="/img/cloudflare-cert.png" alt="Firefox display of an SSL certificate from Cloudflare. A timestamp 'Sun, 11 Jul 2021 00:00:00 GMT' is highlighted, next to the label 'Not Before'." /></a>
+</figure>
+<p>SSL certificates has timestamps. What timestamp does the server put in its certificates, and when?</p>
+<p>Turns out, it’s actually <code>time.Now()</code>, exactly the same expression used to seed the RNG!</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb3-1" title="1">cert := &amp;x509.Certificate{</a>
+<a class="sourceLine" id="cb3-2" title="2">    SerialNumber: config.Serial,</a>
+<a class="sourceLine" id="cb3-3" title="3">    Subject: pkix.Name{</a>
+<a class="sourceLine" id="cb3-4" title="4">        Country:      []<span class="dt">string</span>{<span class="st">&quot;🇺🇸&quot;</span>},</a>
+<a class="sourceLine" id="cb3-5" title="5">        Province:     []<span class="dt">string</span>{<span class="st">&quot;Pennsylvania&quot;</span>},</a>
+<a class="sourceLine" id="cb3-6" title="6">        Locality:     []<span class="dt">string</span>{<span class="st">&quot;Pittsburgh&quot;</span>},</a>
+<a class="sourceLine" id="cb3-7" title="7">        Organization: []<span class="dt">string</span>{<span class="st">&quot;PlaidCTF&quot;</span>},</a>
+<a class="sourceLine" id="cb3-8" title="8">        CommonName:   config.CommonName,</a>
+<a class="sourceLine" id="cb3-9" title="9">    },</a>
+<a class="sourceLine" id="cb3-10" title="10">    DNSNames:              config.DNSNames,</a>
+<a class="sourceLine" id="cb3-11" title="11">    NotBefore:             time.Now(),</a>
+<a class="sourceLine" id="cb3-12" title="12">    NotAfter:              time.Now().Add(time.Second * time.Duration(config.SecsValid)),</a>
+<a class="sourceLine" id="cb3-13" title="13">    IsCA:                  config.Parent == <span class="ot">nil</span>,</a>
+<a class="sourceLine" id="cb3-14" title="14">    KeyUsage:              keyUsage,</a>
+<a class="sourceLine" id="cb3-15" title="15">    ExtKeyUsage:           extKeyUsage,</a>
+<a class="sourceLine" id="cb3-16" title="16">    BasicConstraintsValid: <span class="ot">true</span>,</a>
+<a class="sourceLine" id="cb3-17" title="17">}</a></code></pre></div>
+<p>Well, not <em>exactly</em> exactly, because we only get the time down to a granularity of one second. But by looking at the server, and adding one second of leeway on both sides just to not worry about it, we can narrow down the set of seeds to 3,000.</p>
+<p>Suddenly the numbers are looking feasible!</p>
+<p>We can lightly modify the client to print out the server certificate’s <code>NotBefore</code> timestamp:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb4-1" title="1">conn, err := tls.Dial(<span class="st">&quot;tcp&quot;</span>, sessionServer, tlsConfig)</a>
+<a class="sourceLine" id="cb4-2" title="2">log.Println(<span class="bu">len</span>(conn.ConnectionState().PeerCertificates))</a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="kw">for</span> i, c := <span class="kw">range</span>(conn.ConnectionState().PeerCertificates) {</a>
+<a class="sourceLine" id="cb4-4" title="4">    log.Println(i, c.NotBefore.UnixMilli())</a>
+<a class="sourceLine" id="cb4-5" title="5">}</a></code></pre></div>
+<p>I think there is a lot of flexibility in how to solve the challenge from here. Another useful observation for effectively narrowing down possible RNG states is that the server samples the secret word and advances the RNG when you connect, so if you start two connections quickly one after another, you have a good chance of sampling two adjacent RNG states. Because I wasn’t very fluent in Go, I went about this in a really hacky way and didn’t automate too much of the process. I did hack in one keyboard shortcut to quickly submit an isogrammatic triplet of words, but otherwise, I solved Wordles manually and pasted numbers between Go scripts running in different terminals. Here’s what I did:</p>
+<ol type="1">
+<li>Start two connections to the server Level 1, as quickly in succession as humanly possible.</li>
+<li><p>Solve both Wordles.</p>
+<figure>
+<a href="/img/pppordle-2.png"><img src="/img/pppordle-2.png" alt="Two terminals with solved Wordles, with the answers CARDS and FIVES, respectively" /></a>
+</figure>
+<p>This is not easy because there’s a one-minute time limit (during which you have to solve both) and the answer isn’t revealed if you fail. I think it’s hilarious that speed-solving Wordles turned out to be a useful skill here. (Obviously I could have scripted this, in a separate script that I manually interacted with if necessary — but where’s the fun in that?)</p></li>
+<li><p>Look at the client logs to extract the <code>NotBefore</code> timestamp. Using brute force, look for seeds near the timestamp and numbers of iterations that would cause those two words to be sampled.</p>
+<figure>
+<a href="/img/pppordle-3.png"><img src="/img/pppordle-3.png" alt="Two terminals. In the top terminal, `go run .` has been executed and then the script have been provided with the input 1649537357000 and the solution words CARDS and FIVES, and has output two candidate seeds and interation counts. In the bottom terminal, the timestamp 1649537357000 is highlighted among logging from the client." /></a>
+</figure>
+<p>As in the above example, doing this step once is often not enough to uniquely identify the seed, and there’s always a risk that you don’t manage to catch two adjacent seeds in step 1.</p></li>
+<li><p>Repeat steps 1 to 3 until you are confident about the seed, and while the server <code>NotBefore</code> timestamp doesn’t change. Usually seeing a particular seed twice is enough to be confident in it.</p></li>
+<li><p>Start two connections to the server Level 1 and Level 2, as quickly in succession as humanly possible.</p>
+<p>Solve the first Wordle, then brute force a number of iterations that would cause that word to be sampled and submit the emoji sequence that would be generated from the next iteration. (In the below example, we picked the iteration count of 40625 as the first one after the iteration count we got from Step 3, 39476 iterations. Also, since I was on Ubuntu, I manually typed in each emoji using <kbd>Ctrl-Shift-U</kbd>, then the Unicode codepoint in hex, then <kbd>Enter</kbd>; there are surely better ways to do it for anybody more comfortable tinkering with the Go client.)</p>
+<figure>
+<a href="/img/pppordle-4.png"><img src="/img/pppordle-4.png" alt="Two terminals with solved Wordles. The left one has the answer COMUS. The right one has the answer 🦢😗🐎🐄🦀 and displays the flag below."/></a>
+</figure>
+<figure>
+<a href="/img/pppordle-5.png"><img src="/img/pppordle-5.png" alt="A terminal in which `go run .` has been executed and then the script has been provided with the input 1649537357001 and 'comus', and has outputted four iteration counts and emoji sequences; the third listing has iteration count 40625 and matches the emoji sequence above." /></a>
+</figure></li>
+</ol>
+<p>And we have the flag!</p>
+<pre><code>PCTF{L3@KY_S33D5_GR0W_INT0_B1G_PR0BL3M5}</code></pre>
+<p>For completeness, my solve script follows:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">package</span> main</a>
+<a class="sourceLine" id="cb6-2" title="2"></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="kw">import</span> (</a>
+<a class="sourceLine" id="cb6-4" title="4">    _ <span class="st">&quot;embed&quot;</span></a>
+<a class="sourceLine" id="cb6-5" title="5">    <span class="st">&quot;strings&quot;</span></a>
+<a class="sourceLine" id="cb6-6" title="6">    <span class="st">&quot;bytes&quot;</span></a>
+<a class="sourceLine" id="cb6-7" title="7">    <span class="st">&quot;math/rand&quot;</span></a>
+<a class="sourceLine" id="cb6-8" title="8">    <span class="st">&quot;log&quot;</span></a>
+<a class="sourceLine" id="cb6-9" title="9">    <span class="st">&quot;bufio&quot;</span></a>
+<a class="sourceLine" id="cb6-10" title="10">    <span class="st">&quot;fmt&quot;</span></a>
+<a class="sourceLine" id="cb6-11" title="11">    <span class="st">&quot;os&quot;</span></a>
+<a class="sourceLine" id="cb6-12" title="12">    <span class="st">&quot;strconv&quot;</span></a>
+<a class="sourceLine" id="cb6-13" title="13">)</a>
+<a class="sourceLine" id="cb6-14" title="14"></a>
+<a class="sourceLine" id="cb6-15" title="15"><span class="co">//go:embed level1_wordlist.txt</span></a>
+<a class="sourceLine" id="cb6-16" title="16"><span class="kw">var</span> level1WordlistBytes []<span class="dt">byte</span></a>
+<a class="sourceLine" id="cb6-17" title="17"></a>
+<a class="sourceLine" id="cb6-18" title="18"><span class="co">//go:embed level2_emojis.txt</span></a>
+<a class="sourceLine" id="cb6-19" title="19"><span class="kw">var</span> level2ValidEmojis <span class="dt">string</span></a>
+<a class="sourceLine" id="cb6-20" title="20"></a>
+<a class="sourceLine" id="cb6-21" title="21"><span class="kw">func</span> main() {</a>
+<a class="sourceLine" id="cb6-22" title="22">    reader := bufio.NewReader(os.Stdin)</a>
+<a class="sourceLine" id="cb6-23" title="23"></a>
+<a class="sourceLine" id="cb6-24" title="24">    <span class="kw">var</span> level1Wordlist [][]<span class="dt">rune</span></a>
+<a class="sourceLine" id="cb6-25" title="25"></a>
+<a class="sourceLine" id="cb6-26" title="26">    scanner := bufio.NewScanner(bytes.NewReader(level1WordlistBytes))</a>
+<a class="sourceLine" id="cb6-27" title="27">    <span class="kw">for</span> scanner.Scan() {</a>
+<a class="sourceLine" id="cb6-28" title="28">        level1Wordlist = <span class="bu">append</span>(level1Wordlist, []<span class="dt">rune</span>(scanner.Text()))</a>
+<a class="sourceLine" id="cb6-29" title="29">    }</a>
+<a class="sourceLine" id="cb6-30" title="30"></a>
+<a class="sourceLine" id="cb6-31" title="31">    <span class="kw">if</span> err := scanner.Err(); err != <span class="ot">nil</span> {</a>
+<a class="sourceLine" id="cb6-32" title="32">        log.Fatal(err)</a>
+<a class="sourceLine" id="cb6-33" title="33">    }</a>
+<a class="sourceLine" id="cb6-34" title="34"></a>
+<a class="sourceLine" id="cb6-35" title="35">    level2Emojis := []<span class="dt">rune</span>(level2ValidEmojis)</a>
+<a class="sourceLine" id="cb6-36" title="36">    fmt.Println(<span class="bu">len</span>(level1Wordlist), <span class="st">&quot;words&quot;</span>)</a>
+<a class="sourceLine" id="cb6-37" title="37">    fmt.Println(<span class="bu">len</span>(level2Emojis), <span class="st">&quot;emojis&quot;</span>)</a>
+<a class="sourceLine" id="cb6-38" title="38"></a>
+<a class="sourceLine" id="cb6-39" title="39">    fmt.Println(<span class="st">&quot;Phase 1 or 2?&quot;</span>)</a>
+<a class="sourceLine" id="cb6-40" title="40">    prompt, _ := reader.ReadString(<span class="ch">&#39;\n&#39;</span>)</a>
+<a class="sourceLine" id="cb6-41" title="41">    <span class="kw">for</span> prompt[<span class="dv">0</span>] != <span class="ch">&#39;1&#39;</span> &amp;&amp; prompt[<span class="dv">0</span>] != <span class="ch">&#39;2&#39;</span> {</a>
+<a class="sourceLine" id="cb6-42" title="42">        prompt, _ = reader.ReadString(<span class="ch">&#39;\n&#39;</span>)</a>
+<a class="sourceLine" id="cb6-43" title="43">    }</a>
+<a class="sourceLine" id="cb6-44" title="44"></a>
+<a class="sourceLine" id="cb6-45" title="45">    fmt.Println(<span class="st">&quot;Give me the millis:&quot;</span>)</a>
+<a class="sourceLine" id="cb6-46" title="46">    ms, _ := reader.ReadString(<span class="ch">&#39;\n&#39;</span>)</a>
+<a class="sourceLine" id="cb6-47" title="47">    ms = strings.TrimSpace(ms)</a>
+<a class="sourceLine" id="cb6-48" title="48">    millis, err := strconv.Atoi(ms)</a>
+<a class="sourceLine" id="cb6-49" title="49">    <span class="kw">if</span> err != <span class="ot">nil</span> {</a>
+<a class="sourceLine" id="cb6-50" title="50">        <span class="bu">panic</span>(err)</a>
+<a class="sourceLine" id="cb6-51" title="51">    }</a>
+<a class="sourceLine" id="cb6-52" title="52"></a>
+<a class="sourceLine" id="cb6-53" title="53">    <span class="kw">if</span> prompt[<span class="dv">0</span>] == <span class="ch">&#39;1&#39;</span> {</a>
+<a class="sourceLine" id="cb6-54" title="54">        fmt.Println(<span class="st">&quot;Word 1 of 2:&quot;</span>)</a>
+<a class="sourceLine" id="cb6-55" title="55">        word1, _ := reader.ReadString(<span class="ch">&#39;\n&#39;</span>)</a>
+<a class="sourceLine" id="cb6-56" title="56">        word1 = strings.TrimSpace(word1)</a>
+<a class="sourceLine" id="cb6-57" title="57">        fmt.Println(<span class="st">&quot;Word 2 of 2:&quot;</span>)</a>
+<a class="sourceLine" id="cb6-58" title="58">        word2, _ := reader.ReadString(<span class="ch">&#39;\n&#39;</span>)</a>
+<a class="sourceLine" id="cb6-59" title="59">        word2 = strings.TrimSpace(word2)</a>
+<a class="sourceLine" id="cb6-60" title="60"></a>
+<a class="sourceLine" id="cb6-61" title="61">        <span class="kw">for</span> m := millis - <span class="dv">1000</span>; m &lt; millis + <span class="dv">2000</span>; m++ {</a>
+<a class="sourceLine" id="cb6-62" title="62">            r := rand.New(rand.NewSource(<span class="dt">int64</span>(m)))</a>
+<a class="sourceLine" id="cb6-63" title="63">            gen1 := <span class="dt">string</span>(level1Wordlist[r.Intn(<span class="bu">len</span>(level1Wordlist))])</a>
+<a class="sourceLine" id="cb6-64" title="64">            gen2 := <span class="dt">string</span>(level1Wordlist[r.Intn(<span class="bu">len</span>(level1Wordlist))])</a>
+<a class="sourceLine" id="cb6-65" title="65">            <span class="kw">for</span> its := <span class="dv">0</span>; its &lt; <span class="dv">100000</span>; its += <span class="dv">1</span> {</a>
+<a class="sourceLine" id="cb6-66" title="66">                <span class="kw">if</span> gen1 == word1 &amp;&amp; gen2 == word2 {</a>
+<a class="sourceLine" id="cb6-67" title="67">                    fmt.Println(<span class="st">&quot;Seed might be&quot;</span>, m, <span class="st">&quot;with&quot;</span>, its, <span class="st">&quot;iterations&quot;</span>)</a>
+<a class="sourceLine" id="cb6-68" title="68">                }</a>
+<a class="sourceLine" id="cb6-69" title="69">                gen1 = gen2</a>
+<a class="sourceLine" id="cb6-70" title="70">                gen2 = <span class="dt">string</span>(level1Wordlist[r.Intn(<span class="bu">len</span>(level1Wordlist))])</a>
+<a class="sourceLine" id="cb6-71" title="71">            }</a>
+<a class="sourceLine" id="cb6-72" title="72">        }</a>
+<a class="sourceLine" id="cb6-73" title="73">    } <span class="kw">else</span> {</a>
+<a class="sourceLine" id="cb6-74" title="74">        fmt.Println(<span class="st">&quot;Word:&quot;</span>)</a>
+<a class="sourceLine" id="cb6-75" title="75"></a>
+<a class="sourceLine" id="cb6-76" title="76">        word1, _ := reader.ReadString(<span class="ch">&#39;\n&#39;</span>)</a>
+<a class="sourceLine" id="cb6-77" title="77">        word1 = strings.TrimSpace(word1)</a>
+<a class="sourceLine" id="cb6-78" title="78"></a>
+<a class="sourceLine" id="cb6-79" title="79">        r := rand.New(rand.NewSource(<span class="dt">int64</span>(millis)))</a>
+<a class="sourceLine" id="cb6-80" title="80">        gen1 := <span class="dt">string</span>(level1Wordlist[r.Intn(<span class="bu">len</span>(level1Wordlist))])</a>
+<a class="sourceLine" id="cb6-81" title="81">        <span class="kw">for</span> its := <span class="dv">0</span>; its &lt; <span class="dv">100000</span>; its += <span class="dv">1</span> {</a>
+<a class="sourceLine" id="cb6-82" title="82">            <span class="kw">if</span> gen1 == word1 {</a>
+<a class="sourceLine" id="cb6-83" title="83">                fmt.Println(<span class="st">&quot;Seed might be&quot;</span>, millis, <span class="st">&quot;with&quot;</span>, its, <span class="st">&quot;iterations&quot;</span>)</a>
+<a class="sourceLine" id="cb6-84" title="84">                <span class="kw">var</span> guess []<span class="dt">rune</span></a>
+<a class="sourceLine" id="cb6-85" title="85">                <span class="kw">for</span> i := <span class="dv">0</span>; i &lt; <span class="dv">5</span>; i++ {</a>
+<a class="sourceLine" id="cb6-86" title="86">                    guess = <span class="bu">append</span>(guess, level2Emojis[r.Intn(<span class="bu">len</span>(level2Emojis))])</a>
+<a class="sourceLine" id="cb6-87" title="87">                }</a>
+<a class="sourceLine" id="cb6-88" title="88">                fmt.Println(<span class="st">&quot;maybe&quot;</span>, <span class="dt">string</span>(guess))</a>
+<a class="sourceLine" id="cb6-89" title="89">                fmt.Printf(<span class="st">&quot;%x %x %x %x %x</span><span class="ch">\n</span><span class="st">&quot;</span>, guess[<span class="dv">0</span>], guess[<span class="dv">1</span>], guess[<span class="dv">2</span>], guess[<span class="dv">3</span>], guess[<span class="dv">4</span>])</a>
+<a class="sourceLine" id="cb6-90" title="90">                fmt.Println(<span class="st">&quot;========&quot;</span>)</a>
+<a class="sourceLine" id="cb6-91" title="91">            }</a>
+<a class="sourceLine" id="cb6-92" title="92">            gen1 = <span class="dt">string</span>(level1Wordlist[r.Intn(<span class="bu">len</span>(level1Wordlist))])</a>
+<a class="sourceLine" id="cb6-93" title="93">        }</a>
+<a class="sourceLine" id="cb6-94" title="94">    }</a>
+<a class="sourceLine" id="cb6-95" title="95">}</a></code></pre></div>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I wrote a script with a brute-force-y approach for <code>choreography</code> (which still involved an interesting insight, but was much less interesting than the intended solution). I also produced this exploit for <code>i_c_u</code>, which I’ll include without a writeup in the tradition of what one commenter dubbed “CTF solutions that look like shitposts”:</p>
+<figure>
+<a href="/img/i_c_u.png"><img src="/img/i_c_u.png" alt="An arrangement of gray squares with the text GIVE ME THE FLAG in the top-right corner." /></a>
+</figure>
+<p>Since then DEF CON Quals, justCTF, and most recently Google CTF have happened, and I’ll have to carefully triage which tasks I think are useful to write up, if any.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</section></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/ctf"><span class="tag">CTF</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/mask">← Mask</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://www.goatcounter.com/">GoatCounter</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>

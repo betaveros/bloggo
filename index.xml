@@ -6,7 +6,148 @@
     <description>Recent content on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 May 2022 23:26:13 -0700</lastBuildDate><atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Jul 2022 23:54:44 -0700</lastBuildDate><atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🅿️🅿️🅿️ordle</title>
+      <link>//blog.vero.site/post/pppordle</link>
+      <pubDate>Mon, 04 Jul 2022 23:54:44 -0700</pubDate>
+      
+      <guid>//blog.vero.site/post/pppordle</guid>
+      <description>&lt;p&gt;Don’t you hate it when CTFs happen faster than you can write them up? This is probably the only PlaidCTF challenge I get to, unfortunately.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Web is out, retro is in. Play your favorite word game from the comfort of your terminal!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It’s a terminal Wordle client!&lt;/p&gt;
+&lt;figure&gt;
+&lt;a href=&#34;//blog.vero.site/img/pppordle-1.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/pppordle-1.png&#34; alt=&#34;Screenshot of a terminal Wordle client. The puzzle has been solved with the answer COZEY.&#34; /&gt;&lt;/a&gt;
+&lt;/figure&gt;
+&lt;p&gt;I only solved the first half of this challenge. The two halves seem to be unrelated though. (Nobody solved the second half during the CTF.) The challenge was quite big code-wise, with more than a dozen files, so it’s hard to replicate the experience in a post like this, but here’s an attempt.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mask</title>
+      <link>//blog.vero.site/post/mask</link>
+      <pubDate>Mon, 04 Jul 2022 23:54:33 -0700</pubDate>
+      
+      <guid>//blog.vero.site/post/mask</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Don’t forget to wear your mask…&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;nc challs.actf.co 31501&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If I had a nickel for every &lt;a href=&#34;//blog.vero.site/post/messy-desk&#34;&gt;CTF challenge I’ve done&lt;/a&gt; that involves understanding the internal structure of a QR code, I would have two nickels. Which isn’t a lot, etc etc. That previous challenge probably helped me get first blood on this.&lt;/p&gt;
+&lt;p&gt;The source code is wonderfully short:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode python&#34;&gt;&lt;code class=&#34;sourceCode python&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;im&#34;&gt;import&lt;/span&gt; io, qrcode, string&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; title=&#34;2&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-3&#34; title=&#34;3&#34;&gt;flag_contents &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; [REDACTED]&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;cf&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;all&lt;/span&gt;(i &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; string.ascii_lowercase &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;#39;_&amp;#39;&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; flag_contents)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-5&#34; title=&#34;5&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-6&#34; title=&#34;6&#34;&gt;flag &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; b&lt;span class=&#34;st&#34;&gt;&amp;quot;actf{&amp;quot;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; flag_contents.encode() &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; b&lt;span class=&#34;st&#34;&gt;&amp;quot;}&amp;quot;&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-7&#34; title=&#34;7&#34;&gt;&lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;flag is &lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;%d&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; characters&amp;quot;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(flag))&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-8&#34; title=&#34;8&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-9&#34; title=&#34;9&#34;&gt;qr &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; qrcode.QRCode(version&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;, error_correction &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; qrcode.constants.ERROR_CORRECT_L, box_size&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;, border&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-10&#34; title=&#34;10&#34;&gt;&lt;span class=&#34;cf&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;:&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-11&#34; title=&#34;11&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;try&lt;/span&gt;:&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-12&#34; title=&#34;12&#34;&gt;        inp &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;bytes&lt;/span&gt;.fromhex(&lt;span class=&#34;bu&#34;&gt;input&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;give input (in hex): &amp;quot;&lt;/span&gt;))&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-13&#34; title=&#34;13&#34;&gt;        &lt;span class=&#34;cf&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(inp) &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(flag)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-14&#34; title=&#34;14&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;except&lt;/span&gt;:&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-15&#34; title=&#34;15&#34;&gt;        &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;bad input, exiting&amp;quot;&lt;/span&gt;)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-16&#34; title=&#34;16&#34;&gt;        &lt;span class=&#34;cf&#34;&gt;break&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-17&#34; title=&#34;17&#34;&gt;    qr.clear()&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-18&#34; title=&#34;18&#34;&gt;    qr.add_data(&lt;span class=&#34;bu&#34;&gt;bytes&lt;/span&gt;([i&lt;span class=&#34;op&#34;&gt;^&lt;/span&gt;j &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; i,j &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;zip&lt;/span&gt;(inp, flag)]))&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-19&#34; title=&#34;19&#34;&gt;    f &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; io.StringIO()&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-20&#34; title=&#34;20&#34;&gt;    qr.print_ascii(out&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;f)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-21&#34; title=&#34;21&#34;&gt;    f.seek(&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-22&#34; title=&#34;22&#34;&gt;    &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;ch&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;#39;&lt;/span&gt;.join(i[:&lt;span class=&#34;dv&#34;&gt;11&lt;/span&gt;] &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; f))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Kevin Higgs</title>
+      <link>//blog.vero.site/post/kevin-higgs</link>
+      <pubDate>Mon, 04 Jul 2022 23:54:23 -0700</pubDate>
+      
+      <guid>//blog.vero.site/post/kevin-higgs</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Now that kmh is gone, clam’s been going through pickle withdrawal. To help him cope, he wrote his own pickle pyjail. It’s nothing like kmh’s, but maybe it’s enough.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Language jails are rapidly becoming one of my CTF areas of expertise. Not sure how I feel about that.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode python&#34;&gt;&lt;code class=&#34;sourceCode python&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#!/usr/local/bin/python3&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; title=&#34;2&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;im&#34;&gt;import&lt;/span&gt; pickle&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;im&#34;&gt;import&lt;/span&gt; io&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-5&#34; title=&#34;5&#34;&gt;&lt;span class=&#34;im&#34;&gt;import&lt;/span&gt; sys&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-6&#34; title=&#34;6&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-7&#34; title=&#34;7&#34;&gt;module &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;type&lt;/span&gt;(__builtins__)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-8&#34; title=&#34;8&#34;&gt;empty &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; module(&lt;span class=&#34;st&#34;&gt;&amp;quot;empty&amp;quot;&lt;/span&gt;)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-9&#34; title=&#34;9&#34;&gt;empty.empty &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; empty&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-10&#34; title=&#34;10&#34;&gt;sys.modules[&lt;span class=&#34;st&#34;&gt;&amp;quot;empty&amp;quot;&lt;/span&gt;] &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; empty&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-11&#34; title=&#34;11&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-12&#34; title=&#34;12&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-13&#34; title=&#34;13&#34;&gt;&lt;span class=&#34;kw&#34;&gt;class&lt;/span&gt; SafeUnpickler(pickle.Unpickler):&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-14&#34; title=&#34;14&#34;&gt;    &lt;span class=&#34;kw&#34;&gt;def&lt;/span&gt; find_class(&lt;span class=&#34;va&#34;&gt;self&lt;/span&gt;, module, name):&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-15&#34; title=&#34;15&#34;&gt;        &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; module &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;empty&amp;quot;&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;and&lt;/span&gt; name.count(&lt;span class=&#34;st&#34;&gt;&amp;quot;.&amp;quot;&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;:&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-16&#34; title=&#34;16&#34;&gt;            &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;super&lt;/span&gt;().find_class(module, name)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-17&#34; title=&#34;17&#34;&gt;        &lt;span class=&#34;cf&#34;&gt;raise&lt;/span&gt; pickle.UnpicklingError(&lt;span class=&#34;st&#34;&gt;&amp;quot;e-legal&amp;quot;&lt;/span&gt;)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-18&#34; title=&#34;18&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-19&#34; title=&#34;19&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-20&#34; title=&#34;20&#34;&gt;lepickle &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;bytes&lt;/span&gt;.fromhex(&lt;span class=&#34;bu&#34;&gt;input&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Enter hex-encoded pickle: &amp;quot;&lt;/span&gt;))&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-21&#34; title=&#34;21&#34;&gt;&lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(lepickle) &lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;400&lt;/span&gt;:&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-22&#34; title=&#34;22&#34;&gt;    &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;your pickle is too large for my taste &amp;gt;:(&amp;quot;&lt;/span&gt;)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-23&#34; title=&#34;23&#34;&gt;&lt;span class=&#34;cf&#34;&gt;else&lt;/span&gt;:&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-24&#34; title=&#34;24&#34;&gt;    SafeUnpickler(io.BytesIO(lepickle)).load()&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;&lt;a href=&#34;https://docs.python.org/3/library/pickle.html&#34;&gt;pickle&lt;/a&gt;&lt;/code&gt; is a Python object serialization format. As the docs page loudly proclaims, it is not secure. Roughly the simplest possible code to pop a shell (adapted from &lt;a href=&#34;https://davidhamann.de/2020/04/05/exploiting-python-pickle/&#34;&gt;David Hamann&lt;/a&gt;, who constructs a more realistic RCE) looks like:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CaaSio PSE</title>
+      <link>//blog.vero.site/post/caasio</link>
+      <pubDate>Mon, 04 Jul 2022 23:54:13 -0700</pubDate>
+      
+      <guid>//blog.vero.site/post/caasio</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;It’s clam’s newest javascript Calculator-as-a-Service: the CaaSio Please Stop Edition! no but actually please stop I hate jsjails js isn’t a good language stop putting one in every ctf I don’t want to look at another jsjail because if I do I might vomit from how much I hate js and js quirks aren’t even cool or funny or quirky they’re just painful because why would you design a language like this ahhhhhhhhhhhhhhhhhhhhh&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It’s just a JavaScript eval jail.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode js&#34;&gt;&lt;code class=&#34;sourceCode javascript&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#!/usr/local/bin/node&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; title=&#34;2&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;co&#34;&gt;// flag in ./flag.txt&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; title=&#34;4&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-5&#34; title=&#34;5&#34;&gt;&lt;span class=&#34;kw&#34;&gt;const&lt;/span&gt; vm &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;at&#34;&gt;require&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;vm&amp;quot;&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-6&#34; title=&#34;6&#34;&gt;&lt;span class=&#34;kw&#34;&gt;const&lt;/span&gt; readline &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;at&#34;&gt;require&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;readline&amp;quot;&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-7&#34; title=&#34;7&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-8&#34; title=&#34;8&#34;&gt;&lt;span class=&#34;kw&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;va&#34;&gt;readline&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;createInterface&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-9&#34; title=&#34;9&#34;&gt;    &lt;span class=&#34;dt&#34;&gt;input&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;va&#34;&gt;process&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;stdin&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-10&#34; title=&#34;10&#34;&gt;    &lt;span class=&#34;dt&#34;&gt;output&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;va&#34;&gt;process&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;stdout&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-11&#34; title=&#34;11&#34;&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-12&#34; title=&#34;12&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-13&#34; title=&#34;13&#34;&gt;&lt;span class=&#34;kw&#34;&gt;interface&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;question&lt;/span&gt;(&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-14&#34; title=&#34;14&#34;&gt;    &lt;span class=&#34;st&#34;&gt;&amp;quot;Welcome to CaaSio: Please Stop Edition! Enter your calculation:&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-15&#34; title=&#34;15&#34;&gt;    &lt;span class=&#34;kw&#34;&gt;function&lt;/span&gt; (input) &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-16&#34; title=&#34;16&#34;&gt;        &lt;span class=&#34;kw&#34;&gt;interface&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;close&lt;/span&gt;()&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-17&#34; title=&#34;17&#34;&gt;        &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; (&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-18&#34; title=&#34;18&#34;&gt;            &lt;span class=&#34;va&#34;&gt;input&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;length&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;215&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-19&#34; title=&#34;19&#34;&gt;            &lt;span class=&#34;ss&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;^[\x20-\x7e]+$&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;/&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;test&lt;/span&gt;(input) &lt;span class=&#34;op&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-20&#34; title=&#34;20&#34;&gt;            &lt;span class=&#34;op&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;[.\[\]{}\s;`&amp;#39;&amp;quot;\\_&amp;lt;&amp;gt;?:]&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;/&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;test&lt;/span&gt;(input) &lt;span class=&#34;op&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-21&#34; title=&#34;21&#34;&gt;            &lt;span class=&#34;op&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;va&#34;&gt;input&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;toLowerCase&lt;/span&gt;().&lt;span class=&#34;at&#34;&gt;includes&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;import&amp;quot;&lt;/span&gt;)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-22&#34; title=&#34;22&#34;&gt;        ) &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-23&#34; title=&#34;23&#34;&gt;            &lt;span class=&#34;cf&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-24&#34; title=&#34;24&#34;&gt;                &lt;span class=&#34;kw&#34;&gt;const&lt;/span&gt; val &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;va&#34;&gt;vm&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;runInNewContext&lt;/span&gt;(input&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{}&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-25&#34; title=&#34;25&#34;&gt;                &lt;span class=&#34;va&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Result:&amp;quot;&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-26&#34; title=&#34;26&#34;&gt;                &lt;span class=&#34;va&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;log&lt;/span&gt;(val)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-27&#34; title=&#34;27&#34;&gt;                &lt;span class=&#34;va&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;log&lt;/span&gt;(&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-28&#34; title=&#34;28&#34;&gt;                    &lt;span class=&#34;st&#34;&gt;&amp;quot;See, isn&amp;#39;t the calculator so much nicer when you&amp;#39;re not trying to hack it?&amp;quot;&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-29&#34; title=&#34;29&#34;&gt;                )&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-30&#34; title=&#34;30&#34;&gt;            &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;catch&lt;/span&gt; (e) &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-31&#34; title=&#34;31&#34;&gt;                &lt;span class=&#34;va&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;your tried&amp;quot;&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-32&#34; title=&#34;32&#34;&gt;            &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-33&#34; title=&#34;33&#34;&gt;        &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-34&#34; title=&#34;34&#34;&gt;            &lt;span class=&#34;va&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;log&lt;/span&gt;(&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-35&#34; title=&#34;35&#34;&gt;                &lt;span class=&#34;st&#34;&gt;&amp;quot;Third time really is the charm! I&amp;#39;ve finally created an unhackable system!&amp;quot;&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-36&#34; title=&#34;36&#34;&gt;            )&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-37&#34; title=&#34;37&#34;&gt;        &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-38&#34; title=&#34;38&#34;&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-39&#34; title=&#34;39&#34;&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
     <item>
       <title>Interpreting Some Toy Neural Networks</title>
       <link>//blog.vero.site/post/interpret</link>

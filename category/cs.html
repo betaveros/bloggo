@@ -64,6 +64,211 @@ Category → CS
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/pppordle" class="post-link">🅿️🅿️🅿️ordle</a></h3>
+		
+		<h4 class="post-subtitle">PlaidCTF 2022 (350 points)</h4>
+		
+		<p class="post-meta">
+		
+		2022-07-04
+		(1890 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Don’t you hate it when CTFs happen faster than you can write them up? This is probably the only PlaidCTF challenge I get to, unfortunately.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<blockquote>
+<p>Web is out, retro is in. Play your favorite word game from the comfort of your terminal!</p>
+</blockquote>
+<p>It’s a terminal Wordle client!</p>
+<figure>
+<a href="/img/pppordle-1.png"><img src="/img/pppordle-1.png" alt="Screenshot of a terminal Wordle client. The puzzle has been solved with the answer COZEY." /></a>
+</figure>
+<p>I only solved the first half of this challenge. The two halves seem to be unrelated though. (Nobody solved the second half during the CTF.) The challenge was quite big code-wise, with more than a dozen files, so it’s hard to replicate the experience in a post like this, but here’s an attempt.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/pppordle">→ read more<span class="offscreen"> 🅿️🅿️🅿️ordle</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/mask" class="post-link">Mask</a></h3>
+		
+		<h4 class="post-subtitle">ångstromCTF 2022 (200 points)</h4>
+		
+		<p class="post-meta">
+		
+		2022-07-04
+		(2518 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>Don’t forget to wear your mask…</p>
+<p><code>nc challs.actf.co 31501</code></p>
+</blockquote>
+<p>If I had a nickel for every <a href="//blog.vero.site/post/messy-desk">CTF challenge I’ve done</a> that involves understanding the internal structure of a QR code, I would have two nickels. Which isn’t a lot, etc etc. That previous challenge probably helped me get first blood on this.</p>
+<p>The source code is wonderfully short:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="im">import</span> io, qrcode, string</a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3">flag_contents <span class="op">=</span> [REDACTED]</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="cf">assert</span> <span class="bu">all</span>(i <span class="kw">in</span> string.ascii_lowercase <span class="op">+</span> <span class="st">&#39;_&#39;</span> <span class="cf">for</span> i <span class="kw">in</span> flag_contents)</a>
+<a class="sourceLine" id="cb1-5" title="5"></a>
+<a class="sourceLine" id="cb1-6" title="6">flag <span class="op">=</span> b<span class="st">&quot;actf{&quot;</span> <span class="op">+</span> flag_contents.encode() <span class="op">+</span> b<span class="st">&quot;}&quot;</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="bu">print</span>(<span class="st">&quot;flag is </span><span class="sc">%d</span><span class="st"> characters&quot;</span> <span class="op">%</span> <span class="bu">len</span>(flag))</a>
+<a class="sourceLine" id="cb1-8" title="8"></a>
+<a class="sourceLine" id="cb1-9" title="9">qr <span class="op">=</span> qrcode.QRCode(version<span class="op">=</span><span class="dv">1</span>, error_correction <span class="op">=</span> qrcode.constants.ERROR_CORRECT_L, box_size<span class="op">=</span><span class="dv">1</span>, border<span class="op">=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="cf">while</span> <span class="dv">1</span>:</a>
+<a class="sourceLine" id="cb1-11" title="11">    <span class="cf">try</span>:</a>
+<a class="sourceLine" id="cb1-12" title="12">        inp <span class="op">=</span> <span class="bu">bytes</span>.fromhex(<span class="bu">input</span>(<span class="st">&quot;give input (in hex): &quot;</span>))</a>
+<a class="sourceLine" id="cb1-13" title="13">        <span class="cf">assert</span> <span class="bu">len</span>(inp) <span class="op">==</span> <span class="bu">len</span>(flag)</a>
+<a class="sourceLine" id="cb1-14" title="14">    <span class="cf">except</span>:</a>
+<a class="sourceLine" id="cb1-15" title="15">        <span class="bu">print</span>(<span class="st">&quot;bad input, exiting&quot;</span>)</a>
+<a class="sourceLine" id="cb1-16" title="16">        <span class="cf">break</span></a>
+<a class="sourceLine" id="cb1-17" title="17">    qr.clear()</a>
+<a class="sourceLine" id="cb1-18" title="18">    qr.add_data(<span class="bu">bytes</span>([i<span class="op">^</span>j <span class="cf">for</span> i,j <span class="kw">in</span> <span class="bu">zip</span>(inp, flag)]))</a>
+<a class="sourceLine" id="cb1-19" title="19">    f <span class="op">=</span> io.StringIO()</a>
+<a class="sourceLine" id="cb1-20" title="20">    qr.print_ascii(out<span class="op">=</span>f)</a>
+<a class="sourceLine" id="cb1-21" title="21">    f.seek(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb1-22" title="22">    <span class="bu">print</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>.join(i[:<span class="dv">11</span>] <span class="cf">for</span> i <span class="kw">in</span> f))</a></code></pre></div>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/mask">→ read more<span class="offscreen"> Mask</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/kevin-higgs" class="post-link">Kevin Higgs</a></h3>
+		
+		<h4 class="post-subtitle">ångstromCTF 2022 (210 points)</h4>
+		
+		<p class="post-meta">
+		
+		2022-07-04
+		(1366 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>Now that kmh is gone, clam’s been going through pickle withdrawal. To help him cope, he wrote his own pickle pyjail. It’s nothing like kmh’s, but maybe it’s enough.</p>
+</blockquote>
+<p>Language jails are rapidly becoming one of my CTF areas of expertise. Not sure how I feel about that.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#!/usr/local/bin/python3</span></a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="im">import</span> pickle</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="im">import</span> io</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="im">import</span> sys</a>
+<a class="sourceLine" id="cb1-6" title="6"></a>
+<a class="sourceLine" id="cb1-7" title="7">module <span class="op">=</span> <span class="bu">type</span>(__builtins__)</a>
+<a class="sourceLine" id="cb1-8" title="8">empty <span class="op">=</span> module(<span class="st">&quot;empty&quot;</span>)</a>
+<a class="sourceLine" id="cb1-9" title="9">empty.empty <span class="op">=</span> empty</a>
+<a class="sourceLine" id="cb1-10" title="10">sys.modules[<span class="st">&quot;empty&quot;</span>] <span class="op">=</span> empty</a>
+<a class="sourceLine" id="cb1-11" title="11"></a>
+<a class="sourceLine" id="cb1-12" title="12"></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="kw">class</span> SafeUnpickler(pickle.Unpickler):</a>
+<a class="sourceLine" id="cb1-14" title="14">    <span class="kw">def</span> find_class(<span class="va">self</span>, module, name):</a>
+<a class="sourceLine" id="cb1-15" title="15">        <span class="cf">if</span> module <span class="op">==</span> <span class="st">&quot;empty&quot;</span> <span class="kw">and</span> name.count(<span class="st">&quot;.&quot;</span>) <span class="op">&lt;=</span> <span class="dv">1</span>:</a>
+<a class="sourceLine" id="cb1-16" title="16">            <span class="cf">return</span> <span class="bu">super</span>().find_class(module, name)</a>
+<a class="sourceLine" id="cb1-17" title="17">        <span class="cf">raise</span> pickle.UnpicklingError(<span class="st">&quot;e-legal&quot;</span>)</a>
+<a class="sourceLine" id="cb1-18" title="18"></a>
+<a class="sourceLine" id="cb1-19" title="19"></a>
+<a class="sourceLine" id="cb1-20" title="20">lepickle <span class="op">=</span> <span class="bu">bytes</span>.fromhex(<span class="bu">input</span>(<span class="st">&quot;Enter hex-encoded pickle: &quot;</span>))</a>
+<a class="sourceLine" id="cb1-21" title="21"><span class="cf">if</span> <span class="bu">len</span>(lepickle) <span class="op">&gt;</span> <span class="dv">400</span>:</a>
+<a class="sourceLine" id="cb1-22" title="22">    <span class="bu">print</span>(<span class="st">&quot;your pickle is too large for my taste &gt;:(&quot;</span>)</a>
+<a class="sourceLine" id="cb1-23" title="23"><span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb1-24" title="24">    SafeUnpickler(io.BytesIO(lepickle)).load()</a></code></pre></div>
+<p><code><a href="https://docs.python.org/3/library/pickle.html">pickle</a></code> is a Python object serialization format. As the docs page loudly proclaims, it is not secure. Roughly the simplest possible code to pop a shell (adapted from <a href="https://davidhamann.de/2020/04/05/exploiting-python-pickle/">David Hamann</a>, who constructs a more realistic RCE) looks like:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/kevin-higgs">→ read more<span class="offscreen"> Kevin Higgs</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/caasio" class="post-link">CaaSio PSE</a></h3>
+		
+		<h4 class="post-subtitle">ångstromCTF 2022 (250 points)</h4>
+		
+		<p class="post-meta">
+		
+		2022-07-04
+		(773 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>It’s clam’s newest javascript Calculator-as-a-Service: the CaaSio Please Stop Edition! no but actually please stop I hate jsjails js isn’t a good language stop putting one in every ctf I don’t want to look at another jsjail because if I do I might vomit from how much I hate js and js quirks aren’t even cool or funny or quirky they’re just painful because why would you design a language like this ahhhhhhhhhhhhhhhhhhhhh</p>
+</blockquote>
+<p>It’s just a JavaScript eval jail.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#!/usr/local/bin/node</span></a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co">// flag in ./flag.txt</span></a>
+<a class="sourceLine" id="cb1-4" title="4"></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">const</span> vm <span class="op">=</span> <span class="at">require</span>(<span class="st">&quot;vm&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="kw">const</span> readline <span class="op">=</span> <span class="at">require</span>(<span class="st">&quot;readline&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-7" title="7"></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="kw">const</span> <span class="kw">interface</span> <span class="op">=</span> <span class="va">readline</span>.<span class="at">createInterface</span>(<span class="op">{</span></a>
+<a class="sourceLine" id="cb1-9" title="9">    <span class="dt">input</span><span class="op">:</span> <span class="va">process</span>.<span class="at">stdin</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb1-10" title="10">    <span class="dt">output</span><span class="op">:</span> <span class="va">process</span>.<span class="at">stdout</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-12" title="12"></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="kw">interface</span>.<span class="at">question</span>(</a>
+<a class="sourceLine" id="cb1-14" title="14">    <span class="st">&quot;Welcome to CaaSio: Please Stop Edition! Enter your calculation:</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb1-15" title="15">    <span class="kw">function</span> (input) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-16" title="16">        <span class="kw">interface</span>.<span class="at">close</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-17" title="17">        <span class="cf">if</span> (</a>
+<a class="sourceLine" id="cb1-18" title="18">            <span class="va">input</span>.<span class="at">length</span> <span class="op">&lt;</span> <span class="dv">215</span> <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb1-19" title="19">            <span class="ss">/</span><span class="sc">^[\x20-\x7e]+$</span><span class="ss">/</span>.<span class="at">test</span>(input) <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb1-20" title="20">            <span class="op">!</span><span class="ss">/</span><span class="sc">[.\[\]{}\s;`&#39;&quot;\\_&lt;&gt;?:]</span><span class="ss">/</span>.<span class="at">test</span>(input) <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb1-21" title="21">            <span class="op">!</span><span class="va">input</span>.<span class="at">toLowerCase</span>().<span class="at">includes</span>(<span class="st">&quot;import&quot;</span>)</a>
+<a class="sourceLine" id="cb1-22" title="22">        ) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-23" title="23">            <span class="cf">try</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-24" title="24">                <span class="kw">const</span> val <span class="op">=</span> <span class="va">vm</span>.<span class="at">runInNewContext</span>(input<span class="op">,</span> <span class="op">{}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-25" title="25">                <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Result:&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-26" title="26">                <span class="va">console</span>.<span class="at">log</span>(val)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-27" title="27">                <span class="va">console</span>.<span class="at">log</span>(</a>
+<a class="sourceLine" id="cb1-28" title="28">                    <span class="st">&quot;See, isn&#39;t the calculator so much nicer when you&#39;re not trying to hack it?&quot;</span></a>
+<a class="sourceLine" id="cb1-29" title="29">                )<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-30" title="30">            <span class="op">}</span> <span class="cf">catch</span> (e) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-31" title="31">                <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;your tried&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-32" title="32">            <span class="op">}</span></a>
+<a class="sourceLine" id="cb1-33" title="33">        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-34" title="34">            <span class="va">console</span>.<span class="at">log</span>(</a>
+<a class="sourceLine" id="cb1-35" title="35">                <span class="st">&quot;Third time really is the charm! I&#39;ve finally created an unhackable system!&quot;</span></a>
+<a class="sourceLine" id="cb1-36" title="36">            )<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-37" title="37">        <span class="op">}</span></a>
+<a class="sourceLine" id="cb1-38" title="38">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb1-39" title="39">)<span class="op">;</span></a></code></pre></div>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/caasio">→ read more<span class="offscreen"> CaaSio PSE</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/interpret" class="post-link">Interpreting Some Toy Neural Networks</a></h3>
 		
 		<p class="post-meta">
@@ -325,129 +530,6 @@ Category → CS
 <p>Anyway, one particular feature Advent of Code has is a leaderboard, which you can get on by being one of the first 100 people worldwide to solve each puzzle. The competition is fierce — every year, thousands of people compete to get on the leaderboard. Near the start of AoC 2019, <a href="https://gist.github.com/mcpower/87427528b9ba5cac6f0c679370789661">mcpower</a> (<a href="https://www.reddit.com/r/adventofcode/comments/e2wjhf/tips_for_getting_on_the_advent_of_code_leaderboard/">reddit discussion</a>) and <a href="https://kevinyap.ca/2019/12/going-fast-in-advent-of-code/">Kevin Yap</a> (<a href="https://www.reddit.com/r/adventofcode/comments/e82f7a/going_fast_in_advent_of_code/">reddit discussion</a>) wrote some articles about how to do this, both of which are worth reading. I also thought about writing such an article and started a draft, but I didn’t get it anywhere close to publishable before AoC had concluded, at which point I assumed few people would be interested. But here it is now.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/advent-leaderboard">→ read more<span class="offscreen"> Advent of Code: How to Leaderboard</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/rvalue-references" class="post-link">C&#43;&#43; Rvalue References: The Unnecessarily Detailed Guide</a></h3>
-		
-		<h4 class="post-subtitle">Move semantics, perfect forwarding, and... everything else</h4>
-		
-		<p class="post-meta">
-		
-		2020-11-16
-		(12004 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>By a strange quirk of fate, I have started writing C++ for a living.</p>
-<p>Learning C++ was about as complicated as I think I expected it to be. By line count, I’ve written a lot of C++ for programming competitions, but I knew that I had only ever used a small cross-section of the language: basic control flow and variables, STL containers and algorithms, structs on which you mechanically define <code>bool operator&lt;(const T&amp; other) const</code> so STL algorithms can order them, and the very occasional macro or templated helper function. There were many features I wasn’t even aware existed.</p>
-<p>In the process of learning C++ professionally, one rabbit hole I fell into quickly was C++11’s defining feature, the <em>rvalue reference</em>, and how it can be used to implement <em>move semantics</em> and <em>perfect forwarding</em>. By poring over a copy of the widely recommended book <a href="https://www.amazon.com/Effective-Modern-Specific-Ways-Improve/dp/1491903996"><cite>Effective Modern C++</cite></a>, by Scott Meyers, and a few dozen StackOverflow answers and blog posts, I roughly understood it after a few days, but still had a sort of blind-men-feeling-the-elephant feeling. I was confused about what lay under some of the abstractions I had been using, unsure of the full shape of the pitfalls that some of the guides had pointed out to me, and generally uncomfortable that there were still many small variations of the code I had seen that I couldn’t predict the behavior of. It took many more days to work myself out of there, and I wished I had had a guide that explained rvalue references and their applications to a bit more depth than what might be necessary for day-to-day use. So here’s my attempt to explain rvalue references in my own fundamental I-want-to-know-how-things-work-no-<em>really</em> style.</p>
-<p>(If this vision doesn’t resonate with you, there are many other posts explaining rvalue references out there that you might prefer. Feel free to just skim the executive summary and/or check out some of the linked articles in the Background section.)</p>
-<h3 id="executive-summary">Executive Summary</h3>
-<p>I got… pretty carried away when writing this post, and a lot of it is just for my own understanding, which may or may not be useful to readers. Here’s a much more concise rundown (assuming you know basic C++ already):</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/rvalue-references">→ read more<span class="offscreen"> C&#43;&#43; Rvalue References: The Unnecessarily Detailed Guide</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/modulo" class="post-link">Signed Modulo</a></h3>
-		
-		<p class="post-meta">
-		
-		2020-02-04
-		(3836 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>, <a href="/category/math">Math</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>One thing many mathematically-inclined programmers run into when implementing mathematical algorithms, particularly number-theoretic ones, is that the <a href="https://en.wikipedia.org/wiki/Modulo_operation">modulo operation</a> doesn’t behave how they expect or prefer.</p>
-<p>In many languages, this operator is denoted <code>%</code>. Concretely, one might prefer that, if the second argument is positive, then the modulo operation would always give a nonnegative result. Under this behavior, the expression <code>(-5) % 3</code> would evaluate to <code>1</code> rather than <code>-2</code>. This is a lot more useful for number theory because then for positive integers <code>n</code>, the <code>% n</code> operation actually maps integers to exactly the <code>n</code> canonical representatives for the residue classes. As a result, <span class="math inline">\(a \equiv b \mod n\)</span> if and only if <code>a % n == b % n</code>. You can also do things like index into a length-<code>n</code> array with <code>a % n</code> and know that the index will be in-bounds. Finally, there are also optimization opportunities: modding by a power of 2 becomes equivalent to a simple bitwise AND, which is really fast on modern computers.</p>
-<p>A few programming languages, notably Python, do implement <code>%</code> this way. However, the majority of languages today, including pretty much everything remotely descended from C, do not; instead, <code>(-5) % 3</code> is <code>-2</code>. This post attempts to track down why.</p>
-<hr />
-<p>The first thing to note is that there is a more important number-theoretic identity we’d like to have:</p>
-<p><span class="math display">\[\texttt{a} = (\texttt{a / b}) \cdot \texttt{b} + (\texttt{a \% b}). \tag{1}\]</span></p>
-<p>In words, the integer division and modulo operators should give a breakdown of <code>a</code> into a sum of some copies of <code>b</code> plus a remainder. Note that this equation also implies that specifying the rounding behavior of division is equivalent to specifying the sign behavior of the modulo operation, which will come up repeatedly later.</p>
-<p>It’s also very uncontroversial that that remainder should have no copies of <code>b</code>, positive or negative, left over, which gives the constraint:</p>
-<p><span class="math display">\[|\texttt{a \% b}| &lt; |\texttt{b}|. \tag{2}\]</span></p>
-<p>Every programming language I can think of satisfies these two constraints.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> So far so good. However, these two constraints don’t uniquely determine the values of <code>a % b</code> when <code>a</code> isn’t divisible by <code>b</code>; there are two possible values for <code>a % b</code>, one positive and one negative. Concretely, we could express <span class="math inline">\(-5\)</span> as either <span class="math inline">\((-1) \cdot 3 + (-2)\)</span> or <span class="math inline">\((-2) \cdot 3 + 1\)</span>, so <code>(-5) % 3</code> could be <code>-2</code> or <code>1</code>.</p>
-<p>It’s still mostly uncontroversial that, if <code>a</code> and <code>b</code> are both positive, then <code>a % b</code> should be nonnegative as well; we could call this constraint (3).<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> However, if <code>a</code> is negative and <code>b</code> is positive, programming languages start to diverge in their behavior. Why?</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/modulo">→ read more<span class="offscreen"> Signed Modulo</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/advent-rocket" class="post-link">Rocket Equation</a></h3>
-		
-		<h4 class="post-subtitle">Advent of Code 2019, Day 1</h4>
-		
-		<p class="post-meta">
-		
-		2019-12-01
-		(992 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/math">Math</a>, <a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>It’s December, so it’s time for a lot of things, including <a href="https://adventofcode.com/">Advent of Code</a>. I will not be able to be as competitive as I was last year, and already lost a lot of points to a really silly mistake on day 1, but I’ll be playing when I can and <a href="https://github.com/betaveros/advent-of-code-golf-2019">golfing</a> the problems when I have time (so far: 7 + 14 bytes).</p>
-<p>As one might expect, <a href="https://adventofcode.com/2019/day/1">Day 1</a> is not too complex, but the second part can be analyzed to some mathematical depth and was discussed a bit on Reddit; plus, it occurred to me recently that I set up KaTeX on my blog but never used it, so I was looking for an excuse to write some equations anyway.</p>
-<p>The problem statement for part 2, in brief: We are tasked with calculating the total mass of fuel required to launch a rocket module of a given mass. For something of mass <span class="math inline">\(m\)</span>, one can compute the directly required mass of fuel by dividing <span class="math inline">\(m\)</span> by 3, rounding down, and subtracting 2; if the result is negative, it is taken to be 0 instead. However, the directly required fuel also requires fuel itself, calculated from its own mass by the same procedure, and that required fuel requires fuel based on its own mass, and so on until you reach fuel with 0 requirement.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/advent-rocket">→ read more<span class="offscreen"> Rocket Equation</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/callsite" class="post-link">callsite</a></h3>
-		
-		<h4 class="post-subtitle">CSAW CTF Qualifiers 2019</h4>
-		
-		<p class="post-meta">
-		
-		2019-09-16
-		(561 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>Call me maybe? <code>nc rev.chal.csaw.io 1001</code></p>
-</blockquote>
-<p>A rev with a nasty binary. There are so many functions. I do not like this binary.</p>
-<figure>
-<a href="/img/callsite-gross.png"><img src="/img/callsite-gross.png" alt="Screenshot of IDA Pro on the callsite binary, with a lot of code and functions." /></a>
-</figure>
-<h3 id="static-analysis">Static Analysis</h3>
-<p>After staring at the sea of functions in IDA for a little bit, I gave up and tried dumb things instead.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/callsite">→ read more<span class="offscreen"> callsite</span></a>
 	</footer>
 </article>
 

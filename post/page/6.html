@@ -55,6 +55,104 @@
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/thoroughly-stripped" class="post-link">Thoroughly Stripped</a></h3>
+		
+		<h4 class="post-subtitle">CSAW CTF 2017 Finals (Forensics, 200 pts)</h4>
+		
+		<p class="post-meta">
+		
+		2017-11-12
+		(1142 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Woo, first CTF writeup. I got the opportunity to participate in the 2017 CSAW CTF finals with Don’t Hack Alone.</p>
+<blockquote>
+<p>Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.</p>
+</blockquote>
+<p>We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.</p>
+<p>Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from <code><a href="https://github.com/betaveros/xxb">xxb</a></code> but <code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/thoroughly-stripped">→ read more<span class="offscreen"> Thoroughly Stripped</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/hello-again" class="post-link">Hello, Again</a></h3>
+		
+		<p class="post-meta">
+		
+		2017-11-07
+		(1930 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/meta">Meta</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>And here we are.</p>
+<p>This is the first post on this blog after I migrated off WordPress for a static solution.</p>
+<p>At first, I wanted to set things up on Amazon Web Services (AWS), which was an adventure. There are lots of online posts about how to do this, but Amazon’s services change quickly and there was often outdated information. For instance, Amazon had a wizard that led you through setting up a static site, which I clicked on. It helpfully handled a lot of grunt work, but now I was out of sync with all of the guides. Oh well.</p>
+<p>I think things are confusing partly because there are four AWS components all interacting to make a static site happen:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/hello-again">→ read more<span class="offscreen"> Hello, Again</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/remigration" class="post-link">Remigration</a></h3>
+		
+		<p class="post-meta">
+		
+		2017-11-05
+		(758 words)
+		
+		</p>
+	</header>
+	
+	<p>I guess I lied in my penultimate post.</p>
+<p>I’m planning on migrating my primary blog (again), off WordPress to a static site hosted somewhere. I might just throw everything onto GitHub Pages, or might follow any of the zillions of tutorials on how to host static sites off a cheap Amazon S3 bucket — I haven’t decided yet, but no longer having to rely on the free part of freemium services is fairly liberating.</p>
+<p>Why? Lots of small reasons.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/remigration">→ read more<span class="offscreen"> Remigration</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/me-and-facebook" class="post-link">Me and Facebook</a></h3>
+		
+		<p class="post-meta">
+		
+		2017-09-27
+		(1480 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/meta">Meta</a>, <a href="/category/thoughts">Thoughts</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p><strong>tl;dr: I don’t use Facebook much. If you want to contact me, I would prefer nearly any other mode of communication. I am also going to stop autosharing posts from this blog onto Facebook. RSS readers are great; get yours today.</strong></p>
+<p>Recently I checked Facebook and it said something like “You’ve added N friends this past T units of time! Thanks for making the world more connected!” and I just couldn’t any more. Facebook friends are not friends. <a href="https://en.wikipedia.org/wiki/Dunbar's_number">Dunbar’s number</a> is around 150, maybe double that if you want to stretch it; humans cannot handle that many human relationships. Facebook’s siloed ecosystem is the opposite of connected with the rest of the Internet.</p>
+<p>That is one of many reasons I pretty much don’t use Facebook any more. This is not new, but I’ve never formalized it. Also, I figure others might assume otherwise since I still do have an account and still accept friend requests and post sometimes. Thus, I’m writing this post.</p>
+<p>Here are all of the reasons:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/me-and-facebook">→ read more<span class="offscreen"> Me and Facebook</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/step-back" class="post-link">Taking a Step Back</a></h3>
 		
 		<p class="post-meta">
@@ -207,106 +305,6 @@
 <p>Meanwhile, during the same school year, more or less:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/time-money-1">→ read more<span class="offscreen"> Time, Money, and All That Good Stuff: Part 1 of ∞</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/musings-pressure" class="post-link">Musings on Time Pressure</a></h3>
-		
-		<p class="post-meta">
-		
-		2016-08-15
-		(375 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/meta">Meta</a>, <a href="/category/thoughts">Thoughts</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>I hate doing things under time pressure, but I have to admit I do a lot more things when time pressure exists. One of the things is writing. Another is posting the things I write. They aren’t very good, but they’re better than writing that doesn’t exist.</p>
-<p>(in case you forgot, I’m still posting this pretty much only because <a href="//blog.vero.site/post/no-excuses">I made myself post once every weekend</a>)</p>
-<p>It’s interesting that I can impose time pressure on myself by declaring commitment devices by fiat and it works. Other people have developed other methods of doing this — I recently discovered <a href="http://www.themostdangerouswritingapp.com/">The Most Dangerous Writing App</a>, which puts time pressure on you to type every five seconds or it deletes everything you wrote. There are many other ways it’s done.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/musings-pressure">→ read more<span class="offscreen"> Musings on Time Pressure</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/bcodex" class="post-link">020315040524</a></h3>
-		
-		<p class="post-meta">
-		
-		2016-08-08
-		(3056 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>, <a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p><code>--... ---.. ....- ..... ..--- ----- ....- ....- ...-- -.... ...-- -.... ...-- . ....- ....- ..--- ----- ....- ..... ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -.... ....- ....- ..--- ----- ...-- ..-. ....- ----- ..--- ----- ...-- ..--- ...-- ..-. ....- ..... ...-- .- ...-- ..... ....- ----- ....- ..... ...-- -.... ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ...-- ..-. ...-- ---.. ....- ....- ....- ..... ..--- ----- ...-- -.. ...-- .- ...-- -.-. ...-- -.... ..--- ----- ...-- --... ...-- .- ...-- ..-. ...-- ..... ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ....- ....- ....- ----- ...-- . ...-- -.... ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- ....- ....- ----- ....- ----- ...-- -.. ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ....- ---.. ...-- ..-. ..... -.-. ....- ..... ....- ----- ..... -.-. ...-- -.... ...-- ..--- ....- ...-- ....- ..... ...-- ----. ..... -... ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- .- ....- ..... ..... -..</code></p>
-<p><code>..--- ..... ....- ----- ...-- ..... ...-- ..--- ....- .- ..--- ----- --... ---.. ..--- ----- ...-- ..... ...-- .- ...-- ..... ..--- ----- ...-- ..--- ..--- ----- ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- --... ---.. ..--- ----- ....- ---.. ...-- ..--- ...-- ..-. ....- ..... ...-- -.... ...-- ..... ..--- ----- ....- ..... ....- ----- ..--- ----- ...-- ..... ....- ----- ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ..--- ----- ...-- -.. ....- ----- ...-- ..-. ...-- ---.. ..--- ----- ....- ..... ...-- .- ...-- . ...-- -.... -.... ----. ..--- ----- --... ---.. ..--- ----- ...-- ....- ....- ----- ...-- . ....- .---- ...-- .- ...-- -.. ...-- -.... ...-- ..... ..--- -----</code> <a href="https://github.com/betaveros/bcodex"><code>...-- ...-- ...-- ....- ....- ----- ...-- ..... ...-- -.... ....- ----.</code></a> <code>..--- ----- ...-- --... ....- ...-- ....- ----- ...-- . ..--- ----- --... --... ...-- ..--- ....- ....- ...-- -.-. ...-- -.... ...-- -.. ...-- -.. ..--- ----- ....- ..... ....- ----- ..--- ----- --... ----. ...-- ..--- ....- --... ...-- ..--- ..--- ....- ...-- ....- ....- ...-- ...-- .- ....- .---- ....- ..... ..--- ----- ....- ....- ....- ----- ..--- ----- ...-- .- ....- ..... ..--- ----- ...-- ....- ....- ----- ....- -.... ...-- -.. ...-- ..... ..--- ----- ....- ...-- ....- -.... ...-- ..-. ..--- ----- ...-- .- ...-- ..-. ..--- ----- ...-- ..--- ...-- ..-. ....- .- ..--- ----- ...-- . ....- ----- ...-- ..... ...-- -.... ....- ...-- ...-- ..-. ..--- ----- ...-- ...-- ....- ...-- ....- ----- ....- ---.. ....- ....- ...-- -.... ....- ...-- ..... -.. ..--- -----</code> <a href="http://betaveros.github.io/bcodex/"><code>..--- .- ....- ----- ....- -.... ..--- ----- ...-- ....- ...-- ..--- ...-- ..-. ..--- ----- ....- ..... ....- ...-- ....- .- ..--- ----- ...-- .- ....- ..... ..--- ----- ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -----</code></a></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/bcodex">→ read more<span class="offscreen"> 020315040524</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/pangs" class="post-link">Pangs</a></h3>
-		
-		<p class="post-meta">
-		
-		2016-08-01
-		(840 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/thoughts">Thoughts</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<div class="cw">
-<p>content warning: death, existential dread, the usual</p>
-</div>
-<p>I have this memory —</p>
-<p>I was a tiny kid, lying in bed and trying to fall asleep, and I started thinking about death and nonexistence, and I thought about how one day I wouldn’t exist any more, that there wouldn’t <em>be</em> a me thinking my thoughts and perceiving my perspective, and suddenly I was terrified.</p>
-<p>I got up and knocked on my parents’ bedroom door and asked them about this. Maybe. Or maybe I didn’t because the fear was less crippling than the social awkwardness of randomly knocking on my parents’ door in the middle of the night to ask them a question like that; I don’t remember. It was a long time ago, okay?</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/pangs">→ read more<span class="offscreen"> Pangs</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/music-ii" class="post-link">Music II</a></h3>
-		
-		<p class="post-meta">
-		
-		2016-07-25
-		(1685 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/self-analysis">Self-Analysis</a>, <a href="/category/thoughts">Thoughts</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>When I first made myself commit to posting weekly, I was trying to make myself spend a little time every day of the week thinking and writing and whittling away at old drafts. Instead I’m here at 10:40 PM basically starting a brand-new post. Oh well.</p>
-<p>I last <a href="//blog.vero.site/post/music">blogged about music in 2013</a>. I tagged two other posts with “music” since then, but neither is particularly deep: <a href="//blog.vero.site/post/8-songs">8 Songs for 18 Years</a> and <a href="//blog.vero.site/post/drop-in">Drop-In Filler</a>. Let’s continue the tradition of self-analysis part IIs from nowhere…</p>
-<hr />
-<p>I meditated a little bit in <a href="//blog.vero.site/post/conversations">Conversations</a> about “lacking experience or interest in a lot of the commonly discussed culture.” I think this applies to me and music as well, although not as fully. Back in Taiwan, when mentally bracing myself for coming to the U.S. for college, I sometimes worried about not knowing enough about pop music and bands and not listening enough to popular albums, and having trouble integrating into the culture for this.</p>
-<p>Turns out, among the communities I wandered into and friends I made, it was a more frequent obstacle that I didn’t know enough about classical music and composers. Whoops. Some of the names rang faint bells from either music class or conversations with high school friends who did do classical music, but I could not identify or remember any styles or eras, and would remember composers only by unreliable first letters or unusual substrings of their names.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/music-ii">→ read more<span class="offscreen"> Music II</span></a>
 	</footer>
 </article>
 <footer class="list-footer">

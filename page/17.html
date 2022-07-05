@@ -60,6 +60,135 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-45" class="post-link">Puzzle 45 / Fillomino [No-Path]</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-04-15
+		(67 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>As requested, a puzzle post! Straight from the WTF-variant department. Quite hard.</p>
+<p>This is a <a href="http://www.nikoli.co.jp/en/puzzles/fillomino.html">Fillomino</a>, with the additional constraint that for each polyomino, there must <em>not</em> exist a path (i.e. a sequence of cells, each orthogonally adjacent to the next) that includes each of the polyomino’s cells exactly once (and does not include cells outside the polyomino).</p>
+<p>As a degenerate case, 1-ominoes are banned as well.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/puzzle-45">→ read more<span class="offscreen"> Puzzle 45 / Fillomino [No-Path]</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/cabal" class="post-link">Adventures in Cabal Installations</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-04-13
+		(1550 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>First Google Code Jam!</p>
+<p>The format of this competition, allowing us to run programs on our own machines, brought up a very interesting issue for me: what programming language should I be using? (I had had similar considerations for IPSC 2013, but GCJ’s problems are closer to the traditional ACM-ICPC style.)</p>
+<p>The obvious choice is C++, the language I use for roughly every other competition, but its safety (or lack thereof) is not very appealing. I need speed, but not <em>that much</em> speed. Unfortunately I still haven’t gotten around to learning any other friendlier mid-level languages (on the list: D, Go, or Rust), so I have no close substitutes for C++ right now.</p>
+<p>Python is certainly available for a reliable arbitrary-length integer type, if nothing else.</p>
+<p>As for non-candidates, Java has <code>BigInteger</code> and memory safety, but all in all I decided the benefits are too minor and it’s too ugly without operator overloading. Scala is probably way too slow. So I don’t expect to be writing either language.</p>
+<p>The only difficult choice I have to make is, of course, Haskell — which can be quite fast, even while it’s ridiculously type-safe and expressive and referentially transparent and easy to reason about, once you’ve:</p>
+<ul>
+<li>figured out how to do the problem</li>
+<li>scrapped step 1 and <em>actually</em> figured out how to do the problem <em>functionally</em></li>
+<li>gotten the thing to compile</li>
+</ul>
+<p>Even if I can handle step 1, step 2 is by no means a simple task, as my struggle to implement a mere <a href="//blog.vero.site/post/haskell">Sieve of Eratosthenes</a> efficiently shows. That is fun, but not at all intuitive; I am doubtful I can do this under contest conditions. It is extremely difficult to transfer my skills in learning how to implement, say, a segment tree or treap into this language.</p>
+<p>But! Google links to the <a href="http://www.go-hero.net/jam/10/round/0">programming language breakdown for 2010 Qualification Round</a> as an example, and much to my surprise, Haskell ranks somewhere between sixth and tenth place in popularity (depending on what you sort by), so there are functional superprogrammers who can presumably do something like this.</p>
+<p>As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/cabal">→ read more<span class="offscreen"> Adventures in Cabal Installations</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/sat" class="post-link">Re-Re-Revisiting the SAT</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-02-08
+		(4139 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/school">School</a>, <a href="/category/thoughts">Thoughts</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>First, I got worked up about the test. Then I got a score and ranted about it on this blog. (I’m still uncertainly hoping that didn’t come off as arrogant. Let me add, I did not get a perfect PSAT.) Then a friend pitched to me the idea that I write an article about it for my school newspaper, which I did. It was far too long. As if that weren’t enough, I then decided to examine whether the SAT was an accurate prediction of “academic ability and success” for my English research paper. Now I’ve come full circle to this blog, where I’m going to try to synthesize and conclude everything, free of the shackles of the research paper format, to allow me to move on with my life. This post contains bits lifted from all three essays and lots of new stuff; I’ve been editing it for so long that I feel like I have it memorized. Its word count is around that of the newspaper article <em>plus</em> the research paper, i.e. far far far too long.</p>
+<p>But whatever, nobody reads this blog anyway and I have to get this out of my system. When I said I wanted to “move on with my life”, I really meant my winter homework. Oops!</p>
+<p><strong>Disclaimer:</strong> I am not an admissions officer. I have not yet even been accepted to a prestigious university (despite rumors to the contrary…), for whatever definition of “prestigious”, unlike some of the bloggers I’m referencing. So some of this is pure speculation. On the other hand, some of it is researched and referenced, and I think the pure speculation still makes sense. That’s why I’m posting it.</p>
+<p>Okay, here we go…</p>
+<p>Let’s start with the question of accurate prediction. The SAT is a useful predictor, but not as useful as one might assume. Intuitively, it ought to be more accurate than other metrics because it’s a <em>standardized</em> test, whereas GPAs other awards vary by habits of teacher and region and are hard to compare objectively. But as a <a href="http://research.collegeboard.org/sites/default/files/publications/2012/7/researchreport-2008-5-validity-sat-predicting-first-year-college-grade-point-average.pdf">study from the College Board <em>itself</em> (PDF)</a> found:</p>
+<blockquote>
+the correlation of HSGPA [high-school GPA] and FYGPA [first-year GPA in college] is 0.36 (Adj. r = 0.54), which is slightly higher than the multiple correlation of the SAT (critical reading, math, and writing combined) with FYGPA (r = 0.35, Adj. r = 0.53).
+</blockquote>
+<p>Of course, that doesn’t mean the SAT is worthless, because combining the SAT score and high school GPA results in a more accurate metric than either one alone. But by “more accurate” I refer to a marginal improvement of 0.08 correlation.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/sat">→ read more<span class="offscreen"> Re-Re-Revisiting the SAT</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/time" class="post-link">The Sands of Time</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-12-31
+		(1489 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>, <a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Random video! Although I feel that I’ve heard it earlier, my first conscious memory of getting linked to it is from <a href="http://usamoarchive.wordpress.com/2012/03/01/youre-older-than-youve-ever-been/">this post</a>. At first I thought it would be the right background music for this post, but upon further reflection I think it mainly suited me while I was writing this post. Well, it’s topical if you mentally replace “day” with “year”.</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/q2bo_u_YmW8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>Anyway. Around this time a year ago, I paused my participation in big high-school competitions, for a variety of reasons.</p>
+<p>Firstly, I stopped attempting to make IMO both because I wouldn’t get that much from the training and because other people ought to have the opportunity. I was concerned that I might condition myself to only be able to do math with the short-term motivation of contests. Better to focus on college math and maybe some original research, I thought. During the year, I did lots of the former and very little of the latter. Meh.</p>
+<p>As for the IOI, my obvious next target: I was tired of training and going abroad while paranoid about whether my immune system would hold up. I didn’t feel that the IOI was worth that. To some degree, I also felt burned out about programming. Long story short, my treatment should end soon, and learning Haskell completely resolved the burnout problem.</p>
+<p>But the most important reason, I think, was that “high school was too short”. I started math competitions ridiculously early and didn’t spend much time exploring other interests. I thought I knew myself well enough that I could say I didn’t have many more interests at all, but I was completely wrong (psych nerds will reflexively note this to be the <a href="https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect">Dunning-Kruger effect</a>). I coded lots in weird languages — Haskell, as mentioned previously, plus Scala, plus all manner of other magical command line tools. I wrote my first math problem and submitted it officially, picked up a new instrument, went to a debate competition, served as an unimportant tech guy for MUN, discovered and became hooked on Pentatonix, participated in three puzzle hunts in Australia and one in Massachusetts, figured out my rough political stance, rode a boat, got retweeted by <span class="citation" data-cites="eevee">@eevee</span> and <span class="citation" data-cites="Kyrgyzstan_News">@Kyrgyzstan_News</span>, increased my Neopets™ fortune by over 3400%, and lurked on FurAffinity a little too much.</p>
+<p>But now, dear competition world, I’m back.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/time">→ read more<span class="offscreen"> The Sands of Time</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/74-days" class="post-link">74 Days</a></h3>
 		
 		<p class="post-meta">
@@ -221,111 +350,6 @@ ETA: Journalistic responsibility compels me to mention that chaotic_iak also add
 <p>I slept, and dreamt of vomiting carrots.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/anesthesia">→ read more<span class="offscreen"> Anesthesia</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-42" class="post-link">Puzzle 42 / Fillomino [Greater-Than]</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-07-19
-		(60 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Oops, I forgot the “puzzles” category was semi-reserved for puzzles I constructed/wrote, because among other things an LMI bot is following it. Anyway, if this makes up for anything, I have a puzzle that I’ve procrastinated posting for very, very long.</p>
-<p>This is a <a href="http://www.nikoli.co.jp/en/puzzles/fillomino.html">Fillomino</a> puzzle. Inequality signs in the grid must be satisfied by the two numbers they touch.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/puzzle-42">→ read more<span class="offscreen"> Puzzle 42 / Fillomino [Greater-Than]</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/rankk-stats" class="post-link">Rankk Solving Statistics</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-07-18
-		(1139 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Funny, I go on a trip to Penghu followed by a four-day science camp and also get dragged into drawing classes and some sort of movie advising joint, and this is what I decide to blog about.</p>
-<p>Since it’s summer, I went back to <a href="http://www.rankk.org/">Rankk</a> and solved stuff. This is lots of fun if you’re good with computers, plus a little math, cryptography, and general puzzling. I’m still stuck on level 8… oh well. Since the levels didn’t seem very indicative of difficulty to me, I decided to do some analysis.</p>
-<p>New challenges have been added to Rankk over time, so my metric of difficulty is the number of solvers divided by the time from release to now. Of course this is far from perfect; for example, a challenge’s author doesn’t always seem consistently counted as a solver, problems with lower numbers and problems that will help level up are more likely to get checked out by new rankkers, and so on. But this is just for fun.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/rankk-stats">→ read more<span class="offscreen"> Rankk Solving Statistics</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/music" class="post-link">Music</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-06-22
-		(983 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>, <a href="/category/self-analysis">Self-Analysis</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Isn’t it weird to suddenly talk about this topic?</p>
-<p>I don’t think that I have ever talked about music any more than briefly in passing. It might be confusing to my <em>finger quotes</em> <em>audience</em>, and I worry I’ll seem inconsistent.</p>
-<p>Well, a foolish consistency is the hobgoblin of little minds. If you wonder, “I didn’t know that you sang and played the piano, or you liked music in that way — or, at all…” please note that I didn’t know either.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/music">→ read more<span class="offscreen"> Music</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/test" class="post-link">Test</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-06-09
-		(3106 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/creations">Creations</a>, <a href="/category/school">School</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Parts of this (a majority of questions, I hope) are intended as satire. Other parts of this are silliness created to blow off steam from being coerced into spending nine unproductive hours. Still other parts exist simply because I wanted to have equally many questions per test. Also, 256th post w00t. <ins datetime="2019-08-22T22:21:48-0400">(2019 edit: after the migration, this post count is wildly incorrect, but whatever.)</ins></p>
-<h3>
-“Verbal Reasoning”
-</h3>
-<p><em>Directions:</em> The questions in this test are multiple-choice. Each question has four possible choices. Read each question and decide which answer is the best answer. Find the row in your answer sheet that matches the number of the question. In that row, fill in the oval corresponding to the answer you selected.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/test">→ read more<span class="offscreen"> Test</span></a>
 	</footer>
 </article>
 

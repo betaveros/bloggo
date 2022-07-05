@@ -60,6 +60,215 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/pppordle" class="post-link">🅿️🅿️🅿️ordle</a></h3>
+		
+		<h4 class="post-subtitle">PlaidCTF 2022 (350 points)</h4>
+		
+		<p class="post-meta">
+		
+		2022-07-04
+		(1890 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Don’t you hate it when CTFs happen faster than you can write them up? This is probably the only PlaidCTF challenge I get to, unfortunately.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<blockquote>
+<p>Web is out, retro is in. Play your favorite word game from the comfort of your terminal!</p>
+</blockquote>
+<p>It’s a terminal Wordle client!</p>
+<figure>
+<a href="/img/pppordle-1.png"><img src="/img/pppordle-1.png" alt="Screenshot of a terminal Wordle client. The puzzle has been solved with the answer COZEY." /></a>
+</figure>
+<p>I only solved the first half of this challenge. The two halves seem to be unrelated though. (Nobody solved the second half during the CTF.) The challenge was quite big code-wise, with more than a dozen files, so it’s hard to replicate the experience in a post like this, but here’s an attempt.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/pppordle">→ read more<span class="offscreen"> 🅿️🅿️🅿️ordle</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/mask" class="post-link">Mask</a></h3>
+		
+		<h4 class="post-subtitle">ångstromCTF 2022 (200 points)</h4>
+		
+		<p class="post-meta">
+		
+		2022-07-04
+		(2518 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>Don’t forget to wear your mask…</p>
+<p><code>nc challs.actf.co 31501</code></p>
+</blockquote>
+<p>If I had a nickel for every <a href="//blog.vero.site/post/messy-desk">CTF challenge I’ve done</a> that involves understanding the internal structure of a QR code, I would have two nickels. Which isn’t a lot, etc etc. That previous challenge probably helped me get first blood on this.</p>
+<p>The source code is wonderfully short:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="im">import</span> io, qrcode, string</a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3">flag_contents <span class="op">=</span> [REDACTED]</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="cf">assert</span> <span class="bu">all</span>(i <span class="kw">in</span> string.ascii_lowercase <span class="op">+</span> <span class="st">&#39;_&#39;</span> <span class="cf">for</span> i <span class="kw">in</span> flag_contents)</a>
+<a class="sourceLine" id="cb1-5" title="5"></a>
+<a class="sourceLine" id="cb1-6" title="6">flag <span class="op">=</span> b<span class="st">&quot;actf{&quot;</span> <span class="op">+</span> flag_contents.encode() <span class="op">+</span> b<span class="st">&quot;}&quot;</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="bu">print</span>(<span class="st">&quot;flag is </span><span class="sc">%d</span><span class="st"> characters&quot;</span> <span class="op">%</span> <span class="bu">len</span>(flag))</a>
+<a class="sourceLine" id="cb1-8" title="8"></a>
+<a class="sourceLine" id="cb1-9" title="9">qr <span class="op">=</span> qrcode.QRCode(version<span class="op">=</span><span class="dv">1</span>, error_correction <span class="op">=</span> qrcode.constants.ERROR_CORRECT_L, box_size<span class="op">=</span><span class="dv">1</span>, border<span class="op">=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="cf">while</span> <span class="dv">1</span>:</a>
+<a class="sourceLine" id="cb1-11" title="11">    <span class="cf">try</span>:</a>
+<a class="sourceLine" id="cb1-12" title="12">        inp <span class="op">=</span> <span class="bu">bytes</span>.fromhex(<span class="bu">input</span>(<span class="st">&quot;give input (in hex): &quot;</span>))</a>
+<a class="sourceLine" id="cb1-13" title="13">        <span class="cf">assert</span> <span class="bu">len</span>(inp) <span class="op">==</span> <span class="bu">len</span>(flag)</a>
+<a class="sourceLine" id="cb1-14" title="14">    <span class="cf">except</span>:</a>
+<a class="sourceLine" id="cb1-15" title="15">        <span class="bu">print</span>(<span class="st">&quot;bad input, exiting&quot;</span>)</a>
+<a class="sourceLine" id="cb1-16" title="16">        <span class="cf">break</span></a>
+<a class="sourceLine" id="cb1-17" title="17">    qr.clear()</a>
+<a class="sourceLine" id="cb1-18" title="18">    qr.add_data(<span class="bu">bytes</span>([i<span class="op">^</span>j <span class="cf">for</span> i,j <span class="kw">in</span> <span class="bu">zip</span>(inp, flag)]))</a>
+<a class="sourceLine" id="cb1-19" title="19">    f <span class="op">=</span> io.StringIO()</a>
+<a class="sourceLine" id="cb1-20" title="20">    qr.print_ascii(out<span class="op">=</span>f)</a>
+<a class="sourceLine" id="cb1-21" title="21">    f.seek(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb1-22" title="22">    <span class="bu">print</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>.join(i[:<span class="dv">11</span>] <span class="cf">for</span> i <span class="kw">in</span> f))</a></code></pre></div>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/mask">→ read more<span class="offscreen"> Mask</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/kevin-higgs" class="post-link">Kevin Higgs</a></h3>
+		
+		<h4 class="post-subtitle">ångstromCTF 2022 (210 points)</h4>
+		
+		<p class="post-meta">
+		
+		2022-07-04
+		(1366 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>Now that kmh is gone, clam’s been going through pickle withdrawal. To help him cope, he wrote his own pickle pyjail. It’s nothing like kmh’s, but maybe it’s enough.</p>
+</blockquote>
+<p>Language jails are rapidly becoming one of my CTF areas of expertise. Not sure how I feel about that.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#!/usr/local/bin/python3</span></a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="im">import</span> pickle</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="im">import</span> io</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="im">import</span> sys</a>
+<a class="sourceLine" id="cb1-6" title="6"></a>
+<a class="sourceLine" id="cb1-7" title="7">module <span class="op">=</span> <span class="bu">type</span>(__builtins__)</a>
+<a class="sourceLine" id="cb1-8" title="8">empty <span class="op">=</span> module(<span class="st">&quot;empty&quot;</span>)</a>
+<a class="sourceLine" id="cb1-9" title="9">empty.empty <span class="op">=</span> empty</a>
+<a class="sourceLine" id="cb1-10" title="10">sys.modules[<span class="st">&quot;empty&quot;</span>] <span class="op">=</span> empty</a>
+<a class="sourceLine" id="cb1-11" title="11"></a>
+<a class="sourceLine" id="cb1-12" title="12"></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="kw">class</span> SafeUnpickler(pickle.Unpickler):</a>
+<a class="sourceLine" id="cb1-14" title="14">    <span class="kw">def</span> find_class(<span class="va">self</span>, module, name):</a>
+<a class="sourceLine" id="cb1-15" title="15">        <span class="cf">if</span> module <span class="op">==</span> <span class="st">&quot;empty&quot;</span> <span class="kw">and</span> name.count(<span class="st">&quot;.&quot;</span>) <span class="op">&lt;=</span> <span class="dv">1</span>:</a>
+<a class="sourceLine" id="cb1-16" title="16">            <span class="cf">return</span> <span class="bu">super</span>().find_class(module, name)</a>
+<a class="sourceLine" id="cb1-17" title="17">        <span class="cf">raise</span> pickle.UnpicklingError(<span class="st">&quot;e-legal&quot;</span>)</a>
+<a class="sourceLine" id="cb1-18" title="18"></a>
+<a class="sourceLine" id="cb1-19" title="19"></a>
+<a class="sourceLine" id="cb1-20" title="20">lepickle <span class="op">=</span> <span class="bu">bytes</span>.fromhex(<span class="bu">input</span>(<span class="st">&quot;Enter hex-encoded pickle: &quot;</span>))</a>
+<a class="sourceLine" id="cb1-21" title="21"><span class="cf">if</span> <span class="bu">len</span>(lepickle) <span class="op">&gt;</span> <span class="dv">400</span>:</a>
+<a class="sourceLine" id="cb1-22" title="22">    <span class="bu">print</span>(<span class="st">&quot;your pickle is too large for my taste &gt;:(&quot;</span>)</a>
+<a class="sourceLine" id="cb1-23" title="23"><span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb1-24" title="24">    SafeUnpickler(io.BytesIO(lepickle)).load()</a></code></pre></div>
+<p><code><a href="https://docs.python.org/3/library/pickle.html">pickle</a></code> is a Python object serialization format. As the docs page loudly proclaims, it is not secure. Roughly the simplest possible code to pop a shell (adapted from <a href="https://davidhamann.de/2020/04/05/exploiting-python-pickle/">David Hamann</a>, who constructs a more realistic RCE) looks like:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/kevin-higgs">→ read more<span class="offscreen"> Kevin Higgs</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/caasio" class="post-link">CaaSio PSE</a></h3>
+		
+		<h4 class="post-subtitle">ångstromCTF 2022 (250 points)</h4>
+		
+		<p class="post-meta">
+		
+		2022-07-04
+		(773 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>It’s clam’s newest javascript Calculator-as-a-Service: the CaaSio Please Stop Edition! no but actually please stop I hate jsjails js isn’t a good language stop putting one in every ctf I don’t want to look at another jsjail because if I do I might vomit from how much I hate js and js quirks aren’t even cool or funny or quirky they’re just painful because why would you design a language like this ahhhhhhhhhhhhhhhhhhhhh</p>
+</blockquote>
+<p>It’s just a JavaScript eval jail.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#!/usr/local/bin/node</span></a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co">// flag in ./flag.txt</span></a>
+<a class="sourceLine" id="cb1-4" title="4"></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">const</span> vm <span class="op">=</span> <span class="at">require</span>(<span class="st">&quot;vm&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="kw">const</span> readline <span class="op">=</span> <span class="at">require</span>(<span class="st">&quot;readline&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-7" title="7"></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="kw">const</span> <span class="kw">interface</span> <span class="op">=</span> <span class="va">readline</span>.<span class="at">createInterface</span>(<span class="op">{</span></a>
+<a class="sourceLine" id="cb1-9" title="9">    <span class="dt">input</span><span class="op">:</span> <span class="va">process</span>.<span class="at">stdin</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb1-10" title="10">    <span class="dt">output</span><span class="op">:</span> <span class="va">process</span>.<span class="at">stdout</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-12" title="12"></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="kw">interface</span>.<span class="at">question</span>(</a>
+<a class="sourceLine" id="cb1-14" title="14">    <span class="st">&quot;Welcome to CaaSio: Please Stop Edition! Enter your calculation:</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb1-15" title="15">    <span class="kw">function</span> (input) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-16" title="16">        <span class="kw">interface</span>.<span class="at">close</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-17" title="17">        <span class="cf">if</span> (</a>
+<a class="sourceLine" id="cb1-18" title="18">            <span class="va">input</span>.<span class="at">length</span> <span class="op">&lt;</span> <span class="dv">215</span> <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb1-19" title="19">            <span class="ss">/</span><span class="sc">^[\x20-\x7e]+$</span><span class="ss">/</span>.<span class="at">test</span>(input) <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb1-20" title="20">            <span class="op">!</span><span class="ss">/</span><span class="sc">[.\[\]{}\s;`&#39;&quot;\\_&lt;&gt;?:]</span><span class="ss">/</span>.<span class="at">test</span>(input) <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb1-21" title="21">            <span class="op">!</span><span class="va">input</span>.<span class="at">toLowerCase</span>().<span class="at">includes</span>(<span class="st">&quot;import&quot;</span>)</a>
+<a class="sourceLine" id="cb1-22" title="22">        ) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-23" title="23">            <span class="cf">try</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-24" title="24">                <span class="kw">const</span> val <span class="op">=</span> <span class="va">vm</span>.<span class="at">runInNewContext</span>(input<span class="op">,</span> <span class="op">{}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-25" title="25">                <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Result:&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-26" title="26">                <span class="va">console</span>.<span class="at">log</span>(val)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-27" title="27">                <span class="va">console</span>.<span class="at">log</span>(</a>
+<a class="sourceLine" id="cb1-28" title="28">                    <span class="st">&quot;See, isn&#39;t the calculator so much nicer when you&#39;re not trying to hack it?&quot;</span></a>
+<a class="sourceLine" id="cb1-29" title="29">                )<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-30" title="30">            <span class="op">}</span> <span class="cf">catch</span> (e) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-31" title="31">                <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;your tried&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-32" title="32">            <span class="op">}</span></a>
+<a class="sourceLine" id="cb1-33" title="33">        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-34" title="34">            <span class="va">console</span>.<span class="at">log</span>(</a>
+<a class="sourceLine" id="cb1-35" title="35">                <span class="st">&quot;Third time really is the charm! I&#39;ve finally created an unhackable system!&quot;</span></a>
+<a class="sourceLine" id="cb1-36" title="36">            )<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-37" title="37">        <span class="op">}</span></a>
+<a class="sourceLine" id="cb1-38" title="38">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb1-39" title="39">)<span class="op">;</span></a></code></pre></div>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/caasio">→ read more<span class="offscreen"> CaaSio PSE</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/interpret" class="post-link">Interpreting Some Toy Neural Networks</a></h3>
 		
 		<p class="post-meta">
@@ -316,130 +525,6 @@
 <p>Because I’m focusing on conceptual understanding (and am lazy), this post contains almost no code, and definitely no code that’s runnable in any real programming language.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/elliptic-curves">→ read more<span class="offscreen"> Just Enough Elliptic Curves to Be Dangerous</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/anki-trick" class="post-link">One Weird Anki Trick</a></h3>
-		
-		<p class="post-meta">
-		
-		2021-08-16
-		(568 words)
-		
-		</p>
-	</header>
-	
-	<p>Imagine you had a button you could press whenever you saw or heard something you wanted to remember. By holding that button down for about a minute, you’ll be able to remember that thing <em>forever</em>. There are no undesirable side effects. Sounds like a pretty good deal, right?</p>
-<p>There’s only one catch: you have to regularly find new things to press the button on. If you stop for more than a few days, the effects wear off. If you ask me, it still seems almost too good to be true! But it’s not. It’s the magic of <a href="https://en.wikipedia.org/wiki/Spaced_repetition">spaced repetition</a>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<p>I had known about this magic for a long time and read blog posts from all directions telling me to use it, typically but not necessarily through <a href="https://apps.ankiweb.net/">Anki</a>. Examples include Nicky Case’s <a href="https://ncase.me/remember/">interactive guide</a> and Alexey Guzey’s <a href="https://guzey.com/things/software/anki/">guide</a>; and because this has been so well-covered, I won’t go into how or why spaced repetition works or how one would use Anki in this post. Still, for a long time, I found the one “catch” to be of the -22 variety: I didn’t use Anki regularly because I didn’t have any flash cards of things I wanted to remember; but I didn’t make any flash cards of things I wanted to remember because, given that I didn’t use Anki regularly, making those flash cards wouldn’t actually help me remember those things.</p>
-<p>Here is the One Weird Anki Trick that got me to finally turn spaced repetition into a habit: I created an Anki deck with a bunch of amusing but utterly useless cards,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> in order to make studying the Anki deck an entertaining activity I actually wanted to do. (Getting the mobile app and syncing my deck online also helped a lot.) Only after I started to habitually check my Anki deck did I start adding cards for the things I actually wanted to learn. I keep everything in one deck,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> so that my fun cards are spread out among my “work” cards, and when I find myself losing motivation, I add more useless entertainment cards.</p>
-<p>That’s it. That’s the whole post.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/anki-trick">→ read more<span class="offscreen"> One Weird Anki Trick</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/discord-color" class="post-link">What Color Should My Discord Roles/Reactions Be?</a></h3>
-		
-		<p class="post-meta">
-		
-		2021-06-28
-		(1673 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>I subscribed to Discord Nitro a month ago, but only recently did I start thinking about the full range of powers the subscription granted me. I could create my own reactions, dump them in my personal server, and use them to react anywhere.</p>
-<p>However, when I finally started trying to create some reactions, I hit an interesting snag: Discord can be used in dark and light mode,<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and a reaction will have the same color on both modes. If I wanted my reaction to be as clearly readable in both modes as possible, what color should I make it?</p>
-<p>(I could, of course, just outline my reaction with a contrasting color, but let’s say that’s cheating. With the limited space in a reaction, outlining isn’t that great of a solution anyway.)</p>
-<p>Now, one can’t <em>really</em> just compute the “contrast of two colors” given only their RGB components; there’s no universally agreed-on definition of <a href="https://en.wikipedia.org/wiki/Contrast_(vision)">contrast in vision</a>, and even if there were one, the contrast of two given colors would depend on the color space and possibly the viewer’s biology. But, to get a concrete answer to this question, we can use the standard sRGB model and the W3C’s definitions of <a href="https://www.w3.org/TR/WCAG/#dfn-contrast-ratio">contrast ratio</a> and <a href="https://www.w3.org/TR/WCAG/#dfn-relative-luminance">relative luminance</a>.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> As of time of writing on my computer,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Discord reactions have background <span style="padding:0.15em 0.4em;background-color:#2f3136;color:white">#2f3136</span> on dark mode and <span style="padding:0.15em 0.4em;background-color:#f2f3f5">#f2f3f5</span> on light mode. Reactions you’ve reacted with have background <span style="padding:0.15em 0.4em;background-color:#3b405a;color:white">#3b405a</span> on dark mode and <span style="padding:0.15em 0.4em;background-color:#e7e9fd">#e7e9fd</span> on light mode. Because the dark mode background gets lighter and the light mode background gets darker, we’ll use the latter colors so we’re optimizing the worst-case contrast.</p>
-<p>There are smarter approaches, but the 256<sup>3</sup> = 16,777,216 possible 8-bit colors are perfectly feasible to brute force, so I wrote a short Python script to check all of them, which is at the bottom of this post. Under the parameters I’ve outlined, the optimal color for a Discord reaction is <span style="padding:0.15em 0.4em;background-color:#ff4103">rgb(255, 65, 3) or #ff4103.</span> A demo:</p>
-<table>
-<tr>
-<td style="background-color:#3b405a;color:#ff4103">
-#ff4103 <strong>#ff4103</strong> ●<br> <small><abbr title="Contrast Ratio">CR</abbr>: 2.90738237</small>
-</td>
-<td style="background-color:#e7e9fd;color:#ff4103">
-#ff4103 <strong>#ff4103</strong> ● <br> <small><abbr title="Contrast Ratio">CR</abbr>: 2.90738217</small>
-</td>
-</tr>
-</table>
-<p>That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that. (It’s highly doubtful that the formulae I used were intended to have this degree of precision in the first place.)</p>
-<p>After playing with a few ways to get a spread of options, I settled on categorizing colors into six buckets of saturation and twelve buckets of hue in the <a href="https://en.wikipedia.org/wiki/HSL_and_HSV#Formal_derivation">simple HSV model</a>, and then finding the optimal color within each bucket. Here is a table of my results:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/discord-color">→ read more<span class="offscreen"> What Color Should My Discord Roles/Reactions Be?</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/sql-select" class="post-link">SQL Selects the Hard FP Way</a></h3>
-		
-		<p class="post-meta">
-		
-		2021-04-16
-		(3630 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>This post is motivated by reasons very similar to the ones that motivated my <a href="//blog.vero.site/post/react-redux">React and Redux “tutorial”</a>. Again, it should be more accurately but less informatively titled “How I wish SQL SELECTs were explained to me”. Again, it does not imply that this method of explanation is suitable for anybody else. One difference is that this time, I mostly only wanted to learn about SQL SELECTs to the extent it would help me perform and optimize queries in Django’s ORM, but to prevent this post from languishing forever in my drafts folder, that material has been sectioned off into a possible future post, because I figured out what I wanted, ran out of steam, and am now trying to learn TLA⁺. Just me things.</p>
-<h3 id="background">Background</h3>
-<p>The SQL standard is confusing and almost never completely implemented; there are huge inconsistencies between SQL implementations. I will focus on SQLite because it’s popular and easy to play with, but generally try to stay away from unpopular or nonstandard features. <a href="https://www.sqlite.org/lang_select.html">SQLite’s SELECT documentation</a> is good reading for <em>one</em> particular SQL implementation.</p>
-<p>A SQL database is a place where you store and query a bunch of data that’s organized into tables. A table is a homogeneous list of rows. A row is a heterogeneous tuple of values of various simple data types. The data types supported depend on the SQL implementation; typical examples are integers and strings of various sizes, floating point numbers, and dates/datetimes. All of these types can be nullable; NULL is a SQL value that can appear just about anywhere. (Like many of the other SQL features, NULL is handled somewhat inconsistently across SQL implementations, but as a first-order approximation it’s closer to a floating-point NaN than, say, Java’s “null”. We’ll talk more about it later.) However, note that you can’t have a variable-size list of other things in a row. And just to make sure it’s clear, all the rows in a given table must have the same data types in the same order.</p>
-<p>A “column” is just what you’d intuitively expect it to be: it’s the homogeneous list of all values in a particular position in each row of a table, which all have the same data type. One thing I haven’t mentioned yet is that table columns all have names. This is true both for tables stored in the database and for the ephemeral tables that are the output of queries.</p>
-<p>Since I’ll also be referring to more complex types like lists and tuples often seen in conventional programming languages, I’ll call these simple data types “scalar types” and values of those types “scalars”. This is not SQL terminology; documentation usually just calls these “data types”. Here’s <a href="https://www.sqlite.org/datatype3.html">SQLite’s page on data types</a>.</p>
-<p>To play along, install SQLite and run it. You should get dropped into a connection to an ephemeral in-memory database, which is plenty enough for our purposes. Make a table and mutter some magic incantations to make the output a little prettier for us:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">CREATE</span> <span class="kw">TABLE</span> a (<span class="kw">id</span> <span class="dt">int</span>);</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">INSERT</span> <span class="kw">INTO</span> a <span class="kw">VALUES</span> (<span class="dv">1</span>), (<span class="dv">2</span>), (<span class="dv">3</span>), (<span class="dv">4</span>);</a>
-<a class="sourceLine" id="cb1-3" title="3">.headers <span class="kw">on</span></a>
-<a class="sourceLine" id="cb1-4" title="4">.<span class="kw">mode</span> <span class="kw">column</span></a></code></pre></div>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/sql-select">→ read more<span class="offscreen"> SQL Selects the Hard FP Way</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/blogging-advice" class="post-link">Blogging Advice For People Exactly Like Me</a></h3>
-		
-		<p class="post-meta">
-		
-		2021-03-14
-		(5222 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/meta">Meta</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Did you know that it’s harder to become an MIT admissions blogger as an MIT student than it is to get into MIT as an applicant? It was true my year, in which 18,306 students applied and 1,467 were admitted (8.0%),<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> whereas 69 students applied for 5 blogging spots (7.2%).<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Anecdotally it might also be true for future years.</p>
-<p>I was among the 92.8% who got rejected in the latter process. Although I obviously would have preferred things go the other way, I can’t say I was surprised, firstly because, objectively, the odds were against me (as they were for every other individual applicant); secondly because, to the extent I can make educated guesses about the criteria the folks at MIT Admissions would have chosen bloggers by, I would have been close to the worst possible candidate;<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> thirdly because my application probably wasn’t very good.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
-<p>I didn’t dwell on it; I just thought to myself some vague consoling thoughts and moved on. No matter what I missed out on, at least I retained complete freedom: to choose what to write about, when to post it, and how to format and typeset it, down to the very last <code style="box-shadow: 1px -1px 3px rgba(170,0,0,0.5)">box-shadow</code>. Right? But, although I mostly successfully avoided thinking about it, there really was a lot to like about being an admissions blogger! I liked writing — or perhaps, I liked <em>being a person who has written a lot</em> more, and having a commitment to blog regularly would be a way to force myself to become that person. I liked the idea of getting to share things with thousands of readers, or less euphemistically I liked the thought of being, if ever so slightly, famous.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> I liked the idea of having a sketched portrait and being part of official events with “Blogger” in the title and all that jazz. Collectively these things just felt <em>cool</em>.</p>
-<p>The thing is, though, that there were things I could do to try to get those things for myself, and I didn’t do them. I know how to force myself to blog regularly, which is just by announcing publicly to nobody in particular that I’ll blog regularly (it’s worked effectively at least twice). I know many places I could promote my blog and try to get more readers. I can buy a sketched portrait.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> It’s not that hard.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/blogging-advice">→ read more<span class="offscreen"> Blogging Advice For People Exactly Like Me</span></a>
 	</footer>
 </article>
 

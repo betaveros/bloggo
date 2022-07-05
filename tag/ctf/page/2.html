@@ -64,6 +64,126 @@ Tag → CTF
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/plc" class="post-link">PLC</a></h3>
+		
+		<h4 class="post-subtitle">CSAW CTF Qualifiers 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-09-30
+		(3590 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>We’ve burrowed ourselves deep within the facility, gaining access to the programable logic controllers (PLC) that drive their nuclear enrichment centrifuges. Kinetic damage is necessary, we need you to neutralize these machines.</p>
+<p>You can access this challenge at <a href="https://wargames.ret2.systems/csaw_2018_plc_challenge">https://wargames.ret2.systems/csaw_2018_plc_challenge</a></p>
+</blockquote>
+<p>A much belated post. This is a pwn challenge on a custom online wargaming platform. We are provided with the assembly of what’s ostensibly a programmable logic controller (PLC) for a centrifuge in a nuclear reactor. The challenge looks like it’s still up, so you can take a look and follow along.</p>
+<p>This was the first <a href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a> (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like <code>until</code>, no pwntools utilities for packing/unpacking numbers, … no <code>one_gadget</code>), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use <code>gdb</code> (or fictionalized web knockoffs thereof).</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/plc">→ read more<span class="offscreen"> PLC</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/proprietary-format" class="post-link">Proprietary Format</a></h3>
+		
+		<h4 class="post-subtitle">Google CTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-06-28
+		(4166 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>The villains are communicating with their own proprietary file format. Figure out what it is.</p>
+<pre><code>$ nc proprietary.ctfcompetition.com 1337</code></pre>
+</blockquote>
+<p>We get a server that will talk to us on a port and a <code>flag.ctf</code> file that’s definitely not a binary. It’s a <a href="https://en.wikipedia.org/wiki/Black_box">black-box</a> reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.</p>
+<p>For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not <code>P6</code>, it complains:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/proprietary-format">→ read more<span class="offscreen"> Proprietary Format</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/cat-chat" class="post-link">Cat Chat</a></h3>
+		
+		<h4 class="post-subtitle">Google CTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-06-28
+		(2706 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>You discover this cat enthusiast chat app, but the annoying thing about it is that you’re always banned when you start talking about dogs. Maybe if you would somehow get to know the admin’s password, you could fix that.</p>
+</blockquote>
+<p>This challenge is a simple chat app written in NodeJS. The home page redirects you to a chat room labeled with a random UUID. Anybody can join the same chat room with the URL.</p>
+<p><img src="/img/cat-chat-0.png" alt="Fresh Cat Chat room" /></p>
+<p>In a chat room, you can chat and issue two commands, <code>/name</code> to set your name and <code>/report</code> to report that somebody is talking about dogs. After anybody in the chat room issues <code>/report</code>, the admin shows up, listens for a while, and bans anybody who mentions the word “dog”.</p>
+<p>There are two more commands, <code>/secret</code> and <code>/ban</code>, which are in the server source code and also described in comments in the HTML source if you didn’t notice:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/cat-chat">→ read more<span class="offscreen"> Cat Chat</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/js-safe-2" class="post-link">JS Safe 2.0</a></h3>
+		
+		<h4 class="post-subtitle">Google CTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-06-28
+		(2640 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML file that can store secrets in the browser’s localStorage. This means that you won’t be able to extract any secret from it (the secrets are on the computer of the owner), but it looks like it was hand-crafted to work only with the password of the owner…</p>
+</blockquote>
+<p>The challenge consists of a fancy HTML file with a cute but irrelevant animated cube and some embedded JavaScript.</p>
+<p><img src="/img/js-safe-2-empty.png" alt="Screenshot of JS Safe 2.0 with a text box and a cube" /></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/js-safe-2">→ read more<span class="offscreen"> JS Safe 2.0</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/shellql" class="post-link">shellql</a></h3>
 		
 		<h4 class="post-subtitle">DEF CON CTF Qualifiers 2018</h4>

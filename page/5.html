@@ -60,6 +60,142 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/proprietary-format" class="post-link">Proprietary Format</a></h3>
+		
+		<h4 class="post-subtitle">Google CTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-06-28
+		(4166 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>The villains are communicating with their own proprietary file format. Figure out what it is.</p>
+<pre><code>$ nc proprietary.ctfcompetition.com 1337</code></pre>
+</blockquote>
+<p>We get a server that will talk to us on a port and a <code>flag.ctf</code> file that’s definitely not a binary. It’s a <a href="https://en.wikipedia.org/wiki/Black_box">black-box</a> reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.</p>
+<p>For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not <code>P6</code>, it complains:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/proprietary-format">→ read more<span class="offscreen"> Proprietary Format</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/cat-chat" class="post-link">Cat Chat</a></h3>
+		
+		<h4 class="post-subtitle">Google CTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-06-28
+		(2706 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>You discover this cat enthusiast chat app, but the annoying thing about it is that you’re always banned when you start talking about dogs. Maybe if you would somehow get to know the admin’s password, you could fix that.</p>
+</blockquote>
+<p>This challenge is a simple chat app written in NodeJS. The home page redirects you to a chat room labeled with a random UUID. Anybody can join the same chat room with the URL.</p>
+<p><img src="/img/cat-chat-0.png" alt="Fresh Cat Chat room" /></p>
+<p>In a chat room, you can chat and issue two commands, <code>/name</code> to set your name and <code>/report</code> to report that somebody is talking about dogs. After anybody in the chat room issues <code>/report</code>, the admin shows up, listens for a while, and bans anybody who mentions the word “dog”.</p>
+<p>There are two more commands, <code>/secret</code> and <code>/ban</code>, which are in the server source code and also described in comments in the HTML source if you didn’t notice:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/cat-chat">→ read more<span class="offscreen"> Cat Chat</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/js-safe-2" class="post-link">JS Safe 2.0</a></h3>
+		
+		<h4 class="post-subtitle">Google CTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-06-28
+		(2640 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML file that can store secrets in the browser’s localStorage. This means that you won’t be able to extract any secret from it (the secrets are on the computer of the owner), but it looks like it was hand-crafted to work only with the password of the owner…</p>
+</blockquote>
+<p>The challenge consists of a fancy HTML file with a cute but irrelevant animated cube and some embedded JavaScript.</p>
+<p><img src="/img/js-safe-2-empty.png" alt="Screenshot of JS Safe 2.0 with a text box and a cube" /></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/js-safe-2">→ read more<span class="offscreen"> JS Safe 2.0</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/shellql" class="post-link">shellql</a></h3>
+		
+		<h4 class="post-subtitle">DEF CON CTF Qualifiers 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-05-13
+		(1217 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>The hardest challenge of not very many I solved in this CTF. What a struggle! I have a long way to improve. It was pretty fun though. (I solved “You Already Know”, and got the essence of “ghettohackers: Throwback”, but didn’t guess the right flag format and believe I was asleep when they released the hint about it.)</p>
+<p>The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension <code>shellme.so</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode php"><code class="sourceCode php"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">$link</span> = <span class="fu">mysqli_connect</span><span class="ot">(</span><span class="st">&#39;localhost&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">);</span></a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">if</span> <span class="ot">(</span><span class="kw">isset</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]))</span></a>
+<a class="sourceLine" id="cb1-4" title="4">{</a>
+<a class="sourceLine" id="cb1-5" title="5">   <span class="kw">if</span> <span class="ot">(</span><span class="fu">strlen</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">])</span> &lt;= <span class="dv">1000</span><span class="ot">)</span></a>
+<a class="sourceLine" id="cb1-6" title="6">   {</a>
+<a class="sourceLine" id="cb1-7" title="7">      <span class="kw">echo</span> <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">];</span></a>
+<a class="sourceLine" id="cb1-8" title="8">      shellme<span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]);</span></a>
+<a class="sourceLine" id="cb1-9" title="9">   }</a>
+<a class="sourceLine" id="cb1-10" title="10">   <span class="kw">exit</span><span class="ot">();</span></a>
+<a class="sourceLine" id="cb1-11" title="11">}</a></code></pre></div>
+<p>The extension basically just executes <code>$_POST['shell']</code> as shellcode after a strict SECCOMP call, <a href="http://man7.org/linux/man-pages/man2/prctl.2.html">prctl</a>(<a href="https://elixir.bootlin.com/linux/v4.16.8/source/include/uapi/linux/prctl.h#L68">22</a>, <a href="https://elixir.bootlin.com/linux/v4.1/source/include/uapi/linux/seccomp.h#L10">1</a>). This means that we can only use the four syscalls <code>read</code>, <code>write</code>, and <code>exit</code>, and <code>sigreturn</code>, where the latter two aren’t particularly useful.</p>
+<figure>
+<img src="/img/shell_this.png" alt="Disassembled innermost function of interest in shellme.so" /><figcaption>Disassembled innermost function of interest in <code>shellme.so</code></figcaption>
+</figure>
+<p>The goal is to read the flag from the open MySQL connection.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/shellql">→ read more<span class="offscreen"> shellql</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/doggo" class="post-link">Pupper/Doggo</a></h3>
 		
 		<h4 class="post-subtitle">PlaidCTF 2018</h4>
@@ -208,37 +344,6 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/thoroughly-stripped" class="post-link">Thoroughly Stripped</a></h3>
-		
-		<h4 class="post-subtitle">CSAW CTF 2017 Finals (Forensics, 200 pts)</h4>
-		
-		<p class="post-meta">
-		
-		2017-11-12
-		(1142 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Woo, first CTF writeup. I got the opportunity to participate in the 2017 CSAW CTF finals with Don’t Hack Alone.</p>
-<blockquote>
-<p>Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.</p>
-</blockquote>
-<p>We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.</p>
-<p>Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from <code><a href="https://github.com/betaveros/xxb">xxb</a></code> but <code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/thoroughly-stripped">→ read more<span class="offscreen"> Thoroughly Stripped</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/sakura" class="post-link">Sakura</a></h3>
 		
 		<h4 class="post-subtitle">HITCON CTF 2017</h4>
@@ -260,81 +365,6 @@
 <p>Disassembling the executable produces a huge amount of code. There are some basic obfuscations like a lot of trivial identity functions nested in each other, and a few functions that wrap around identity functions but just add some constant multiple of 16. Most of the meat is in one very large function, though. If you disassemble this function with IDA, you see a lot of variable initializations and then a lot of interesting loops that are quite similar:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/sakura">→ read more<span class="offscreen"> Sakura</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/hello-again" class="post-link">Hello, Again</a></h3>
-		
-		<p class="post-meta">
-		
-		2017-11-07
-		(1930 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/meta">Meta</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>And here we are.</p>
-<p>This is the first post on this blog after I migrated off WordPress for a static solution.</p>
-<p>At first, I wanted to set things up on Amazon Web Services (AWS), which was an adventure. There are lots of online posts about how to do this, but Amazon’s services change quickly and there was often outdated information. For instance, Amazon had a wizard that led you through setting up a static site, which I clicked on. It helpfully handled a lot of grunt work, but now I was out of sync with all of the guides. Oh well.</p>
-<p>I think things are confusing partly because there are four AWS components all interacting to make a static site happen:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/hello-again">→ read more<span class="offscreen"> Hello, Again</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/remigration" class="post-link">Remigration</a></h3>
-		
-		<p class="post-meta">
-		
-		2017-11-05
-		(758 words)
-		
-		</p>
-	</header>
-	
-	<p>I guess I lied in my penultimate post.</p>
-<p>I’m planning on migrating my primary blog (again), off WordPress to a static site hosted somewhere. I might just throw everything onto GitHub Pages, or might follow any of the zillions of tutorials on how to host static sites off a cheap Amazon S3 bucket — I haven’t decided yet, but no longer having to rely on the free part of freemium services is fairly liberating.</p>
-<p>Why? Lots of small reasons.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/remigration">→ read more<span class="offscreen"> Remigration</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/me-and-facebook" class="post-link">Me and Facebook</a></h3>
-		
-		<p class="post-meta">
-		
-		2017-09-27
-		(1480 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/meta">Meta</a>, <a href="/category/thoughts">Thoughts</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p><strong>tl;dr: I don’t use Facebook much. If you want to contact me, I would prefer nearly any other mode of communication. I am also going to stop autosharing posts from this blog onto Facebook. RSS readers are great; get yours today.</strong></p>
-<p>Recently I checked Facebook and it said something like “You’ve added N friends this past T units of time! Thanks for making the world more connected!” and I just couldn’t any more. Facebook friends are not friends. <a href="https://en.wikipedia.org/wiki/Dunbar's_number">Dunbar’s number</a> is around 150, maybe double that if you want to stretch it; humans cannot handle that many human relationships. Facebook’s siloed ecosystem is the opposite of connected with the rest of the Internet.</p>
-<p>That is one of many reasons I pretty much don’t use Facebook any more. This is not new, but I’ve never formalized it. Also, I figure others might assume otherwise since I still do have an account and still accept friend requests and post sometimes. Thus, I’m writing this post.</p>
-<p>Here are all of the reasons:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/me-and-facebook">→ read more<span class="offscreen"> Me and Facebook</span></a>
 	</footer>
 </article>
 

@@ -64,6 +64,129 @@ Category → CS
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/rvalue-references" class="post-link">C&#43;&#43; Rvalue References: The Unnecessarily Detailed Guide</a></h3>
+		
+		<h4 class="post-subtitle">Move semantics, perfect forwarding, and... everything else</h4>
+		
+		<p class="post-meta">
+		
+		2020-11-16
+		(12004 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>By a strange quirk of fate, I have started writing C++ for a living.</p>
+<p>Learning C++ was about as complicated as I think I expected it to be. By line count, I’ve written a lot of C++ for programming competitions, but I knew that I had only ever used a small cross-section of the language: basic control flow and variables, STL containers and algorithms, structs on which you mechanically define <code>bool operator&lt;(const T&amp; other) const</code> so STL algorithms can order them, and the very occasional macro or templated helper function. There were many features I wasn’t even aware existed.</p>
+<p>In the process of learning C++ professionally, one rabbit hole I fell into quickly was C++11’s defining feature, the <em>rvalue reference</em>, and how it can be used to implement <em>move semantics</em> and <em>perfect forwarding</em>. By poring over a copy of the widely recommended book <a href="https://www.amazon.com/Effective-Modern-Specific-Ways-Improve/dp/1491903996"><cite>Effective Modern C++</cite></a>, by Scott Meyers, and a few dozen StackOverflow answers and blog posts, I roughly understood it after a few days, but still had a sort of blind-men-feeling-the-elephant feeling. I was confused about what lay under some of the abstractions I had been using, unsure of the full shape of the pitfalls that some of the guides had pointed out to me, and generally uncomfortable that there were still many small variations of the code I had seen that I couldn’t predict the behavior of. It took many more days to work myself out of there, and I wished I had had a guide that explained rvalue references and their applications to a bit more depth than what might be necessary for day-to-day use. So here’s my attempt to explain rvalue references in my own fundamental I-want-to-know-how-things-work-no-<em>really</em> style.</p>
+<p>(If this vision doesn’t resonate with you, there are many other posts explaining rvalue references out there that you might prefer. Feel free to just skim the executive summary and/or check out some of the linked articles in the Background section.)</p>
+<h3 id="executive-summary">Executive Summary</h3>
+<p>I got… pretty carried away when writing this post, and a lot of it is just for my own understanding, which may or may not be useful to readers. Here’s a much more concise rundown (assuming you know basic C++ already):</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/rvalue-references">→ read more<span class="offscreen"> C&#43;&#43; Rvalue References: The Unnecessarily Detailed Guide</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/modulo" class="post-link">Signed Modulo</a></h3>
+		
+		<p class="post-meta">
+		
+		2020-02-04
+		(3836 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>, <a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>One thing many mathematically-inclined programmers run into when implementing mathematical algorithms, particularly number-theoretic ones, is that the <a href="https://en.wikipedia.org/wiki/Modulo_operation">modulo operation</a> doesn’t behave how they expect or prefer.</p>
+<p>In many languages, this operator is denoted <code>%</code>. Concretely, one might prefer that, if the second argument is positive, then the modulo operation would always give a nonnegative result. Under this behavior, the expression <code>(-5) % 3</code> would evaluate to <code>1</code> rather than <code>-2</code>. This is a lot more useful for number theory because then for positive integers <code>n</code>, the <code>% n</code> operation actually maps integers to exactly the <code>n</code> canonical representatives for the residue classes. As a result, <span class="math inline">\(a \equiv b \mod n\)</span> if and only if <code>a % n == b % n</code>. You can also do things like index into a length-<code>n</code> array with <code>a % n</code> and know that the index will be in-bounds. Finally, there are also optimization opportunities: modding by a power of 2 becomes equivalent to a simple bitwise AND, which is really fast on modern computers.</p>
+<p>A few programming languages, notably Python, do implement <code>%</code> this way. However, the majority of languages today, including pretty much everything remotely descended from C, do not; instead, <code>(-5) % 3</code> is <code>-2</code>. This post attempts to track down why.</p>
+<hr />
+<p>The first thing to note is that there is a more important number-theoretic identity we’d like to have:</p>
+<p><span class="math display">\[\texttt{a} = (\texttt{a / b}) \cdot \texttt{b} + (\texttt{a \% b}). \tag{1}\]</span></p>
+<p>In words, the integer division and modulo operators should give a breakdown of <code>a</code> into a sum of some copies of <code>b</code> plus a remainder. Note that this equation also implies that specifying the rounding behavior of division is equivalent to specifying the sign behavior of the modulo operation, which will come up repeatedly later.</p>
+<p>It’s also very uncontroversial that that remainder should have no copies of <code>b</code>, positive or negative, left over, which gives the constraint:</p>
+<p><span class="math display">\[|\texttt{a \% b}| &lt; |\texttt{b}|. \tag{2}\]</span></p>
+<p>Every programming language I can think of satisfies these two constraints.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> So far so good. However, these two constraints don’t uniquely determine the values of <code>a % b</code> when <code>a</code> isn’t divisible by <code>b</code>; there are two possible values for <code>a % b</code>, one positive and one negative. Concretely, we could express <span class="math inline">\(-5\)</span> as either <span class="math inline">\((-1) \cdot 3 + (-2)\)</span> or <span class="math inline">\((-2) \cdot 3 + 1\)</span>, so <code>(-5) % 3</code> could be <code>-2</code> or <code>1</code>.</p>
+<p>It’s still mostly uncontroversial that, if <code>a</code> and <code>b</code> are both positive, then <code>a % b</code> should be nonnegative as well; we could call this constraint (3).<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> However, if <code>a</code> is negative and <code>b</code> is positive, programming languages start to diverge in their behavior. Why?</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/modulo">→ read more<span class="offscreen"> Signed Modulo</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/advent-rocket" class="post-link">Rocket Equation</a></h3>
+		
+		<h4 class="post-subtitle">Advent of Code 2019, Day 1</h4>
+		
+		<p class="post-meta">
+		
+		2019-12-01
+		(992 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>, <a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>It’s December, so it’s time for a lot of things, including <a href="https://adventofcode.com/">Advent of Code</a>. I will not be able to be as competitive as I was last year, and already lost a lot of points to a really silly mistake on day 1, but I’ll be playing when I can and <a href="https://github.com/betaveros/advent-of-code-golf-2019">golfing</a> the problems when I have time (so far: 7 + 14 bytes).</p>
+<p>As one might expect, <a href="https://adventofcode.com/2019/day/1">Day 1</a> is not too complex, but the second part can be analyzed to some mathematical depth and was discussed a bit on Reddit; plus, it occurred to me recently that I set up KaTeX on my blog but never used it, so I was looking for an excuse to write some equations anyway.</p>
+<p>The problem statement for part 2, in brief: We are tasked with calculating the total mass of fuel required to launch a rocket module of a given mass. For something of mass <span class="math inline">\(m\)</span>, one can compute the directly required mass of fuel by dividing <span class="math inline">\(m\)</span> by 3, rounding down, and subtracting 2; if the result is negative, it is taken to be 0 instead. However, the directly required fuel also requires fuel itself, calculated from its own mass by the same procedure, and that required fuel requires fuel based on its own mass, and so on until you reach fuel with 0 requirement.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/advent-rocket">→ read more<span class="offscreen"> Rocket Equation</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/callsite" class="post-link">callsite</a></h3>
+		
+		<h4 class="post-subtitle">CSAW CTF Qualifiers 2019</h4>
+		
+		<p class="post-meta">
+		
+		2019-09-16
+		(561 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>Call me maybe? <code>nc rev.chal.csaw.io 1001</code></p>
+</blockquote>
+<p>A rev with a nasty binary. There are so many functions. I do not like this binary.</p>
+<figure>
+<a href="/img/callsite-gross.png"><img src="/img/callsite-gross.png" alt="Screenshot of IDA Pro on the callsite binary, with a lot of code and functions." /></a>
+</figure>
+<h3 id="static-analysis">Static Analysis</h3>
+<p>After staring at the sea of functions in IDA for a little bit, I gave up and tried dumb things instead.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/callsite">→ read more<span class="offscreen"> callsite</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/unagi" class="post-link">unagi</a></h3>
 		
 		<h4 class="post-subtitle">CSAW CTF Qualifiers 2019</h4>
@@ -264,138 +387,6 @@ Environment: Ubuntu 16.04+latex</code></pre>
 <p>This was the first <a href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a> (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like <code>until</code>, no pwntools utilities for packing/unpacking numbers, … no <code>one_gadget</code>), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use <code>gdb</code> (or fictionalized web knockoffs thereof).</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/plc">→ read more<span class="offscreen"> PLC</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/proprietary-format" class="post-link">Proprietary Format</a></h3>
-		
-		<h4 class="post-subtitle">Google CTF 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-06-28
-		(4166 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>The villains are communicating with their own proprietary file format. Figure out what it is.</p>
-<pre><code>$ nc proprietary.ctfcompetition.com 1337</code></pre>
-</blockquote>
-<p>We get a server that will talk to us on a port and a <code>flag.ctf</code> file that’s definitely not a binary. It’s a <a href="https://en.wikipedia.org/wiki/Black_box">black-box</a> reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.</p>
-<p>For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not <code>P6</code>, it complains:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/proprietary-format">→ read more<span class="offscreen"> Proprietary Format</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/cat-chat" class="post-link">Cat Chat</a></h3>
-		
-		<h4 class="post-subtitle">Google CTF 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-06-28
-		(2706 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>You discover this cat enthusiast chat app, but the annoying thing about it is that you’re always banned when you start talking about dogs. Maybe if you would somehow get to know the admin’s password, you could fix that.</p>
-</blockquote>
-<p>This challenge is a simple chat app written in NodeJS. The home page redirects you to a chat room labeled with a random UUID. Anybody can join the same chat room with the URL.</p>
-<p><img src="/img/cat-chat-0.png" alt="Fresh Cat Chat room" /></p>
-<p>In a chat room, you can chat and issue two commands, <code>/name</code> to set your name and <code>/report</code> to report that somebody is talking about dogs. After anybody in the chat room issues <code>/report</code>, the admin shows up, listens for a while, and bans anybody who mentions the word “dog”.</p>
-<p>There are two more commands, <code>/secret</code> and <code>/ban</code>, which are in the server source code and also described in comments in the HTML source if you didn’t notice:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/cat-chat">→ read more<span class="offscreen"> Cat Chat</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/js-safe-2" class="post-link">JS Safe 2.0</a></h3>
-		
-		<h4 class="post-subtitle">Google CTF 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-06-28
-		(2640 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML file that can store secrets in the browser’s localStorage. This means that you won’t be able to extract any secret from it (the secrets are on the computer of the owner), but it looks like it was hand-crafted to work only with the password of the owner…</p>
-</blockquote>
-<p>The challenge consists of a fancy HTML file with a cute but irrelevant animated cube and some embedded JavaScript.</p>
-<p><img src="/img/js-safe-2-empty.png" alt="Screenshot of JS Safe 2.0 with a text box and a cube" /></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/js-safe-2">→ read more<span class="offscreen"> JS Safe 2.0</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/shellql" class="post-link">shellql</a></h3>
-		
-		<h4 class="post-subtitle">DEF CON CTF Qualifiers 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-05-13
-		(1217 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>The hardest challenge of not very many I solved in this CTF. What a struggle! I have a long way to improve. It was pretty fun though. (I solved “You Already Know”, and got the essence of “ghettohackers: Throwback”, but didn’t guess the right flag format and believe I was asleep when they released the hint about it.)</p>
-<p>The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension <code>shellme.so</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode php"><code class="sourceCode php"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">$link</span> = <span class="fu">mysqli_connect</span><span class="ot">(</span><span class="st">&#39;localhost&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">);</span></a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">if</span> <span class="ot">(</span><span class="kw">isset</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]))</span></a>
-<a class="sourceLine" id="cb1-4" title="4">{</a>
-<a class="sourceLine" id="cb1-5" title="5">   <span class="kw">if</span> <span class="ot">(</span><span class="fu">strlen</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">])</span> &lt;= <span class="dv">1000</span><span class="ot">)</span></a>
-<a class="sourceLine" id="cb1-6" title="6">   {</a>
-<a class="sourceLine" id="cb1-7" title="7">      <span class="kw">echo</span> <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">];</span></a>
-<a class="sourceLine" id="cb1-8" title="8">      shellme<span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]);</span></a>
-<a class="sourceLine" id="cb1-9" title="9">   }</a>
-<a class="sourceLine" id="cb1-10" title="10">   <span class="kw">exit</span><span class="ot">();</span></a>
-<a class="sourceLine" id="cb1-11" title="11">}</a></code></pre></div>
-<p>The extension basically just executes <code>$_POST['shell']</code> as shellcode after a strict SECCOMP call, <a href="http://man7.org/linux/man-pages/man2/prctl.2.html">prctl</a>(<a href="https://elixir.bootlin.com/linux/v4.16.8/source/include/uapi/linux/prctl.h#L68">22</a>, <a href="https://elixir.bootlin.com/linux/v4.1/source/include/uapi/linux/seccomp.h#L10">1</a>). This means that we can only use the four syscalls <code>read</code>, <code>write</code>, and <code>exit</code>, and <code>sigreturn</code>, where the latter two aren’t particularly useful.</p>
-<figure>
-<img src="/img/shell_this.png" alt="Disassembled innermost function of interest in shellme.so" /><figcaption>Disassembled innermost function of interest in <code>shellme.so</code></figcaption>
-</figure>
-<p>The goal is to read the flag from the open MySQL connection.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/shellql">→ read more<span class="offscreen"> shellql</span></a>
 	</footer>
 </article>
 

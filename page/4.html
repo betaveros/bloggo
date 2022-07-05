@@ -60,6 +60,135 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/multiplication" class="post-link">Multiplication by Juxtaposition</a></h3>
+		
+		<h4 class="post-subtitle">Evaluating 8÷2(2&#43;2) in Haskell (and some other languages)</h4>
+		
+		<p class="post-meta">
+		
+		2019-08-04
+		(2653 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>We interrupt the irregularly scheduled philosophical posts for some programming memes:</p>
+<p>Over the last few days, the Internet has divided itself over what the value of the expression 8÷2(2+2) should be. Some say it should be evaluated as (8÷2)×(2+2) = 16. Some say it should be evaluated as 8÷(2×(2+2)) = 1.</p>
+<p>At the risk of belaboring the obvious, the core dispute here is not really mathematical. There is not some sequence of mathematical operations that produces some number, where mathematicians disagree about what number it produces. Instead, this is a dispute about mathematical notation: what sequence of mathematical operations the expression corresponds to the way it’s written. Specifically, it is a dispute about whether multiplication written as juxtaposition (how “2” is written right next to “(2+2)”) has strictly higher precedence than division. It is closer to a linguistic or typographical dispute than a purely mathematical one, and the correct answer to the dispute is that whoever wrote the expression that way should learn to write math better.</p>
+<p>This debate is not even new. The internet had fun arguing over <a href="https://knowyourmeme.com/memes/48293">48÷2(9+3) and 6÷2(1+2)</a>, which are functionally identical ambiguous expressions, eight years ago. I don’t know why the debate is resurging now and why we still haven’t gotten tired of it.</p>
+<p>But life is short, so since we’re here anyway, let’s make some additional memes.</p>
+<h3 id="asking-the-computer">Asking the computer</h3>
+<p>Some of my coworkers had the idea to ask some programming languages what the answer was. The results were underwhelming.</p>
+<pre><code>$ python3
+Python 3.6.7 (default, Oct 22 2018, 11:32:17)
+[GCC 8.2.0] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; 8/2(2+2)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+TypeError: &#39;int&#39; object is not callable</code></pre>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/multiplication">→ read more<span class="offscreen"> Multiplication by Juxtaposition</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/writing" class="post-link">Writing for the Mundane</a></h3>
+		
+		<p class="post-meta">
+		
+		2019-08-01
+		(4164 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/thoughts">Thoughts</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<div class="series">
+<p>part of the “what I learned after four years at MIT” series, I guess?</p>
+</div>
+<p>I hated timed essays in high school. It’s pretty clear if you skim that part of the blog archives:</p>
+<blockquote>
+<p>My [SAT] essay got a 10 out of 12. It’s an essay I’d be ashamed of posting anywhere else; it’s disgustingly traditional and formulaic. […] This was simply because I knew that using my normal essay-writing mindset, I’d get maybe a 3, because I’d spend the first twenty minutes debating myself over which side I was on and rewrite the introduction ten times. Too bad. I wasn’t there to write a good essay; I was there to get a good score on the SAT.</p>
+</blockquote>
+<blockquote>
+<p>The worst issue is that students do not need to give in-depth explanation of anything they learned. Due to its stringent time limit, the essay portion rewards quick reckless writing much more than deep thought. […] encouraging students to practice writing 25-minute essays in order to improve their college-bound skills is like encouraging people to play Grand Theft Auto in order to improve their driving skills.</p>
+</blockquote>
+<p>I took the Grand Theft Auto analogy pretty far. I’m not proud enough of these posts to link them, but you can find them if you try. In short, past me thought timed essays rewarded writing too quickly, with a disregard not only for facts but for the opportunity to lay out your opinions and thoughts so you could clarify and revise them, which was actually the most valuable part of writing.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> I conceded that the time limits made sense as a practical concession to allow you to test students’ writing skills fairly,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> but I felt like there was still way too much emphasis on the raw speed.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/writing">→ read more<span class="offscreen"> Writing for the Mundane</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/things" class="post-link">Things</a></h3>
+		
+		<p class="post-meta">
+		
+		2019-06-23
+		(2217 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/thoughts">Thoughts</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<div class="series">
+<p>Part of a series of posts about what I learned after four years at MIT. We’re ramping up to deeper topics eventually, I promise. Soon™.</p>
+</div>
+<p>This post is about things. You know, physical objects. Earthly possessions. The indispensable yet fickle chains that bind us to this plane of existence.</p>
+<p>As a freshman I loved getting free stuff. I went into my first career fair starry-eyed, taking free pens and t-shirts and sunglasses and drawstring bags from every company that would let me; I’m sure many other MIT students have gone through the same ritual of passing. There seemed to be no downside. Besides, all the swag was probably small change for most of the companies anyway, due to VC funding or massive government contracts or whatever. So I might as well make full use of it.</p>
+<p>Less normally (although I have no idea by how much), I also hoarded a lot of things that naturally pop up in everyday life, the stuff that would otherwise get thrown away: extra napkins, plastic bags, produce containers, boxes, those payment envelopes that come with magazine subscriptions and exhort you to Subscribe Now To 12 Issues For 20% Off!! At some point I kept the fortune from every fortune cookie I had ever eaten in a tiny resealable bag. The rationale was basically the same: they might be useful some day<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and there was no downside.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/things">→ read more<span class="offscreen"> Things</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/username" class="post-link">How to Choose an MIT Username</a></h3>
+		
+		<p class="post-meta">
+		
+		2019-06-13
+		(2994 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/thoughts">Thoughts</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>I wanted to write a post after two years at college about everything I had learned. I didn’t, firstly because I didn’t make it a priority, and secondly because trying to write about everything I’ve learned at MIT over any nontrivial length of time is the kind of poorly scoped endeavor that I could never complete to my own satisfaction.</p>
+<p>Two years came and went, and now it’s been two more years and I’ve learned even more things, not to mention, actually graduated. Jeez. I tried to self-impose a deadline for the big post, but it didn’t work out. There were still too many higher priorities, most of which were also natural consequences of graduating. I also couldn’t bring myself to cut anything, because unlike most of the stuff I haphazardly throw onto this blog, I can actually imagine an audience for just about everything I wanted to write about.</p>
+<p>Finally I decided that I would break it into lots of small posts on specific topics. This way, at least the perfectionism can’t bleed between posts too much. The first topic I wanted to write about is simple, mundane, and also fairly limited in scope itself: how to choose your MIT username.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/username">→ read more<span class="offscreen"> How to Choose an MIT Username</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/refrain" class="post-link">refrain</a></h3>
 		
 		<h4 class="post-subtitle">0CTF/TCTF 2019 Quals</h4>
@@ -233,142 +362,6 @@ Environment: Ubuntu 16.04+latex</code></pre>
 <p>This was the first <a href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a> (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like <code>until</code>, no pwntools utilities for packing/unpacking numbers, … no <code>one_gadget</code>), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use <code>gdb</code> (or fictionalized web knockoffs thereof).</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/plc">→ read more<span class="offscreen"> PLC</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/proprietary-format" class="post-link">Proprietary Format</a></h3>
-		
-		<h4 class="post-subtitle">Google CTF 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-06-28
-		(4166 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>The villains are communicating with their own proprietary file format. Figure out what it is.</p>
-<pre><code>$ nc proprietary.ctfcompetition.com 1337</code></pre>
-</blockquote>
-<p>We get a server that will talk to us on a port and a <code>flag.ctf</code> file that’s definitely not a binary. It’s a <a href="https://en.wikipedia.org/wiki/Black_box">black-box</a> reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.</p>
-<p>For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not <code>P6</code>, it complains:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/proprietary-format">→ read more<span class="offscreen"> Proprietary Format</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/cat-chat" class="post-link">Cat Chat</a></h3>
-		
-		<h4 class="post-subtitle">Google CTF 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-06-28
-		(2706 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>You discover this cat enthusiast chat app, but the annoying thing about it is that you’re always banned when you start talking about dogs. Maybe if you would somehow get to know the admin’s password, you could fix that.</p>
-</blockquote>
-<p>This challenge is a simple chat app written in NodeJS. The home page redirects you to a chat room labeled with a random UUID. Anybody can join the same chat room with the URL.</p>
-<p><img src="/img/cat-chat-0.png" alt="Fresh Cat Chat room" /></p>
-<p>In a chat room, you can chat and issue two commands, <code>/name</code> to set your name and <code>/report</code> to report that somebody is talking about dogs. After anybody in the chat room issues <code>/report</code>, the admin shows up, listens for a while, and bans anybody who mentions the word “dog”.</p>
-<p>There are two more commands, <code>/secret</code> and <code>/ban</code>, which are in the server source code and also described in comments in the HTML source if you didn’t notice:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/cat-chat">→ read more<span class="offscreen"> Cat Chat</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/js-safe-2" class="post-link">JS Safe 2.0</a></h3>
-		
-		<h4 class="post-subtitle">Google CTF 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-06-28
-		(2640 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML file that can store secrets in the browser’s localStorage. This means that you won’t be able to extract any secret from it (the secrets are on the computer of the owner), but it looks like it was hand-crafted to work only with the password of the owner…</p>
-</blockquote>
-<p>The challenge consists of a fancy HTML file with a cute but irrelevant animated cube and some embedded JavaScript.</p>
-<p><img src="/img/js-safe-2-empty.png" alt="Screenshot of JS Safe 2.0 with a text box and a cube" /></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/js-safe-2">→ read more<span class="offscreen"> JS Safe 2.0</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/shellql" class="post-link">shellql</a></h3>
-		
-		<h4 class="post-subtitle">DEF CON CTF Qualifiers 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-05-13
-		(1217 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>The hardest challenge of not very many I solved in this CTF. What a struggle! I have a long way to improve. It was pretty fun though. (I solved “You Already Know”, and got the essence of “ghettohackers: Throwback”, but didn’t guess the right flag format and believe I was asleep when they released the hint about it.)</p>
-<p>The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension <code>shellme.so</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode php"><code class="sourceCode php"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">$link</span> = <span class="fu">mysqli_connect</span><span class="ot">(</span><span class="st">&#39;localhost&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">);</span></a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">if</span> <span class="ot">(</span><span class="kw">isset</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]))</span></a>
-<a class="sourceLine" id="cb1-4" title="4">{</a>
-<a class="sourceLine" id="cb1-5" title="5">   <span class="kw">if</span> <span class="ot">(</span><span class="fu">strlen</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">])</span> &lt;= <span class="dv">1000</span><span class="ot">)</span></a>
-<a class="sourceLine" id="cb1-6" title="6">   {</a>
-<a class="sourceLine" id="cb1-7" title="7">      <span class="kw">echo</span> <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">];</span></a>
-<a class="sourceLine" id="cb1-8" title="8">      shellme<span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]);</span></a>
-<a class="sourceLine" id="cb1-9" title="9">   }</a>
-<a class="sourceLine" id="cb1-10" title="10">   <span class="kw">exit</span><span class="ot">();</span></a>
-<a class="sourceLine" id="cb1-11" title="11">}</a></code></pre></div>
-<p>The extension basically just executes <code>$_POST['shell']</code> as shellcode after a strict SECCOMP call, <a href="http://man7.org/linux/man-pages/man2/prctl.2.html">prctl</a>(<a href="https://elixir.bootlin.com/linux/v4.16.8/source/include/uapi/linux/prctl.h#L68">22</a>, <a href="https://elixir.bootlin.com/linux/v4.1/source/include/uapi/linux/seccomp.h#L10">1</a>). This means that we can only use the four syscalls <code>read</code>, <code>write</code>, and <code>exit</code>, and <code>sigreturn</code>, where the latter two aren’t particularly useful.</p>
-<figure>
-<img src="/img/shell_this.png" alt="Disassembled innermost function of interest in shellme.so" /><figcaption>Disassembled innermost function of interest in <code>shellme.so</code></figcaption>
-</figure>
-<p>The goal is to read the flag from the open MySQL connection.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/shellql">→ read more<span class="offscreen"> shellql</span></a>
 	</footer>
 </article>
 
