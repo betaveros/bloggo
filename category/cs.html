@@ -9,7 +9,7 @@ Category → CS
 </title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.102.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/category/cs" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -34,7 +34,8 @@ Category → CS
 <![endif]-->
 
 </head>
-<body><div id="wrapper">
+<body>
+<div id="wrapper">
 <header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
 <button class="menu-toggle" type="button" aria-label="Toggle Menu">
 	<span class="icon icon-menu" aria-hidden="true"></span>
@@ -63,6 +64,30 @@ Category → CS
 		</h2>
 	</header>
 	<article class="content"></article><article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/flexbox-fun" class="post-link">Flexbox Fun Facts</a></h3>
+		
+		<p class="post-meta">
+		
+		2022-09-23
+		(1458 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>This post is brought to you by “I am procrastinating other stuff by doing some long overdue maintenance on my blog”. Mainly, I finally replaced the old <code>float</code>-based layout from the random Hugo theme I forked, which I had been keeping just because it wasn’t broken, with flexbox, so that I could more easily tweak some other things. If things look broken, you may need to force-refresh or clear your cache, and on the off chance things look mostly the same but you feel like something about the layout feels subtly different, that’s what’s up.</p>
+<p>While making these changes, I ended up digging through the <a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/">flexbox spec</a> to debug an issue and learned some interesting things. (This and other links in this post are permalinks to the November 2018 spec, which I believe is the most recent official version as of time of writing, but it’s nearly three years and there have been quite a few changes in the “editor’s draft”. Also, this post is not a flexbox tutorial and will not make sense if you are already familiar with flexbox.)</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/flexbox-fun">→ read more<span class="offscreen"> Flexbox Fun Facts</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
 	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/pppordle" class="post-link">🅿️🅿️🅿️ordle</a></h3>
 		
@@ -104,7 +129,7 @@ Category → CS
 		<p class="post-meta">
 		
 		2022-07-04
-		(2518 words)
+		(2519 words)
 		
 		<span class="post-categories">
 			filed under
@@ -274,7 +299,7 @@ Category → CS
 		<p class="post-meta">
 		
 		2022-05-05
-		(9864 words)
+		(9838 words)
 		
 		<span class="post-categories">
 			filed under
@@ -306,7 +331,7 @@ Category → CS
 		<p class="post-meta">
 		
 		2022-02-14
-		(3739 words)
+		(3740 words)
 		
 		<span class="post-categories">
 			filed under
@@ -377,7 +402,7 @@ Category → CS
 		<p class="post-meta">
 		
 		2022-02-14
-		(1403 words)
+		(1404 words)
 		
 		<span class="post-categories">
 			filed under
@@ -437,7 +462,7 @@ Category → CS
 		<p class="post-meta">
 		
 		2021-06-28
-		(1673 words)
+		(1659 words)
 		
 		<span class="post-categories">
 			filed under
@@ -502,41 +527,11 @@ Category → CS
 	</footer>
 </article>
 
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/advent-leaderboard" class="post-link">Advent of Code: How to Leaderboard</a></h3>
-		
-		<p class="post-meta">
-		
-		2020-11-24
-		(5762 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p><a href="https://adventofcode.com/">Advent of Code</a> (briefly, “AoC”) is a series of 25 festive programming puzzles<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> released daily December 1–25. Each puzzle has two parts, which use the same text input and are related; to solve a part, you submit the right output corresponding to the input on the website.</p>
-<p>If you’re reading this, I suspect there’s a good chance you knew that already, but in case you’re new to Advent of Code, let me try to briefly explain why I like Advent of Code, from the perspective of somebody who’s spent a lot of their life so far doing programming competitions.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<ul>
-<li>The event has a fantastic community surrounding it. I’m the most familiar with <a href="https://www.reddit.com/r/adventofcode/">the subreddit</a>, which is full of helpful people, interesting discussions, non-programming community games, and the occasional <a href="https://www.reddit.com/r/adventofcode/comments/e6iw6l/day_5_browserbased_interactive_intcode_processor/">wonderfully</a>, <a href="https://www.reddit.com/r/adventofcode/comments/e7ylwd/i_solved_day_8_entirely_in_minecraft/">spectacularly</a> <a href="https://www.reddit.com/r/adventofcode/comments/eb79s0/2019_day_10_blowing_up_asteroids_in_unity/">overengineered</a> <a href="https://www.reddit.com/r/adventofcode/comments/ea8mif/2019_day_13_excel_did_you_think_i_would_give_up/">solution</a> to a puzzle; but I know there are also many smaller chatrooms and subcommunities focused on, say, specific timezones or programming languages.</li>
-<li>Another aspect is the unique two-part format of each puzzle. Even though they use the same input, you don’t get to see the second part until after you’ve solved the first one, a feature that Eric Wastl (AoC’s creator) has taken full advantage of in designing puzzles. The second part is often a surprising twist on the first part, which keeps you on your toes and challenges you to keep your code moderately general or refactorable in a way that I think almost no other programming challenges do. This sometimes even happens between days in a calendar, when a puzzle turns out to be about some model of computation you implemented two or five or ten days ago — hope you kept your code and remember how it works!</li>
-<li>Finally, AoC also has some non-rigorous puzzles that force you to use your intuition and “human intelligence”, either by interpreting the problem statement heuristically or writing code to let you explore the input. There are quite a few puzzles where it’s infeasible to write code that handles every step of obtaining the output from the input. The result is that Advent of Code can feature quite a few challenges that I’ve found particularly compelling because I think they simply could not be posed on any other contest platform.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></li>
-</ul>
-<p>These are the things that make AoC stand out to me, but it also does a lot of other things well — the challenges are fun, approachable, and varied even aside from their interrelations; there is a long, dramatic story tying everything together (although it’s an <a href="https://tvtropes.org/pmwiki/pmwiki.php/Main/ExcusePlot">Excuse Plot</a> if there ever was such a thing); and, although this is obviously subjective, I find the website’s minimalist-adjacent, terminal-esque aesthetic really charming (there is a <em>lot</em> of detail in <a href="https://adventofcode.com/2019">2019’s calendar</a>… after you solve everything). I’ve only done the last two years of Advent of Code, but it really seems like a one-of-a-kind event to me.</p>
-<p>Anyway, one particular feature Advent of Code has is a leaderboard, which you can get on by being one of the first 100 people worldwide to solve each puzzle. The competition is fierce — every year, thousands of people compete to get on the leaderboard. Near the start of AoC 2019, <a href="https://gist.github.com/mcpower/87427528b9ba5cac6f0c679370789661">mcpower</a> (<a href="https://www.reddit.com/r/adventofcode/comments/e2wjhf/tips_for_getting_on_the_advent_of_code_leaderboard/">reddit discussion</a>) and <a href="https://kevinyap.ca/2019/12/going-fast-in-advent-of-code/">Kevin Yap</a> (<a href="https://www.reddit.com/r/adventofcode/comments/e82f7a/going_fast_in_advent_of_code/">reddit discussion</a>) wrote some articles about how to do this, both of which are worth reading. I also thought about writing such an article and started a draft, but I didn’t get it anywhere close to publishable before AoC had concluded, at which point I assumed few people would be interested. But here it is now.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/advent-leaderboard">→ read more<span class="offscreen"> Advent of Code: How to Leaderboard</span></a>
-	</footer>
-</article>
-
 		<footer class="list-footer">
 		<nav class="pagination">
 			<h3 class="offscreen">Pagination</h3><a class="pagination-next" href="/category/cs/page/2">older posts →</a></nav>
 	</footer></section>
+</div>
 <footer class="site-footer">
 	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
@@ -558,5 +553,5 @@ Category → CS
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
-</div></body>
+</body>
 </html>

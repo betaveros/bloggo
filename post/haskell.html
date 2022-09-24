@@ -5,13 +5,13 @@
 <title>Haskell and Primes</title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content=" “I have been told that any encryption becomes safer if the underlying algorithm is maximally obscured, what is most conveniently done by coding it in Haskell.” – rankk  Functional programming is terribly addicting! Partly I think the completely different way of thinking makes it feel like learning programming, and falling in love with it, all over again. Partly there’s this evil sense of satisfaction from using $s (and later &amp;lt;$&amp;gt;s and =&amp;lt;&amp;lt;s and &amp;amp;&amp;amp;&amp;amp;s) to improve readability for initiated Haskellers and worsen it for everybody else. Partly it’s because Learn You a Haskell for Great Good! is such a fun read — there are too many funny bits to list but my favorite so far is when the author analyzes the first verse of Avril Lavigne’s Girlfriend.
+<meta name="description" content=" “I have been told that any encryption becomes safer if the underlying algorithm is maximally obscured, what is most conveniently done by coding it in Haskell.” – rankk Functional programming is terribly addicting! Partly I think the completely different way of thinking makes it feel like learning programming, and falling in love with it, all over again. Partly there’s this evil sense of satisfaction from using $s (and later &amp;lt;$&amp;gt;s and =&amp;lt;&amp;lt;s and &amp;amp;&amp;amp;&amp;amp;s) to improve readability for initiated Haskellers and worsen it for everybody else. Partly it’s because Learn You a Haskell for Great Good! is such a fun read — there are too many funny bits to list but my favorite so far is when the author analyzes the first verse of Avril Lavigne’s Girlfriend.
 Although I think my code in Haskell tends to be more readable than in other languages, code obfuscation in Haskell is almost natural: all you have to do is refactor the wrong function to be “pointfree”, which means that even though it’s a function that takes arguments, you define it without parameters by manipulating and joining a bunch of other functions. Example (plus a few other tiny obfuscations):
 isPrime = liftA2 (&amp;amp;&amp;amp;) (liftA2 ($) (all . ((.) (0 /=)) . rem) (flip takeWhile [2..] . (flip (.) $ liftA2 (*) id id) . (&amp;gt;=))) ((&amp;lt;) 1) QQ wordpress why no Haskell highlighting (Editor’s note from 2017: The migration should highlight this now!)
 Also, for some reason, you can do this in Haskell:
 ghci&amp;gt; let 2 &#43; 2 = 5 in 2 &#43; 2 5 (via Haskell for the Evil Genius)
 Okay, but seriously now. I wrote this about my journey to learn functional programming in the programming babble post half a year ago:
- The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes). " /><meta name="generator" content="Hugo 0.88.0-DEV" />
+The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes). " /><meta name="generator" content="Hugo 0.102.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/haskell" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -36,7 +36,8 @@ Okay, but seriously now. I wrote this about my journey to learn functional progr
 <![endif]-->
 
 </head>
-<body><div id="wrapper">
+<body>
+<div id="wrapper">
 <header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
 <button class="menu-toggle" type="button" aria-label="Toggle Menu">
 	<span class="icon icon-menu" aria-hidden="true"></span>
@@ -137,6 +138,7 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
 		</nav>
 	</footer>
 </section>
+</div>
 <footer class="site-footer">
 	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
@@ -158,5 +160,5 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
-</div></body>
+</body>
 </html>

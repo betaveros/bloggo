@@ -173,7 +173,6 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
       
       <guid>//blog.vero.site/post/phyllotaxy</guid>
       <description>This is beautiful. Why do they have to make it sound all mysterious and difficult? That’s (the reciprocal of) the golden ratio, by the way.
-
 Transcript since the resolution is far from awesome: “Most angiosperms have alternate phyllotaxy, with leaves arranged in an ascending spiral around the stem, each successive leaf emerging 137.5° from the site of the previous one. Why 137.5°? Mathematical analyses suggest that this angle minimizes shading of the lower leaves by those above.</description>
     </item>
     
@@ -378,7 +377,7 @@ f_\epsilon(x) = \begin{cases} 0 &amp;amp; \text{if } |x| \geq \epsilon \\ 1 - \l
       <guid>//blog.vero.site/ref/problem-ref</guid>
       <description>(ported from wiki)
 Certain notable problems that I don’t want to look through a zillion pages to find.
- Iran TST 1996, notoriously reposted at least 35 times on AoPS (okay, many of these are actually modifications):
+Iran TST 1996, notoriously reposted at least 35 times on AoPS (okay, many of these are actually modifications):
 If \(x, y, z &amp;gt; 0\) then
 \[(xy+yz+zx)\left(\frac{1}{(x+y)^2} + \frac{1}{(y+z)^2} + \frac{1}{(z+x)^2}\right) \geq \frac{9}{4}\] ISL 1988 #4: if \(1, 2, \ldots, n^2\) are placed in a \(n \times n\) chessboard, some two adjacent numbers differ by at least \(n\) USAMO 1995.</description>
     </item>

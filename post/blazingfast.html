@@ -6,11 +6,11 @@
 
 <meta name="author" content="betaveros" />
 <meta name="description" content="Last weekend Galhacktic Trendsetters sort of spontaneously decided to do DiceCTF 2022, months or years after most of us had done another CTF. It was a lot of fun and we placed 6th!
- I made a blazing fast MoCkInG CaSe converter!
+I made a blazing fast MoCkInG CaSe converter!
 blazingfast.mc.ax
- We’re presented with a website that converts text to AlTeRnAtInG CaSe. The core converter is written in WASM, and also checks that its input doesn’t have any of the characters &amp;lt;&amp;gt;&amp;amp;&#34;. The JavaScript wrapper takes an input from the URL, converts it to uppercase, feeds it to the converter, and if the check passes, injects the output into an innerHTML. The goal is to compose a URL that, when visited by an admin bot, leaks the flag from localStorage.
+We’re presented with a website that converts text to AlTeRnAtInG CaSe. The core converter is written in WASM, and also checks that its input doesn’t have any of the characters &amp;lt;&amp;gt;&amp;amp;&#34;. The JavaScript wrapper takes an input from the URL, converts it to uppercase, feeds it to the converter, and if the check passes, injects the output into an innerHTML. The goal is to compose a URL that, when visited by an admin bot, leaks the flag from localStorage.
 The converter is compiled from this C code:
-int length, ptr = 0; char buf[1000];  void init(int size) { length = size; ptr = 0; }  char read() { return buf[ptr&#43;&#43;]; }  void write(char c) { buf[ptr&#43;&#43;] = c; }  int mock() { for (int i = 0; i &amp;lt; length; i &#43;&#43;) { if (i % 2 == 1 &amp;amp;&amp;amp; buf[i] &amp;gt;= 65 &amp;amp;&amp;amp; buf[i] &amp;lt;= 90) { buf[i] &#43;= 32; }  if (buf[i] == &amp;#39;&amp;lt;&amp;#39; || buf[i] == &amp;#39;&amp;gt;&amp;#39; || buf[i] == &amp;#39;&amp;amp;&amp;#39; || buf[i] == &amp;#39;&amp;quot;&amp;#39;) { return 1; } }  ptr = 0;  return 0; }" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+int length, ptr = 0; char buf[1000]; void init(int size) { length = size; ptr = 0; } char read() { return buf[ptr&#43;&#43;]; } void write(char c) { buf[ptr&#43;&#43;] = c; } int mock() { for (int i = 0; i &amp;lt; length; i &#43;&#43;) { if (i % 2 == 1 &amp;amp;&amp;amp; buf[i] &amp;gt;= 65 &amp;amp;&amp;amp; buf[i] &amp;lt;= 90) { buf[i] &#43;= 32; } if (buf[i] == &amp;#39;&amp;lt;&amp;#39; || buf[i] == &amp;#39;&amp;gt;&amp;#39; || buf[i] == &amp;#39;&amp;amp;&amp;#39; || buf[i] == &amp;#39;&amp;quot;&amp;#39;) { return 1; } } ptr = 0; return 0; }" /><meta name="generator" content="Hugo 0.102.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/blazingfast" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -35,7 +35,8 @@ int length, ptr = 0; char buf[1000];  void init(int size) { length = size; ptr =
 <![endif]-->
 
 </head>
-<body><div id="wrapper">
+<body>
+<div id="wrapper">
 <header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
 <button class="menu-toggle" type="button" aria-label="Toggle Menu">
 	<span class="icon icon-menu" aria-hidden="true"></span>
@@ -65,7 +66,7 @@ int length, ptr = 0; char buf[1000];  void init(int size) { length = size; ptr =
 		<p class="post-meta">
 		
 		2022-02-14
-		(1403 words)
+		(1404 words)
 		
 		<span class="post-categories">
 			filed under
@@ -221,6 +222,7 @@ Leaking the flag from my cheap Linode server
 		</nav>
 	</footer>
 </section>
+</div>
 <footer class="site-footer">
 	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
@@ -242,5 +244,5 @@ Leaking the flag from my cheap Linode server
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
-</div></body>
+</body>
 </html>

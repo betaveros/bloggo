@@ -155,7 +155,7 @@
       <pubDate>Sat, 21 Nov 2015 13:16:59 +0800</pubDate>
       
       <guid>//blog.vero.site/post/november-2015-hints</guid>
-      <description>A Signature Puzzle: Trying to solve the puzzle with Extreme Speed can’t hurt.   Anticron: This puzzle runs on two distinct 24-hour clocks, which is why you can be zoned out for half the time and still solve it.   When Is My Birthday Again?: Apparently, if you don’t want to tell your friends your birthday, you can tell one of them the month and the other the day.</description>
+      <description>A Signature Puzzle: Trying to solve the puzzle with Extreme Speed can’t hurt. Anticron: This puzzle runs on two distinct 24-hour clocks, which is why you can be zoned out for half the time and still solve it. When Is My Birthday Again?: Apparently, if you don’t want to tell your friends your birthday, you can tell one of them the month and the other the day. And if you really want to annoy them, you can change one of the days at the end so they have to work it out again.</description>
     </item>
     
     <item>
@@ -726,7 +726,6 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
       
       <guid>//blog.vero.site/post/puzzle-8</guid>
       <description>Hey, a “theme” (look at the corners)!
-
 Honestly though I’m just spreading out my puzzle posts so there’s some illusion of regularity.</description>
     </item>
     
@@ -737,7 +736,6 @@ Honestly though I’m just spreading out my puzzle posts so there’s some illus
       
       <guid>//blog.vero.site/post/puzzle-7</guid>
       <description>It’s 2/22 and I have low standards.
-
 This is a normal Slitherlink, except all the 2s have been given to you. Thus, empty squares cannot have exactly two edges around them. Of course it’s been done before (guess who?)
 I appear to be drastically overshooting a monthly schedule :P</description>
     </item>
@@ -749,7 +747,6 @@ I appear to be drastically overshooting a monthly schedule :P</description>
       
       <guid>//blog.vero.site/post/puzzle-6</guid>
       <description>Not actually my first try, but I guess I don’t need to resort to 6x6s to fill up my quota just yet, do I?
-
 Okay for the absolutely uninformed, this is a Fillomino (or see MellowMelon’s rule page).
 I’ve switched to 32x32 pixel cells because they seem a reasonable size and it’s possible to express all pixel sizes as an exact floating-point fraction of the cell side so my image generator can be used in a general way to get perfect stroke thicknesses without worrying about any rounding errors no matter how obviously numerically insignificant they would be in this case.</description>
     </item>
@@ -761,7 +758,6 @@ I’ve switched to 32x32 pixel cells because they seem a reasonable size and it�
       
       <guid>//blog.vero.site/post/puzzle-5</guid>
       <description>One puzzle a month! What a prolific schedule!
-
 A Liar Slitherlink as created by MellowMelon (probably). Normal Slitherlink rules except exactly one clue in each row and column is false; you figure out which. But I bet you knew that already.</description>
     </item>
     
@@ -772,7 +768,7 @@ A Liar Slitherlink as created by MellowMelon (probably). Normal Slitherlink rule
       
       <guid>//blog.vero.site/post/puzzle-4</guid>
       <description>I was like “Let’s make a 15x15!” and got confused by the graph lines and stopped early. Anyway, I think the steps aren’t so trivial now. I’m still too lazy to fix my generator, however.
-   yes, normal Nurikabe   </description>
+yes, normal Nurikabe </description>
     </item>
     
     <item>
@@ -792,7 +788,6 @@ A Liar Slitherlink as created by MellowMelon (probably). Normal Slitherlink rule
       
       <guid>//blog.vero.site/post/puzzle-2</guid>
       <description>Written for the new year of 2012.
-
 (janko.at applet)</description>
     </item>
     

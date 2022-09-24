@@ -6,7 +6,7 @@
 
 <meta name="author" content="betaveros" />
 <meta name="description" content="http://111.186.63.17/perf.data.gz Environment: Ubuntu 16.04&#43;latex In this challenge, we get a gzipped file called perf.data and a minimal description of an environment. Googling this reveals that perf.data is a record format of the perf tool, a Linux profiler. Installing perf allows us to read perf.data and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is perf report -D, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the perf record was run against.
-" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+" /><meta name="generator" content="Hugo 0.102.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/refrain" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -31,7 +31,8 @@
 <![endif]-->
 
 </head>
-<body><div id="wrapper">
+<body>
+<div id="wrapper">
 <header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
 <button class="menu-toggle" type="button" aria-label="Toggle Menu">
 	<span class="icon icon-menu" aria-hidden="true"></span>
@@ -232,6 +233,7 @@ feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
 		</nav>
 	</footer>
 </section>
+</div>
 <footer class="site-footer">
 	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
@@ -253,5 +255,5 @@ feb2cf 132FTGTB 833FTRGI 8b2FTRGI 845FTRGI 875FTRGI f9d fd8 fcc
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
-</div></body>
+</body>
 </html>

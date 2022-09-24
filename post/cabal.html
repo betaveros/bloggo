@@ -11,10 +11,10 @@ The obvious choice is C&#43;&#43;, the language I use for roughly every other co
 Python is certainly available for a reliable arbitrary-length integer type, if nothing else.
 As for non-candidates, Java has BigInteger and memory safety, but all in all I decided the benefits are too minor and it’s too ugly without operator overloading. Scala is probably way too slow. So I don’t expect to be writing either language.
 The only difficult choice I have to make is, of course, Haskell — which can be quite fast, even while it’s ridiculously type-safe and expressive and referentially transparent and easy to reason about, once you’ve:
- figured out how to do the problem scrapped step 1 and actually figured out how to do the problem functionally gotten the thing to compile  Even if I can handle step 1, step 2 is by no means a simple task, as my struggle to implement a mere Sieve of Eratosthenes efficiently shows. That is fun, but not at all intuitive; I am doubtful I can do this under contest conditions. It is extremely difficult to transfer my skills in learning how to implement, say, a segment tree or treap into this language.
+figured out how to do the problem scrapped step 1 and actually figured out how to do the problem functionally gotten the thing to compile Even if I can handle step 1, step 2 is by no means a simple task, as my struggle to implement a mere Sieve of Eratosthenes efficiently shows. That is fun, but not at all intuitive; I am doubtful I can do this under contest conditions. It is extremely difficult to transfer my skills in learning how to implement, say, a segment tree or treap into this language.
 But! Google links to the programming language breakdown for 2010 Qualification Round as an example, and much to my surprise, Haskell ranks somewhere between sixth and tenth place in popularity (depending on what you sort by), so there are functional superprogrammers who can presumably do something like this.
 As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it.
-" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+" /><meta name="generator" content="Hugo 0.102.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/cabal" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -39,7 +39,8 @@ As it happens, I ended up implementing all four solutions to the qualification r
 <![endif]-->
 
 </head>
-<body><div id="wrapper">
+<body>
+<div id="wrapper">
 <header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
 <button class="menu-toggle" type="button" aria-label="Toggle Menu">
 	<span class="icon icon-menu" aria-hidden="true"></span>
@@ -179,6 +180,7 @@ unable to load package `void-0.6.1&#39;</code></pre>
 		</nav>
 	</footer>
 </section>
+</div>
 <footer class="site-footer">
 	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
@@ -200,5 +202,5 @@ unable to load package `void-0.6.1&#39;</code></pre>
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
-</div></body>
+</body>
 </html>

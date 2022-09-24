@@ -6,7 +6,17 @@
     <description>Recent content on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 Jul 2022 23:54:44 -0700</lastBuildDate><atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Sep 2022 21:33:22 -0700</lastBuildDate><atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flexbox Fun Facts</title>
+      <link>//blog.vero.site/post/flexbox-fun</link>
+      <pubDate>Fri, 23 Sep 2022 21:33:22 -0700</pubDate>
+      
+      <guid>//blog.vero.site/post/flexbox-fun</guid>
+      <description>&lt;p&gt;This post is brought to you by “I am procrastinating other stuff by doing some long overdue maintenance on my blog”. Mainly, I finally replaced the old &lt;code&gt;float&lt;/code&gt;-based layout from the random Hugo theme I forked, which I had been keeping just because it wasn’t broken, with flexbox, so that I could more easily tweak some other things. If things look broken, you may need to force-refresh or clear your cache, and on the off chance things look mostly the same but you feel like something about the layout feels subtly different, that’s what’s up.&lt;/p&gt;
+&lt;p&gt;While making these changes, I ended up digging through the &lt;a href=&#34;https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/&#34;&gt;flexbox spec&lt;/a&gt; to debug an issue and learned some interesting things. (This and other links in this post are permalinks to the November 2018 spec, which I believe is the most recent official version as of time of writing, but it’s nearly three years and there have been quite a few changes in the “editor’s draft”. Also, this post is not a flexbox tutorial and will not make sense if you are already familiar with flexbox.)&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>🅿️🅿️🅿️ordle</title>
       <link>//blog.vero.site/post/pppordle</link>
@@ -1331,7 +1341,7 @@ At least, all things considered, I think this transition was very successful at 
       <pubDate>Sat, 21 Nov 2015 13:16:59 +0800</pubDate>
       
       <guid>//blog.vero.site/post/november-2015-hints</guid>
-      <description>A Signature Puzzle: Trying to solve the puzzle with Extreme Speed can’t hurt.   Anticron: This puzzle runs on two distinct 24-hour clocks, which is why you can be zoned out for half the time and still solve it.   When Is My Birthday Again?: Apparently, if you don’t want to tell your friends your birthday, you can tell one of them the month and the other the day.</description>
+      <description>A Signature Puzzle: Trying to solve the puzzle with Extreme Speed can’t hurt. Anticron: This puzzle runs on two distinct 24-hour clocks, which is why you can be zoned out for half the time and still solve it. When Is My Birthday Again?: Apparently, if you don’t want to tell your friends your birthday, you can tell one of them the month and the other the day. And if you really want to annoy them, you can change one of the days at the end so they have to work it out again.</description>
     </item>
     
     <item>
@@ -1794,8 +1804,6 @@ Good luck!
       
       <guid>//blog.vero.site/post/phone-ii</guid>
       <description>Here are two screenshots of the Android 3x3 grid lock we dealt with in the phone post.
-
-
 Part of the reason I don’t have a real post today and am instead writing filler for the streak is that I wanted to include this 3x3 lock in the programming presentation I’ve been indirectly complaining about in the last few posts, and I couldn’t find any nicely licensed screenshots to illustrate it, so I made these screenshots myself, and then I spent somewhat more than an hour researching copyright law and listening to a talk about it before posting them.</description>
     </item>
     
@@ -1879,7 +1887,7 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
       
       <guid>//blog.vero.site/post/sheep</guid>
       <description>Ok I give up I don’t have any material and don’t feel like preparing any because the influx of IMO problems, including the shortlist, is too fascinating. Instead, here is a joke quoted verbatim from TVTropes (CC-NC-SA).
- An American anthropologist has been studying a tribe in Africa by living with them for a year. One day, the chief called him into the chief’s hut. The chief sighed. “Well, my friend, it seems that we must ask you to leave.</description>
+An American anthropologist has been studying a tribe in Africa by living with them for a year. One day, the chief called him into the chief’s hut. The chief sighed. “Well, my friend, it seems that we must ask you to leave.</description>
     </item>
     
     <item>
@@ -1938,7 +1946,7 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
       <guid>//blog.vero.site/post/a-list</guid>
       <description>(streak)
 ≥1 of you should know what is being referred to.
-  Oh yeah, I love being first. Of course the approximate price is that I have to expose the world to the innocent naïveté of my fourth-grade self. So far nobody mean has ventured there yet, but who knows.   Darn, two years. Darn, Cards Against Humanity. I need more of that in my life. I don’t know what else is happening but music is good.</description>
+Oh yeah, I love being first. Of course the approximate price is that I have to expose the world to the innocent naïveté of my fourth-grade self. So far nobody mean has ventured there yet, but who knows. Darn, two years. Darn, Cards Against Humanity. I need more of that in my life. I don’t know what else is happening but music is good.</description>
     </item>
     
     <item>
@@ -1989,7 +1997,7 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
       <guid>//blog.vero.site/post/cognitive-asymptotics</guid>
       <description>Short blog content for daily posting streak. Standard disclaimers apply. Not much to see here.
 At some point in the past, because I was a bored teenager, I memorized this.
-  So now, in theory, I can tell you the capital of each state of the U.S. This is already a lame trick, but as I realized yesterday, it’s made even lamer by the fact that the data structure I chose only supports O(n) lookup.</description>
+So now, in theory, I can tell you the capital of each state of the U.S. This is already a lame trick, but as I realized yesterday, it’s made even lamer by the fact that the data structure I chose only supports O(n) lookup.</description>
     </item>
     
     <item>
@@ -2279,7 +2287,7 @@ I think you fail to understand how anti-intellectual american society is
       
       <guid>//blog.vero.site/post/unicode-forensics</guid>
       <description>What do you do when you get a bunch of files like this from a zipfile?
-   I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing.   Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester.</description>
+I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing. Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester.</description>
     </item>
     
     <item>
@@ -2386,7 +2394,6 @@ I think you fail to understand how anti-intellectual american society is
       
       <guid>//blog.vero.site/post/moon-shoes</guid>
       <description>Okay. So. These things:
-
 These things are a thing. They’re like mini-trampolines that you are supposed to strap onto your feet and jump around on to have fun, if you’re, like, six years old, maybe?
 Anyway, if you happen to run into a pair of these, please be careful, and please think twice before doing something like, I don’t know, immediately strapping them on after you see them and jumping as hard as you possibly can, especially not when you are jumping on a hard unforgiving surface, or when you are surrounded by a bunch of impressionable children whom you could be concerned might follow your example or be swayed by your bad influence or something.</description>
     </item>
@@ -2527,7 +2534,7 @@ Mnemonic Here’s my mnemonic table for digits, inspired by an old Martin Gardne
       <pubDate>Sun, 07 Sep 2014 16:01:28 +0800</pubDate>
       
       <guid>//blog.vero.site/post/outtakes</guid>
-      <description>Miscellaneous observations that didn’t make it into a compelling narrative, sometimes because I have forgotten exactly when they happened, sometimes because I only remembered when they happened after blogging about it, sometimes because it just seemed too tangential, sometimes just because of the circumference of the mooooooooooooooooon! (That made no sense and I’m not going to remember what I’m alluding to in a few months.)   During the first day a guy came into the secret computer room that the Taiwan team had concealed themselves in, saw us watching anime (SAO 2 among others), and innocently asked, “Are you the Japanese team?</description>
+      <description>Miscellaneous observations that didn’t make it into a compelling narrative, sometimes because I have forgotten exactly when they happened, sometimes because I only remembered when they happened after blogging about it, sometimes because it just seemed too tangential, sometimes just because of the circumference of the mooooooooooooooooon! (That made no sense and I’m not going to remember what I’m alluding to in a few months.) During the first day a guy came into the secret computer room that the Taiwan team had concealed themselves in, saw us watching anime (SAO 2 among others), and innocently asked, “Are you the Japanese team?</description>
     </item>
     
     <item>
@@ -2920,7 +2927,6 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
       
       <guid>//blog.vero.site/post/phyllotaxy</guid>
       <description>This is beautiful. Why do they have to make it sound all mysterious and difficult? That’s (the reciprocal of) the golden ratio, by the way.
-
 Transcript since the resolution is far from awesome: “Most angiosperms have alternate phyllotaxy, with leaves arranged in an ascending spiral around the stem, each successive leaf emerging 137.5° from the site of the previous one. Why 137.5°? Mathematical analyses suggest that this angle minimizes shading of the lower leaves by those above.</description>
     </item>
     
@@ -3610,7 +3616,6 @@ Exhibit A: mathematical analysis/advanced calculus notes, circa 2010
       
       <guid>//blog.vero.site/post/puzzle-8</guid>
       <description>Hey, a “theme” (look at the corners)!
-
 Honestly though I’m just spreading out my puzzle posts so there’s some illusion of regularity.</description>
     </item>
     
@@ -3634,7 +3639,6 @@ Honestly though I’m just spreading out my puzzle posts so there’s some illus
       
       <guid>//blog.vero.site/post/puzzle-7</guid>
       <description>It’s 2/22 and I have low standards.
-
 This is a normal Slitherlink, except all the 2s have been given to you. Thus, empty squares cannot have exactly two edges around them. Of course it’s been done before (guess who?)
 I appear to be drastically overshooting a monthly schedule :P</description>
     </item>
@@ -3646,7 +3650,6 @@ I appear to be drastically overshooting a monthly schedule :P</description>
       
       <guid>//blog.vero.site/post/puzzle-6</guid>
       <description>Not actually my first try, but I guess I don’t need to resort to 6x6s to fill up my quota just yet, do I?
-
 Okay for the absolutely uninformed, this is a Fillomino (or see MellowMelon’s rule page).
 I’ve switched to 32x32 pixel cells because they seem a reasonable size and it’s possible to express all pixel sizes as an exact floating-point fraction of the cell side so my image generator can be used in a general way to get perfect stroke thicknesses without worrying about any rounding errors no matter how obviously numerically insignificant they would be in this case.</description>
     </item>
@@ -3672,7 +3675,6 @@ I’ve switched to 32x32 pixel cells because they seem a reasonable size and it�
       
       <guid>//blog.vero.site/post/puzzle-5</guid>
       <description>One puzzle a month! What a prolific schedule!
-
 A Liar Slitherlink as created by MellowMelon (probably). Normal Slitherlink rules except exactly one clue in each row and column is false; you figure out which. But I bet you knew that already.</description>
     </item>
     
@@ -3702,7 +3704,7 @@ A Liar Slitherlink as created by MellowMelon (probably). Normal Slitherlink rule
       
       <guid>//blog.vero.site/post/puzzle-4</guid>
       <description>I was like “Let’s make a 15x15!” and got confused by the graph lines and stopped early. Anyway, I think the steps aren’t so trivial now. I’m still too lazy to fix my generator, however.
-   yes, normal Nurikabe   </description>
+yes, normal Nurikabe </description>
     </item>
     
     <item>
@@ -3734,7 +3736,7 @@ A Liar Slitherlink as created by MellowMelon (probably). Normal Slitherlink rule
       
       <guid>//blog.vero.site/post/freedom-writers-seo</guid>
       <description>Note: My 2012 self wrote this. It is preserved for historical interest and amusement.
- Two months ago for some random reason I noticed that somebody had found this blog by Googling for the Freedom Writers contest page. Shortly thereafter, the school went ahead and held it for the second time, two years after the first contest, and even more people have started searching for some combination of “ibsh freedom writers”, resulting in an anomalously large number of hits to a certain just-over-two-years-old post.</description>
+Two months ago for some random reason I noticed that somebody had found this blog by Googling for the Freedom Writers contest page. Shortly thereafter, the school went ahead and held it for the second time, two years after the first contest, and even more people have started searching for some combination of “ibsh freedom writers”, resulting in an anomalously large number of hits to a certain just-over-two-years-old post.</description>
     </item>
     
     <item>
@@ -3744,7 +3746,6 @@ A Liar Slitherlink as created by MellowMelon (probably). Normal Slitherlink rule
       
       <guid>//blog.vero.site/post/puzzle-2</guid>
       <description>Written for the new year of 2012.
-
 (janko.at applet)</description>
     </item>
     
@@ -3816,7 +3817,7 @@ A Liar Slitherlink as created by MellowMelon (probably). Normal Slitherlink rule
       
       <guid>//blog.vero.site/post/nerdy-writing</guid>
       <description>Note: My 2011 self wrote this. It is selectively preserved for historical interest and amusement. It’s just meta enough to be funny, I think.
- I can look at the posts I made in fourth grade, and understand how I might get exaggeratedly happy about these tiny things, and write this ramble that goes up and down and all over the place.
+I can look at the posts I made in fourth grade, and understand how I might get exaggeratedly happy about these tiny things, and write this ramble that goes up and down and all over the place.
 Anyway apparently I wrote “to indulge in a colloquialism” less than a year ago in a school essay and now it sounds plain freaky to me.</description>
     </item>
     
@@ -4236,7 +4237,7 @@ Z &amp;amp;= 0.0193339r + 0.1191920g + 0.9503041b
       
       <guid>//blog.vero.site/util/factorize</guid>
       <description>A basic JavaScript factorizer. Warning: it uses extremely dumb trial division, so numbers with large prime factors will quite likely hang your browser, and big numbers will overflow or lose precision. If you want to factor the big fish, use Alpertron’s ECM applet or something.
-factor! append? fancy?   </description>
+factor! append? fancy? </description>
     </item>
     
     <item>
@@ -4416,7 +4417,7 @@ Letter
       <guid>//blog.vero.site/ref/problem-ref</guid>
       <description>(ported from wiki)
 Certain notable problems that I don’t want to look through a zillion pages to find.
- Iran TST 1996, notoriously reposted at least 35 times on AoPS (okay, many of these are actually modifications):
+Iran TST 1996, notoriously reposted at least 35 times on AoPS (okay, many of these are actually modifications):
 If \(x, y, z &amp;gt; 0\) then
 \[(xy+yz+zx)\left(\frac{1}{(x+y)^2} + \frac{1}{(y+z)^2} + \frac{1}{(z+x)^2}\right) \geq \frac{9}{4}\] ISL 1988 #4: if \(1, 2, \ldots, n^2\) are placed in a \(n \times n\) chessboard, some two adjacent numbers differ by at least \(n\) USAMO 1995.</description>
     </item>

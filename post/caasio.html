@@ -6,8 +6,8 @@
 
 <meta name="author" content="betaveros" />
 <meta name="description" content=" It’s clam’s newest javascript Calculator-as-a-Service: the CaaSio Please Stop Edition! no but actually please stop I hate jsjails js isn’t a good language stop putting one in every ctf I don’t want to look at another jsjail because if I do I might vomit from how much I hate js and js quirks aren’t even cool or funny or quirky they’re just painful because why would you design a language like this ahhhhhhhhhhhhhhhhhhhhh
- It’s just a JavaScript eval jail.
-#!/usr/local/bin/node  // flag in ./flag.txt  const vm = require(&amp;quot;vm&amp;quot;); const readline = require(&amp;quot;readline&amp;quot;);  const interface = readline.createInterface({ input: process.stdin, output: process.stdout, });  interface.question( &amp;quot;Welcome to CaaSio: Please Stop Edition! Enter your calculation:\n&amp;quot;, function (input) { interface.close(); if ( input.length &amp;lt; 215 &amp;amp;&amp;amp; /^[\x20-\x7e]&#43;$/.test(input) &amp;amp;&amp;amp; !/[.\[\]{}\s;`&amp;#39;&amp;quot;\\_&amp;lt;&amp;gt;?:]/.test(input) &amp;amp;&amp;amp; !input.toLowerCase().includes(&amp;quot;import&amp;quot;) ) { try { const val = vm.runInNewContext(input, {}); console.log(&amp;quot;Result:&amp;quot;); console.log(val); console.log( &amp;quot;See, isn&amp;#39;t the calculator so much nicer when you&amp;#39;re not trying to hack it?&amp;quot; ); } catch (e) { console.log(&amp;quot;your tried&amp;quot;); } } else { console.log( &amp;quot;Third time really is the charm! I&amp;#39;ve finally created an unhackable system!&amp;quot; ); } } );" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+It’s just a JavaScript eval jail.
+#!/usr/local/bin/node // flag in ./flag.txt const vm = require(&amp;quot;vm&amp;quot;); const readline = require(&amp;quot;readline&amp;quot;); const interface = readline.createInterface({ input: process.stdin, output: process.stdout, }); interface.question( &amp;quot;Welcome to CaaSio: Please Stop Edition! Enter your calculation:\n&amp;quot;, function (input) { interface.close(); if ( input.length &amp;lt; 215 &amp;amp;&amp;amp; /^[\x20-\x7e]&#43;$/.test(input) &amp;amp;&amp;amp; !/[.\[\]{}\s;`&amp;#39;&amp;quot;\\_&amp;lt;&amp;gt;?:]/.test(input) &amp;amp;&amp;amp; !input.toLowerCase().includes(&amp;quot;import&amp;quot;) ) { try { const val = vm.runInNewContext(input, {}); console.log(&amp;quot;Result:&amp;quot;); console.log(val); console.log( &amp;quot;See, isn&amp;#39;t the calculator so much nicer when you&amp;#39;re not trying to hack it?&amp;quot; ); } catch (e) { console.log(&amp;quot;your tried&amp;quot;); } } else { console.log( &amp;quot;Third time really is the charm! I&amp;#39;ve finally created an unhackable system!&amp;quot; ); } } );" /><meta name="generator" content="Hugo 0.102.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/caasio" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -32,7 +32,8 @@
 <![endif]-->
 
 </head>
-<body><div id="wrapper">
+<body>
+<div id="wrapper">
 <header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
 <button class="menu-toggle" type="button" aria-label="Toggle Menu">
 	<span class="icon icon-menu" aria-hidden="true"></span>
@@ -177,6 +178,7 @@
 		</nav>
 	</footer>
 </section>
+</div>
 <footer class="site-footer">
 	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
@@ -198,5 +200,5 @@
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
-</div></body>
+</body>
 </html>

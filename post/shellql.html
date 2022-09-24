@@ -7,9 +7,9 @@
 <meta name="author" content="betaveros" />
 <meta name="description" content="The hardest challenge of not very many I solved in this CTF. What a struggle! I have a long way to improve. It was pretty fun though. (I solved “You Already Know”, and got the essence of “ghettohackers: Throwback”, but didn’t guess the right flag format and believe I was asleep when they released the hint about it.)
 The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension shellme.so.
-$link = mysqli_connect(&amp;#39;localhost&amp;#39;, &amp;#39;shellql&amp;#39;, &amp;#39;shellql&amp;#39;, &amp;#39;shellql&amp;#39;);  if (isset($_POST[&amp;#39;shell&amp;#39;])) { if (strlen($_POST[&amp;#39;shell&amp;#39;]) &amp;lt;= 1000) { echo $_POST[&amp;#39;shell&amp;#39;]; shellme($_POST[&amp;#39;shell&amp;#39;]); } exit(); } The extension basically just executes $_POST[&#39;shell&#39;] as shellcode after a strict SECCOMP call, prctl(22, 1). This means that we can only use the four syscalls read, write, and exit, and sigreturn, where the latter two aren’t particularly useful.
- Disassembled innermost function of interest in shellme.so  The goal is to read the flag from the open MySQL connection.
-" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+$link = mysqli_connect(&amp;#39;localhost&amp;#39;, &amp;#39;shellql&amp;#39;, &amp;#39;shellql&amp;#39;, &amp;#39;shellql&amp;#39;); if (isset($_POST[&amp;#39;shell&amp;#39;])) { if (strlen($_POST[&amp;#39;shell&amp;#39;]) &amp;lt;= 1000) { echo $_POST[&amp;#39;shell&amp;#39;]; shellme($_POST[&amp;#39;shell&amp;#39;]); } exit(); } The extension basically just executes $_POST[&#39;shell&#39;] as shellcode after a strict SECCOMP call, prctl(22, 1). This means that we can only use the four syscalls read, write, and exit, and sigreturn, where the latter two aren’t particularly useful.
+Disassembled innermost function of interest in shellme.so The goal is to read the flag from the open MySQL connection.
+" /><meta name="generator" content="Hugo 0.102.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/shellql" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -34,7 +34,8 @@ $link = mysqli_connect(&amp;#39;localhost&amp;#39;, &amp;#39;shellql&amp;#39;, &
 <![endif]-->
 
 </head>
-<body><div id="wrapper">
+<body>
+<div id="wrapper">
 <header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
 <button class="menu-toggle" type="button" aria-label="Toggle Menu">
 	<span class="icon icon-menu" aria-hidden="true"></span>
@@ -174,6 +175,7 @@ $link = mysqli_connect(&amp;#39;localhost&amp;#39;, &amp;#39;shellql&amp;#39;, &
 		</nav>
 	</footer>
 </section>
+</div>
 <footer class="site-footer">
 	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
@@ -195,5 +197,5 @@ $link = mysqli_connect(&amp;#39;localhost&amp;#39;, &amp;#39;shellql&amp;#39;, &
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
-</div></body>
+</body>
 </html>

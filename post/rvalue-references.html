@@ -10,7 +10,7 @@ Learning C&#43;&#43; was about as complicated as I think I expected it to be. By
 In the process of learning C&#43;&#43; professionally, one rabbit hole I fell into quickly was C&#43;&#43;11’s defining feature, the rvalue reference, and how it can be used to implement move semantics and perfect forwarding. By poring over a copy of the widely recommended book Effective Modern C&#43;&#43;, by Scott Meyers, and a few dozen StackOverflow answers and blog posts, I roughly understood it after a few days, but still had a sort of blind-men-feeling-the-elephant feeling. I was confused about what lay under some of the abstractions I had been using, unsure of the full shape of the pitfalls that some of the guides had pointed out to me, and generally uncomfortable that there were still many small variations of the code I had seen that I couldn’t predict the behavior of. It took many more days to work myself out of there, and I wished I had had a guide that explained rvalue references and their applications to a bit more depth than what might be necessary for day-to-day use. So here’s my attempt to explain rvalue references in my own fundamental I-want-to-know-how-things-work-no-really style.
 (If this vision doesn’t resonate with you, there are many other posts explaining rvalue references out there that you might prefer. Feel free to just skim the executive summary and/or check out some of the linked articles in the Background section.)
 Executive Summary I got… pretty carried away when writing this post, and a lot of it is just for my own understanding, which may or may not be useful to readers. Here’s a much more concise rundown (assuming you know basic C&#43;&#43; already):
-" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+" /><meta name="generator" content="Hugo 0.102.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/rvalue-references" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -35,7 +35,8 @@ Executive Summary I got… pretty carried away when writing this post, and a lot
 <![endif]-->
 
 </head>
-<body><div id="wrapper">
+<body>
+<div id="wrapper">
 <header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
 <button class="menu-toggle" type="button" aria-label="Toggle Menu">
 	<span class="icon icon-menu" aria-hidden="true"></span>
@@ -65,7 +66,7 @@ Executive Summary I got… pretty carried away when writing this post, and a lot
 		<p class="post-meta">
 		
 		2020-11-16
-		(12004 words)
+		(12005 words)
 		
 		<span class="post-categories">
 			filed under
@@ -566,6 +567,7 @@ This automatically does the right thing for most clients, but the standard libra
 		</nav>
 	</footer>
 </section>
+</div>
 <footer class="site-footer">
 	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
@@ -587,5 +589,5 @@ This automatically does the right thing for most clients, but the standard libra
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
-</div></body>
+</body>
 </html>

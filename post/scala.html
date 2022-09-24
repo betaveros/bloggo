@@ -10,7 +10,7 @@ Scala is an amazing multiparadigm programming language that runs on the Java Vir
 When I say “amazing” I mean “This is a language in which my code gives me nerdgasms every time I read it.” Wheeee.
 Okay, it’s not perfect. People say it’s too academic. It has a notoriously complicated type system (which is Turing-Complete at compile time). Its documentation is a bit patchy too. For a serious introduction, the Scala website has plenty of links under documentation, and a tour of features. Somebody wrote another tour that explains things a bit more. So here, instead of introducing it seriously, I’m just going to screw with its features.
 Example of freedom. Scala lets names consist of symbols, and treats one-parameter methods and infix operators exactly the same. The full tokenization rules are a bit detailed and I put them at the bottom of this post for the interested. This lets you create classes with arithmetic and domain-specific languages easily, but it also creates some silly opportunities:
-scala&amp;gt; val * = 12 *: Int = 12  scala&amp;gt; * * * * * res0: Int = 1728" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+scala&amp;gt; val * = 12 *: Int = 12 scala&amp;gt; * * * * * res0: Int = 1728" /><meta name="generator" content="Hugo 0.102.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/scala" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -35,7 +35,8 @@ scala&amp;gt; val * = 12 *: Int = 12  scala&amp;gt; * * * * * res0: Int = 1728" 
 <![endif]-->
 
 </head>
-<body><div id="wrapper">
+<body>
+<div id="wrapper">
 <header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
 <button class="menu-toggle" type="button" aria-label="Toggle Menu">
 	<span class="icon icon-menu" aria-hidden="true"></span>
@@ -104,7 +105,7 @@ Note that in the context of Homebrew, libexec is reserved for private use by the
 <p>So, I’m still not sure what it means, but it would probably be shady to feed <code>libexec</code> into SBT as the default build path and I’d break something else later.</p>
 <p>Then I realized I was being stupid. <strong><code>scala.swing</code> is an extra library</strong>; it’s not part of the “base classes” although it comes by default with installations. The whole <em>point</em> of using SBT was to organize things like these dependencies. Blargh.</p>
 <p>Flipping through the SBT docs to figure out what to add was pretty nasty, so I ended up Googling. This extra line in <code>build.sbt</code> will do the trick:</p>
-<pre><code>libraryDependencies += &amp;quot;org.scala-lang&amp;quot; % &amp;quot;scala-swing&amp;quot; % &amp;quot;2.10.0&amp;quot;</code></pre>
+<pre><code>libraryDependencies += &quot;org.scala-lang&quot; % &quot;scala-swing&quot; % &quot;2.10.0&quot;</code></pre>
 <p>Okay, here goes…</p>
 <pre><code>glacier:gfb glacier$ sbt run
 [info] Set current project to gridderface (in build file:/Users/glacier/gfb/)
@@ -163,6 +164,7 @@ Edit 2014/12/30: While clicking random links I noted that that domain has expire
 		</nav>
 	</footer>
 </section>
+</div>
 <footer class="site-footer">
 	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
@@ -184,5 +186,5 @@ Edit 2014/12/30: While clicking random links I noted that that domain has expire
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
-</div></body>
+</body>
 </html>

@@ -5,14 +5,14 @@
 <title>[IMO 2012 Part 5] Unlucky Fours</title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="[edit: okay guys I’m surprised at many people come here with search queries looking for solutions. If you want IMO solutions, the corresponding AoPS forum invariably has many of them. This is probably late-ish, but just in case.]  Day 2 of the contest.
+<meta name="description" content=" [edit: okay guys I’m surprised at many people come here with search queries looking for solutions. If you want IMO solutions, the corresponding AoPS forum invariably has many of them. This is probably late-ish, but just in case.] Day 2 of the contest.
 Did you know that in Chinese [or Mandarin, whatever] “four” is unlucky because it’s a homophone for “death”, and hospitals tend to skip it in floors or ward numbers?
 Did you know that there was going to be an anecdote involving the seventh Artemis Fowl book but I couldn’t make it work so instead you have a weird and utterly disconnected metareference to something deleted?
 I don’t know, it sounded cool at the time.
 Problem 4. Find all functions f: Z → Z such that, for all integers a,b,c that satisfy a&#43;b&#43;c = 0, the following equality holds: \[f(a)^2&#43;f(b)^2&#43;f(c)^2=2f(a)f(b)&#43;2f(b)f(c)&#43;2f(c)f(a).\] (Here Z denotes the set of integers.)
 An innocent-looking functional equation, but once you start trying it you discover that there’s quite some depth to it. Random guessing can yield that \(f(x) = x^2\) is a solution, so I proved inductively that after dividing out a constant f(1) then the remaining part of f is a perfect square. Letting \(f(x) = f(1)g(x)^2\) with g(x) a nonnegative integer and factorizing the original equation, I got an auxiliary functional equation equivalent to the original equation.
 Casework on small values of g, and the surprises started coming hard and fast. First: wow there’s an extra odd-even solution! Then: woah there’s another mod 4 solution! What is this madness?
-" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+" /><meta name="generator" content="Hugo 0.102.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/fours" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -37,7 +37,8 @@ Casework on small values of g, and the surprises started coming hard and fast. F
 <![endif]-->
 
 </head>
-<body><div id="wrapper">
+<body>
+<div id="wrapper">
 <header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
 <button class="menu-toggle" type="button" aria-label="Toggle Menu">
 	<span class="icon icon-menu" aria-hidden="true"></span>
@@ -145,6 +146,7 @@ Casework on small values of g, and the surprises started coming hard and fast. F
 		</nav>
 	</footer>
 </section>
+</div>
 <footer class="site-footer">
 	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
@@ -166,5 +168,5 @@ Casework on small values of g, and the surprises started coming hard and fast. F
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
-</div></body>
+</body>
 </html>

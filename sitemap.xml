@@ -2,23 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>//blog.vero.site/</loc>
+    <lastmod>2022-09-23T21:33:22-07:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/categories</loc>
+    <lastmod>2022-09-23T21:33:22-07:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/category/cs</loc>
+    <lastmod>2022-09-23T21:33:22-07:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/post/flexbox-fun</loc>
+    <lastmod>2022-09-23T21:33:22-07:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/post</loc>
+    <lastmod>2022-09-23T21:33:22-07:00</lastmod>
+  </url><url>
     <loc>//blog.vero.site/tags</loc>
     <lastmod>2022-07-04T23:54:44-07:00</lastmod>
     <priority>0</priority>
   </url><url>
-    <loc>//blog.vero.site/</loc>
-    <lastmod>2022-07-04T23:54:44-07:00</lastmod>
-  </url><url>
-    <loc>//blog.vero.site/categories</loc>
-    <lastmod>2022-07-04T23:54:44-07:00</lastmod>
-  </url><url>
-    <loc>//blog.vero.site/category/cs</loc>
-    <lastmod>2022-07-04T23:54:44-07:00</lastmod>
-  </url><url>
     <loc>//blog.vero.site/tag/ctf</loc>
-    <lastmod>2022-07-04T23:54:44-07:00</lastmod>
-  </url><url>
-    <loc>//blog.vero.site/post</loc>
     <lastmod>2022-07-04T23:54:44-07:00</lastmod>
   </url><url>
     <loc>//blog.vero.site/post/pppordle</loc>
@@ -324,10 +327,10 @@
     <loc>//blog.vero.site/tag/games</loc>
     <lastmod>2016-07-18T16:55:32+08:00</lastmod>
   </url><url>
-    <loc>//blog.vero.site/post/gaming</loc>
+    <loc>//blog.vero.site/tag/gaming</loc>
     <lastmod>2016-07-18T16:55:32+08:00</lastmod>
   </url><url>
-    <loc>//blog.vero.site/tag/gaming</loc>
+    <loc>//blog.vero.site/post/gaming</loc>
     <lastmod>2016-07-18T16:55:32+08:00</lastmod>
   </url><url>
     <loc>//blog.vero.site/tag/pokemon</loc>
@@ -339,10 +342,10 @@
     <loc>//blog.vero.site/post/islam-headlines</loc>
     <lastmod>2016-07-11T15:29:43+08:00</lastmod>
   </url><url>
-    <loc>//blog.vero.site/post/conversations</loc>
+    <loc>//blog.vero.site/tag/conversations</loc>
     <lastmod>2016-07-04T13:10:21+08:00</lastmod>
   </url><url>
-    <loc>//blog.vero.site/tag/conversations</loc>
+    <loc>//blog.vero.site/post/conversations</loc>
     <lastmod>2016-07-04T13:10:21+08:00</lastmod>
   </url><url>
     <loc>//blog.vero.site/tag/culture</loc>

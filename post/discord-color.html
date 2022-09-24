@@ -10,10 +10,10 @@ However, when I finally started trying to create some reactions, I hit an intere
 (I could, of course, just outline my reaction with a contrasting color, but let’s say that’s cheating. With the limited space in a reaction, outlining isn’t that great of a solution anyway.)
 Now, one can’t really just compute the “contrast of two colors” given only their RGB components; there’s no universally agreed-on definition of contrast in vision, and even if there were one, the contrast of two given colors would depend on the color space and possibly the viewer’s biology. But, to get a concrete answer to this question, we can use the standard sRGB model and the W3C’s definitions of contrast ratio and relative luminance.2 As of time of writing on my computer,3 Discord reactions have background #2f3136 on dark mode and #f2f3f5 on light mode. Reactions you’ve reacted with have background #3b405a on dark mode and #e7e9fd on light mode. Because the dark mode background gets lighter and the light mode background gets darker, we’ll use the latter colors so we’re optimizing the worst-case contrast.
 There are smarter approaches, but the 2563 = 16,777,216 possible 8-bit colors are perfectly feasible to brute force, so I wrote a short Python script to check all of them, which is at the bottom of this post. Under the parameters I’ve outlined, the optimal color for a Discord reaction is rgb(255, 65, 3) or #ff4103. A demo:
-  #ff4103 #ff4103 ●
-CR: 2.90738237  #ff4103 #ff4103 ● CR: 2.90738217    That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that. (It’s highly doubtful that the formulae I used were intended to have this degree of precision in the first place.)
+#ff4103 #ff4103 ●
+CR: 2.90738237 #ff4103 #ff4103 ● CR: 2.90738217 That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that. (It’s highly doubtful that the formulae I used were intended to have this degree of precision in the first place.)
 After playing with a few ways to get a spread of options, I settled on categorizing colors into six buckets of saturation and twelve buckets of hue in the simple HSV model, and then finding the optimal color within each bucket. Here is a table of my results:
-" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+" /><meta name="generator" content="Hugo 0.102.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/discord-color" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -38,7 +38,8 @@ After playing with a few ways to get a spread of options, I settled on categoriz
 <![endif]-->
 
 </head>
-<body><div id="wrapper">
+<body>
+<div id="wrapper">
 <header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
 <button class="menu-toggle" type="button" aria-label="Toggle Menu">
 	<span class="icon icon-menu" aria-hidden="true"></span>
@@ -66,7 +67,7 @@ After playing with a few ways to get a spread of options, I settled on categoriz
 		<p class="post-meta">
 		
 		2021-06-28
-		(1673 words)
+		(1659 words)
 		
 		<span class="post-categories">
 			filed under
@@ -760,6 +761,7 @@ update();
 		</nav>
 	</footer>
 </section>
+</div>
 <footer class="site-footer">
 	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
@@ -781,5 +783,5 @@ update();
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
-</div></body>
+</body>
 </html>

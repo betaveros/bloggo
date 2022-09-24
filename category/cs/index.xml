@@ -6,7 +6,17 @@
     <description>Recent content in CS on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 Jul 2022 23:54:44 -0700</lastBuildDate><atom:link href="//blog.vero.site/category/cs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Sep 2022 21:33:22 -0700</lastBuildDate><atom:link href="//blog.vero.site/category/cs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flexbox Fun Facts</title>
+      <link>//blog.vero.site/post/flexbox-fun</link>
+      <pubDate>Fri, 23 Sep 2022 21:33:22 -0700</pubDate>
+      
+      <guid>//blog.vero.site/post/flexbox-fun</guid>
+      <description>&lt;p&gt;This post is brought to you by “I am procrastinating other stuff by doing some long overdue maintenance on my blog”. Mainly, I finally replaced the old &lt;code&gt;float&lt;/code&gt;-based layout from the random Hugo theme I forked, which I had been keeping just because it wasn’t broken, with flexbox, so that I could more easily tweak some other things. If things look broken, you may need to force-refresh or clear your cache, and on the off chance things look mostly the same but you feel like something about the layout feels subtly different, that’s what’s up.&lt;/p&gt;
+&lt;p&gt;While making these changes, I ended up digging through the &lt;a href=&#34;https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/&#34;&gt;flexbox spec&lt;/a&gt; to debug an issue and learned some interesting things. (This and other links in this post are permalinks to the November 2018 spec, which I believe is the most recent official version as of time of writing, but it’s nearly three years and there have been quite a few changes in the “editor’s draft”. Also, this post is not a flexbox tutorial and will not make sense if you are already familiar with flexbox.)&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>🅿️🅿️🅿️ordle</title>
       <link>//blog.vero.site/post/pppordle</link>
@@ -713,7 +723,7 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
       
       <guid>//blog.vero.site/post/unicode-forensics</guid>
       <description>What do you do when you get a bunch of files like this from a zipfile?
-   I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing.   Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester.</description>
+I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing. Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester.</description>
     </item>
     
     <item>

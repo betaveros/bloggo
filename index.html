@@ -5,7 +5,7 @@
 <title>Bounded-Error Log</title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.102.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -30,7 +30,8 @@
 <![endif]-->
 
 </head>
-<body><div id="wrapper">
+<body>
+<div id="wrapper">
 <header class="site-header"><h1 class="title"><a href="/">Bounded-Error Log</a></h1><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
 <button class="menu-toggle" type="button" aria-label="Toggle Menu">
 	<span class="icon icon-menu" aria-hidden="true"></span>
@@ -57,6 +58,31 @@
 	</header>
 	
 	
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/flexbox-fun" class="post-link">Flexbox Fun Facts</a></h3>
+		
+		<p class="post-meta">
+		
+		2022-09-23
+		(1458 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>This post is brought to you by “I am procrastinating other stuff by doing some long overdue maintenance on my blog”. Mainly, I finally replaced the old <code>float</code>-based layout from the random Hugo theme I forked, which I had been keeping just because it wasn’t broken, with flexbox, so that I could more easily tweak some other things. If things look broken, you may need to force-refresh or clear your cache, and on the off chance things look mostly the same but you feel like something about the layout feels subtly different, that’s what’s up.</p>
+<p>While making these changes, I ended up digging through the <a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/">flexbox spec</a> to debug an issue and learned some interesting things. (This and other links in this post are permalinks to the November 2018 spec, which I believe is the most recent official version as of time of writing, but it’s nearly three years and there have been quite a few changes in the “editor’s draft”. Also, this post is not a flexbox tutorial and will not make sense if you are already familiar with flexbox.)</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/flexbox-fun">→ read more<span class="offscreen"> Flexbox Fun Facts</span></a>
+	</footer>
+</article>
+
 		
 			<article class="post-entry">
 	<header class="post-header">
@@ -101,7 +127,7 @@
 		<p class="post-meta">
 		
 		2022-07-04
-		(2518 words)
+		(2519 words)
 		
 		<span class="post-categories">
 			filed under
@@ -274,7 +300,7 @@
 		<p class="post-meta">
 		
 		2022-05-05
-		(9864 words)
+		(9838 words)
 		
 		<span class="post-categories">
 			filed under
@@ -307,7 +333,7 @@
 		<p class="post-meta">
 		
 		2022-02-14
-		(3739 words)
+		(3740 words)
 		
 		<span class="post-categories">
 			filed under
@@ -379,7 +405,7 @@
 		<p class="post-meta">
 		
 		2022-02-14
-		(1403 words)
+		(1404 words)
 		
 		<span class="post-categories">
 			filed under
@@ -491,44 +517,6 @@
 </article>
 
 		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/elliptic-curves" class="post-link">Just Enough Elliptic Curves to Be Dangerous</a></h3>
-		
-		<p class="post-meta">
-		
-		2021-11-28
-		(15801 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/math">Math</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>A famous Trail of Bits post says to <a href="https://blog.trailofbits.com/2019/07/08/fuck-rsa/">stop using RSA</a>: it’s simple enough to make people think they can implement it correctly, but full of invisible traps. In contrast, although elliptic curve cryptography (ECC) implementations could also fall into subtle traps, they usually don’t. The post conjectures that this is because ECC intimidates people into using cryptographically sound libraries instead of implementing their own.</p>
-<p>If you do want to understand ECC just enough to produce your own trap-ridden implementation, though, this post aims to get you there. (Assuming some mathematical background chosen in a not particularly principled way, approximately what I had before writing this post.) Hence the title. Because I have a cryptographic conscience, I will still point out the traps I know of; but there are probably traps I don’t know about.</p>
-<p>This post contains a lot of handwaving and straight-up giving up on proofs. You don’t need to know the proofs to be dangerous. The ethos is sort of like <a href="https://web.evanchen.cc/napkin.html">Napkin</a>, but way shoddier and with zero pretense of pedagogical soundness. Still, here are some concrete questions that I learned the answer to while writing this post:</p>
-<ul>
-<li>Why does the group law hold, sort of intuitively?</li>
-<li>Why do people have to modify Curve25519 before using it to compute digital signatures?</li>
-<li>What is a “quadratic twist” and why should I care about it to pick a secure elliptic curve?</li>
-<li>How is it possible that an isogeny can be described surjective but not injective while mapping a finite elliptic curve to another elliptic curve of the same cardinality?</li>
-<li>How many claws does an alligator have?</li>
-</ul>
-<p>Elliptic curves have a lot of complicated algebra. If you ever studied algebra in high school and did exercises where you had to simplify or factor or graph some really complicated algebraic expression, and you learned that algebra is also the name of a field in higher mathematics, you might have assumed that working algebraists just dealt with even more complicated expressions. If you then studied algebra in college, you’d probably have realized that that’s not really what algebra is about at all; the difficulty comes from <em>new abstractions</em>, like a bunch of the terms above.</p>
-<p>Well… the study of elliptic curves involves a bunch of complicated expressions like what your high school self might have imagined. Sometimes, notes will just explode into a trainwreck of terms like</p>
-<p><span class="math display">\[\begin{align*}\psi_1 &amp;= 1 \\ \psi_2 &amp;= 2y \\ \psi_3 &amp;= 3x^4 + 6Ax^2 + 12Bx - A^2 \\ \psi_4 &amp;= 4y(x^6 + 5Ax^4 + 20Bx^3 - 5A^2x^2 - 4ABx - A^3 - 8B^2).\end{align*}\]</span></p>
-<p>“This is REAL Math, done by REAL Mathematicians,” one is tempted to quip. The <a href="https://hyperelliptic.org/EFD/">Explicit-Formulas Database</a> is a fun place to take a gander through. I will copy formulas into this post from time to time when there’s something about them I want to call attention to, but in general we won’t do any complicated algebraic manipulations in this post. Just be prepared.</p>
-<p>Because I’m focusing on conceptual understanding (and am lazy), this post contains almost no code, and definitely no code that’s runnable in any real programming language.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/elliptic-curves">→ read more<span class="offscreen"> Just Enough Elliptic Curves to Be Dangerous</span></a>
-	</footer>
-</article>
-
-		
 	
 	
 	<footer class="list-footer">
@@ -542,6 +530,7 @@
 	</footer>
 	
 </section>
+</div>
 <footer class="site-footer">
 	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
@@ -563,5 +552,5 @@
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
-</div></body>
+</body>
 </html>

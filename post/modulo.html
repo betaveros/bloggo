@@ -15,7 +15,7 @@ It’s also very uncontroversial that that remainder should have no copies of b,
 \[|\texttt{a \% b}| &amp;lt; |\texttt{b}|. \tag{2}\]
 Every programming language I can think of satisfies these two constraints.1 So far so good. However, these two constraints don’t uniquely determine the values of a % b when a isn’t divisible by b; there are two possible values for a % b, one positive and one negative. Concretely, we could express \(-5\) as either \((-1) \cdot 3 &#43; (-2)\) or \((-2) \cdot 3 &#43; 1\), so (-5) % 3 could be -2 or 1.
 It’s still mostly uncontroversial that, if a and b are both positive, then a % b should be nonnegative as well; we could call this constraint (3).2 However, if a is negative and b is positive, programming languages start to diverge in their behavior. Why?
-" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+" /><meta name="generator" content="Hugo 0.102.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/modulo" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -40,7 +40,8 @@ It’s still mostly uncontroversial that, if a and b are both positive, then a %
 <![endif]-->
 
 </head>
-<body><div id="wrapper">
+<body>
+<div id="wrapper">
 <header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
 <button class="menu-toggle" type="button" aria-label="Toggle Menu">
 	<span class="icon icon-menu" aria-hidden="true"></span>
@@ -320,6 +321,7 @@ Magnitude reduction is good for floating-point precision
 		</nav>
 	</footer>
 </section>
+</div>
 <footer class="site-footer">
 	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
@@ -341,5 +343,5 @@ Magnitude reduction is good for floating-point precision
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
-</div></body>
+</body>
 </html>

@@ -13,7 +13,7 @@
       
       <guid>//blog.vero.site/util/factorize</guid>
       <description>A basic JavaScript factorizer. Warning: it uses extremely dumb trial division, so numbers with large prime factors will quite likely hang your browser, and big numbers will overflow or lose precision. If you want to factor the big fish, use Alpertron’s ECM applet or something.
-factor! append? fancy?   </description>
+factor! append? fancy? </description>
     </item>
     
     <item>

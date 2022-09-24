@@ -8,7 +8,7 @@
 <meta name="description" content="It’s December, so it’s time for a lot of things, including Advent of Code. I will not be able to be as competitive as I was last year, and already lost a lot of points to a really silly mistake on day 1, but I’ll be playing when I can and golfing the problems when I have time (so far: 7 &#43; 14 bytes).
 As one might expect, Day 1 is not too complex, but the second part can be analyzed to some mathematical depth and was discussed a bit on Reddit; plus, it occurred to me recently that I set up KaTeX on my blog but never used it, so I was looking for an excuse to write some equations anyway.
 The problem statement for part 2, in brief: We are tasked with calculating the total mass of fuel required to launch a rocket module of a given mass. For something of mass \(m\), one can compute the directly required mass of fuel by dividing \(m\) by 3, rounding down, and subtracting 2; if the result is negative, it is taken to be 0 instead. However, the directly required fuel also requires fuel itself, calculated from its own mass by the same procedure, and that required fuel requires fuel based on its own mass, and so on until you reach fuel with 0 requirement.
-" /><meta name="generator" content="Hugo 0.88.0-DEV" />
+" /><meta name="generator" content="Hugo 0.102.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/advent-rocket" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -33,7 +33,8 @@ The problem statement for part 2, in brief: We are tasked with calculating the t
 <![endif]-->
 
 </head>
-<body><div id="wrapper">
+<body>
+<div id="wrapper">
 <header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
 <button class="menu-toggle" type="button" aria-label="Toggle Menu">
 	<span class="icon icon-menu" aria-hidden="true"></span>
@@ -106,6 +107,7 @@ The problem statement for part 2, in brief: We are tasked with calculating the t
 		</nav>
 	</footer>
 </section>
+</div>
 <footer class="site-footer">
 	<p>© 2017-2022 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
@@ -127,5 +129,5 @@ The problem statement for part 2, in brief: We are tasked with calculating the t
 <script src="/js/jquery-3.2.1.min.js"></script>
 
 
-</div></body>
+</body>
 </html>
