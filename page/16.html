@@ -61,6 +61,38 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/evt" class="post-link">Extreme Value Theorem</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-10-22
+		(1007 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p><a href="http://www.artofproblemsolving.com/community/c1285h1042959">original sillier post</a></p>
+<p>The “Extreme Value Theorem”, according to my old calculus textbook (Larson, Hostetler, Edwards, 8th ed.), is “A continuous function defined on a closed interval attains a minimum and a maximum on the interval.” The calculus textbook continues,</p>
+<blockquote>
+<p>Although [it] is intuitively plausible, a proof of this theorem is not within the scope of this text.</p>
+</blockquote>
+<p>Of course Rudin proves this, but coming from an unrigorous calculus background, the required deductions span three chapters and are very hard to motivate. That’s probably because it proves things for extremely general objects.</p>
+<p>In particular, I have no idea why the definition of “compact” is what it is: “a set for which every open cover has a finite subcovering”. Therefore, here’s a less general but more motivated proof, from the grounds-up.</p>
+<h3 id="definitions">Definitions</h3>
+<p><strong>Real numbers</strong> are hard to define. We only need to know that we can add, subtract, multiply, divide, and compare them, i.e. they’re an ordered field, and that they have the <strong>least-upper-bound property</strong>. That is, if we have a set of real numbers that are bounded above, then the set has a <em>least upper bound</em>, a bound that “perfectly fits” the set. Precisely, the bound must be such that every element of the set is less than or equal to it, and no smaller value satisfies the same property.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/evt">→ read more<span class="offscreen"> Extreme Value Theorem</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/numbers" class="post-link">Numbers</a></h3>
 		
 		<p class="post-meta">
@@ -322,33 +354,6 @@ Guess the left-over card. The guesser wins if correct; the other player wins if 
 <p>I’d prefer a conference about a more functional programming language, but I’ll take what I get. Another adventure!</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/pycon">→ read more<span class="offscreen"> #pyconapac2014</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/rise" class="post-link">Rise from the Ashes</a></h3>
-		
-		<p class="post-meta">
-		
-		2014-04-29
-		(1625 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>, <a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>After the first stage of selection camp, I was very nervous because I was fifth place in a selection sequence that would finally result in a team of four.</p>
-<p>I screwed myself over on the first mock test by committing to a bad implementation method on a problem that was hard to get points on. My method seemed simple, but the memory usage leaked out in a way that was confusing and hard to patch; unfortunately, I tried to patch it in increasingly desperate and convoluted ways rather than scrapping the method, and thus missed out on many of the points elsewhere.</p>
-<p>During the second test I failed to read the last problem carefully and spent too much of my time on the second problem, once again missing out on a lot of relatively easy points. I had optimized and optimized and pushed my quadratic runtime down to linearithmic, which would allow me to get the points for the last subtask — or so I thought. But with 10 minutes left I had all but one testcase right, and after desperately rereading my code, I realized that I had a string comparison stuck in an inner loop that could make my runtime degenerate to quadratic if the input string had lots of the same digit. In order to have a solidly linearithmic algorithm, I would have to implement a <a href="https://en.wikipedia.org/wiki/Suffix_array">suffix array</a>. Ten minutes? I gave up. (The problem setters told me afterwards that hashing would have worked too; I didn’t think of that at all. Oops.) I spent the 10 minutes reading the last problem and still failed to read it carefully. So that did not go very well.</p>
-<p>But, as the title probably gave away, during the third and fourth mock tests everything went much better than expected. :)</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/rise">→ read more<span class="offscreen"> Rise from the Ashes</span></a>
 	</footer>
 </article>
 

@@ -6,7 +6,29 @@
     <description>Recent content in Posts on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Sep 2022 21:33:22 -0700</lastBuildDate><atom:link href="//blog.vero.site/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Dec 2022 15:46:26 -0800</lastBuildDate><atom:link href="//blog.vero.site/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction to Code Golf and Golflangs</title>
+      <link>//blog.vero.site/post/golf</link>
+      <pubDate>Thu, 22 Dec 2022 15:46:26 -0800</pubDate>
+      
+      <guid>//blog.vero.site/post/golf</guid>
+      <description>&lt;p&gt;Code golf is the recreational activity&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; of trying to write programs that are as short as possible.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; Golfed programs still have to be correct, but brevity is prioritized above every other concern — e.g., robustness, performance, or legibility — which usually leads to really interesting code.&lt;/p&gt;
+&lt;p&gt;I think code golf is a lot of fun (although I think a lot of things are fun, so it’s one of those hobbies that I get really into roughly one month every year and then completely forget about for the remaining eleven). I wanted to write an introduction because I don’t know of any good general introductions to code golf, particularly ones that try to be language-agnostic and that cover the fascinating world of &lt;em&gt;programming languages designed specifically for code golf&lt;/em&gt;, which I’ll call golflangs for short. But more on that later.&lt;/p&gt;
+&lt;p&gt;Note: If you are the kind of person who prefers to just dive in and try golfing some code without guidance, you should skip to the &lt;a href=&#34;#code-golf-sites&#34;&gt;code golf sites&lt;/a&gt; section.&lt;/p&gt;
+&lt;h3 id=&#34;a-simple-example&#34;&gt;A simple example&lt;/h3&gt;
+&lt;p&gt;Of course, there’s a reason most code golf tutorials focus on a single language: most code golf techniques are language-specific. The Code Golf &amp;amp; Coding Challenges (CGCC) StackExchange community has a list of some &lt;a href=&#34;https://codegolf.stackexchange.com/questions/5285/tips-for-golfing-in-all-languages&#34;&gt;golfing tips that apply to most languages&lt;/a&gt;, but there are far more tricks in just about any language-specific list, and most of the intrigue lies in knowing the language you’re golfing well. So to provide a taste of the code golf experience, let’s golf a simple problem, Anarchy Golf’s &lt;a href=&#34;http://golf.shinh.org/p.rb?Factorial&#34;&gt;Factorial&lt;/a&gt;, in Python.&lt;/p&gt;
+&lt;p&gt;In this problem, we have to read a series of positive integers from standard input, one per line, and output the factorial of each, also one per line. Here’s a stab at a simple, direct implementation with no golfing at all:&lt;a href=&#34;#fn3&#34; class=&#34;footnote-ref&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode python&#34;&gt;&lt;code class=&#34;sourceCode python&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;def&lt;/span&gt; factorial(n):&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; title=&#34;2&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;: &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-3&#34; title=&#34;3&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; n &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; factorial(n&lt;span class=&#34;dv&#34;&gt;-1&lt;/span&gt;)&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;cf&#34;&gt;try&lt;/span&gt;:&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-5&#34; title=&#34;5&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;va&#34;&gt;True&lt;/span&gt;:&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-6&#34; title=&#34;6&#34;&gt;        &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(factorial(&lt;span class=&#34;bu&#34;&gt;int&lt;/span&gt;(&lt;span class=&#34;bu&#34;&gt;input&lt;/span&gt;())))&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-7&#34; title=&#34;7&#34;&gt;&lt;span class=&#34;cf&#34;&gt;except&lt;/span&gt; &lt;span class=&#34;pp&#34;&gt;EOFError&lt;/span&gt;:&lt;/a&gt;
+&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-8&#34; title=&#34;8&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;pass&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
     <item>
       <title>Flexbox Fun Facts</title>
       <link>//blog.vero.site/post/flexbox-fun</link>

@@ -61,6 +61,43 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/golf" class="post-link">Introduction to Code Golf and Golflangs</a></h3>
+		
+		<p class="post-meta">
+		
+		2022-12-22
+		(9290 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Code golf is the recreational activity<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> of trying to write programs that are as short as possible.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Golfed programs still have to be correct, but brevity is prioritized above every other concern — e.g., robustness, performance, or legibility — which usually leads to really interesting code.</p>
+<p>I think code golf is a lot of fun (although I think a lot of things are fun, so it’s one of those hobbies that I get really into roughly one month every year and then completely forget about for the remaining eleven). I wanted to write an introduction because I don’t know of any good general introductions to code golf, particularly ones that try to be language-agnostic and that cover the fascinating world of <em>programming languages designed specifically for code golf</em>, which I’ll call golflangs for short. But more on that later.</p>
+<p>Note: If you are the kind of person who prefers to just dive in and try golfing some code without guidance, you should skip to the <a href="#code-golf-sites">code golf sites</a> section.</p>
+<h3 id="a-simple-example">A simple example</h3>
+<p>Of course, there’s a reason most code golf tutorials focus on a single language: most code golf techniques are language-specific. The Code Golf &amp; Coding Challenges (CGCC) StackExchange community has a list of some <a href="https://codegolf.stackexchange.com/questions/5285/tips-for-golfing-in-all-languages">golfing tips that apply to most languages</a>, but there are far more tricks in just about any language-specific list, and most of the intrigue lies in knowing the language you’re golfing well. So to provide a taste of the code golf experience, let’s golf a simple problem, Anarchy Golf’s <a href="http://golf.shinh.org/p.rb?Factorial">Factorial</a>, in Python.</p>
+<p>In this problem, we have to read a series of positive integers from standard input, one per line, and output the factorial of each, also one per line. Here’s a stab at a simple, direct implementation with no golfing at all:<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">def</span> factorial(n):</a>
+<a class="sourceLine" id="cb1-2" title="2">    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span>: <span class="cf">return</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb1-3" title="3">    <span class="cf">return</span> n <span class="op">*</span> factorial(n<span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="cf">try</span>:</a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="cf">while</span> <span class="va">True</span>:</a>
+<a class="sourceLine" id="cb1-6" title="6">        <span class="bu">print</span>(factorial(<span class="bu">int</span>(<span class="bu">input</span>())))</a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="cf">except</span> <span class="pp">EOFError</span>:</a>
+<a class="sourceLine" id="cb1-8" title="8">    <span class="cf">pass</span></a></code></pre></div>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/golf">→ read more<span class="offscreen"> Introduction to Code Golf and Golflangs</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/flexbox-fun" class="post-link">Flexbox Fun Facts</a></h3>
 		
 		<p class="post-meta">
@@ -482,37 +519,6 @@
 <p>Personally, I did the hunt as part of a roughly 10-person west coast contingent who met up in real life (and who all tested negative for COVID shortly before or after arrival). I think I got roughly three times as much sleep as I did during the 2020 hunt, when we won, and I felt freer to hop onto puzzles that were greatly oversaturated with solvers, such as A Number of Games and How to Install a Handle, or to try less hard looking for extraction steps after doing the fun meat of a puzzle. I think a lot of team members took a similar approach; based on our solve log, we solved no metas between 3am and noon (ET) on either day, and generally had much starker dead zones of activity in the mornings than in past years.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/2022-hunt">→ read more<span class="offscreen"> 2022 MIT Mystery Hunt</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/coming" class="post-link">...And They Don&#39;t Stop Coming</a></h3>
-		
-		<p class="post-meta">
-		
-		2021-12-31
-		(1512 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/2OXgMj6NF08" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
-
-<p>It’s another year, huh.</p>
-<p>2021 is the first year during which I held a full-time job continuously. My disposable income and discretionary spending have both increased the most sharply since, well, ever. It’s weird.</p>
-<p>We are still in a pandemic. Greek letters continue to be associated with uncool things. I got vaccinated and started taking measured (but still small) risks. Funny story: my first vaccination was a complete surprise, as my roommate knocked on my door mid-day to inform me that somebody he knew had extra vaccines to give out — except that the night before I had a dream about being vaccinated, which was weird enough that I wrote that dream down, something I do only once every few months. I also got boosted just a few days ago.</p>
-<p>What else happened to me in 2021?</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/coming">→ read more<span class="offscreen"> ...And They Don&#39;t Stop Coming</span></a>
 	</footer>
 </article>
 

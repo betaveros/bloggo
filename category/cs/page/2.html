@@ -65,6 +65,39 @@ Category → CS
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/sql-select" class="post-link">SQL Selects the Hard FP Way</a></h3>
+		
+		<p class="post-meta">
+		
+		2021-04-16
+		(3630 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>This post is motivated by reasons very similar to the ones that motivated my <a href="//blog.vero.site/post/react-redux">React and Redux “tutorial”</a>. Again, it should be more accurately but less informatively titled “How I wish SQL SELECTs were explained to me”. Again, it does not imply that this method of explanation is suitable for anybody else. One difference is that this time, I mostly only wanted to learn about SQL SELECTs to the extent it would help me perform and optimize queries in Django’s ORM, but to prevent this post from languishing forever in my drafts folder, that material has been sectioned off into a possible future post, because I figured out what I wanted, ran out of steam, and am now trying to learn TLA⁺. Just me things.</p>
+<h3 id="background">Background</h3>
+<p>The SQL standard is confusing and almost never completely implemented; there are huge inconsistencies between SQL implementations. I will focus on SQLite because it’s popular and easy to play with, but generally try to stay away from unpopular or nonstandard features. <a href="https://www.sqlite.org/lang_select.html">SQLite’s SELECT documentation</a> is good reading for <em>one</em> particular SQL implementation.</p>
+<p>A SQL database is a place where you store and query a bunch of data that’s organized into tables. A table is a homogeneous list of rows. A row is a heterogeneous tuple of values of various simple data types. The data types supported depend on the SQL implementation; typical examples are integers and strings of various sizes, floating point numbers, and dates/datetimes. All of these types can be nullable; NULL is a SQL value that can appear just about anywhere. (Like many of the other SQL features, NULL is handled somewhat inconsistently across SQL implementations, but as a first-order approximation it’s closer to a floating-point NaN than, say, Java’s “null”. We’ll talk more about it later.) However, note that you can’t have a variable-size list of other things in a row. And just to make sure it’s clear, all the rows in a given table must have the same data types in the same order.</p>
+<p>A “column” is just what you’d intuitively expect it to be: it’s the homogeneous list of all values in a particular position in each row of a table, which all have the same data type. One thing I haven’t mentioned yet is that table columns all have names. This is true both for tables stored in the database and for the ephemeral tables that are the output of queries.</p>
+<p>Since I’ll also be referring to more complex types like lists and tuples often seen in conventional programming languages, I’ll call these simple data types “scalar types” and values of those types “scalars”. This is not SQL terminology; documentation usually just calls these “data types”. Here’s <a href="https://www.sqlite.org/datatype3.html">SQLite’s page on data types</a>.</p>
+<p>To play along, install SQLite and run it. You should get dropped into a connection to an ephemeral in-memory database, which is plenty enough for our purposes. Make a table and mutter some magic incantations to make the output a little prettier for us:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">CREATE</span> <span class="kw">TABLE</span> a (<span class="kw">id</span> <span class="dt">int</span>);</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">INSERT</span> <span class="kw">INTO</span> a <span class="kw">VALUES</span> (<span class="dv">1</span>), (<span class="dv">2</span>), (<span class="dv">3</span>), (<span class="dv">4</span>);</a>
+<a class="sourceLine" id="cb1-3" title="3">.headers <span class="kw">on</span></a>
+<a class="sourceLine" id="cb1-4" title="4">.<span class="kw">mode</span> <span class="kw">column</span></a></code></pre></div>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/sql-select">→ read more<span class="offscreen"> SQL Selects the Hard FP Way</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/advent-leaderboard" class="post-link">Advent of Code: How to Leaderboard</a></h3>
 		
 		<p class="post-meta">
@@ -364,31 +397,6 @@ Environment: Ubuntu 16.04+latex</code></pre>
 <p>In this challenge, we get a gzipped file called <code>perf.data</code> and a minimal description of an environment. Googling this reveals that <code>perf.data</code> is a record format of the <code>perf</code> tool, a Linux profiler. Installing <code>perf</code> allows us to read <code>perf.data</code> and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is <code>perf report -D</code>, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the <code>perf record</code> was run against.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/refrain">→ read more<span class="offscreen"> refrain</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/react-redux" class="post-link">React and Redux the Hard FP Way</a></h3>
-		
-		<p class="post-meta">
-		
-		2018-12-07
-		(3097 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>A more accurate but less informative title for this post would be “How I wish React and Redux were explained to me”. Note that this does <em>not</em> imply that this method of explanation is suitable for anybody else. I suspect it won’t be for most people.</p>
-<p>I had to learn React and Redux the past summer for my internship at MemSQL, and there were hundreds of articles that explain React and Redux in addition to the (fine) built-in documentation, but none of them scratched the itch; I wanted to know what was going on completely, including some of the technical details and the philosophy I ought to be following, as well as efficiently. I did not need another explanation about how to think functionally, in JavaScript types or with immutable data. React’s chapter on <a href="https://reactjs.org/docs/conditional-rendering.html">Conditional Rendering</a>, for example, felt so inefficient — I know what <code>if</code> statements and conditional expressions are, and I know how to refactor complicated subexpressions into variables…</p>
-<p>So here’s the guide I wish I had. I think. It’s been months since I started it (as usual, for posts on this blog) and it is probably incomplete. However, I haven’t written React/Redux deeply in a while, so I didn’t have much motivation to continue to investigate the incomplete bits; and the perfect is the enemy of the good, so here it is.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/react-redux">→ read more<span class="offscreen"> React and Redux the Hard FP Way</span></a>
 	</footer>
 </article>
 
