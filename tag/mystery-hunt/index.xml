@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mystery Hunt on Bounded-Error Log</title>
+    <link>//blog.vero.site/tag/mystery-hunt</link>
+    <description>Recent content in Mystery Hunt on Bounded-Error Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 25 Jan 2023 13:45:37 -0800</lastBuildDate><atom:link href="//blog.vero.site/tag/mystery-hunt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2023 MIT Mystery Hunt</title>
+      <link>//blog.vero.site/post/2023-hunt</link>
+      <pubDate>Wed, 25 Jan 2023 13:45:37 -0800</pubDate>
+      
+      <guid>//blog.vero.site/post/2023-hunt</guid>
+      <description>&lt;p&gt;My seventh year doing Mystery Hunt with ✈✈✈ Galactic Trendsetters ✈✈✈, and after a hiatus it was in person again! This also makes it my first in-person Mystery Hunt as an alumnus, where I flew in and stayed at a hotel. How time marches on… I appreciated getting to see everybody on Galactic, as well as quite a few internet puzzlers at the location where all the cool people always go, Flour Bakery and Cafe.&lt;/p&gt;
+&lt;p&gt;Campus hadn’t changed too much. There were more card readers, but also fancy kiosks where ID cards could be printed on demand (via the official 1.2/5★-rated app). I set aside a little time before kickoff to try to locate a working kiosk to print my ID, but the two kiosks I found west of Mass Ave, in W20 and W35, were both out of order; only much later did I print a card in 16. But I am a card-carrying alumnus now. Galactic had two classrooms in 4-2 and lots of masks and tests. One of my teammates brought their dog. It was a fun time.&lt;/p&gt;
+&lt;p&gt;As typical nowadays, the hunt announcement and kickoff began with a facade theme of a museum. However, the twist was handled a bit differently — kickoff had an additional diegetic level: normally the story is followed by an out-of-character talk about health/safety and policies, but this year that talk, while still in a different universe from the museum, was intertwined with an introduction to MATE, the AI who had ostensibly been writing all the puzzles. Over the course of the hunt, instead of discovering a possibly predictable secret plan or betrayal by MATE, we instead found ourselves on its side because (in the outer fictional diegetic level) teammate had shut off some other “overly creative” AIs and overworked MATE.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2022 MIT Mystery Hunt</title>
+      <link>//blog.vero.site/post/2022-hunt</link>
+      <pubDate>Wed, 19 Jan 2022 19:52:19 -0800</pubDate>
+      
+      <guid>//blog.vero.site/post/2022-hunt</guid>
+      <description>&lt;p&gt;Sixth year hunting with ✈✈✈ Galactic Trendsetters ✈✈✈! As &lt;a href=&#34;//blog.vero.site/post/2021-hunt&#34;&gt;last year’s writing team&lt;/a&gt; &lt;small&gt;(previously: &lt;a href=&#34;//blog.vero.site/post/2020-hunt&#34;&gt;2020&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/2019-hunt&#34;&gt;2019&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/2018-hunt&#34;&gt;2018&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/january&#34;&gt;2017&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/whoosh&#34;&gt;2016&lt;/a&gt;, writing with Random in &lt;a href=&#34;//blog.vero.site/post/hunt&#34;&gt;2015&lt;/a&gt;)&lt;/small&gt; we had one final responsibility: running the traditional &lt;a href=&#34;https://docs.google.com/presentation/d/1UNagEB8angIEJa7OqageeXj95UEuspAL0tDwekZJhzQ/edit#slide=id.p&#34;&gt;How to Hunt workshop&lt;/a&gt; shortly before this year’s hunt. I didn’t play a huge role in that, but I lurked and reminded myself some things about how new puzzlehunters think about puzzles, and I wrote &lt;a href=&#34;https://docs.google.com/spreadsheets/d/1-KmLvmcydguI_RBJJqHihbewZmssmdNtlWFJIJZVXLk/edit#gid=0&#34;&gt;Yet Another Puzzlehunt Spreadsheet Tutorial&lt;/a&gt; after casting around and being not entirely satisfied with the puzzlehunting spreadsheet tutorials I found. I think I actually understand ARRAYFORMULA now.&lt;/p&gt;
+&lt;p&gt;And then, before we knew it, it was Hunt again.&lt;/p&gt;
+&lt;p&gt;It’s really nice to get to solve Mystery Hunt again, and especially nice to do so on a team that was fairly actively trying not to win. GT generally tried not to add too many members this year, with some affiliated folks splitting off or hunting with other teams. During the hunt itself, we avoided backsolving puzzles that people were enjoying forward-solving, and encouraged people to be more confident before guessing answers. We ended up with a &amp;gt;50% guess accuracy&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;, much higher than some of our past participations, and at least for the puzzles I participated in that took more than a few incorrect answers, I think they were all reasonable guesses or honest mistakes (&lt;span class=&#34;spoiler&#34;&gt;VALLICELLIANA&lt;/span&gt; is difficult to spell) rather than attempts at short-circuiting.&lt;/p&gt;
+&lt;p&gt;Personally, I did the hunt as part of a roughly 10-person west coast contingent who met up in real life (and who all tested negative for COVID shortly before or after arrival). I think I got roughly three times as much sleep as I did during the 2020 hunt, when we won, and I felt freer to hop onto puzzles that were greatly oversaturated with solvers, such as A Number of Games and How to Install a Handle, or to try less hard looking for extraction steps after doing the fun meat of a puzzle. I think a lot of team members took a similar approach; based on our solve log, we solved no metas between 3am and noon (ET) on either day, and generally had much starker dead zones of activity in the mornings than in past years.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2021 MIT Mystery Hunt</title>
+      <link>//blog.vero.site/post/2021-hunt</link>
+      <pubDate>Sat, 13 Feb 2021 16:07:56 -0800</pubDate>
+      
+      <guid>//blog.vero.site/post/2021-hunt</guid>
+      <description>&lt;p&gt;Note: if you are viewing this shortly after it’s published and somehow don’t want to be spoiled on Mystery Hunt, make sure this spoiler formatting shows up: &lt;span class=&#34;spoiler&#34;&gt;this text should be spoilered&lt;/span&gt;; if it doesn’t, try shift-refreshing. (There are Correct Ways to fix this, but I’m too lazy to do them. Sorry.)&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Well, we did it.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://perpendicular.institute/&#34;&gt;✈✈✈ Galactic Trendsetters ✈✈✈ ran an MIT Mystery Hunt.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Somehow, it slipped my mind until trying to write the 2020 year-end post that I’d probably want to write a post on all this. In fact, there was one major project that I started in 2019, but that I didn’t think of mentioning in my 2019 year-end post because it wasn’t ready to be announced at that time, and that I almost forgot that I had never mentioned. But this post is a pretty good place to announce it.&lt;/p&gt;
+&lt;p&gt;Planning Mystery Hunt is a massive year-long endeavor. I didn’t have any leadership or otherwise high-responsibility roles, which made sense because I was busy writing a masters thesis for the first four months of Mystery Hunt planning. Because of that, and because I know many many other people on our team have written and will be writing blog posts (&lt;a href=&#34;https://fortenf.org/e/2021/01/28/mystery-hunt-2021-part-1.html&#34;&gt;Rahul’s post&lt;/a&gt;, &lt;a href=&#34;http://www.npinsker.me/puzzles/retrospective&#34;&gt;Nathan’s post&lt;/a&gt;, &lt;a href=&#34;https://mitadmissions.org/blogs/entry/two-hundred-puzzles-2/&#34;&gt;CJ’s post&lt;/a&gt;, maybe more to come?) I will focus on the things I did specifically. (So there is minimal discussion of the theme, overall organization, or big decisions like our COVID-19 response; I think the linked posts cover these well already.)&lt;/p&gt;
+&lt;h3 id=&#34;puzzle-writing-software&#34;&gt;Puzzle-Writing Software&lt;/h3&gt;
+&lt;p&gt;One part I did largely have “ownership” of, and that I sank a lot of time into, was maintaining our software for writing puzzles — the website where authors submitted puzzle ideas and drafts, testsolvers tested puzzles, and editors tracked and discussed the statuses of all the puzzles. This role was largely a continuation of me owning the same component for Galactic Puzzle Hunt since 2018, which itself grew out of the comparative advantage of having worked on it a little when &lt;a href=&#34;//blog.vero.site/post/hunt&#34;&gt;writing with Random Fish for the 2015 MIT Mystery Hunt&lt;/a&gt;. There is some life lesson about specialization or pigeonholing to be learned here. But, to start at the beginning:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/mysteryhunt/puzzle-editing/&#34;&gt;Puzzletron&lt;/a&gt; is a piece of PHP software used for organizing puzzle writing for puzzlehunts. The &lt;a href=&#34;https://github.com/mysteryhunt/puzzle-editing/commit/f67a67d63aa78708c4ca94132f1dce9dbbc116ac&#34;&gt;first commit on GitHub&lt;/a&gt; says it was imported from Metaphysical Plant in 2011; it’s likely older. There are active commits each year until January 2018, and AMA responses from &lt;a href=&#34;https://www.reddit.com/r/mysteryhunt/comments/am5s1d/were_setec_astronomy_and_we_just_ran_a_mystery/efjrzs4/&#34;&gt;Setec (2019)&lt;/a&gt; and &lt;a href=&#34;https://www.reddit.com/r/mysteryhunt/comments/eucu3x/ama_we_are_left_out_design_team_for_the_2020/ffnzq80/?utm_source=reddit&amp;amp;utm_medium=web2x&amp;amp;context=3&#34;&gt;Left Out (2020)&lt;/a&gt; mentioning it, so I believe most if not all Mystery Hunt writing teams used and improved Puzzletron and passed it down over those years.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2019 MIT Mystery Hunt</title>
+      <link>//blog.vero.site/post/2019-hunt</link>
+      <pubDate>Thu, 31 Jan 2019 19:39:22 -0500</pubDate>
+      
+      <guid>//blog.vero.site/post/2019-hunt</guid>
+      <description>&lt;p&gt;(this post is sketchily backdated from February 2020)&lt;/p&gt;
+&lt;p&gt;Fourth year with ✈✈✈ Galactic Trendsetters ✈✈✈. Past: &lt;a href=&#34;//blog.vero.site/post/2018-hunt&#34;&gt;2018&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/january&#34;&gt;2017&lt;/a&gt;, &lt;a href=&#34;//blog.vero.site/post/whoosh&#34;&gt;2016&lt;/a&gt;, writing with Random in &lt;a href=&#34;//blog.vero.site/post/hunt&#34;&gt;2015&lt;/a&gt;). Evidently I was unable to find the time or motivation to blog about this, and I can’t remember any particularly good stories, so let me just slip this backdated list post in the archives.&lt;/p&gt;
+&lt;p&gt;The theme in a few sentences: The hunt organizers declare a new Molasses Awareness Day, but because they didn’t follow the proper procedure, throwing the world of Holidays into chaos, where “chaos” means molasses. This resulted in lots of puzzle-to-meta matching, since puzzles were in Holiday towns but metas were at lampposts between two towns.&lt;/p&gt;
+&lt;p&gt;Highlights of puzzles I solved:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A Good Walk Spoiled&lt;/strong&gt; (Holi): Happens to be about a topic I know well and find interesting. Fun steps. Justified use of substitution ciphers; the pasting into quipqiup was worth it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;State Machine&lt;/strong&gt; (President’s): A one-aha! one-step puzzle. Maybe more unfortunate because apparently this was not the only puzzle to use a specific aspect of a specific source material, but I didn’t know about that other puzzle so it’s fine.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Clued Connections&lt;/strong&gt; (Pi): I went to sleep near the end of this puzzle, so I didn’t see it through, but Floorpi was collectively called out by it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;I Can’t Deal with These Endless Numbers&lt;/strong&gt; (Patriot’s): Incredible.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Loaded&lt;/strong&gt; (Arbor): Simple and self-contained enough.&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>2018 MIT Mystery Hunt</title>
+      <link>//blog.vero.site/post/2018-hunt</link>
+      <pubDate>Tue, 16 Jan 2018 19:39:22 -0500</pubDate>
+      
+      <guid>//blog.vero.site/post/2018-hunt</guid>
+      <description>&lt;p&gt;My third MIT Mystery Hunt with ✈✈✈ Galactic Trendsetters ✈✈✈ (also see: &lt;a href=&#34;//blog.vero.site/post/january&#34;&gt;2017&lt;/a&gt; and &lt;a href=&#34;//blog.vero.site/post/whoosh&#34;&gt;2016&lt;/a&gt;, writing with Random in &lt;a href=&#34;//blog.vero.site/post/hunt&#34;&gt;2015&lt;/a&gt;). It was a good hunt with a fun theme, solid puzzles, and extraordinary production quality, marred only by a fickle unlock structure and a handful of unnecessarily involved extractions.&lt;/p&gt;
+&lt;p&gt;Since we had been told the hunt would be smaller than past years’ (now a controversial statement since the coin was &lt;em&gt;not&lt;/em&gt; found particularly early) and we didn’t particularly want to win (yet), part of our team temporarily split off this year to hunt as Teammate. Based on our Discord channel, ✈✈✈ Galactic Trendsetters ✈✈✈ had 75 people this year, including remote solvers and people who dropped in and out.&lt;/p&gt;
+&lt;p&gt;A short description of the hunt structure: This year’s hunt theme was &lt;em&gt;Inside Out&lt;/em&gt;, the Disney movie about anthropomorphized emotions. This was revealed through a kickoff that demonstrated the hunt’s extraordinary production quality, in which we watched the unveiling of the Health &amp;amp; Safety hunt, first directly, then in the Control Room with the emotions of a distraught hunter (Miss Terry Hunter) and a lot of beautiful memory orbs and scenery. After Terry’s emotions became overwhelmed in response to the theme, we had to help her emotions to allow her to complete the Health &amp;amp; Safety hunt. The intro round took place in the Control Room; we had to solve 34 regular puzzles and five metapuzzles (somewhat overlapping, with some regular puzzles belonging to more than one metapuzzle) to help each of the five emotions get back to the Control Room. The rest of the hunt consisted of recovering memory orbs from each of four Islands of Personality, each of which had its own theme and meta structure, and which we could choose the unlock order of.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>I guess January is puzzles month</title>
+      <link>//blog.vero.site/post/january</link>
+      <pubDate>Sat, 04 Feb 2017 14:27:18 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/january</guid>
+      <description>&lt;p&gt;And it’s not even January any more.&lt;/p&gt;
+&lt;p&gt;(Thing negative two: Thing zero, which is at the bottom of this post, contains two puzzles by me. Skip there if that sounds interesting and text walls don’t.)&lt;/p&gt;
+&lt;p&gt;Thing negative one: I abandoned this blog (again). The last month has been a mess and much of it is political stuff of the sort that I’m the worst/slowest at writing about.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Thing one: I was on-site for a second MIT Mystery Hunt.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>whoosh</title>
+      <link>//blog.vero.site/post/whoosh</link>
+      <pubDate>Mon, 01 Feb 2016 08:19:46 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/whoosh</guid>
+      <description>&lt;p&gt;I finally did it.&lt;/p&gt;
+&lt;p&gt;I was on-site for the 2016 MIT Mystery Hunt. I even &lt;em&gt;solved a metapuzzle&lt;/em&gt;. This year I hunted with ✈✈✈ Galactic Trendsetters ✈✈✈, the team primarily but not overwhelmingly formed from floorpi, my dorm floor. (Perhaps somewhat regrettably, I didn’t contribute to any events or runarounds or things given to HQ, unless you count attending a “recitation” for Student Simulator (round King Arthur, second from left).)&lt;/p&gt;
+&lt;p&gt;(Also, I made this post. Has it been two weeks already? Okay, that’s not an unusual timeframe.)&lt;/p&gt;
+&lt;p&gt;But wow, I got to touch so many puzzles.&lt;/p&gt;
+&lt;p&gt;Non-spoilery comments on particularly memorable puzzles I did, which are disproportionately programming-related, if anybody wants to look at them (I am describing how to get to the puzzle from the round instead of linking because I’m lazy and links might rot but the instructions will hopefully survive archival (although turns out there’s actually a &lt;a href=&#34;http://huntception.com/toc.html&#34;&gt;table of contents&lt;/a&gt; so I don’t know what I’m doing)):&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2015 MIT Mystery Hunt</title>
+      <link>//blog.vero.site/post/hunt</link>
+      <pubDate>Tue, 27 Jan 2015 11:45:50 +0800</pubDate>
+      
+      <guid>//blog.vero.site/post/hunt</guid>
+      <description>&lt;p&gt;Well, it’s been over a week, which is a long time for blog posts to be delayed after the event they’re documenting in probably all of the world except my blog. So.&lt;/p&gt;
+&lt;p&gt;I guess this post should start with a bit of background. I’ve been puzzlehunting for… wow, three and a half years now. I was introduced to puzzlehunts from AoPS, when some fellow members got together a team for &lt;a href=&#34;http://puzzle.cisra.com.au/2011/teamstats_AoPS.html&#34;&gt;CiSRA 2011&lt;/a&gt;, and I think I’ve participated to some degree in every known internet Australian puzzlehunt since.&lt;/p&gt;
+&lt;p&gt;But as for my experience with the MIT Mystery Hunt in particular, I sort of hunted with a decidedly uncompetitive AoPS team in 2012 (I think we solved one puzzle exactly), but my serious hunting career began when dzaefn recruited me into the Random team (then Random Thymes) &lt;a href=&#34;//blog.vero.site/post/hunter&#34;&gt;for the 2013 hunt&lt;/a&gt; (and I did blog obliquely about it). We didn’t win (and I actually didn’t participate that much because I was traveling with family) but the next year (as One Fish Two Fish Random Fish Blue Fish (1f-2f-17f-255f (I am evidently in a parentheses mood today because as you’ve probably noticed, the amount and depth of parentheses in this sentence are positively alarming (lol)))) we won.&lt;/p&gt;
+&lt;p&gt;And I do have a half-written post about that which will never get posted (and I &lt;em&gt;also&lt;/em&gt; didn’t participate that much, because my family was moving that weekend) but okay, let’s just drop any semblance of chronological coherence on this blog and dump a short version of the list of puzzles and parts towards which I contributed solving, as I wrote them down one year ago:&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
