@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>//blog.vero.site/</loc>
+    <lastmod>2023-04-09T14:42:52-07:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/categories</loc>
+    <lastmod>2023-04-09T14:42:52-07:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/category/cs</loc>
+    <lastmod>2023-04-09T14:42:52-07:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/post/noulith</loc>
+    <lastmod>2023-04-09T14:42:52-07:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/post</loc>
+    <lastmod>2023-04-09T14:42:52-07:00</lastmod>
+  </url><url>
     <loc>//blog.vero.site/tags</loc>
     <lastmod>2023-01-25T13:45:37-08:00</lastmod>
     <priority>0</priority>
@@ -9,19 +24,10 @@
     <loc>//blog.vero.site/post/2023-hunt</loc>
     <lastmod>2023-01-25T13:45:37-08:00</lastmod>
   </url><url>
-    <loc>//blog.vero.site/</loc>
-    <lastmod>2023-01-25T13:45:37-08:00</lastmod>
-  </url><url>
-    <loc>//blog.vero.site/categories</loc>
-    <lastmod>2023-01-25T13:45:37-08:00</lastmod>
-  </url><url>
     <loc>//blog.vero.site/tag/mit</loc>
     <lastmod>2023-01-25T13:45:37-08:00</lastmod>
   </url><url>
     <loc>//blog.vero.site/tag/mystery-hunt</loc>
-    <lastmod>2023-01-25T13:45:37-08:00</lastmod>
-  </url><url>
-    <loc>//blog.vero.site/post</loc>
     <lastmod>2023-01-25T13:45:37-08:00</lastmod>
   </url><url>
     <loc>//blog.vero.site/tag/puzzle</loc>
@@ -41,9 +47,6 @@
   </url><url>
     <loc>//blog.vero.site/tag/year-end-post</loc>
     <lastmod>2022-12-31T22:19:58-08:00</lastmod>
-  </url><url>
-    <loc>//blog.vero.site/category/cs</loc>
-    <lastmod>2022-12-22T15:46:26-08:00</lastmod>
   </url><url>
     <loc>//blog.vero.site/post/golf</loc>
     <lastmod>2022-12-22T15:46:26-08:00</lastmod>

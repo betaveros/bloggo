@@ -65,6 +65,29 @@ Category → CS
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/google-reader-powering-down" class="post-link">Google Reader Powering Down</a></h3>
+		
+		<p class="post-meta">
+		
+		2013-03-14
+		(146 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Google just announced <a href="http://googlereader.blogspot.tw/2013/03/powering-down-google-reader.html">it’s shutting down Google Reader</a> in three and a half months… I am participating in the friendly Reddit DDoS-hug of all the alternatives (<a href="http://www.reddit.com/r/AskReddit/comments/1a8zgj/what_are_some_good_web_rss_readers_to_replace/c8v71t5">list</a>, but scroll around in the thread for a few more). Darn.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/google-reader-powering-down">→ read more<span class="offscreen"> Google Reader Powering Down</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/scala" class="post-link">Adventures in Scala Pseudo-Abuse</a></h3>
 		
 		<p class="post-meta">
@@ -268,50 +291,6 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
 <p>Strange things:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/technological-fails">→ read more<span class="offscreen"> Technological Fails</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/ref/coq" class="post-link">Coq Reference</a></h3>
-		
-		<p class="post-meta">
-		
-		
-		(4335 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>It seems like a rite of passage to create one of these because there are so many Coq tactic cheat sheets out there and there’s just so much to learn. Here’s mine.</p>
-<p>This is mostly about tactics but I realized not really.</p>
-<p>Links:</p>
-<ul>
-<li><a href="https://coq.inria.fr/refman/proof-engine/tactics.html">Coq Tactics</a>. Authoritative but dense.</li>
-<li><a href="https://softwarefoundations.cis.upenn.edu/lf-current/index.html">Logical Foundations</a> (Software Foundations Volume 1). I think the order of ideas makes pedagogical sense but also makes it hard for me to look up particular tactics or concepts.</li>
-<li><p>Other Coq cheat sheets found by Googling “Coq cheat sheets”:</p>
-<ul>
-<li><a href="https://pjreddie.com/coq-tactics/">Coq Tactics Index</a> (Joseph Redmon)</li>
-<li><a href="https://www.cs.cornell.edu/courses/cs3110/2018sp/a5/coq-tactics-cheatsheet.html">Coq Tactics Cheatsheet</a> (Cornell CS3110)</li>
-<li><a href="http://adam.chlipala.net/itp/tactic-reference.html">Coq Tactics Quick Reference</a> (Adam Chlipala) / the <a href="http://adam.chlipala.net/frap/">Formal Reasoning About Programs</a> book also has a nice appendix</li>
-<li><a href="https://www.cis.upenn.edu/~rrand/popl_2016/reference.html">Coq Tactics</a> (UPenn ???)</li>
-</ul></li>
-</ul>
-<p>Meta-notes: I cover a lot of weak tactics because I like knowing exactly what my tools are doing. I try to use the variants of tactics that explicitly name things produced when possible. I am sure there is nomenclature I don’t understand precisely and use sloppily in this list; I am also sloppy with metavariables. Even things that are correct might be horrible style. There are likely other errors and omissions. They might be fixed one day. I’m putting this up nevertheless because it’s personally useful.</p>
-<h3 id="things-i-wish-i-knew-but-didnt-learn-from-software-foundations-or-coq-tactic-cheat-sheets">Things I wish I knew but didn’t learn from Software Foundations or Coq tactic cheat sheets</h3>
-<ul>
-<li>The first two sections are not about tactics per se but how to find theorems to use and how to use them. Knowing how to use all of these query commands is super useful.</li>
-<li>To clean up repeating subexpressions with “local variables”, I find <code>remember expr as X eqn:Hname.</code> easier to work with than <code>set (X := expr).</code></li>
-<li><code>pose proof expr as Hname.</code> adds <code>expr</code> to the context, with name <code>Hname</code>. Modus ponens where you know <code>H1</code> and <code>H2</code>, which is “<code>H1</code> implies <code>H3</code>”, is just <code>pose proof (H2 H1) as H3</code>.</li>
-<li>Software Foundations covers bullets and curly braces early, but I like subgoal specification with <code>1:</code>, <code>2:</code> etc., which can really help limit nesting depth. <code>2: (tactic that solves subgoal 2).</code> If you want more bullets, there are infinitely many, not just three. After <code>-</code> <code>+</code> <code>*</code> you can use <code>--</code> <code>++</code> <code>**</code> <code>---</code> etc.</li>
-</ul>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/ref/coq">→ read more<span class="offscreen"> Coq Reference</span></a>
 	</footer>
 </article>
 

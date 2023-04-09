@@ -65,6 +65,36 @@ Category → CS
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/noulith" class="post-link">Designing a Programming Language to Speedrun Advent of Code</a></h3>
+		
+		<p class="post-meta">
+		
+		2023-04-09
+		(17333 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<div class="series">
+<p>“shouldn’t this have been published a few months ago?” yeah, probably. I even considered submitting it to the <a href="https://www.reddit.com/r/adventofcode/comments/z9he28/advent_of_code_2022_mistiltoe_elfucation/">AoC contest</a>. time is a real beast.</p>
+</div>
+<p>The title is clickbait. I did not design and implement a programming language for the sole or even primary purpose of leaderboarding on Advent of Code. It just turned out that the programming language I was working on fit the task remarkably well.</p>
+<p>I can’t name just a single reason I started work on my language, <a href="https://github.com/betaveros/noulith">Noulith</a>, back in July 2022, but I think the biggest one was even more absurdly niche: I solve and write a lot of <a href="https://blog.vero.site/post/puzzlehunts">puzzlehunts</a>, and I wanted a better programming language to use to search word lists for words satisfying unusual constraints, such as, “Find all ten-letter words that contain each of the letters A, B, and C exactly once and that have the ninth letter K.”<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> I have a folder of ten-line scripts of this kind, mostly Python, and I thought there was surely a better way to do this. Not necessarily faster — there is obviously no way I could <a href="https://xkcd.com/1205/">save time on net by optimizing this process</a>. But, for example, I wanted to be able to easily share these programs such that others could run them. I had a positive experience in this with my slightly older golflang <a href="https://github.com/betaveros/paradoc">Paradoc</a>, which I had compiled into a WASM blob and <a href="https://betaveros.github.io/paradoc-rust/">put online</a> and, just once, experienced the convenience of sharing a <a href="https://betaveros.github.io/paradoc-rust/#aVVje0FwcVdwfH1mV8OYKXNqIHI=">short text processing program</a> through a link. (Puzzle: what does this program do?) I also wanted to write and run these programs while booted into a different operating system, using a different computer, or just on my phone.</p>
+<p>As I worked on it, I kept accumulating reasons to keep going. There were other contexts where I wanted to quickly code a combinatorial brute force that was annoying to write in other languages; a glib phrasing is that I wanted access to Haskell’s list monad in a sloppier language. I also wanted an excuse to read <a href="https://craftinginterpreters.com/"><cite>Crafting Interpreters</cite></a> more thoroughly. But sometimes I think the best characterization for what developing the language “felt like” was that I had been possessed by a supernatural creature — say, the dragon from the <a href="https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools">Dragon Book</a>. I spent every spare minute thinking about language features and next implementation steps, because I had to.</p>
+<p>The first “real program” I wrote in Noulith was to brute force constructions for <a href="https://2022.galacticpuzzlehunt.com/puzzle/the-cube">The Cube</a>, for last year’s Galactic Puzzle Hunt in early August, and it worked unexpectedly well. I wrote a <code>for</code> loop with a 53-clause iteratee and the interpreter executed it smoothly. Eventually I realized that the language could expand into other niches in my life where I wanted a scripting language. For example, I did a few <a href="https://www.cryptopals.com/">Cryptopals challenges</a> in them. It would take a month or two before it dawned on me that the same compulsion that drove me to create this language would drive me to do Advent of Code in it. That’s just how it has to be.</p>
+<p>This post details my thought process behind the design of this language. Some preliminary notes:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/noulith">→ read more<span class="offscreen"> Designing a Programming Language to Speedrun Advent of Code</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/golf" class="post-link">Introduction to Code Golf and Golflangs</a></h3>
 		
 		<p class="post-meta">
@@ -488,45 +518,6 @@ Category → CS
 <a class="sourceLine" id="cb1-31" title="31">}</a></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/blazingfast">→ read more<span class="offscreen"> blazingfast</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/discord-color" class="post-link">What Color Should My Discord Roles/Reactions Be?</a></h3>
-		
-		<p class="post-meta">
-		
-		2021-06-28
-		(1659 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>I subscribed to Discord Nitro a month ago, but only recently did I start thinking about the full range of powers the subscription granted me. I could create my own reactions, dump them in my personal server, and use them to react anywhere.</p>
-<p>However, when I finally started trying to create some reactions, I hit an interesting snag: Discord can be used in dark and light mode,<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and a reaction will have the same color on both modes. If I wanted my reaction to be as clearly readable in both modes as possible, what color should I make it?</p>
-<p>(I could, of course, just outline my reaction with a contrasting color, but let’s say that’s cheating. With the limited space in a reaction, outlining isn’t that great of a solution anyway.)</p>
-<p>Now, one can’t <em>really</em> just compute the “contrast of two colors” given only their RGB components; there’s no universally agreed-on definition of <a href="https://en.wikipedia.org/wiki/Contrast_(vision)">contrast in vision</a>, and even if there were one, the contrast of two given colors would depend on the color space and possibly the viewer’s biology. But, to get a concrete answer to this question, we can use the standard sRGB model and the W3C’s definitions of <a href="https://www.w3.org/TR/WCAG/#dfn-contrast-ratio">contrast ratio</a> and <a href="https://www.w3.org/TR/WCAG/#dfn-relative-luminance">relative luminance</a>.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> As of time of writing on my computer,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Discord reactions have background <span style="padding:0.15em 0.4em;background-color:#2f3136;color:white">#2f3136</span> on dark mode and <span style="padding:0.15em 0.4em;background-color:#f2f3f5">#f2f3f5</span> on light mode. Reactions you’ve reacted with have background <span style="padding:0.15em 0.4em;background-color:#3b405a;color:white">#3b405a</span> on dark mode and <span style="padding:0.15em 0.4em;background-color:#e7e9fd">#e7e9fd</span> on light mode. Because the dark mode background gets lighter and the light mode background gets darker, we’ll use the latter colors so we’re optimizing the worst-case contrast.</p>
-<p>There are smarter approaches, but the 256<sup>3</sup> = 16,777,216 possible 8-bit colors are perfectly feasible to brute force, so I wrote a short Python script to check all of them, which is at the bottom of this post. Under the parameters I’ve outlined, the optimal color for a Discord reaction is <span style="padding:0.15em 0.4em;background-color:#ff4103">rgb(255, 65, 3) or #ff4103.</span> A demo:</p>
-<table>
-<tr>
-<td style="background-color:#3b405a;color:#ff4103">
-#ff4103 <strong>#ff4103</strong> ●<br> <small><abbr title="Contrast Ratio">CR</abbr>: 2.90738237</small>
-</td>
-<td style="background-color:#e7e9fd;color:#ff4103">
-#ff4103 <strong>#ff4103</strong> ● <br> <small><abbr title="Contrast Ratio">CR</abbr>: 2.90738217</small>
-</td>
-</tr>
-</table>
-<p>That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that. (It’s highly doubtful that the formulae I used were intended to have this degree of precision in the first place.)</p>
-<p>After playing with a few ways to get a spread of options, I settled on categorizing colors into six buckets of saturation and twelve buckets of hue in the <a href="https://en.wikipedia.org/wiki/HSL_and_HSV#Formal_derivation">simple HSV model</a>, and then finding the optimal color within each bucket. Here is a table of my results:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/discord-color">→ read more<span class="offscreen"> What Color Should My Discord Roles/Reactions Be?</span></a>
 	</footer>
 </article>
 

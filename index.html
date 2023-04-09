@@ -61,6 +61,37 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/noulith" class="post-link">Designing a Programming Language to Speedrun Advent of Code</a></h3>
+		
+		<p class="post-meta">
+		
+		2023-04-09
+		(17333 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<div class="series">
+<p>“shouldn’t this have been published a few months ago?” yeah, probably. I even considered submitting it to the <a href="https://www.reddit.com/r/adventofcode/comments/z9he28/advent_of_code_2022_mistiltoe_elfucation/">AoC contest</a>. time is a real beast.</p>
+</div>
+<p>The title is clickbait. I did not design and implement a programming language for the sole or even primary purpose of leaderboarding on Advent of Code. It just turned out that the programming language I was working on fit the task remarkably well.</p>
+<p>I can’t name just a single reason I started work on my language, <a href="https://github.com/betaveros/noulith">Noulith</a>, back in July 2022, but I think the biggest one was even more absurdly niche: I solve and write a lot of <a href="https://blog.vero.site/post/puzzlehunts">puzzlehunts</a>, and I wanted a better programming language to use to search word lists for words satisfying unusual constraints, such as, “Find all ten-letter words that contain each of the letters A, B, and C exactly once and that have the ninth letter K.”<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> I have a folder of ten-line scripts of this kind, mostly Python, and I thought there was surely a better way to do this. Not necessarily faster — there is obviously no way I could <a href="https://xkcd.com/1205/">save time on net by optimizing this process</a>. But, for example, I wanted to be able to easily share these programs such that others could run them. I had a positive experience in this with my slightly older golflang <a href="https://github.com/betaveros/paradoc">Paradoc</a>, which I had compiled into a WASM blob and <a href="https://betaveros.github.io/paradoc-rust/">put online</a> and, just once, experienced the convenience of sharing a <a href="https://betaveros.github.io/paradoc-rust/#aVVje0FwcVdwfH1mV8OYKXNqIHI=">short text processing program</a> through a link. (Puzzle: what does this program do?) I also wanted to write and run these programs while booted into a different operating system, using a different computer, or just on my phone.</p>
+<p>As I worked on it, I kept accumulating reasons to keep going. There were other contexts where I wanted to quickly code a combinatorial brute force that was annoying to write in other languages; a glib phrasing is that I wanted access to Haskell’s list monad in a sloppier language. I also wanted an excuse to read <a href="https://craftinginterpreters.com/"><cite>Crafting Interpreters</cite></a> more thoroughly. But sometimes I think the best characterization for what developing the language “felt like” was that I had been possessed by a supernatural creature — say, the dragon from the <a href="https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools">Dragon Book</a>. I spent every spare minute thinking about language features and next implementation steps, because I had to.</p>
+<p>The first “real program” I wrote in Noulith was to brute force constructions for <a href="https://2022.galacticpuzzlehunt.com/puzzle/the-cube">The Cube</a>, for last year’s Galactic Puzzle Hunt in early August, and it worked unexpectedly well. I wrote a <code>for</code> loop with a 53-clause iteratee and the interpreter executed it smoothly. Eventually I realized that the language could expand into other niches in my life where I wanted a scripting language. For example, I did a few <a href="https://www.cryptopals.com/">Cryptopals challenges</a> in them. It would take a month or two before it dawned on me that the same compulsion that drove me to create this language would drive me to do Advent of Code in it. That’s just how it has to be.</p>
+<p>This post details my thought process behind the design of this language. Some preliminary notes:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/noulith">→ read more<span class="offscreen"> Designing a Programming Language to Speedrun Advent of Code</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/2023-hunt" class="post-link">2023 MIT Mystery Hunt</a></h3>
 		
 		<p class="post-meta">
@@ -416,78 +447,6 @@
 <p>Inspired by that post and by a desire to actually write some code (which I figured might help me understand the inner workings of modern ML systems in a different sense), and after abandoning a few other project ideas that were far too ambitious, I decided to go through some parts of the <a href="https://course.fast.ai/">fast.ai tutorial</a> and riff on it to see how much progress I could make interpreting the models, and to write up the process in a blog post. I tried to capture my experience holistically, bugs and all, to serve as a data point for what it might feel like to start ML engineering (for the rare individuals with a background and inclinations just like mine<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>), and <em>maybe</em> entertain more experienced practitioners or influence their future tutorial recommendations. A much lower-priority goal was trying to produce “my version of the tutorial”, which would draw more liberally from an undergraduate math education<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> and dive more deeply into technical details.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/interpret">→ read more<span class="offscreen"> Interpreting Some Toy Neural Networks</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/ti1337se" class="post-link">TI-1337 Silver Edition</a></h3>
-		
-		<h4 class="post-subtitle">DiceCTF 2022 (Misc, 299 pts)</h4>
-		
-		<p class="post-meta">
-		
-		2022-02-14
-		(3740 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Last weekend <a href="https://galhacktictrendsetters.wordpress.com/">Galhacktic Trendsetters</a> sort of spontaneously decided to do <a href="https://ctf.dicega.ng/">DiceCTF 2022</a>, months or years after most of us had done another CTF. It was a lot of fun and we placed 6th!</p>
-<blockquote>
-<p>Back in the day the silver edition was the top of the line Texas Instruments calculator, but now the security is looking a little obsolete. Can you break it?</p>
-</blockquote>
-<p>It’s yet another Python jail. We input a string and, after it makes it through a gauntlet of checks and processing, it gets <code>exec</code>’d.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#!/usr/bin/env python3</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="im">import</span> dis</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="im">import</span> sys</a>
-<a class="sourceLine" id="cb1-4" title="4"></a>
-<a class="sourceLine" id="cb1-5" title="5">banned <span class="op">=</span> [<span class="st">&quot;MAKE_FUNCTION&quot;</span>, <span class="st">&quot;CALL_FUNCTION&quot;</span>, <span class="st">&quot;CALL_FUNCTION_KW&quot;</span>, <span class="st">&quot;CALL_FUNCTION_EX&quot;</span>]</a>
-<a class="sourceLine" id="cb1-6" title="6"></a>
-<a class="sourceLine" id="cb1-7" title="7">used_gift <span class="op">=</span> <span class="va">False</span></a>
-<a class="sourceLine" id="cb1-8" title="8"></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="kw">def</span> gift(target, name, value):</a>
-<a class="sourceLine" id="cb1-10" title="10">    <span class="kw">global</span> used_gift</a>
-<a class="sourceLine" id="cb1-11" title="11">    <span class="cf">if</span> used_gift: sys.exit(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb1-12" title="12">    used_gift <span class="op">=</span> <span class="va">True</span></a>
-<a class="sourceLine" id="cb1-13" title="13">    <span class="bu">setattr</span>(target, name, value)</a>
-<a class="sourceLine" id="cb1-14" title="14"></a>
-<a class="sourceLine" id="cb1-15" title="15"><span class="bu">print</span>(<span class="st">&quot;Welcome to the TI-1337 Silver Edition. Enter your calculations below:&quot;</span>)</a>
-<a class="sourceLine" id="cb1-16" title="16"></a>
-<a class="sourceLine" id="cb1-17" title="17">math <span class="op">=</span> <span class="bu">input</span>(<span class="st">&quot;&gt; &quot;</span>)</a>
-<a class="sourceLine" id="cb1-18" title="18"><span class="cf">if</span> <span class="bu">len</span>(math) <span class="op">&gt;</span> <span class="dv">1337</span>:</a>
-<a class="sourceLine" id="cb1-19" title="19">    <span class="bu">print</span>(<span class="st">&quot;Nobody needs that much math!&quot;</span>)</a>
-<a class="sourceLine" id="cb1-20" title="20">    sys.exit(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb1-21" title="21">code <span class="op">=</span> <span class="bu">compile</span>(math, <span class="st">&quot;&lt;math&gt;&quot;</span>, <span class="st">&quot;exec&quot;</span>)</a>
-<a class="sourceLine" id="cb1-22" title="22"></a>
-<a class="sourceLine" id="cb1-23" title="23">bytecode <span class="op">=</span> <span class="bu">list</span>(code.co_code)</a>
-<a class="sourceLine" id="cb1-24" title="24">instructions <span class="op">=</span> <span class="bu">list</span>(dis.get_instructions(code))</a>
-<a class="sourceLine" id="cb1-25" title="25"><span class="cf">for</span> i, inst <span class="kw">in</span> <span class="bu">enumerate</span>(instructions):</a>
-<a class="sourceLine" id="cb1-26" title="26">    <span class="cf">if</span> inst.is_jump_target:</a>
-<a class="sourceLine" id="cb1-27" title="27">        <span class="bu">print</span>(<span class="st">&quot;Math doesn&#39;t need control flow!&quot;</span>)</a>
-<a class="sourceLine" id="cb1-28" title="28">        sys.exit(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb1-29" title="29">    nextoffset <span class="op">=</span> instructions[i<span class="op">+</span><span class="dv">1</span>].offset <span class="cf">if</span> i<span class="op">+</span><span class="dv">1</span> <span class="op">&lt;</span> <span class="bu">len</span>(instructions) <span class="cf">else</span> <span class="bu">len</span>(bytecode)</a>
-<a class="sourceLine" id="cb1-30" title="30">    <span class="cf">if</span> inst.opname <span class="kw">in</span> banned:</a>
-<a class="sourceLine" id="cb1-31" title="31">        bytecode[inst.offset:instructions[i<span class="op">+</span><span class="dv">1</span>].offset] <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>]<span class="op">*</span>(instructions[i<span class="op">+</span><span class="dv">1</span>].offset<span class="op">-</span>inst.offset)</a>
-<a class="sourceLine" id="cb1-32" title="32"></a>
-<a class="sourceLine" id="cb1-33" title="33">names <span class="op">=</span> <span class="bu">list</span>(code.co_names)</a>
-<a class="sourceLine" id="cb1-34" title="34"><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(code.co_names):</a>
-<a class="sourceLine" id="cb1-35" title="35">    <span class="cf">if</span> <span class="st">&quot;__&quot;</span> <span class="kw">in</span> name: names[i] <span class="op">=</span> <span class="st">&quot;$INVALID$&quot;</span></a>
-<a class="sourceLine" id="cb1-36" title="36"></a>
-<a class="sourceLine" id="cb1-37" title="37">code <span class="op">=</span> code.replace(co_code<span class="op">=</span><span class="bu">bytes</span>(b <span class="cf">for</span> b <span class="kw">in</span> bytecode <span class="cf">if</span> b <span class="op">&gt;=</span> <span class="dv">0</span>), co_names<span class="op">=</span><span class="bu">tuple</span>(names), co_stacksize<span class="op">=</span><span class="dv">2</span><span class="op">**</span><span class="dv">20</span>)</a>
-<a class="sourceLine" id="cb1-38" title="38">v <span class="op">=</span> {}</a>
-<a class="sourceLine" id="cb1-39" title="39"><span class="bu">exec</span>(code, {<span class="st">&quot;__builtins__&quot;</span>: {<span class="st">&quot;gift&quot;</span>: gift}}, v)</a>
-<a class="sourceLine" id="cb1-40" title="40"><span class="cf">if</span> v: <span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>.join(<span class="ss">f&quot;</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>val<span class="sc">}</span><span class="ss">&quot;</span> <span class="cf">for</span> name, val <span class="kw">in</span> v.items()))</a>
-<a class="sourceLine" id="cb1-41" title="41"><span class="cf">else</span>: <span class="bu">print</span>(<span class="st">&quot;No results stored.&quot;</span>)</a></code></pre></div>
-<p>More precisely, the gauntlet does the following:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/ti1337se">→ read more<span class="offscreen"> TI-1337 Silver Edition</span></a>
 	</footer>
 </article>
 

@@ -20,7 +20,7 @@
 &lt;li&gt;Why does the group law hold, sort of intuitively?&lt;/li&gt;
 &lt;li&gt;Why do people have to modify Curve25519 before using it to compute digital signatures?&lt;/li&gt;
 &lt;li&gt;What is a “quadratic twist” and why should I care about it to pick a secure elliptic curve?&lt;/li&gt;
-&lt;li&gt;How is it possible that an isogeny can be described surjective but not injective while mapping a finite elliptic curve to another elliptic curve of the same cardinality?&lt;/li&gt;
+&lt;li&gt;How is it possible that an isogeny can be described as surjective but not injective while mapping a finite elliptic curve to another elliptic curve of the same cardinality?&lt;/li&gt;
 &lt;li&gt;How many claws does an alligator have?&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Elliptic curves have a lot of complicated algebra. If you ever studied algebra in high school and did exercises where you had to simplify or factor or graph some really complicated algebraic expression, and you learned that algebra is also the name of a field in higher mathematics, you might have assumed that working algebraists just dealt with even more complicated expressions. If you then studied algebra in college, you’d probably have realized that that’s not really what algebra is about at all; the difficulty comes from &lt;em&gt;new abstractions&lt;/em&gt;, like a bunch of the terms above.&lt;/p&gt;

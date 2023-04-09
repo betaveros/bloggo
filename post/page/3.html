@@ -55,6 +55,36 @@
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/and-i-feel-fine" class="post-link">…And I Feel Fine</a></h3>
+		
+		<p class="post-meta">
+		
+		2020-12-31
+		(557 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/Is73BbYhFz4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>It’s a strange and darkly funny story — Tim Minchin wrote the album this is from, <a href="https://tim-minchin.lnk.to/ApartTogetherAlbumWE"><cite>Apart Together</cite></a>, well before the pandemic hit and social distancing became the norm, and I assume I am not alone in finding that the song resonates unusually strongly as a result.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> By Jove, it resonates.</p>
+<p>Nobody needs me to say that it’s been a rough year. People have been complaining that each of the last few years were terrible, and looking forward to the next one, and being disappointed — as if years were coherent bundles of quality, and there was any reason to expect discontinuities in how things are going to occur around January 1st — and as if there were additionally any reason to expect such discontinuities, if they did exist, to be positive ones.</p>
+<p>Seriously, do you remember when we thought 2015–2018 were bad?</p>
+
+<p>And yet… I feel like overall, 2020 went quite a bit better than expectations for me. Which maybe means it’s astronomically better than the average person’s 2020. I had a long draft for this post that slowly accumulated words over the year as usual, but a lot of the ramblings I’d usually include now seem unusually vapid, and a lot of the deeper trends and experiences I might normally reflect on are things I don’t think I’ve really gone through or thought about for long enough to achieve closure on. This is partly due to the pandemic scrambling a lot of plans and partly because last January, nearly a full year ago, <a href="//blog.vero.site/post/2020-hunt">✈✈✈ Galactic Trendsetters ✈✈✈ won Mystery Hunt</a> and so we’re writing the 2021 hunt. The ramifications are still being felt and will accelerate until it actually happens two weeks from now, and that’s all I’ll say about it here.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/and-i-feel-fine">→ read more<span class="offscreen"> …And I Feel Fine</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/advent-leaderboard" class="post-link">Advent of Code: How to Leaderboard</a></h3>
 		
 		<p class="post-meta">
@@ -323,45 +353,6 @@ Intro: Bob is cool too</p>
 <p>The “About” page simply told us, “Flag is located at /flag.txt, come get it”. The most interesting page was “Upload”, where we could view an example users XML file:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/unagi">→ read more<span class="offscreen"> unagi</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/baby-boi" class="post-link">baby_boi (A Textbook CTF ROP Tutorial)</a></h3>
-		
-		<h4 class="post-subtitle">CSAW CTF Qualifiers 2019</h4>
-		
-		<p class="post-meta">
-		
-		2019-09-15
-		(1867 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>Welcome to pwn.</p>
-<p><code>nc pwn.chal.csaw.io 1005</code></p>
-</blockquote>
-<p>Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with security professionals who probably have decades of experience and who follow security developments for a living or whatever, there remains a competition where scrubs like me can apply our extremely basic CTF skills and still feel kinda smart by earning points. Now that I’ve graduated and am no longer eligible, our team was pretty small and I didn’t dedicate the full weekend to the CTF, but it means I got to do the really easy challenges in the categories that I was the worst at, by which I mean pwn.</p>
-<p><code>baby_boi</code> is pretty much the simplest possible modern ROP (the modern security protections NX and ASLR are not artificially disabled, but you get everything you need to work around them). We even get source code.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" title="1"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv[]) {</a>
-<a class="sourceLine" id="cb1-5" title="5">  <span class="dt">char</span> buf[<span class="dv">32</span>];</a>
-<a class="sourceLine" id="cb1-6" title="6">  printf(<span class="st">&quot;Hello!</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
-<a class="sourceLine" id="cb1-7" title="7">  printf(<span class="st">&quot;Here I am: %p</span><span class="sc">\n</span><span class="st">&quot;</span>, printf);</a>
-<a class="sourceLine" id="cb1-8" title="8">  gets(buf);</a>
-<a class="sourceLine" id="cb1-9" title="9">}</a></code></pre></div>
-<p>So there’s nothing novel here for experienced pwners, but I feel like there is a shortage of tutorials that walk you through how to solve a textbook ROP the way you’d want to solve it in a CTF, so here is a writeup.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/baby-boi">→ read more<span class="offscreen"> baby_boi (A Textbook CTF ROP Tutorial)</span></a>
 	</footer>
 </article>
 <footer class="list-footer">
