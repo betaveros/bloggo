@@ -65,6 +65,42 @@ Category → CS
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/diceware" class="post-link">Yet Another Diceware-Style Word List</a></h3>
+		
+		<p class="post-meta">
+		
+		2023-07-23
+		(2140 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Passwords. It’s 2023 and we still have to deal with them.</p>
+<p>Many people know that, per the <a href="https://xkcd.com/936/">canonical xkcd</a>, sequences of randomly chosen words such as</p>
+<div style="text-align: center">
+<span id="diceware-out" style="font-size: 1.25rem">soak-science-wander-pew-goldfish-xray-speed-consult</span><br/><button id="diceware-regen" class="btn" style="display: none">regenerate</button><small> or <a href="/misc/betaveros-diceware.txt">get the list as .txt</a> or a <a href="/misc/betaveros-diceware.html">standalone generator</a><span id="diceware-msg"> (if my JavaScript were working the above would be a random password and you wouldn’t be seeing this message)</span></small>
+</div>
+<script src="/js/diceware.js"></script>
+<p>make relatively memorable but hard-to-crack passwords. One popular strategy for randomly choosing words is Arnold Reinhold’s <a href="https://theworld.com/~reinhold/diceware.html">Diceware™</a>, a list of 6<sup>5</sup> = 7776 “words” that you can randomly sample from by rolling five dice (analog or digital). (I won’t go into topics like how to calculate the entropy of passwords and how long a password you should try to have here, since most Diceware overviews already discuss them at length.)</p>
+<figure>
+<a href="/img/dice.png"><img src="/img/dice.png" alt="Five dice arranged in a V shape, digitally altered to be red" /></a>
+<figcaption>
+Somehow this image was already on my blog without being used in any post, but if there’s a post it belongs in, it’s surely this one
+</figcaption>
+</figure>
+<p>A few people have iterated on the concept since then: probably most notably, the Electronic Frontier Foundation published their own <a href="https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases">word list</a> in 2016, with words chosen to be more well-known and memorable, at the cost of taking longer to type. I’m a fast typer and prefer the EFF’s wordlist over the original, and am very grateful to them for creating it, but after generating quite a few passwords with it over the last few years, I began to feel that it still had a lot of room for improvement.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/diceware">→ read more<span class="offscreen"> Yet Another Diceware-Style Word List</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/noulith" class="post-link">Designing a Programming Language to Speedrun Advent of Code</a></h3>
 		
 		<p class="post-meta">
@@ -456,68 +492,6 @@ Category → CS
 <p>More precisely, the gauntlet does the following:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/ti1337se">→ read more<span class="offscreen"> TI-1337 Silver Edition</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/blazingfast" class="post-link">blazingfast</a></h3>
-		
-		<h4 class="post-subtitle">DiceCTF 2022 (Web, 140 pts)</h4>
-		
-		<p class="post-meta">
-		
-		2022-02-14
-		(1404 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Last weekend <a href="https://galhacktictrendsetters.wordpress.com/">Galhacktic Trendsetters</a> sort of spontaneously decided to do <a href="https://ctf.dicega.ng/">DiceCTF 2022</a>, months or years after most of us had done another CTF. It was a lot of fun and we placed 6th!</p>
-<blockquote>
-<p>I made a blazing fast MoCkInG CaSe converter!</p>
-<p>blazingfast.mc.ax</p>
-</blockquote>
-<p>We’re presented with a website that converts text to AlTeRnAtInG CaSe. The core converter is written in WASM, and also checks that its input doesn’t have any of the characters <code>&lt;&gt;&amp;"</code>. The JavaScript wrapper takes an input from the URL, converts it to uppercase, feeds it to the converter, and if the check passes, injects the output into an <code>innerHTML</code>. The goal is to compose a URL that, when visited by an admin bot, leaks the flag from <code>localStorage</code>.</p>
-<p>The converter is compiled from this C code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" title="1"><span class="dt">int</span> length, ptr = <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="dt">char</span> buf[<span class="dv">1000</span>];</a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="dt">void</span> init(<span class="dt">int</span> size) {</a>
-<a class="sourceLine" id="cb1-5" title="5">    length = size;</a>
-<a class="sourceLine" id="cb1-6" title="6">    ptr = <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb1-7" title="7">}</a>
-<a class="sourceLine" id="cb1-8" title="8"></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="dt">char</span> read() {</a>
-<a class="sourceLine" id="cb1-10" title="10">    <span class="cf">return</span> buf[ptr++];</a>
-<a class="sourceLine" id="cb1-11" title="11">}</a>
-<a class="sourceLine" id="cb1-12" title="12"></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="dt">void</span> write(<span class="dt">char</span> c) {</a>
-<a class="sourceLine" id="cb1-14" title="14">    buf[ptr++] = c;</a>
-<a class="sourceLine" id="cb1-15" title="15">}</a>
-<a class="sourceLine" id="cb1-16" title="16"></a>
-<a class="sourceLine" id="cb1-17" title="17"><span class="dt">int</span> mock() {</a>
-<a class="sourceLine" id="cb1-18" title="18">    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; length; i ++) {</a>
-<a class="sourceLine" id="cb1-19" title="19">        <span class="cf">if</span> (i % <span class="dv">2</span> == <span class="dv">1</span> &amp;&amp; buf[i] &gt;= <span class="dv">65</span> &amp;&amp; buf[i] &lt;= <span class="dv">90</span>) {</a>
-<a class="sourceLine" id="cb1-20" title="20">            buf[i] += <span class="dv">32</span>;</a>
-<a class="sourceLine" id="cb1-21" title="21">        }</a>
-<a class="sourceLine" id="cb1-22" title="22"></a>
-<a class="sourceLine" id="cb1-23" title="23">        <span class="cf">if</span> (buf[i] == <span class="ch">&#39;&lt;&#39;</span> || buf[i] == <span class="ch">&#39;&gt;&#39;</span> || buf[i] == <span class="ch">&#39;&amp;&#39;</span> || buf[i] == <span class="ch">&#39;&quot;&#39;</span>) {</a>
-<a class="sourceLine" id="cb1-24" title="24">            <span class="cf">return</span> <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb1-25" title="25">        }</a>
-<a class="sourceLine" id="cb1-26" title="26">    }</a>
-<a class="sourceLine" id="cb1-27" title="27"></a>
-<a class="sourceLine" id="cb1-28" title="28">    ptr = <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb1-29" title="29"></a>
-<a class="sourceLine" id="cb1-30" title="30">    <span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb1-31" title="31">}</a></code></pre></div>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/blazingfast">→ read more<span class="offscreen"> blazingfast</span></a>
 	</footer>
 </article>
 

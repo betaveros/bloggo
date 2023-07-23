@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>Yet Another Diceware-Style Word List</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="Passwords. It’s 2023 and we still have to deal with them.
+Many people know that, per the canonical xkcd, sequences of randomly chosen words such as
+soak-science-wander-pew-goldfish-xray-speed-consultregenerate or get the list as .txt or a standalone generator (if my JavaScript were working the above would be a random password and you wouldn’t be seeing this message) make relatively memorable but hard-to-crack passwords. One popular strategy for randomly choosing words is Arnold Reinhold’s Diceware™, a list of 65 = 7776 “words” that you can randomly sample from by rolling five dice (analog or digital). (I won’t go into topics like how to calculate the entropy of passwords and how long a password you should try to have here, since most Diceware overviews already discuss them at length.)
+Somehow this image was already on my blog without being used in any post, but if there’s a post it belongs in, it’s surely this one A few people have iterated on the concept since then: probably most notably, the Electronic Frontier Foundation published their own word list in 2016, with words chosen to be more well-known and memorable, at the cost of taking longer to type. I’m a fast typer and prefer the EFF’s wordlist over the original, and am very grateful to them for creating it, but after generating quite a few passwords with it over the last few years, I began to feel that it still had a lot of room for improvement.
+" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/diceware" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+<div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/ref">References</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Yet Another Diceware-Style Word List</h1>
+		
+		<p class="post-meta">
+		
+		2023-07-23
+		(2140 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>Passwords. It’s 2023 and we still have to deal with them.</p>
+<p>Many people know that, per the <a href="https://xkcd.com/936/">canonical xkcd</a>, sequences of randomly chosen words such as</p>
+<div style="text-align: center">
+<span id="diceware-out" style="font-size: 1.25rem">soak-science-wander-pew-goldfish-xray-speed-consult</span><br/><button id="diceware-regen" class="btn" style="display: none">regenerate</button><small> or <a href="/misc/betaveros-diceware.txt">get the list as .txt</a> or a <a href="/misc/betaveros-diceware.html">standalone generator</a><span id="diceware-msg"> (if my JavaScript were working the above would be a random password and you wouldn’t be seeing this message)</span></small>
+</div>
+<script src="/js/diceware.js"></script>
+<p>make relatively memorable but hard-to-crack passwords. One popular strategy for randomly choosing words is Arnold Reinhold’s <a href="https://theworld.com/~reinhold/diceware.html">Diceware™</a>, a list of 6<sup>5</sup> = 7776 “words” that you can randomly sample from by rolling five dice (analog or digital). (I won’t go into topics like how to calculate the entropy of passwords and how long a password you should try to have here, since most Diceware overviews already discuss them at length.)</p>
+<figure>
+<a href="/img/dice.png"><img src="/img/dice.png" alt="Five dice arranged in a V shape, digitally altered to be red" /></a>
+<figcaption>
+Somehow this image was already on my blog without being used in any post, but if there’s a post it belongs in, it’s surely this one
+</figcaption>
+</figure>
+<p>A few people have iterated on the concept since then: probably most notably, the Electronic Frontier Foundation published their own <a href="https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases">word list</a> in 2016, with words chosen to be more well-known and memorable, at the cost of taking longer to type. I’m a fast typer and prefer the EFF’s wordlist over the original, and am very grateful to them for creating it, but after generating quite a few passwords with it over the last few years, I began to feel that it still had a lot of room for improvement.</p>
+<ul>
+<li>One of EFF’s requirements was that “no word is an exact prefix of any other word”, so that concatenating all your words together is an injective operation and you can do that without worrying about losing entropy. They give the example that, if the word list has <code>in</code>, <code>put</code>, and <code>input</code>, then there might be multiple ways to create the password <code>input</code>. But I’ve always separated the words in my passphrases, and most diceware password generators I’ve seen online do the same. (The <a href="https://theworld.com/%7Ereinhold/dicewarefaq.html#spaces">Diceware™ FAQ</a> considers one reason to not do this — since spacebar keys often have a “distinctive sound”, typing a space-separated Diceware™ password could audially leak information about the word lengths — before concluding that this is an unlikely threat to defend against; but even if you are truly paranoid, I’d suggest separating words with hyphens rather than spaces, which in my experience is also less likely to be rejected by stupid password rules.) I also think this causes a lot of good words to be rejected when there’s no risk of confusing them (<code>badge</code>/<code>badger</code>, <code>gold</code>/<code>goldfish</code>, etc.).</li>
+<li>Other goals of the EFF’s list were to avoid homophones and hard-to-spell words, but I don’t find this useful. Many homophone pairs, say <code>flower</code> and <code>flour</code>, make very different xkcd-style visualizations and won’t be confused for each other. Also, subjectively, I think I’m a pretty good speller. Furthermore, the EFF’s list doesn’t achieve their goals either: the list still contains some homophone pairs like <code>capital</code>/<code>capitol</code> and <code>cache</code>/<code>cash</code>, as well as a bunch of words that are spelled, if not incorrectly, at least unusually: <code>aneurism</code>, <code>carrousel</code>, <code>linguini</code>, <code>plexiglas</code>, <code>racoon</code>, <code>whacky</code>. (The pasta is usually spelled <code>linguine</code>; Linguini is the name of the Ratatouille guy. <code>Plexiglass</code> is a generic term, while <code>Plexiglas®</code> is a brand name.) Worse, the list often contains two alternate spellings of the same word: <code>bony</code>/<code>boney</code>, <code>boogeyman</code>/<code>boogieman</code>, <code>flier</code>/<code>flyer</code>, <code>freebee</code>/<code>freebie</code>, <code>phoney</code>/<code>phony</code>, <code>sulfate</code>/<code>sulphate</code>, <code>yoyo</code>/<code>yo-yo</code> (!!!).</li>
+<li>The examples from the previous point were kind of cherry-picked; in a list of 7,776 you could easily never encounter any of them. A more common problem is that EFF’s list has a lot of weird <a href="https://en.wikipedia.org/wiki/Inflection">inflections</a> and <a href="https://en.wikipedia.org/wiki/Morphological_derivation">derivations</a> that I find to hurt memorability. Some are simply unnecessary: the list includes many adverbs like <code>abruptly</code>, <code>opulently</code>, and <code>politely</code> and negated words like <code>uncurious</code>, <code>uncorrupt</code>, and <code>unshackle</code> despite not including the root words or any other related words. Many others, while justifiable for the prefix-free property, feel very unnatural to me. There are odd -ness constructions like <code>bulginess</code>, <code>fineness</code>, or <code>gumminess</code>; -like constructions like <code>bonelike</code>, <code>creamlike</code>, and <code>fernlike</code>; and just unusual compound words: <code>monkhood</code>, <code>mothproof</code>, <code>moneywise</code>, <code>shoptalk</code>, <code>trailside</code>… More than 5% of the words begin with “un”, including 29 words beginning with “under”. <a href="https://security.stackexchange.com/questions/191448/why-does-the-effs-unique-prefix-wordlist-have-so-long-words">Somebody on StackExchange noticed</a> traces of this phenomenon, but I haven’t seen any deeper analysis.</li>
+<li>Finally, the list strangely skips over a bunch of bigrams. None of the EFF’s words start with <code>AD</code>, <code>BE</code>, <code>BI</code>, <code>FU</code>, <code>HI</code>, <code>HO</code>, <code>IN</code>, <code>LO</code>, <code>ME</code>, <code>MI</code>, <code>NO</code>, <code>OR</code>, <code>PI</code>, <code>SO</code>, <code>TE</code>, <code>TO</code>, or <code>WE</code>, even though I’m confident you can think of some well-known, memorable words starting with each of these bigrams. (For example, the list omits <code>horse</code>, so you can’t generate the canonical xkcd password with it.) Though I don’t know how or why this happened,<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> this means there is definitely room for better words to displace existing ones in the EFF’s list.</li>
+</ul>
+<p>So… I decided to make my own list.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<h3 id="making-of">Making of</h3>
+<p>In another universe, I might have gone about this by sourcing a bunch of survey data, figuring out how to use word embeddings, or just prompting an LLM. But I never found the motivation and am dedicating all my AI brain cells to my day job, so I did it mostly manually. Basically, I started with the EFF’s word list, then in no particular order:</p>
+<ul>
+<li>diffed various subsets of other wordlists (the original Diceware™ list, <a href="https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt">BIP39</a>, a different <a href="https://github.com/heartsucker/diceware">list by heartsucker on GitHub</a>…) or frequency lists with my running wordlist to find memorable words to add</li>
+<li>looked up various metrics of words’ “concreteness ratings” and how recognizable they were from the <a href="https://elexicon.wustl.edu/">English Lexicon Project</a> to find good words I missed and drop particularly bad ones</li>
+<li>searched for inflections/derivations with some simple NLTK scripts to delete them</li>
+<li>and just scrolled through the list and deleted or undid inflection/derivation on words I didn’t like.</li>
+</ul>
+<p>My most impactful decision was to avoid inflections and derivations nearly completely. My goal is that, after you roll a sequence of random words from this list, you can inflect/derive them to make a grammatically coherent phrase or even full sentence to make the password more memorable without losing any entropy. I did not go all the way in various cases where I thought the inflected/derived form had a sufficiently different meaning or visualization, or was simply a homograph: <code>stock</code>/<code>stocking</code>, <code>science</code>/<code>scientist</code>, <code>fur</code>/<code>furry</code>, <code>dive</code>/<code>dove</code>, <code>wind</code>/<code>wound</code>. I also sometimes kept a word in derived form when I thought it was more commonly used thus (<code>goggles</code> instead of <code>goggle</code>, <code>harrowing</code> instead of <code>harrow</code>) or just to sneak it in the length restriction (<code>oxen</code> instead of <code>ox</code>; <code>surveil</code> instead of <code>surveillance</code> despite it being a backformation).</p>
+<p>Although I did not keep the prefix-free property, I decided to enforce a weaker rule that no word is the concatenation of two other words on the list, because I thought that could actually harm memorability. (This means you will still need to separate the words in your passphrase if you absolutely refuse to lose any entropy: for example, concatenation would collapse badger+eel = badge+reel.) I also relaxed the length constraint from the EFF’s list, allowing 3–10 letters per word rather than 3–9.</p>
+<p>Even with those principles decided, though, there were still lots of small judgment calls and tradeoffs:</p>
+<ul>
+<li>To enforce my concatenation rule, I sometimes had to decide between including one short word or a bunch of compound words that were formed from that word plus another.</li>
+<li>I had to decide how to treat “profane, insulting, sensitive, or emotionally-charged words”, which the EFF generally avoided. It’s pretty obvious why you might not want those words in your password, but at the same time, those very qualities often make the words more memorable. So while I still avoided, say, obvious slurs, I allowed many more words with emotional valences.</li>
+<li>There’s a tradeoff between including obscure words with concrete, memorable meanings and including common “connector” words, usually prepositions or conjunctions, that may be hard to visualize (e.g. <code>also</code>, <code>despite</code>, <code>that</code>). Overall my list skews much more “obscure but memorable” than the EFF. Furthermore, some obscure words might be made from familiar root words, so that people who have never seen the word can still guess its meaning or imagine something vaguely related; sometimes I picked those words over words that I thought were less obscure, but that would be utterly meaningless to people who hadn’t heard of it.</li>
+<li>Finally, and most simply, I wanted to avoid overly obscure words, which requires judging how obscure words are. Although I tried to limit my personal bias in these decisions, I’m sure the list is still deeply infused with it. It’s also the case that I felt my judgment slipping after staring at too many words. I remember coming to a word <code>unpeel</code> and struggling to figure out whether something like “unpeel an orange” is a normal thing to say.</li>
+</ul>
+<p>As a final hedge against some of these tradeoffs, I included a few word pairs in my list: for words I thought were well-known but might be too abstract, I provided alternatives that I thought were concrete but might be too obscure, and vice versa. The idea is that when you roll one of the word pairs, you can choose from between them in the same way you can choose to inflect/derive the word to create the passphrase you personally find most memorable. In total there are 416 word pairs. (Why 416? Because 7776 + 416 = 8192 = 2<sup>13</sup>, so that if for whatever reason you need a wordlist for neatly mapping bitstrings to words, you can flatten the list.)</p>
+<p>The resulting wordlist, you hopefully already got a taste for at the beginning of this post (though that demo omits the alternative words for simplicity), but if you want them again, here’s the <a href="/misc/betaveros-diceware.txt">the list as a .txt</a> and a tiny <a href="/misc/betaveros-diceware.html">standalone .html file</a> with the list and some trivial code to randomly sample words from it. Although my longest words are longer than the EFF’s longest words, my average word length is shorter (6.2 vs 7.0), though still considerably longer than the original Diceware list (4.3).</p>
+<h3 id="other-password-strategies">Other password strategies</h3>
+<p>This section is not so strongly related to the rest of the post, but as a casual password enthusiast I’ve seen a bunch of other approaches to authentication. I will focus on “knowledge-based” authentication methods here (so I won’t go into things like hardware authenticators, biometrics, or the surprisingly unrelated <a href="https://dicekeys.com/">DiceKeys</a>). For example, archagon’s <a href="http://archagon.github.io/grammatical-passphrase-generator/">Grammatical Passphrase Generator</a> does what it says. Sometimes it works quite well, but sometimes it generates words like “diphyodont” and “skeptophylaxis”. Some more sophisticated but more theoretical approaches (i.e. I don’t know of publicly available implementations) are discussed in <a href="https://www.isi.edu/~ghazvini/papers/marjan15.pdf">How to Memorize a Random 60-Bit String</a> (Ghazvininejad and Knight, 2015); my favorite is the proposal for generating rhyming iambic tetrameter couplets.</p>
+<p>A totally different line of research involves developing methods of authentication that rely on <a href="https://en.wikipedia.org/wiki/Tacit_knowledge">tacit</a> rather than <a href="https://en.wikipedia.org/wiki/Explicit_knowledge">explicit</a> knowledge, theoretically preventing some ways of leaking the password, such as the classic <a href="https://en.wikipedia.org/wiki/Rubber-hose_cryptanalysis">rubber hose</a>. For example, <a href="https://www.usenix.org/system/files/conference/usenixsecurity12/sec12-final25.pdf">Bojinov et al. (2012)</a> propose an authentication system where you play an osu!mania-like rhythm game. To teach you a password, the system lets you practice on a rigged game where some patterns are more common than others, and then to authenticate, the system has you play the game with random patterns and checks if you score better on the patterns that were more common in practice. <a href="https://www.sain.ca/publication/thorpePDFS/EnhancedTacitSecrets-IJIS2018.pdf">Joudaki et al. (2019)</a> propose a similar system where you hunt for a (possibly rotated) T among many (also variously rotated) Ls; similar to the previous, the system teaches you a password by giving you a bunch of patterns with some repetition, and then to authenticate, the system randomly shows you either patterns you should have seen before or brand new patterns, and checks if you can find the T significantly faster in the former kind. I don’t think either system is reliable enough to be more than a theoretical curiosity, and in many ways being able to tell somebody your password or write it down is actually a good thing — it lets you manage authentication for many different accounts with password managers, for example. Still it would be really cool if something like them actually worked.</p>
+<p>Happy passwording!</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>If I were to attempt to come up with a plausible story, I might speculate that each of these bigrams were included as two-letter words in some draft of the list, all other words beginning with them were cut to maintain the prefix-free property, and then they were cut themselves for being too short.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>I think I first started this project several years ago, though at the time I think I was also sort of trying to make the list serve double duty as a <a href="https://github.com/betaveros/castlefall/">Castlefall</a> wordlist. This April, I decided to pursue it intensely for a few weeks, but suddenly lost steam shortly after. So I’ve decided to just wrap the project up.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
+</section></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/noulith">← Designing a Programming Language to Speedrun Advent of Code</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+</div>
+<footer class="site-footer">
+	<p>© 2017-2023 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://www.goatcounter.com/">GoatCounter</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</body>
+</html>

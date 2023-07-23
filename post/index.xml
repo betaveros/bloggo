@@ -6,7 +6,29 @@
     <description>Recent content in Posts on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Apr 2023 14:42:52 -0700</lastBuildDate><atom:link href="//blog.vero.site/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 Jul 2023 00:42:01 -0700</lastBuildDate><atom:link href="//blog.vero.site/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Yet Another Diceware-Style Word List</title>
+      <link>//blog.vero.site/post/diceware</link>
+      <pubDate>Sun, 23 Jul 2023 00:42:01 -0700</pubDate>
+      
+      <guid>//blog.vero.site/post/diceware</guid>
+      <description>&lt;p&gt;Passwords. It’s 2023 and we still have to deal with them.&lt;/p&gt;
+&lt;p&gt;Many people know that, per the &lt;a href=&#34;https://xkcd.com/936/&#34;&gt;canonical xkcd&lt;/a&gt;, sequences of randomly chosen words such as&lt;/p&gt;
+&lt;div style=&#34;text-align: center&#34;&gt;
+&lt;span id=&#34;diceware-out&#34; style=&#34;font-size: 1.25rem&#34;&gt;soak-science-wander-pew-goldfish-xray-speed-consult&lt;/span&gt;&lt;br/&gt;&lt;button id=&#34;diceware-regen&#34; class=&#34;btn&#34; style=&#34;display: none&#34;&gt;regenerate&lt;/button&gt;&lt;small&gt; or &lt;a href=&#34;//blog.vero.site/misc/betaveros-diceware.txt&#34;&gt;get the list as .txt&lt;/a&gt; or a &lt;a href=&#34;//blog.vero.site/misc/betaveros-diceware.html&#34;&gt;standalone generator&lt;/a&gt;&lt;span id=&#34;diceware-msg&#34;&gt; (if my JavaScript were working the above would be a random password and you wouldn’t be seeing this message)&lt;/span&gt;&lt;/small&gt;
+&lt;/div&gt;
+&lt;script src=&#34;//blog.vero.site/js/diceware.js&#34;&gt;&lt;/script&gt;
+&lt;p&gt;make relatively memorable but hard-to-crack passwords. One popular strategy for randomly choosing words is Arnold Reinhold’s &lt;a href=&#34;https://theworld.com/~reinhold/diceware.html&#34;&gt;Diceware™&lt;/a&gt;, a list of 6&lt;sup&gt;5&lt;/sup&gt; = 7776 “words” that you can randomly sample from by rolling five dice (analog or digital). (I won’t go into topics like how to calculate the entropy of passwords and how long a password you should try to have here, since most Diceware overviews already discuss them at length.)&lt;/p&gt;
+&lt;figure&gt;
+&lt;a href=&#34;//blog.vero.site/img/dice.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/dice.png&#34; alt=&#34;Five dice arranged in a V shape, digitally altered to be red&#34; /&gt;&lt;/a&gt;
+&lt;figcaption&gt;
+Somehow this image was already on my blog without being used in any post, but if there’s a post it belongs in, it’s surely this one
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;A few people have iterated on the concept since then: probably most notably, the Electronic Frontier Foundation published their own &lt;a href=&#34;https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases&#34;&gt;word list&lt;/a&gt; in 2016, with words chosen to be more well-known and memorable, at the cost of taking longer to type. I’m a fast typer and prefer the EFF’s wordlist over the original, and am very grateful to them for creating it, but after generating quite a few passwords with it over the last few years, I began to feel that it still had a lot of room for improvement.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Designing a Programming Language to Speedrun Advent of Code</title>
       <link>//blog.vero.site/post/noulith</link>

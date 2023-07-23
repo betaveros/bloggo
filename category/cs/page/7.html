@@ -286,6 +286,42 @@ Category → CS
 	</footer>
 </article>
 
+		<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/ref/color" class="post-link">Color</a></h3>
+		
+		<p class="post-meta">
+		
+		
+		(741 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p><a href="http://www.brucelindbloom.com/">Bruce Lindbloom</a> has a ton of equations, but I just want the big ones on one page. We’ll assume <a href="https://en.wikipedia.org/wiki/SRGB">sRGB</a>, which implies using <a href="https://en.wikipedia.org/wiki/Illuminant_D65">D65</a> as white (if you’re using Bruce Lindbloom’s calculator to check your implementation, make sure to set these).</p>
+<h3 id="rgb-linear-rgb">RGB ↔ Linear RGB</h3>
+<p>Let <span class="math inline">\(\Xi\)</span> (one of <span class="math inline">\(R\)</span>, <span class="math inline">\(G\)</span>, and <span class="math inline">\(B\)</span>) be an RGB component in the range <span class="math inline">\([0, 1]\)</span>. (This is an obnoxious variable choice, but I’m trying to not overload any variable names in this entire post.) If you have RGB values in <span class="math inline">\([0, 255]\)</span>, divide them by 255. It can be converted to/from the <strong>linearized component</strong> <span class="math inline">\(\xi\)</span> (one of <span class="math inline">\(r\)</span>, <span class="math inline">\(g\)</span>, and <span class="math inline">\(b\)</span>) as:</p>
+<p><span class="math display">\[\xi = \begin{cases} \Xi/12.92 &amp; \text{if }\Xi \leq 0.04045 \\ ((\Xi + 0.055)/1.055)^{2.4} &amp; \text{if }\Xi &gt; 0.04045 \end{cases}\]</span></p>
+<p><span class="math display">\[\Xi = \begin{cases} 12.92\xi &amp; \text{if }\xi \leq 0.0031308 \\ 1.055v^{1/2.4} - 0.055 &amp; \text{if }\xi &gt; 0.0031308 \end{cases}\]</span></p>
+<p>This is called “companding”.</p>
+<p>However, you can use <span class="math inline">\(\xi = \Xi^{2.4}\)</span> and <span class="math inline">\(\Xi = \xi^{1/2.4}\)</span> in a pinch.</p>
+<h3 id="linear-rgb-xyz">Linear RGB ↔ XYZ</h3>
+<p>Convert between XYZ and linearized RGB. Again, this assumes sRGB and D65.</p>
+<p><span class="math display">\[\begin{align*}
+X &amp;= 0.4124564r + 0.3575761g + 0.1804375b \\
+Y &amp;= 0.2126729r + 0.7151522g + 0.0721750b \\
+Z &amp;= 0.0193339r + 0.1191920g + 0.9503041b
+\end{align*}\]</span></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/ref/color">→ read more<span class="offscreen"> Color</span></a>
+	</footer>
+</article>
+
 		<footer class="list-footer">
 		<nav class="pagination">
 			<h3 class="offscreen">Pagination</h3><a class="pagination-previous" href="/category/cs/page/6">← newer posts</a></nav>

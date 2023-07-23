@@ -55,6 +55,41 @@
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/diceware" class="post-link">Yet Another Diceware-Style Word List</a></h3>
+		
+		<p class="post-meta">
+		
+		2023-07-23
+		(2140 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Passwords. It’s 2023 and we still have to deal with them.</p>
+<p>Many people know that, per the <a href="https://xkcd.com/936/">canonical xkcd</a>, sequences of randomly chosen words such as</p>
+<div style="text-align: center">
+<span id="diceware-out" style="font-size: 1.25rem">soak-science-wander-pew-goldfish-xray-speed-consult</span><br/><button id="diceware-regen" class="btn" style="display: none">regenerate</button><small> or <a href="/misc/betaveros-diceware.txt">get the list as .txt</a> or a <a href="/misc/betaveros-diceware.html">standalone generator</a><span id="diceware-msg"> (if my JavaScript were working the above would be a random password and you wouldn’t be seeing this message)</span></small>
+</div>
+<script src="/js/diceware.js"></script>
+<p>make relatively memorable but hard-to-crack passwords. One popular strategy for randomly choosing words is Arnold Reinhold’s <a href="https://theworld.com/~reinhold/diceware.html">Diceware™</a>, a list of 6<sup>5</sup> = 7776 “words” that you can randomly sample from by rolling five dice (analog or digital). (I won’t go into topics like how to calculate the entropy of passwords and how long a password you should try to have here, since most Diceware overviews already discuss them at length.)</p>
+<figure>
+<a href="/img/dice.png"><img src="/img/dice.png" alt="Five dice arranged in a V shape, digitally altered to be red" /></a>
+<figcaption>
+Somehow this image was already on my blog without being used in any post, but if there’s a post it belongs in, it’s surely this one
+</figcaption>
+</figure>
+<p>A few people have iterated on the concept since then: probably most notably, the Electronic Frontier Foundation published their own <a href="https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases">word list</a> in 2016, with words chosen to be more well-known and memorable, at the cost of taking longer to type. I’m a fast typer and prefer the EFF’s wordlist over the original, and am very grateful to them for creating it, but after generating quite a few passwords with it over the last few years, I began to feel that it still had a lot of room for improvement.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/diceware">→ read more<span class="offscreen"> Yet Another Diceware-Style Word List</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/noulith" class="post-link">Designing a Programming Language to Speedrun Advent of Code</a></h3>
 		
 		<p class="post-meta">
@@ -394,35 +429,6 @@
 <a class="sourceLine" id="cb1-39" title="39">)<span class="op">;</span></a></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/caasio">→ read more<span class="offscreen"> CaaSio PSE</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/interpret" class="post-link">Interpreting Some Toy Neural Networks</a></h3>
-		
-		<p class="post-meta">
-		
-		2022-05-05
-		(9838 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>I participated in the <a href="https://www.eacambridge.org/agi-safety-fundamentals">AGI Safety Fundamentals</a> program recently. The program concludes with a flexible final project, with the default suggestion of “a piece of writing, roughly the length and scope of a typical blog post”, so naturally, I deleted all but the last two words and here we are.</p>
-<p>When I previously considered machine learning as a field of study, I came away with an impression that most effort and computation power was going into training bigger, more powerful models; whereas the inner workings of the models themselves, not to mention questions like why certain architectures or design choices work better than others, remained inscrutable and understudied. This impression always bothered me, and it definitely influenced me away from going into AI as a career. Of course, there are important, objective safety concerns around developing and designing models we don’t understand, many of which we discussed in the program; but my discomfort is mostly a completely unrelated nagging feeling I get whenever I’m relying on things I don’t understand.</p>
-<p>After the program and all the concurrent developments in AI (including <a href="https://www.deepmind.com/blog/competitive-programming-with-alphacode">AlphaCode</a>, OpenAI’s <a href="https://openai.com/blog/formal-math/">math olympiad solver</a><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, <a href="https://say-can.github.io/">SayCan</a>, and, of course, <a href="https://openai.com/dall-e-2/">DALL-E 2</a>), I still had this impression about the field at a very high level, but I also became more familiar with the subfield of <em>interpretability</em> — designs and tools that allow us to understand and explain decisions by ML systems, rather than treating them as black-boxed mappings from inputs to outputs — and confirmed that enough people study it to make it a thing. One quote from a post on the <a href="https://www.alignmentforum.org/posts/X2i9dQQK3gETCyqh2/chris-olah-s-views-on-agi-safety">views of Chris Olah</a>, noted interpretability researcher, captured my feeling particularly eloquently:</p>
-<blockquote>
-<p>interpretability is very aligned with traditional scientific virtues—which can be quite motivating for many people—even if it isn’t very aligned with the present paradigm of machine learning.</p>
-</blockquote>
-<p>I found the whole post insightful, and it happens that the bits before that in the passage were also relevant to me. I don’t have access to lots of compute!</p>
-<p>Inspired by that post and by a desire to actually write some code (which I figured might help me understand the inner workings of modern ML systems in a different sense), and after abandoning a few other project ideas that were far too ambitious, I decided to go through some parts of the <a href="https://course.fast.ai/">fast.ai tutorial</a> and riff on it to see how much progress I could make interpreting the models, and to write up the process in a blog post. I tried to capture my experience holistically, bugs and all, to serve as a data point for what it might feel like to start ML engineering (for the rare individuals with a background and inclinations just like mine<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>), and <em>maybe</em> entertain more experienced practitioners or influence their future tutorial recommendations. A much lower-priority goal was trying to produce “my version of the tutorial”, which would draw more liberally from an undergraduate math education<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> and dive more deeply into technical details.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/interpret">→ read more<span class="offscreen"> Interpreting Some Toy Neural Networks</span></a>
 	</footer>
 </article>
 <footer class="list-footer">
