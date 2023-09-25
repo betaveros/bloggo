@@ -55,6 +55,35 @@
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/concurrency" class="post-link">Concurrency</a></h3>
+		
+		<p class="post-meta">
+		
+		2023-09-25
+		(3090 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>I want to add a second word in the title, something like “Koans” or “Vignettes”, but I don’t know a word with the right connotations.</p>
+<p>I realized recently that I have been walking around for a long time with some confusion and unknown unknowns about how concurrency works in various settings, and decided to write about it until I stopped being confused. This post doesn’t therefore have much of a “point”.</p>
+<h3 id="concurrency-and-parallelism">Concurrency and Parallelism</h3>
+<p>Wikipedia, as of time of writing:</p>
+<blockquote>
+<p><strong>Concurrency</strong> is the ability of different parts or units of a program, algorithm, or problem to be executed out-of-order or in partial order, without affecting the outcome.</p>
+</blockquote>
+<p>There are two broad reasons concurrency is useful. One is for performance: if you want your computer to perform as many floating point operations as possible by lunchtime, you want all CPUs/GPUs/etc. to be performing operations simultaneously. Another is that you’re in a problem domain where you simply can’t predict the order of events: you’re writing a user interface, and the user can click on any of multiple buttons in any order; or you’re writing a web server, and any number of clients can request any pages in any order. These reasons are not mutually exclusive.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/concurrency">→ read more<span class="offscreen"> Concurrency</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/diceware" class="post-link">Yet Another Diceware-Style Word List</a></h3>
 		
 		<p class="post-meta">
@@ -363,72 +392,6 @@ Somehow this image was already on my blog without being used in any post, but if
 <p><code><a href="https://docs.python.org/3/library/pickle.html">pickle</a></code> is a Python object serialization format. As the docs page loudly proclaims, it is not secure. Roughly the simplest possible code to pop a shell (adapted from <a href="https://davidhamann.de/2020/04/05/exploiting-python-pickle/">David Hamann</a>, who constructs a more realistic RCE) looks like:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/kevin-higgs">→ read more<span class="offscreen"> Kevin Higgs</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/caasio" class="post-link">CaaSio PSE</a></h3>
-		
-		<h4 class="post-subtitle">ångstromCTF 2022 (250 points)</h4>
-		
-		<p class="post-meta">
-		
-		2022-07-04
-		(773 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>It’s clam’s newest javascript Calculator-as-a-Service: the CaaSio Please Stop Edition! no but actually please stop I hate jsjails js isn’t a good language stop putting one in every ctf I don’t want to look at another jsjail because if I do I might vomit from how much I hate js and js quirks aren’t even cool or funny or quirky they’re just painful because why would you design a language like this ahhhhhhhhhhhhhhhhhhhhh</p>
-</blockquote>
-<p>It’s just a JavaScript eval jail.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#!/usr/local/bin/node</span></a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="co">// flag in ./flag.txt</span></a>
-<a class="sourceLine" id="cb1-4" title="4"></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw">const</span> vm <span class="op">=</span> <span class="at">require</span>(<span class="st">&quot;vm&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="kw">const</span> readline <span class="op">=</span> <span class="at">require</span>(<span class="st">&quot;readline&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb1-7" title="7"></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="kw">const</span> <span class="kw">interface</span> <span class="op">=</span> <span class="va">readline</span>.<span class="at">createInterface</span>(<span class="op">{</span></a>
-<a class="sourceLine" id="cb1-9" title="9">    <span class="dt">input</span><span class="op">:</span> <span class="va">process</span>.<span class="at">stdin</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb1-10" title="10">    <span class="dt">output</span><span class="op">:</span> <span class="va">process</span>.<span class="at">stdout</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="op">}</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb1-12" title="12"></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="kw">interface</span>.<span class="at">question</span>(</a>
-<a class="sourceLine" id="cb1-14" title="14">    <span class="st">&quot;Welcome to CaaSio: Please Stop Edition! Enter your calculation:</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb1-15" title="15">    <span class="kw">function</span> (input) <span class="op">{</span></a>
-<a class="sourceLine" id="cb1-16" title="16">        <span class="kw">interface</span>.<span class="at">close</span>()<span class="op">;</span></a>
-<a class="sourceLine" id="cb1-17" title="17">        <span class="cf">if</span> (</a>
-<a class="sourceLine" id="cb1-18" title="18">            <span class="va">input</span>.<span class="at">length</span> <span class="op">&lt;</span> <span class="dv">215</span> <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb1-19" title="19">            <span class="ss">/</span><span class="sc">^[\x20-\x7e]+$</span><span class="ss">/</span>.<span class="at">test</span>(input) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb1-20" title="20">            <span class="op">!</span><span class="ss">/</span><span class="sc">[.\[\]{}\s;`&#39;&quot;\\_&lt;&gt;?:]</span><span class="ss">/</span>.<span class="at">test</span>(input) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb1-21" title="21">            <span class="op">!</span><span class="va">input</span>.<span class="at">toLowerCase</span>().<span class="at">includes</span>(<span class="st">&quot;import&quot;</span>)</a>
-<a class="sourceLine" id="cb1-22" title="22">        ) <span class="op">{</span></a>
-<a class="sourceLine" id="cb1-23" title="23">            <span class="cf">try</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb1-24" title="24">                <span class="kw">const</span> val <span class="op">=</span> <span class="va">vm</span>.<span class="at">runInNewContext</span>(input<span class="op">,</span> <span class="op">{}</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb1-25" title="25">                <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Result:&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb1-26" title="26">                <span class="va">console</span>.<span class="at">log</span>(val)<span class="op">;</span></a>
-<a class="sourceLine" id="cb1-27" title="27">                <span class="va">console</span>.<span class="at">log</span>(</a>
-<a class="sourceLine" id="cb1-28" title="28">                    <span class="st">&quot;See, isn&#39;t the calculator so much nicer when you&#39;re not trying to hack it?&quot;</span></a>
-<a class="sourceLine" id="cb1-29" title="29">                )<span class="op">;</span></a>
-<a class="sourceLine" id="cb1-30" title="30">            <span class="op">}</span> <span class="cf">catch</span> (e) <span class="op">{</span></a>
-<a class="sourceLine" id="cb1-31" title="31">                <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;your tried&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb1-32" title="32">            <span class="op">}</span></a>
-<a class="sourceLine" id="cb1-33" title="33">        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb1-34" title="34">            <span class="va">console</span>.<span class="at">log</span>(</a>
-<a class="sourceLine" id="cb1-35" title="35">                <span class="st">&quot;Third time really is the charm! I&#39;ve finally created an unhackable system!&quot;</span></a>
-<a class="sourceLine" id="cb1-36" title="36">            )<span class="op">;</span></a>
-<a class="sourceLine" id="cb1-37" title="37">        <span class="op">}</span></a>
-<a class="sourceLine" id="cb1-38" title="38">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb1-39" title="39">)<span class="op">;</span></a></code></pre></div>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/caasio">→ read more<span class="offscreen"> CaaSio PSE</span></a>
 	</footer>
 </article>
 <footer class="list-footer">

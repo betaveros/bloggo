@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>Concurrency</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="I want to add a second word in the title, something like “Koans” or “Vignettes”, but I don’t know a word with the right connotations.
+I realized recently that I have been walking around for a long time with some confusion and unknown unknowns about how concurrency works in various settings, and decided to write about it until I stopped being confused. This post doesn’t therefore have much of a “point”.
+Concurrency and Parallelism Wikipedia, as of time of writing:
+Concurrency is the ability of different parts or units of a program, algorithm, or problem to be executed out-of-order or in partial order, without affecting the outcome.
+There are two broad reasons concurrency is useful. One is for performance: if you want your computer to perform as many floating point operations as possible by lunchtime, you want all CPUs/GPUs/etc. to be performing operations simultaneously. Another is that you’re in a problem domain where you simply can’t predict the order of events: you’re writing a user interface, and the user can click on any of multiple buttons in any order; or you’re writing a web server, and any number of clients can request any pages in any order. These reasons are not mutually exclusive.
+" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/concurrency" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+<div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/ref">References</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Concurrency</h1>
+		
+		<p class="post-meta">
+		
+		2023-09-25
+		(3090 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>I want to add a second word in the title, something like “Koans” or “Vignettes”, but I don’t know a word with the right connotations.</p>
+<p>I realized recently that I have been walking around for a long time with some confusion and unknown unknowns about how concurrency works in various settings, and decided to write about it until I stopped being confused. This post doesn’t therefore have much of a “point”.</p>
+<h3 id="concurrency-and-parallelism">Concurrency and Parallelism</h3>
+<p>Wikipedia, as of time of writing:</p>
+<blockquote>
+<p><strong>Concurrency</strong> is the ability of different parts or units of a program, algorithm, or problem to be executed out-of-order or in partial order, without affecting the outcome.</p>
+</blockquote>
+<p>There are two broad reasons concurrency is useful. One is for performance: if you want your computer to perform as many floating point operations as possible by lunchtime, you want all CPUs/GPUs/etc. to be performing operations simultaneously. Another is that you’re in a problem domain where you simply can’t predict the order of events: you’re writing a user interface, and the user can click on any of multiple buttons in any order; or you’re writing a web server, and any number of clients can request any pages in any order. These reasons are not mutually exclusive.</p>
+<p>(As a slight generalization of the second reason, there are times when a concurrent producer and consumer are actually easier to write or reason about, even when the order of events is in principle completely predictable. Say, you’re parsing some recursive structure that’s spread out over a bunch of files that you want to pretend are concatenated, and wish for the recursive parsing to work in one pass without having to reason about file boundaries.)</p>
+<blockquote>
+<p><strong>Parallel computing</strong> is a type of computation in which many calculations or processes are carried out simultaneously.</p>
+</blockquote>
+<p>Parallelism requires independent things that can actually run calculations simultaneously: different CPUs on a computer, or different computers.</p>
+<p>If you alternate between chunks of one task, that’s concurrency but not parallelism. If you do two unrelated things on two computers, that’s parallelism but not concurrency.</p>
+<h3 id="add">Add</h3>
+<p>In the programming language Add, which I just made up, programs consist of a sequence of integers. To execute a program, you initialize an accumulator to 0, and then add each integer to it.</p>
+<p>This Python program executes an Add program:</p>
+<!--more-->
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1">program <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">9</span>]</a>
+<a class="sourceLine" id="cb1-2" title="2">acc <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="cf">for</span> inst <span class="kw">in</span> program:</a>
+<a class="sourceLine" id="cb1-4" title="4">    acc <span class="op">+=</span> inst</a></code></pre></div>
+<p>This Python program concurrently executes two Add programs in Python threads:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" title="1">program1 <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">9</span>]</a>
+<a class="sourceLine" id="cb2-2" title="2">program2 <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">8</span>]</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw">def</span> exec_add(program):</a>
+<a class="sourceLine" id="cb2-4" title="4">    acc <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb2-5" title="5">    <span class="cf">for</span> inst <span class="kw">in</span> program:</a>
+<a class="sourceLine" id="cb2-6" title="6">        acc <span class="op">+=</span> inst</a>
+<a class="sourceLine" id="cb2-7" title="7"></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="im">from</span> threading <span class="im">import</span> Thread</a>
+<a class="sourceLine" id="cb2-9" title="9">Thread(target<span class="op">=</span>exec_add, args<span class="op">=</span>(program1,)).start()</a>
+<a class="sourceLine" id="cb2-10" title="10">Thread(target<span class="op">=</span>exec_add, args<span class="op">=</span>(program2,)).start()</a></code></pre></div>
+<p>This Python program concurrently executes two Add programs without using any Python concurrency features (assuming they’re equally long, because I’m lazy):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" title="1">program1 <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">9</span>]</a>
+<a class="sourceLine" id="cb3-2" title="2">program2 <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">8</span>]</a>
+<a class="sourceLine" id="cb3-3" title="3">acc1 <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb3-4" title="4">acc2 <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="cf">for</span> inst1, inst2 <span class="kw">in</span> <span class="bu">zip</span>(program1, program2):</a>
+<a class="sourceLine" id="cb3-6" title="6">    acc1 <span class="op">+=</span> inst1</a>
+<a class="sourceLine" id="cb3-7" title="7">    acc2 <span class="op">+=</span> inst2</a></code></pre></div>
+<h3 id="threads-and-processes">Threads and Processes</h3>
+<p>The most general definitions that attempt to sharply distinguish the two are that processes and threads are both running sequences of computer instructions, but processes don’t share state and threads do. However, both words are also used in more informal or slippery ways.</p>
+<ul>
+<li><p><strong>Processes</strong> often refer to a specific kind of operating system abstraction, the things that show up when you run <code>ps</code> or open the Task Manager or Activity Monitor. One of the key guarantees of operating systems (in theory) is <em>process isolation</em>: different processes have their own registers, memory, and resources, and can’t affect each other unless they’re deliberate about it. Ways in which <a href="https://en.wikipedia.org/wiki/Inter-process_communication">inter-process communication</a> occurs include reading/writing files, opening sockets, and sending signals.</p>
+<p>However, some programming languages/VMs offer their own similar abstractions, which may also be called “processes” and may not be based on processes in the underlying OS. <a href="https://www.erlang.org/doc/getting_started/conc_prog.html">Erlang</a> is one such example. So what “process” means depends a lot on the context.</p></li>
+<li><p><strong>Threads</strong> can be operating system or <a href="https://en.wikipedia.org/wiki/Multithreading_%28computer_architecture%29">processor abstractions</a>, but are often user-space abstractions, defined by the programming language or implementation. Threads usually share memory. What that looks like in a typical programming language is that threads can modify variables and see each other’s modifications.</p>
+<p>Like processes, threads’ implementations may or may not be based on OS functionality. Threads that aren’t implemented with any OS functionality, like our last Add interpreter, are sometimes called <a href="https://en.wikipedia.org/wiki/Green_thread">green threads</a>.</p>
+<p>(If you clicked the Erlang link, you may have noticed how it says concurrency is “programs that can handle multiple threads of execution at the same time” and “each thread of execution is called a <strong>process</strong>”, demonstrating the nebulousness of the words in practice.)</p></li>
+</ul>
+<p>Processes are “larger” than threads. You can remember this by noting that the word “process” is longer than the word “thread”. (It also has more syllables.)</p>
+<h3 id="machine-code">Machine code</h3>
+<p>At the level of typical multithreaded machine code on a typical CPU, when two threads execute two sequences of instructions, those instructions can basically be interleaved in any order. (They may not even be <a href="https://en.wikipedia.org/wiki/Linearizability">linearizable</a>/<a href="https://en.wikipedia.org/wiki/Serializability">serializable</a>, but let’s not worry about that for now.) When two threads both execute <code>x += 1</code> (or rather, the machine code it compiles to), they may end up only incrementing <code>x</code> once overall, because <code>x += 1</code> is (typically, at least) two instructions: “read <code>x</code>” and “write <code>x + 1</code>”, and they can get interleaved as follows:</p>
+<ul>
+<li>thread A reads x</li>
+<li>thread B reads x</li>
+<li>thread A writes x + 1</li>
+<li>thread B writes x + 1</li>
+</ul>
+<p>Here’s a short C++ program for demonstrating a race. (Note to self, who rarely compiles standalone C++ programs: the flag you want is <code>-pthread</code>.)</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" title="1"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="pp">#include </span><span class="im">&lt;thread&gt;</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="pp">#include </span><span class="im">&lt;vector&gt;</span></a>
+<a class="sourceLine" id="cb4-4" title="4"></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="dt">int</span> accumulator = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="dt">void</span> inc() {</a>
+<a class="sourceLine" id="cb4-7" title="7">    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">1000</span>; i++) accumulator++;</a>
+<a class="sourceLine" id="cb4-8" title="8">}</a>
+<a class="sourceLine" id="cb4-9" title="9"></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="dt">int</span> main() {</a>
+<a class="sourceLine" id="cb4-11" title="11">    <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>thread&gt; threads;</a>
+<a class="sourceLine" id="cb4-12" title="12">    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">1000</span>; i++) threads.push_back(<span class="bu">std::</span>thread(inc));</a>
+<a class="sourceLine" id="cb4-13" title="13">    <span class="cf">for</span> (<span class="bu">std::</span>thread&amp; t : threads) t.join();</a>
+<a class="sourceLine" id="cb4-14" title="14">    <span class="bu">std::</span>cout &lt;&lt; accumulator &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb4-15" title="15">}</a></code></pre></div>
+<p>Many programming language data structures are not thread-safe for performance reasons.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> This C++ program reliably segfaults or hits some other memory corruption.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" title="1"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="pp">#include </span><span class="im">&lt;thread&gt;</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="pp">#include </span><span class="im">&lt;vector&gt;</span></a>
+<a class="sourceLine" id="cb5-4" title="4"></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; accumulator;</a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="dt">void</span> inc() {</a>
+<a class="sourceLine" id="cb5-7" title="7">    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">1000</span>; i++) accumulator.push_back(i);</a>
+<a class="sourceLine" id="cb5-8" title="8">}</a>
+<a class="sourceLine" id="cb5-9" title="9"></a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="dt">int</span> main() {</a>
+<a class="sourceLine" id="cb5-11" title="11">    <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>thread&gt; threads;</a>
+<a class="sourceLine" id="cb5-12" title="12">    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">1000</span>; i++) threads.push_back(<span class="bu">std::</span>thread(inc));</a>
+<a class="sourceLine" id="cb5-13" title="13">    <span class="cf">for</span> (<span class="bu">std::</span>thread&amp; t : threads) t.join();</a>
+<a class="sourceLine" id="cb5-14" title="14">    <span class="bu">std::</span>cout &lt;&lt; accumulator &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb5-15" title="15">}</a></code></pre></div>
+<p>This level of abstraction is where synchronization primitives shine: mutexes, semaphores, condition variables, all that jazz.</p>
+<p>To give another example, Java behaves similarly. This doesn’t immediately follow from the C++ example: Java programs compile down to bytecode for the Java Virtual Machine (JVM) rather than machine code, and you could theoretically imagine that there’s a bytecode instruction that atomically increments a variable, or that some other quirk of how JVM threads work makes the race less likely. But JVM threads executing bytecode interleave their instructions similarly arbitrarily.</p>
+<p>(Wow it has been ages since I wrote Java.)</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">import</span><span class="im"> java.util.ArrayList;</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw">class</span> Threads {</a>
+<a class="sourceLine" id="cb6-3" title="3">    <span class="dt">static</span> <span class="dt">int</span> accumulator = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb6-4" title="4">    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) <span class="kw">throws</span> <span class="bu">InterruptedException</span> {</a>
+<a class="sourceLine" id="cb6-5" title="5">        <span class="bu">ArrayList</span>&lt;<span class="bu">Thread</span>&gt; threads = <span class="kw">new</span> <span class="bu">ArrayList</span>&lt;<span class="bu">Thread</span>&gt;();</a>
+<a class="sourceLine" id="cb6-6" title="6">        <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">1000</span>; i++) {</a>
+<a class="sourceLine" id="cb6-7" title="7">            <span class="bu">Thread</span> t = <span class="kw">new</span> <span class="bu">Thread</span>() {</a>
+<a class="sourceLine" id="cb6-8" title="8">                <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {</a>
+<a class="sourceLine" id="cb6-9" title="9">                    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">1000</span>; i++) {</a>
+<a class="sourceLine" id="cb6-10" title="10">                        Threads.<span class="fu">accumulator</span>++;</a>
+<a class="sourceLine" id="cb6-11" title="11">                    }</a>
+<a class="sourceLine" id="cb6-12" title="12">                }</a>
+<a class="sourceLine" id="cb6-13" title="13">            };</a>
+<a class="sourceLine" id="cb6-14" title="14">            t.<span class="fu">start</span>();</a>
+<a class="sourceLine" id="cb6-15" title="15">            threads.<span class="fu">add</span>(t);</a>
+<a class="sourceLine" id="cb6-16" title="16">        }</a>
+<a class="sourceLine" id="cb6-17" title="17">        <span class="kw">for</span> (<span class="bu">Thread</span> t : threads) {</a>
+<a class="sourceLine" id="cb6-18" title="18">            t.<span class="fu">join</span>();</a>
+<a class="sourceLine" id="cb6-19" title="19">        }</a>
+<a class="sourceLine" id="cb6-20" title="20">        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(accumulator);</a>
+<a class="sourceLine" id="cb6-21" title="21">    }</a>
+<a class="sourceLine" id="cb6-22" title="22">}</a></code></pre></div>
+<p>Java collections are similarly not thread-safe by default. Trying to <code>add</code> to a list concurrently from multiple threads causes exceptions galore. (Though, I’d take that over memory corruption seven days of the week.)</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">import</span><span class="im"> java.util.*;</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw">class</span> Threads {</a>
+<a class="sourceLine" id="cb7-3" title="3">    <span class="dt">static</span> <span class="bu">List</span>&lt;<span class="bu">Integer</span>&gt; accumulator = <span class="kw">new</span> <span class="bu">ArrayList</span>&lt;<span class="bu">Integer</span>&gt;();</a>
+<a class="sourceLine" id="cb7-4" title="4">    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) <span class="kw">throws</span> <span class="bu">InterruptedException</span> {</a>
+<a class="sourceLine" id="cb7-5" title="5">        <span class="bu">ArrayList</span>&lt;<span class="bu">Thread</span>&gt; threads = <span class="kw">new</span> <span class="bu">ArrayList</span>&lt;<span class="bu">Thread</span>&gt;();</a>
+<a class="sourceLine" id="cb7-6" title="6">        <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">1000</span>; i++) {</a>
+<a class="sourceLine" id="cb7-7" title="7">            <span class="bu">Thread</span> t = <span class="kw">new</span> <span class="bu">Thread</span>() {</a>
+<a class="sourceLine" id="cb7-8" title="8">                <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {</a>
+<a class="sourceLine" id="cb7-9" title="9">                    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">1000</span>; i++) {</a>
+<a class="sourceLine" id="cb7-10" title="10">                        Threads.<span class="fu">accumulator</span>.<span class="fu">add</span>(i);</a>
+<a class="sourceLine" id="cb7-11" title="11">                    }</a>
+<a class="sourceLine" id="cb7-12" title="12">                }</a>
+<a class="sourceLine" id="cb7-13" title="13">            };</a>
+<a class="sourceLine" id="cb7-14" title="14">            t.<span class="fu">start</span>();</a>
+<a class="sourceLine" id="cb7-15" title="15">            threads.<span class="fu">add</span>(t);</a>
+<a class="sourceLine" id="cb7-16" title="16">        }</a>
+<a class="sourceLine" id="cb7-17" title="17">        <span class="kw">for</span> (<span class="bu">Thread</span> t : threads) {</a>
+<a class="sourceLine" id="cb7-18" title="18">            t.<span class="fu">join</span>();</a>
+<a class="sourceLine" id="cb7-19" title="19">        }</a>
+<a class="sourceLine" id="cb7-20" title="20">        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(accumulator.<span class="fu">size</span>());</a>
+<a class="sourceLine" id="cb7-21" title="21">    }</a>
+<a class="sourceLine" id="cb7-22" title="22">}</a></code></pre></div>
+<p>However, sychronization primitives are a bit more first-class in Java. Various constructs with the keyword <code>synchronized</code> can be used to access mutexes, and the one-line fix to the above race is to initialize <code>accumulator</code> as <code>Collections.synchronizedList(new ArrayList&lt;Integer&gt;())</code> instead.</p>
+<p>In theory, Python is in the same boat: its programs compile down to bytecode, and threads executing Python bytecode instructions can have those instructions arbitrarily interleaved. In practice, you’ll likely find it’s harder to get a race to show up with the same code:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb8-1" title="1"><span class="im">from</span> threading <span class="im">import</span> Thread</a>
+<a class="sourceLine" id="cb8-2" title="2"></a>
+<a class="sourceLine" id="cb8-3" title="3">accumulator <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="kw">def</span> inc():</a>
+<a class="sourceLine" id="cb8-5" title="5">    <span class="kw">global</span> accumulator</a>
+<a class="sourceLine" id="cb8-6" title="6">    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>): accumulator <span class="op">+=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb8-7" title="7"></a>
+<a class="sourceLine" id="cb8-8" title="8">threads <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb8-9" title="9"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</a>
+<a class="sourceLine" id="cb8-10" title="10">    t <span class="op">=</span> Thread(target<span class="op">=</span>inc)</a>
+<a class="sourceLine" id="cb8-11" title="11">    t.start()</a>
+<a class="sourceLine" id="cb8-12" title="12">    threads.append(t)</a>
+<a class="sourceLine" id="cb8-13" title="13"><span class="cf">for</span> t <span class="kw">in</span> threads:</a>
+<a class="sourceLine" id="cb8-14" title="14">    t.join()</a>
+<a class="sourceLine" id="cb8-15" title="15"></a>
+<a class="sourceLine" id="cb8-16" title="16"><span class="bu">print</span>(accumulator)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb9-1" title="1"><span class="im">from</span> threading <span class="im">import</span> Thread</a>
+<a class="sourceLine" id="cb9-2" title="2"></a>
+<a class="sourceLine" id="cb9-3" title="3">accumulator <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="kw">def</span> inc():</a>
+<a class="sourceLine" id="cb9-5" title="5">    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</a>
+<a class="sourceLine" id="cb9-6" title="6">        accumulator.append(i)</a>
+<a class="sourceLine" id="cb9-7" title="7"></a>
+<a class="sourceLine" id="cb9-8" title="8">threads <span class="op">=</span> []</a>
+<a class="sourceLine" id="cb9-9" title="9"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</a>
+<a class="sourceLine" id="cb9-10" title="10">    t <span class="op">=</span> Thread(target<span class="op">=</span>inc)</a>
+<a class="sourceLine" id="cb9-11" title="11">    t.start()</a>
+<a class="sourceLine" id="cb9-12" title="12">    threads.append(t)</a>
+<a class="sourceLine" id="cb9-13" title="13"></a>
+<a class="sourceLine" id="cb9-14" title="14"><span class="cf">for</span> t <span class="kw">in</span> threads:</a>
+<a class="sourceLine" id="cb9-15" title="15">    t.join()</a>
+<a class="sourceLine" id="cb9-16" title="16"></a>
+<a class="sourceLine" id="cb9-17" title="17"><span class="bu">print</span>(<span class="bu">len</span>(accumulator))</a></code></pre></div>
+<p>One important factor is that Python has the infamous Global Interpreter Lock, or GIL. Python threads can only execute Python code when they hold the GIL, so only one thread can execute Python code at a time. (The GIL may be released when performing I/O or executing computations implemented in C, or even other non-Python FFI languages, e.g. numpy computations.) And it happens that Python threads release the GIL infrequently, nowhere close to after every instruction.</p>
+<p>To get a race to show up in the first Python snippet, it helps to prepend these lines to encourage Python threads to release the GIL more often (cf. <code><a href="https://docs.python.org/3/library/sys.html#sys.setswitchinterval">setswitchinterval</a></code>):</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb10-1" title="1"><span class="im">import</span> sys</a>
+<a class="sourceLine" id="cb10-2" title="2">sys.setswitchinterval(<span class="fl">0.000001</span>)</a></code></pre></div>
+<p>The GIL also prevents races from happening in the second snippet; while a thread is appending an element to a list, it needs to hold the GIL.</p>
+<h3 id="concurrency-styles">Concurrency Styles</h3>
+<p>Glyph’s <a href="https://blog.glyph.im/2012/01/concurrency-spectrum-from-callbacks-to.html">The Concurrency Spectrum</a> lists four styles of “concurrent programming idioms”, which I will attempt to rephrase more briefly and uniformly in terms of threads yielding to each other. That is, we have some processor or virtual machine executing one thread at a time, and it sometimes decides to switch to executing another thread, in which case we say the first thread yields to the second.</p>
+<ol type="1">
+<li>Callback-based concurrency: “threads” always run to completion (you probably don’t even call them “threads”). Any asynchronous actions are performed through setting up explicit callbacks, which you can think of as defining a new “thread” to be executed later.</li>
+<li>Explicit concurrency: threads yield to each other only at points with a specific programming construct, e.g., a <code>yield</code> or <code>await</code> keyword. Furthermore, these constructs are “colored”<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> such that functions using them must themselves be called with this construct. As a result, when you read a block of code without such a construct, you know it contains no yield points and will execute atomically without being interrupted by other threads.</li>
+<li>Cooperative multithreading: threads yield to each other only at points where specific concurrency primitives are invoked. This differs from explicit concurrency in that these primitives can be called from inside functions that can themselves be called normally.</li>
+<li>Preemptive multithreading: threads yield to each other anywhere, unless protected by synchronization primitives.</li>
+</ol>
+<p>To expand this list to actually cover the guarantees that multithreaded machine code on modern processors give, I might propose a fifth style:</p>
+<ol start="5" type="1">
+<li>Nonlinearizable preemptive multithreading: it is not correct to think of threads yielding to each other at all, because the results of execution may not correspond to any globally-consistent order in which the various threads’ instructions were executed. For example, perhaps it’s possible for one thread to execute <code>a = 0; b = 0; a = 1; b = 1</code> but for another thread to read <code>b == 1 &amp;&amp; a == 0</code>, because <code>a</code> happened to live in a per-CPU cache but <code>b</code> happened to live in a shared one.</li>
+</ol>
+<p>Just for completeness, I suppose I would also want to start the list this way:</p>
+<ol start="0" type="1">
+<li>No concurrency: There is only one thread.</li>
+</ol>
+<p>Lower numbers are easier to reason about, but higher numbers may offer better performance (if only by being closer to the model of computation one layer of abstraction deeper) and some kinds of flexibility.</p>
+<h3 id="callbacks-and-event-loops">Callbacks and Event Loops</h3>
+<p>There’s a function <code>call_when_thing_happens</code>. You pass it a function. It calls the function when the thing happens. Simple enough, right?</p>
+<p>Consider installing a signal handler:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb11-1" title="1">interrupted <span class="op">=</span> <span class="va">False</span></a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="kw">def</span> handler(num, stack_frame):</a>
+<a class="sourceLine" id="cb11-3" title="3">    <span class="kw">global</span> interrupted</a>
+<a class="sourceLine" id="cb11-4" title="4">    interrupted <span class="op">=</span> <span class="va">True</span></a>
+<a class="sourceLine" id="cb11-5" title="5"></a>
+<a class="sourceLine" id="cb11-6" title="6"><span class="im">import</span> signal</a>
+<a class="sourceLine" id="cb11-7" title="7">signal.signal(signal.SIGINT, handler)</a>
+<a class="sourceLine" id="cb11-8" title="8"><span class="cf">while</span> <span class="kw">not</span> interrupted: <span class="cf">pass</span></a>
+<a class="sourceLine" id="cb11-9" title="9"><span class="bu">print</span>(<span class="st">&quot;Interrupted&quot;</span>)</a></code></pre></div>
+<p>This is fine, if a bit silly. Contrast with an event listener in everyday JavaScript:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">&lt;button</span><span class="ot"> id=</span><span class="st">&quot;button&quot;</span><span class="kw">&gt;</span>Click me<span class="kw">&lt;/button&gt;</span></a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="kw">&lt;script&gt;</span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="kw">let</span> clicked <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="kw">function</span> <span class="at">handler</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb12-5" title="5">  clicked <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb12-6" title="6"><span class="op">}</span></a>
+<a class="sourceLine" id="cb12-7" title="7"><span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;button&quot;</span>).<span class="at">addEventListener</span>(<span class="st">&quot;click&quot;</span><span class="op">,</span> handler)<span class="op">;</span></a>
+<a class="sourceLine" id="cb12-8" title="8"><span class="cf">while</span> (<span class="op">!</span>clicked) <span class="op">{}</span></a>
+<a class="sourceLine" id="cb12-9" title="9"><span class="at">alert</span>(<span class="st">&quot;Clicked&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb12-10" title="10"><span class="kw">&lt;/script&gt;</span></a></code></pre></div>
+<p>(I switched the event kind because signal handling seems much less common in JavaScript, but for anybody spooked by me changing both that and the programming language, you get the same result if you use a Node signal handler — which I was initially surprised to see:)</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">const</span> process <span class="op">=</span> <span class="at">require</span>(<span class="st">&quot;node:process&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb13-2" title="2"></a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="kw">let</span> interrupted <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb13-4" title="4"><span class="va">process</span>.<span class="at">on</span>(<span class="st">&quot;SIGINT&quot;</span><span class="op">,</span> () <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb13-5" title="5">  interrupted <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb13-6" title="6"><span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb13-7" title="7"></a>
+<a class="sourceLine" id="cb13-8" title="8"><span class="cf">while</span> (<span class="op">!</span>interrupted) <span class="op">{}</span></a>
+<a class="sourceLine" id="cb13-9" title="9"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Interrupted&quot;</span>)<span class="op">;</span></a></code></pre></div>
+<p>The JavaScript event listener will never run. One way to think about this is that <code>while not interrupted: pass</code> contains yield points to signal handlers, but <code>while (!clicked) {}</code> doesn’t contain any yield points to event handlers.</p>
+<p>How do signal handlers work in Python? (Specifically, CPython?) Note that the answer is different from how signal handlers work in the OS — there is a concrete layer of abstraction intervening: Python installs its own signal handler (which, on Linux-likes, bottoms out to the syscall <code>signal</code> or <code>sigaction</code>), then checks whether that handler has fired at various points between Python bytecode instructions (and sometimes a few other places besides); if it has, the Python signal handler is invoked. So generally, when the Python interpreter is running pure C code that’s halfway through an opcode, it’s not interruptible.</p>
+<p>If you have numpy installed, you can try performing a large matrix multiplication and checking that you can’t interrupt it with <kbd>Ctrl-C</kbd>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb14-1" title="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb14-2" title="2">np.empty((<span class="dv">4000</span>,<span class="dv">4000</span>)) <span class="op">@</span> np.empty((<span class="dv">4000</span>,<span class="dv">4000</span>))</a></code></pre></div>
+<p>(I actually had trouble finding an uninterruptible computation — integer exponentiation is a single opcode, and there’s some documentation suggesting long regex matches might spend a long time in C, but both operations were interruptible when I tested them.)</p>
+<p>Then, if the Python signal handler is called after you’ve installed a handler for the relevant signal, the Python code in your handler gets executed, and can perhaps modify state that the rest of your Python code can read.</p>
+<p>How do event handlers work in JavaScript, or signal handlers in Node? Everything is built around the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop">event loop</a>, which looks something like:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb15-1" title="1"><span class="cf">while</span> (<span class="va">queue</span>.<span class="at">waitForMessage</span>()) <span class="op">{</span></a>
+<a class="sourceLine" id="cb15-2" title="2">  <span class="va">queue</span>.<span class="at">processNextMessage</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb15-3" title="3"><span class="op">}</span></a></code></pre></div>
+<p>A call to <code>addEventListener</code> or <code>process.on</code> tells the browser or Node runtime: when this event or signal happens, append the handler to the queue, but don’t run any code right away. (Usually — the <a href="https://stackoverflow.com/a/2734311">full story is complicated</a>.) But if processing the rest of the current message takes a long time (perhaps forever), the remaining messages/handlers in the queue are simply stuck. Many “green thread” implementations work in very similar ways.</p>
+<p>Your reaction to this might be, wow, this event loop is so limiting. Mine was at first. But consider what you’re giving up by allowing your signal handler to run <em>anywhere</em>. For example, you can no longer safely refactor the first snippet below into the second, since the signal handler could run between the two statements.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb16-1" title="1"><span class="cf">if</span> interrupted:</a>
+<a class="sourceLine" id="cb16-2" title="2">    foo, bar <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span></a>
+<a class="sourceLine" id="cb16-3" title="3"><span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb16-4" title="4">    foo, bar <span class="op">=</span> <span class="dv">3</span>, <span class="dv">4</span></a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb17-1" title="1">foo <span class="op">=</span> <span class="dv">1</span> <span class="cf">if</span> interrupted <span class="cf">else</span> <span class="dv">3</span></a>
+<a class="sourceLine" id="cb17-2" title="2">bar <span class="op">=</span> <span class="dv">2</span> <span class="cf">if</span> interrupted <span class="cf">else</span> <span class="dv">4</span></a></code></pre></div>
+<p>Less contrivedly, if you let Control-C raise an exception like it does by default, it messes with all kinds of common expectations, such as in try/finally constructs. You might hope that, if <code>foo</code> gets called below, then (barring the entire Python process terminating for some external reason) <code>bar</code> will definitely get called later.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb18-1" title="1"><span class="cf">try</span>:</a>
+<a class="sourceLine" id="cb18-2" title="2">    foo()</a>
+<a class="sourceLine" id="cb18-3" title="3"><span class="cf">finally</span>:</a>
+<a class="sourceLine" id="cb18-4" title="4">    bar()</a></code></pre></div>
+<p>But you can’t rely on that, because a <code>KeyboardInterrupt</code> can happen after execution enters the <code>finally:</code> but before <code>bar</code> gets called. (Example is my own mangled adaptation of one from <a href="https://vorpus.org/blog/control-c-handling-in-python-and-trio/#option-1-keyboardinterrupt">Control-C handling in Python and Trio</a>.)</p>
+<p>Finally, relying on an operating system or other host and relying on an outer event loop aren’t the only ways listeners can be implemented. You can have a completely “user-space” listener system, where you add a listener and later invoke it synchronously, possibly through many levels of indirection but without involving any external concurrency system.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">let</span> listeners <span class="op">=</span> []<span class="op">;</span></a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="kw">function</span> <span class="at">addListener</span>(f) <span class="op">{</span> <span class="va">listeners</span>.<span class="at">push</span>(f)<span class="op">;</span> <span class="op">}</span></a>
+<a class="sourceLine" id="cb19-3" title="3"><span class="kw">function</span> <span class="at">invokeListeners</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb19-4" title="4">  <span class="cf">for</span> (<span class="kw">let</span> listener <span class="kw">of</span> listeners) <span class="at">listener</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb19-5" title="5"><span class="op">}</span></a>
+<a class="sourceLine" id="cb19-6" title="6"><span class="co">// later...</span></a>
+<a class="sourceLine" id="cb19-7" title="7"><span class="at">addListener</span>(() <span class="kw">=&gt;</span> <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Handled&quot;</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb19-8" title="8"><span class="co">// later...</span></a>
+<a class="sourceLine" id="cb19-9" title="9"><span class="at">invokeListeners</span>()<span class="op">;</span></a></code></pre></div>
+<p>Sometimes you may be working with multiple concurrency systems atop each other, and may need some finesse to “cross layers”. For example, I believe I randomly had to call <code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.desktop/javax/swing/SwingUtilities.html#invokeLater%28java.lang.Runnable%29">SwingUtilities.invokeLater()</a></code> in my old Java GUI code because it used an event loop running in one thread inside a multithreaded system.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Each concurrency style is an abstraction, and can be implemented atop a system providing any other concurrency style. Implementing stricter systems atop looser ones is easy: just add synchronization primitives. Conversely, writing an event loop lets you implement level-1 concurrency in a single-threaded (level-0) system, language features like JavaScript’s <code>async</code>/<code>await</code> let you write what seems to be level-2 concurrent code atop Promise-based level-1 concurrency, and custom VMs implementing custom bytecodes can generally just present any abstraction they want.</p>
+<p>It is common for a concurrent system to be built atop another one, but use none of the latter’s concurrency features and instead implement its own concurrency system “from scratch”, usually via an event loop.</p>
+<p>To write correct concurrent code, you may not need to know anything but the API or contract provided by the topmost layer of concurrency abstraction. High-level libraries, e.g. web frameworks, might be compatible with multiple different concurrency libraries. But you may sometimes have to write code that touches different layers of concurrency abstraction, or to investigate how multiple layers are affecting code performance, in which case it’s useful to be aware of what all those layers are and how they interact with each other.</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Consider e.g. <a href="https://gist.github.com/hellerbarde/2843375">Latency numbers every programmer should know</a>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>As made famous by <a href="https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/">What Color is Your Function?</a> — though many responses have been written to it, in particular disputing whether “color” is actually bad, which any web search will pull up.</p>
+<p>(Not to be confused with <a href="https://ansuz.sooke.bc.ca/entry/23">What Colour are your bits?</a>, which I realized while writing this post is a similar-sounding useful metaphor in computer science, but is totally unrelated.)<a href="#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
+</section></article>
+	<footer class="post-footer">
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/diceware">← Yet Another Diceware-Style Word List</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+</div>
+<footer class="site-footer">
+	<p>© 2017-2023 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://www.goatcounter.com/">GoatCounter</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</body>
+</html>

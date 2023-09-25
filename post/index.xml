@@ -6,7 +6,23 @@
     <description>Recent content in Posts on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 23 Jul 2023 00:42:01 -0700</lastBuildDate><atom:link href="//blog.vero.site/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Sep 2023 01:03:41 -0700</lastBuildDate><atom:link href="//blog.vero.site/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Concurrency</title>
+      <link>//blog.vero.site/post/concurrency</link>
+      <pubDate>Mon, 25 Sep 2023 01:03:41 -0700</pubDate>
+      
+      <guid>//blog.vero.site/post/concurrency</guid>
+      <description>&lt;p&gt;I want to add a second word in the title, something like “Koans” or “Vignettes”, but I don’t know a word with the right connotations.&lt;/p&gt;
+&lt;p&gt;I realized recently that I have been walking around for a long time with some confusion and unknown unknowns about how concurrency works in various settings, and decided to write about it until I stopped being confused. This post doesn’t therefore have much of a “point”.&lt;/p&gt;
+&lt;h3 id=&#34;concurrency-and-parallelism&#34;&gt;Concurrency and Parallelism&lt;/h3&gt;
+&lt;p&gt;Wikipedia, as of time of writing:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Concurrency&lt;/strong&gt; is the ability of different parts or units of a program, algorithm, or problem to be executed out-of-order or in partial order, without affecting the outcome.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;There are two broad reasons concurrency is useful. One is for performance: if you want your computer to perform as many floating point operations as possible by lunchtime, you want all CPUs/GPUs/etc. to be performing operations simultaneously. Another is that you’re in a problem domain where you simply can’t predict the order of events: you’re writing a user interface, and the user can click on any of multiple buttons in any order; or you’re writing a web server, and any number of clients can request any pages in any order. These reasons are not mutually exclusive.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Yet Another Diceware-Style Word List</title>
       <link>//blog.vero.site/post/diceware</link>
