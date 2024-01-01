@@ -61,12 +61,44 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/despite" class="post-link">Despite Everything</a></h3>
+		
+		<p class="post-meta">
+		
+		2023-12-31
+		(1262 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>…it’s still you. Looking at yourself in the window. The second afternoon after you finally get COVID for the first time.</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/SX8jyRuOUiQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>As previously reported, I left Zoom late last year and spent a bit of time unemployed, traveling for some of it but mostly staying home. In the process, I got COVID, though not with a particularly interesting story. Would not recommend.</p>
+<p>Then I started work at Anthropic doing interpretability research — moving way back into my comfort zone in a way by returning to my web dev roots to create many of the visualizations we cared about, and way out of it in another by jumping into the deeply theoretical end of research, in a field where my total experience is one college course and one casual reading group. Still, I figured some things out and we published <a href="https://transformer-circuits.pub/2023/monosemantic-features/index.html">Towards Monosemanticity</a> in early October.</p>
+<p>I don’t have much to add to the research results in the paper, though I can share some trivial, mildly entertaining anecdotes about the process:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/despite">→ read more<span class="offscreen"> Despite Everything</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/concurrency" class="post-link">Concurrency</a></h3>
 		
 		<p class="post-meta">
 		
 		2023-09-25
-		(3090 words)
+		(3137 words)
 		
 		<span class="post-categories">
 			filed under
@@ -134,7 +166,7 @@ Somehow this image was already on my blog without being used in any post, but if
 		<p class="post-meta">
 		
 		2023-04-09
-		(17333 words)
+		(17343 words)
 		
 		<span class="post-categories">
 			filed under
@@ -362,60 +394,6 @@ Somehow this image was already on my blog without being used in any post, but if
 <a class="sourceLine" id="cb1-22" title="22">    <span class="bu">print</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>.join(i[:<span class="dv">11</span>] <span class="cf">for</span> i <span class="kw">in</span> f))</a></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/mask">→ read more<span class="offscreen"> Mask</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/kevin-higgs" class="post-link">Kevin Higgs</a></h3>
-		
-		<h4 class="post-subtitle">ångstromCTF 2022 (210 points)</h4>
-		
-		<p class="post-meta">
-		
-		2022-07-04
-		(1366 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>Now that kmh is gone, clam’s been going through pickle withdrawal. To help him cope, he wrote his own pickle pyjail. It’s nothing like kmh’s, but maybe it’s enough.</p>
-</blockquote>
-<p>Language jails are rapidly becoming one of my CTF areas of expertise. Not sure how I feel about that.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#!/usr/local/bin/python3</span></a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="im">import</span> pickle</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="im">import</span> io</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="im">import</span> sys</a>
-<a class="sourceLine" id="cb1-6" title="6"></a>
-<a class="sourceLine" id="cb1-7" title="7">module <span class="op">=</span> <span class="bu">type</span>(__builtins__)</a>
-<a class="sourceLine" id="cb1-8" title="8">empty <span class="op">=</span> module(<span class="st">&quot;empty&quot;</span>)</a>
-<a class="sourceLine" id="cb1-9" title="9">empty.empty <span class="op">=</span> empty</a>
-<a class="sourceLine" id="cb1-10" title="10">sys.modules[<span class="st">&quot;empty&quot;</span>] <span class="op">=</span> empty</a>
-<a class="sourceLine" id="cb1-11" title="11"></a>
-<a class="sourceLine" id="cb1-12" title="12"></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="kw">class</span> SafeUnpickler(pickle.Unpickler):</a>
-<a class="sourceLine" id="cb1-14" title="14">    <span class="kw">def</span> find_class(<span class="va">self</span>, module, name):</a>
-<a class="sourceLine" id="cb1-15" title="15">        <span class="cf">if</span> module <span class="op">==</span> <span class="st">&quot;empty&quot;</span> <span class="kw">and</span> name.count(<span class="st">&quot;.&quot;</span>) <span class="op">&lt;=</span> <span class="dv">1</span>:</a>
-<a class="sourceLine" id="cb1-16" title="16">            <span class="cf">return</span> <span class="bu">super</span>().find_class(module, name)</a>
-<a class="sourceLine" id="cb1-17" title="17">        <span class="cf">raise</span> pickle.UnpicklingError(<span class="st">&quot;e-legal&quot;</span>)</a>
-<a class="sourceLine" id="cb1-18" title="18"></a>
-<a class="sourceLine" id="cb1-19" title="19"></a>
-<a class="sourceLine" id="cb1-20" title="20">lepickle <span class="op">=</span> <span class="bu">bytes</span>.fromhex(<span class="bu">input</span>(<span class="st">&quot;Enter hex-encoded pickle: &quot;</span>))</a>
-<a class="sourceLine" id="cb1-21" title="21"><span class="cf">if</span> <span class="bu">len</span>(lepickle) <span class="op">&gt;</span> <span class="dv">400</span>:</a>
-<a class="sourceLine" id="cb1-22" title="22">    <span class="bu">print</span>(<span class="st">&quot;your pickle is too large for my taste &gt;:(&quot;</span>)</a>
-<a class="sourceLine" id="cb1-23" title="23"><span class="cf">else</span>:</a>
-<a class="sourceLine" id="cb1-24" title="24">    SafeUnpickler(io.BytesIO(lepickle)).load()</a></code></pre></div>
-<p><code><a href="https://docs.python.org/3/library/pickle.html">pickle</a></code> is a Python object serialization format. As the docs page loudly proclaims, it is not secure. Roughly the simplest possible code to pop a shell (adapted from <a href="https://davidhamann.de/2020/04/05/exploiting-python-pickle/">David Hamann</a>, who constructs a more realistic RCE) looks like:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/kevin-higgs">→ read more<span class="offscreen"> Kevin Higgs</span></a>
 	</footer>
 </article>
 

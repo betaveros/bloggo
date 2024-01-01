@@ -65,7 +65,7 @@ This post details my thought process behind the design of this language. Some pr
 		<p class="post-meta">
 		
 		2023-04-09
-		(17333 words)
+		(17343 words)
 		
 		<span class="post-categories">
 			filed under
@@ -572,7 +572,10 @@ I also chose to allocate a separate operator, <code>$</code>, to string concaten
 <blockquote>
 <p>However, × is part of a special construct, not an infix operator.</p>
 </blockquote>
-<p>Or <a href="https://old.learntla.com/tla/tuples/#sets-of-tuples">Sets of Tuples</a> (from the “old” Learn TLA<sup>+</sup> guide, but the new guide doesn’t currently explain this as clearly).<a href="#fnref5" class="footnote-back">↩</a></p></li>
+<del>
+Or <a href="https://old.learntla.com/tla/tuples/#sets-of-tuples">Sets of Tuples</a> (from the “old” Learn TLA<sup>+</sup> guide, but the new guide doesn’t currently explain this as clearly).
+</del>
+<p>See the note in <a href="https://learntla.com/core/operators.html?highlight=associative#sets-of-values">Sets of Values</a>. Thanks Hillel Wayne!<a href="#fnref5" class="footnote-back">↩</a></p></li>
 <li id="fn6"><p>Soemwhat more precisely, in legitimate conditions that contain the opening delimiter, the prefix before the delimiter can’t also look like a legitimate condition. But code like <code>if if true { ... } else { ... } { ... }</code> is legal Rust.<a href="#fnref6" class="footnote-back">↩</a></p></li>
 <li id="fn7"><p>This was the summer I graduated from high school. And also the only year I made Google Code Jam World Finals. Huh.<a href="#fnref7" class="footnote-back">↩</a></p></li>
 <li id="fn8"><p>The 2-3 finger trees implemented herein support amortized <span class="math inline">\(O(1)\)</span> read-write access, including adding and removing elements, to the front and back, despite being fully immutable!<a href="#fnref8" class="footnote-back">↩</a></p></li>

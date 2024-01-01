@@ -6,7 +6,24 @@
     <description>Recent content in Posts on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 Sep 2023 01:03:41 -0700</lastBuildDate><atom:link href="//blog.vero.site/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Dec 2023 19:59:03 -0800</lastBuildDate><atom:link href="//blog.vero.site/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Despite Everything</title>
+      <link>//blog.vero.site/post/despite</link>
+      <pubDate>Sun, 31 Dec 2023 19:59:03 -0800</pubDate>
+      
+      <guid>//blog.vero.site/post/despite</guid>
+      <description>&lt;p&gt;…it’s still you. Looking at yourself in the window. The second afternoon after you finally get COVID for the first time.&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/SX8jyRuOUiQ&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;As previously reported, I left Zoom late last year and spent a bit of time unemployed, traveling for some of it but mostly staying home. In the process, I got COVID, though not with a particularly interesting story. Would not recommend.&lt;/p&gt;
+&lt;p&gt;Then I started work at Anthropic doing interpretability research — moving way back into my comfort zone in a way by returning to my web dev roots to create many of the visualizations we cared about, and way out of it in another by jumping into the deeply theoretical end of research, in a field where my total experience is one college course and one casual reading group. Still, I figured some things out and we published &lt;a href=&#34;https://transformer-circuits.pub/2023/monosemantic-features/index.html&#34;&gt;Towards Monosemanticity&lt;/a&gt; in early October.&lt;/p&gt;
+&lt;p&gt;I don’t have much to add to the research results in the paper, though I can share some trivial, mildly entertaining anecdotes about the process:&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Concurrency</title>
       <link>//blog.vero.site/post/concurrency</link>

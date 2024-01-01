@@ -64,7 +64,7 @@ There are two broad reasons concurrency is useful. One is for performance: if yo
 		<p class="post-meta">
 		
 		2023-09-25
-		(3090 words)
+		(3137 words)
 		
 		<span class="post-categories">
 			filed under
@@ -262,7 +262,7 @@ There are two broad reasons concurrency is useful. One is for performance: if yo
 </ol>
 <p>To expand this list to actually cover the guarantees that multithreaded machine code on modern processors give, I might propose a fifth style:</p>
 <ol start="5" type="1">
-<li>Nonlinearizable preemptive multithreading: it is not correct to think of threads yielding to each other at all, because the results of execution may not correspond to any globally-consistent order in which the various threads’ instructions were executed. For example, perhaps it’s possible for one thread to execute <code>a = 0; b = 0; a = 1; b = 1</code> but for another thread to read <code>b == 1 &amp;&amp; a == 0</code>, because <code>a</code> happened to live in a per-CPU cache but <code>b</code> happened to live in a shared one.</li>
+<li>Nonlinearizable preemptive multithreading: it is not correct to think of threads yielding to each other at all, because the results of execution may not correspond to any globally-consistent order in which the various threads’ instructions were executed. For example, perhaps it’s possible for one thread to execute <code>a = 0; b = 0; a = 1; b = 1</code> but for another thread to read <code>b == 1 &amp;&amp; a == 0</code>, <del>because <code>a</code> happened to live in a per-CPU cache but <code>b</code> happened to live in a shared one.</del> <ins>Reader Kåre von Geijer writes that this isn’t how modern processors work because they follow <a href="https://en.wikipedia.org/wiki/Cache_coherence#Definition">cache coherence</a>; upon reflecting on what I learned from 6.004, this sounds right to me. Instead, the instructions could be reordered by the hardware or compiler in ways that follow the rules.</ins></li>
 </ol>
 <p>Just for completeness, I suppose I would also want to start the list this way:</p>
 <ol start="0" type="1">
@@ -364,6 +364,8 @@ There are two broad reasons concurrency is useful. One is for performance: if yo
 			
 			<a class="pagination-previous" href="//blog.vero.site/post/diceware">← Yet Another Diceware-Style Word List</a>
 			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/despite">Despite Everything →</a>
 			
 		</nav>
 	</footer>
