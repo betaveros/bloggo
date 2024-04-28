@@ -65,6 +65,36 @@ Tag → JavaScript
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/d3" class="post-link">D3 the Hard FP Way</a></h3>
+		
+		<p class="post-meta">
+		
+		2024-04-28
+		(3580 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>In theory, the idea here is similar to when I was <a href="https://blog.vero.site/post/react-redux">learning React/Redux</a> and diving into <a href="https://blog.vero.site/post/sql-select">SQL selects</a>. In practice, I think most of D3’s complexity isn’t exactly in a direction that is elucidated by writing down types for everything, so the title is a mere personal snowclone. I’m just writing things out to an arbitrary amount of detail until I understand them and can refer to what I wrote here later.</p>
+<h3 id="background">Background</h3>
+<p>D3 is <a href="https://d3js.org/what-is-d3">“a JavaScript library for visualizing data”</a>. It has a lot of sublibraries that interoperate well but could be used separately — for example, it has utilities for manipulating colors, time, and SVG paths. Of the various concepts, though, I think D3 <em>selections</em> are the most distinctive and fundamental, so they are the focus of this post.</p>
+<p>At a high level, D3 selections feel like jQuery. You run some code and it goes into the DOM and adds, deletes, and mutates a bunch of elements. The docs even endorse <a href="https://d3js.org/d3-selection/selecting#selection">monkeypatching d3.selection</a> to add custom helpers. However, D3 has data binding and batch operations that make it easy to change the DOM in a way that resembles reconciliation in a framework like React.</p>
+<h3 id="selections">Selections</h3>
+<p><em>API: <a href="https://d3js.org/d3-selection/selecting">Selecting Elements</a>.</em></p>
+<p>A D3 <strong>selection</strong> holds an array of arrays of nullable<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> DOM elements. The intermediate arrays are called <strong>groups</strong>. Additionally, each group in a selection is associated with a <strong>parent node</strong>. During basic D3 usage, you might only ever work with selections with a single group and ignore parent nodes.</p>
+<p>When relevant, I will call the index of an element inside its group the “within-group index” and the index of a group among all groups in a selection the “across-group index”.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/d3">→ read more<span class="offscreen"> D3 the Hard FP Way</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/react-redux" class="post-link">React and Redux the Hard FP Way</a></h3>
 		
 		<p class="post-meta">

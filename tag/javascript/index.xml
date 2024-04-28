@@ -6,7 +6,23 @@
     <description>Recent content in JavaScript on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Dec 2018 16:44:20 -0500</lastBuildDate><atom:link href="//blog.vero.site/tag/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 28 Apr 2024 13:15:27 -0700</lastBuildDate><atom:link href="//blog.vero.site/tag/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>D3 the Hard FP Way</title>
+      <link>//blog.vero.site/post/d3</link>
+      <pubDate>Sun, 28 Apr 2024 13:15:27 -0700</pubDate>
+      
+      <guid>//blog.vero.site/post/d3</guid>
+      <description>&lt;p&gt;In theory, the idea here is similar to when I was &lt;a href=&#34;https://blog.vero.site/post/react-redux&#34;&gt;learning React/Redux&lt;/a&gt; and diving into &lt;a href=&#34;https://blog.vero.site/post/sql-select&#34;&gt;SQL selects&lt;/a&gt;. In practice, I think most of D3’s complexity isn’t exactly in a direction that is elucidated by writing down types for everything, so the title is a mere personal snowclone. I’m just writing things out to an arbitrary amount of detail until I understand them and can refer to what I wrote here later.&lt;/p&gt;
+&lt;h3 id=&#34;background&#34;&gt;Background&lt;/h3&gt;
+&lt;p&gt;D3 is &lt;a href=&#34;https://d3js.org/what-is-d3&#34;&gt;“a JavaScript library for visualizing data”&lt;/a&gt;. It has a lot of sublibraries that interoperate well but could be used separately — for example, it has utilities for manipulating colors, time, and SVG paths. Of the various concepts, though, I think D3 &lt;em&gt;selections&lt;/em&gt; are the most distinctive and fundamental, so they are the focus of this post.&lt;/p&gt;
+&lt;p&gt;At a high level, D3 selections feel like jQuery. You run some code and it goes into the DOM and adds, deletes, and mutates a bunch of elements. The docs even endorse &lt;a href=&#34;https://d3js.org/d3-selection/selecting#selection&#34;&gt;monkeypatching d3.selection&lt;/a&gt; to add custom helpers. However, D3 has data binding and batch operations that make it easy to change the DOM in a way that resembles reconciliation in a framework like React.&lt;/p&gt;
+&lt;h3 id=&#34;selections&#34;&gt;Selections&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;API: &lt;a href=&#34;https://d3js.org/d3-selection/selecting&#34;&gt;Selecting Elements&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;A D3 &lt;strong&gt;selection&lt;/strong&gt; holds an array of arrays of nullable&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; DOM elements. The intermediate arrays are called &lt;strong&gt;groups&lt;/strong&gt;. Additionally, each group in a selection is associated with a &lt;strong&gt;parent node&lt;/strong&gt;. During basic D3 usage, you might only ever work with selections with a single group and ignore parent nodes.&lt;/p&gt;
+&lt;p&gt;When relevant, I will call the index of an element inside its group the “within-group index” and the index of a group among all groups in a selection the “across-group index”.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>React and Redux the Hard FP Way</title>
       <link>//blog.vero.site/post/react-redux</link>

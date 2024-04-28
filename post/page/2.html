@@ -55,6 +55,57 @@
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/mask" class="post-link">Mask</a></h3>
+		
+		<h4 class="post-subtitle">ångstromCTF 2022 (200 points)</h4>
+		
+		<p class="post-meta">
+		
+		2022-07-04
+		(2519 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>Don’t forget to wear your mask…</p>
+<p><code>nc challs.actf.co 31501</code></p>
+</blockquote>
+<p>If I had a nickel for every <a href="//blog.vero.site/post/messy-desk">CTF challenge I’ve done</a> that involves understanding the internal structure of a QR code, I would have two nickels. Which isn’t a lot, etc etc. That previous challenge probably helped me get first blood on this.</p>
+<p>The source code is wonderfully short:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="im">import</span> io, qrcode, string</a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3">flag_contents <span class="op">=</span> [REDACTED]</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="cf">assert</span> <span class="bu">all</span>(i <span class="kw">in</span> string.ascii_lowercase <span class="op">+</span> <span class="st">&#39;_&#39;</span> <span class="cf">for</span> i <span class="kw">in</span> flag_contents)</a>
+<a class="sourceLine" id="cb1-5" title="5"></a>
+<a class="sourceLine" id="cb1-6" title="6">flag <span class="op">=</span> b<span class="st">&quot;actf{&quot;</span> <span class="op">+</span> flag_contents.encode() <span class="op">+</span> b<span class="st">&quot;}&quot;</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="bu">print</span>(<span class="st">&quot;flag is </span><span class="sc">%d</span><span class="st"> characters&quot;</span> <span class="op">%</span> <span class="bu">len</span>(flag))</a>
+<a class="sourceLine" id="cb1-8" title="8"></a>
+<a class="sourceLine" id="cb1-9" title="9">qr <span class="op">=</span> qrcode.QRCode(version<span class="op">=</span><span class="dv">1</span>, error_correction <span class="op">=</span> qrcode.constants.ERROR_CORRECT_L, box_size<span class="op">=</span><span class="dv">1</span>, border<span class="op">=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="cf">while</span> <span class="dv">1</span>:</a>
+<a class="sourceLine" id="cb1-11" title="11">    <span class="cf">try</span>:</a>
+<a class="sourceLine" id="cb1-12" title="12">        inp <span class="op">=</span> <span class="bu">bytes</span>.fromhex(<span class="bu">input</span>(<span class="st">&quot;give input (in hex): &quot;</span>))</a>
+<a class="sourceLine" id="cb1-13" title="13">        <span class="cf">assert</span> <span class="bu">len</span>(inp) <span class="op">==</span> <span class="bu">len</span>(flag)</a>
+<a class="sourceLine" id="cb1-14" title="14">    <span class="cf">except</span>:</a>
+<a class="sourceLine" id="cb1-15" title="15">        <span class="bu">print</span>(<span class="st">&quot;bad input, exiting&quot;</span>)</a>
+<a class="sourceLine" id="cb1-16" title="16">        <span class="cf">break</span></a>
+<a class="sourceLine" id="cb1-17" title="17">    qr.clear()</a>
+<a class="sourceLine" id="cb1-18" title="18">    qr.add_data(<span class="bu">bytes</span>([i<span class="op">^</span>j <span class="cf">for</span> i,j <span class="kw">in</span> <span class="bu">zip</span>(inp, flag)]))</a>
+<a class="sourceLine" id="cb1-19" title="19">    f <span class="op">=</span> io.StringIO()</a>
+<a class="sourceLine" id="cb1-20" title="20">    qr.print_ascii(out<span class="op">=</span>f)</a>
+<a class="sourceLine" id="cb1-21" title="21">    f.seek(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb1-22" title="22">    <span class="bu">print</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>.join(i[:<span class="dv">11</span>] <span class="cf">for</span> i <span class="kw">in</span> f))</a></code></pre></div>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/mask">→ read more<span class="offscreen"> Mask</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/kevin-higgs" class="post-link">Kevin Higgs</a></h3>
 		
 		<h4 class="post-subtitle">ångstromCTF 2022 (210 points)</h4>
@@ -440,44 +491,6 @@
 <p>That’s it. That’s the whole post.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/anki-trick">→ read more<span class="offscreen"> One Weird Anki Trick</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/discord-color" class="post-link">What Color Should My Discord Roles/Reactions Be?</a></h3>
-		
-		<p class="post-meta">
-		
-		2021-06-28
-		(1659 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>I subscribed to Discord Nitro a month ago, but only recently did I start thinking about the full range of powers the subscription granted me. I could create my own reactions, dump them in my personal server, and use them to react anywhere.</p>
-<p>However, when I finally started trying to create some reactions, I hit an interesting snag: Discord can be used in dark and light mode,<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and a reaction will have the same color on both modes. If I wanted my reaction to be as clearly readable in both modes as possible, what color should I make it?</p>
-<p>(I could, of course, just outline my reaction with a contrasting color, but let’s say that’s cheating. With the limited space in a reaction, outlining isn’t that great of a solution anyway.)</p>
-<p>Now, one can’t <em>really</em> just compute the “contrast of two colors” given only their RGB components; there’s no universally agreed-on definition of <a href="https://en.wikipedia.org/wiki/Contrast_(vision)">contrast in vision</a>, and even if there were one, the contrast of two given colors would depend on the color space and possibly the viewer’s biology. But, to get a concrete answer to this question, we can use the standard sRGB model and the W3C’s definitions of <a href="https://www.w3.org/TR/WCAG/#dfn-contrast-ratio">contrast ratio</a> and <a href="https://www.w3.org/TR/WCAG/#dfn-relative-luminance">relative luminance</a>.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> As of time of writing on my computer,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Discord reactions have background <span style="padding:0.15em 0.4em;background-color:#2f3136;color:white">#2f3136</span> on dark mode and <span style="padding:0.15em 0.4em;background-color:#f2f3f5">#f2f3f5</span> on light mode. Reactions you’ve reacted with have background <span style="padding:0.15em 0.4em;background-color:#3b405a;color:white">#3b405a</span> on dark mode and <span style="padding:0.15em 0.4em;background-color:#e7e9fd">#e7e9fd</span> on light mode. Because the dark mode background gets lighter and the light mode background gets darker, we’ll use the latter colors so we’re optimizing the worst-case contrast.</p>
-<p>There are smarter approaches, but the 256<sup>3</sup> = 16,777,216 possible 8-bit colors are perfectly feasible to brute force, so I wrote a short Python script to check all of them, which is at the bottom of this post. Under the parameters I’ve outlined, the optimal color for a Discord reaction is <span style="padding:0.15em 0.4em;background-color:#ff4103">rgb(255, 65, 3) or #ff4103.</span> A demo:</p>
-<table>
-<tr>
-<td style="background-color:#3b405a;color:#ff4103">
-#ff4103 <strong>#ff4103</strong> ●<br> <small><abbr title="Contrast Ratio">CR</abbr>: 2.90738237</small>
-</td>
-<td style="background-color:#e7e9fd;color:#ff4103">
-#ff4103 <strong>#ff4103</strong> ● <br> <small><abbr title="Contrast Ratio">CR</abbr>: 2.90738217</small>
-</td>
-</tr>
-</table>
-<p>That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that. (It’s highly doubtful that the formulae I used were intended to have this degree of precision in the first place.)</p>
-<p>After playing with a few ways to get a spread of options, I settled on categorizing colors into six buckets of saturation and twelve buckets of hue in the <a href="https://en.wikipedia.org/wiki/HSL_and_HSV#Formal_derivation">simple HSV model</a>, and then finding the optimal color within each bucket. Here is a table of my results:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/discord-color">→ read more<span class="offscreen"> What Color Should My Discord Roles/Reactions Be?</span></a>
 	</footer>
 </article>
 <footer class="list-footer">
