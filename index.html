@@ -61,12 +61,88 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/viridis" class="post-link">How is viridis defined?</a></h3>
+		
+		<h4 class="post-subtitle">and other adventures in colormapping</h4>
+		
+		<p class="post-meta">
+		
+		2024-12-06
+		(1966 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>If you’ve dabbled in data visualization, there’s a good chance you’ve encountered the colormap <code>viridis</code>, which was <a href="https://bids.github.io/colormap/">created for matplotlib in ~2015</a>.</p>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<figure>
+<div class="d3-viridis" style="display: flex" alt="viridis gradient">
+
+</div>
+<figcaption>
+This particular gradient is brought to you by <a href="//blog.vero.site/post/d3">d3</a>
+</figcaption>
+</figure>
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+let scale = d3.scaleSequential([0, 255], d3.interpolateViridis);
+d3.selectAll(".d3-viridis").selectAll("span").data(d3.range(256)).join("span").style("background-color", i => scale(i)).style("flex", "1").style("min-height", "1em");
+
+
+function knockoff_viridis(t) {
+    let r = (+0.994*t - 0.009)*t + 0.014;
+    let g = (-0.031*t + 0.895)*t + 0.135;
+    let b = (-0.726*t + 0.682)*t + 0.161;
+    return `rgb(${r*255}, ${g*255}, ${b*255})`;
+};
+
+function degree_four_viridis(t) {
+    let r = (((-5.5793*t + 13.5837)*t - 8.5613)*t + 1.3097)*t + 0.2446;
+    let g = (((-0.5587*t +  0.7695)*t - 0.5851)*t + 1.2498)*t + 0.0284;
+    let b = ((( 0.5341*t -  0.8296)*t - 1.0321)*t + 1.0515)*t + 0.3552;
+    return `rgb(${r*255}, ${g*255}, ${b*255})`;
+}
+
+function degree_seven_viridis(t) {
+    let r = ((((((42.3473*t - 148.6685)*t + 194.9250)*t - 119.0426)*t + 37.8497)*t - 7.2161)*t + 0.5286)*t + 0.2707;
+    let g = (((((( 4.8916*t -  12.2295)*t +   9.1748)*t -   1.3875)*t -  0.2732)*t - 0.7410)*t + 1.4669)*t + 0.0041;
+    let b = ((((((22.6620*t -  56.3548)*t +  54.0592)*t -  29.8980)*t + 13.5239)*t - 6.0311)*t + 1.8471)*t + 0.3253;
+    return `rgb(${r*255}, ${g*255}, ${b*255})`;
+}
+
+d3.select(".d3-knockoff-viridis").selectAll("span").data(d3.range(256)).join("span").style("background-color", i => knockoff_viridis(i / 255)).style("flex", "1").style("min-height", "1em");
+d3.select(".d3-four-viridis").selectAll("span").data(d3.range(256)).join("span").style("background-color", i => degree_four_viridis(i / 255)).style("flex", "1").style("min-height", "1em");
+d3.select(".d3-seven-viridis").selectAll("span").data(d3.range(256)).join("span").style("background-color", i => degree_seven_viridis(i / 255)).style("flex", "1").style("min-height", "1em");
+});
+</script>
+<p>You may also know about some of the considerations went into the colormap’s design, chiefly perceptual uniformity: equally distant colors on the colormap should “look equally different” to humans.</p>
+<p>I won’t discuss color theory much here; the talk introducing viridis (below) is quite good, and there are many other resources online, such as Jamie Wong’s <a href="https://jamie-wong.com/post/color/">From Hexcodes to Eyeballs</a> or Bartosz Ciechanowski’s <a href="https://ciechanow.ski/color-spaces/">Color Spaces</a>.</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/xAoljeRJ3lU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>Instead, I nerd-sniped myself with a different question: How is viridis, specifically, defined?</p>
+<p>This seems like it should be easy to answer. Just go into matplotlib and find the <a href="https://github.com/matplotlib/matplotlib/blob/a04e35f76f15020b43d06b4644b5e3d544b07deb/lib/matplotlib/_cm_listed.py#L774">source code for viridis</a>, right? Unfortunately, that source code is just a list of 256 RGB triples along which colors are interpolated. This makes sense for efficiency and even portability because (as we’ll see) the formula for producing viridis is incredibly complicated, but it isn’t a very satisfying answer. How did those triples originally come to be?</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/viridis">→ read more<span class="offscreen"> How is viridis defined?</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/d3" class="post-link">D3 the Hard FP Way</a></h3>
 		
 		<p class="post-meta">
 		
 		2024-04-28
-		(3580 words)
+		(3639 words)
 		
 		<span class="post-categories">
 			filed under
@@ -338,40 +414,6 @@ Somehow this image was already on my blog without being used in any post, but if
 <p>While making these changes, I ended up digging through the <a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/">flexbox spec</a> to debug an issue and learned some interesting things. (This and other links in this post are permalinks to the November 2018 spec, which I believe is the most recent official version as of time of writing, but it’s nearly three years and there have been quite a few changes in the “editor’s draft”. Also, this post is not a flexbox tutorial and will not make sense if you are already familiar with flexbox.)</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/flexbox-fun">→ read more<span class="offscreen"> Flexbox Fun Facts</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/pppordle" class="post-link">🅿️🅿️🅿️ordle</a></h3>
-		
-		<h4 class="post-subtitle">PlaidCTF 2022 (350 points)</h4>
-		
-		<p class="post-meta">
-		
-		2022-07-04
-		(1890 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Don’t you hate it when CTFs happen faster than you can write them up? This is probably the only PlaidCTF challenge I get to, unfortunately.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<blockquote>
-<p>Web is out, retro is in. Play your favorite word game from the comfort of your terminal!</p>
-</blockquote>
-<p>It’s a terminal Wordle client!</p>
-<figure>
-<a href="/img/pppordle-1.png"><img src="/img/pppordle-1.png" alt="Screenshot of a terminal Wordle client. The puzzle has been solved with the answer COZEY." /></a>
-</figure>
-<p>I only solved the first half of this challenge. The two halves seem to be unrelated though. (Nobody solved the second half during the CTF.) The challenge was quite big code-wise, with more than a dozen files, so it’s hard to replicate the experience in a post like this, but here’s an attempt.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/pppordle">→ read more<span class="offscreen"> 🅿️🅿️🅿️ordle</span></a>
 	</footer>
 </article>
 

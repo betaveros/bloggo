@@ -65,7 +65,7 @@ When relevant, I will call the index of an element inside its group the “withi
 		<p class="post-meta">
 		
 		2024-04-28
-		(3580 words)
+		(3639 words)
 		
 		<span class="post-categories">
 			filed under
@@ -217,7 +217,7 @@ When relevant, I will call the index of an element inside its group the “withi
 <ul>
 <li><a href="https://d3js.org/d3-array">d3-array</a> has a lot of simple array-manipulation utilities. You might find some of these in other utility libraries, but if you’re already using D3, might as well use its versions. Examples:
 <ul>
-<li><code>d3.min</code>, <code>d3.max</code>, <code>d3.extent</code> (returns a two-element array <code>[min, max]</code>), <code>d3.sum</code>, <code>d3.mean</code>, all of which take an iterable and ignore undefined, null, and NaN.</li>
+<li><code>d3.min</code>, <code>d3.max</code>, <code>d3.extent</code> (returns a two-element array <code>[min, max]</code>), <code>d3.sum</code>, <code>d3.mean</code>, all of which take an iterable and ignore undefined, null, and NaN. <code>min</code> and <code>max</code> also take a function, but effectively just map the input against it, which seems like a waste to me. Instead, <code>d3.least</code> and <code>d3.greatest</code> take a function that can be either a binary comparator or a unary key function (!) (determined by the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length">function’s length</a>), and return the min/max element of the original iterable by that metric.</li>
 <li><code>d3.zip(...arrays)</code></li>
 <li><code>d3.cross(...iterables)</code> (Cartesian product)</li>
 <li><code>d3.pairs(iterable)</code> gives (overlapping) pairs of adjacent elements</li>
@@ -348,6 +348,8 @@ gs.call(
 			
 			<a class="pagination-previous" href="//blog.vero.site/post/despite">← Despite Everything</a>
 			
+			
+			<a class="pagination-next" href="//blog.vero.site/post/viridis">How is viridis defined? →</a>
 			
 		</nav>
 	</footer>

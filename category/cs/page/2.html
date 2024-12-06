@@ -65,6 +65,73 @@ Category → CS
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/caasio" class="post-link">CaaSio PSE</a></h3>
+		
+		<h4 class="post-subtitle">ångstromCTF 2022 (250 points)</h4>
+		
+		<p class="post-meta">
+		
+		2022-07-04
+		(773 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>It’s clam’s newest javascript Calculator-as-a-Service: the CaaSio Please Stop Edition! no but actually please stop I hate jsjails js isn’t a good language stop putting one in every ctf I don’t want to look at another jsjail because if I do I might vomit from how much I hate js and js quirks aren’t even cool or funny or quirky they’re just painful because why would you design a language like this ahhhhhhhhhhhhhhhhhhhhh</p>
+</blockquote>
+<p>It’s just a JavaScript eval jail.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#!/usr/local/bin/node</span></a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co">// flag in ./flag.txt</span></a>
+<a class="sourceLine" id="cb1-4" title="4"></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">const</span> vm <span class="op">=</span> <span class="at">require</span>(<span class="st">&quot;vm&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="kw">const</span> readline <span class="op">=</span> <span class="at">require</span>(<span class="st">&quot;readline&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-7" title="7"></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="kw">const</span> <span class="kw">interface</span> <span class="op">=</span> <span class="va">readline</span>.<span class="at">createInterface</span>(<span class="op">{</span></a>
+<a class="sourceLine" id="cb1-9" title="9">    <span class="dt">input</span><span class="op">:</span> <span class="va">process</span>.<span class="at">stdin</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb1-10" title="10">    <span class="dt">output</span><span class="op">:</span> <span class="va">process</span>.<span class="at">stdout</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-12" title="12"></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="kw">interface</span>.<span class="at">question</span>(</a>
+<a class="sourceLine" id="cb1-14" title="14">    <span class="st">&quot;Welcome to CaaSio: Please Stop Edition! Enter your calculation:</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb1-15" title="15">    <span class="kw">function</span> (input) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-16" title="16">        <span class="kw">interface</span>.<span class="at">close</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-17" title="17">        <span class="cf">if</span> (</a>
+<a class="sourceLine" id="cb1-18" title="18">            <span class="va">input</span>.<span class="at">length</span> <span class="op">&lt;</span> <span class="dv">215</span> <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb1-19" title="19">            <span class="ss">/</span><span class="sc">^[\x20-\x7e]+$</span><span class="ss">/</span>.<span class="at">test</span>(input) <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb1-20" title="20">            <span class="op">!</span><span class="ss">/</span><span class="sc">[.\[\]{}\s;`&#39;&quot;\\_&lt;&gt;?:]</span><span class="ss">/</span>.<span class="at">test</span>(input) <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb1-21" title="21">            <span class="op">!</span><span class="va">input</span>.<span class="at">toLowerCase</span>().<span class="at">includes</span>(<span class="st">&quot;import&quot;</span>)</a>
+<a class="sourceLine" id="cb1-22" title="22">        ) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-23" title="23">            <span class="cf">try</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-24" title="24">                <span class="kw">const</span> val <span class="op">=</span> <span class="va">vm</span>.<span class="at">runInNewContext</span>(input<span class="op">,</span> <span class="op">{}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-25" title="25">                <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Result:&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-26" title="26">                <span class="va">console</span>.<span class="at">log</span>(val)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-27" title="27">                <span class="va">console</span>.<span class="at">log</span>(</a>
+<a class="sourceLine" id="cb1-28" title="28">                    <span class="st">&quot;See, isn&#39;t the calculator so much nicer when you&#39;re not trying to hack it?&quot;</span></a>
+<a class="sourceLine" id="cb1-29" title="29">                )<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-30" title="30">            <span class="op">}</span> <span class="cf">catch</span> (e) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-31" title="31">                <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;your tried&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-32" title="32">            <span class="op">}</span></a>
+<a class="sourceLine" id="cb1-33" title="33">        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-34" title="34">            <span class="va">console</span>.<span class="at">log</span>(</a>
+<a class="sourceLine" id="cb1-35" title="35">                <span class="st">&quot;Third time really is the charm! I&#39;ve finally created an unhackable system!&quot;</span></a>
+<a class="sourceLine" id="cb1-36" title="36">            )<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-37" title="37">        <span class="op">}</span></a>
+<a class="sourceLine" id="cb1-38" title="38">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb1-39" title="39">)<span class="op">;</span></a></code></pre></div>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/caasio">→ read more<span class="offscreen"> CaaSio PSE</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/interpret" class="post-link">Interpreting Some Toy Neural Networks</a></h3>
 		
 		<p class="post-meta">
@@ -416,39 +483,6 @@ Category → CS
 <p>The problem statement for part 2, in brief: We are tasked with calculating the total mass of fuel required to launch a rocket module of a given mass. For something of mass <span class="math inline">\(m\)</span>, one can compute the directly required mass of fuel by dividing <span class="math inline">\(m\)</span> by 3, rounding down, and subtracting 2; if the result is negative, it is taken to be 0 instead. However, the directly required fuel also requires fuel itself, calculated from its own mass by the same procedure, and that required fuel requires fuel based on its own mass, and so on until you reach fuel with 0 requirement.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/advent-rocket">→ read more<span class="offscreen"> Rocket Equation</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/callsite" class="post-link">callsite</a></h3>
-		
-		<h4 class="post-subtitle">CSAW CTF Qualifiers 2019</h4>
-		
-		<p class="post-meta">
-		
-		2019-09-16
-		(561 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>Call me maybe? <code>nc rev.chal.csaw.io 1001</code></p>
-</blockquote>
-<p>A rev with a nasty binary. There are so many functions. I do not like this binary.</p>
-<figure>
-<a href="/img/callsite-gross.png"><img src="/img/callsite-gross.png" alt="Screenshot of IDA Pro on the callsite binary, with a lot of code and functions." /></a>
-</figure>
-<h3 id="static-analysis">Static Analysis</h3>
-<p>After staring at the sea of functions in IDA for a little bit, I gave up and tried dumb things instead.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/callsite">→ read more<span class="offscreen"> callsite</span></a>
 	</footer>
 </article>
 
