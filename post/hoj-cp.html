@@ -166,7 +166,7 @@ y = (1)→(2)→(42)</code></pre>
 	</footer>
 	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
 	<section id="isso-thread"></section>
-	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+  <p class="comments-meta">if you liked this post, click to make an invisible number go up: <button class="btn like-button">like</button></p>
 	
 	
 	
@@ -198,7 +198,16 @@ y = (1)→(2)→(42)</code></pre>
 <script src="/katex/contrib/auto-render.min.js"></script>
 <script>renderMathInElement(document.body);</script>
 <script src="/js/bundle.js"></script>
-<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script>
+  window.goatcounter = { path: function(p) { return '/blog' + p; } }
+  for (let but of document.getElementsByClassName('like-button')) {
+    but.addEventListener('click', function (ev) {
+      goatcounter.count({
+        path: function (p) { return 'like/blog' + p; }
+      });
+    });
+  }
+</script>
 <script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 

@@ -129,7 +129,16 @@ Tag → yajilin
 <script src="/katex/contrib/auto-render.min.js"></script>
 <script>renderMathInElement(document.body);</script>
 <script src="/js/bundle.js"></script>
-<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script>
+  window.goatcounter = { path: function(p) { return '/blog' + p; } }
+  for (let but of document.getElementsByClassName('like-button')) {
+    but.addEventListener('click', function (ev) {
+      goatcounter.count({
+        path: function (p) { return 'like/blog' + p; }
+      });
+    });
+  }
+</script>
 <script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 

@@ -65,6 +65,36 @@ Category → life
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/change" class="post-link">The More Things Change</a></h3>
+		
+		<p class="post-meta">
+		
+		2016-12-31
+		(1261 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/LRP8d7hhpoQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>It seems to me like lots of people want this year to be over. Among all the other things, 2016 is also apparently the year I totally abandon this blog and put off certain planned posts by several months.</p>
+<p>I guess this is what happens when you take five technical classes at MIT. The extracurriculars aren’t helping. And the fastest and most confident writing I do is still reactive, when there’s an externally-imposed deadline or when “somebody is wrong on the internet”. This blog isn’t.</p>
+<p>Oh well, time to make up for it in 2017.</p>
+<p>What happened this year? I’ll start with some serious categories:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/change">→ read more<span class="offscreen"> The More Things Change</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/oblig" class="post-link">oblig</a></h3>
 		
 		<p class="post-meta">
@@ -383,43 +413,6 @@ Of course, this is my first Code Jam and I don’t know how reasonable these req
 	</footer>
 </article>
 
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/fragments" class="post-link">Glowstick Fragments</a></h3>
-		
-		<p class="post-meta">
-		
-		2015-08-12
-		(2253 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p><a href="//blog.vero.site/post/glowstick">Echoes.</a></p>
-<hr />
-<p>On the HSR we kill time with weird games from Kevan Davis’s <a href="http://kevan.org/fdgp/">Freeze-Dried Games Pack</a>, mostly Thirty-One. Then we’re there!</p>
-<p>On the bus we kill time with karaoke, until people complain. Sorry.</p>
-<p>Lunch at Chinese restaurant. Beach resort.</p>
-<p>I spend the first one and a half hours holed up in my hotel room watching television, first a quiz show where the host asks foreigners living in Taiwan questions about the country’s culture and society, then Disney and Cartoon Network cartoons. During the commercial breaks I do cryptic crosswords I had brought along. This is something I self-deprecatingly talk about for the rest of the trip, but I have no regrets because the three cartoons I watch are literally my top three guilty pleasure cartoons, <cite>Ben 10</cite>, <cite>Teen Titans Go!</cite>, and <cite>Jake Long: American Dragon</cite>.</p>
-<p>Then I wander around and join some guys playing pool. I do better than I expect, once pocketing three balls in sequential moves. There is also a Kinect with a dancing game, which I also score surprisingly well at and have lots of fun playing.</p>
-<p>Dinner, in which I eat 小卷 (“pencil squids”?) with way way way too much wasabi. I stuff myself and walk around chatting and eventually learn there are freshly-made 手卷 (“<i>temaki</i>” / “hand roll”) downstairs. Since there’s lots of time I wait until I’m less full and eat two.</p>
-<p>Group activity outside corresponds eerily to the one three years ago: shouting, dancing, waving glowsticks, arbitrary dance moves, punishment games, cooperation games, a competition where the guide gives out points that don’t matter like on <cite>Whose Line Is It Anyway?</cite></p>
-<p>Empty promises… but okay. Class songs. (This is the explicit version. This song is well above the normal offensiveness rating of this blog and I usually prefer official videos, instead of shady lyric videos probably made from Windows Movie Maker that might get taken down, but honestly I find the pathetic execution of censorship in the VEVO version more offensive.)</p>
-<ins date="2019-02-05T16:58:07-0500">
-edit from the future: There used to be an explicit YouTube video of Shots by LMFAO ft. Lil Jon here, which has since been taken down for obvious reasons. Yes, it is a very crude song. I never went to a party that was a tenth as wild as the song describes. Maybe it was my means of vicarious escape.
-</ins>
-<p>After it we have a sentimental moment listening to “See You Again”.</p>
-<p>At night our room flips through television and watches the second half of <cite>Iron Man 2</cite>.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/fragments">→ read more<span class="offscreen"> Glowstick Fragments</span></a>
-	</footer>
-</article>
-
 		<footer class="list-footer">
 		<nav class="pagination">
 			<h3 class="offscreen">Pagination</h3><a class="pagination-previous" href="/category/life">← newer posts</a><a class="pagination-next" href="/category/life/page/3">older posts →</a></nav>
@@ -441,7 +434,16 @@ edit from the future: There used to be an explicit YouTube video of Shots by LMF
 <script src="/katex/contrib/auto-render.min.js"></script>
 <script>renderMathInElement(document.body);</script>
 <script src="/js/bundle.js"></script>
-<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script>
+  window.goatcounter = { path: function(p) { return '/blog' + p; } }
+  for (let but of document.getElementsByClassName('like-button')) {
+    but.addEventListener('click', function (ev) {
+      goatcounter.count({
+        path: function (p) { return 'like/blog' + p; }
+      });
+    });
+  }
+</script>
 <script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 

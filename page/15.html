@@ -61,6 +61,32 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/rekt" class="post-link">rekt</a></h3>
+		
+		<p class="post-meta">
+		
+		2015-06-16
+		(176 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/meta">Meta</a>, <a href="/category/thoughts">Thoughts</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Darn, I only lasted four days. That’s pretty bad.</p>
+<p>And I broke like 90% of my HabitRPG streaks too. I was busy running Monte-Carlo calculations to estimate the number of domino logic puzzles, and forgot about midnight. Okay, before that I spent twice as much time on <a href="http://www1.flightrising.com/">Flight Rising</a> for whatever reason. Bad life decisions.</p>
+<p>I guess that means today I have to post one now, before going to sleep, and one later. Eh, time to harvest really weird mini-posts from nowhere.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/rekt">→ read more<span class="offscreen"> rekt</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/mortality" class="post-link">Mortality</a></h3>
 		
 		<p class="post-meta">
@@ -308,35 +334,6 @@ I’ve blurred the messed-up file names because I’m not convinced it’s impos
 </article>
 
 		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/puzzle-46" class="post-link">Puzzle 46 / Fillomino [LITS &#43; Extra Region &#43; Walls &#43; Anti-Walls &#43; Inequality &#43; Tapa &#43; Masyu]</a></h3>
-		
-		<p class="post-meta">
-		
-		2015-03-29
-		(258 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>, <a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-5:27 PM <strong>phenomist</strong>: do you use gridderface to make pretty puzzles?<br />
-…<br />
-5:52 PM <strong>phenomist</strong>: actually nvm excel is probably easier lol
-</blockquote>
-<p>Okay I’m sorry this is a horrible puzzle where the rules don’t make sense and I didn’t even get it testsolved. I just wanted an image to concisely demonstrate the capabilities of <a href="https://github.com/betaveros/gridderface">gridderface</a>, my puzzle marking and creation program, for the project homepage, after somebody expressed interest in using the program to write a puzzle. Then I got tremendously carried away.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/puzzle-46">→ read more<span class="offscreen"> Puzzle 46 / Fillomino [LITS &#43; Extra Region &#43; Walls &#43; Anti-Walls &#43; Inequality &#43; Tapa &#43; Masyu]</span></a>
-	</footer>
-</article>
-
-		
 	
 	
 	<footer class="list-footer">
@@ -369,7 +366,16 @@ I’ve blurred the messed-up file names because I’m not convinced it’s impos
 <script src="/katex/contrib/auto-render.min.js"></script>
 <script>renderMathInElement(document.body);</script>
 <script src="/js/bundle.js"></script>
-<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script>
+  window.goatcounter = { path: function(p) { return '/blog' + p; } }
+  for (let but of document.getElementsByClassName('like-button')) {
+    but.addEventListener('click', function (ev) {
+      goatcounter.count({
+        path: function (p) { return 'like/blog' + p; }
+      });
+    });
+  }
+</script>
 <script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 

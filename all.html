@@ -60,6 +60,10 @@
 <p><strong>Bolded</strong> posts are posts I consider good, for some definition of “good”. You should still expect bolded posts to get less good the further back in the archives you go.</p>
 <h3>2024</h3>
 		<ul><li>
+			<span class="tabular">12-31</span>:
+			<a href="//blog.vero.site/post/right-back-here">Right Back Here</a>
+			
+			<span class="meta">(life)</span></li><li>
 			<span class="tabular">12-06</span>:
 			<a href="//blog.vero.site/post/viridis">How is viridis defined?</a>
 			
@@ -78,11 +82,11 @@
 			
 			<span class="meta">(CS)</span></li><li>
 			<span class="tabular">07-23</span>:
-			<a href="//blog.vero.site/post/diceware">Yet Another Diceware-Style Word List</a>
+			<a href="//blog.vero.site/post/diceware"><strong>Yet Another Diceware-Style Word List</strong></a>
 			
 			<span class="meta">(CS)</span></li><li>
 			<span class="tabular">04-09</span>:
-			<a href="//blog.vero.site/post/noulith">Designing a Programming Language to Speedrun Advent of Code</a>
+			<a href="//blog.vero.site/post/noulith"><strong>Designing a Programming Language to Speedrun Advent of Code</strong></a>
 			
 			<span class="meta">(CS)</span></li><li>
 			<span class="tabular">01-25</span>:
@@ -95,7 +99,7 @@
 			
 			<span class="meta">(life)</span></li><li>
 			<span class="tabular">12-22</span>:
-			<a href="//blog.vero.site/post/golf">Introduction to Code Golf and Golflangs</a>
+			<a href="//blog.vero.site/post/golf"><strong>Introduction to Code Golf and Golflangs</strong></a>
 			
 			<span class="meta">(CS)</span></li><li>
 			<span class="tabular">09-23</span>:
@@ -119,7 +123,7 @@
 			
 			<span class="meta">(CS)</span></li><li>
 			<span class="tabular">05-05</span>:
-			<a href="//blog.vero.site/post/interpret">Interpreting Some Toy Neural Networks</a>
+			<a href="//blog.vero.site/post/interpret"><strong>Interpreting Some Toy Neural Networks</strong></a>
 			
 			<span class="meta">(CS)</span></li><li>
 			<span class="tabular">02-14</span>:
@@ -1317,7 +1321,16 @@
 <script src="/katex/contrib/auto-render.min.js"></script>
 <script>renderMathInElement(document.body);</script>
 <script src="/js/bundle.js"></script>
-<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script>
+  window.goatcounter = { path: function(p) { return '/blog' + p; } }
+  for (let but of document.getElementsByClassName('like-button')) {
+    but.addEventListener('click', function (ev) {
+      goatcounter.count({
+        path: function (p) { return 'like/blog' + p; }
+      });
+    });
+  }
+</script>
 <script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 

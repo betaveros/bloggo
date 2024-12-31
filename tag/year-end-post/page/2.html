@@ -65,6 +65,42 @@ Tag → year-end post
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/rewind" class="post-link">Rewind</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-12-31
+		(1869 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>As per <a href="http://mitadmissions.org/blogs/entry/50_things">item 3 of 50</a>:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/zAC_teyfrHU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p><a href="http://www.infinitelooper.com/?v=zAC_teyfrHU">InfiniteLooper version</a></p>
+<p>Well, there are better memory-triggering songs but I think this pretty much sums up how I feel about blogging right now (possibly including the very act of choosing that song.) And college apps. And life. Plus, the music video is silly in its own incredible way.</p>
+<p>Anyway. Around this time a year ago, I made <a href="//blog.vero.site/post/time">a post</a> talking about how around a year before that,</p>
+<blockquote>
+I paused my participation in big high-school competitions, for a variety of reasons.
+</blockquote>
+<p>And then I rambled on life and programming competitions.</p>
+<p>If you didn’t get it yet, this post so far has been written to meaningfully echo the last one. Nothing so abrupt has happened this year, but I just realized how nice it was to have a paragraph humorously listing the weird stuff I had gotten myself into over the course of 2013, so I’m going to do so again, even more completely.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/rewind">→ read more<span class="offscreen"> Rewind</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/time" class="post-link">The Sands of Time</a></h3>
 		
 		<p class="post-meta">
@@ -117,7 +153,16 @@ Tag → year-end post
 <script src="/katex/contrib/auto-render.min.js"></script>
 <script>renderMathInElement(document.body);</script>
 <script src="/js/bundle.js"></script>
-<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script>
+  window.goatcounter = { path: function(p) { return '/blog' + p; } }
+  for (let but of document.getElementsByClassName('like-button')) {
+    but.addEventListener('click', function (ev) {
+      goatcounter.count({
+        path: function (p) { return 'like/blog' + p; }
+      });
+    });
+  }
+</script>
 <script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 

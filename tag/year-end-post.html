@@ -65,6 +65,34 @@ Tag → year-end post
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/right-back-here" class="post-link">Right Back Here</a></h3>
+		
+		<p class="post-meta">
+		
+		2024-12-31
+		(355 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/bF2LtqVBWe0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>I’m still doing interpretability at Anthropic. This year, among many other research updates, we <a href="https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html">scaled sparse autoencoders to Claude 3 Sonnet</a>. There’s not a whole lot I have to add. I like to think I improved at various clichéd abstract work skills that I don’t have anything insightful to say about, the most front-of-mind being communication and prioritization. It’s good to, uh, communicate what everybody is prioritizing and communicate all the information everybody needs to prioritize things. Thanks for coming to my TED talk.</p>
+<p>In my personal life, I went to more in-person social events than ever before. I took a bunch of improv classes and might actually end up performing soon™. I went to a Jacob Collier concert and a Bear Ghost concert. I scored 141/150 plus two beers on the AMC 12. I attended three separate furry conventions, one of which I believe I have to credit with indirectly motivating me to hit the gym semiregularly for the first time in my life. (Also I <a href="https://tourtural.finalfantasyxiv.com/">went to Tural</a> for summer vacation.) I’m pretty happy with all that, but it also doesn’t really add up to exciting reflections.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/right-back-here">→ read more<span class="offscreen"> Right Back Here</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/despite" class="post-link">Despite Everything</a></h3>
 		
 		<p class="post-meta">
@@ -366,42 +394,6 @@ At least, all things considered, I think this transition was very successful at 
 	</footer>
 </article>
 
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/rewind" class="post-link">Rewind</a></h3>
-		
-		<p class="post-meta">
-		
-		2014-12-31
-		(1869 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>As per <a href="http://mitadmissions.org/blogs/entry/50_things">item 3 of 50</a>:</p>
-
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/zAC_teyfrHU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
-
-<p><a href="http://www.infinitelooper.com/?v=zAC_teyfrHU">InfiniteLooper version</a></p>
-<p>Well, there are better memory-triggering songs but I think this pretty much sums up how I feel about blogging right now (possibly including the very act of choosing that song.) And college apps. And life. Plus, the music video is silly in its own incredible way.</p>
-<p>Anyway. Around this time a year ago, I made <a href="//blog.vero.site/post/time">a post</a> talking about how around a year before that,</p>
-<blockquote>
-I paused my participation in big high-school competitions, for a variety of reasons.
-</blockquote>
-<p>And then I rambled on life and programming competitions.</p>
-<p>If you didn’t get it yet, this post so far has been written to meaningfully echo the last one. Nothing so abrupt has happened this year, but I just realized how nice it was to have a paragraph humorously listing the weird stuff I had gotten myself into over the course of 2013, so I’m going to do so again, even more completely.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/rewind">→ read more<span class="offscreen"> Rewind</span></a>
-	</footer>
-</article>
-
 		<footer class="list-footer">
 		<nav class="pagination">
 			<h3 class="offscreen">Pagination</h3><a class="pagination-next" href="/tag/year-end-post/page/2">older posts →</a></nav>
@@ -423,7 +415,16 @@ I paused my participation in big high-school competitions, for a variety of reas
 <script src="/katex/contrib/auto-render.min.js"></script>
 <script>renderMathInElement(document.body);</script>
 <script src="/js/bundle.js"></script>
-<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script>
+  window.goatcounter = { path: function(p) { return '/blog' + p; } }
+  for (let but of document.getElementsByClassName('like-button')) {
+    but.addEventListener('click', function (ev) {
+      goatcounter.count({
+        path: function (p) { return 'like/blog' + p; }
+      });
+    });
+  }
+</script>
 <script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 

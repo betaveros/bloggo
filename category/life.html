@@ -65,6 +65,34 @@ Category → life
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/right-back-here" class="post-link">Right Back Here</a></h3>
+		
+		<p class="post-meta">
+		
+		2024-12-31
+		(355 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/bF2LtqVBWe0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>I’m still doing interpretability at Anthropic. This year, among many other research updates, we <a href="https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html">scaled sparse autoencoders to Claude 3 Sonnet</a>. There’s not a whole lot I have to add. I like to think I improved at various clichéd abstract work skills that I don’t have anything insightful to say about, the most front-of-mind being communication and prioritization. It’s good to, uh, communicate what everybody is prioritizing and communicate all the information everybody needs to prioritize things. Thanks for coming to my TED talk.</p>
+<p>In my personal life, I went to more in-person social events than ever before. I took a bunch of improv classes and might actually end up performing soon™. I went to a Jacob Collier concert and a Bear Ghost concert. I scored 141/150 plus two beers on the AMC 12. I attended three separate furry conventions, one of which I believe I have to credit with indirectly motivating me to hit the gym semiregularly for the first time in my life. (Also I <a href="https://tourtural.finalfantasyxiv.com/">went to Tural</a> for summer vacation.) I’m pretty happy with all that, but it also doesn’t really add up to exciting reflections.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/right-back-here">→ read more<span class="offscreen"> Right Back Here</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/despite" class="post-link">Despite Everything</a></h3>
 		
 		<p class="post-meta">
@@ -331,36 +359,6 @@ Category → life
 	</footer>
 </article>
 
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/change" class="post-link">The More Things Change</a></h3>
-		
-		<p class="post-meta">
-		
-		2016-12-31
-		(1261 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/LRP8d7hhpoQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
-
-<p>It seems to me like lots of people want this year to be over. Among all the other things, 2016 is also apparently the year I totally abandon this blog and put off certain planned posts by several months.</p>
-<p>I guess this is what happens when you take five technical classes at MIT. The extracurriculars aren’t helping. And the fastest and most confident writing I do is still reactive, when there’s an externally-imposed deadline or when “somebody is wrong on the internet”. This blog isn’t.</p>
-<p>Oh well, time to make up for it in 2017.</p>
-<p>What happened this year? I’ll start with some serious categories:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/change">→ read more<span class="offscreen"> The More Things Change</span></a>
-	</footer>
-</article>
-
 		<footer class="list-footer">
 		<nav class="pagination">
 			<h3 class="offscreen">Pagination</h3><a class="pagination-next" href="/category/life/page/2">older posts →</a></nav>
@@ -382,7 +380,16 @@ Category → life
 <script src="/katex/contrib/auto-render.min.js"></script>
 <script>renderMathInElement(document.body);</script>
 <script src="/js/bundle.js"></script>
-<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script>
+  window.goatcounter = { path: function(p) { return '/blog' + p; } }
+  for (let but of document.getElementsByClassName('like-button')) {
+    but.addEventListener('click', function (ev) {
+      goatcounter.count({
+        path: function (p) { return 'like/blog' + p; }
+      });
+    });
+  }
+</script>
 <script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 

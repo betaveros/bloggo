@@ -55,6 +55,33 @@
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/right-back-here" class="post-link">Right Back Here</a></h3>
+		
+		<p class="post-meta">
+		
+		2024-12-31
+		(355 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/bF2LtqVBWe0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>I’m still doing interpretability at Anthropic. This year, among many other research updates, we <a href="https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html">scaled sparse autoencoders to Claude 3 Sonnet</a>. There’s not a whole lot I have to add. I like to think I improved at various clichéd abstract work skills that I don’t have anything insightful to say about, the most front-of-mind being communication and prioritization. It’s good to, uh, communicate what everybody is prioritizing and communicate all the information everybody needs to prioritize things. Thanks for coming to my TED talk.</p>
+<p>In my personal life, I went to more in-person social events than ever before. I took a bunch of improv classes and might actually end up performing soon™. I went to a Jacob Collier concert and a Bear Ghost concert. I scored 141/150 plus two beers on the AMC 12. I attended three separate furry conventions, one of which I believe I have to credit with indirectly motivating me to hit the gym semiregularly for the first time in my life. (Also I <a href="https://tourtural.finalfantasyxiv.com/">went to Tural</a> for summer vacation.) I’m pretty happy with all that, but it also doesn’t really add up to exciting reflections.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/right-back-here">→ read more<span class="offscreen"> Right Back Here</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/viridis" class="post-link">How is viridis defined?</a></h3>
 		
 		<h4 class="post-subtitle">and other adventures in colormapping</h4>
@@ -369,29 +396,6 @@ Somehow this image was already on my blog without being used in any post, but if
 		<a class="read-more" href="//blog.vero.site/post/golf">→ read more<span class="offscreen"> Introduction to Code Golf and Golflangs</span></a>
 	</footer>
 </article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/flexbox-fun" class="post-link">Flexbox Fun Facts</a></h3>
-		
-		<p class="post-meta">
-		
-		2022-09-23
-		(1458 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>This post is brought to you by “I am procrastinating other stuff by doing some long overdue maintenance on my blog”. Mainly, I finally replaced the old <code>float</code>-based layout from the random Hugo theme I forked, which I had been keeping just because it wasn’t broken, with flexbox, so that I could more easily tweak some other things. If things look broken, you may need to force-refresh or clear your cache, and on the off chance things look mostly the same but you feel like something about the layout feels subtly different, that’s what’s up.</p>
-<p>While making these changes, I ended up digging through the <a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/">flexbox spec</a> to debug an issue and learned some interesting things. (This and other links in this post are permalinks to the November 2018 spec, which I believe is the most recent official version as of time of writing, but it’s nearly three years and there have been quite a few changes in the “editor’s draft”. Also, this post is not a flexbox tutorial and will not make sense if you are already familiar with flexbox.)</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/flexbox-fun">→ read more<span class="offscreen"> Flexbox Fun Facts</span></a>
-	</footer>
-</article>
 <footer class="list-footer">
 		<nav class="pagination">
 			<h3 class="offscreen">Pagination</h3><a class="pagination-next" href="/post/page/2">older posts →</a></nav>
@@ -412,7 +416,16 @@ Somehow this image was already on my blog without being used in any post, but if
 <script src="/katex/contrib/auto-render.min.js"></script>
 <script>renderMathInElement(document.body);</script>
 <script src="/js/bundle.js"></script>
-<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script>
+  window.goatcounter = { path: function(p) { return '/blog' + p; } }
+  for (let but of document.getElementsByClassName('like-button')) {
+    but.addEventListener('click', function (ev) {
+      goatcounter.count({
+        path: function (p) { return 'like/blog' + p; }
+      });
+    });
+  }
+</script>
 <script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 

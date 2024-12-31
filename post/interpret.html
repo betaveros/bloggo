@@ -65,7 +65,7 @@ Inspired by that post and by a desire to actually write some code (which I figur
 		<p class="post-meta">
 		
 		2022-05-05
-		(9838 words)
+		(9848 words)
 		
 		<span class="post-categories">
 			filed under
@@ -161,7 +161,7 @@ window.addEventListener('DOMContentLoaded', () => {
 Average digit 0 in MNIST’s training data
 </figcaption>
 </figure>
-<p>It turns out this was because I hadn’t run the configuration step <code>matplotlib.rc('image', cmap='Greys')</code> beforehand. The scheme depends on the <a href="https://matplotlib.org/3.5.0/tutorials/colors/colormaps.html">colormap chosen by matplotlib</a>; the default is called <code>viridis</code> and has a lot of <a href="https://bids.github.io/colormap/">careful thought</a> behind it. Honestly, I kinda like it.</p>
+<p>It turns out this was because I hadn’t run the configuration step <code>matplotlib.rc('image', cmap='Greys')</code> beforehand. The scheme depends on the <a href="https://matplotlib.org/3.5.0/tutorials/colors/colormaps.html">colormap chosen by matplotlib</a>; the default is called <code>viridis</code> and has a lot of <a href="https://bids.github.io/colormap/">careful thought</a> behind it. <ins datetime="2024-12-08T23:33:47-0800">(2024 update: I wrote a <a href="//blog.vero.site/post/viridis">whole other post</a> about it.)</ins> Honestly, I kinda like it.</p>
 <p>Now that we know this works, let’s make all of the average digits.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb7-1" title="1">training_means <span class="op">=</span> torch.stack([</a>
 <a class="sourceLine" id="cb7-2" title="2">    (torch.stack(training[digit]).<span class="bu">float</span>()<span class="op">/</span><span class="dv">255</span>).mean(<span class="dv">0</span>)</a>
@@ -607,7 +607,7 @@ Images optimized to be recognized as each digit while clamped close (within ±0.
 	</footer>
 	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
 	<section id="isso-thread"></section>
-	<p class="comments-meta">(note: the commenting setup here is experimental and I may not check my comments often; if you want to tell <em>me</em> something instead of the world, email me!)</p>
+  <p class="comments-meta">if you liked this post, click to make an invisible number go up: <button class="btn like-button">like</button></p>
 	
 	
 	
@@ -639,7 +639,16 @@ Images optimized to be recognized as each digit while clamped close (within ±0.
 <script src="/katex/contrib/auto-render.min.js"></script>
 <script>renderMathInElement(document.body);</script>
 <script src="/js/bundle.js"></script>
-<script>window.goatcounter = { path: function(p) { return '/blog' + p; } }</script>
+<script>
+  window.goatcounter = { path: function(p) { return '/blog' + p; } }
+  for (let but of document.getElementsByClassName('like-button')) {
+    but.addEventListener('click', function (ev) {
+      goatcounter.count({
+        path: function (p) { return 'like/blog' + p; }
+      });
+    });
+  }
+</script>
 <script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 
