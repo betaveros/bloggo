@@ -74,160 +74,286 @@ let x = (5 :&amp;gt; private int) in 6" /><meta name="generator" content="Hugo 0
 		
 		</p>
 	</header>
-	<article><p>We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called <em>Wolf</em>. Concretely, every type in Wolf’s type system has an associated <em>secrecy</em>: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.</p>
-<p>Of course, this is a CTF, so the challenge is all about breaking the theoretical guarantees of the type system. When we submit code, it’s evaluated in a context with a private integer variable <code>flag</code>; our code is typechecked, executed, and printed, but only if its type is public. The goal is to break the type system and write code that produces a public value that depends on <code>flag</code>, so that we can exfiltrate <code>flag</code> itself.</p>
-<p>In all, there are three progressively harder Wolf problems, named Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the flag of the challenge before it, so that you need to solve them in order (unless you can somehow blindly exploit servers running SML programs).</p>
+	<article><p>We are presented with a big zip file of SML code, which implements an
+interpreter for a small ML-like language with a form of taint analysis
+in its type checker, called <em>Wolf</em>. Concretely, every type in
+Wolf’s type system has an associated <em>secrecy</em>: it is either
+“private” or “public”, and in theory, the type system makes it
+impossible to do any computation on private data to get a public
+result.</p>
+<p>Of course, this is a CTF, so the challenge is all about breaking the
+theoretical guarantees of the type system. When we submit code, it’s
+evaluated in a context with a private integer variable
+<code>flag</code>; our code is typechecked, executed, and printed, but
+only if its type is public. The goal is to break the type system and
+write code that produces a public value that depends on
+<code>flag</code>, so that we can exfiltrate <code>flag</code>
+itself.</p>
+<p>In all, there are three progressively harder Wolf problems, named
+Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the
+flag of the challenge before it, so that you need to solve them in order
+(unless you can somehow blindly exploit servers running SML
+programs).</p>
 <h3 id="wolf-overview">Wolf Overview</h3>
-<p>Let’s first go over the Wolf syntax and semantics. (There are small differences between the three problems, but they’re syntactically identical and only semantically differ in cases that we’ll naturally get to.) The <code>examples</code> folder has some examples of valid code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">let</span> x = (<span class="dv">5</span> :&gt; <span class="kw">private</span> <span class="dt">int</span>) <span class="kw">in</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="dv">6</span></a></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">let</span> f = fn (x : <span class="dt">int</span>) =&gt; x + <span class="dv">1</span> <span class="kw">in</span></a>
-<a class="sourceLine" id="cb2-2" title="2">f <span class="dv">3</span></a></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">if</span> (<span class="dv">1</span> + <span class="dv">1</span> = <span class="dv">2</span>) = <span class="kw">true</span></a>
-<a class="sourceLine" id="cb3-2" title="2">  <span class="kw">then</span> (<span class="dv">0-1337</span>)</a>
-<a class="sourceLine" id="cb3-3" title="3">  <span class="kw">else</span> <span class="dv">1234</span></a></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">let</span> r = <span class="dt">ref</span> <span class="dv">3</span> <span class="kw">in</span></a>
-<a class="sourceLine" id="cb4-2" title="2">r := <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb4-3" title="3">r := !r + <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb4-4" title="4">r</a></code></pre></div>
-<p>These poor attempts at exfiltrating the flag do not typecheck. In the first example, the typechecker rejects the invalid coercion from a private int to a public int:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb5-1" title="1">(flag :&gt; public <span class="dt">int</span>)</a></code></pre></div>
-<p>In the second example, the typechecker notices that the program’s type is private, so the interpreter refuses to run it:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">let</span> totally_not_flag = flag <span class="kw">in</span></a>
-<a class="sourceLine" id="cb6-2" title="2">totally_not_flag</a></code></pre></div>
-<p><code>language.sml</code> might be the simplest place to intuit a more exhaustive description:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb7-1" title="1">infix @:</a>
-<a class="sourceLine" id="cb7-2" title="2">datatype term</a>
-<a class="sourceLine" id="cb7-3" title="3">  = VarExp <span class="kw">of</span> Variable.t</a>
-<a class="sourceLine" id="cb7-4" title="4">  | LetExp <span class="kw">of</span> {</a>
-<a class="sourceLine" id="cb7-5" title="5">      dec : (Variable.t * term), <span class="co">(* declaration *)</span></a>
-<a class="sourceLine" id="cb7-6" title="6">      body : term</a>
-<a class="sourceLine" id="cb7-7" title="7">  }</a>
-<a class="sourceLine" id="cb7-8" title="8">  | LamExp <span class="kw">of</span> {</a>
-<a class="sourceLine" id="cb7-9" title="9">      param : Variable.t,</a>
-<a class="sourceLine" id="cb7-10" title="10">      paramType : tycon,</a>
-<a class="sourceLine" id="cb7-11" title="11">      body : term</a>
-<a class="sourceLine" id="cb7-12" title="12">  }</a>
-<a class="sourceLine" id="cb7-13" title="13">  | AppExp <span class="kw">of</span> { <span class="kw">function</span> : term, argument : term }</a>
-<a class="sourceLine" id="cb7-14" title="14">  | PrimArith <span class="kw">of</span> Primitive.arith * (term * term)</a>
-<a class="sourceLine" id="cb7-15" title="15">  | PrimCmp <span class="kw">of</span> Primitive.cmp * (term * term)</a>
-<a class="sourceLine" id="cb7-16" title="16">  | IfExp <span class="kw">of</span> {cond : term, thenCase : term, elseCase : term}</a>
-<a class="sourceLine" id="cb7-17" title="17">  | UnitExp</a>
-<a class="sourceLine" id="cb7-18" title="18">  | IntExp <span class="kw">of</span> Primitive.<span class="dt">int</span></a>
-<a class="sourceLine" id="cb7-19" title="19">  | BoolExp <span class="kw">of</span> <span class="dt">bool</span></a>
-<a class="sourceLine" id="cb7-20" title="20">  | NewRefExp <span class="kw">of</span> term</a>
-<a class="sourceLine" id="cb7-21" title="21">  | AssignExp <span class="kw">of</span> { target : term, value : term }</a>
-<a class="sourceLine" id="cb7-22" title="22">  | DerefExp <span class="kw">of</span> term</a>
-<a class="sourceLine" id="cb7-23" title="23">  | CoerceExp <span class="kw">of</span> term * tycon</a>
-<a class="sourceLine" id="cb7-24" title="24">  | Reference <span class="kw">of</span> Assignable.assignable</a>
-<a class="sourceLine" id="cb7-25" title="25"></a>
-<a class="sourceLine" id="cb7-26" title="26"><span class="kw">and</span> tycon <span class="co">(* type constructors with secrecy *)</span></a>
-<a class="sourceLine" id="cb7-27" title="27">    = @: <span class="kw">of</span> con * Secrecy.t</a>
-<a class="sourceLine" id="cb7-28" title="28"></a>
-<a class="sourceLine" id="cb7-29" title="29"><span class="kw">and</span> con <span class="co">(* type constructors *)</span></a>
-<a class="sourceLine" id="cb7-30" title="30">    = Cint</a>
-<a class="sourceLine" id="cb7-31" title="31">    | Cbool</a>
-<a class="sourceLine" id="cb7-32" title="32">    | Carrow <span class="kw">of</span> tycon * tycon</a>
-<a class="sourceLine" id="cb7-33" title="33">    | Cref <span class="kw">of</span> tycon</a>
-<a class="sourceLine" id="cb7-34" title="34">    | Cunit</a></code></pre></div>
-<p>Wolf has three simple data types: <code>int</code>, <code>bool</code>, and <code>unit</code>. It also has two complex data types, a <code>ref T</code> type that holds a mutable reference to something of type <code>T</code>, and a function type <code>a -&gt; b</code> that is a function that takes one argument of type <code>a</code> and returns one argument of type <code>b</code>. Each of these data types can be directly used as a type (which makes them implicitly public) or modified by <code>private</code> to get a new type, except that <code>ref</code>s cannot be private.</p>
-<p>Wolf programs support the usual numeric and boolean literals, variable references, arithmetic, and comparisons; <code>let</code>-<code>in</code> statements, for binding a variable, e.g. <code>let x = 3 in x + 2</code>; function application; the usual arithmetic and comparisons; creating, assigning, and dereferencing mutable <code>ref</code>s, e.g. <code>let r = ref 3 in r := !r + 1; !r</code>; and type coercion, e.g. <code>(3 :&gt; private int)</code>.</p>
-<p>The flag variable is <code>flag</code>, which has type <code>private int</code>.</p>
-<p>Generally, computations with data that includes at least one private thing result in a private return value. So if you add a public and a private <code>int</code>, the type of the expression is a private <code>int</code>. The types of if statements have to match exactly. You can explicitly coerce subtypes to supertypes, even though there aren’t that many of them; you can coerce public X to private X, refs are invariant in what they contain (and can’t themselves be private), and function types are covariant in their return type and contravariant in their argument type, as expected.</p>
-<p>Secrecy is reperesented with this datatype. There are two possible values of Secrecy, <code>Private</code> and <code>Public</code>; you can compare them and take their min and max.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb8-1" title="1">datatype t</a>
-<a class="sourceLine" id="cb8-2" title="2">  = Private</a>
-<a class="sourceLine" id="cb8-3" title="3">  | Public</a>
-<a class="sourceLine" id="cb8-4" title="4"></a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="kw">fun</span> leq Private Public = <span class="kw">false</span></a>
-<a class="sourceLine" id="cb8-6" title="6">  | leq _ _ = <span class="kw">true</span></a>
-<a class="sourceLine" id="cb8-7" title="7"></a>
-<a class="sourceLine" id="cb8-8" title="8"><span class="kw">fun</span> <span class="dt">max</span> (Public, Public) = Public</a>
-<a class="sourceLine" id="cb8-9" title="9">  | <span class="dt">max</span> _ = Private</a>
-<a class="sourceLine" id="cb8-10" title="10"></a>
-<a class="sourceLine" id="cb8-11" title="11"><span class="kw">fun</span> <span class="dt">min</span> (Private, Private) = Private</a>
-<a class="sourceLine" id="cb8-12" title="12">  | <span class="dt">min</span> _ = Public</a></code></pre></div>
-<p><code>typechecker.sml</code> defines some operators that are aliases for combining secrecies, and <code>@:</code> is the infix operator that attaches a Secrecy to a data type to get a full type for the type system.</p>
+<p>Let’s first go over the Wolf syntax and semantics. (There are small
+differences between the three problems, but they’re syntactically
+identical and only semantically differ in cases that we’ll naturally get
+to.) The <code>examples</code> folder has some examples of valid
+code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ml"><code class="sourceCode ocaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> x = (<span class="dv">5</span> :&gt; <span class="kw">private</span> <span class="dt">int</span>) <span class="kw">in</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode ml"><code class="sourceCode ocaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> f = fn (x : <span class="dt">int</span>) =&gt; x + <span class="dv">1</span> <span class="kw">in</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>f <span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode ml"><code class="sourceCode ocaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> (<span class="dv">1</span> + <span class="dv">1</span> = <span class="dv">2</span>) = <span class="kw">true</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">then</span> (<span class="dv">0-1337</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">else</span> <span class="dv">1234</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode ml"><code class="sourceCode ocaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> r = <span class="dt">ref</span> <span class="dv">3</span> <span class="kw">in</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>r := <span class="dv">1</span>;</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>r := !r + <span class="dv">1</span>;</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>r</span></code></pre></div>
+<p>These poor attempts at exfiltrating the flag do not typecheck. In the
+first example, the typechecker rejects the invalid coercion from a
+private int to a public int:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode ml"><code class="sourceCode ocaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(flag :&gt; public <span class="dt">int</span>)</span></code></pre></div>
+<p>In the second example, the typechecker notices that the program’s
+type is private, so the interpreter refuses to run it:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode ml"><code class="sourceCode ocaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> totally_not_flag = flag <span class="kw">in</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>totally_not_flag</span></code></pre></div>
+<p><code>language.sml</code> might be the simplest place to intuit a
+more exhaustive description:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode ml"><code class="sourceCode ocaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>infix @:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>datatype term</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  = VarExp <span class="kw">of</span> Variable.t</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  | LetExp <span class="kw">of</span> {</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      dec : (Variable.t * term), <span class="co">(* declaration *)</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      body : term</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  | LamExp <span class="kw">of</span> {</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      param : Variable.t,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>      paramType : tycon,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>      body : term</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  | AppExp <span class="kw">of</span> { <span class="kw">function</span> : term, argument : term }</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  | PrimArith <span class="kw">of</span> Primitive.arith * (term * term)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  | PrimCmp <span class="kw">of</span> Primitive.cmp * (term * term)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  | IfExp <span class="kw">of</span> {cond : term, thenCase : term, elseCase : term}</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  | UnitExp</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  | IntExp <span class="kw">of</span> Primitive.<span class="dt">int</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  | BoolExp <span class="kw">of</span> <span class="dt">bool</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  | NewRefExp <span class="kw">of</span> term</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  | AssignExp <span class="kw">of</span> { target : term, value : term }</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  | DerefExp <span class="kw">of</span> term</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  | CoerceExp <span class="kw">of</span> term * tycon</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  | Reference <span class="kw">of</span> Assignable.assignable</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="kw">and</span> tycon <span class="co">(* type constructors with secrecy *)</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    = @: <span class="kw">of</span> con * Secrecy.t</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="kw">and</span> con <span class="co">(* type constructors *)</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    = Cint</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    | Cbool</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    | Carrow <span class="kw">of</span> tycon * tycon</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    | Cref <span class="kw">of</span> tycon</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    | Cunit</span></code></pre></div>
+<p>Wolf has three simple data types: <code>int</code>,
+<code>bool</code>, and <code>unit</code>. It also has two complex data
+types, a <code>ref T</code> type that holds a mutable reference to
+something of type <code>T</code>, and a function type
+<code>a -&gt; b</code> that is a function that takes one argument of
+type <code>a</code> and returns one argument of type <code>b</code>.
+Each of these data types can be directly used as a type (which makes
+them implicitly public) or modified by <code>private</code> to get a new
+type, except that <code>ref</code>s cannot be private.</p>
+<p>Wolf programs support the usual numeric and boolean literals,
+variable references, arithmetic, and comparisons;
+<code>let</code>-<code>in</code> statements, for binding a variable,
+e.g. <code>let x = 3 in x + 2</code>; function application; the usual
+arithmetic and comparisons; creating, assigning, and dereferencing
+mutable <code>ref</code>s,
+e.g. <code>let r = ref 3 in r := !r + 1; !r</code>; and type coercion,
+e.g. <code>(3 :&gt; private int)</code>.</p>
+<p>The flag variable is <code>flag</code>, which has type
+<code>private int</code>.</p>
+<p>Generally, computations with data that includes at least one private
+thing result in a private return value. So if you add a public and a
+private <code>int</code>, the type of the expression is a private
+<code>int</code>. The types of if statements have to match exactly. You
+can explicitly coerce subtypes to supertypes, even though there aren’t
+that many of them; you can coerce public X to private X, refs are
+invariant in what they contain (and can’t themselves be private), and
+function types are covariant in their return type and contravariant in
+their argument type, as expected.</p>
+<p>Secrecy is reperesented with this datatype. There are two possible
+values of Secrecy, <code>Private</code> and <code>Public</code>; you can
+compare them and take their min and max.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode ml"><code class="sourceCode ocaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>datatype t</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  = Private</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  | Public</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">fun</span> leq Private Public = <span class="kw">false</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  | leq _ _ = <span class="kw">true</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">fun</span> <span class="dt">max</span> (Public, Public) = Public</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  | <span class="dt">max</span> _ = Private</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">fun</span> <span class="dt">min</span> (Private, Private) = Private</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  | <span class="dt">min</span> _ = Public</span></code></pre></div>
+<p><code>typechecker.sml</code> defines some operators that are aliases
+for combining secrecies, and <code>@:</code> is the infix operator that
+attaches a Secrecy to a data type to get a full type for the type
+system.</p>
 <pre><code>infix 3 @:
 infix 4 +$
 val op +$ = Secrecy.max
 infix 5 *$
 val op *$ = Secrecy.min</code></pre>
-<p>Also worth mentioning is that side-channel timing attacks are eliminated because all of the interpreter’s arithmetic is implemented with a constant-time arithmetic library and the interpreter exhaustively executes every possible branch of if-else statements, so that any execution of your program will take the same time. See <code>computation.sml</code>.</p>
+<p>Also worth mentioning is that side-channel timing attacks are
+eliminated because all of the interpreter’s arithmetic is implemented
+with a constant-time arithmetic library and the interpreter exhaustively
+executes every possible branch of if-else statements, so that any
+execution of your program will take the same time. See
+<code>computation.sml</code>.</p>
 <h3 id="pupper">Pupper</h3>
-<p>Most of the interesting code is in <code>typechecker.sml</code>. Things seem fine; secrecies are always combined with <code>+$</code>, so that the result of a computation is always the more secret of the operands, except in one case.</p>
-<p>When the typechecker tries to figure out the secrecy of an <code>if</code>-<code>then</code>-<code>else</code> statement, it simply throws away the secrecy of its condition:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb10-1" title="1">  | IfExp {cond, thenCase, elseCase} =&gt;</a>
-<a class="sourceLine" id="cb10-2" title="2">    <span class="kw">let</span> <span class="kw">val</span> thenT = checkTerm cxt thenCase</a>
-<a class="sourceLine" id="cb10-3" title="3">        <span class="kw">val</span> elseT = checkTerm cxt elseCase</a>
-<a class="sourceLine" id="cb10-4" title="4">    <span class="kw">in</span> case checkTerm cxt cond</a>
-<a class="sourceLine" id="cb10-5" title="5">        <span class="kw">of</span> Cbool @: _ =&gt; <span class="co">(* &lt;- h4xxor3d! *)</span></a>
-<a class="sourceLine" id="cb10-6" title="6">           <span class="kw">if</span> equiv (thenT, elseT)</a>
-<a class="sourceLine" id="cb10-7" title="7">           <span class="kw">then</span> thenT</a>
-<a class="sourceLine" id="cb10-8" title="8">           <span class="kw">else</span> <span class="dt">raise</span> TypeError.differentIfBranches (thenT, elseT)</a>
-<a class="sourceLine" id="cb10-9" title="9">         | other =&gt;</a>
-<a class="sourceLine" id="cb10-10" title="10">           <span class="dt">raise</span> TypeError.nonBoolIfCondition other</a>
-<a class="sourceLine" id="cb10-11" title="11">    <span class="kw">end</span></a></code></pre></div>
-<p>This means that even some Wolf as simple as <code>if flag &gt; 1000000 then true else false</code> allows us to exfiltrate one bit of <code>flag</code> at a time. It’s now easy to write a script to binary search. A short version is presented:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb11-1" title="1"><span class="im">from</span> __future__ <span class="im">import</span> division, print_function</a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="im">import</span> sys</a>
-<a class="sourceLine" id="cb11-4" title="4"></a>
-<a class="sourceLine" id="cb11-5" title="5"><span class="kw">def</span> too_big(n):</a>
-<a class="sourceLine" id="cb11-6" title="6">    conn <span class="op">=</span> remote(<span class="st">&#39;wolf.chal.pwning.xxx&#39;</span>, <span class="dv">6808</span>)</a>
-<a class="sourceLine" id="cb11-7" title="7">    conn.sendline(<span class="st">&#39;if </span><span class="sc">{}</span><span class="st"> &gt; flag then 1 else 0&#39;</span>.<span class="bu">format</span>(n))</a>
-<a class="sourceLine" id="cb11-8" title="8">    conn.shutdown()</a>
-<a class="sourceLine" id="cb11-9" title="9">    msg <span class="op">=</span> conn.recvuntil(<span class="st">&#39;int&#39;</span>)</a>
-<a class="sourceLine" id="cb11-10" title="10">    <span class="bu">print</span>(<span class="bu">repr</span>(msg))</a>
-<a class="sourceLine" id="cb11-11" title="11">    <span class="cf">return</span> <span class="st">&#39;1&#39;</span> <span class="kw">in</span> msg</a>
-<a class="sourceLine" id="cb11-12" title="12"></a>
-<a class="sourceLine" id="cb11-13" title="13">lo, hi <span class="op">=</span> <span class="dv">0</span>, <span class="dv">1</span></a>
-<a class="sourceLine" id="cb11-14" title="14"><span class="cf">while</span> <span class="kw">not</span> too_big(hi): hi <span class="op">*=</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb11-15" title="15"><span class="cf">while</span> hi <span class="op">-</span> lo <span class="op">&gt;</span> <span class="dv">1</span>:</a>
-<a class="sourceLine" id="cb11-16" title="16">    mid <span class="op">=</span> (hi <span class="op">+</span> lo) <span class="op">//</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb11-17" title="17">    <span class="cf">if</span> too_big(mid):</a>
-<a class="sourceLine" id="cb11-18" title="18">        hi <span class="op">=</span> mid</a>
-<a class="sourceLine" id="cb11-19" title="19">    <span class="cf">else</span>:</a>
-<a class="sourceLine" id="cb11-20" title="20">        lo <span class="op">=</span> mid</a>
-<a class="sourceLine" id="cb11-21" title="21"></a>
-<a class="sourceLine" id="cb11-22" title="22"><span class="bu">print</span>(lo)</a></code></pre></div>
-<p>Note that this makes a lot of network calls and errors may happen intermittently, so that in practice you’d print intermediate values to debug and to make recovering from those errors easier, but I chose a summarized version.</p>
-<p>The flag can be converted to hexadecimal and read off as bytes to get:</p>
+<p>Most of the interesting code is in <code>typechecker.sml</code>.
+Things seem fine; secrecies are always combined with <code>+$</code>, so
+that the result of a computation is always the more secret of the
+operands, except in one case.</p>
+<p>When the typechecker tries to figure out the secrecy of an
+<code>if</code>-<code>then</code>-<code>else</code> statement, it simply
+throws away the secrecy of its condition:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode ml"><code class="sourceCode ocaml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  | IfExp {cond, thenCase, elseCase} =&gt;</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">val</span> thenT = checkTerm cxt thenCase</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">val</span> elseT = checkTerm cxt elseCase</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">in</span> case checkTerm cxt cond</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">of</span> Cbool @: _ =&gt; <span class="co">(* &lt;- h4xxor3d! *)</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>           <span class="kw">if</span> equiv (thenT, elseT)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>           <span class="kw">then</span> thenT</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>           <span class="kw">else</span> <span class="dt">raise</span> TypeError.differentIfBranches (thenT, elseT)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>         | other =&gt;</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>           <span class="dt">raise</span> TypeError.nonBoolIfCondition other</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span></code></pre></div>
+<p>This means that even some Wolf as simple as
+<code>if flag &gt; 1000000 then true else false</code> allows us to
+exfiltrate one bit of <code>flag</code> at a time. It’s now easy to
+write a script to binary search. A short version is presented:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> __future__ <span class="im">import</span> division, print_function</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> too_big(n):</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    conn <span class="op">=</span> remote(<span class="st">&#39;wolf.chal.pwning.xxx&#39;</span>, <span class="dv">6808</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    conn.sendline(<span class="st">&#39;if </span><span class="sc">{}</span><span class="st"> &gt; flag then 1 else 0&#39;</span>.<span class="bu">format</span>(n))</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    conn.shutdown()</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> conn.recvuntil(<span class="st">&#39;int&#39;</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">repr</span>(msg))</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;1&#39;</span> <span class="kw">in</span> msg</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>lo, hi <span class="op">=</span> <span class="dv">0</span>, <span class="dv">1</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="kw">not</span> too_big(hi): hi <span class="op">*=</span> <span class="dv">2</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> hi <span class="op">-</span> lo <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    mid <span class="op">=</span> (hi <span class="op">+</span> lo) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> too_big(mid):</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        hi <span class="op">=</span> mid</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>        lo <span class="op">=</span> mid</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lo)</span></code></pre></div>
+<p>Note that this makes a lot of network calls and errors may happen
+intermittently, so that in practice you’d print intermediate values to
+debug and to make recovering from those errors easier, but I chose a
+summarized version.</p>
+<p>The flag can be converted to hexadecimal and read off as bytes to
+get:</p>
 <pre><code>PCTF{0of_0uch_0wi3_my_IF_$t4t3m3n7s}</code></pre>
 <h3 id="doggo">Doggo</h3>
-<p>This challenge was another blob of SML that was encrypted with the flag to Pupper, but diffing the two codebases reveals that most of the code is the same. The big change is that Wolf’s type system got an overhaul. Not only is the above issue with <code>if</code> statements fixed, but now the <em>purities</em> of expressions and functions are kept track of. An expression is impure if it ever writes to a <code>ref</code> to public data, so that it might have observable side effects.</p>
-<p>So the above solution for Pupper could also be solved with a binary search like <code>let r = ref 0 in (if flag &gt; 1000000 then r := 1 else ()); !r</code>, but this does not work for Doggo, not even if you coerce the <code>if</code> branches’ return values to <code>private unit</code>. The reson is that the typechecker notices that the <code>if</code> statement has a private condition, but one of its branches has an observable side effect, and rejects the <code>if</code> statement for being “leaky”.</p>
-<p>Here’s the full code for typechecking an <code>if</code> statement, which is worth examining in close detail:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb13-1" title="1">  | IfExp {cond, thenCase, elseCase} =&gt;</a>
-<a class="sourceLine" id="cb13-2" title="2">    <span class="kw">let</span> <span class="kw">val</span> pCond &lt;@&lt; condT = checkTerm cxt cond</a>
-<a class="sourceLine" id="cb13-3" title="3">        <span class="kw">val</span> p1 &lt;@&lt; thenT = checkTerm cxt thenCase</a>
-<a class="sourceLine" id="cb13-4" title="4">        <span class="kw">val</span> p2 &lt;@&lt; elseT = checkTerm cxt elseCase</a>
-<a class="sourceLine" id="cb13-5" title="5">        <span class="kw">val</span> pbranches = p1 *$ p2</a>
-<a class="sourceLine" id="cb13-6" title="6">    <span class="kw">in</span></a>
-<a class="sourceLine" id="cb13-7" title="7">        case condT</a>
-<a class="sourceLine" id="cb13-8" title="8">         <span class="kw">of</span> Cbool @: condSecrecy =&gt;</a>
-<a class="sourceLine" id="cb13-9" title="9">            <span class="kw">if</span> equiv (thenT, elseT)</a>
-<a class="sourceLine" id="cb13-10" title="10">            <span class="kw">then</span> (case (condSecrecy, thenT)</a>
-<a class="sourceLine" id="cb13-11" title="11">                   <span class="kw">of</span> (Secrecy.Public, branchesT) =&gt; (pbranches *$ pCond) &lt;@&lt; branchesT</a>
-<a class="sourceLine" id="cb13-12" title="12">                    | (Secrecy.Private, _ @: Secrecy.Public) =&gt; <span class="dt">raise</span> TypeError.publicIfBranches</a>
-<a class="sourceLine" id="cb13-13" title="13">                    | (Secrecy.Private, _ @: Secrecy.Private) =&gt;</a>
-<a class="sourceLine" id="cb13-14" title="14">                      case pbranches</a>
-<a class="sourceLine" id="cb13-15" title="15">                       <span class="kw">of</span> Secrecy.Public =&gt; <span class="dt">raise</span> TypeError.leakyIfBranches</a>
-<a class="sourceLine" id="cb13-16" title="16">                        | Secrecy.Private =&gt; pCond &lt;@&lt; thenT)</a>
-<a class="sourceLine" id="cb13-17" title="17">            <span class="kw">else</span> <span class="dt">raise</span> TypeError.differentIfBranches (thenT, elseT)</a>
-<a class="sourceLine" id="cb13-18" title="18">          | other =&gt;</a>
-<a class="sourceLine" id="cb13-19" title="19">            <span class="dt">raise</span> TypeError.nonBoolIfCondition other</a>
-<a class="sourceLine" id="cb13-20" title="20">    <span class="kw">end</span></a></code></pre></div>
-<p>Note: I have replaced <code>&lt;&lt;&lt;</code> with <code>&lt;@&lt;</code> to get syntax highlighting to not suck. Anyway, that infix symbol is what Doggo uses to keep track of the purities: all expressions now have an additional <em>purity</em> value tacked on. What’s confusing is that this purity is represented with the same SML type as the secrecy that was previously tacked onto data types, but has a different meaning. On the left-hand side of <code>&lt;@&lt;</code>, the value <code>Private</code> means pure and <code>Public</code> means impure, so that combining a pure and an impure computation result in an impure computation, which is the opposite of what you’d get when you combine a public and a private computation. So, <code>+$</code> is the operator for combining secrecies and <code>*$</code> is the operator for combining purities.</p>
-<p>So: If the condition is public, then anything goes. If the condition is private, then the <code>then</code> and <code>else</code> branches must have a private return value and must be pure. This seems solid, unfortunately for us.</p>
-<p>There is a lot of other code in <code>typechecker</code> that you can think about and try to break.</p>
+<p>This challenge was another blob of SML that was encrypted with the
+flag to Pupper, but diffing the two codebases reveals that most of the
+code is the same. The big change is that Wolf’s type system got an
+overhaul. Not only is the above issue with <code>if</code> statements
+fixed, but now the <em>purities</em> of expressions and functions are
+kept track of. An expression is impure if it ever writes to a
+<code>ref</code> to public data, so that it might have observable side
+effects.</p>
+<p>So the above solution for Pupper could also be solved with a binary
+search like
+<code>let r = ref 0 in (if flag &gt; 1000000 then r := 1 else ()); !r</code>,
+but this does not work for Doggo, not even if you coerce the
+<code>if</code> branches’ return values to <code>private unit</code>.
+The reson is that the typechecker notices that the <code>if</code>
+statement has a private condition, but one of its branches has an
+observable side effect, and rejects the <code>if</code> statement for
+being “leaky”.</p>
+<p>Here’s the full code for typechecking an <code>if</code> statement,
+which is worth examining in close detail:</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode ml"><code class="sourceCode ocaml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  | IfExp {cond, thenCase, elseCase} =&gt;</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">val</span> pCond &lt;@&lt; condT = checkTerm cxt cond</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">val</span> p1 &lt;@&lt; thenT = checkTerm cxt thenCase</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">val</span> p2 &lt;@&lt; elseT = checkTerm cxt elseCase</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">val</span> pbranches = p1 *$ p2</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">in</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        case condT</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>         <span class="kw">of</span> Cbool @: condSecrecy =&gt;</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> equiv (thenT, elseT)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>            <span class="kw">then</span> (case (condSecrecy, thenT)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                   <span class="kw">of</span> (Secrecy.Public, branchesT) =&gt; (pbranches *$ pCond) &lt;@&lt; branchesT</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>                    | (Secrecy.Private, _ @: Secrecy.Public) =&gt; <span class="dt">raise</span> TypeError.publicIfBranches</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>                    | (Secrecy.Private, _ @: Secrecy.Private) =&gt;</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>                      case pbranches</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>                       <span class="kw">of</span> Secrecy.Public =&gt; <span class="dt">raise</span> TypeError.leakyIfBranches</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>                        | Secrecy.Private =&gt; pCond &lt;@&lt; thenT)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>            <span class="kw">else</span> <span class="dt">raise</span> TypeError.differentIfBranches (thenT, elseT)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>          | other =&gt;</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>            <span class="dt">raise</span> TypeError.nonBoolIfCondition other</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span></code></pre></div>
+<p>Note: I have replaced <code>&lt;&lt;&lt;</code> with
+<code>&lt;@&lt;</code> to get syntax highlighting to not suck. Anyway,
+that infix symbol is what Doggo uses to keep track of the purities: all
+expressions now have an additional <em>purity</em> value tacked on.
+What’s confusing is that this purity is represented with the same SML
+type as the secrecy that was previously tacked onto data types, but has
+a different meaning. On the left-hand side of <code>&lt;@&lt;</code>,
+the value <code>Private</code> means pure and <code>Public</code> means
+impure, so that combining a pure and an impure computation result in an
+impure computation, which is the opposite of what you’d get when you
+combine a public and a private computation. So, <code>+$</code> is the
+operator for combining secrecies and <code>*$</code> is the operator for
+combining purities.</p>
+<p>So: If the condition is public, then anything goes. If the condition
+is private, then the <code>then</code> and <code>else</code> branches
+must have a private return value and must be pure. This seems solid,
+unfortunately for us.</p>
+<p>There is a lot of other code in <code>typechecker</code> that you can
+think about and try to break.</p>
 <ul>
-<li><p>Of course, there are all the basic variable expressions, literals, <code>let</code> expressions, comparisons, and arithmetic operations, but they all seem to combine all the necessary secrecies and purities correctly with the right operators, and never produce any impure side effects themselves (other than effects like timing, which we’ve already eliminated).</p></li>
-<li><p>In <code>NewRefExp</code> you see that creating a public reference (to either a public value or a private value, even <code>flag</code> itself) is considered pure. Also, you can compare references for equality (being the exact same memory) even if their contents are private. Unfortunately, references are not allowed to be private, so you can’t return them from anything depending on <code>flag</code>. If your goal is to get a public value, it seems that references to private data just act as symbols that you can observe the equality of and nothing else.</p></li>
-<li><p><code>AssignExp</code> seems to do its job with respect to computing and including the correct purity.</p></li>
-<li><p>Close examination of the code for <code>DerefExp</code> reveals that I lied about the description of impure expressions earlier: expressions that <em>read</em> from <code>ref</code>s public data are also marked impure. But this just makes our job harder, not easier.</p></li>
+<li><p>Of course, there are all the basic variable expressions,
+literals, <code>let</code> expressions, comparisons, and arithmetic
+operations, but they all seem to combine all the necessary secrecies and
+purities correctly with the right operators, and never produce any
+impure side effects themselves (other than effects like timing, which
+we’ve already eliminated).</p></li>
+<li><p>In <code>NewRefExp</code> you see that creating a public
+reference (to either a public value or a private value, even
+<code>flag</code> itself) is considered pure. Also, you can compare
+references for equality (being the exact same memory) even if their
+contents are private. Unfortunately, references are not allowed to be
+private, so you can’t return them from anything depending on
+<code>flag</code>. If your goal is to get a public value, it seems that
+references to private data just act as symbols that you can observe the
+equality of and nothing else.</p></li>
+<li><p><code>AssignExp</code> seems to do its job with respect to
+computing and including the correct purity.</p></li>
+<li><p>Close examination of the code for <code>DerefExp</code> reveals
+that I lied about the description of impure expressions earlier:
+expressions that <em>read</em> from <code>ref</code>s public data are
+also marked impure. But this just makes our job harder, not
+easier.</p></li>
 </ul>
-<p>The remaining types of expressions are coercions, lambdas, and function application. The typechecking for coercions is just a thin wrapper around <code>subtype</code>:</p>
+<p>The remaining types of expressions are coercions, lambdas, and
+function application. The typechecking for coercions is just a thin
+wrapper around <code>subtype</code>:</p>
 <pre><code>  | CoerceExp (e, tnew) =&gt;
     let val purity &lt;&lt;&lt; t = checkTerm cxt e
     in
@@ -237,57 +363,122 @@ val op *$ = Secrecy.min</code></pre>
         else raise TypeError.cannotCoerce (t, tnew)
     end</code></pre>
 <p>And here’s <code>subtype</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">fun</span> subtype ((t1 @: s1) : tycon, (t2 @: s2) : tycon) : <span class="dt">bool</span> =</a>
-<a class="sourceLine" id="cb15-2" title="2">  Secrecy.leq s2 s1 andalso</a>
-<a class="sourceLine" id="cb15-3" title="3">  case (t1, t2)</a>
-<a class="sourceLine" id="cb15-4" title="4">   <span class="kw">of</span> (Cunit, Cunit) =&gt; <span class="kw">true</span></a>
-<a class="sourceLine" id="cb15-5" title="5">    | (Carrow (c1, c2), Carrow (c1&#39;, c2&#39;)) =&gt;</a>
-<a class="sourceLine" id="cb15-6" title="6">      subtype (c1&#39;, c1) andalso subtype (c2, c2&#39;)</a>
-<a class="sourceLine" id="cb15-7" title="7">    | (Cint, Cint) =&gt; <span class="kw">true</span></a>
-<a class="sourceLine" id="cb15-8" title="8">    | (Cbool, Cbool) =&gt; <span class="kw">true</span></a>
-<a class="sourceLine" id="cb15-9" title="9">    | (Cref c1, Cref c2) =&gt; equiv (c1, c2)</a>
-<a class="sourceLine" id="cb15-10" title="10">    | _ =&gt; <span class="kw">false</span></a>
-<a class="sourceLine" id="cb15-11" title="11"><span class="kw">and</span> equiv (t1, t2) : <span class="dt">bool</span> =</a>
-<a class="sourceLine" id="cb15-12" title="12">    subtype (t1, t2) andalso subtype (t2, t1)</a></code></pre></div>
-<p>So, public X is a subtype of private X for all X, and <code>a -&gt; b</code> is a subtype of <code>c -&gt; d</code> if <code>c</code> is a subtype of <code>a</code> and <code>b</code> is a subtype of <code>d</code>, which make sense. This all seems fine, but we’ll put it on the back burner for now.</p>
-<p>The code for lambdas and function application reveals something stranger:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb16-1" title="1">  | LamExp {param, paramType, body} =&gt;</a>
-<a class="sourceLine" id="cb16-2" title="2">    <span class="kw">let</span> <span class="kw">val</span> cxt = Context.insert(cxt, param, paramType)</a>
-<a class="sourceLine" id="cb16-3" title="3">        <span class="kw">val</span> purity &lt;@&lt; returnType  = checkTerm cxt body</a>
-<a class="sourceLine" id="cb16-4" title="4">        <span class="kw">val</span> (_ @: returnSecrecy) = returnType</a>
-<a class="sourceLine" id="cb16-5" title="5">    <span class="kw">in</span></a>
-<a class="sourceLine" id="cb16-6" title="6">        checkType paramType;</a>
-<a class="sourceLine" id="cb16-7" title="7">        doesn&#39;tWrite &lt;@&lt; Carrow(paramType, returnType) @: (returnSecrecy *$ purity)</a>
-<a class="sourceLine" id="cb16-8" title="8">    <span class="kw">end</span></a></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb17-1" title="1">  | AppExp {<span class="kw">function</span>, argument} =&gt;</a>
-<a class="sourceLine" id="cb17-2" title="2">    <span class="kw">let</span> <span class="kw">val</span> argTermPurity &lt;@&lt; t = checkTerm cxt argument</a>
-<a class="sourceLine" id="cb17-3" title="3">    <span class="kw">in</span></a>
-<a class="sourceLine" id="cb17-4" title="4">        case checkTerm cxt <span class="kw">function</span></a>
-<a class="sourceLine" id="cb17-5" title="5">         <span class="kw">of</span> funTermPurity &lt;@&lt; Carrow (t1, t2) @: funPurity =&gt;</a>
-<a class="sourceLine" id="cb17-6" title="6">            <span class="kw">if</span> equiv (t, t1)</a>
-<a class="sourceLine" id="cb17-7" title="7">            <span class="kw">then</span> (funPurity *$ funTermPurity *$ argTermPurity) &lt;@&lt; t2</a>
-<a class="sourceLine" id="cb17-8" title="8">            <span class="kw">else</span> <span class="dt">raise</span> TypeError.appIncompatible ((t1, t2), t)</a>
-<a class="sourceLine" id="cb17-9" title="9">          | _ &lt;@&lt; other =&gt; <span class="dt">raise</span> TypeError.appNotArrow other</a>
-<a class="sourceLine" id="cb17-10" title="10">    <span class="kw">end</span></a></code></pre></div>
-<p>Why is there a <code>*$</code> on the right-hand side of <code>@:</code>, where secrecies are usually stored? Does that mean there’s a bug in how secrecies are computed for lambdas that we can exploit, to create a public value from a public value and a private one?</p>
-<p>Not quite. From the variable names we can figure out the semantics of this strange different usage of <code>@:</code>: Doggo dispenses with keeping track of secrecies for functions, and instead stores the <em>purity of functions when they are called</em> on the right-hand side of <code>@:</code> for functions, where the secrecy of other values are stored. Now the code makes sense.</p>
-<p>You might note that, although the purity of the function application is meticulously calculated, the type of the function application is directly taken from the return type of the function itself; no secrecies are combined into it. This seems like a promising thing to exploit. You might want to smuggle private data into a function application via the function itself or its argument. For example, you might hope that we can, say, choose a function of type <code>private (int -&gt; int)</code> that depends on the flag, then call it on a public <code>int</code> and get a public <code>int</code>, which would let us exfiltrate the flag. But actually, the purity field of functions is a bit stricter: not only must pure (private) functions never write to a public ref when executed, they also cannot return a public value. This is checked when validating the type, so that you can never get a function of type <code>private (int -&gt; int)</code>, because the type <code>private (int -&gt; int)</code> is invalid and you won’t be allowed to write it down. So you’d be stuck with functions whose return types are <code>private</code>, which you can’t get anything out of by calling. And if you could write a function that produced a public result from private inputs with the goal of calling it, you could just use the body of that function in the first place.</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode ml"><code class="sourceCode ocaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fun</span> subtype ((t1 @: s1) : tycon, (t2 @: s2) : tycon) : <span class="dt">bool</span> =</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  Secrecy.leq s2 s1 andalso</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  case (t1, t2)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>   <span class="kw">of</span> (Cunit, Cunit) =&gt; <span class="kw">true</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    | (Carrow (c1, c2), Carrow (c1&#39;, c2&#39;)) =&gt;</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>      subtype (c1&#39;, c1) andalso subtype (c2, c2&#39;)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    | (Cint, Cint) =&gt; <span class="kw">true</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    | (Cbool, Cbool) =&gt; <span class="kw">true</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    | (Cref c1, Cref c2) =&gt; equiv (c1, c2)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    | _ =&gt; <span class="kw">false</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="kw">and</span> equiv (t1, t2) : <span class="dt">bool</span> =</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    subtype (t1, t2) andalso subtype (t2, t1)</span></code></pre></div>
+<p>So, public X is a subtype of private X for all X, and
+<code>a -&gt; b</code> is a subtype of <code>c -&gt; d</code> if
+<code>c</code> is a subtype of <code>a</code> and <code>b</code> is a
+subtype of <code>d</code>, which make sense. This all seems fine, but
+we’ll put it on the back burner for now.</p>
+<p>The code for lambdas and function application reveals something
+stranger:</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode ml"><code class="sourceCode ocaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  | LamExp {param, paramType, body} =&gt;</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">val</span> cxt = Context.insert(cxt, param, paramType)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">val</span> purity &lt;@&lt; returnType  = checkTerm cxt body</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">val</span> (_ @: returnSecrecy) = returnType</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">in</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        checkType paramType;</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        doesn&#39;tWrite &lt;@&lt; Carrow(paramType, returnType) @: (returnSecrecy *$ purity)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode ml"><code class="sourceCode ocaml"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  | AppExp {<span class="kw">function</span>, argument} =&gt;</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">val</span> argTermPurity &lt;@&lt; t = checkTerm cxt argument</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">in</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        case checkTerm cxt <span class="kw">function</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>         <span class="kw">of</span> funTermPurity &lt;@&lt; Carrow (t1, t2) @: funPurity =&gt;</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> equiv (t, t1)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>            <span class="kw">then</span> (funPurity *$ funTermPurity *$ argTermPurity) &lt;@&lt; t2</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>            <span class="kw">else</span> <span class="dt">raise</span> TypeError.appIncompatible ((t1, t2), t)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>          | _ &lt;@&lt; other =&gt; <span class="dt">raise</span> TypeError.appNotArrow other</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span></code></pre></div>
+<p>Why is there a <code>*$</code> on the right-hand side of
+<code>@:</code>, where secrecies are usually stored? Does that mean
+there’s a bug in how secrecies are computed for lambdas that we can
+exploit, to create a public value from a public value and a private
+one?</p>
+<p>Not quite. From the variable names we can figure out the semantics of
+this strange different usage of <code>@:</code>: Doggo dispenses with
+keeping track of secrecies for functions, and instead stores the
+<em>purity of functions when they are called</em> on the right-hand side
+of <code>@:</code> for functions, where the secrecy of other values are
+stored. Now the code makes sense.</p>
+<p>You might note that, although the purity of the function application
+is meticulously calculated, the type of the function application is
+directly taken from the return type of the function itself; no secrecies
+are combined into it. This seems like a promising thing to exploit. You
+might want to smuggle private data into a function application via the
+function itself or its argument. For example, you might hope that we
+can, say, choose a function of type <code>private (int -&gt; int)</code>
+that depends on the flag, then call it on a public <code>int</code> and
+get a public <code>int</code>, which would let us exfiltrate the flag.
+But actually, the purity field of functions is a bit stricter: not only
+must pure (private) functions never write to a public ref when executed,
+they also cannot return a public value. This is checked when validating
+the type, so that you can never get a function of type
+<code>private (int -&gt; int)</code>, because the type
+<code>private (int -&gt; int)</code> is invalid and you won’t be allowed
+to write it down. So you’d be stuck with functions whose return types
+are <code>private</code>, which you can’t get anything out of by
+calling. And if you could write a function that produced a public result
+from private inputs with the goal of calling it, you could just use the
+body of that function in the first place.</p>
 <p>So there’s no bug here either. The type system is fine. Right?</p>
-<p>No, the type system is not fine, and we have all the puzzle pieces to figure it out. Recall the implementation of <code>subtype</code>, which checks when a type is coercible into another: for all X, you can coerce <code>X</code> into <code>private X</code> (except <code>ref</code>s, for which <code>private ref ...</code> is invalid). For normal data types, this just increases their secrecy, which is fine. But for for function types, this lets us <strong>coerce impure functions to pure functions</strong>, which is quite bad. This allows us to create an impure function, coerce it to a pure function, and then call it in one of the branches of an <code>if</code>-<code>then</code>-<code>else</code> statement whose condition depends on <code>flag</code>.</p>
-<p>The solution readily follows. There is a little extra typing involved in the solution because validly-typed <code>private</code> (pure) functions must also have a <code>private</code> return value, and the most convenient value is <code>flag</code> itself, even if we immediately throw that return value away. My solution during the CTF was as follows:</p>
+<p>No, the type system is not fine, and we have all the puzzle pieces to
+figure it out. Recall the implementation of <code>subtype</code>, which
+checks when a type is coercible into another: for all X, you can coerce
+<code>X</code> into <code>private X</code> (except <code>ref</code>s,
+for which <code>private ref ...</code> is invalid). For normal data
+types, this just increases their secrecy, which is fine. But for for
+function types, this lets us <strong>coerce impure functions to pure
+functions</strong>, which is quite bad. This allows us to create an
+impure function, coerce it to a pure function, and then call it in one
+of the branches of an
+<code>if</code>-<code>then</code>-<code>else</code> statement whose
+condition depends on <code>flag</code>.</p>
+<p>The solution readily follows. There is a little extra typing involved
+in the solution because validly-typed <code>private</code> (pure)
+functions must also have a <code>private</code> return value, and the
+most convenient value is <code>flag</code> itself, even if we
+immediately throw that return value away. My solution during the CTF was
+as follows:</p>
 <pre><code>let m = ref 0 in
 let f = (fn (r : ref int) =&gt; r := 1; flag) :&gt; private (ref int -&gt; private int) in
 (if 1000000 &gt; flag then f m else flag); !m</code></pre>
-<p>A more verbose but possibly more essentialized version is as follows:</p>
+<p>A more verbose but possibly more essentialized version is as
+follows:</p>
 <pre><code>let m = ref 0 in
 let p = () :&gt; private unit in
 let f = (fn (x: private unit) =&gt; m := 1; x) :&gt; private (private unit -&gt; private unit) in
 (if 1000000 &gt; flag then f p else p); !m</code></pre>
-<p>Running the same binary-search script with this as a template and decoding in the same way gets us the flag.</p>
+<p>Running the same binary-search script with this as a template and
+decoding in the same way gets us the flag.</p>
 <pre><code>PCTF{$h0u1d_h4v3_f0rma11y_v3r1fi3d!}</code></pre>
 <h3 id="woofer">Woofer</h3>
-<p>The final part of the trilogy, which I did not solve during the CTF (nobody did). This was another blob of SML code that reimplemented Wolf, encrypted with the Pupper flag, that was nearly identical to Pupper, just with the above issue patched. In Woofer, pure (private) functions are now a subtype of impure (public) functions, as they should be, instead of the other way round.</p>
-<p>The challenge author has <a href="https://ctftime.org/writeup/9980">posted a writeup</a>. The intended solution was to take advantage of the forking computation and heap hashing to write a program that would cause an out-of-memory error in some cases but not in others, and exfiltrate bits that way. It’s a pretty cool idea and shows just how clever side-channel attacks can be.</p></article>
+<p>The final part of the trilogy, which I did not solve during the CTF
+(nobody did). This was another blob of SML code that reimplemented Wolf,
+encrypted with the Pupper flag, that was nearly identical to Pupper,
+just with the above issue patched. In Woofer, pure (private) functions
+are now a subtype of impure (public) functions, as they should be,
+instead of the other way round.</p>
+<p>The challenge author has <a
+href="https://ctftime.org/writeup/9980">posted a writeup</a>. The
+intended solution was to take advantage of the forking computation and
+heap hashing to write a program that would cause an out-of-memory error
+in some cases but not in others, and exfiltrate bits that way. It’s a
+pretty cool idea and shows just how clever side-channel attacks can
+be.</p></article>
 	<footer class="post-footer">
 		
 		<ul class="post-tags">
@@ -316,7 +507,7 @@ let f = (fn (x: private unit) =&gt; m := 1; x) :&gt; private (private unit -&gt;
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

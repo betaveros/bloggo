@@ -69,10 +69,20 @@ Mnemonic Here’s my mnemonic table for digits, inspired by an old Martin Gardne
 		
 		</p>
 	</header>
-	<article><p>Continuing the porting of stuff from betaveros.stash, and adding more stuff.</p>
+	<article><p>Continuing the porting of stuff from betaveros.stash, and adding more
+stuff.</p>
 <h3 id="mnemonic">Mnemonic</h3>
-<p>Here’s my mnemonic table for digits, inspired by an old Martin Gardner column. I wrote from memory the first 132 digits of 2012! correctly at IMO 2012 with this table. I had remembered more, but unfortunately, if I recall correctly, I confused myself over whether I had encoded a 5 or a 2 by the S of “nose”, because this is supposed to be more of a phonetic code than a spelling one — otherwise double letters would be confusing and lots of randomly appearing digraphs would be wasted, because English is weird.</p>
-<p>I assigned two kind of different consonants to 1 because it’s fairly important; I added W pretty late. The other two unused consonants are H and Y.</p>
+<p>Here’s my mnemonic table for digits, inspired by an old Martin
+Gardner column. I wrote from memory the first 132 digits of 2012!
+correctly at IMO 2012 with this table. I had remembered more, but
+unfortunately, if I recall correctly, I confused myself over whether I
+had encoded a 5 or a 2 by the S of “nose”, because this is supposed to
+be more of a phonetic code than a spelling one — otherwise double
+letters would be confusing and lots of randomly appearing digraphs would
+be wasted, because English is weird.</p>
+<p>I assigned two kind of different consonants to 1 because it’s fairly
+important; I added W pretty late. The other two unused consonants are H
+and Y.</p>
 <table class="table table-condensed table-hover">
 <tr>
 <th>
@@ -197,16 +207,28 @@ ze<strong>R</strong>o, or it’s a <strong>R</strong>ound circle
 </tr>
 </table>
 <h3 id="bits-primes">Bits &amp; Primes</h3>
-<p><abbr title='2^4 × 3^4 × 5 × 7 × 11 × 13 × 17 × 19'>2095133040</abbr> has <strong>1600</strong> factors, the most of any positive integer under 2<sup>31</sup> − 1. Ref: <a href="http://oeis.org/A002182/b002182.txt">A002182: highly composite numbers, def. 1</a></p>
+<p><abbr title='2^4 × 3^4 × 5 × 7 × 11 × 13 × 17 × 19'>2095133040</abbr>
+has <strong>1600</strong> factors, the most of any positive integer
+under 2<sup>31</sup> − 1. Ref: <a
+href="http://oeis.org/A002182/b002182.txt">A002182: highly composite
+numbers, def. 1</a></p>
 <p>There are 105097565 (1.05e8) primes under 2<sup>31</sup> − 1.</p>
 <p>Miller-Rabin primality testing does not miss any composites:</p>
 <ul>
-<li>below 2<sup>31</sup> if the first 3 primes (2, 3, 5) are used as witnesses.</li>
-<li>below 2<sup>32</sup> if the first 4 primes (2, 3, 5, 7) are used as witnesses.</li>
-<li>below 2<sup>64</sup> if the first 12 primes (2 to 37 inclusive) are used as witnesses.</li>
+<li>below 2<sup>31</sup> if the first 3 primes (2, 3, 5) are used as
+witnesses.</li>
+<li>below 2<sup>32</sup> if the first 4 primes (2, 3, 5, 7) are used as
+witnesses.</li>
+<li>below 2<sup>64</sup> if the first 12 primes (2 to 37 inclusive) are
+used as witnesses.</li>
 </ul>
 <p>See <a href="http://oeis.org/A014233">A014233</a>.</p>
-<p>To verify implementations: there are <abbr title='(m: "bizarre choice", because why would you need Miller-Rabin for such small numbers?)'><strong>82025</strong></abbr> primes beneath <code>(1 &lt;&lt; 20)</code> and <abbr title='(m: "mutable tool", as my implementation will probably get mutated when I recode it)'><strong>37871</strong></abbr> primes between <code>(1 &lt;&lt; 40)</code> and <code>(1 &lt;&lt; 40) + (1 &lt;&lt; 20)</code>.</p>
+<p>To verify implementations: there are
+<abbr title='(m: "bizarre choice", because why would you need Miller-Rabin for such small numbers?)'><strong>82025</strong></abbr>
+primes beneath <code>(1 &lt;&lt; 20)</code> and
+<abbr title='(m: "mutable tool", as my implementation will probably get mutated when I recode it)'><strong>37871</strong></abbr>
+primes between <code>(1 &lt;&lt; 40)</code> and
+<code>(1 &lt;&lt; 40) + (1 &lt;&lt; 20)</code>.</p>
 <div class="col-md-6">
 <div class="panel panel-default">
 <div class="panel-heading">
@@ -231,7 +253,8 @@ smallest primitive root: 6
 <strong>99990001</strong>
 <ul>
 <li>
-n − 1 factorization: 2<sup>4</sup> × 3<sup>2</sup> × 5<sup>4</sup> × 11 × 101
+n − 1 factorization: 2<sup>4</sup> × 3<sup>2</sup> × 5<sup>4</sup> × 11
+× 101
 </li>
 <li>
 smallest primitive root: 13
@@ -286,7 +309,8 @@ smallest primitive root: 11
 <strong>999999001</strong>
 <ul>
 <li>
-n − 1 factorization: 2<sup>3</sup> × 3<sup>3</sup> × 5<sup>3</sup> × 7 × 11 × 13 × 37
+n − 1 factorization: 2<sup>3</sup> × 3<sup>3</sup> × 5<sup>3</sup> × 7 ×
+11 × 13 × 37
 </li>
 <li>
 smallest primitive root: 17
@@ -319,7 +343,8 @@ smallest primitive root: 5
 <strong>1000000009</strong>
 <ul>
 <li>
-n − 1 factorization: 2<sup>3</sup> × 3<sup>2</sup> × 7 × 109<sup>2</sup> × 167
+n − 1 factorization: 2<sup>3</sup> × 3<sup>2</sup> × 7 × 109<sup>2</sup>
+× 167
 </li>
 <li>
 smallest primitive root: 13
@@ -458,15 +483,18 @@ smallest primitive root: 10
 </div>
 <h3 id="floating-point">Floating Point</h3>
 <ul>
-<li>Single-precision: sign 1b, exponent 8b, fraction 23+1b implied (= 6 ~ 9 decimal sigfigs)</li>
-<li>Double-precision: sign 1b, exponent 11b, fraction 52+1b implied (= 15 ~ 17 decimal sigfigs)</li>
+<li>Single-precision: sign 1b, exponent 8b, fraction 23+1b implied (= 6
+~ 9 decimal sigfigs)</li>
+<li>Double-precision: sign 1b, exponent 11b, fraction 52+1b implied (=
+15 ~ 17 decimal sigfigs)</li>
 </ul>
 <p>Special cases:</p>
 <ul>
 <li>Exponent = 0
 <ul>
 <li>fraction = 0: (±) zero</li>
-<li>fraction ≠ 0: “subnormal” number with implied bit set to 0 instead</li>
+<li>fraction ≠ 0: “subnormal” number with implied bit set to 0
+instead</li>
 </ul></li>
 <li>Exponent = (FF or 3FF, maximum value in allocated bits)
 <ul>
@@ -501,7 +529,7 @@ smallest primitive root: 10
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

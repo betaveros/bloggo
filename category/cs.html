@@ -65,6 +65,43 @@ Category → CS
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/digraphs" class="post-link">Vim Digraphs: The Unnecessarily Detailed Guide</a></h3>
+		
+		<p class="post-meta">
+		
+		2025-06-22
+		(2830 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>In Vim, in Insert mode, if you type <kbd>Ctrl-K</kbd> followed by two
+characters, you can insert a special Unicode character corresponding to
+those two characters. The two-character combo is often easier to
+remember than other codes. These are called digraphs.</p>
+<p>For example, <kbd>Ctrl-K</kbd><kbd>1</kbd><kbd>2</kbd> will insert
+<code>½</code>.</p>
+<p>Everything below this is unnecessary detail.</p>
+<h3 id="what-are-all-the-digraphs">What are all the digraphs?</h3>
+<p>I used to think the big table <code><a
+href="https://vimhelp.org/digraph.txt.html#digraph-table">:help
+digraphs-table</a></code> at the bottom of Vim’s help page for digraphs
+was exhaustive. As the page explains, the mnemonics are based on <a
+href="https://datatracker.ietf.org/doc/html/rfc1345">RFC1345</a>, an
+Internet standard that provides two-character mnemonics for various
+characters.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/digraphs">→ read more<span class="offscreen"> Vim Digraphs: The Unnecessarily Detailed Guide</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/viridis" class="post-link">How is viridis defined?</a></h3>
 		
 		<h4 class="post-subtitle">and other adventures in colormapping</h4>
@@ -82,14 +119,18 @@ Category → CS
 		</p>
 	</header>
 	
-	<p>If you’ve dabbled in data visualization, there’s a good chance you’ve encountered the colormap <code>viridis</code>, which was <a href="https://bids.github.io/colormap/">created for matplotlib in ~2015</a>.</p>
+	<p>If you’ve dabbled in data visualization, there’s a good chance you’ve
+encountered the colormap <code>viridis</code>, which was <a
+href="https://bids.github.io/colormap/">created for matplotlib in
+~2015</a>.</p>
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <figure>
 <div class="d3-viridis" style="display: flex" alt="viridis gradient">
 
 </div>
 <figcaption>
-This particular gradient is brought to you by <a href="//blog.vero.site/post/d3">d3</a>
+This particular gradient is brought to you by
+<a href="//blog.vero.site/post/d3">d3</a>
 </figcaption>
 </figure>
 <script>
@@ -124,15 +165,29 @@ d3.select(".d3-four-viridis").selectAll("span").data(d3.range(256)).join("span")
 d3.select(".d3-seven-viridis").selectAll("span").data(d3.range(256)).join("span").style("background-color", i => degree_seven_viridis(i / 255)).style("flex", "1").style("min-height", "1em");
 });
 </script>
-<p>You may also know about some of the considerations went into the colormap’s design, chiefly perceptual uniformity: equally distant colors on the colormap should “look equally different” to humans.</p>
-<p>I won’t discuss color theory much here; the talk introducing viridis (below) is quite good, and there are many other resources online, such as Jamie Wong’s <a href="https://jamie-wong.com/post/color/">From Hexcodes to Eyeballs</a> or Bartosz Ciechanowski’s <a href="https://ciechanow.ski/color-spaces/">Color Spaces</a>.</p>
+<p>You may also know about some of the considerations went into the
+colormap’s design, chiefly perceptual uniformity: equally distant colors
+on the colormap should “look equally different” to humans.</p>
+<p>I won’t discuss color theory much here; the talk introducing viridis
+(below) is quite good, and there are many other resources online, such
+as Jamie Wong’s <a href="https://jamie-wong.com/post/color/">From
+Hexcodes to Eyeballs</a> or Bartosz Ciechanowski’s <a
+href="https://ciechanow.ski/color-spaces/">Color Spaces</a>.</p>
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe src="https://www.youtube.com/embed/xAoljeRJ3lU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-<p>Instead, I nerd-sniped myself with a different question: How is viridis, specifically, defined?</p>
-<p>This seems like it should be easy to answer. Just go into matplotlib and find the <a href="https://github.com/matplotlib/matplotlib/blob/a04e35f76f15020b43d06b4644b5e3d544b07deb/lib/matplotlib/_cm_listed.py#L774">source code for viridis</a>, right? Unfortunately, that source code is just a list of 256 RGB triples along which colors are interpolated. This makes sense for efficiency and even portability because (as we’ll see) the formula for producing viridis is incredibly complicated, but it isn’t a very satisfying answer. How did those triples originally come to be?</p>
+<p>Instead, I nerd-sniped myself with a different question: How is
+viridis, specifically, defined?</p>
+<p>This seems like it should be easy to answer. Just go into matplotlib
+and find the <a
+href="https://github.com/matplotlib/matplotlib/blob/a04e35f76f15020b43d06b4644b5e3d544b07deb/lib/matplotlib/_cm_listed.py#L774">source
+code for viridis</a>, right? Unfortunately, that source code is just a
+list of 256 RGB triples along which colors are interpolated. This makes
+sense for efficiency and even portability because (as we’ll see) the
+formula for producing viridis is incredibly complicated, but it isn’t a
+very satisfying answer. How did those triples originally come to be?</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/viridis">→ read more<span class="offscreen"> How is viridis defined?</span></a>
 	</footer>
@@ -155,14 +210,41 @@ d3.select(".d3-seven-viridis").selectAll("span").data(d3.range(256)).join("span"
 		</p>
 	</header>
 	
-	<p>In theory, the idea here is similar to when I was <a href="https://blog.vero.site/post/react-redux">learning React/Redux</a> and diving into <a href="https://blog.vero.site/post/sql-select">SQL selects</a>. In practice, I think most of D3’s complexity isn’t exactly in a direction that is elucidated by writing down types for everything, so the title is a mere personal snowclone. I’m just writing things out to an arbitrary amount of detail until I understand them and can refer to what I wrote here later.</p>
+	<p>In theory, the idea here is similar to when I was <a
+href="https://blog.vero.site/post/react-redux">learning React/Redux</a>
+and diving into <a href="https://blog.vero.site/post/sql-select">SQL
+selects</a>. In practice, I think most of D3’s complexity isn’t exactly
+in a direction that is elucidated by writing down types for everything,
+so the title is a mere personal snowclone. I’m just writing things out
+to an arbitrary amount of detail until I understand them and can refer
+to what I wrote here later.</p>
 <h3 id="background">Background</h3>
-<p>D3 is <a href="https://d3js.org/what-is-d3">“a JavaScript library for visualizing data”</a>. It has a lot of sublibraries that interoperate well but could be used separately — for example, it has utilities for manipulating colors, time, and SVG paths. Of the various concepts, though, I think D3 <em>selections</em> are the most distinctive and fundamental, so they are the focus of this post.</p>
-<p>At a high level, D3 selections feel like jQuery. You run some code and it goes into the DOM and adds, deletes, and mutates a bunch of elements. The docs even endorse <a href="https://d3js.org/d3-selection/selecting#selection">monkeypatching d3.selection</a> to add custom helpers. However, D3 has data binding and batch operations that make it easy to change the DOM in a way that resembles reconciliation in a framework like React.</p>
+<p>D3 is <a href="https://d3js.org/what-is-d3">“a JavaScript library for
+visualizing data”</a>. It has a lot of sublibraries that interoperate
+well but could be used separately — for example, it has utilities for
+manipulating colors, time, and SVG paths. Of the various concepts,
+though, I think D3 <em>selections</em> are the most distinctive and
+fundamental, so they are the focus of this post.</p>
+<p>At a high level, D3 selections feel like jQuery. You run some code
+and it goes into the DOM and adds, deletes, and mutates a bunch of
+elements. The docs even endorse <a
+href="https://d3js.org/d3-selection/selecting#selection">monkeypatching
+d3.selection</a> to add custom helpers. However, D3 has data binding and
+batch operations that make it easy to change the DOM in a way that
+resembles reconciliation in a framework like React.</p>
 <h3 id="selections">Selections</h3>
-<p><em>API: <a href="https://d3js.org/d3-selection/selecting">Selecting Elements</a>.</em></p>
-<p>A D3 <strong>selection</strong> holds an array of arrays of nullable<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> DOM elements. The intermediate arrays are called <strong>groups</strong>. Additionally, each group in a selection is associated with a <strong>parent node</strong>. During basic D3 usage, you might only ever work with selections with a single group and ignore parent nodes.</p>
-<p>When relevant, I will call the index of an element inside its group the “within-group index” and the index of a group among all groups in a selection the “across-group index”.</p>
+<p><em>API: <a href="https://d3js.org/d3-selection/selecting">Selecting
+Elements</a>.</em></p>
+<p>A D3 <strong>selection</strong> holds an array of arrays of
+nullable<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> DOM elements. The intermediate
+arrays are called <strong>groups</strong>. Additionally, each group in a
+selection is associated with a <strong>parent node</strong>. During
+basic D3 usage, you might only ever work with selections with a single
+group and ignore parent nodes.</p>
+<p>When relevant, I will call the index of an element inside its group
+the “within-group index” and the index of a group among all groups in a
+selection the “across-group index”.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/d3">→ read more<span class="offscreen"> D3 the Hard FP Way</span></a>
 	</footer>
@@ -185,14 +267,28 @@ d3.select(".d3-seven-viridis").selectAll("span").data(d3.range(256)).join("span"
 		</p>
 	</header>
 	
-	<p>I want to add a second word in the title, something like “Koans” or “Vignettes”, but I don’t know a word with the right connotations.</p>
-<p>I realized recently that I have been walking around for a long time with some confusion and unknown unknowns about how concurrency works in various settings, and decided to write about it until I stopped being confused. This post doesn’t therefore have much of a “point”.</p>
+	<p>I want to add a second word in the title, something like “Koans” or
+“Vignettes”, but I don’t know a word with the right connotations.</p>
+<p>I realized recently that I have been walking around for a long time
+with some confusion and unknown unknowns about how concurrency works in
+various settings, and decided to write about it until I stopped being
+confused. This post doesn’t therefore have much of a “point”.</p>
 <h3 id="concurrency-and-parallelism">Concurrency and Parallelism</h3>
 <p>Wikipedia, as of time of writing:</p>
 <blockquote>
-<p><strong>Concurrency</strong> is the ability of different parts or units of a program, algorithm, or problem to be executed out-of-order or in partial order, without affecting the outcome.</p>
+<p><strong>Concurrency</strong> is the ability of different parts or
+units of a program, algorithm, or problem to be executed out-of-order or
+in partial order, without affecting the outcome.</p>
 </blockquote>
-<p>There are two broad reasons concurrency is useful. One is for performance: if you want your computer to perform as many floating point operations as possible by lunchtime, you want all CPUs/GPUs/etc. to be performing operations simultaneously. Another is that you’re in a problem domain where you simply can’t predict the order of events: you’re writing a user interface, and the user can click on any of multiple buttons in any order; or you’re writing a web server, and any number of clients can request any pages in any order. These reasons are not mutually exclusive.</p>
+<p>There are two broad reasons concurrency is useful. One is for
+performance: if you want your computer to perform as many floating point
+operations as possible by lunchtime, you want all CPUs/GPUs/etc. to be
+performing operations simultaneously. Another is that you’re in a
+problem domain where you simply can’t predict the order of events:
+you’re writing a user interface, and the user can click on any of
+multiple buttons in any order; or you’re writing a web server, and any
+number of clients can request any pages in any order. These reasons are
+not mutually exclusive.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/concurrency">→ read more<span class="offscreen"> Concurrency</span></a>
 	</footer>
@@ -216,19 +312,42 @@ d3.select(".d3-seven-viridis").selectAll("span").data(d3.range(256)).join("span"
 	</header>
 	
 	<p>Passwords. It’s 2023 and we still have to deal with them.</p>
-<p>Many people know that, per the <a href="https://xkcd.com/936/">canonical xkcd</a>, sequences of randomly chosen words such as</p>
+<p>Many people know that, per the <a
+href="https://xkcd.com/936/">canonical xkcd</a>, sequences of randomly
+chosen words such as</p>
 <div style="text-align: center">
-<span id="diceware-out" style="font-size: 1.25rem">soak-science-wander-pew-goldfish-xray-speed-consult</span><br/><button id="diceware-regen" class="btn" style="display: none">regenerate</button><small> or <a href="/misc/betaveros-diceware.txt">get the list as .txt</a> or a <a href="/misc/betaveros-diceware.html">standalone generator</a><span id="diceware-msg"> (if my JavaScript were working the above would be a random password and you wouldn’t be seeing this message)</span></small>
+<span id="diceware-out"
+style="font-size: 1.25rem">soak-science-wander-pew-goldfish-xray-speed-consult</span><br/><button id="diceware-regen" class="btn" style="display: none">regenerate</button><small>
+or <a href="/misc/betaveros-diceware.txt">get the list as .txt</a> or a
+<a href="/misc/betaveros-diceware.html">standalone generator</a><span
+id="diceware-msg"> (if my JavaScript were working the above would be a
+random password and you wouldn’t be seeing this message)</span></small>
 </div>
 <script src="/js/diceware.js"></script>
-<p>make relatively memorable but hard-to-crack passwords. One popular strategy for randomly choosing words is Arnold Reinhold’s <a href="https://theworld.com/~reinhold/diceware.html">Diceware™</a>, a list of 6<sup>5</sup> = 7776 “words” that you can randomly sample from by rolling five dice (analog or digital). (I won’t go into topics like how to calculate the entropy of passwords and how long a password you should try to have here, since most Diceware overviews already discuss them at length.)</p>
+<p>make relatively memorable but hard-to-crack passwords. One popular
+strategy for randomly choosing words is Arnold Reinhold’s <a
+href="https://theworld.com/~reinhold/diceware.html">Diceware™</a>, a
+list of 6<sup>5</sup> = 7776 “words” that you can randomly sample from
+by rolling five dice (analog or digital). (I won’t go into topics like
+how to calculate the entropy of passwords and how long a password you
+should try to have here, since most Diceware overviews already discuss
+them at length.)</p>
 <figure>
 <a href="/img/dice.png"><img src="/img/dice.png" alt="Five dice arranged in a V shape, digitally altered to be red" /></a>
 <figcaption>
-Somehow this image was already on my blog without being used in any post, but if there’s a post it belongs in, it’s surely this one
+Somehow this image was already on my blog without being used in any
+post, but if there’s a post it belongs in, it’s surely this one
 </figcaption>
 </figure>
-<p>A few people have iterated on the concept since then: probably most notably, the Electronic Frontier Foundation published their own <a href="https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases">word list</a> in 2016, with words chosen to be more well-known and memorable, at the cost of taking longer to type. I’m a fast typer and prefer the EFF’s wordlist over the original, and am very grateful to them for creating it, but after generating quite a few passwords with it over the last few years, I began to feel that it still had a lot of room for improvement.</p>
+<p>A few people have iterated on the concept since then: probably most
+notably, the Electronic Frontier Foundation published their own <a
+href="https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases">word
+list</a> in 2016, with words chosen to be more well-known and memorable,
+at the cost of taking longer to type. I’m a fast typer and prefer the
+EFF’s wordlist over the original, and am very grateful to them for
+creating it, but after generating quite a few passwords with it over the
+last few years, I began to feel that it still had a lot of room for
+improvement.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/diceware">→ read more<span class="offscreen"> Yet Another Diceware-Style Word List</span></a>
 	</footer>
@@ -252,13 +371,67 @@ Somehow this image was already on my blog without being used in any post, but if
 	</header>
 	
 	<div class="series">
-<p>“shouldn’t this have been published a few months ago?” yeah, probably. I even considered submitting it to the <a href="https://www.reddit.com/r/adventofcode/comments/z9he28/advent_of_code_2022_mistiltoe_elfucation/">AoC contest</a>. time is a real beast.</p>
+<p>“shouldn’t this have been published a few months ago?” yeah,
+probably. I even considered submitting it to the <a
+href="https://www.reddit.com/r/adventofcode/comments/z9he28/advent_of_code_2022_mistiltoe_elfucation/">AoC
+contest</a>. time is a real beast.</p>
 </div>
-<p>The title is clickbait. I did not design and implement a programming language for the sole or even primary purpose of leaderboarding on Advent of Code. It just turned out that the programming language I was working on fit the task remarkably well.</p>
-<p>I can’t name just a single reason I started work on my language, <a href="https://github.com/betaveros/noulith">Noulith</a>, back in July 2022, but I think the biggest one was even more absurdly niche: I solve and write a lot of <a href="https://blog.vero.site/post/puzzlehunts">puzzlehunts</a>, and I wanted a better programming language to use to search word lists for words satisfying unusual constraints, such as, “Find all ten-letter words that contain each of the letters A, B, and C exactly once and that have the ninth letter K.”<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> I have a folder of ten-line scripts of this kind, mostly Python, and I thought there was surely a better way to do this. Not necessarily faster — there is obviously no way I could <a href="https://xkcd.com/1205/">save time on net by optimizing this process</a>. But, for example, I wanted to be able to easily share these programs such that others could run them. I had a positive experience in this with my slightly older golflang <a href="https://github.com/betaveros/paradoc">Paradoc</a>, which I had compiled into a WASM blob and <a href="https://betaveros.github.io/paradoc-rust/">put online</a> and, just once, experienced the convenience of sharing a <a href="https://betaveros.github.io/paradoc-rust/#aVVje0FwcVdwfH1mV8OYKXNqIHI=">short text processing program</a> through a link. (Puzzle: what does this program do?) I also wanted to write and run these programs while booted into a different operating system, using a different computer, or just on my phone.</p>
-<p>As I worked on it, I kept accumulating reasons to keep going. There were other contexts where I wanted to quickly code a combinatorial brute force that was annoying to write in other languages; a glib phrasing is that I wanted access to Haskell’s list monad in a sloppier language. I also wanted an excuse to read <a href="https://craftinginterpreters.com/"><cite>Crafting Interpreters</cite></a> more thoroughly. But sometimes I think the best characterization for what developing the language “felt like” was that I had been possessed by a supernatural creature — say, the dragon from the <a href="https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools">Dragon Book</a>. I spent every spare minute thinking about language features and next implementation steps, because I had to.</p>
-<p>The first “real program” I wrote in Noulith was to brute force constructions for <a href="https://2022.galacticpuzzlehunt.com/puzzle/the-cube">The Cube</a>, for last year’s Galactic Puzzle Hunt in early August, and it worked unexpectedly well. I wrote a <code>for</code> loop with a 53-clause iteratee and the interpreter executed it smoothly. Eventually I realized that the language could expand into other niches in my life where I wanted a scripting language. For example, I did a few <a href="https://www.cryptopals.com/">Cryptopals challenges</a> in them. It would take a month or two before it dawned on me that the same compulsion that drove me to create this language would drive me to do Advent of Code in it. That’s just how it has to be.</p>
-<p>This post details my thought process behind the design of this language. Some preliminary notes:</p>
+<p>The title is clickbait. I did not design and implement a programming
+language for the sole or even primary purpose of leaderboarding on
+Advent of Code. It just turned out that the programming language I was
+working on fit the task remarkably well.</p>
+<p>I can’t name just a single reason I started work on my language, <a
+href="https://github.com/betaveros/noulith">Noulith</a>, back in July
+2022, but I think the biggest one was even more absurdly niche: I solve
+and write a lot of <a
+href="https://blog.vero.site/post/puzzlehunts">puzzlehunts</a>, and I
+wanted a better programming language to use to search word lists for
+words satisfying unusual constraints, such as, “Find all ten-letter
+words that contain each of the letters A, B, and C exactly once and that
+have the ninth letter K.”<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> I have a folder of ten-line scripts
+of this kind, mostly Python, and I thought there was surely a better way
+to do this. Not necessarily faster — there is obviously no way I could
+<a href="https://xkcd.com/1205/">save time on net by optimizing this
+process</a>. But, for example, I wanted to be able to easily share these
+programs such that others could run them. I had a positive experience in
+this with my slightly older golflang <a
+href="https://github.com/betaveros/paradoc">Paradoc</a>, which I had
+compiled into a WASM blob and <a
+href="https://betaveros.github.io/paradoc-rust/">put online</a> and,
+just once, experienced the convenience of sharing a <a
+href="https://betaveros.github.io/paradoc-rust/#aVVje0FwcVdwfH1mV8OYKXNqIHI=">short
+text processing program</a> through a link. (Puzzle: what does this
+program do?) I also wanted to write and run these programs while booted
+into a different operating system, using a different computer, or just
+on my phone.</p>
+<p>As I worked on it, I kept accumulating reasons to keep going. There
+were other contexts where I wanted to quickly code a combinatorial brute
+force that was annoying to write in other languages; a glib phrasing is
+that I wanted access to Haskell’s list monad in a sloppier language. I
+also wanted an excuse to read <a
+href="https://craftinginterpreters.com/"><cite>Crafting
+Interpreters</cite></a> more thoroughly. But sometimes I think the best
+characterization for what developing the language “felt like” was that I
+had been possessed by a supernatural creature — say, the dragon from the
+<a
+href="https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools">Dragon
+Book</a>. I spent every spare minute thinking about language features
+and next implementation steps, because I had to.</p>
+<p>The first “real program” I wrote in Noulith was to brute force
+constructions for <a
+href="https://2022.galacticpuzzlehunt.com/puzzle/the-cube">The Cube</a>,
+for last year’s Galactic Puzzle Hunt in early August, and it worked
+unexpectedly well. I wrote a <code>for</code> loop with a 53-clause
+iteratee and the interpreter executed it smoothly. Eventually I realized
+that the language could expand into other niches in my life where I
+wanted a scripting language. For example, I did a few <a
+href="https://www.cryptopals.com/">Cryptopals challenges</a> in them. It
+would take a month or two before it dawned on me that the same
+compulsion that drove me to create this language would drive me to do
+Advent of Code in it. That’s just how it has to be.</p>
+<p>This post details my thought process behind the design of this
+language. Some preliminary notes:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/noulith">→ read more<span class="offscreen"> Designing a Programming Language to Speedrun Advent of Code</span></a>
 	</footer>
@@ -281,20 +454,50 @@ Somehow this image was already on my blog without being used in any post, but if
 		</p>
 	</header>
 	
-	<p>Code golf is the recreational activity<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> of trying to write programs that are as short as possible.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Golfed programs still have to be correct, but brevity is prioritized above every other concern — e.g., robustness, performance, or legibility — which usually leads to really interesting code.</p>
-<p>I think code golf is a lot of fun (although I think a lot of things are fun, so it’s one of those hobbies that I get really into roughly one month every year and then completely forget about for the remaining eleven). I wanted to write an introduction because I don’t know of any good general introductions to code golf, particularly ones that try to be language-agnostic and that cover the fascinating world of <em>programming languages designed specifically for code golf</em>, which I’ll call golflangs for short. But more on that later.</p>
-<p>Note: If you are the kind of person who prefers to just dive in and try golfing some code without guidance, you should skip to the <a href="#code-golf-sites">code golf sites</a> section.</p>
+	<p>Code golf is the recreational activity<a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> of
+trying to write programs that are as short as possible.<a href="#fn2"
+class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
+Golfed programs still have to be correct, but brevity is prioritized
+above every other concern — e.g., robustness, performance, or legibility
+— which usually leads to really interesting code.</p>
+<p>I think code golf is a lot of fun (although I think a lot of things
+are fun, so it’s one of those hobbies that I get really into roughly one
+month every year and then completely forget about for the remaining
+eleven). I wanted to write an introduction because I don’t know of any
+good general introductions to code golf, particularly ones that try to
+be language-agnostic and that cover the fascinating world of
+<em>programming languages designed specifically for code golf</em>,
+which I’ll call golflangs for short. But more on that later.</p>
+<p>Note: If you are the kind of person who prefers to just dive in and
+try golfing some code without guidance, you should skip to the <a
+href="#code-golf-sites">code golf sites</a> section.</p>
 <h3 id="a-simple-example">A simple example</h3>
-<p>Of course, there’s a reason most code golf tutorials focus on a single language: most code golf techniques are language-specific. The Code Golf &amp; Coding Challenges (CGCC) StackExchange community has a list of some <a href="https://codegolf.stackexchange.com/questions/5285/tips-for-golfing-in-all-languages">golfing tips that apply to most languages</a>, but there are far more tricks in just about any language-specific list, and most of the intrigue lies in knowing the language you’re golfing well. So to provide a taste of the code golf experience, let’s golf a simple problem, Anarchy Golf’s <a href="http://golf.shinh.org/p.rb?Factorial">Factorial</a>, in Python.</p>
-<p>In this problem, we have to read a series of positive integers from standard input, one per line, and output the factorial of each, also one per line. Here’s a stab at a simple, direct implementation with no golfing at all:<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">def</span> factorial(n):</a>
-<a class="sourceLine" id="cb1-2" title="2">    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span>: <span class="cf">return</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb1-3" title="3">    <span class="cf">return</span> n <span class="op">*</span> factorial(n<span class="dv">-1</span>)</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="cf">try</span>:</a>
-<a class="sourceLine" id="cb1-5" title="5">    <span class="cf">while</span> <span class="va">True</span>:</a>
-<a class="sourceLine" id="cb1-6" title="6">        <span class="bu">print</span>(factorial(<span class="bu">int</span>(<span class="bu">input</span>())))</a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="cf">except</span> <span class="pp">EOFError</span>:</a>
-<a class="sourceLine" id="cb1-8" title="8">    <span class="cf">pass</span></a></code></pre></div>
+<p>Of course, there’s a reason most code golf tutorials focus on a
+single language: most code golf techniques are language-specific. The
+Code Golf &amp; Coding Challenges (CGCC) StackExchange community has a
+list of some <a
+href="https://codegolf.stackexchange.com/questions/5285/tips-for-golfing-in-all-languages">golfing
+tips that apply to most languages</a>, but there are far more tricks in
+just about any language-specific list, and most of the intrigue lies in
+knowing the language you’re golfing well. So to provide a taste of the
+code golf experience, let’s golf a simple problem, Anarchy Golf’s <a
+href="http://golf.shinh.org/p.rb?Factorial">Factorial</a>, in
+Python.</p>
+<p>In this problem, we have to read a series of positive integers from
+standard input, one per line, and output the factorial of each, also one
+per line. Here’s a stab at a simple, direct implementation with no
+golfing at all:<a href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a></p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> factorial(n):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span>: <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> factorial(n<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(factorial(<span class="bu">int</span>(<span class="bu">input</span>())))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">EOFError</span>:</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/golf">→ read more<span class="offscreen"> Introduction to Code Golf and Golflangs</span></a>
 	</footer>
@@ -317,8 +520,23 @@ Somehow this image was already on my blog without being used in any post, but if
 		</p>
 	</header>
 	
-	<p>This post is brought to you by “I am procrastinating other stuff by doing some long overdue maintenance on my blog”. Mainly, I finally replaced the old <code>float</code>-based layout from the random Hugo theme I forked, which I had been keeping just because it wasn’t broken, with flexbox, so that I could more easily tweak some other things. If things look broken, you may need to force-refresh or clear your cache, and on the off chance things look mostly the same but you feel like something about the layout feels subtly different, that’s what’s up.</p>
-<p>While making these changes, I ended up digging through the <a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/">flexbox spec</a> to debug an issue and learned some interesting things. (This and other links in this post are permalinks to the November 2018 spec, which I believe is the most recent official version as of time of writing, but it’s nearly three years and there have been quite a few changes in the “editor’s draft”. Also, this post is not a flexbox tutorial and will not make sense if you are already familiar with flexbox.)</p>
+	<p>This post is brought to you by “I am procrastinating other stuff by
+doing some long overdue maintenance on my blog”. Mainly, I finally
+replaced the old <code>float</code>-based layout from the random Hugo
+theme I forked, which I had been keeping just because it wasn’t broken,
+with flexbox, so that I could more easily tweak some other things. If
+things look broken, you may need to force-refresh or clear your cache,
+and on the off chance things look mostly the same but you feel like
+something about the layout feels subtly different, that’s what’s up.</p>
+<p>While making these changes, I ended up digging through the <a
+href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/">flexbox
+spec</a> to debug an issue and learned some interesting things. (This
+and other links in this post are permalinks to the November 2018 spec,
+which I believe is the most recent official version as of time of
+writing, but it’s nearly three years and there have been quite a few
+changes in the “editor’s draft”. Also, this post is not a flexbox
+tutorial and will not make sense if you are already familiar with
+flexbox.)</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/flexbox-fun">→ read more<span class="offscreen"> Flexbox Fun Facts</span></a>
 	</footer>
@@ -343,15 +561,23 @@ Somehow this image was already on my blog without being used in any post, but if
 		</p>
 	</header>
 	
-	<p>Don’t you hate it when CTFs happen faster than you can write them up? This is probably the only PlaidCTF challenge I get to, unfortunately.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+	<p>Don’t you hate it when CTFs happen faster than you can write them up?
+This is probably the only PlaidCTF challenge I get to, unfortunately.<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a></p>
 <blockquote>
-<p>Web is out, retro is in. Play your favorite word game from the comfort of your terminal!</p>
+<p>Web is out, retro is in. Play your favorite word game from the
+comfort of your terminal!</p>
 </blockquote>
 <p>It’s a terminal Wordle client!</p>
 <figure>
 <a href="/img/pppordle-1.png"><img src="/img/pppordle-1.png" alt="Screenshot of a terminal Wordle client. The puzzle has been solved with the answer COZEY." /></a>
 </figure>
-<p>I only solved the first half of this challenge. The two halves seem to be unrelated though. (Nobody solved the second half during the CTF.) The challenge was quite big code-wise, with more than a dozen files, so it’s hard to replicate the experience in a post like this, but here’s an attempt.</p>
+<p>I only solved the first half of this challenge. The two halves seem
+to be unrelated though. (Nobody solved the second half during the CTF.)
+The challenge was quite big code-wise, with more than a dozen files, so
+it’s hard to replicate the experience in a post like this, but here’s an
+attempt.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/pppordle">→ read more<span class="offscreen"> 🅿️🅿️🅿️ordle</span></a>
 	</footer>
@@ -380,85 +606,37 @@ Somehow this image was already on my blog without being used in any post, but if
 <p>Don’t forget to wear your mask…</p>
 <p><code>nc challs.actf.co 31501</code></p>
 </blockquote>
-<p>If I had a nickel for every <a href="//blog.vero.site/post/messy-desk">CTF challenge I’ve done</a> that involves understanding the internal structure of a QR code, I would have two nickels. Which isn’t a lot, etc etc. That previous challenge probably helped me get first blood on this.</p>
+<p>If I had a nickel for every <a href="//blog.vero.site/post/messy-desk">CTF
+challenge I’ve done</a> that involves understanding the internal
+structure of a QR code, I would have two nickels. Which isn’t a lot, etc
+etc. That previous challenge probably helped me get first blood on
+this.</p>
 <p>The source code is wonderfully short:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="im">import</span> io, qrcode, string</a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3">flag_contents <span class="op">=</span> [REDACTED]</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="cf">assert</span> <span class="bu">all</span>(i <span class="kw">in</span> string.ascii_lowercase <span class="op">+</span> <span class="st">&#39;_&#39;</span> <span class="cf">for</span> i <span class="kw">in</span> flag_contents)</a>
-<a class="sourceLine" id="cb1-5" title="5"></a>
-<a class="sourceLine" id="cb1-6" title="6">flag <span class="op">=</span> b<span class="st">&quot;actf{&quot;</span> <span class="op">+</span> flag_contents.encode() <span class="op">+</span> b<span class="st">&quot;}&quot;</span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="bu">print</span>(<span class="st">&quot;flag is </span><span class="sc">%d</span><span class="st"> characters&quot;</span> <span class="op">%</span> <span class="bu">len</span>(flag))</a>
-<a class="sourceLine" id="cb1-8" title="8"></a>
-<a class="sourceLine" id="cb1-9" title="9">qr <span class="op">=</span> qrcode.QRCode(version<span class="op">=</span><span class="dv">1</span>, error_correction <span class="op">=</span> qrcode.constants.ERROR_CORRECT_L, box_size<span class="op">=</span><span class="dv">1</span>, border<span class="op">=</span><span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="cf">while</span> <span class="dv">1</span>:</a>
-<a class="sourceLine" id="cb1-11" title="11">    <span class="cf">try</span>:</a>
-<a class="sourceLine" id="cb1-12" title="12">        inp <span class="op">=</span> <span class="bu">bytes</span>.fromhex(<span class="bu">input</span>(<span class="st">&quot;give input (in hex): &quot;</span>))</a>
-<a class="sourceLine" id="cb1-13" title="13">        <span class="cf">assert</span> <span class="bu">len</span>(inp) <span class="op">==</span> <span class="bu">len</span>(flag)</a>
-<a class="sourceLine" id="cb1-14" title="14">    <span class="cf">except</span>:</a>
-<a class="sourceLine" id="cb1-15" title="15">        <span class="bu">print</span>(<span class="st">&quot;bad input, exiting&quot;</span>)</a>
-<a class="sourceLine" id="cb1-16" title="16">        <span class="cf">break</span></a>
-<a class="sourceLine" id="cb1-17" title="17">    qr.clear()</a>
-<a class="sourceLine" id="cb1-18" title="18">    qr.add_data(<span class="bu">bytes</span>([i<span class="op">^</span>j <span class="cf">for</span> i,j <span class="kw">in</span> <span class="bu">zip</span>(inp, flag)]))</a>
-<a class="sourceLine" id="cb1-19" title="19">    f <span class="op">=</span> io.StringIO()</a>
-<a class="sourceLine" id="cb1-20" title="20">    qr.print_ascii(out<span class="op">=</span>f)</a>
-<a class="sourceLine" id="cb1-21" title="21">    f.seek(<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb1-22" title="22">    <span class="bu">print</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>.join(i[:<span class="dv">11</span>] <span class="cf">for</span> i <span class="kw">in</span> f))</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> io, qrcode, string</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>flag_contents <span class="op">=</span> [REDACTED]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">all</span>(i <span class="kw">in</span> string.ascii_lowercase <span class="op">+</span> <span class="st">&#39;_&#39;</span> <span class="cf">for</span> i <span class="kw">in</span> flag_contents)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>flag <span class="op">=</span> <span class="st">b&quot;actf{&quot;</span> <span class="op">+</span> flag_contents.encode() <span class="op">+</span> <span class="st">b&quot;}&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;flag is </span><span class="sc">%d</span><span class="st"> characters&quot;</span> <span class="op">%</span> <span class="bu">len</span>(flag))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>qr <span class="op">=</span> qrcode.QRCode(version<span class="op">=</span><span class="dv">1</span>, error_correction <span class="op">=</span> qrcode.constants.ERROR_CORRECT_L, box_size<span class="op">=</span><span class="dv">1</span>, border<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="dv">1</span>:</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        inp <span class="op">=</span> <span class="bu">bytes</span>.fromhex(<span class="bu">input</span>(<span class="st">&quot;give input (in hex): &quot;</span>))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> <span class="bu">len</span>(inp) <span class="op">==</span> <span class="bu">len</span>(flag)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;bad input, exiting&quot;</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    qr.clear()</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    qr.add_data(<span class="bu">bytes</span>([i<span class="op">^</span>j <span class="cf">for</span> i,j <span class="kw">in</span> <span class="bu">zip</span>(inp, flag)]))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> io.StringIO()</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    qr.print_ascii(out<span class="op">=</span>f)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    f.seek(<span class="dv">0</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>.join(i[:<span class="dv">11</span>] <span class="cf">for</span> i <span class="kw">in</span> f))</span></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/mask">→ read more<span class="offscreen"> Mask</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/kevin-higgs" class="post-link">Kevin Higgs</a></h3>
-		
-		<h4 class="post-subtitle">ångstromCTF 2022 (210 points)</h4>
-		
-		<p class="post-meta">
-		
-		2022-07-04
-		(1366 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>Now that kmh is gone, clam’s been going through pickle withdrawal. To help him cope, he wrote his own pickle pyjail. It’s nothing like kmh’s, but maybe it’s enough.</p>
-</blockquote>
-<p>Language jails are rapidly becoming one of my CTF areas of expertise. Not sure how I feel about that.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#!/usr/local/bin/python3</span></a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="im">import</span> pickle</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="im">import</span> io</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="im">import</span> sys</a>
-<a class="sourceLine" id="cb1-6" title="6"></a>
-<a class="sourceLine" id="cb1-7" title="7">module <span class="op">=</span> <span class="bu">type</span>(__builtins__)</a>
-<a class="sourceLine" id="cb1-8" title="8">empty <span class="op">=</span> module(<span class="st">&quot;empty&quot;</span>)</a>
-<a class="sourceLine" id="cb1-9" title="9">empty.empty <span class="op">=</span> empty</a>
-<a class="sourceLine" id="cb1-10" title="10">sys.modules[<span class="st">&quot;empty&quot;</span>] <span class="op">=</span> empty</a>
-<a class="sourceLine" id="cb1-11" title="11"></a>
-<a class="sourceLine" id="cb1-12" title="12"></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="kw">class</span> SafeUnpickler(pickle.Unpickler):</a>
-<a class="sourceLine" id="cb1-14" title="14">    <span class="kw">def</span> find_class(<span class="va">self</span>, module, name):</a>
-<a class="sourceLine" id="cb1-15" title="15">        <span class="cf">if</span> module <span class="op">==</span> <span class="st">&quot;empty&quot;</span> <span class="kw">and</span> name.count(<span class="st">&quot;.&quot;</span>) <span class="op">&lt;=</span> <span class="dv">1</span>:</a>
-<a class="sourceLine" id="cb1-16" title="16">            <span class="cf">return</span> <span class="bu">super</span>().find_class(module, name)</a>
-<a class="sourceLine" id="cb1-17" title="17">        <span class="cf">raise</span> pickle.UnpicklingError(<span class="st">&quot;e-legal&quot;</span>)</a>
-<a class="sourceLine" id="cb1-18" title="18"></a>
-<a class="sourceLine" id="cb1-19" title="19"></a>
-<a class="sourceLine" id="cb1-20" title="20">lepickle <span class="op">=</span> <span class="bu">bytes</span>.fromhex(<span class="bu">input</span>(<span class="st">&quot;Enter hex-encoded pickle: &quot;</span>))</a>
-<a class="sourceLine" id="cb1-21" title="21"><span class="cf">if</span> <span class="bu">len</span>(lepickle) <span class="op">&gt;</span> <span class="dv">400</span>:</a>
-<a class="sourceLine" id="cb1-22" title="22">    <span class="bu">print</span>(<span class="st">&quot;your pickle is too large for my taste &gt;:(&quot;</span>)</a>
-<a class="sourceLine" id="cb1-23" title="23"><span class="cf">else</span>:</a>
-<a class="sourceLine" id="cb1-24" title="24">    SafeUnpickler(io.BytesIO(lepickle)).load()</a></code></pre></div>
-<p><code><a href="https://docs.python.org/3/library/pickle.html">pickle</a></code> is a Python object serialization format. As the docs page loudly proclaims, it is not secure. Roughly the simplest possible code to pop a shell (adapted from <a href="https://davidhamann.de/2020/04/05/exploiting-python-pickle/">David Hamann</a>, who constructs a more realistic RCE) looks like:</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/kevin-higgs">→ read more<span class="offscreen"> Kevin Higgs</span></a>
 	</footer>
 </article>
 
@@ -468,7 +646,7 @@ Somehow this image was already on my blog without being used in any post, but if
 	</footer></section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

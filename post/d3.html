@@ -74,201 +74,546 @@ When relevant, I will call the index of an element inside its group the “withi
 		
 		</p>
 	</header>
-	<article><p>In theory, the idea here is similar to when I was <a href="https://blog.vero.site/post/react-redux">learning React/Redux</a> and diving into <a href="https://blog.vero.site/post/sql-select">SQL selects</a>. In practice, I think most of D3’s complexity isn’t exactly in a direction that is elucidated by writing down types for everything, so the title is a mere personal snowclone. I’m just writing things out to an arbitrary amount of detail until I understand them and can refer to what I wrote here later.</p>
+	<article><p>In theory, the idea here is similar to when I was <a
+href="https://blog.vero.site/post/react-redux">learning React/Redux</a>
+and diving into <a href="https://blog.vero.site/post/sql-select">SQL
+selects</a>. In practice, I think most of D3’s complexity isn’t exactly
+in a direction that is elucidated by writing down types for everything,
+so the title is a mere personal snowclone. I’m just writing things out
+to an arbitrary amount of detail until I understand them and can refer
+to what I wrote here later.</p>
 <h3 id="background">Background</h3>
-<p>D3 is <a href="https://d3js.org/what-is-d3">“a JavaScript library for visualizing data”</a>. It has a lot of sublibraries that interoperate well but could be used separately — for example, it has utilities for manipulating colors, time, and SVG paths. Of the various concepts, though, I think D3 <em>selections</em> are the most distinctive and fundamental, so they are the focus of this post.</p>
-<p>At a high level, D3 selections feel like jQuery. You run some code and it goes into the DOM and adds, deletes, and mutates a bunch of elements. The docs even endorse <a href="https://d3js.org/d3-selection/selecting#selection">monkeypatching d3.selection</a> to add custom helpers. However, D3 has data binding and batch operations that make it easy to change the DOM in a way that resembles reconciliation in a framework like React.</p>
+<p>D3 is <a href="https://d3js.org/what-is-d3">“a JavaScript library for
+visualizing data”</a>. It has a lot of sublibraries that interoperate
+well but could be used separately — for example, it has utilities for
+manipulating colors, time, and SVG paths. Of the various concepts,
+though, I think D3 <em>selections</em> are the most distinctive and
+fundamental, so they are the focus of this post.</p>
+<p>At a high level, D3 selections feel like jQuery. You run some code
+and it goes into the DOM and adds, deletes, and mutates a bunch of
+elements. The docs even endorse <a
+href="https://d3js.org/d3-selection/selecting#selection">monkeypatching
+d3.selection</a> to add custom helpers. However, D3 has data binding and
+batch operations that make it easy to change the DOM in a way that
+resembles reconciliation in a framework like React.</p>
 <h3 id="selections">Selections</h3>
-<p><em>API: <a href="https://d3js.org/d3-selection/selecting">Selecting Elements</a>.</em></p>
-<p>A D3 <strong>selection</strong> holds an array of arrays of nullable<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> DOM elements. The intermediate arrays are called <strong>groups</strong>. Additionally, each group in a selection is associated with a <strong>parent node</strong>. During basic D3 usage, you might only ever work with selections with a single group and ignore parent nodes.</p>
-<p>When relevant, I will call the index of an element inside its group the “within-group index” and the index of a group among all groups in a selection the “across-group index”.</p>
+<p><em>API: <a href="https://d3js.org/d3-selection/selecting">Selecting
+Elements</a>.</em></p>
+<p>A D3 <strong>selection</strong> holds an array of arrays of
+nullable<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> DOM elements. The intermediate
+arrays are called <strong>groups</strong>. Additionally, each group in a
+selection is associated with a <strong>parent node</strong>. During
+basic D3 usage, you might only ever work with selections with a single
+group and ignore parent nodes.</p>
+<p>When relevant, I will call the index of an element inside its group
+the “within-group index” and the index of a group among all groups in a
+selection the “across-group index”.</p>
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <ul>
-<li><code>d3.selectAll(someCssSelector)</code> creates a selection with one group, which holds all elements matching some CSS selector. You can also pass an actual iterable of DOM elements if you have one. The group’s parent is the root element, probably the <code>html</code> element.</li>
-<li><code>d3.select(someCssSelector)</code> is the same except it only selects the first matching element (if any). You can also pass an actual DOM element.</li>
-<li><code>d3.create(tagName)</code> creates a selection with a single new (detached) element.</li>
+<li><code>d3.selectAll(someCssSelector)</code> creates a selection with
+one group, which holds all elements matching some CSS selector. You can
+also pass an actual iterable of DOM elements if you have one. The
+group’s parent is the root element, probably the <code>html</code>
+element.</li>
+<li><code>d3.select(someCssSelector)</code> is the same except it only
+selects the first matching element (if any). You can also pass an actual
+DOM element.</li>
+<li><code>d3.create(tagName)</code> creates a selection with a single
+new (detached) element.</li>
 </ul>
 <p>Given a selection <code>sel</code>:</p>
 <ul>
-<li><code>sel.select(someCssSelector)</code> creates a new selection, replacing each (non-null) element with its first descendant matching the selector if one exists (or null if not). (It also <strong>copies the parent’s datum</strong> to that descendant; see the data section.) Group structure and parent nodes are preserved.</li>
-<li><code>sel.selectAll(someCssSelector)</code> creates a new selection with one group for each element in <code>sel</code>. Each new group contains all descendants of the original element matching the selector, and its parent node is that element. (Therefore, the group structure of the original selection is flattened and lost.) I believe this is the most likely way to first get a selection with multiple groups and/or nontrivial parents.</li>
+<li><code>sel.select(someCssSelector)</code> creates a new selection,
+replacing each (non-null) element with its first descendant matching the
+selector if one exists (or null if not). (It also <strong>copies the
+parent’s datum</strong> to that descendant; see the data section.) Group
+structure and parent nodes are preserved.</li>
+<li><code>sel.selectAll(someCssSelector)</code> creates a new selection
+with one group for each element in <code>sel</code>. Each new group
+contains all descendants of the original element matching the selector,
+and its parent node is that element. (Therefore, the group structure of
+the original selection is flattened and lost.) I believe this is the
+most likely way to first get a selection with multiple groups and/or
+nontrivial parents.</li>
 </ul>
 <p>Some ways to get non-selection info out of a selection:</p>
 <ul>
-<li><code>sel.nodes()</code> returns all elements as an array (flattening group structure). This is also what you get if you iterate over a selection.</li>
+<li><code>sel.nodes()</code> returns all elements as an array
+(flattening group structure). This is also what you get if you iterate
+over a selection.</li>
 <li><code>sel.node()</code> returns the first non-null element.</li>
 <li><code>sel.empty()</code> tests for emptiness.</li>
 <li><code>sel.size()</code> counts non-null elements.</li>
 </ul>
 <h3 id="modifying-elements">Modifying elements</h3>
-<p><em>API: <a href="https://d3js.org/d3-selection/modifying">Modifying elements</a>; <a href="https://d3js.org/d3-selection/events">handling events</a>.</em></p>
-<p>Many methods on selections are just for-each operations that modify each element in each group in some way, and then return the same selection to allow you to chain calls. For example, <code>sel.style("color", "red")</code> will set the CSS <code>color</code> property of each element in that selection to <code>red</code> (and then return the same selection). Such methods include:</p>
+<p><em>API: <a href="https://d3js.org/d3-selection/modifying">Modifying
+elements</a>; <a href="https://d3js.org/d3-selection/events">handling
+events</a>.</em></p>
+<p>Many methods on selections are just for-each operations that modify
+each element in each group in some way, and then return the same
+selection to allow you to chain calls. For example,
+<code>sel.style("color", "red")</code> will set the CSS
+<code>color</code> property of each element in that selection to
+<code>red</code> (and then return the same selection). Such methods
+include:</p>
 <ul>
 <li><code>.attr</code> (name and value)</li>
-<li><code>.classed</code> (class name and value = boolean, for whether to add or remove the class)</li>
+<li><code>.classed</code> (class name and value = boolean, for whether
+to add or remove the class)</li>
 <li><code>.style</code> (name and value)</li>
-<li><code>.property</code> (name and value) (e.g. text fields’ <code>value</code>, checkboxes’ <code>checked</code>)</li>
+<li><code>.property</code> (name and value) (e.g. text fields’
+<code>value</code>, checkboxes’ <code>checked</code>)</li>
 <li><code>.text</code> (value)</li>
 <li><code>.html</code> (value)</li>
 </ul>
-<p>The above methods can also be used as getters if you don’t pass a value, but they just return the value for the first non-null element (rather than some kind of data structure of values with the same shape as the selection).</p>
-<p>Some more interesting methods modify the actual node structure of the DOM:</p>
+<p>The above methods can also be used as getters if you don’t pass a
+value, but they just return the value for the first non-null element
+(rather than some kind of data structure of values with the same shape
+as the selection).</p>
+<p>Some more interesting methods modify the actual node structure of the
+DOM:</p>
 <ul>
-<li><code>.append(tagName)</code> appends an element of that tag name to each (non-null) element in the selection and returns a new selection with the added elements, in the same group structure and with the same data.</li>
+<li><code>.append(tagName)</code> appends an element of that tag name to
+each (non-null) element in the selection and returns a new selection
+with the added elements, in the same group structure and with the same
+data.</li>
 <li><code>.remove()</code> removes each element from the DOM.</li>
-<li><code>.raise()</code> resp. <code>.lower()</code> moves each element to the end resp. the beginning of its parent’s children. The names make sense when the elements are absolutely positioned and visually overlap: “raising” an element gives it a “higher z-index”.</li>
+<li><code>.raise()</code> resp. <code>.lower()</code> moves each element
+to the end resp. the beginning of its parent’s children. The names make
+sense when the elements are absolutely positioned and visually overlap:
+“raising” an element gives it a “higher z-index”.</li>
 </ul>
-<p>Adding event handlers is similar: <code>.on(eventName, handler)</code>. The handler will be called with two arguments, the event itself and the element’s current <em>datum</em> (see below); and will have <code>this</code> set to the DOM element that received the event.</p>
-<p><code>sel.each(f)</code> calls <code>f</code> on each DOM element. Inside such a function, you could <code>d3.select(this)</code> to get back into selection mode (though the function can’t be an arrow function). Finally, <code>sel.call(f, ...args)</code> is just <code>f(sel, ...args)</code> but allows you to continue long method chains.</p>
+<p>Adding event handlers is similar:
+<code>.on(eventName, handler)</code>. The handler will be called with
+two arguments, the event itself and the element’s current <em>datum</em>
+(see below); and will have <code>this</code> set to the DOM element that
+received the event.</p>
+<p><code>sel.each(f)</code> calls <code>f</code> on each DOM element.
+Inside such a function, you could <code>d3.select(this)</code> to get
+back into selection mode (though the function can’t be an arrow
+function). Finally, <code>sel.call(f, ...args)</code> is just
+<code>f(sel, ...args)</code> but allows you to continue long method
+chains.</p>
 <h3 id="binding-data">Binding data</h3>
-<p><em>API: <a href="https://d3js.org/d3-selection/joining">Joining data</a>. <a href="https://bost.ocks.org/mike/selection/">How Selections Work</a> has helpful visualizations, though it’s old, so its API references have bit-rotted.</em></p>
-<p>Every DOM element may have a <code>__data__</code> property that D3 pays attention to. (Reading comprehension note for the rest of this post: “data” is the plural of “datum”, but each <code>__data__</code> property is one datum. If I could selfishly redesign D3 to maximize how intuitive it is to me personally, I would have renamed the property to <code>__datum__</code>.) This is a plain ol’ JavaScript property with no significance in web standards! D3 actually just writes to or reads from <code>element.__data__</code>. You can do this yourself — literally grab an element in the browser inspector and look at <code>element.__data__</code> — to debug your code, which is neat. D3 doesn’t store data anywhere else.</p>
-<p>Generally, the above methods on selections also take a function that receives the datum as an argument. <code>sel.style("color", d =&gt; d.color)</code> is roughly like <code>element.style.color = element.__data__.color;</code> for each element. (The function also gets two more arguments, the within-group index and the entire group itself as an array, and is called with <code>this</code> being the current DOM element.)</p>
-<p>A simple but less often useful way to set data is with <code>sel.datum(value)</code>, which sets the datum for each element independently. <code>value</code> can also be a function, which gets called with the same arguments as the modifier functions above: (current) datum, within-group index, and entire group. As a getter, <code>sel.datum()</code> gets the datum for the first non-null element.</p>
-<p>Usually, though, one gets data onto DOM elements with the <code>sel.data(data, keyfunc)</code> method. Before proceeding, I’ll mention that calling <code>sel.data()</code> with no arguments produces an array with all data in the selection, but the group structure is flattened.</p>
+<p><em>API: <a href="https://d3js.org/d3-selection/joining">Joining
+data</a>. <a href="https://bost.ocks.org/mike/selection/">How Selections
+Work</a> has helpful visualizations, though it’s old, so its API
+references have bit-rotted.</em></p>
+<p>Every DOM element may have a <code>__data__</code> property that D3
+pays attention to. (Reading comprehension note for the rest of this
+post: “data” is the plural of “datum”, but each <code>__data__</code>
+property is one datum. If I could selfishly redesign D3 to maximize how
+intuitive it is to me personally, I would have renamed the property to
+<code>__datum__</code>.) This is a plain ol’ JavaScript property with no
+significance in web standards! D3 actually just writes to or reads from
+<code>element.__data__</code>. You can do this yourself — literally grab
+an element in the browser inspector and look at
+<code>element.__data__</code> — to debug your code, which is neat. D3
+doesn’t store data anywhere else.</p>
+<p>Generally, the above methods on selections also take a function that
+receives the datum as an argument.
+<code>sel.style("color", d =&gt; d.color)</code> is roughly like
+<code>element.style.color = element.__data__.color;</code> for each
+element. (The function also gets two more arguments, the within-group
+index and the entire group itself as an array, and is called with
+<code>this</code> being the current DOM element.)</p>
+<p>A simple but less often useful way to set data is with
+<code>sel.datum(value)</code>, which sets the datum for each element
+independently. <code>value</code> can also be a function, which gets
+called with the same arguments as the modifier functions above:
+(current) datum, within-group index, and entire group. As a getter,
+<code>sel.datum()</code> gets the datum for the first non-null
+element.</p>
+<p>Usually, though, one gets data onto DOM elements with the
+<code>sel.data(data, keyfunc)</code> method. Before proceeding, I’ll
+mention that calling <code>sel.data()</code> with no arguments produces
+an array with all data in the selection, but the group structure is
+flattened.</p>
 <h4 id="the-.data-function">The <code>.data</code> function</h4>
-<p><code>sel.data(data, keyfunc)</code> works as follows. For each group in the selection:</p>
+<p><code>sel.data(data, keyfunc)</code> works as follows. For each group
+in the selection:</p>
 <ul>
 <li><p>Produce an array of data:</p>
 <ul>
 <li>If <code>data</code> is an array, it’s just a copy of that.</li>
-<li>If <code>data</code> is a function, it’s called (once per group) with three arguments: the group’s parent node’s datum, the across-group index, and an array of the selection’s parent nodes. The call will be made with <code>this</code> being the group’s parent element. This should return an array.</li>
+<li>If <code>data</code> is a function, it’s called (once per group)
+with three arguments: the group’s parent node’s datum, the across-group
+index, and an array of the selection’s parent nodes. The call will be
+made with <code>this</code> being the group’s parent element. This
+should return an array.</li>
 </ul></li>
-<li><p>Attempt to match each DOM element in the group with an element of the data using <code>keyfunc</code>.</p>
+<li><p>Attempt to match each DOM element in the group with an element of
+the data using <code>keyfunc</code>.</p>
 <ul>
-<li>If <code>keyfunc</code> is passed, the basic idea is that <code>element</code> matches <code>datum</code> if <code>String(keyfunc(element.__data__)) === String(keyfunc(datum))</code>. (<code>keyfunc</code> is called with more arguments, starting with an index within the group or the data array, but look them up yourself.) However, if there are duplicate keys on either side, all appearances after the first don’t match anything.</li>
-<li>If <code>keyfunc</code> is not passed, the elements and the data are just matched in the order they appear in their respective arrays. If one array is longer, the elements or data at the end of the longer one aren’t matched.</li>
+<li>If <code>keyfunc</code> is passed, the basic idea is that
+<code>element</code> matches <code>datum</code> if
+<code>String(keyfunc(element.__data__)) === String(keyfunc(datum))</code>.
+(<code>keyfunc</code> is called with more arguments, starting with an
+index within the group or the data array, but look them up yourself.)
+However, if there are duplicate keys on either side, all appearances
+after the first don’t match anything.</li>
+<li>If <code>keyfunc</code> is not passed, the elements and the data are
+just matched in the order they appear in their respective arrays. If one
+array is longer, the elements or data at the end of the longer one
+aren’t matched.</li>
 </ul></li>
-<li><p>After matching, there may or may not be leftover, unmatched elements and/or data. Imagine a Venn diagram. Each element and datum falls into one of three categories:</p>
+<li><p>After matching, there may or may not be leftover, unmatched
+elements and/or data. Imagine a Venn diagram. Each element and datum
+falls into one of three categories:</p>
 <ul>
-<li>The <strong>update selection</strong> comprises the (equally many) elements and data that match each other.</li>
-<li>The <strong>exit selection</strong> comprises elements that didn’t match any data.</li>
-<li><p>The <strong>enter selection</strong> comprises data that didn’t match any elements. This is not a normal “selection” as we’ve defined it; instead of DOM elements, it contains placeholder “elements” that are objects with a <code>__data__</code> property and a reference to a position in the DOM (right before some other element). They can be imagined as like empty <a href="https://react.dev/reference/react/Fragment"><code>React.Fragment</code> elements</a> at those locations.</p>
-<p>Just about the only useful thing you can do with an enter selection is to call <code>.append(tagName)</code> on it, which will insert elements at those positions, propagate the <code>__data__</code> from the placeholder element, and leave you with a normal selection. Even this won’t work if the group’s parent node was not actually the parent node of the group’s constituent DOM elements.</p></li>
+<li><p>The <strong>update selection</strong> comprises the (equally
+many) elements and data that match each other.</p></li>
+<li><p>The <strong>exit selection</strong> comprises elements that
+didn’t match any data.</p></li>
+<li><p>The <strong>enter selection</strong> comprises data that didn’t
+match any elements. This is not a normal “selection” as we’ve defined
+it; instead of DOM elements, it contains placeholder “elements” that are
+objects with a <code>__data__</code> property and a reference to a
+position in the DOM (right before some other element). They can be
+imagined as like empty <a
+href="https://react.dev/reference/react/Fragment"><code>React.Fragment</code>
+elements</a> at those locations.</p>
+<p>Just about the only useful thing you can do with an enter selection
+is to call <code>.append(tagName)</code> on it, which will insert
+elements at those positions, propagate the <code>__data__</code> from
+the placeholder element, and leave you with a normal selection. Even
+this won’t work if the group’s parent node was not actually the parent
+node of the group’s constituent DOM elements.</p></li>
 </ul>
-<p>The ordering/position of elements in the update and enter selections is determined by the ordering/position of their corresponding data in <code>data</code> (so both may have nulls).</p></li>
+<p>The ordering/position of elements in the update and enter selections
+is determined by the ordering/position of their corresponding data in
+<code>data</code> (so both may have nulls).</p></li>
 </ul>
-<p>You can use the return value of <code>.data</code> directly as a normal selection (e.g. by chaining more methods onto it), and it’ll behave like the update selection. This might be all you need if you know that the elements and the data match perfectly.</p>
-<p>Otherwise, you can call <code>.enter()</code> and <code>.exit()</code> on the return value of <code>.data(...)</code> to obtain the enter and exit selections. (These methods don’t do anything interesting on other selections.) In standard usage of <code>.data()</code>, your goal would likely be to insert and delete elements until the elements match the data, similar to React reconciliation. The most straightforward way to do this, in the easy case where the update selection elements are already in order, would be:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1">sel <span class="op">=</span> <span class="va">sel</span>.<span class="at">data</span>(...)<span class="op">;</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">let</span> enterResult <span class="op">=</span> <span class="va">sel</span>.<span class="at">enter</span>().<span class="at">append</span>(<span class="st">&quot;div&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="va">sel</span>.<span class="at">exit</span>().<span class="at">remove</span>()<span class="op">;</span></a></code></pre></div>
-<p>If you want to then keep chaining methods on the elements after insertion and modification, you can combine the update and enter selections with <code>.merge</code>. (This function does not work in general to combine selections. What it does is replace null elements in the first with elements in the <em>exact same</em> position, across and within groups, from the second.)</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb2-1" title="1"><span class="va">enterResult</span>.<span class="at">merge</span>(sel).<span class="at">text</span>(whatever)<span class="op">;</span></a></code></pre></div>
-<p>If the update selection nodes are <em>not</em> already in order according to the data, and you want them to be, you’ll finally need to call <code>.order()</code> on the merged selection.</p>
-<p>You can perform all the steps after <code>.data()</code> — insertion, deletion, modification, and reordering — in one function call with <code>join</code>. In full generality, <code>join</code> takes three arguments, which are functions to call on the enter selection, update selection, and exit selection.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb3-1" title="1"><span class="va">sel</span>.<span class="at">data</span>(...).<span class="at">join</span>(</a>
-<a class="sourceLine" id="cb3-2" title="2">  enter <span class="kw">=&gt;</span> <span class="va">enter</span>.<span class="at">append</span>(<span class="st">&quot;div&quot;</span>)<span class="op">,</span></a>
-<a class="sourceLine" id="cb3-3" title="3">  update <span class="kw">=&gt;</span> update<span class="op">,</span></a>
-<a class="sourceLine" id="cb3-4" title="4">  exit <span class="kw">=&gt;</span> <span class="va">exit</span>.<span class="at">remove</span>()<span class="op">,</span></a>
-<a class="sourceLine" id="cb3-5" title="5">)<span class="op">;</span></a></code></pre></div>
-<p>One reason to write three separate handlers is to use D3 transitions to animate elements appearing/disappearing. See <a href="#d3-transition">below</a> or the <a href="https://observablehq.com/@d3/selection-join">selection.join notebook</a>. However, in the super common pattern above, you can pass a string as the first argument and not pass the second and third arguments.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb4-1" title="1"><span class="va">sel</span>.<span class="at">data</span>(...).<span class="at">join</span>(<span class="st">&quot;div&quot;</span>)<span class="op">;</span></a></code></pre></div>
-<h4 id="some-worked-examples-and-pitfalls">Some worked examples and pitfalls</h4>
-<p>To create a <code>&lt;ul&gt;</code> with four <code>&lt;li&gt;</code>’s with data 1, 2, 3, 4, and the same text:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb5-1" title="1"><span class="va">d3</span>.<span class="at">select</span>(<span class="st">&quot;body&quot;</span>)</a>
-<a class="sourceLine" id="cb5-2" title="2">  .<span class="at">append</span>(<span class="st">&quot;ul&quot;</span>)</a>
-<a class="sourceLine" id="cb5-3" title="3">  .<span class="at">selectAll</span>(<span class="st">&quot;li&quot;</span>)</a>
-<a class="sourceLine" id="cb5-4" title="4">    .<span class="at">data</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span>])</a>
-<a class="sourceLine" id="cb5-5" title="5">  .<span class="at">join</span>(<span class="st">&quot;li&quot;</span>)</a>
-<a class="sourceLine" id="cb5-6" title="6">    .<span class="at">text</span>(d <span class="kw">=&gt;</span> d)<span class="op">;</span></a></code></pre></div>
-<p>The <code>selectAll</code> doesn’t select anything and will produce a selection with a single empty group, but it is necessary to promote the <code>ul</code> to the parent node of that group. It doesn’t matter what selector you pass into <code>selectAll</code>, but passing the same tag name you’ll pass to <code>.join</code> later is idiomatic since it makes that part of the method chain idempotent. (With <a href="https://github.com/gka/d3-jetpack">d3-jetpack</a>, you can append many nodes and bind data in one step with <code>.appendMany("li", [1, 2, 3, 4])</code>.)</p>
-<p>Now, suppose <code>sel</code> is the above selection: a group with four nodes <code>node1</code>, <code>node2</code>, <code>node3</code>, <code>node4</code> that have data 1, 2, 3, 4, respectively. If we run:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb6-1" title="1">sel <span class="op">=</span> <span class="va">sel</span>.<span class="at">data</span>([<span class="dv">4</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">,</span> x <span class="kw">=&gt;</span> x)<span class="op">;</span></a></code></pre></div>
+<p>You can use the return value of <code>.data</code> directly as a
+normal selection (e.g. by chaining more methods onto it), and it’ll
+behave like the update selection. This might be all you need if you know
+that the elements and the data match perfectly.</p>
+<p>Otherwise, you can call <code>.enter()</code> and
+<code>.exit()</code> on the return value of <code>.data(...)</code> to
+obtain the enter and exit selections. (These methods don’t do anything
+interesting on other selections.) In standard usage of
+<code>.data()</code>, your goal would likely be to insert and delete
+elements until the elements match the data, similar to React
+reconciliation. The most straightforward way to do this, in the easy
+case where the update selection elements are already in order, would
+be:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sel <span class="op">=</span> sel<span class="op">.</span><span class="fu">data</span>(<span class="op">...</span>)<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> enterResult <span class="op">=</span> sel<span class="op">.</span><span class="fu">enter</span>()<span class="op">.</span><span class="fu">append</span>(<span class="st">&quot;div&quot;</span>)<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sel<span class="op">.</span><span class="fu">exit</span>()<span class="op">.</span><span class="fu">remove</span>()<span class="op">;</span></span></code></pre></div>
+<p>If you want to then keep chaining methods on the elements after
+insertion and modification, you can combine the update and enter
+selections with <code>.merge</code>. (This function does not work in
+general to combine selections. What it does is replace null elements in
+the first with elements in the <em>exact same</em> position, across and
+within groups, from the second.)</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>enterResult<span class="op">.</span><span class="fu">merge</span>(sel)<span class="op">.</span><span class="fu">text</span>(whatever)<span class="op">;</span></span></code></pre></div>
+<p>If the update selection nodes are <em>not</em> already in order
+according to the data, and you want them to be, you’ll finally need to
+call <code>.order()</code> on the merged selection.</p>
+<p>You can perform all the steps after <code>.data()</code> — insertion,
+deletion, modification, and reordering — in one function call with
+<code>join</code>. In full generality, <code>join</code> takes three
+arguments, which are functions to call on the enter selection, update
+selection, and exit selection.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sel<span class="op">.</span><span class="fu">data</span>(<span class="op">...</span>)<span class="op">.</span><span class="fu">join</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  enter <span class="kw">=&gt;</span> enter<span class="op">.</span><span class="fu">append</span>(<span class="st">&quot;div&quot;</span>)<span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  update <span class="kw">=&gt;</span> update<span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  exit <span class="kw">=&gt;</span> exit<span class="op">.</span><span class="fu">remove</span>()<span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code></pre></div>
+<p>One reason to write three separate handlers is to use D3 transitions
+to animate elements appearing/disappearing. See <a
+href="#d3-transition">below</a> or the <a
+href="https://observablehq.com/@d3/selection-join">selection.join
+notebook</a>. However, in the super common pattern above, you can pass a
+string as the first argument and not pass the second and third
+arguments.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sel<span class="op">.</span><span class="fu">data</span>(<span class="op">...</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">&quot;div&quot;</span>)<span class="op">;</span></span></code></pre></div>
+<h4 id="some-worked-examples-and-pitfalls">Some worked examples and
+pitfalls</h4>
+<p>To create a <code>&lt;ul&gt;</code> with four
+<code>&lt;li&gt;</code>’s with data 1, 2, 3, 4, and the same text:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>d3<span class="op">.</span><span class="fu">select</span>(<span class="st">&quot;body&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">append</span>(<span class="st">&quot;ul&quot;</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">selectAll</span>(<span class="st">&quot;li&quot;</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">data</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span>])</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">join</span>(<span class="st">&quot;li&quot;</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">text</span>(d <span class="kw">=&gt;</span> d)<span class="op">;</span></span></code></pre></div>
+<p>The <code>selectAll</code> doesn’t select anything and will produce a
+selection with a single empty group, but it is necessary to promote the
+<code>ul</code> to the parent node of that group. It doesn’t matter what
+selector you pass into <code>selectAll</code>, but passing the same tag
+name you’ll pass to <code>.join</code> later is idiomatic since it makes
+that part of the method chain idempotent. (With <a
+href="https://github.com/gka/d3-jetpack">d3-jetpack</a>, you can append
+many nodes and bind data in one step with
+<code>.appendMany("li", [1, 2, 3, 4])</code>.)</p>
+<p>Now, suppose <code>sel</code> is the above selection: a group with
+four nodes <code>node1</code>, <code>node2</code>, <code>node3</code>,
+<code>node4</code> that have data 1, 2, 3, 4, respectively. If we
+run:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sel <span class="op">=</span> sel<span class="op">.</span><span class="fu">data</span>([<span class="dv">4</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">,</span> x <span class="kw">=&gt;</span> x)<span class="op">;</span></span></code></pre></div>
 <p>Then:</p>
 <ul>
-<li>The update selection will have nodes <code>[node4, &lt;empty&gt;, node2]</code>.</li>
-<li>The enter selection will have nodes <code>[&lt;empty&gt;, (fake node 0), &lt;empty&gt;]</code>. This is an implementation detail, but the fake node will reference <code>node2</code> because 0 was before 2 in the new data so it knows where a “real node 0” should be inserted. Calling <code>.enter().append(...)</code> would insert a node with datum 0 there.</li>
-<li>The exit selection will have nodes <code>[node1, &lt;empty&gt;, node3, &lt;empty&gt;]</code>.</li>
+<li>The update selection will have nodes
+<code>[node4, &lt;empty&gt;, node2]</code>.</li>
+<li>The enter selection will have nodes
+<code>[&lt;empty&gt;, (fake node 0), &lt;empty&gt;]</code>. This is an
+implementation detail, but the fake node will reference
+<code>node2</code> because 0 was before 2 in the new data so it knows
+where a “real node 0” should be inserted. Calling
+<code>.enter().append(...)</code> would insert a node with datum 0
+there.</li>
+<li>The exit selection will have nodes
+<code>[node1, &lt;empty&gt;, node3, &lt;empty&gt;]</code>.</li>
 </ul>
 <p>If we then ran</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb7-1" title="1">e <span class="op">=</span> <span class="va">sel</span>.<span class="at">enter</span>().<span class="at">append</span>(<span class="st">&quot;li&quot;</span>)<span class="op">;</span></a></code></pre></div>
-<p>then the DOM would have five <code>&lt;li&gt;</code>s: <code>node1</code>, a new <code>node0</code> with datum <code>0</code>, <code>node2</code>, <code>node3</code>, <code>node4</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> sel<span class="op">.</span><span class="fu">enter</span>()<span class="op">.</span><span class="fu">append</span>(<span class="st">&quot;li&quot;</span>)<span class="op">;</span></span></code></pre></div>
+<p>then the DOM would have five <code>&lt;li&gt;</code>s:
+<code>node1</code>, a new <code>node0</code> with datum <code>0</code>,
+<code>node2</code>, <code>node3</code>, <code>node4</code>.</p>
 <p>If we then ran</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb8-1" title="1"><span class="va">sel</span>.<span class="at">exit</span>().<span class="at">remove</span>()<span class="op">;</span></a></code></pre></div>
-<p>then the DOM would have three <code>&lt;li&gt;</code>s: <code>node0</code>, <code>node2</code>, <code>node4</code>, with data <code>0</code>, <code>2</code>, <code>4</code>. This matches the data we passed to <code>sel.data</code>, except that it’s in the wrong order.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sel<span class="op">.</span><span class="fu">exit</span>()<span class="op">.</span><span class="fu">remove</span>()<span class="op">;</span></span></code></pre></div>
+<p>then the DOM would have three <code>&lt;li&gt;</code>s:
+<code>node0</code>, <code>node2</code>, <code>node4</code>, with data
+<code>0</code>, <code>2</code>, <code>4</code>. This matches the data we
+passed to <code>sel.data</code>, except that it’s in the wrong
+order.</p>
 <p>If we finally ran</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb9-1" title="1"><span class="va">e</span>.<span class="at">merge</span>(sel).<span class="at">order</span>()<span class="op">;</span></a></code></pre></div>
-<p>then the DOM elements would have been rearranged in the order we want: <code>node4</code>, <code>node0</code>, <code>node2</code>. (Although <code>node0</code> has datum 0, it won’t have any text; we never set it.)</p>
-<p>And again, the last three lines of code are equivalent to <code>sel.join("li")</code>, so we probably wouldn’t think about enter and exit selections manually unless we wanted transitions or something fancier.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>e<span class="op">.</span><span class="fu">merge</span>(sel)<span class="op">.</span><span class="fu">order</span>()<span class="op">;</span></span></code></pre></div>
+<p>then the DOM elements would have been rearranged in the order we
+want: <code>node4</code>, <code>node0</code>, <code>node2</code>.
+(Although <code>node0</code> has datum 0, it won’t have any text; we
+never set it.)</p>
+<p>And again, the last three lines of code are equivalent to
+<code>sel.join("li")</code>, so we probably wouldn’t think about enter
+and exit selections manually unless we wanted transitions or something
+fancier.</p>
 <p>Finally, a demo building a table out of two-dimensional data:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb10-1" title="1"><span class="va">d3</span>.<span class="at">selection</span>()</a>
-<a class="sourceLine" id="cb10-2" title="2">  .<span class="at">append</span>(<span class="st">&quot;table&quot;</span>)</a>
-<a class="sourceLine" id="cb10-3" title="3">  .<span class="at">selectAll</span>(<span class="st">&quot;tr&quot;</span>)</a>
-<a class="sourceLine" id="cb10-4" title="4">    .<span class="at">data</span>([[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">,</span> [<span class="dv">3</span><span class="op">,</span> <span class="dv">4</span>]]) <span class="co">// first &lt;tr&gt; has datum [1, 2]; second &lt;tr&gt; has datum [3, 4]</span></a>
-<a class="sourceLine" id="cb10-5" title="5">    .<span class="at">join</span>(<span class="st">&quot;tr&quot;</span>)</a>
-<a class="sourceLine" id="cb10-6" title="6">  .<span class="at">selectAll</span>(<span class="st">&quot;td&quot;</span>)</a>
-<a class="sourceLine" id="cb10-7" title="7">    .<span class="at">data</span>(d <span class="kw">=&gt;</span> d) <span class="co">// called twice, once with d = [1, 2], once with d = [3, 4]</span></a>
-<a class="sourceLine" id="cb10-8" title="8">    .<span class="at">join</span>(<span class="st">&quot;td&quot;</span>) <span class="co">// four &lt;td&gt;s in two groups</span></a>
-<a class="sourceLine" id="cb10-9" title="9">    .<span class="at">text</span>(d <span class="kw">=&gt;</span> d)<span class="op">;</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>d3<span class="op">.</span><span class="fu">selection</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">append</span>(<span class="st">&quot;table&quot;</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">selectAll</span>(<span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">data</span>([[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">,</span> [<span class="dv">3</span><span class="op">,</span> <span class="dv">4</span>]]) <span class="co">// first &lt;tr&gt; has datum [1, 2]; second &lt;tr&gt; has datum [3, 4]</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">join</span>(<span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">selectAll</span>(<span class="st">&quot;td&quot;</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">data</span>(d <span class="kw">=&gt;</span> d) <span class="co">// called twice, once with d = [1, 2], once with d = [3, 4]</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">join</span>(<span class="st">&quot;td&quot;</span>) <span class="co">// four &lt;td&gt;s in two groups</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">text</span>(d <span class="kw">=&gt;</span> d)<span class="op">;</span></span></code></pre></div>
 <h3 id="d3-transition">d3-transition</h3>
-<p><a href="https://d3js.org/d3-transition">d3-transition</a> animates changes to the DOM. which are useful for writing interesting <code>.join</code> enter/update/exit handlers.</p>
-<p>A <code>d3.transition</code> instance holds a D3 selection, information about the transition’s timing, and information about the transition “destination” (what attributes and such the transitioning elements should end up with), all of which are configurable. Once a transition instance is created, it will be scheduled to begin in the next frame, so you must finish configuring it immediately and synchronously. You can’t create or half-configure a transition and then start it later.</p>
-<p>The simplest way to obtain a transition is to call <code>.transition()</code> on a selection.</p>
-<p>For <a href="https://d3js.org/d3-transition/timing">configuring timing</a>, you can set an initial delay <code>transition.delay(n)</code> or total duration <code>transition.duration(n)</code> in milliseconds, as well as an ease function <code>transition.ease(e)</code>, which will most likely be an ease function from <a href="https://d3js.org/d3-ease">d3-ease</a> (possibly after further configuration itself). These methods can also take functions, which are called and used the same way as selections’ modification methods.</p>
-<p>Simple methods for <a href="https://d3js.org/d3-transition/modifying">configuring the destination</a> are just like modifying a selection, <code>.attr</code> and <code>.style</code>, though there are “tween” methods for finer control. Calling <code>.remove()</code> will remove the element at the end of a transition.</p>
-<p>Calling <code>.transition()</code> on another transition creates a transition scheduled to start when that one ends.</p>
+<p><a href="https://d3js.org/d3-transition">d3-transition</a> animates
+changes to the DOM. which are useful for writing interesting
+<code>.join</code> enter/update/exit handlers.</p>
+<p>A <code>d3.transition</code> instance holds a D3 selection,
+information about the transition’s timing, and information about the
+transition “destination” (what attributes and such the transitioning
+elements should end up with), all of which are configurable. Once a
+transition instance is created, it will be scheduled to begin in the
+next frame, so you must finish configuring it immediately and
+synchronously. You can’t create or half-configure a transition and then
+start it later.</p>
+<p>The simplest way to obtain a transition is to call
+<code>.transition()</code> on a selection.</p>
+<p>For <a href="https://d3js.org/d3-transition/timing">configuring
+timing</a>, you can set an initial delay
+<code>transition.delay(n)</code> or total duration
+<code>transition.duration(n)</code> in milliseconds, as well as an ease
+function <code>transition.ease(e)</code>, which will most likely be an
+ease function from <a href="https://d3js.org/d3-ease">d3-ease</a>
+(possibly after further configuration itself). These methods can also
+take functions, which are called and used the same way as selections’
+modification methods.</p>
+<p>Simple methods for <a
+href="https://d3js.org/d3-transition/modifying">configuring the
+destination</a> are just like modifying a selection, <code>.attr</code>
+and <code>.style</code>, though there are “tween” methods for finer
+control. Calling <code>.remove()</code> will remove the element at the
+end of a transition.</p>
+<p>Calling <code>.transition()</code> on another transition creates a
+transition scheduled to start when that one ends.</p>
 <h3 id="other-sublibraries-briefly">Other sublibraries, briefly</h3>
-<p>Since there are twenty-odd libraries, I decided to just describe a random subset of them that caught my eye.</p>
-<p>A high-level description of D3’s API style: many D3 library functions return other functions that can be directly called, but that also may have attached setters. The setters mutate the original function-object and return it so that setters can be chained. Many setters also work as getters if called with no arguments.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">let</span> foo <span class="op">=</span> <span class="va">d3</span>.<span class="at">foo</span>().<span class="at">setting1</span>(arg1).<span class="at">setting2</span>(arg2)<span class="op">;</span></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="at">foo</span>(bar)<span class="op">;</span> <span class="co">// use foo</span></a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="kw">let</span> v1 <span class="op">=</span> <span class="va">foo</span>.<span class="at">setting1</span>()<span class="op">;</span></a></code></pre></div>
+<p>Since there are twenty-odd libraries, I decided to just describe a
+random subset of them that caught my eye.</p>
+<p>A high-level description of D3’s API style: many D3 library functions
+return other functions that can be directly called, but that also may
+have attached setters. The setters mutate the original function-object
+and return it so that setters can be chained. Many setters also work as
+getters if called with no arguments.</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> foo <span class="op">=</span> d3<span class="op">.</span><span class="fu">foo</span>()<span class="op">.</span><span class="fu">setting1</span>(arg1)<span class="op">.</span><span class="fu">setting2</span>(arg2)<span class="op">;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>(bar)<span class="op">;</span> <span class="co">// use foo</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> v1 <span class="op">=</span> foo<span class="op">.</span><span class="fu">setting1</span>()<span class="op">;</span></span></code></pre></div>
 <ul>
-<li><a href="https://d3js.org/d3-array">d3-array</a> has a lot of simple array-manipulation utilities. You might find some of these in other utility libraries, but if you’re already using D3, might as well use its versions. Examples:
+<li><p><a href="https://d3js.org/d3-array">d3-array</a> has a lot of
+simple array-manipulation utilities. You might find some of these in
+other utility libraries, but if you’re already using D3, might as well
+use its versions. Examples:</p>
 <ul>
-<li><code>d3.min</code>, <code>d3.max</code>, <code>d3.extent</code> (returns a two-element array <code>[min, max]</code>), <code>d3.sum</code>, <code>d3.mean</code>, all of which take an iterable and ignore undefined, null, and NaN. <code>min</code> and <code>max</code> also take a function, but effectively just map the input against it, which seems like a waste to me. Instead, <code>d3.least</code> and <code>d3.greatest</code> take a function that can be either a binary comparator or a unary key function (!) (determined by the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length">function’s length</a>), and return the min/max element of the original iterable by that metric.</li>
+<li><code>d3.min</code>, <code>d3.max</code>, <code>d3.extent</code>
+(returns a two-element array <code>[min, max]</code>),
+<code>d3.sum</code>, <code>d3.mean</code>, all of which take an iterable
+and ignore undefined, null, and NaN. <code>min</code> and
+<code>max</code> also take a function, but effectively just map the
+input against it, which seems like a waste to me. Instead,
+<code>d3.least</code> and <code>d3.greatest</code> take a function that
+can be either a binary comparator or a unary key function (!)
+(determined by the <a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length">function’s
+length</a>), and return the min/max element of the original iterable by
+that metric.</li>
 <li><code>d3.zip(...arrays)</code></li>
 <li><code>d3.cross(...iterables)</code> (Cartesian product)</li>
-<li><code>d3.pairs(iterable)</code> gives (overlapping) pairs of adjacent elements</li>
+<li><code>d3.pairs(iterable)</code> gives (overlapping) pairs of
+adjacent elements</li>
 <li><code>d3.range(...)</code> is basically Python’s range.</li>
 </ul></li>
-<li><a href="https://d3js.org/d3-color">d3-color</a> manipulates colors. Each D3 color object is tied to a specific color space or representation, so you have to explicitly ask D3 to convert between them. When coerced to strings, colors turn into <code>rgb(...)</code> strings you can use in CSS.</li>
-<li><a href="https://d3js.org/d3-interpolate">d3-interpolate</a> interpolates between numbers, colors, and other data types. In general, <code>d3.interpolate(foo, bar)</code> is an “interpolator”, a function that’s <code>foo</code> at 0, <code>bar</code> at 1, and interpolates between them in-between (and sometimes even extrapolates below 0 or above 1). <code>d3.interpolate</code> itself might be called an “interpolator factory”; different <a href="https://d3js.org/d3-interpolate/color">color interpolator factories</a> using different spaces exist.</li>
-<li><p><a href="https://d3js.org/d3-scale">d3-scale</a> works with scales. A scale is a JavaScript function that maps data values from some domain (e.g. numbers, time, temperature) to values used for some aspect of visualization (e.g. numbers, color, length/position), though scales also have a bunch of extra functions.</p>
+<li><p><a href="https://d3js.org/d3-color">d3-color</a> manipulates
+colors. Each D3 color object is tied to a specific color space or
+representation, so you have to explicitly ask D3 to convert between
+them. When coerced to strings, colors turn into <code>rgb(...)</code>
+strings you can use in CSS.</p></li>
+<li><p><a href="https://d3js.org/d3-interpolate">d3-interpolate</a>
+interpolates between numbers, colors, and other data types. In general,
+<code>d3.interpolate(foo, bar)</code> is an “interpolator”, a function
+that’s <code>foo</code> at 0, <code>bar</code> at 1, and interpolates
+between them in-between (and sometimes even extrapolates below 0 or
+above 1). <code>d3.interpolate</code> itself might be called an
+“interpolator factory”; different <a
+href="https://d3js.org/d3-interpolate/color">color interpolator
+factories</a> using different spaces exist.</p></li>
+<li><p><a href="https://d3js.org/d3-scale">d3-scale</a> works with
+scales. A scale is a JavaScript function that maps data values from some
+domain (e.g. numbers, time, temperature) to values used for some aspect
+of visualization (e.g. numbers, color, length/position), though scales
+also have a bunch of extra functions.</p>
 <ul>
-<li><p>Linear scales are probably the simplest. Example: <code>d3.scaleLinear([1, 2], [100, 200])</code> linearly maps the interval <code>[1, 2]</code> to the interval <code>[100, 200]</code>, i.e. it multiplies by 100. (Linear scales are simple enough to extrapolate outside their domain.) You can also write this more explicitly as <code>d3.scaleLinear().domain([1, 2]).range([100, 200])</code>. You can specify more than two numbers in the domain and range to produce a piecewise linear scale. There are also many similar numeric scales like <code>d3.scaleLog</code>.</p></li>
-<li><p>Sequential scales also have continuous domains and ranges, but are mainly used when you want to specify the range with an interpolator (such as a continuous color scheme from d3-scale-chromatic, see below) rather than an interpolator factory. Typical usage: <code>d3.scaleSequential([lo, hi], d3.interpolateViridis)</code>. There are many other variations, like the log scale <code>d3.scaleSequentialLog</code>. Diverging scales are similar, but have domains specified with three elements instead (I’m guessing so you can use a diverging color scheme and specify that the middle of the domain is 0 but set the negative and positive endpoints independently).</p></li>
-<li><p>Ordinal scales have discrete domains and ranges. You can even omit the domain and just let the ordinal scale memoize. Suppose <code>ord</code> is an ordinal scale like <code>ord = d3.scaleOrdinal(["red", "green", "blue"])</code>. Each time you call <code>ord</code>, if you’ve called <code>ord</code> with the same argument before, it’ll return the same result as before; otherwise it’ll return the next thing from its range, looping around if necessary.</p></li>
-<li><p>Band scales and point scales have discrete domains but continuous ranges. Both split the range up evenly, but band scales split it into intervals and give you intervals’ left endpoints, while point scales give you evenly spaced points that map the endpoints to the domain to the endpoints of the range.</p></li>
-<li><p>Quantile, quantize, and threshold scales have continuous domains but discrete ranges, kind of. This is technically inaccurate for quantile scales because you give a quantile scale the full dataset you care about as its domain. Quantize scales split the domain into equal intervals. For threshold scales you have to specify every interval/“breakpoint” that matters in the domain.</p></li>
+<li><p>Linear scales are probably the simplest. Example:
+<code>d3.scaleLinear([1, 2], [100, 200])</code> linearly maps the
+interval <code>[1, 2]</code> to the interval <code>[100, 200]</code>,
+i.e. it multiplies by 100. (Linear scales are simple enough to
+extrapolate outside their domain.) You can also write this more
+explicitly as
+<code>d3.scaleLinear().domain([1, 2]).range([100, 200])</code>. You can
+specify more than two numbers in the domain and range to produce a
+piecewise linear scale. There are also many similar numeric scales like
+<code>d3.scaleLog</code>.</p></li>
+<li><p>Sequential scales also have continuous domains and ranges, but
+are mainly used when you want to specify the range with an interpolator
+(such as a continuous color scheme from d3-scale-chromatic, see below)
+rather than an interpolator factory. Typical usage:
+<code>d3.scaleSequential([lo, hi], d3.interpolateViridis)</code>. There
+are many other variations, like the log scale
+<code>d3.scaleSequentialLog</code>. Diverging scales are similar, but
+have domains specified with three elements instead (I’m guessing so you
+can use a diverging color scheme and specify that the middle of the
+domain is 0 but set the negative and positive endpoints
+independently).</p></li>
+<li><p>Ordinal scales have discrete domains and ranges. You can even
+omit the domain and just let the ordinal scale memoize. Suppose
+<code>ord</code> is an ordinal scale like
+<code>ord = d3.scaleOrdinal(["red", "green", "blue"])</code>. Each time
+you call <code>ord</code>, if you’ve called <code>ord</code> with the
+same argument before, it’ll return the same result as before; otherwise
+it’ll return the next thing from its range, looping around if
+necessary.</p></li>
+<li><p>Band scales and point scales have discrete domains but continuous
+ranges. Both split the range up evenly, but band scales split it into
+intervals and give you intervals’ left endpoints, while point scales
+give you evenly spaced points that map the endpoints to the domain to
+the endpoints of the range.</p></li>
+<li><p>Quantile, quantize, and threshold scales have continuous domains
+but discrete ranges, kind of. This is technically inaccurate for
+quantile scales because you give a quantile scale the full dataset you
+care about as its domain. Quantize scales split the domain into equal
+intervals. For threshold scales you have to specify every
+interval/“breakpoint” that matters in the domain.</p></li>
 </ul>
-<p>Not all scales support every method below, but some common methods are:</p>
+<p>Not all scales support every method below, but some common methods
+are:</p>
 <ul>
 <li><code>scale.domain([lo, hi])</code> (setter or getter)</li>
 <li><code>scale.range([lo, hi])</code> (setter or getter)</li>
-<li><code>scale.invert(r)</code> tries to map something from the range to the domain</li>
-<li><code>scale.interpolate(d3.interpolateHcl)</code> (e.g.) sets the interpolator factory</li>
-<li><code>scale.nice()</code> “extends the domain so that it starts and ends on nice round values”, so that if you labeled the start and end on a chart it would look nice.</li>
+<li><code>scale.invert(r)</code> tries to map something from the range
+to the domain</li>
+<li><code>scale.interpolate(d3.interpolateHcl)</code> (e.g.) sets the
+interpolator factory</li>
+<li><code>scale.nice()</code> “extends the domain so that it starts and
+ends on nice round values”, so that if you labeled the start and end on
+a chart it would look nice.</li>
 </ul></li>
-<li><p><a href="https://d3js.org/d3-scale-chromatic">d3-scale-chromatic</a> predefines a bunch of color schemes, so you can rely on decades of data visualization wisdom about perceptual uniformity and aesthetics.</p>
+<li><p><a
+href="https://d3js.org/d3-scale-chromatic">d3-scale-chromatic</a>
+predefines a bunch of color schemes, so you can rely on decades of data
+visualization wisdom about perceptual uniformity and aesthetics.</p>
 <ul>
-<li>The <a href="https://d3js.org/d3-scale-chromatic/categorical">categorial schemes</a>, e.g. <code>d3.schemeCategory10</code>, are just arrays of colors, which you can pass into <code>d3.scaleOrdinal</code>.</li>
-<li>The continuous schemes are interpolators that map floats in [0, 1] to colors, and can be used with <code>d3.scaleSequential</code> above: examples include <code>d3.interpolateBlues</code>, <code>d3.interpolateRdBu</code>, <code>d3.interpolateRdYlGn</code>, and <code>d3.interpolateViridis</code>.</li>
-<li>There are also some schemes of schemes, such as <code>d3.schemeBlues</code>; each one is an array of arrays of colors and <code>d3.schemeBlues[n]</code> has length <code>n</code>, for <code>n</code> from 3 to 9 inclusive.</li>
+<li>The <a
+href="https://d3js.org/d3-scale-chromatic/categorical">categorial
+schemes</a>, e.g. <code>d3.schemeCategory10</code>, are just arrays of
+colors, which you can pass into <code>d3.scaleOrdinal</code>.</li>
+<li>The continuous schemes are interpolators that map floats in [0, 1]
+to colors, and can be used with <code>d3.scaleSequential</code> above:
+examples include <code>d3.interpolateBlues</code>,
+<code>d3.interpolateRdBu</code>, <code>d3.interpolateRdYlGn</code>, and
+<code>d3.interpolateViridis</code>.</li>
+<li>There are also some schemes of schemes, such as
+<code>d3.schemeBlues</code>; each one is an array of arrays of colors
+and <code>d3.schemeBlues[n]</code> has length <code>n</code>, for
+<code>n</code> from 3 to 9 inclusive.</li>
 </ul></li>
-<li><a href="https://d3js.org/d3-format#locale_format">d3-format</a> helps you format numbers. The format is loosely inspired by Python <code>.format</code>. <code>d3.format</code> is curried; it takes a format string and returns a function that takes a number and returns a formatted string. Even the default <code>d3.format("")</code> is useful because it uses the correct Unicode minus sign.</li>
-<li><p><a href="https://d3js.org/d3-drag">d3-drag</a> lets you implement drag-and-drop behavior simply. <code>d3.drag()</code> creates a “drag behavior”, which can be configured and then called on a selection to attach its listeners to that selection. The most important configuration is <code>dragBehavior.on("drag", handler)</code>; other events are <code>"start"</code> and <code>"end"</code>. <code>handler</code> receives a fairly synthetic <a href="https://d3js.org/d3-drag#drag-events">drag event</a>, which has properly offset <code>x</code> and <code>y</code> coordinates <em>if</em> the “drag subject” is set up properly.</p>
-<p>Here is a minimal drag example, but there is more magic here than I expected: the default <a href="https://d3js.org/d3-drag#drag_subject">drag.subject</a> works off datum attributes specifically named <code>x</code> and <code>y</code>. (See this <a href="https://stackoverflow.com/questions/49179662/whats-preserving-local-offset-in-this-d3-drag-example">StackOverflow answer</a>.)</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">let</span> myDrag <span class="op">=</span> <span class="va">d3</span>.<span class="at">drag</span>().<span class="at">on</span>(<span class="st">&quot;drag&quot;</span><span class="op">,</span> <span class="kw">function</span> (event<span class="op">,</span> d) <span class="op">{</span></a>
-<a class="sourceLine" id="cb12-2" title="2">   <span class="va">d3</span>.<span class="at">select</span>(<span class="kw">this</span>).<span class="at">attr</span>(<span class="st">&quot;cx&quot;</span><span class="op">,</span> <span class="va">d</span>.<span class="at">x</span> <span class="op">=</span> <span class="va">event</span>.<span class="at">x</span>).<span class="at">attr</span>(<span class="st">&quot;cy&quot;</span><span class="op">,</span> <span class="va">d</span>.<span class="at">y</span> <span class="op">=</span> <span class="va">event</span>.<span class="at">y</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="op">}</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb12-4" title="4"><span class="va">d3</span>.<span class="at">select</span>(<span class="st">&quot;svg#d3-drag-demo&quot;</span>)</a>
-<a class="sourceLine" id="cb12-5" title="5">  .<span class="at">append</span>(<span class="st">&quot;circle&quot;</span>)</a>
-<a class="sourceLine" id="cb12-6" title="6">    .<span class="at">data</span>([<span class="op">{</span><span class="dt">x</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">100</span><span class="op">}</span>])</a>
-<a class="sourceLine" id="cb12-7" title="7">    .<span class="at">attr</span>(<span class="st">&quot;cx&quot;</span><span class="op">,</span> d <span class="kw">=&gt;</span> <span class="va">d</span>.<span class="at">x</span>)</a>
-<a class="sourceLine" id="cb12-8" title="8">    .<span class="at">attr</span>(<span class="st">&quot;cy&quot;</span><span class="op">,</span> d <span class="kw">=&gt;</span> <span class="va">d</span>.<span class="at">y</span>)</a>
-<a class="sourceLine" id="cb12-9" title="9">    .<span class="at">attr</span>(<span class="st">&quot;r&quot;</span><span class="op">,</span> <span class="dv">50</span>)</a>
-<a class="sourceLine" id="cb12-10" title="10">    .<span class="at">attr</span>(<span class="st">&quot;fill&quot;</span><span class="op">,</span> <span class="st">&quot;#c00&quot;</span>)</a>
-<a class="sourceLine" id="cb12-11" title="11">    .<span class="at">call</span>(myDrag)<span class="op">;</span> <span class="co">// same as myDrag(the entire preceding expression)</span></a></code></pre></div></li>
+<li><p><a href="https://d3js.org/d3-format#locale_format">d3-format</a>
+helps you format numbers. The format is loosely inspired by Python
+<code>.format</code>. <code>d3.format</code> is curried; it takes a
+format string and returns a function that takes a number and returns a
+formatted string. Even the default <code>d3.format("")</code> is useful
+because it uses the correct Unicode minus sign.</p></li>
+<li><p><a href="https://d3js.org/d3-drag">d3-drag</a> lets you implement
+drag-and-drop behavior simply. <code>d3.drag()</code> creates a “drag
+behavior”, which can be configured and then called on a selection to
+attach its listeners to that selection. The most important configuration
+is <code>dragBehavior.on("drag", handler)</code>; other events are
+<code>"start"</code> and <code>"end"</code>. <code>handler</code>
+receives a fairly synthetic <a
+href="https://d3js.org/d3-drag#drag-events">drag event</a>, which has
+properly offset <code>x</code> and <code>y</code> coordinates
+<em>if</em> the “drag subject” is set up properly.</p>
+<p>Here is a minimal drag example, but there is more magic here than I
+expected: the default <a
+href="https://d3js.org/d3-drag#drag_subject">drag.subject</a> works off
+datum attributes specifically named <code>x</code> and <code>y</code>.
+(See this <a
+href="https://stackoverflow.com/questions/49179662/whats-preserving-local-offset-in-this-d3-drag-example">StackOverflow
+answer</a>.)</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> myDrag <span class="op">=</span> d3<span class="op">.</span><span class="fu">drag</span>()<span class="op">.</span><span class="fu">on</span>(<span class="st">&quot;drag&quot;</span><span class="op">,</span> <span class="kw">function</span> (<span class="bu">event</span><span class="op">,</span> d) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>   d3<span class="op">.</span><span class="fu">select</span>(<span class="kw">this</span>)<span class="op">.</span><span class="fu">attr</span>(<span class="st">&quot;cx&quot;</span><span class="op">,</span> d<span class="op">.</span><span class="at">x</span> <span class="op">=</span> <span class="bu">event</span><span class="op">.</span><span class="at">x</span>)<span class="op">.</span><span class="fu">attr</span>(<span class="st">&quot;cy&quot;</span><span class="op">,</span> d<span class="op">.</span><span class="at">y</span> <span class="op">=</span> <span class="bu">event</span><span class="op">.</span><span class="at">y</span>)<span class="op">;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>d3<span class="op">.</span><span class="fu">select</span>(<span class="st">&quot;svg#d3-drag-demo&quot;</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">append</span>(<span class="st">&quot;circle&quot;</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">data</span>([{<span class="dt">x</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">100</span>}])</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">attr</span>(<span class="st">&quot;cx&quot;</span><span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">x</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">attr</span>(<span class="st">&quot;cy&quot;</span><span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">y</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">attr</span>(<span class="st">&quot;r&quot;</span><span class="op">,</span> <span class="dv">50</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">attr</span>(<span class="st">&quot;fill&quot;</span><span class="op">,</span> <span class="st">&quot;#c00&quot;</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">call</span>(myDrag)<span class="op">;</span> <span class="co">// same as myDrag(the entire preceding expression)</span></span></code></pre></div></li>
 </ul>
 <h3 id="sandbox">Sandbox</h3>
-<p>While learning D3 I found it very useful to just open up a browser console, run random <code>d3</code> commands, and see what happens. Here are some DOM elements with preloaded D3 <code>__data__</code> and styles if you want to do the same.</p>
-<p>A <code>div#d3-sandbox-div</code> with ten <code>div</code>s with data 1 to 10:</p>
+<p>While learning D3 I found it very useful to just open up a browser
+console, run random <code>d3</code> commands, and see what happens. Here
+are some DOM elements with preloaded D3 <code>__data__</code> and styles
+if you want to do the same.</p>
+<p>A <code>div#d3-sandbox-div</code> with ten <code>div</code>s with
+data 1 to 10:</p>
 <div id="d3-sandbox-div">
 
 </div>
-<p>A <code>svg#d3-sandbox-svg</code> with viewbox is <code>-300 -300 600 600</code>, so both coordinates’ ranges are [−300, 300]. Its children are 12 <code>g</code>s, each of which has data <code>{i, x, y}</code> and has been <code>.style("transform", "translate(...px, ...px)")</code>’ed to those <code>x</code> and <code>y</code> coordinates. Each <code>g</code> contains a <code>circle</code> and a <code>text</code>, and has a drag handler configured.</p>
+<p>A <code>svg#d3-sandbox-svg</code> with viewbox is
+<code>-300 -300 600 600</code>, so both coordinates’ ranges are [−300,
+300]. Its children are 12 <code>g</code>s, each of which has data
+<code>{i, x, y}</code> and has been
+<code>.style("transform", "translate(...px, ...px)")</code>’ed to those
+<code>x</code> and <code>y</code> coordinates. Each <code>g</code>
+contains a <code>circle</code> and a <code>text</code>, and has a drag
+handler configured.</p>
 <svg viewBox="-300 -300 600 600" id="d3-sandbox-svg">
 </svg>
 <script>
@@ -322,12 +667,22 @@ gs.call(
 
 });
 </script>
-<section class="footnotes">
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Empirically, instead of actually having <code>null</code> or <code>undefined</code>, the array has the JavaScript specialty <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#array_methods_and_empty_slots">empty slots</a> at those locations, such that there appears to be an <code>undefined</code> there if you go by length and indexing, but iteration skips those locations entirely. This is an internal representation you probably don’t care about though. I’ll still call these elements null or non-null.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>Empirically, instead of actually having
+<code>null</code> or <code>undefined</code>, the array has the
+JavaScript specialty <a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#array_methods_and_empty_slots">empty
+slots</a> at those locations, such that there appears to be an
+<code>undefined</code> there if you go by length and indexing, but
+iteration skips those locations entirely. This is an internal
+representation you probably don’t care about though. I’ll still call
+these elements null or non-null.<a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
 </ol>
-</section></article>
+</aside></article>
 	<footer class="post-footer">
 		
 		<ul class="post-tags">
@@ -356,7 +711,7 @@ gs.call(
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

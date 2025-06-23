@@ -13,15 +13,23 @@
       <pubDate>Mon, 04 Jul 2022 23:54:44 -0700</pubDate>
       
       <guid>//blog.vero.site/post/pppordle</guid>
-      <description>&lt;p&gt;Don’t you hate it when CTFs happen faster than you can write them up? This is probably the only PlaidCTF challenge I get to, unfortunately.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+      <description>&lt;p&gt;Don’t you hate it when CTFs happen faster than you can write them up?
+This is probably the only PlaidCTF challenge I get to, unfortunately.&lt;a
+href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;
+role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Web is out, retro is in. Play your favorite word game from the comfort of your terminal!&lt;/p&gt;
+&lt;p&gt;Web is out, retro is in. Play your favorite word game from the
+comfort of your terminal!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;It’s a terminal Wordle client!&lt;/p&gt;
 &lt;figure&gt;
 &lt;a href=&#34;//blog.vero.site/img/pppordle-1.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/pppordle-1.png&#34; alt=&#34;Screenshot of a terminal Wordle client. The puzzle has been solved with the answer COZEY.&#34; /&gt;&lt;/a&gt;
 &lt;/figure&gt;
-&lt;p&gt;I only solved the first half of this challenge. The two halves seem to be unrelated though. (Nobody solved the second half during the CTF.) The challenge was quite big code-wise, with more than a dozen files, so it’s hard to replicate the experience in a post like this, but here’s an attempt.&lt;/p&gt;</description>
+&lt;p&gt;I only solved the first half of this challenge. The two halves seem
+to be unrelated though. (Nobody solved the second half during the CTF.)
+The challenge was quite big code-wise, with more than a dozen files, so
+it’s hard to replicate the experience in a post like this, but here’s an
+attempt.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -34,30 +42,35 @@
 &lt;p&gt;Don’t forget to wear your mask…&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;nc challs.actf.co 31501&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;If I had a nickel for every &lt;a href=&#34;//blog.vero.site/post/messy-desk&#34;&gt;CTF challenge I’ve done&lt;/a&gt; that involves understanding the internal structure of a QR code, I would have two nickels. Which isn’t a lot, etc etc. That previous challenge probably helped me get first blood on this.&lt;/p&gt;
+&lt;p&gt;If I had a nickel for every &lt;a href=&#34;//blog.vero.site/post/messy-desk&#34;&gt;CTF
+challenge I’ve done&lt;/a&gt; that involves understanding the internal
+structure of a QR code, I would have two nickels. Which isn’t a lot, etc
+etc. That previous challenge probably helped me get first blood on
+this.&lt;/p&gt;
 &lt;p&gt;The source code is wonderfully short:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode python&#34;&gt;&lt;code class=&#34;sourceCode python&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;im&#34;&gt;import&lt;/span&gt; io, qrcode, string&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; title=&#34;2&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-3&#34; title=&#34;3&#34;&gt;flag_contents &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; [REDACTED]&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;cf&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;all&lt;/span&gt;(i &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; string.ascii_lowercase &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;#39;_&amp;#39;&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; flag_contents)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-5&#34; title=&#34;5&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-6&#34; title=&#34;6&#34;&gt;flag &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; b&lt;span class=&#34;st&#34;&gt;&amp;quot;actf{&amp;quot;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; flag_contents.encode() &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; b&lt;span class=&#34;st&#34;&gt;&amp;quot;}&amp;quot;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-7&#34; title=&#34;7&#34;&gt;&lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;flag is &lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;%d&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; characters&amp;quot;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(flag))&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-8&#34; title=&#34;8&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-9&#34; title=&#34;9&#34;&gt;qr &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; qrcode.QRCode(version&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;, error_correction &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; qrcode.constants.ERROR_CORRECT_L, box_size&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;, border&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-10&#34; title=&#34;10&#34;&gt;&lt;span class=&#34;cf&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;:&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-11&#34; title=&#34;11&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;try&lt;/span&gt;:&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-12&#34; title=&#34;12&#34;&gt;        inp &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;bytes&lt;/span&gt;.fromhex(&lt;span class=&#34;bu&#34;&gt;input&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;give input (in hex): &amp;quot;&lt;/span&gt;))&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-13&#34; title=&#34;13&#34;&gt;        &lt;span class=&#34;cf&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(inp) &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(flag)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-14&#34; title=&#34;14&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;except&lt;/span&gt;:&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-15&#34; title=&#34;15&#34;&gt;        &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;bad input, exiting&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-16&#34; title=&#34;16&#34;&gt;        &lt;span class=&#34;cf&#34;&gt;break&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-17&#34; title=&#34;17&#34;&gt;    qr.clear()&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-18&#34; title=&#34;18&#34;&gt;    qr.add_data(&lt;span class=&#34;bu&#34;&gt;bytes&lt;/span&gt;([i&lt;span class=&#34;op&#34;&gt;^&lt;/span&gt;j &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; i,j &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;zip&lt;/span&gt;(inp, flag)]))&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-19&#34; title=&#34;19&#34;&gt;    f &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; io.StringIO()&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-20&#34; title=&#34;20&#34;&gt;    qr.print_ascii(out&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;f)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-21&#34; title=&#34;21&#34;&gt;    f.seek(&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-22&#34; title=&#34;22&#34;&gt;    &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;ch&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;#39;&lt;/span&gt;.join(i[:&lt;span class=&#34;dv&#34;&gt;11&lt;/span&gt;] &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; f))&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre
+class=&#34;sourceCode python&#34;&gt;&lt;code class=&#34;sourceCode python&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;im&#34;&gt;import&lt;/span&gt; io, qrcode, string&lt;/span&gt;
+&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;flag_contents &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; [REDACTED]&lt;/span&gt;
+&lt;span id=&#34;cb1-4&#34;&gt;&lt;a href=&#34;#cb1-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;cf&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;all&lt;/span&gt;(i &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; string.ascii_lowercase &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;#39;_&amp;#39;&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; flag_contents)&lt;/span&gt;
+&lt;span id=&#34;cb1-5&#34;&gt;&lt;a href=&#34;#cb1-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-6&#34;&gt;&lt;a href=&#34;#cb1-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;flag &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;b&amp;quot;actf{&amp;quot;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; flag_contents.encode() &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;b&amp;quot;}&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-7&#34;&gt;&lt;a href=&#34;#cb1-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;flag is &lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;%d&lt;/span&gt;&lt;span class=&#34;st&#34;&gt; characters&amp;quot;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(flag))&lt;/span&gt;
+&lt;span id=&#34;cb1-8&#34;&gt;&lt;a href=&#34;#cb1-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-9&#34;&gt;&lt;a href=&#34;#cb1-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;qr &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; qrcode.QRCode(version&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;, error_correction &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; qrcode.constants.ERROR_CORRECT_L, box_size&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;, border&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-10&#34;&gt;&lt;a href=&#34;#cb1-10&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;cf&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;:&lt;/span&gt;
+&lt;span id=&#34;cb1-11&#34;&gt;&lt;a href=&#34;#cb1-11&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;try&lt;/span&gt;:&lt;/span&gt;
+&lt;span id=&#34;cb1-12&#34;&gt;&lt;a href=&#34;#cb1-12&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        inp &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;bytes&lt;/span&gt;.fromhex(&lt;span class=&#34;bu&#34;&gt;input&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;give input (in hex): &amp;quot;&lt;/span&gt;))&lt;/span&gt;
+&lt;span id=&#34;cb1-13&#34;&gt;&lt;a href=&#34;#cb1-13&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;cf&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(inp) &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(flag)&lt;/span&gt;
+&lt;span id=&#34;cb1-14&#34;&gt;&lt;a href=&#34;#cb1-14&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;except&lt;/span&gt;:&lt;/span&gt;
+&lt;span id=&#34;cb1-15&#34;&gt;&lt;a href=&#34;#cb1-15&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;bad input, exiting&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-16&#34;&gt;&lt;a href=&#34;#cb1-16&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;cf&#34;&gt;break&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-17&#34;&gt;&lt;a href=&#34;#cb1-17&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    qr.clear()&lt;/span&gt;
+&lt;span id=&#34;cb1-18&#34;&gt;&lt;a href=&#34;#cb1-18&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    qr.add_data(&lt;span class=&#34;bu&#34;&gt;bytes&lt;/span&gt;([i&lt;span class=&#34;op&#34;&gt;^&lt;/span&gt;j &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; i,j &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;zip&lt;/span&gt;(inp, flag)]))&lt;/span&gt;
+&lt;span id=&#34;cb1-19&#34;&gt;&lt;a href=&#34;#cb1-19&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    f &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; io.StringIO()&lt;/span&gt;
+&lt;span id=&#34;cb1-20&#34;&gt;&lt;a href=&#34;#cb1-20&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    qr.print_ascii(out&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;f)&lt;/span&gt;
+&lt;span id=&#34;cb1-21&#34;&gt;&lt;a href=&#34;#cb1-21&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    f.seek(&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-22&#34;&gt;&lt;a href=&#34;#cb1-22&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;ch&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;#39;&lt;/span&gt;.join(i[:&lt;span class=&#34;dv&#34;&gt;11&lt;/span&gt;] &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; f))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -67,34 +80,44 @@
       
       <guid>//blog.vero.site/post/kevin-higgs</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;Now that kmh is gone, clam’s been going through pickle withdrawal. To help him cope, he wrote his own pickle pyjail. It’s nothing like kmh’s, but maybe it’s enough.&lt;/p&gt;
+&lt;p&gt;Now that kmh is gone, clam’s been going through pickle withdrawal. To
+help him cope, he wrote his own pickle pyjail. It’s nothing like kmh’s,
+but maybe it’s enough.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Language jails are rapidly becoming one of my CTF areas of expertise. Not sure how I feel about that.&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode python&#34;&gt;&lt;code class=&#34;sourceCode python&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#!/usr/local/bin/python3&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; title=&#34;2&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;im&#34;&gt;import&lt;/span&gt; pickle&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;im&#34;&gt;import&lt;/span&gt; io&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-5&#34; title=&#34;5&#34;&gt;&lt;span class=&#34;im&#34;&gt;import&lt;/span&gt; sys&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-6&#34; title=&#34;6&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-7&#34; title=&#34;7&#34;&gt;module &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;type&lt;/span&gt;(__builtins__)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-8&#34; title=&#34;8&#34;&gt;empty &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; module(&lt;span class=&#34;st&#34;&gt;&amp;quot;empty&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-9&#34; title=&#34;9&#34;&gt;empty.empty &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; empty&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-10&#34; title=&#34;10&#34;&gt;sys.modules[&lt;span class=&#34;st&#34;&gt;&amp;quot;empty&amp;quot;&lt;/span&gt;] &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; empty&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-11&#34; title=&#34;11&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-12&#34; title=&#34;12&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-13&#34; title=&#34;13&#34;&gt;&lt;span class=&#34;kw&#34;&gt;class&lt;/span&gt; SafeUnpickler(pickle.Unpickler):&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-14&#34; title=&#34;14&#34;&gt;    &lt;span class=&#34;kw&#34;&gt;def&lt;/span&gt; find_class(&lt;span class=&#34;va&#34;&gt;self&lt;/span&gt;, module, name):&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-15&#34; title=&#34;15&#34;&gt;        &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; module &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;empty&amp;quot;&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;and&lt;/span&gt; name.count(&lt;span class=&#34;st&#34;&gt;&amp;quot;.&amp;quot;&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;:&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-16&#34; title=&#34;16&#34;&gt;            &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;super&lt;/span&gt;().find_class(module, name)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-17&#34; title=&#34;17&#34;&gt;        &lt;span class=&#34;cf&#34;&gt;raise&lt;/span&gt; pickle.UnpicklingError(&lt;span class=&#34;st&#34;&gt;&amp;quot;e-legal&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-18&#34; title=&#34;18&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-19&#34; title=&#34;19&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-20&#34; title=&#34;20&#34;&gt;lepickle &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;bytes&lt;/span&gt;.fromhex(&lt;span class=&#34;bu&#34;&gt;input&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Enter hex-encoded pickle: &amp;quot;&lt;/span&gt;))&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-21&#34; title=&#34;21&#34;&gt;&lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(lepickle) &lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;400&lt;/span&gt;:&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-22&#34; title=&#34;22&#34;&gt;    &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;your pickle is too large for my taste &amp;gt;:(&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-23&#34; title=&#34;23&#34;&gt;&lt;span class=&#34;cf&#34;&gt;else&lt;/span&gt;:&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-24&#34; title=&#34;24&#34;&gt;    SafeUnpickler(io.BytesIO(lepickle)).load()&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code&gt;&lt;a href=&#34;https://docs.python.org/3/library/pickle.html&#34;&gt;pickle&lt;/a&gt;&lt;/code&gt; is a Python object serialization format. As the docs page loudly proclaims, it is not secure. Roughly the simplest possible code to pop a shell (adapted from &lt;a href=&#34;https://davidhamann.de/2020/04/05/exploiting-python-pickle/&#34;&gt;David Hamann&lt;/a&gt;, who constructs a more realistic RCE) looks like:&lt;/p&gt;</description>
+&lt;p&gt;Language jails are rapidly becoming one of my CTF areas of expertise.
+Not sure how I feel about that.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre
+class=&#34;sourceCode python&#34;&gt;&lt;code class=&#34;sourceCode python&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;#!/usr/local/bin/python3&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;im&#34;&gt;import&lt;/span&gt; pickle&lt;/span&gt;
+&lt;span id=&#34;cb1-4&#34;&gt;&lt;a href=&#34;#cb1-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;im&#34;&gt;import&lt;/span&gt; io&lt;/span&gt;
+&lt;span id=&#34;cb1-5&#34;&gt;&lt;a href=&#34;#cb1-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;im&#34;&gt;import&lt;/span&gt; sys&lt;/span&gt;
+&lt;span id=&#34;cb1-6&#34;&gt;&lt;a href=&#34;#cb1-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-7&#34;&gt;&lt;a href=&#34;#cb1-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;module &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;type&lt;/span&gt;(__builtins__)&lt;/span&gt;
+&lt;span id=&#34;cb1-8&#34;&gt;&lt;a href=&#34;#cb1-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;empty &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; module(&lt;span class=&#34;st&#34;&gt;&amp;quot;empty&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-9&#34;&gt;&lt;a href=&#34;#cb1-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;empty.empty &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; empty&lt;/span&gt;
+&lt;span id=&#34;cb1-10&#34;&gt;&lt;a href=&#34;#cb1-10&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;sys.modules[&lt;span class=&#34;st&#34;&gt;&amp;quot;empty&amp;quot;&lt;/span&gt;] &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; empty&lt;/span&gt;
+&lt;span id=&#34;cb1-11&#34;&gt;&lt;a href=&#34;#cb1-11&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-12&#34;&gt;&lt;a href=&#34;#cb1-12&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-13&#34;&gt;&lt;a href=&#34;#cb1-13&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;class&lt;/span&gt; SafeUnpickler(pickle.Unpickler):&lt;/span&gt;
+&lt;span id=&#34;cb1-14&#34;&gt;&lt;a href=&#34;#cb1-14&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;kw&#34;&gt;def&lt;/span&gt; find_class(&lt;span class=&#34;va&#34;&gt;self&lt;/span&gt;, module, name):&lt;/span&gt;
+&lt;span id=&#34;cb1-15&#34;&gt;&lt;a href=&#34;#cb1-15&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; module &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;empty&amp;quot;&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;and&lt;/span&gt; name.count(&lt;span class=&#34;st&#34;&gt;&amp;quot;.&amp;quot;&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;:&lt;/span&gt;
+&lt;span id=&#34;cb1-16&#34;&gt;&lt;a href=&#34;#cb1-16&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;            &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;super&lt;/span&gt;().find_class(module, name)&lt;/span&gt;
+&lt;span id=&#34;cb1-17&#34;&gt;&lt;a href=&#34;#cb1-17&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;cf&#34;&gt;raise&lt;/span&gt; pickle.UnpicklingError(&lt;span class=&#34;st&#34;&gt;&amp;quot;e-legal&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-18&#34;&gt;&lt;a href=&#34;#cb1-18&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-19&#34;&gt;&lt;a href=&#34;#cb1-19&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-20&#34;&gt;&lt;a href=&#34;#cb1-20&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;lepickle &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;bytes&lt;/span&gt;.fromhex(&lt;span class=&#34;bu&#34;&gt;input&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Enter hex-encoded pickle: &amp;quot;&lt;/span&gt;))&lt;/span&gt;
+&lt;span id=&#34;cb1-21&#34;&gt;&lt;a href=&#34;#cb1-21&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(lepickle) &lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;400&lt;/span&gt;:&lt;/span&gt;
+&lt;span id=&#34;cb1-22&#34;&gt;&lt;a href=&#34;#cb1-22&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;your pickle is too large for my taste &amp;gt;:(&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-23&#34;&gt;&lt;a href=&#34;#cb1-23&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;cf&#34;&gt;else&lt;/span&gt;:&lt;/span&gt;
+&lt;span id=&#34;cb1-24&#34;&gt;&lt;a href=&#34;#cb1-24&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    SafeUnpickler(io.BytesIO(lepickle)).load()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;&lt;a
+href=&#34;https://docs.python.org/3/library/pickle.html&#34;&gt;pickle&lt;/a&gt;&lt;/code&gt;
+is a Python object serialization format. As the docs page loudly
+proclaims, it is not secure. Roughly the simplest possible code to pop a
+shell (adapted from &lt;a
+href=&#34;https://davidhamann.de/2020/04/05/exploiting-python-pickle/&#34;&gt;David
+Hamann&lt;/a&gt;, who constructs a more realistic RCE) looks like:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -104,48 +127,54 @@
       
       <guid>//blog.vero.site/post/caasio</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;It’s clam’s newest javascript Calculator-as-a-Service: the CaaSio Please Stop Edition! no but actually please stop I hate jsjails js isn’t a good language stop putting one in every ctf I don’t want to look at another jsjail because if I do I might vomit from how much I hate js and js quirks aren’t even cool or funny or quirky they’re just painful because why would you design a language like this ahhhhhhhhhhhhhhhhhhhhh&lt;/p&gt;
+&lt;p&gt;It’s clam’s newest javascript Calculator-as-a-Service: the CaaSio
+Please Stop Edition! no but actually please stop I hate jsjails js isn’t
+a good language stop putting one in every ctf I don’t want to look at
+another jsjail because if I do I might vomit from how much I hate js and
+js quirks aren’t even cool or funny or quirky they’re just painful
+because why would you design a language like this
+ahhhhhhhhhhhhhhhhhhhhh&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;It’s just a JavaScript eval jail.&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode js&#34;&gt;&lt;code class=&#34;sourceCode javascript&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#!/usr/local/bin/node&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; title=&#34;2&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;co&#34;&gt;// flag in ./flag.txt&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; title=&#34;4&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-5&#34; title=&#34;5&#34;&gt;&lt;span class=&#34;kw&#34;&gt;const&lt;/span&gt; vm &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;at&#34;&gt;require&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;vm&amp;quot;&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-6&#34; title=&#34;6&#34;&gt;&lt;span class=&#34;kw&#34;&gt;const&lt;/span&gt; readline &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;at&#34;&gt;require&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;readline&amp;quot;&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-7&#34; title=&#34;7&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-8&#34; title=&#34;8&#34;&gt;&lt;span class=&#34;kw&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;va&#34;&gt;readline&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;createInterface&lt;/span&gt;(&lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-9&#34; title=&#34;9&#34;&gt;    &lt;span class=&#34;dt&#34;&gt;input&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;va&#34;&gt;process&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;stdin&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-10&#34; title=&#34;10&#34;&gt;    &lt;span class=&#34;dt&#34;&gt;output&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;va&#34;&gt;process&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;stdout&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-11&#34; title=&#34;11&#34;&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-12&#34; title=&#34;12&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-13&#34; title=&#34;13&#34;&gt;&lt;span class=&#34;kw&#34;&gt;interface&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;question&lt;/span&gt;(&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-14&#34; title=&#34;14&#34;&gt;    &lt;span class=&#34;st&#34;&gt;&amp;quot;Welcome to CaaSio: Please Stop Edition! Enter your calculation:&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-15&#34; title=&#34;15&#34;&gt;    &lt;span class=&#34;kw&#34;&gt;function&lt;/span&gt; (input) &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-16&#34; title=&#34;16&#34;&gt;        &lt;span class=&#34;kw&#34;&gt;interface&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;close&lt;/span&gt;()&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-17&#34; title=&#34;17&#34;&gt;        &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; (&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-18&#34; title=&#34;18&#34;&gt;            &lt;span class=&#34;va&#34;&gt;input&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;length&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;215&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-19&#34; title=&#34;19&#34;&gt;            &lt;span class=&#34;ss&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;^[\x20-\x7e]+$&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;/&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;test&lt;/span&gt;(input) &lt;span class=&#34;op&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-20&#34; title=&#34;20&#34;&gt;            &lt;span class=&#34;op&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;[.\[\]{}\s;`&amp;#39;&amp;quot;\\_&amp;lt;&amp;gt;?:]&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;/&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;test&lt;/span&gt;(input) &lt;span class=&#34;op&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-21&#34; title=&#34;21&#34;&gt;            &lt;span class=&#34;op&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;va&#34;&gt;input&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;toLowerCase&lt;/span&gt;().&lt;span class=&#34;at&#34;&gt;includes&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;import&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-22&#34; title=&#34;22&#34;&gt;        ) &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-23&#34; title=&#34;23&#34;&gt;            &lt;span class=&#34;cf&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-24&#34; title=&#34;24&#34;&gt;                &lt;span class=&#34;kw&#34;&gt;const&lt;/span&gt; val &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;va&#34;&gt;vm&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;runInNewContext&lt;/span&gt;(input&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{}&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-25&#34; title=&#34;25&#34;&gt;                &lt;span class=&#34;va&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Result:&amp;quot;&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-26&#34; title=&#34;26&#34;&gt;                &lt;span class=&#34;va&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;log&lt;/span&gt;(val)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-27&#34; title=&#34;27&#34;&gt;                &lt;span class=&#34;va&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;log&lt;/span&gt;(&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-28&#34; title=&#34;28&#34;&gt;                    &lt;span class=&#34;st&#34;&gt;&amp;quot;See, isn&amp;#39;t the calculator so much nicer when you&amp;#39;re not trying to hack it?&amp;quot;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-29&#34; title=&#34;29&#34;&gt;                )&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-30&#34; title=&#34;30&#34;&gt;            &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;catch&lt;/span&gt; (e) &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-31&#34; title=&#34;31&#34;&gt;                &lt;span class=&#34;va&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;your tried&amp;quot;&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-32&#34; title=&#34;32&#34;&gt;            &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-33&#34; title=&#34;33&#34;&gt;        &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-34&#34; title=&#34;34&#34;&gt;            &lt;span class=&#34;va&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;at&#34;&gt;log&lt;/span&gt;(&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-35&#34; title=&#34;35&#34;&gt;                &lt;span class=&#34;st&#34;&gt;&amp;quot;Third time really is the charm! I&amp;#39;ve finally created an unhackable system!&amp;quot;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-36&#34; title=&#34;36&#34;&gt;            )&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-37&#34; title=&#34;37&#34;&gt;        &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-38&#34; title=&#34;38&#34;&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-39&#34; title=&#34;39&#34;&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode js&#34;&gt;&lt;code class=&#34;sourceCode javascript&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;#!/usr/local/bin/node&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;// flag in ./flag.txt&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-4&#34;&gt;&lt;a href=&#34;#cb1-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-5&#34;&gt;&lt;a href=&#34;#cb1-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;const&lt;/span&gt; vm &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;pp&#34;&gt;require&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;vm&amp;quot;&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-6&#34;&gt;&lt;a href=&#34;#cb1-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;const&lt;/span&gt; readline &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;pp&#34;&gt;require&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;readline&amp;quot;&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-7&#34;&gt;&lt;a href=&#34;#cb1-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-8&#34;&gt;&lt;a href=&#34;#cb1-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; readline&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;createInterface&lt;/span&gt;({&lt;/span&gt;
+&lt;span id=&#34;cb1-9&#34;&gt;&lt;a href=&#34;#cb1-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;dt&#34;&gt;input&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;process&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;at&#34;&gt;stdin&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-10&#34;&gt;&lt;a href=&#34;#cb1-10&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;dt&#34;&gt;output&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;process&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;at&#34;&gt;stdout&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-11&#34;&gt;&lt;a href=&#34;#cb1-11&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;})&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-12&#34;&gt;&lt;a href=&#34;#cb1-12&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-13&#34;&gt;&lt;a href=&#34;#cb1-13&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;interface&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;question&lt;/span&gt;(&lt;/span&gt;
+&lt;span id=&#34;cb1-14&#34;&gt;&lt;a href=&#34;#cb1-14&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;st&#34;&gt;&amp;quot;Welcome to CaaSio: Please Stop Edition! Enter your calculation:&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-15&#34;&gt;&lt;a href=&#34;#cb1-15&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;kw&#34;&gt;function&lt;/span&gt; (input) {&lt;/span&gt;
+&lt;span id=&#34;cb1-16&#34;&gt;&lt;a href=&#34;#cb1-16&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;kw&#34;&gt;interface&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;close&lt;/span&gt;()&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-17&#34;&gt;&lt;a href=&#34;#cb1-17&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; (&lt;/span&gt;
+&lt;span id=&#34;cb1-18&#34;&gt;&lt;a href=&#34;#cb1-18&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;            input&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;at&#34;&gt;length&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;215&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-19&#34;&gt;&lt;a href=&#34;#cb1-19&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;            &lt;span class=&#34;ss&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;^[\x20-\x7e]+$&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;test&lt;/span&gt;(input) &lt;span class=&#34;op&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-20&#34;&gt;&lt;a href=&#34;#cb1-20&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;            &lt;span class=&#34;op&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;[.\[\]{}\s;`&amp;#39;&amp;quot;\\_&amp;lt;&amp;gt;?:]&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;test&lt;/span&gt;(input) &lt;span class=&#34;op&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-21&#34;&gt;&lt;a href=&#34;#cb1-21&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;            &lt;span class=&#34;op&#34;&gt;!&lt;/span&gt;input&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;toLowerCase&lt;/span&gt;()&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;includes&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;import&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-22&#34;&gt;&lt;a href=&#34;#cb1-22&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        ) {&lt;/span&gt;
+&lt;span id=&#34;cb1-23&#34;&gt;&lt;a href=&#34;#cb1-23&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;            &lt;span class=&#34;cf&#34;&gt;try&lt;/span&gt; {&lt;/span&gt;
+&lt;span id=&#34;cb1-24&#34;&gt;&lt;a href=&#34;#cb1-24&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;                &lt;span class=&#34;kw&#34;&gt;const&lt;/span&gt; val &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; vm&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;runInNewContext&lt;/span&gt;(input&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; {})&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-25&#34;&gt;&lt;a href=&#34;#cb1-25&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;                &lt;span class=&#34;bu&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Result:&amp;quot;&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-26&#34;&gt;&lt;a href=&#34;#cb1-26&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;                &lt;span class=&#34;bu&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;log&lt;/span&gt;(val)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-27&#34;&gt;&lt;a href=&#34;#cb1-27&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;                &lt;span class=&#34;bu&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;log&lt;/span&gt;(&lt;/span&gt;
+&lt;span id=&#34;cb1-28&#34;&gt;&lt;a href=&#34;#cb1-28&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;                    &lt;span class=&#34;st&#34;&gt;&amp;quot;See, isn&amp;#39;t the calculator so much nicer when you&amp;#39;re not trying to hack it?&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-29&#34;&gt;&lt;a href=&#34;#cb1-29&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;                )&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-30&#34;&gt;&lt;a href=&#34;#cb1-30&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;            } &lt;span class=&#34;cf&#34;&gt;catch&lt;/span&gt; (e) {&lt;/span&gt;
+&lt;span id=&#34;cb1-31&#34;&gt;&lt;a href=&#34;#cb1-31&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;                &lt;span class=&#34;bu&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;your tried&amp;quot;&lt;/span&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-32&#34;&gt;&lt;a href=&#34;#cb1-32&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;            }&lt;/span&gt;
+&lt;span id=&#34;cb1-33&#34;&gt;&lt;a href=&#34;#cb1-33&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        } &lt;span class=&#34;cf&#34;&gt;else&lt;/span&gt; {&lt;/span&gt;
+&lt;span id=&#34;cb1-34&#34;&gt;&lt;a href=&#34;#cb1-34&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;            &lt;span class=&#34;bu&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;log&lt;/span&gt;(&lt;/span&gt;
+&lt;span id=&#34;cb1-35&#34;&gt;&lt;a href=&#34;#cb1-35&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;                &lt;span class=&#34;st&#34;&gt;&amp;quot;Third time really is the charm! I&amp;#39;ve finally created an unhackable system!&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-36&#34;&gt;&lt;a href=&#34;#cb1-36&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;            )&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-37&#34;&gt;&lt;a href=&#34;#cb1-37&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        }&lt;/span&gt;
+&lt;span id=&#34;cb1-38&#34;&gt;&lt;a href=&#34;#cb1-38&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    }&lt;/span&gt;
+&lt;span id=&#34;cb1-39&#34;&gt;&lt;a href=&#34;#cb1-39&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;)&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -154,52 +183,62 @@
       <pubDate>Mon, 14 Feb 2022 01:32:22 -0800</pubDate>
       
       <guid>//blog.vero.site/post/ti1337se</guid>
-      <description>&lt;p&gt;Last weekend &lt;a href=&#34;https://galhacktictrendsetters.wordpress.com/&#34;&gt;Galhacktic Trendsetters&lt;/a&gt; sort of spontaneously decided to do &lt;a href=&#34;https://ctf.dicega.ng/&#34;&gt;DiceCTF 2022&lt;/a&gt;, months or years after most of us had done another CTF. It was a lot of fun and we placed 6th!&lt;/p&gt;
+      <description>&lt;p&gt;Last weekend &lt;a
+href=&#34;https://galhacktictrendsetters.wordpress.com/&#34;&gt;Galhacktic
+Trendsetters&lt;/a&gt; sort of spontaneously decided to do &lt;a
+href=&#34;https://ctf.dicega.ng/&#34;&gt;DiceCTF 2022&lt;/a&gt;, months or years after
+most of us had done another CTF. It was a lot of fun and we placed
+6th!&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Back in the day the silver edition was the top of the line Texas Instruments calculator, but now the security is looking a little obsolete. Can you break it?&lt;/p&gt;
+&lt;p&gt;Back in the day the silver edition was the top of the line Texas
+Instruments calculator, but now the security is looking a little
+obsolete. Can you break it?&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;It’s yet another Python jail. We input a string and, after it makes it through a gauntlet of checks and processing, it gets &lt;code&gt;exec&lt;/code&gt;’d.&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode python&#34;&gt;&lt;code class=&#34;sourceCode python&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;co&#34;&gt;#!/usr/bin/env python3&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;im&#34;&gt;import&lt;/span&gt; dis&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;im&#34;&gt;import&lt;/span&gt; sys&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; title=&#34;4&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-5&#34; title=&#34;5&#34;&gt;banned &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; [&lt;span class=&#34;st&#34;&gt;&amp;quot;MAKE_FUNCTION&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;CALL_FUNCTION&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;CALL_FUNCTION_KW&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;CALL_FUNCTION_EX&amp;quot;&lt;/span&gt;]&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-6&#34; title=&#34;6&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-7&#34; title=&#34;7&#34;&gt;used_gift &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;va&#34;&gt;False&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-8&#34; title=&#34;8&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-9&#34; title=&#34;9&#34;&gt;&lt;span class=&#34;kw&#34;&gt;def&lt;/span&gt; gift(target, name, value):&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-10&#34; title=&#34;10&#34;&gt;    &lt;span class=&#34;kw&#34;&gt;global&lt;/span&gt; used_gift&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-11&#34; title=&#34;11&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; used_gift: sys.exit(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-12&#34; title=&#34;12&#34;&gt;    used_gift &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;va&#34;&gt;True&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-13&#34; title=&#34;13&#34;&gt;    &lt;span class=&#34;bu&#34;&gt;setattr&lt;/span&gt;(target, name, value)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-14&#34; title=&#34;14&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-15&#34; title=&#34;15&#34;&gt;&lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Welcome to the TI-1337 Silver Edition. Enter your calculations below:&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-16&#34; title=&#34;16&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-17&#34; title=&#34;17&#34;&gt;math &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;input&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;&amp;gt; &amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-18&#34; title=&#34;18&#34;&gt;&lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(math) &lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1337&lt;/span&gt;:&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-19&#34; title=&#34;19&#34;&gt;    &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Nobody needs that much math!&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-20&#34; title=&#34;20&#34;&gt;    sys.exit(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-21&#34; title=&#34;21&#34;&gt;code &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;compile&lt;/span&gt;(math, &lt;span class=&#34;st&#34;&gt;&amp;quot;&amp;lt;math&amp;gt;&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;exec&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-22&#34; title=&#34;22&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-23&#34; title=&#34;23&#34;&gt;bytecode &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;list&lt;/span&gt;(code.co_code)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-24&#34; title=&#34;24&#34;&gt;instructions &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;list&lt;/span&gt;(dis.get_instructions(code))&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-25&#34; title=&#34;25&#34;&gt;&lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; i, inst &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;enumerate&lt;/span&gt;(instructions):&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-26&#34; title=&#34;26&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; inst.is_jump_target:&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-27&#34; title=&#34;27&#34;&gt;        &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Math doesn&amp;#39;t need control flow!&amp;quot;&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-28&#34; title=&#34;28&#34;&gt;        sys.exit(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-29&#34; title=&#34;29&#34;&gt;    nextoffset &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; instructions[i&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;].offset &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(instructions) &lt;span class=&#34;cf&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(bytecode)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-30&#34; title=&#34;30&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; inst.opname &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; banned:&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-31&#34; title=&#34;31&#34;&gt;        bytecode[inst.offset:instructions[i&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;].offset] &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; [&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;]&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;(instructions[i&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;].offset&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;inst.offset)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-32&#34; title=&#34;32&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-33&#34; title=&#34;33&#34;&gt;names &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;list&lt;/span&gt;(code.co_names)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-34&#34; title=&#34;34&#34;&gt;&lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; i, name &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;enumerate&lt;/span&gt;(code.co_names):&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-35&#34; title=&#34;35&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;__&amp;quot;&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; name: names[i] &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;$INVALID$&amp;quot;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-36&#34; title=&#34;36&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-37&#34; title=&#34;37&#34;&gt;code &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; code.replace(co_code&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;bytes&lt;/span&gt;(b &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; b &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; bytecode &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; b &lt;span class=&#34;op&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;), co_names&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;tuple&lt;/span&gt;(names), co_stacksize&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;20&lt;/span&gt;)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-38&#34; title=&#34;38&#34;&gt;v &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; {}&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-39&#34; title=&#34;39&#34;&gt;&lt;span class=&#34;bu&#34;&gt;exec&lt;/span&gt;(code, {&lt;span class=&#34;st&#34;&gt;&amp;quot;__builtins__&amp;quot;&lt;/span&gt;: {&lt;span class=&#34;st&#34;&gt;&amp;quot;gift&amp;quot;&lt;/span&gt;: gift}}, v)&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-40&#34; title=&#34;40&#34;&gt;&lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; v: &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;ch&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;.join(&lt;span class=&#34;ss&#34;&gt;f&amp;quot;&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;{&lt;/span&gt;name&lt;span class=&#34;sc&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt; = &lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;{&lt;/span&gt;val&lt;span class=&#34;sc&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;&amp;quot;&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; name, val &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; v.items()))&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-41&#34; title=&#34;41&#34;&gt;&lt;span class=&#34;cf&#34;&gt;else&lt;/span&gt;: &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;No results stored.&amp;quot;&lt;/span&gt;)&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It’s yet another Python jail. We input a string and, after it makes
+it through a gauntlet of checks and processing, it gets
+&lt;code&gt;exec&lt;/code&gt;’d.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre
+class=&#34;sourceCode python&#34;&gt;&lt;code class=&#34;sourceCode python&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;co&#34;&gt;#!/usr/bin/env python3&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;im&#34;&gt;import&lt;/span&gt; dis&lt;/span&gt;
+&lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;im&#34;&gt;import&lt;/span&gt; sys&lt;/span&gt;
+&lt;span id=&#34;cb1-4&#34;&gt;&lt;a href=&#34;#cb1-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-5&#34;&gt;&lt;a href=&#34;#cb1-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;banned &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; [&lt;span class=&#34;st&#34;&gt;&amp;quot;MAKE_FUNCTION&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;CALL_FUNCTION&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;CALL_FUNCTION_KW&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;CALL_FUNCTION_EX&amp;quot;&lt;/span&gt;]&lt;/span&gt;
+&lt;span id=&#34;cb1-6&#34;&gt;&lt;a href=&#34;#cb1-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-7&#34;&gt;&lt;a href=&#34;#cb1-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;used_gift &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;va&#34;&gt;False&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-8&#34;&gt;&lt;a href=&#34;#cb1-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-9&#34;&gt;&lt;a href=&#34;#cb1-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;def&lt;/span&gt; gift(target, name, value):&lt;/span&gt;
+&lt;span id=&#34;cb1-10&#34;&gt;&lt;a href=&#34;#cb1-10&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;kw&#34;&gt;global&lt;/span&gt; used_gift&lt;/span&gt;
+&lt;span id=&#34;cb1-11&#34;&gt;&lt;a href=&#34;#cb1-11&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; used_gift: sys.exit(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-12&#34;&gt;&lt;a href=&#34;#cb1-12&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    used_gift &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;va&#34;&gt;True&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-13&#34;&gt;&lt;a href=&#34;#cb1-13&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;bu&#34;&gt;setattr&lt;/span&gt;(target, name, value)&lt;/span&gt;
+&lt;span id=&#34;cb1-14&#34;&gt;&lt;a href=&#34;#cb1-14&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-15&#34;&gt;&lt;a href=&#34;#cb1-15&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Welcome to the TI-1337 Silver Edition. Enter your calculations below:&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-16&#34;&gt;&lt;a href=&#34;#cb1-16&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-17&#34;&gt;&lt;a href=&#34;#cb1-17&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;math &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;input&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;&amp;gt; &amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-18&#34;&gt;&lt;a href=&#34;#cb1-18&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(math) &lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1337&lt;/span&gt;:&lt;/span&gt;
+&lt;span id=&#34;cb1-19&#34;&gt;&lt;a href=&#34;#cb1-19&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Nobody needs that much math!&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-20&#34;&gt;&lt;a href=&#34;#cb1-20&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    sys.exit(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-21&#34;&gt;&lt;a href=&#34;#cb1-21&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;code &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;compile&lt;/span&gt;(math, &lt;span class=&#34;st&#34;&gt;&amp;quot;&amp;lt;math&amp;gt;&amp;quot;&lt;/span&gt;, &lt;span class=&#34;st&#34;&gt;&amp;quot;exec&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-22&#34;&gt;&lt;a href=&#34;#cb1-22&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-23&#34;&gt;&lt;a href=&#34;#cb1-23&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;bytecode &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;list&lt;/span&gt;(code.co_code)&lt;/span&gt;
+&lt;span id=&#34;cb1-24&#34;&gt;&lt;a href=&#34;#cb1-24&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;instructions &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;list&lt;/span&gt;(dis.get_instructions(code))&lt;/span&gt;
+&lt;span id=&#34;cb1-25&#34;&gt;&lt;a href=&#34;#cb1-25&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; i, inst &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;enumerate&lt;/span&gt;(instructions):&lt;/span&gt;
+&lt;span id=&#34;cb1-26&#34;&gt;&lt;a href=&#34;#cb1-26&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; inst.is_jump_target:&lt;/span&gt;
+&lt;span id=&#34;cb1-27&#34;&gt;&lt;a href=&#34;#cb1-27&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;Math doesn&amp;#39;t need control flow!&amp;quot;&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-28&#34;&gt;&lt;a href=&#34;#cb1-28&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        sys.exit(&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-29&#34;&gt;&lt;a href=&#34;#cb1-29&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    nextoffset &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; instructions[i&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;].offset &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; i&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(instructions) &lt;span class=&#34;cf&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;len&lt;/span&gt;(bytecode)&lt;/span&gt;
+&lt;span id=&#34;cb1-30&#34;&gt;&lt;a href=&#34;#cb1-30&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; inst.opname &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; banned:&lt;/span&gt;
+&lt;span id=&#34;cb1-31&#34;&gt;&lt;a href=&#34;#cb1-31&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        bytecode[inst.offset:instructions[i&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;].offset] &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; [&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;]&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;(instructions[i&lt;span class=&#34;op&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;].offset&lt;span class=&#34;op&#34;&gt;-&lt;/span&gt;inst.offset)&lt;/span&gt;
+&lt;span id=&#34;cb1-32&#34;&gt;&lt;a href=&#34;#cb1-32&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-33&#34;&gt;&lt;a href=&#34;#cb1-33&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;names &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;list&lt;/span&gt;(code.co_names)&lt;/span&gt;
+&lt;span id=&#34;cb1-34&#34;&gt;&lt;a href=&#34;#cb1-34&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; i, name &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;enumerate&lt;/span&gt;(code.co_names):&lt;/span&gt;
+&lt;span id=&#34;cb1-35&#34;&gt;&lt;a href=&#34;#cb1-35&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;__&amp;quot;&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; name: names[i] &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;quot;$INVALID$&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-36&#34;&gt;&lt;a href=&#34;#cb1-36&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-37&#34;&gt;&lt;a href=&#34;#cb1-37&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;code &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; code.replace(co_code&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;bytes&lt;/span&gt;(b &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; b &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; bytecode &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; b &lt;span class=&#34;op&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;), co_names&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;bu&#34;&gt;tuple&lt;/span&gt;(names), co_stacksize&lt;span class=&#34;op&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;20&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-38&#34;&gt;&lt;a href=&#34;#cb1-38&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;v &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; {}&lt;/span&gt;
+&lt;span id=&#34;cb1-39&#34;&gt;&lt;a href=&#34;#cb1-39&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;bu&#34;&gt;exec&lt;/span&gt;(code, {&lt;span class=&#34;st&#34;&gt;&amp;quot;__builtins__&amp;quot;&lt;/span&gt;: {&lt;span class=&#34;st&#34;&gt;&amp;quot;gift&amp;quot;&lt;/span&gt;: gift}}, v)&lt;/span&gt;
+&lt;span id=&#34;cb1-40&#34;&gt;&lt;a href=&#34;#cb1-40&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; v: &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;ch&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;.join(&lt;span class=&#34;ss&#34;&gt;f&amp;quot;&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;{&lt;/span&gt;name&lt;span class=&#34;sc&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt; = &lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;{&lt;/span&gt;val&lt;span class=&#34;sc&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;&amp;quot;&lt;/span&gt; &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; name, val &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; v.items()))&lt;/span&gt;
+&lt;span id=&#34;cb1-41&#34;&gt;&lt;a href=&#34;#cb1-41&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;cf&#34;&gt;else&lt;/span&gt;: &lt;span class=&#34;bu&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;quot;No results stored.&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;More precisely, the gauntlet does the following:&lt;/p&gt;</description>
     </item>
     
@@ -209,44 +248,56 @@
       <pubDate>Mon, 14 Feb 2022 01:32:15 -0800</pubDate>
       
       <guid>//blog.vero.site/post/blazingfast</guid>
-      <description>&lt;p&gt;Last weekend &lt;a href=&#34;https://galhacktictrendsetters.wordpress.com/&#34;&gt;Galhacktic Trendsetters&lt;/a&gt; sort of spontaneously decided to do &lt;a href=&#34;https://ctf.dicega.ng/&#34;&gt;DiceCTF 2022&lt;/a&gt;, months or years after most of us had done another CTF. It was a lot of fun and we placed 6th!&lt;/p&gt;
+      <description>&lt;p&gt;Last weekend &lt;a
+href=&#34;https://galhacktictrendsetters.wordpress.com/&#34;&gt;Galhacktic
+Trendsetters&lt;/a&gt; sort of spontaneously decided to do &lt;a
+href=&#34;https://ctf.dicega.ng/&#34;&gt;DiceCTF 2022&lt;/a&gt;, months or years after
+most of us had done another CTF. It was a lot of fun and we placed
+6th!&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;I made a blazing fast MoCkInG CaSe converter!&lt;/p&gt;
 &lt;p&gt;blazingfast.mc.ax&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;We’re presented with a website that converts text to AlTeRnAtInG CaSe. The core converter is written in WASM, and also checks that its input doesn’t have any of the characters &lt;code&gt;&amp;lt;&amp;gt;&amp;amp;&#34;&lt;/code&gt;. The JavaScript wrapper takes an input from the URL, converts it to uppercase, feeds it to the converter, and if the check passes, injects the output into an &lt;code&gt;innerHTML&lt;/code&gt;. The goal is to compose a URL that, when visited by an admin bot, leaks the flag from &lt;code&gt;localStorage&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We’re presented with a website that converts text to AlTeRnAtInG
+CaSe. The core converter is written in WASM, and also checks that its
+input doesn’t have any of the characters &lt;code&gt;&amp;lt;&amp;gt;&amp;amp;&#34;&lt;/code&gt;.
+The JavaScript wrapper takes an input from the URL, converts it to
+uppercase, feeds it to the converter, and if the check passes, injects
+the output into an &lt;code&gt;innerHTML&lt;/code&gt;. The goal is to compose a URL
+that, when visited by an admin bot, leaks the flag from
+&lt;code&gt;localStorage&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The converter is compiled from this C code:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode c&#34;&gt;&lt;code class=&#34;sourceCode c&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; length, ptr = &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; buf[&lt;span class=&#34;dv&#34;&gt;1000&lt;/span&gt;];&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-3&#34; title=&#34;3&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; init(&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; size) {&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-5&#34; title=&#34;5&#34;&gt;    length = size;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-6&#34; title=&#34;6&#34;&gt;    ptr = &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-7&#34; title=&#34;7&#34;&gt;}&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-8&#34; title=&#34;8&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-9&#34; title=&#34;9&#34;&gt;&lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; read() {&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-10&#34; title=&#34;10&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; buf[ptr++];&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-11&#34; title=&#34;11&#34;&gt;}&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-12&#34; title=&#34;12&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-13&#34; title=&#34;13&#34;&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; write(&lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; c) {&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-14&#34; title=&#34;14&#34;&gt;    buf[ptr++] = c;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-15&#34; title=&#34;15&#34;&gt;}&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-16&#34; title=&#34;16&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-17&#34; title=&#34;17&#34;&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; mock() {&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-18&#34; title=&#34;18&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i = &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;; i &amp;lt; length; i ++) {&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-19&#34; title=&#34;19&#34;&gt;        &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; (i % &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; == &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; &amp;amp;&amp;amp; buf[i] &amp;gt;= &lt;span class=&#34;dv&#34;&gt;65&lt;/span&gt; &amp;amp;&amp;amp; buf[i] &amp;lt;= &lt;span class=&#34;dv&#34;&gt;90&lt;/span&gt;) {&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-20&#34; title=&#34;20&#34;&gt;            buf[i] += &lt;span class=&#34;dv&#34;&gt;32&lt;/span&gt;;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-21&#34; title=&#34;21&#34;&gt;        }&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-22&#34; title=&#34;22&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-23&#34; title=&#34;23&#34;&gt;        &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; (buf[i] == &lt;span class=&#34;ch&#34;&gt;&amp;#39;&amp;lt;&amp;#39;&lt;/span&gt; || buf[i] == &lt;span class=&#34;ch&#34;&gt;&amp;#39;&amp;gt;&amp;#39;&lt;/span&gt; || buf[i] == &lt;span class=&#34;ch&#34;&gt;&amp;#39;&amp;amp;&amp;#39;&lt;/span&gt; || buf[i] == &lt;span class=&#34;ch&#34;&gt;&amp;#39;&amp;quot;&amp;#39;&lt;/span&gt;) {&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-24&#34; title=&#34;24&#34;&gt;            &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-25&#34; title=&#34;25&#34;&gt;        }&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-26&#34; title=&#34;26&#34;&gt;    }&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-27&#34; title=&#34;27&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-28&#34; title=&#34;28&#34;&gt;    ptr = &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-29&#34; title=&#34;29&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-30&#34; title=&#34;30&#34;&gt;    &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-31&#34; title=&#34;31&#34;&gt;}&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode c&#34;&gt;&lt;code class=&#34;sourceCode c&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; length&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; ptr &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; buf&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-4&#34;&gt;&lt;a href=&#34;#cb1-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; init&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; size&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-5&#34;&gt;&lt;a href=&#34;#cb1-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    length &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; size&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-6&#34;&gt;&lt;a href=&#34;#cb1-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    ptr &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-7&#34;&gt;&lt;a href=&#34;#cb1-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-8&#34;&gt;&lt;a href=&#34;#cb1-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-9&#34;&gt;&lt;a href=&#34;#cb1-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; read&lt;span class=&#34;op&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-10&#34;&gt;&lt;a href=&#34;#cb1-10&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; buf&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;ptr&lt;span class=&#34;op&#34;&gt;++];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-11&#34;&gt;&lt;a href=&#34;#cb1-11&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-12&#34;&gt;&lt;a href=&#34;#cb1-12&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-13&#34;&gt;&lt;a href=&#34;#cb1-13&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;void&lt;/span&gt; write&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; c&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-14&#34;&gt;&lt;a href=&#34;#cb1-14&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    buf&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;ptr&lt;span class=&#34;op&#34;&gt;++]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; c&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-15&#34;&gt;&lt;a href=&#34;#cb1-15&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-16&#34;&gt;&lt;a href=&#34;#cb1-16&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-17&#34;&gt;&lt;a href=&#34;#cb1-17&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; mock&lt;span class=&#34;op&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-18&#34;&gt;&lt;a href=&#34;#cb1-18&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt; length&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;op&#34;&gt;++)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-19&#34;&gt;&lt;a href=&#34;#cb1-19&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;i &lt;span class=&#34;op&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; buf&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;65&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; buf&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;90&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-20&#34;&gt;&lt;a href=&#34;#cb1-20&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;            buf&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;32&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-21&#34;&gt;&lt;a href=&#34;#cb1-21&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-22&#34;&gt;&lt;a href=&#34;#cb1-22&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-23&#34;&gt;&lt;a href=&#34;#cb1-23&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;buf&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;ch&#34;&gt;&amp;#39;&amp;lt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;||&lt;/span&gt; buf&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;ch&#34;&gt;&amp;#39;&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;||&lt;/span&gt; buf&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;ch&#34;&gt;&amp;#39;&amp;amp;&amp;#39;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;||&lt;/span&gt; buf&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;op&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;ch&#34;&gt;&amp;#39;&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-24&#34;&gt;&lt;a href=&#34;#cb1-24&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;            &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-25&#34;&gt;&lt;a href=&#34;#cb1-25&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;        &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-26&#34;&gt;&lt;a href=&#34;#cb1-26&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-27&#34;&gt;&lt;a href=&#34;#cb1-27&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-28&#34;&gt;&lt;a href=&#34;#cb1-28&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    ptr &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-29&#34;&gt;&lt;a href=&#34;#cb1-29&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-30&#34;&gt;&lt;a href=&#34;#cb1-30&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;cf&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-31&#34;&gt;&lt;a href=&#34;#cb1-31&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -258,12 +309,14 @@
       <description>&lt;blockquote&gt;
 &lt;p&gt;Call me maybe? &lt;code&gt;nc rev.chal.csaw.io 1001&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;A rev with a nasty binary. There are so many functions. I do not like this binary.&lt;/p&gt;
+&lt;p&gt;A rev with a nasty binary. There are so many functions. I do not like
+this binary.&lt;/p&gt;
 &lt;figure&gt;
 &lt;a href=&#34;//blog.vero.site/img/callsite-gross.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/callsite-gross.png&#34; alt=&#34;Screenshot of IDA Pro on the callsite binary, with a lot of code and functions.&#34; /&gt;&lt;/a&gt;
 &lt;/figure&gt;
 &lt;h3 id=&#34;static-analysis&#34;&gt;Static Analysis&lt;/h3&gt;
-&lt;p&gt;After staring at the sea of functions in IDA for a little bit, I gave up and tried dumb things instead.&lt;/p&gt;</description>
+&lt;p&gt;After staring at the sea of functions in IDA for a little bit, I gave
+up and tried dumb things instead.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -276,7 +329,8 @@
 &lt;p&gt;come get me&lt;/p&gt;
 &lt;p&gt;http://web.chal.csaw.io:1003&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;This was a web challenge with a few pages. The “User” page displayed some user information:&lt;/p&gt;
+&lt;p&gt;This was a web challenge with a few pages. The “User” page displayed
+some user information:&lt;/p&gt;
 &lt;figure&gt;
 &lt;a href=&#34;//blog.vero.site/img/unagi-user.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/unagi-user.png&#34; alt=&#34;Screenshot of User page, transcribed below&#34; /&gt;&lt;/a&gt;
 &lt;/figure&gt;
@@ -290,7 +344,9 @@ Email: bob@fakesite.com&lt;br /&gt;
 Group: CSAW2019&lt;br /&gt;
 Intro: Bob is cool too&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;The “About” page simply told us, “Flag is located at /flag.txt, come get it”. The most interesting page was “Upload”, where we could view an example users XML file:&lt;/p&gt;</description>
+&lt;p&gt;The “About” page simply told us, “Flag is located at /flag.txt, come
+get it”. The most interesting page was “Upload”, where we could view an
+example users XML file:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -303,18 +359,32 @@ Intro: Bob is cool too&lt;/p&gt;
 &lt;p&gt;Welcome to pwn.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;nc pwn.chal.csaw.io 1005&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with security professionals who probably have decades of experience and who follow security developments for a living or whatever, there remains a competition where scrubs like me can apply our extremely basic CTF skills and still feel kinda smart by earning points. Now that I’ve graduated and am no longer eligible, our team was pretty small and I didn’t dedicate the full weekend to the CTF, but it means I got to do the really easy challenges in the categories that I was the worst at, by which I mean pwn.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;baby_boi&lt;/code&gt; is pretty much the simplest possible modern ROP (the modern security protections NX and ASLR are not artificially disabled, but you get everything you need to work around them). We even get source code.&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode c&#34;&gt;&lt;code class=&#34;sourceCode c&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-3&#34; title=&#34;3&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; title=&#34;4&#34;&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; main(&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; argc, &lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; **argv[]) {&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-5&#34; title=&#34;5&#34;&gt;  &lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; buf[&lt;span class=&#34;dv&#34;&gt;32&lt;/span&gt;];&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-6&#34; title=&#34;6&#34;&gt;  printf(&lt;span class=&#34;st&#34;&gt;&amp;quot;Hello!&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;);&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-7&#34; title=&#34;7&#34;&gt;  printf(&lt;span class=&#34;st&#34;&gt;&amp;quot;Here I am: %p&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;, printf);&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-8&#34; title=&#34;8&#34;&gt;  gets(buf);&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-9&#34; title=&#34;9&#34;&gt;}&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;So there’s nothing novel here for experienced pwners, but I feel like there is a shortage of tutorials that walk you through how to solve a textbook ROP the way you’d want to solve it in a CTF, so here is a writeup.&lt;/p&gt;</description>
+&lt;p&gt;Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with
+security professionals who probably have decades of experience and who
+follow security developments for a living or whatever, there remains a
+competition where scrubs like me can apply our extremely basic CTF
+skills and still feel kinda smart by earning points. Now that I’ve
+graduated and am no longer eligible, our team was pretty small and I
+didn’t dedicate the full weekend to the CTF, but it means I got to do
+the really easy challenges in the categories that I was the worst at, by
+which I mean pwn.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;baby_boi&lt;/code&gt; is pretty much the simplest possible modern ROP
+(the modern security protections NX and ASLR are not artificially
+disabled, but you get everything you need to work around them). We even
+get source code.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode c&#34;&gt;&lt;code class=&#34;sourceCode c&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-4&#34;&gt;&lt;a href=&#34;#cb1-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; main&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; argc&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;**&lt;/span&gt;argv&lt;span class=&#34;op&#34;&gt;[])&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-5&#34;&gt;&lt;a href=&#34;#cb1-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; buf&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;32&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-6&#34;&gt;&lt;a href=&#34;#cb1-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  printf&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;Hello!&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-7&#34;&gt;&lt;a href=&#34;#cb1-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  printf&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;Here I am: &lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;%p\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; printf&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-8&#34;&gt;&lt;a href=&#34;#cb1-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  gets&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;buf&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-9&#34;&gt;&lt;a href=&#34;#cb1-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So there’s nothing novel here for experienced pwners, but I feel like
+there is a shortage of tutorials that walk you through how to solve a
+textbook ROP the way you’d want to solve it in a CTF, so here is a
+writeup.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -326,7 +396,22 @@ Intro: Bob is cool too&lt;/p&gt;
       <description>&lt;pre&gt;&lt;code&gt;http://111.186.63.17/perf.data.gz
 
 Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In this challenge, we get a gzipped file called &lt;code&gt;perf.data&lt;/code&gt; and a minimal description of an environment. Googling this reveals that &lt;code&gt;perf.data&lt;/code&gt; is a record format of the &lt;code&gt;perf&lt;/code&gt; tool, a Linux profiler. Installing &lt;code&gt;perf&lt;/code&gt; allows us to read &lt;code&gt;perf.data&lt;/code&gt; and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is &lt;code&gt;perf report -D&lt;/code&gt;, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the &lt;code&gt;perf record&lt;/code&gt; was run against.&lt;/p&gt;</description>
+&lt;p&gt;In this challenge, we get a gzipped file called
+&lt;code&gt;perf.data&lt;/code&gt; and a minimal description of an environment.
+Googling this reveals that &lt;code&gt;perf.data&lt;/code&gt; is a record format of
+the &lt;code&gt;perf&lt;/code&gt; tool, a Linux profiler. Installing
+&lt;code&gt;perf&lt;/code&gt; allows us to read &lt;code&gt;perf.data&lt;/code&gt; and see some
+pretty interactive tables of statistics in our terminal describing the
+profiling results, from which we can see some libraries and addresses
+being called, but they don’t reveal much about what’s going on. One
+hacky way to see more of the underlying data in a more human-readable
+way (and to see just how much of it there is) is
+&lt;code&gt;perf report -D&lt;/code&gt;, which dumps the raw data in an ASCII
+format, but this is still not that useful. (One might hope that one
+could simply grep for the flag in this big text dump, but it’s nowhere
+to be seen.) Still, from this file, we can definitely read off all the
+exact library versions that the &lt;code&gt;perf record&lt;/code&gt; was run
+against.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -336,11 +421,32 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
       
       <guid>//blog.vero.site/post/plc</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;We’ve burrowed ourselves deep within the facility, gaining access to the programable logic controllers (PLC) that drive their nuclear enrichment centrifuges. Kinetic damage is necessary, we need you to neutralize these machines.&lt;/p&gt;
-&lt;p&gt;You can access this challenge at &lt;a href=&#34;https://wargames.ret2.systems/csaw_2018_plc_challenge&#34;&gt;https://wargames.ret2.systems/csaw_2018_plc_challenge&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;We’ve burrowed ourselves deep within the facility, gaining access to
+the programable logic controllers (PLC) that drive their nuclear
+enrichment centrifuges. Kinetic damage is necessary, we need you to
+neutralize these machines.&lt;/p&gt;
+&lt;p&gt;You can access this challenge at &lt;a
+href=&#34;https://wargames.ret2.systems/csaw_2018_plc_challenge&#34;&gt;https://wargames.ret2.systems/csaw_2018_plc_challenge&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;A much belated post. This is a pwn challenge on a custom online wargaming platform. We are provided with the assembly of what’s ostensibly a programmable logic controller (PLC) for a centrifuge in a nuclear reactor. The challenge looks like it’s still up, so you can take a look and follow along.&lt;/p&gt;
-&lt;p&gt;This was the first &lt;a href=&#34;https://en.wikipedia.org/wiki/Return-oriented_programming&#34;&gt;ROP&lt;/a&gt; (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like &lt;code&gt;until&lt;/code&gt;, no pwntools utilities for packing/unpacking numbers, … no &lt;code&gt;one_gadget&lt;/code&gt;), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use &lt;code&gt;gdb&lt;/code&gt; (or fictionalized web knockoffs thereof).&lt;/p&gt;</description>
+&lt;p&gt;A much belated post. This is a pwn challenge on a custom online
+wargaming platform. We are provided with the assembly of what’s
+ostensibly a programmable logic controller (PLC) for a centrifuge in a
+nuclear reactor. The challenge looks like it’s still up, so you can take
+a look and follow along.&lt;/p&gt;
+&lt;p&gt;This was the first &lt;a
+href=&#34;https://en.wikipedia.org/wiki/Return-oriented_programming&#34;&gt;ROP&lt;/a&gt;
+(okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF,
+which I was pretty excited about. The web platform meant I had to worry
+less about setup, and even though some of the tools it provided were a
+little lacking (no gdb shortcuts like &lt;code&gt;until&lt;/code&gt;, no pwntools
+utilities for packing/unpacking numbers, … no &lt;code&gt;one_gadget&lt;/code&gt;),
+I think they ultimately made the whole thing a lot more educational for
+me, so kudos to the folks behind it. I’ve included a brief description
+of all the exploit techniques that lead up to ROP when we get to that,
+so hopefully this post will be useful even if you don’t know much about
+pwning binaries. The prerequisites would be some knowledge with x86
+assembly, how executables are loaded into memory, and how to use
+&lt;code&gt;gdb&lt;/code&gt; (or fictionalized web knockoffs thereof).&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -350,11 +456,20 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
       
       <guid>//blog.vero.site/post/proprietary-format</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;The villains are communicating with their own proprietary file format. Figure out what it is.&lt;/p&gt;
+&lt;p&gt;The villains are communicating with their own proprietary file
+format. Figure out what it is.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ nc proprietary.ctfcompetition.com 1337&lt;/code&gt;&lt;/pre&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;We get a server that will talk to us on a port and a &lt;code&gt;flag.ctf&lt;/code&gt; file that’s definitely not a binary. It’s a &lt;a href=&#34;https://en.wikipedia.org/wiki/Black_box&#34;&gt;black-box&lt;/a&gt; reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.&lt;/p&gt;
-&lt;p&gt;For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not &lt;code&gt;P6&lt;/code&gt;, it complains:&lt;/p&gt;</description>
+&lt;p&gt;We get a server that will talk to us on a port and a
+&lt;code&gt;flag.ctf&lt;/code&gt; file that’s definitely not a binary. It’s a &lt;a
+href=&#34;https://en.wikipedia.org/wiki/Black_box&#34;&gt;black-box&lt;/a&gt; reversing
+challenge! I was @-mentioned as the person who might want to due to
+solving bananaScript (CSAW CTF Quals 2017) as a black box, although that
+gave a binary that it was possible in theory to reverse. Here black-box
+reversing is the only option.&lt;/p&gt;
+&lt;p&gt;For the first few lines of input that the server wants, it responds
+with quite helpful error messages to help you appease it. If the first
+line you give it is not &lt;code&gt;P6&lt;/code&gt;, it complains:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -364,12 +479,23 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
       
       <guid>//blog.vero.site/post/cat-chat</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;You discover this cat enthusiast chat app, but the annoying thing about it is that you’re always banned when you start talking about dogs. Maybe if you would somehow get to know the admin’s password, you could fix that.&lt;/p&gt;
+&lt;p&gt;You discover this cat enthusiast chat app, but the annoying thing
+about it is that you’re always banned when you start talking about dogs.
+Maybe if you would somehow get to know the admin’s password, you could
+fix that.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;This challenge is a simple chat app written in NodeJS. The home page redirects you to a chat room labeled with a random UUID. Anybody can join the same chat room with the URL.&lt;/p&gt;
+&lt;p&gt;This challenge is a simple chat app written in NodeJS. The home page
+redirects you to a chat room labeled with a random UUID. Anybody can
+join the same chat room with the URL.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;//blog.vero.site/img/cat-chat-0.png&#34; alt=&#34;Fresh Cat Chat room&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;In a chat room, you can chat and issue two commands, &lt;code&gt;/name&lt;/code&gt; to set your name and &lt;code&gt;/report&lt;/code&gt; to report that somebody is talking about dogs. After anybody in the chat room issues &lt;code&gt;/report&lt;/code&gt;, the admin shows up, listens for a while, and bans anybody who mentions the word “dog”.&lt;/p&gt;
-&lt;p&gt;There are two more commands, &lt;code&gt;/secret&lt;/code&gt; and &lt;code&gt;/ban&lt;/code&gt;, which are in the server source code and also described in comments in the HTML source if you didn’t notice:&lt;/p&gt;</description>
+&lt;p&gt;In a chat room, you can chat and issue two commands,
+&lt;code&gt;/name&lt;/code&gt; to set your name and &lt;code&gt;/report&lt;/code&gt; to report
+that somebody is talking about dogs. After anybody in the chat room
+issues &lt;code&gt;/report&lt;/code&gt;, the admin shows up, listens for a while,
+and bans anybody who mentions the word “dog”.&lt;/p&gt;
+&lt;p&gt;There are two more commands, &lt;code&gt;/secret&lt;/code&gt; and
+&lt;code&gt;/ban&lt;/code&gt;, which are in the server source code and also
+described in comments in the HTML source if you didn’t notice:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -379,9 +505,14 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
       
       <guid>//blog.vero.site/post/js-safe-2</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML file that can store secrets in the browser’s localStorage. This means that you won’t be able to extract any secret from it (the secrets are on the computer of the owner), but it looks like it was hand-crafted to work only with the password of the owner…&lt;/p&gt;
+&lt;p&gt;You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML
+file that can store secrets in the browser’s localStorage. This means
+that you won’t be able to extract any secret from it (the secrets are on
+the computer of the owner), but it looks like it was hand-crafted to
+work only with the password of the owner…&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;The challenge consists of a fancy HTML file with a cute but irrelevant animated cube and some embedded JavaScript.&lt;/p&gt;
+&lt;p&gt;The challenge consists of a fancy HTML file with a cute but
+irrelevant animated cube and some embedded JavaScript.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;//blog.vero.site/img/js-safe-2-empty.png&#34; alt=&#34;Screenshot of JS Safe 2.0 with a text box and a cube&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
@@ -391,22 +522,40 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
       <pubDate>Sun, 13 May 2018 15:07:38 -0400</pubDate>
       
       <guid>//blog.vero.site/post/shellql</guid>
-      <description>&lt;p&gt;The hardest challenge of not very many I solved in this CTF. What a struggle! I have a long way to improve. It was pretty fun though. (I solved “You Already Know”, and got the essence of “ghettohackers: Throwback”, but didn’t guess the right flag format and believe I was asleep when they released the hint about it.)&lt;/p&gt;
-&lt;p&gt;The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension &lt;code&gt;shellme.so&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode php&#34;&gt;&lt;code class=&#34;sourceCode php&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;$link&lt;/span&gt; = &lt;span class=&#34;fu&#34;&gt;mysqli_connect&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;#39;localhost&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;#39;shellql&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;#39;shellql&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;#39;shellql&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;);&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; title=&#34;2&#34;&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-3&#34; title=&#34;3&#34;&gt;&lt;span class=&#34;kw&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;isset&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;$_POST&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;#39;shell&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;]))&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-4&#34; title=&#34;4&#34;&gt;{&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-5&#34; title=&#34;5&#34;&gt;   &lt;span class=&#34;kw&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;fu&#34;&gt;strlen&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;$_POST&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;#39;shell&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;])&lt;/span&gt; &amp;lt;= &lt;span class=&#34;dv&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;)&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-6&#34; title=&#34;6&#34;&gt;   {&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-7&#34; title=&#34;7&#34;&gt;      &lt;span class=&#34;kw&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;$_POST&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;#39;shell&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;];&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-8&#34; title=&#34;8&#34;&gt;      shellme&lt;span class=&#34;ot&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kw&#34;&gt;$_POST&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;#39;shell&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;]);&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-9&#34; title=&#34;9&#34;&gt;   }&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-10&#34; title=&#34;10&#34;&gt;   &lt;span class=&#34;kw&#34;&gt;exit&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;();&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-11&#34; title=&#34;11&#34;&gt;}&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The extension basically just executes &lt;code&gt;$_POST[&#39;shell&#39;]&lt;/code&gt; as shellcode after a strict SECCOMP call, &lt;a href=&#34;http://man7.org/linux/man-pages/man2/prctl.2.html&#34;&gt;prctl&lt;/a&gt;(&lt;a href=&#34;https://elixir.bootlin.com/linux/v4.16.8/source/include/uapi/linux/prctl.h#L68&#34;&gt;22&lt;/a&gt;, &lt;a href=&#34;https://elixir.bootlin.com/linux/v4.1/source/include/uapi/linux/seccomp.h#L10&#34;&gt;1&lt;/a&gt;). This means that we can only use the four syscalls &lt;code&gt;read&lt;/code&gt;, &lt;code&gt;write&lt;/code&gt;, and &lt;code&gt;exit&lt;/code&gt;, and &lt;code&gt;sigreturn&lt;/code&gt;, where the latter two aren’t particularly useful.&lt;/p&gt;
+      <description>&lt;p&gt;The hardest challenge of not very many I solved in this CTF. What a
+struggle! I have a long way to improve. It was pretty fun though. (I
+solved “You Already Know”, and got the essence of “ghettohackers:
+Throwback”, but didn’t guess the right flag format and believe I was
+asleep when they released the hint about it.)&lt;/p&gt;
+&lt;p&gt;The challenge consists of a simple PHP script that opens a MySQL
+connection and then feeds our input into a custom PHP extension
+&lt;code&gt;shellme.so&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre
+class=&#34;sourceCode php&#34;&gt;&lt;code class=&#34;sourceCode php&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;va&#34;&gt;$link&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;fu&#34;&gt;mysqli_connect&lt;/span&gt;(&lt;span class=&#34;st&#34;&gt;&amp;#39;localhost&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;#39;shellql&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;#39;shellql&amp;#39;&lt;/span&gt;&lt;span class=&#34;ot&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;st&#34;&gt;&amp;#39;shellql&amp;#39;&lt;/span&gt;)&lt;span class=&#34;ot&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; (&lt;span class=&#34;kw&#34;&gt;isset&lt;/span&gt;(&lt;span class=&#34;va&#34;&gt;$_POST&lt;/span&gt;[&lt;span class=&#34;st&#34;&gt;&amp;#39;shell&amp;#39;&lt;/span&gt;]))&lt;/span&gt;
+&lt;span id=&#34;cb1-4&#34;&gt;&lt;a href=&#34;#cb1-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;{&lt;/span&gt;
+&lt;span id=&#34;cb1-5&#34;&gt;&lt;a href=&#34;#cb1-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;   &lt;span class=&#34;cf&#34;&gt;if&lt;/span&gt; (&lt;span class=&#34;fu&#34;&gt;strlen&lt;/span&gt;(&lt;span class=&#34;va&#34;&gt;$_POST&lt;/span&gt;[&lt;span class=&#34;st&#34;&gt;&amp;#39;shell&amp;#39;&lt;/span&gt;]) &lt;span class=&#34;op&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1000&lt;/span&gt;)&lt;/span&gt;
+&lt;span id=&#34;cb1-6&#34;&gt;&lt;a href=&#34;#cb1-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;   {&lt;/span&gt;
+&lt;span id=&#34;cb1-7&#34;&gt;&lt;a href=&#34;#cb1-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      &lt;span class=&#34;kw&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;va&#34;&gt;$_POST&lt;/span&gt;[&lt;span class=&#34;st&#34;&gt;&amp;#39;shell&amp;#39;&lt;/span&gt;]&lt;span class=&#34;ot&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-8&#34;&gt;&lt;a href=&#34;#cb1-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;      shellme(&lt;span class=&#34;va&#34;&gt;$_POST&lt;/span&gt;[&lt;span class=&#34;st&#34;&gt;&amp;#39;shell&amp;#39;&lt;/span&gt;])&lt;span class=&#34;ot&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-9&#34;&gt;&lt;a href=&#34;#cb1-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;   }&lt;/span&gt;
+&lt;span id=&#34;cb1-10&#34;&gt;&lt;a href=&#34;#cb1-10&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;   &lt;span class=&#34;cf&#34;&gt;exit&lt;/span&gt;()&lt;span class=&#34;ot&#34;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-11&#34;&gt;&lt;a href=&#34;#cb1-11&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The extension basically just executes &lt;code&gt;$_POST[&#39;shell&#39;]&lt;/code&gt; as
+shellcode after a strict SECCOMP call, &lt;a
+href=&#34;http://man7.org/linux/man-pages/man2/prctl.2.html&#34;&gt;prctl&lt;/a&gt;(&lt;a
+href=&#34;https://elixir.bootlin.com/linux/v4.16.8/source/include/uapi/linux/prctl.h#L68&#34;&gt;22&lt;/a&gt;,
+&lt;a
+href=&#34;https://elixir.bootlin.com/linux/v4.1/source/include/uapi/linux/seccomp.h#L10&#34;&gt;1&lt;/a&gt;).
+This means that we can only use the four syscalls &lt;code&gt;read&lt;/code&gt;,
+&lt;code&gt;write&lt;/code&gt;, and &lt;code&gt;exit&lt;/code&gt;, and &lt;code&gt;sigreturn&lt;/code&gt;,
+where the latter two aren’t particularly useful.&lt;/p&gt;
 &lt;figure&gt;
-&lt;img src=&#34;//blog.vero.site/img/shell_this.png&#34; alt=&#34;Disassembled innermost function of interest in shellme.so&#34; /&gt;&lt;figcaption&gt;Disassembled innermost function of interest in &lt;code&gt;shellme.so&lt;/code&gt;&lt;/figcaption&gt;
+&lt;img src=&#34;//blog.vero.site/img/shell_this.png&#34;
+alt=&#34;Disassembled innermost function of interest in shellme.so&#34; /&gt;
+&lt;figcaption aria-hidden=&#34;true&#34;&gt;Disassembled innermost function of
+interest in &lt;code&gt;shellme.so&lt;/code&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;The goal is to read the flag from the open MySQL connection.&lt;/p&gt;</description>
     </item>
@@ -417,10 +566,19 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
       <pubDate>Sun, 06 May 2018 13:52:52 -0400</pubDate>
       
       <guid>//blog.vero.site/post/messy-desk</guid>
-      <description>&lt;p&gt;This challenge is a video of somebody’s messy desk, with what is apparently the audio from a &lt;a href=&#34;https://www.youtube.com/watch?v=WwnI0RS6J5A&#34;&gt;Futurama clip&lt;/a&gt;. The desk is indeed extremely messy and full of things that aren’t particularly useful for us, but close examination reveals a QR code reflected in the globe in the middle.&lt;/p&gt;
-&lt;p&gt;The challenge is all about getting that QR code. After trying our best to clean up the image, we ended up with this:&lt;/p&gt;
+      <description>&lt;p&gt;This challenge is a video of somebody’s messy desk, with what is
+apparently the audio from a &lt;a
+href=&#34;https://www.youtube.com/watch?v=WwnI0RS6J5A&#34;&gt;Futurama clip&lt;/a&gt;.
+The desk is indeed extremely messy and full of things that aren’t
+particularly useful for us, but close examination reveals a QR code
+reflected in the globe in the middle.&lt;/p&gt;
+&lt;p&gt;The challenge is all about getting that QR code. After trying our
+best to clean up the image, we ended up with this:&lt;/p&gt;
 &lt;figure&gt;
-&lt;img src=&#34;//blog.vero.site/img/messy-qr.png&#34; alt=&#34;Maximally enhanced image of the QR code&#34; /&gt;&lt;figcaption&gt;Maximally enhanced image of the QR code&lt;/figcaption&gt;
+&lt;img src=&#34;//blog.vero.site/img/messy-qr.png&#34;
+alt=&#34;Maximally enhanced image of the QR code&#34; /&gt;
+&lt;figcaption aria-hidden=&#34;true&#34;&gt;Maximally enhanced image of the QR
+code&lt;/figcaption&gt;
 &lt;/figure&gt;</description>
     </item>
     
@@ -430,13 +588,34 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
       <pubDate>Sun, 06 May 2018 13:52:52 -0400</pubDate>
       
       <guid>//blog.vero.site/post/doggo</guid>
-      <description>&lt;p&gt;We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called &lt;em&gt;Wolf&lt;/em&gt;. Concretely, every type in Wolf’s type system has an associated &lt;em&gt;secrecy&lt;/em&gt;: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.&lt;/p&gt;
-&lt;p&gt;Of course, this is a CTF, so the challenge is all about breaking the theoretical guarantees of the type system. When we submit code, it’s evaluated in a context with a private integer variable &lt;code&gt;flag&lt;/code&gt;; our code is typechecked, executed, and printed, but only if its type is public. The goal is to break the type system and write code that produces a public value that depends on &lt;code&gt;flag&lt;/code&gt;, so that we can exfiltrate &lt;code&gt;flag&lt;/code&gt; itself.&lt;/p&gt;
-&lt;p&gt;In all, there are three progressively harder Wolf problems, named Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the flag of the challenge before it, so that you need to solve them in order (unless you can somehow blindly exploit servers running SML programs).&lt;/p&gt;
+      <description>&lt;p&gt;We are presented with a big zip file of SML code, which implements an
+interpreter for a small ML-like language with a form of taint analysis
+in its type checker, called &lt;em&gt;Wolf&lt;/em&gt;. Concretely, every type in
+Wolf’s type system has an associated &lt;em&gt;secrecy&lt;/em&gt;: it is either
+“private” or “public”, and in theory, the type system makes it
+impossible to do any computation on private data to get a public
+result.&lt;/p&gt;
+&lt;p&gt;Of course, this is a CTF, so the challenge is all about breaking the
+theoretical guarantees of the type system. When we submit code, it’s
+evaluated in a context with a private integer variable
+&lt;code&gt;flag&lt;/code&gt;; our code is typechecked, executed, and printed, but
+only if its type is public. The goal is to break the type system and
+write code that produces a public value that depends on
+&lt;code&gt;flag&lt;/code&gt;, so that we can exfiltrate &lt;code&gt;flag&lt;/code&gt;
+itself.&lt;/p&gt;
+&lt;p&gt;In all, there are three progressively harder Wolf problems, named
+Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the
+flag of the challenge before it, so that you need to solve them in order
+(unless you can somehow blindly exploit servers running SML
+programs).&lt;/p&gt;
 &lt;h3 id=&#34;wolf-overview&#34;&gt;Wolf Overview&lt;/h3&gt;
-&lt;p&gt;Let’s first go over the Wolf syntax and semantics. (There are small differences between the three problems, but they’re syntactically identical and only semantically differ in cases that we’ll naturally get to.) The &lt;code&gt;examples&lt;/code&gt; folder has some examples of valid code:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode ml&#34;&gt;&lt;code class=&#34;sourceCode ocaml&#34;&gt;&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-1&#34; title=&#34;1&#34;&gt;&lt;span class=&#34;kw&#34;&gt;let&lt;/span&gt; x = (&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt; :&amp;gt; &lt;span class=&#34;kw&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;) &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt;&lt;/a&gt;
-&lt;a class=&#34;sourceLine&#34; id=&#34;cb1-2&#34; title=&#34;2&#34;&gt;&lt;span class=&#34;dv&#34;&gt;6&lt;/span&gt;&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+&lt;p&gt;Let’s first go over the Wolf syntax and semantics. (There are small
+differences between the three problems, but they’re syntactically
+identical and only semantically differ in cases that we’ll naturally get
+to.) The &lt;code&gt;examples&lt;/code&gt; folder has some examples of valid
+code:&lt;/p&gt;
+&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode ml&#34;&gt;&lt;code class=&#34;sourceCode ocaml&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;kw&#34;&gt;let&lt;/span&gt; x = (&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt; :&amp;gt; &lt;span class=&#34;kw&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt;) &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dv&#34;&gt;6&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -446,7 +625,13 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
       
       <guid>//blog.vero.site/post/sakura</guid>
       <description>&lt;p&gt;(Okay, this post is backdated.)&lt;/p&gt;
-&lt;p&gt;Disassembling the executable produces a huge amount of code. There are some basic obfuscations like a lot of trivial identity functions nested in each other, and a few functions that wrap around identity functions but just add some constant multiple of 16. Most of the meat is in one very large function, though. If you disassemble this function with IDA, you see a lot of variable initializations and then a lot of interesting loops that are quite similar:&lt;/p&gt;</description>
+&lt;p&gt;Disassembling the executable produces a huge amount of code. There
+are some basic obfuscations like a lot of trivial identity functions
+nested in each other, and a few functions that wrap around identity
+functions but just add some constant multiple of 16. Most of the meat is
+in one very large function, though. If you disassemble this function
+with IDA, you see a lot of variable initializations and then a lot of
+interesting loops that are quite similar:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -455,12 +640,24 @@ Environment: Ubuntu 16.04+latex&lt;/code&gt;&lt;/pre&gt;
       <pubDate>Sun, 12 Nov 2017 00:00:00 -0500</pubDate>
       
       <guid>//blog.vero.site/post/thoroughly-stripped</guid>
-      <description>&lt;p&gt;Woo, first CTF writeup. I got the opportunity to participate in the 2017 CSAW CTF finals with Don’t Hack Alone.&lt;/p&gt;
+      <description>&lt;p&gt;Woo, first CTF writeup. I got the opportunity to participate in the
+2017 CSAW CTF finals with Don’t Hack Alone.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.&lt;/p&gt;
+&lt;p&gt;Dumped by my core, left to bleed out bytes on the heap, I was
+stripped of my dignity… The last thing I could do was to let other
+programs strip me of my null-bytes just so my memory could live on.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.&lt;/p&gt;
-&lt;p&gt;Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from &lt;code&gt;&lt;a href=&#34;https://github.com/betaveros/xxb&#34;&gt;xxb&lt;/a&gt;&lt;/code&gt; but &lt;code&gt;xxd -c 20 thoroughlyStripped&lt;/code&gt; is quite sufficient.)&lt;/p&gt;</description>
+&lt;p&gt;We are provided with a core dump. Examining the flavor-text and the
+dump, we notice that the dump has no null bytes; we conjecture that they
+have been stripped out.&lt;/p&gt;
+&lt;p&gt;Next, we examine the hexdump and look for any clues. There are a
+bunch of ASCII strings, but they look like normal debugging symbols. One
+thing that jumps out is that there are a couple fairly convincing
+regular striped patterns that become vertically aligned if you display
+20 bytes in each line. Once we do that, we notice the following section.
+(This dump is from &lt;code&gt;&lt;a
+href=&#34;https://github.com/betaveros/xxb&#34;&gt;xxb&lt;/a&gt;&lt;/code&gt; but
+&lt;code&gt;xxd -c 20 thoroughlyStripped&lt;/code&gt; is quite sufficient.)&lt;/p&gt;</description>
     </item>
     
   </channel>

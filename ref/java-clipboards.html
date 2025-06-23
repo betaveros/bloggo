@@ -68,50 +68,112 @@
 		
 		</p>
 	</header>
-	<article><p>(Ported from betaveros.stash. Wow, I get syntax highlighting and footnotes! Probably years out of date though. I probably wrote this somewhere in 2012–2014, but am editing this parenthetical in 2021.)</p>
+	<article><p>(Ported from betaveros.stash. Wow, I get syntax highlighting and
+footnotes! Probably years out of date though. I probably wrote this
+somewhere in 2012–2014, but am editing this parenthetical in 2021.)</p>
 <p>A quick brief guide. At least, that’s how I planned it.</p>
-<p>A lot of stuff is in the package <code>java.awt.datatransfer</code>. Class <code>Toolkit</code> is in <code>java.awt</code>.</p>
-<p>Some basic classes. The class <code>Clipboard</code> is a clipboard, obviously. Its content is/will be an instance of the class <code>Transferable</code>. Some content can be read as different types of objects depending on what you want; to choose which type you use an instance of <code>DataFlavor</code>. It provides three basic ones: <code>DataFlavor.imageFlavor</code>, <code>DataFlavor.javaFileListFlavor</code>, and <code>DataFlavor.stringFlavor</code>.</p>
+<p>A lot of stuff is in the package <code>java.awt.datatransfer</code>.
+Class <code>Toolkit</code> is in <code>java.awt</code>.</p>
+<p>Some basic classes. The class <code>Clipboard</code> is a clipboard,
+obviously. Its content is/will be an instance of the class
+<code>Transferable</code>. Some content can be read as different types
+of objects depending on what you want; to choose which type you use an
+instance of <code>DataFlavor</code>. It provides three basic ones:
+<code>DataFlavor.imageFlavor</code>,
+<code>DataFlavor.javaFileListFlavor</code>, and
+<code>DataFlavor.stringFlavor</code>.</p>
 <p>Okay, now step by step. This is the low-level method.</p>
 <ol type="1">
-<li>Get the default clipboard with <code>Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();</code></li>
-<li>Get a transferable with <code>Transferable content = clipboard.getContents(null);</code> <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></li>
-<li>Check if <code>content</code> can be read as the kind of object you want with <code>(content != null) &amp;&amp; content.isDataFlavorSupported(someFlavor)</code></li>
-<li>If it does, get the object with <code>content.getTransferData(someFlavor)</code> <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</li>
+<li>Get the default clipboard with
+<code>Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();</code></li>
+<li>Get a transferable with
+<code>Transferable content = clipboard.getContents(null);</code> <a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a></li>
+<li>Check if <code>content</code> can be read as the kind of object you
+want with
+<code>(content != null) &amp;&amp; content.isDataFlavorSupported(someFlavor)</code></li>
+<li>If it does, get the object with
+<code>content.getTransferData(someFlavor)</code> <a href="#fn2"
+class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a>.</li>
 </ol>
 <p>If you just want a quick-and-dirty function:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb1-1" title="1"><span class="dt">static</span> <span class="bu">String</span> <span class="fu">getClipboard</span>()</a>
-<a class="sourceLine" id="cb1-2" title="2">        <span class="kw">throws</span> java.<span class="fu">awt</span>.<span class="fu">datatransfer</span>.<span class="fu">UnsupportedFlavorException</span>, <span class="bu">IOException</span> {</a>
-<a class="sourceLine" id="cb1-3" title="3">    <span class="kw">return</span> (<span class="bu">String</span>) java.<span class="fu">awt</span>.<span class="fu">Toolkit</span>.<span class="fu">getDefaultToolkit</span>()</a>
-<a class="sourceLine" id="cb1-4" title="4">        .<span class="fu">getSystemClipboard</span>()</a>
-<a class="sourceLine" id="cb1-5" title="5">        .<span class="fu">getData</span>(java.<span class="fu">awt</span>.<span class="fu">datatransfer</span>.<span class="fu">DataFlavor</span>.<span class="fu">stringFlavor</span>);</a>
-<a class="sourceLine" id="cb1-6" title="6">}</a></code></pre></div>
-<p>For designing a Swing component, however, there are more integrated ways. This also allows drag-and-drop as well as cut-copy-paste, the conventional UI ideas. For many components (ex. <code>JTextField</code>) the mechanisms are pretty much in place, and you can call <code>setDragEnabled(true)</code> on them and be done. Further customizations are possible, particularly for complex things <code>JList, JTable, JTree</code>; I’ll just skip them today. The first thing is defining/subclassing a <code>TransferHandler</code>, which will be asked to handle all of this stuff by Swing internals:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">class</span> SomeTransferHandler <span class="kw">extends</span> <span class="bu">TransferHandler</span> {</a>
-<a class="sourceLine" id="cb2-2" title="2">    <span class="co">// Export actions: drag, cut/copy, callback</span></a>
-<a class="sourceLine" id="cb2-3" title="3">    <span class="dt">int</span> <span class="fu">getSourceActions</span>(<span class="bu">JComponent</span> c) {</a>
-<a class="sourceLine" id="cb2-4" title="4">        <span class="kw">return</span> COPY_OR_MOVE;</a>
-<a class="sourceLine" id="cb2-5" title="5">        <span class="co">// choose from COPY, MOVE, COPY_OR_MOVE, LINK, NONE</span></a>
-<a class="sourceLine" id="cb2-6" title="6">    }</a>
-<a class="sourceLine" id="cb2-7" title="7">    <span class="bu">Transferable</span> <span class="fu">createTransferable</span>(<span class="bu">JComponent</span> c) { <span class="co">/* ... */</span> }</a>
-<a class="sourceLine" id="cb2-8" title="8">    <span class="dt">void</span> <span class="fu">exportDone</span>(<span class="bu">JComponent</span> c, <span class="bu">Transferable</span> t, <span class="dt">int</span> action) { <span class="co">/* ... */</span> }</a>
-<a class="sourceLine" id="cb2-9" title="9"></a>
-<a class="sourceLine" id="cb2-10" title="10">    <span class="co">// Import actions: drop, paste</span></a>
-<a class="sourceLine" id="cb2-11" title="11">    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">canImport</span>(TransferSupport supp) { <span class="co">/* ... */</span> }</a>
-<a class="sourceLine" id="cb2-12" title="12">    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">importData</span>(TransferSupport supp) { <span class="co">/* ... */</span> }</a>
-<a class="sourceLine" id="cb2-13" title="13">}</a></code></pre></div>
-<p>Note that you do not have to define all of the methods, only the ones you need. <code>TransferHandler</code> is not abstract, although directly instantiating one is probably not a good idea.</p>
-<p><code><a href="http://docs.oracle.com/javase/6/docs/api/javax/swing/TransferHandler.TransferSupport.html">TransferHandler.TransferSupport</a></code> is<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> a wrapper around <code>Transferable</code> containing also where the transfer is coming from and of what type it is. The transferable is extracted with <code>getTransferable()</code>, but the wrapper also directly has data-flavor compatibility checking methods<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. Go look its methods up.</p>
-<p>Okay, now that you have a handler set up, how do you get it used? <code>someJComponent.setTransferHandler(someTransferHandler)</code> will allow the handler to handle the transfer events. For cc&amp;p, you can get corresponding <code>Action</code>s from <code>TransferHandler.get[Cut|Copy|Paste]Action()</code> (yes, static method).</p>
-<section class="footnotes">
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="bu">String</span> <span class="fu">getClipboard</span><span class="op">()</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">throws</span> java<span class="op">.</span><span class="fu">awt</span><span class="op">.</span><span class="fu">datatransfer</span><span class="op">.</span><span class="fu">UnsupportedFlavorException</span><span class="op">,</span> <span class="bu">IOException</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">(</span><span class="bu">String</span><span class="op">)</span> java<span class="op">.</span><span class="fu">awt</span><span class="op">.</span><span class="fu">Toolkit</span><span class="op">.</span><span class="fu">getDefaultToolkit</span><span class="op">()</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">getSystemClipboard</span><span class="op">()</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">getData</span><span class="op">(</span>java<span class="op">.</span><span class="fu">awt</span><span class="op">.</span><span class="fu">datatransfer</span><span class="op">.</span><span class="fu">DataFlavor</span><span class="op">.</span><span class="fu">stringFlavor</span><span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>For designing a Swing component, however, there are more integrated
+ways. This also allows drag-and-drop as well as cut-copy-paste, the
+conventional UI ideas. For many components (ex. <code>JTextField</code>)
+the mechanisms are pretty much in place, and you can call
+<code>setDragEnabled(true)</code> on them and be done. Further
+customizations are possible, particularly for complex things
+<code>JList, JTable, JTree</code>; I’ll just skip them today. The first
+thing is defining/subclassing a <code>TransferHandler</code>, which will
+be asked to handle all of this stuff by Swing internals:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SomeTransferHandler <span class="kw">extends</span> <span class="bu">TransferHandler</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Export actions: drag, cut/copy, callback</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="fu">getSourceActions</span><span class="op">(</span><span class="bu">JComponent</span> c<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> COPY_OR_MOVE<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">// choose from COPY, MOVE, COPY_OR_MOVE, LINK, NONE</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">Transferable</span> <span class="fu">createTransferable</span><span class="op">(</span><span class="bu">JComponent</span> c<span class="op">)</span> <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">}</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="fu">exportDone</span><span class="op">(</span><span class="bu">JComponent</span> c<span class="op">,</span> <span class="bu">Transferable</span> t<span class="op">,</span> <span class="dt">int</span> action<span class="op">)</span> <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">}</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Import actions: drop, paste</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">canImport</span><span class="op">(</span>TransferSupport supp<span class="op">)</span> <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">}</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">importData</span><span class="op">(</span>TransferSupport supp<span class="op">)</span> <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">}</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Note that you do not have to define all of the methods, only the ones
+you need. <code>TransferHandler</code> is not abstract, although
+directly instantiating one is probably not a good idea.</p>
+<p><code><a
+href="http://docs.oracle.com/javase/6/docs/api/javax/swing/TransferHandler.TransferSupport.html">TransferHandler.TransferSupport</a></code>
+is<a href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a> a wrapper around
+<code>Transferable</code> containing also where the transfer is coming
+from and of what type it is. The transferable is extracted with
+<code>getTransferable()</code>, but the wrapper also directly has
+data-flavor compatibility checking methods<a href="#fn4"
+class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Go
+look its methods up.</p>
+<p>Okay, now that you have a handler set up, how do you get it used?
+<code>someJComponent.setTransferHandler(someTransferHandler)</code> will
+allow the handler to handle the transfer events. For cc&amp;p, you can
+get corresponding <code>Action</code>s from
+<code>TransferHandler.get[Cut|Copy|Paste]Action()</code> (yes, static
+method).</p>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>The argument is a handler of type <code>ClipboardOwner</code> which needs one method <code>lostOwnership(Clipboard c, Transferable t)</code> that is called when the clipboard no longer contains your content. I guess you use it to free resources? I don’t need it though.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>It throws checked exceptions <code>UnsupportedFlavorException</code> and <code>IOException</code>. My former self would hope that you have an IDE that would tell you that and salutes you if you don’t. Now, I just think whatever, if you’re writing Scala like me then you don’t even care.<a href="#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>At least I think of it as one, but I don’t know if everybody’s definition of “wrapper” matches mine. Oh well.<a href="#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p><code>isDataFlavorSupported(DataFlavor)</code> and <code>getDataFlavors()</code>; the latter returns an array. The documentation says these are faster than extracting the <code>Transferable</code> and querying it.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>The argument is a handler of type
+<code>ClipboardOwner</code> which needs one method
+<code>lostOwnership(Clipboard c, Transferable t)</code> that is called
+when the clipboard no longer contains your content. I guess you use it
+to free resources? I don’t need it though.<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>It throws checked exceptions
+<code>UnsupportedFlavorException</code> and <code>IOException</code>. My
+former self would hope that you have an IDE that would tell you that and
+salutes you if you don’t. Now, I just think whatever, if you’re writing
+Scala like me then you don’t even care.<a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>At least I think of it as one, but I don’t know if
+everybody’s definition of “wrapper” matches mine. Oh well.<a
+href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><code>isDataFlavorSupported(DataFlavor)</code> and
+<code>getDataFlavors()</code>; the latter returns an array. The
+documentation says these are faster than extracting the
+<code>Transferable</code> and querying it.<a href="#fnref4"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</section></article>
+</aside></article>
 	<footer class="post-footer">
 		
 	</footer>
@@ -134,7 +196,7 @@
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

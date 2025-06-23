@@ -82,13 +82,34 @@ Tag → scala
 		</p>
 	</header>
 	
-	<p>We interrupt the irregularly scheduled philosophical posts for some programming memes:</p>
-<p>Over the last few days, the Internet has divided itself over what the value of the expression 8÷2(2+2) should be. Some say it should be evaluated as (8÷2)×(2+2) = 16. Some say it should be evaluated as 8÷(2×(2+2)) = 1.</p>
-<p>At the risk of belaboring the obvious, the core dispute here is not really mathematical. There is not some sequence of mathematical operations that produces some number, where mathematicians disagree about what number it produces. Instead, this is a dispute about mathematical notation: what sequence of mathematical operations the expression corresponds to the way it’s written. Specifically, it is a dispute about whether multiplication written as juxtaposition (how “2” is written right next to “(2+2)”) has strictly higher precedence than division. It is closer to a linguistic or typographical dispute than a purely mathematical one, and the correct answer to the dispute is that whoever wrote the expression that way should learn to write math better.</p>
-<p>This debate is not even new. The internet had fun arguing over <a href="https://knowyourmeme.com/memes/48293">48÷2(9+3) and 6÷2(1+2)</a>, which are functionally identical ambiguous expressions, eight years ago. I don’t know why the debate is resurging now and why we still haven’t gotten tired of it.</p>
-<p>But life is short, so since we’re here anyway, let’s make some additional memes.</p>
+	<p>We interrupt the irregularly scheduled philosophical posts for some
+programming memes:</p>
+<p>Over the last few days, the Internet has divided itself over what the
+value of the expression 8÷2(2+2) should be. Some say it should be
+evaluated as (8÷2)×(2+2) = 16. Some say it should be evaluated as
+8÷(2×(2+2)) = 1.</p>
+<p>At the risk of belaboring the obvious, the core dispute here is not
+really mathematical. There is not some sequence of mathematical
+operations that produces some number, where mathematicians disagree
+about what number it produces. Instead, this is a dispute about
+mathematical notation: what sequence of mathematical operations the
+expression corresponds to the way it’s written. Specifically, it is a
+dispute about whether multiplication written as juxtaposition (how “2”
+is written right next to “(2+2)”) has strictly higher precedence than
+division. It is closer to a linguistic or typographical dispute than a
+purely mathematical one, and the correct answer to the dispute is that
+whoever wrote the expression that way should learn to write math
+better.</p>
+<p>This debate is not even new. The internet had fun arguing over <a
+href="https://knowyourmeme.com/memes/48293">48÷2(9+3) and 6÷2(1+2)</a>,
+which are functionally identical ambiguous expressions, eight years ago.
+I don’t know why the debate is resurging now and why we still haven’t
+gotten tired of it.</p>
+<p>But life is short, so since we’re here anyway, let’s make some
+additional memes.</p>
 <h3 id="asking-the-computer">Asking the computer</h3>
-<p>Some of my coworkers had the idea to ask some programming languages what the answer was. The results were underwhelming.</p>
+<p>Some of my coworkers had the idea to ask some programming languages
+what the answer was. The results were underwhelming.</p>
 <pre><code>$ python3
 Python 3.6.7 (default, Oct 22 2018, 11:32:17)
 [GCC 8.2.0] on linux
@@ -120,11 +141,19 @@ TypeError: &#39;int&#39; object is not callable</code></pre>
 	</header>
 	
 	<blockquote>
-5:27 PM <strong>phenomist</strong>: do you use gridderface to make pretty puzzles?<br />
+5:27 PM <strong>phenomist</strong>: do you use gridderface to make
+pretty puzzles?<br />
 …<br />
-5:52 PM <strong>phenomist</strong>: actually nvm excel is probably easier lol
+5:52 PM <strong>phenomist</strong>: actually nvm excel is probably
+easier lol
 </blockquote>
-<p>Okay I’m sorry this is a horrible puzzle where the rules don’t make sense and I didn’t even get it testsolved. I just wanted an image to concisely demonstrate the capabilities of <a href="https://github.com/betaveros/gridderface">gridderface</a>, my puzzle marking and creation program, for the project homepage, after somebody expressed interest in using the program to write a puzzle. Then I got tremendously carried away.</p>
+<p>Okay I’m sorry this is a horrible puzzle where the rules don’t make
+sense and I didn’t even get it testsolved. I just wanted an image to
+concisely demonstrate the capabilities of
+<a href="https://github.com/betaveros/gridderface">gridderface</a>, my
+puzzle marking and creation program, for the project homepage, after
+somebody expressed interest in using the program to write a puzzle. Then
+I got tremendously carried away.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/puzzle-46">→ read more<span class="offscreen"> Puzzle 46 / Fillomino [LITS &#43; Extra Region &#43; Walls &#43; Anti-Walls &#43; Inequality &#43; Tapa &#43; Masyu]</span></a>
 	</footer>
@@ -148,15 +177,34 @@ TypeError: &#39;int&#39; object is not callable</code></pre>
 	</header>
 	
 	<p>So, what have I been doing with programming recently?</p>
-<p><a href="http://www.scala-lang.org/">Scala</a> is an amazing multiparadigm programming language that runs on the Java Virtual Machine and interoperates with Java. I learned about it last time reading random articles on Twitter.</p>
-<p>When I say “amazing” I mean “This is a language in which my code gives me nerdgasms every time I read it.” Wheeee.</p>
-<p>Okay, it’s not perfect. People say it’s too academic. It has a notoriously complicated type system (which is <a href="http://scientopia.org/blogs/goodmath/2013/01/21/types-gone-wild-ski-at-compile-time/"><em>Turing-Complete</em> at compile time</a>). Its documentation is a bit patchy too. For a serious introduction, the Scala website has plenty of links under documentation, and a <a href="http://www.scala-lang.org/node/104">tour of features</a>. Somebody wrote <a href="http://www.naildrivin5.com/scalatour">another tour</a> that explains things a bit more. So here, instead of introducing it seriously, I’m just going to screw with its features.</p>
-<p>Example of freedom. Scala lets names consist of symbols, and treats one-parameter methods and infix operators exactly the same. The full tokenization rules are a bit detailed and I put them at the bottom of this post for the interested. This lets you create classes with arithmetic and domain-specific languages easily, but it also creates some silly opportunities:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode scala"><code class="sourceCode scala"><a class="sourceLine" id="cb1-1" title="1">scala&gt; <span class="kw">val</span> * = <span class="dv">12</span></a>
-<a class="sourceLine" id="cb1-2" title="2">*: Int = <span class="dv">12</span></a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4">scala&gt; * * * * *</a>
-<a class="sourceLine" id="cb1-5" title="5">res0: Int = <span class="dv">1728</span></a></code></pre></div>
+<p><a href="http://www.scala-lang.org/">Scala</a> is an amazing
+multiparadigm programming language that runs on the Java Virtual Machine
+and interoperates with Java. I learned about it last time reading random
+articles on Twitter.</p>
+<p>When I say “amazing” I mean “This is a language in which my code
+gives me nerdgasms every time I read it.” Wheeee.</p>
+<p>Okay, it’s not perfect. People say it’s too academic. It has a
+notoriously complicated type system (which is
+<a href="http://scientopia.org/blogs/goodmath/2013/01/21/types-gone-wild-ski-at-compile-time/"><em>Turing-Complete</em>
+at compile time</a>). Its documentation is a bit patchy too. For a
+serious introduction, the Scala website has plenty of links under
+documentation, and a <a href="http://www.scala-lang.org/node/104">tour
+of features</a>. Somebody wrote
+<a href="http://www.naildrivin5.com/scalatour">another tour</a> that
+explains things a bit more. So here, instead of introducing it
+seriously, I’m just going to screw with its features.</p>
+<p>Example of freedom. Scala lets names consist of symbols, and treats
+one-parameter methods and infix operators exactly the same. The full
+tokenization rules are a bit detailed and I put them at the bottom of
+this post for the interested. This lets you create classes with
+arithmetic and domain-specific languages easily, but it also creates
+some silly opportunities:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode scala"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>scala<span class="op">&gt;</span> <span class="kw">val</span> <span class="op">*</span> <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">*:</span> <span class="bu">Int</span> <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>scala<span class="op">&gt;</span> <span class="op">*</span> <span class="op">*</span> <span class="op">*</span> <span class="op">*</span> <span class="op">*</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>res0<span class="op">:</span> <span class="bu">Int</span> <span class="op">=</span> <span class="dv">1728</span></span></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/scala">→ read more<span class="offscreen"> Adventures in Scala Pseudo-Abuse</span></a>
 	</footer>
@@ -204,9 +252,40 @@ Just like Twitter, I barely know how to use Git either, but that’s okay. For v
 		</p>
 	</header>
 	
-	<p>Okay I don’t actually know how this pointless rambling got so long. I know the longer it is the more people will just tend to skim, because I do that all the time. So I went back and refactored—er, rewrote all the somewhat tangential bits (wow these puns are too easy) into footnotes. Manually. Obviously if I have to do this again I’ll write a script for it. But the post is still really long, and I bet nobody will read the whole thing. Oh well.</p>
-<p>Life updates: I got out of the hospital Friday two-and-a-half weeks ago, went to the preliminaries of NPSC (a national team programming contest) with classmates, threw up a lot, went back into the hospital, and came out again. I wrote a lot of stuff about the experience and how much it sucked (hint: <em>a lot</em>) when I started this draft around that time, but now putting so much detail in this post feels weird. I’m mostly good now.</p>
-<p>Three years ago NPSC was the only programming contest I really knew of; now I’ve participated in quite a few more, both online and locally, but it’s still the only contest I’ve entered that gives you real-time verdicts. I believe it inherits this from being modeled after ACM-ICPC, but that’s for college people and I’m less clear on how it works. All the other contests, namely <a href="https://www.topcoder.com/">TopCoder</a>, <a href="http://www.codeforces.com/">CodeForces</a>, <a href="http://usaco.org/">USACO</a>, and the other local individual competition (there doesn’t appear to be an English name so for the purpose of this post I’ll just call it “Nameless Local”; there’s a nation-wide competition in one-and-a-half weeks!), have system tests after the contest that don’t allow you to resubmit afterwards.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> They all give pretests that you get to know about right away, just to catch super-silly non-algorithmic mistakes like failing to remove the debug statements or reading input from the wrong place, but these contain weak test cases and don’t guarantee that the solution will pass the system tests and get full score.</p>
+	<p>Okay I don’t actually know how this pointless rambling got so long. I
+know the longer it is the more people will just tend to skim, because I
+do that all the time. So I went back and refactored—er, rewrote all the
+somewhat tangential bits (wow these puns are too easy) into footnotes.
+Manually. Obviously if I have to do this again I’ll write a script for
+it. But the post is still really long, and I bet nobody will read the
+whole thing. Oh well.</p>
+<p>Life updates: I got out of the hospital Friday two-and-a-half weeks
+ago, went to the preliminaries of NPSC (a national team programming
+contest) with classmates, threw up a lot, went back into the hospital,
+and came out again. I wrote a lot of stuff about the experience and how
+much it sucked (hint: <em>a lot</em>) when I started this draft around
+that time, but now putting so much detail in this post feels weird. I’m
+mostly good now.</p>
+<p>Three years ago NPSC was the only programming contest I really knew
+of; now I’ve participated in quite a few more, both online and locally,
+but it’s still the only contest I’ve entered that gives you real-time
+verdicts. I believe it inherits this from being modeled after ACM-ICPC,
+but that’s for college people and I’m less clear on how it works. All
+the other contests, namely
+<a href="https://www.topcoder.com/">TopCoder</a>,
+<a href="http://www.codeforces.com/">CodeForces</a>,
+<a href="http://usaco.org/">USACO</a>, and the other local individual
+competition (there doesn’t appear to be an English name so for the
+purpose of this post I’ll just call it “Nameless Local”; there’s a
+nation-wide competition in one-and-a-half weeks!), have system tests
+after the contest that don’t allow you to resubmit afterwards.<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> They all give pretests that you get
+to know about right away, just to catch super-silly non-algorithmic
+mistakes like failing to remove the debug statements or reading input
+from the wrong place, but these contain weak test cases and don’t
+guarantee that the solution will pass the system tests and get full
+score.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/programming">→ read more<span class="offscreen"> Ridiculously Long-Winded Programming Babble</span></a>
 	</footer>
@@ -215,7 +294,7 @@ Just like Twitter, I barely know how to use Git either, but that’s okay. For v
 		</section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

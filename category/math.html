@@ -80,21 +80,63 @@ Category → math
 		</p>
 	</header>
 	
-	<p>A famous Trail of Bits post says to <a href="https://blog.trailofbits.com/2019/07/08/fuck-rsa/">stop using RSA</a>: it’s simple enough to make people think they can implement it correctly, but full of invisible traps. In contrast, although elliptic curve cryptography (ECC) implementations could also fall into subtle traps, they usually don’t. The post conjectures that this is because ECC intimidates people into using cryptographically sound libraries instead of implementing their own.</p>
-<p>If you do want to understand ECC just enough to produce your own trap-ridden implementation, though, this post aims to get you there. (Assuming some mathematical background chosen in a not particularly principled way, approximately what I had before writing this post.) Hence the title. Because I have a cryptographic conscience, I will still point out the traps I know of; but there are probably traps I don’t know about.</p>
-<p>This post contains a lot of handwaving and straight-up giving up on proofs. You don’t need to know the proofs to be dangerous. The ethos is sort of like <a href="https://web.evanchen.cc/napkin.html">Napkin</a>, but way shoddier and with zero pretense of pedagogical soundness. Still, here are some concrete questions that I learned the answer to while writing this post:</p>
+	<p>A famous Trail of Bits post says to <a
+href="https://blog.trailofbits.com/2019/07/08/fuck-rsa/">stop using
+RSA</a>: it’s simple enough to make people think they can implement it
+correctly, but full of invisible traps. In contrast, although elliptic
+curve cryptography (ECC) implementations could also fall into subtle
+traps, they usually don’t. The post conjectures that this is because ECC
+intimidates people into using cryptographically sound libraries instead
+of implementing their own.</p>
+<p>If you do want to understand ECC just enough to produce your own
+trap-ridden implementation, though, this post aims to get you there.
+(Assuming some mathematical background chosen in a not particularly
+principled way, approximately what I had before writing this post.)
+Hence the title. Because I have a cryptographic conscience, I will still
+point out the traps I know of; but there are probably traps I don’t know
+about.</p>
+<p>This post contains a lot of handwaving and straight-up giving up on
+proofs. You don’t need to know the proofs to be dangerous. The ethos is
+sort of like <a href="https://web.evanchen.cc/napkin.html">Napkin</a>,
+but way shoddier and with zero pretense of pedagogical soundness. Still,
+here are some concrete questions that I learned the answer to while
+writing this post:</p>
 <ul>
 <li>Why does the group law hold, sort of intuitively?</li>
-<li>Why do people have to modify Curve25519 before using it to compute digital signatures?</li>
-<li>What is a “quadratic twist” and why should I care about it to pick a secure elliptic curve?</li>
-<li>How is it possible that an isogeny can be described as surjective but not injective while mapping a finite elliptic curve to another elliptic curve of the same cardinality?</li>
+<li>Why do people have to modify Curve25519 before using it to compute
+digital signatures?</li>
+<li>What is a “quadratic twist” and why should I care about it to pick a
+secure elliptic curve?</li>
+<li>How is it possible that an isogeny can be described as surjective
+but not injective while mapping a finite elliptic curve to another
+elliptic curve of the same cardinality?</li>
 <li>How many claws does an alligator have?</li>
 </ul>
-<p>Elliptic curves have a lot of complicated algebra. If you ever studied algebra in high school and did exercises where you had to simplify or factor or graph some really complicated algebraic expression, and you learned that algebra is also the name of a field in higher mathematics, you might have assumed that working algebraists just dealt with even more complicated expressions. If you then studied algebra in college, you’d probably have realized that that’s not really what algebra is about at all; the difficulty comes from <em>new abstractions</em>, like a bunch of the terms above.</p>
-<p>Well… the study of elliptic curves involves a bunch of complicated expressions like what your high school self might have imagined. Sometimes, notes will just explode into a trainwreck of terms like</p>
-<p><span class="math display">\[\begin{align*}\psi_1 &amp;= 1 \\ \psi_2 &amp;= 2y \\ \psi_3 &amp;= 3x^4 + 6Ax^2 + 12Bx - A^2 \\ \psi_4 &amp;= 4y(x^6 + 5Ax^4 + 20Bx^3 - 5A^2x^2 - 4ABx - A^3 - 8B^2).\end{align*}\]</span></p>
-<p>“This is REAL Math, done by REAL Mathematicians,” one is tempted to quip. The <a href="https://hyperelliptic.org/EFD/">Explicit-Formulas Database</a> is a fun place to take a gander through. I will copy formulas into this post from time to time when there’s something about them I want to call attention to, but in general we won’t do any complicated algebraic manipulations in this post. Just be prepared.</p>
-<p>Because I’m focusing on conceptual understanding (and am lazy), this post contains almost no code, and definitely no code that’s runnable in any real programming language.</p>
+<p>Elliptic curves have a lot of complicated algebra. If you ever
+studied algebra in high school and did exercises where you had to
+simplify or factor or graph some really complicated algebraic
+expression, and you learned that algebra is also the name of a field in
+higher mathematics, you might have assumed that working algebraists just
+dealt with even more complicated expressions. If you then studied
+algebra in college, you’d probably have realized that that’s not really
+what algebra is about at all; the difficulty comes from <em>new
+abstractions</em>, like a bunch of the terms above.</p>
+<p>Well… the study of elliptic curves involves a bunch of complicated
+expressions like what your high school self might have imagined.
+Sometimes, notes will just explode into a trainwreck of terms like</p>
+<p><span class="math display">\[\begin{align*}\psi_1 &amp;= 1 \\ \psi_2
+&amp;= 2y \\ \psi_3 &amp;= 3x^4 + 6Ax^2 + 12Bx - A^2 \\ \psi_4 &amp;=
+4y(x^6 + 5Ax^4 + 20Bx^3 - 5A^2x^2 - 4ABx - A^3 -
+8B^2).\end{align*}\]</span></p>
+<p>“This is REAL Math, done by REAL Mathematicians,” one is tempted to
+quip. The <a href="https://hyperelliptic.org/EFD/">Explicit-Formulas
+Database</a> is a fun place to take a gander through. I will copy
+formulas into this post from time to time when there’s something about
+them I want to call attention to, but in general we won’t do any
+complicated algebraic manipulations in this post. Just be prepared.</p>
+<p>Because I’m focusing on conceptual understanding (and am lazy), this
+post contains almost no code, and definitely no code that’s runnable in
+any real programming language.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/elliptic-curves">→ read more<span class="offscreen"> Just Enough Elliptic Curves to Be Dangerous</span></a>
 	</footer>
@@ -117,17 +159,62 @@ Category → math
 		</p>
 	</header>
 	
-	<p>One thing many mathematically-inclined programmers run into when implementing mathematical algorithms, particularly number-theoretic ones, is that the <a href="https://en.wikipedia.org/wiki/Modulo_operation">modulo operation</a> doesn’t behave how they expect or prefer.</p>
-<p>In many languages, this operator is denoted <code>%</code>. Concretely, one might prefer that, if the second argument is positive, then the modulo operation would always give a nonnegative result. Under this behavior, the expression <code>(-5) % 3</code> would evaluate to <code>1</code> rather than <code>-2</code>. This is a lot more useful for number theory because then for positive integers <code>n</code>, the <code>% n</code> operation actually maps integers to exactly the <code>n</code> canonical representatives for the residue classes. As a result, <span class="math inline">\(a \equiv b \mod n\)</span> if and only if <code>a % n == b % n</code>. You can also do things like index into a length-<code>n</code> array with <code>a % n</code> and know that the index will be in-bounds. Finally, there are also optimization opportunities: modding by a power of 2 becomes equivalent to a simple bitwise AND, which is really fast on modern computers.</p>
-<p>A few programming languages, notably Python, do implement <code>%</code> this way. However, the majority of languages today, including pretty much everything remotely descended from C, do not; instead, <code>(-5) % 3</code> is <code>-2</code>. This post attempts to track down why.</p>
+	<p>One thing many mathematically-inclined programmers run into when
+implementing mathematical algorithms, particularly number-theoretic
+ones, is that the <a
+href="https://en.wikipedia.org/wiki/Modulo_operation">modulo
+operation</a> doesn’t behave how they expect or prefer.</p>
+<p>In many languages, this operator is denoted <code>%</code>.
+Concretely, one might prefer that, if the second argument is positive,
+then the modulo operation would always give a nonnegative result. Under
+this behavior, the expression <code>(-5) % 3</code> would evaluate to
+<code>1</code> rather than <code>-2</code>. This is a lot more useful
+for number theory because then for positive integers <code>n</code>, the
+<code>% n</code> operation actually maps integers to exactly the
+<code>n</code> canonical representatives for the residue classes. As a
+result, <span class="math inline">\(a \equiv b \mod n\)</span> if and
+only if <code>a % n == b % n</code>. You can also do things like index
+into a length-<code>n</code> array with <code>a % n</code> and know that
+the index will be in-bounds. Finally, there are also optimization
+opportunities: modding by a power of 2 becomes equivalent to a simple
+bitwise AND, which is really fast on modern computers.</p>
+<p>A few programming languages, notably Python, do implement
+<code>%</code> this way. However, the majority of languages today,
+including pretty much everything remotely descended from C, do not;
+instead, <code>(-5) % 3</code> is <code>-2</code>. This post attempts to
+track down why.</p>
 <hr />
-<p>The first thing to note is that there is a more important number-theoretic identity we’d like to have:</p>
-<p><span class="math display">\[\texttt{a} = (\texttt{a / b}) \cdot \texttt{b} + (\texttt{a \% b}). \tag{1}\]</span></p>
-<p>In words, the integer division and modulo operators should give a breakdown of <code>a</code> into a sum of some copies of <code>b</code> plus a remainder. Note that this equation also implies that specifying the rounding behavior of division is equivalent to specifying the sign behavior of the modulo operation, which will come up repeatedly later.</p>
-<p>It’s also very uncontroversial that that remainder should have no copies of <code>b</code>, positive or negative, left over, which gives the constraint:</p>
-<p><span class="math display">\[|\texttt{a \% b}| &lt; |\texttt{b}|. \tag{2}\]</span></p>
-<p>Every programming language I can think of satisfies these two constraints.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> So far so good. However, these two constraints don’t uniquely determine the values of <code>a % b</code> when <code>a</code> isn’t divisible by <code>b</code>; there are two possible values for <code>a % b</code>, one positive and one negative. Concretely, we could express <span class="math inline">\(-5\)</span> as either <span class="math inline">\((-1) \cdot 3 + (-2)\)</span> or <span class="math inline">\((-2) \cdot 3 + 1\)</span>, so <code>(-5) % 3</code> could be <code>-2</code> or <code>1</code>.</p>
-<p>It’s still mostly uncontroversial that, if <code>a</code> and <code>b</code> are both positive, then <code>a % b</code> should be nonnegative as well; we could call this constraint (3).<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> However, if <code>a</code> is negative and <code>b</code> is positive, programming languages start to diverge in their behavior. Why?</p>
+<p>The first thing to note is that there is a more important
+number-theoretic identity we’d like to have:</p>
+<p><span class="math display">\[\texttt{a} = (\texttt{a / b}) \cdot
+\texttt{b} + (\texttt{a \% b}). \tag{1}\]</span></p>
+<p>In words, the integer division and modulo operators should give a
+breakdown of <code>a</code> into a sum of some copies of <code>b</code>
+plus a remainder. Note that this equation also implies that specifying
+the rounding behavior of division is equivalent to specifying the sign
+behavior of the modulo operation, which will come up repeatedly
+later.</p>
+<p>It’s also very uncontroversial that that remainder should have no
+copies of <code>b</code>, positive or negative, left over, which gives
+the constraint:</p>
+<p><span class="math display">\[|\texttt{a \% b}| &lt; |\texttt{b}|.
+\tag{2}\]</span></p>
+<p>Every programming language I can think of satisfies these two
+constraints.<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> So far so good. However, these two
+constraints don’t uniquely determine the values of <code>a % b</code>
+when <code>a</code> isn’t divisible by <code>b</code>; there are two
+possible values for <code>a % b</code>, one positive and one negative.
+Concretely, we could express <span class="math inline">\(-5\)</span> as
+either <span class="math inline">\((-1) \cdot 3 + (-2)\)</span> or <span
+class="math inline">\((-2) \cdot 3 + 1\)</span>, so
+<code>(-5) % 3</code> could be <code>-2</code> or <code>1</code>.</p>
+<p>It’s still mostly uncontroversial that, if <code>a</code> and
+<code>b</code> are both positive, then <code>a % b</code> should be
+nonnegative as well; we could call this constraint (3).<a href="#fn2"
+class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
+However, if <code>a</code> is negative and <code>b</code> is positive,
+programming languages start to diverge in their behavior. Why?</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/modulo">→ read more<span class="offscreen"> Signed Modulo</span></a>
 	</footer>
@@ -152,9 +239,29 @@ Category → math
 		</p>
 	</header>
 	
-	<p>It’s December, so it’s time for a lot of things, including <a href="https://adventofcode.com/">Advent of Code</a>. I will not be able to be as competitive as I was last year, and already lost a lot of points to a really silly mistake on day 1, but I’ll be playing when I can and <a href="https://github.com/betaveros/advent-of-code-golf-2019">golfing</a> the problems when I have time (so far: 7 + 14 bytes).</p>
-<p>As one might expect, <a href="https://adventofcode.com/2019/day/1">Day 1</a> is not too complex, but the second part can be analyzed to some mathematical depth and was discussed a bit on Reddit; plus, it occurred to me recently that I set up KaTeX on my blog but never used it, so I was looking for an excuse to write some equations anyway.</p>
-<p>The problem statement for part 2, in brief: We are tasked with calculating the total mass of fuel required to launch a rocket module of a given mass. For something of mass <span class="math inline">\(m\)</span>, one can compute the directly required mass of fuel by dividing <span class="math inline">\(m\)</span> by 3, rounding down, and subtracting 2; if the result is negative, it is taken to be 0 instead. However, the directly required fuel also requires fuel itself, calculated from its own mass by the same procedure, and that required fuel requires fuel based on its own mass, and so on until you reach fuel with 0 requirement.</p>
+	<p>It’s December, so it’s time for a lot of things, including <a
+href="https://adventofcode.com/">Advent of Code</a>. I will not be able
+to be as competitive as I was last year, and already lost a lot of
+points to a really silly mistake on day 1, but I’ll be playing when I
+can and <a
+href="https://github.com/betaveros/advent-of-code-golf-2019">golfing</a>
+the problems when I have time (so far: 7 + 14 bytes).</p>
+<p>As one might expect, <a
+href="https://adventofcode.com/2019/day/1">Day 1</a> is not too complex,
+but the second part can be analyzed to some mathematical depth and was
+discussed a bit on Reddit; plus, it occurred to me recently that I set
+up KaTeX on my blog but never used it, so I was looking for an excuse to
+write some equations anyway.</p>
+<p>The problem statement for part 2, in brief: We are tasked with
+calculating the total mass of fuel required to launch a rocket module of
+a given mass. For something of mass <span
+class="math inline">\(m\)</span>, one can compute the directly required
+mass of fuel by dividing <span class="math inline">\(m\)</span> by 3,
+rounding down, and subtracting 2; if the result is negative, it is taken
+to be 0 instead. However, the directly required fuel also requires fuel
+itself, calculated from its own mass by the same procedure, and that
+required fuel requires fuel based on its own mass, and so on until you
+reach fuel with 0 requirement.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/advent-rocket">→ read more<span class="offscreen"> Rocket Equation</span></a>
 	</footer>
@@ -177,15 +284,38 @@ Category → math
 		</p>
 	</header>
 	
-	<p>(Nontopical life update: Current 18.06 homework status: 34% (mildly screwed, probably won’t finish before I leave my cozy home for the U.S. and I usually struggle to get into the mood for homework while traveling, but I guess I’ll have to)) <a href="/img/18-06-1.png"><img src="/img/18-06-1.png?w=296" alt="[18.06 status panel: 34%]" /></a> (I’ve been spending most of my uptime doing said homework and running errands, and my downtime catching up on <cite>Last Week Tonight with John Oliver</cite> while farming the Flight Rising Coliseum. And, okay, making the above status panel. <a href="https://dl.dropboxusercontent.com/u/5295912/status.html">Live version here</a> courtesy of Dropbox’s Public folder. No regrets.)</p>
+	<p>(Nontopical life update: Current 18.06 homework status: 34% (mildly
+screwed, probably won’t finish before I leave my cozy home for the U.S.
+and I usually struggle to get into the mood for homework while
+traveling, but I guess I’ll have to))
+<a href="/img/18-06-1.png"><img src="/img/18-06-1.png?w=296" alt="[18.06 status panel: 34%]" /></a>
+(I’ve been spending most of my uptime doing said homework and running
+errands, and my downtime catching up on <cite>Last Week Tonight with
+John Oliver</cite> while farming the Flight Rising Coliseum. And, okay,
+making the above status panel.
+<a href="https://dl.dropboxusercontent.com/u/5295912/status.html">Live
+version here</a> courtesy of Dropbox’s Public folder. No regrets.)</p>
 <h3 id="day-3-excursions">
 Day 3 (Excursions)
 </h3>
-<p>Morning routine snipped. We come to the middle school again to eat breakfast and gather; the contestants will be taking their tests here (accompanied by one bottle of “Buff” energy drink each) while the rest of us will be going on an excursion. Before this happens, though, two Taiwanese contestants ask me and Hsin-Po some math problems. There’s a geometry problem, which I fail to solve:</p>
+<p>Morning routine snipped. We come to the middle school again to eat
+breakfast and gather; the contestants will be taking their tests here
+(accompanied by one bottle of “Buff” energy drink each) while the rest
+of us will be going on an excursion. Before this happens, though, two
+Taiwanese contestants ask me and Hsin-Po some math problems. There’s a
+geometry problem, which I fail to solve:</p>
 <blockquote>
-(paraphrased) In triangle △ABC, ∠A is 40° and ∠B is 60°. The angle bisector of ∠A meets BC at D; E is on AB such that ∠ADE is 30°. Find ∠DEC.
+(paraphrased) In triangle △ABC, ∠A is 40° and ∠B is 60°. The angle
+bisector of ∠A meets BC at D; E is on AB such that ∠ADE is 30°. Find
+∠DEC.
 </blockquote>
-<p>Hsin-Po figures out that, once you guess (ROT13) gur bgure boivbhf privna vf nyfb na natyr ovfrpgbe naq gurl vagrefrpg ng gur vapragre, lbh pna cebir vg ol pbafgehpgvat gur vapragre naq fubjvat sebz gur tvira natyr gung gurl vaqrrq pbvapvqr.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Then, there’s a combinatorics problem in a book with a solution that they’re not sure about:</p>
+<p>Hsin-Po figures out that, once you guess (ROT13) gur bgure boivbhf
+privna vf nyfb na natyr ovfrpgbe naq gurl vagrefrpg ng gur vapragre, lbh
+pna cebir vg ol pbafgehpgvat gur vapragre naq fubjvat sebz gur tvira
+natyr gung gurl vaqrrq pbvapvqr.<a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a> Then, there’s a
+combinatorics problem in a book with a solution that they’re not sure
+about:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/cimc-2015-part-2">→ read more<span class="offscreen"> [CIMC 2015 Part 2] Journey of the Blue-White Slippers</span></a>
 	</footer>
@@ -209,7 +339,11 @@ Day 3 (Excursions)
 	</header>
 	
 	<p>(<a href="//blog.vero.site/post/commitment">streak</a>)</p>
-<p>I always tell myself, okay, I will actually just draw something facetiously and get it over with, nobody comes to this blog to admire my GIMP mouse doodles, but then perfectionist tendencies kick in and I get <a href="//blog.vero.site/post/1024">car</a>ried away and it ends up taking more than an hour or so.</p>
+<p>I always tell myself, okay, I will actually just draw something
+facetiously and get it over with, nobody comes to this blog to admire my
+GIMP mouse doodles, but then perfectionist tendencies kick in and I get
+<a href="//blog.vero.site/post/1024">car</a>ried away and it ends up
+taking more than an hour or so.</p>
 <p><a href="/img/linear.png"><img src="/img/linear.png?w=652" alt="linear" width="652" height="489" class="aligncenter size-large wp-image-3074" /></a></p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/897">→ read more<span class="offscreen"> (8,9,7)</span></a>
@@ -233,11 +367,24 @@ Day 3 (Excursions)
 		</p>
 	</header>
 	
-	<p><a href="http://www.artofproblemsolving.com/community/c1285h1035830">original sillier post</a></p>
-<p>Note on notation: I’m going to use <span class="math inline">\(\text{Stab}(x)\)</span> instead of <span class="math inline">\(G_x\)</span> for the stabilizer subgroup and <span class="math inline">\(\text{Cl}(x)\)</span> instead of <span class="math inline">\(^Gx\)</span> for the conjugacy classes. For the orbit of <span class="math inline">\(x\)</span> I’ll stick with the norm and use <span class="math inline">\(Gx\)</span>, although it’s only used in confusing summation notation that I’ll explain with words too.</p>
+	<p><a
+href="http://www.artofproblemsolving.com/community/c1285h1035830">original
+sillier post</a></p>
+<p>Note on notation: I’m going to use <span
+class="math inline">\(\text{Stab}(x)\)</span> instead of <span
+class="math inline">\(G_x\)</span> for the stabilizer subgroup and <span
+class="math inline">\(\text{Cl}(x)\)</span> instead of <span
+class="math inline">\(^Gx\)</span> for the conjugacy classes. For the
+orbit of <span class="math inline">\(x\)</span> I’ll stick with the norm
+and use <span class="math inline">\(Gx\)</span>, although it’s only used
+in confusing summation notation that I’ll explain with words too.</p>
 <hr />
-<p>We keep using this silly counting argument which I thought was something like Burnside’s lemma but actually is a lot simpler, just partitioning the set into orbits and slapping the orbit-stabilizer theorem on.</p>
-<p>If <span class="math inline">\(G\)</span> is the group and <span class="math inline">\(S\)</span> is the set then</p>
+<p>We keep using this silly counting argument which I thought was
+something like Burnside’s lemma but actually is a lot simpler, just
+partitioning the set into orbits and slapping the orbit-stabilizer
+theorem on.</p>
+<p>If <span class="math inline">\(G\)</span> is the group and <span
+class="math inline">\(S\)</span> is the set then</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/sylow">→ read more<span class="offscreen"> Sylow</span></a>
 	</footer>
@@ -260,11 +407,33 @@ Day 3 (Excursions)
 		</p>
 	</header>
 	
-	<p><a href="http://www.artofproblemsolving.com/community/c1285h1033032">original sillier post</a></p>
-<p>Note on notation: to be maximally clear, I have bolded all my vectors and put tiny arrows on them. Normal letters are usually reals, uppercase letters are usually bigger matrices. Also, <span class="math inline">\(\cdot^T\)</span> denotes the transpose of a matrix.</p>
+	<p><a
+href="http://www.artofproblemsolving.com/community/c1285h1033032">original
+sillier post</a></p>
+<p>Note on notation: to be maximally clear, I have bolded all my vectors
+and put tiny arrows on them. Normal letters are usually reals, uppercase
+letters are usually bigger matrices. Also, <span
+class="math inline">\(\cdot^T\)</span> denotes the transpose of a
+matrix.</p>
 <hr />
-<p>Let <span class="math inline">\(\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m\)</span> be elements of <span class="math inline">\(\mathbb{R}^n\)</span> where <span class="math inline">\(m \leq n\)</span>, i.e. column vectors with <span class="math inline">\(n\)</span> real elements. Let <span class="math inline">\(V = [\vec{\textbf{v}}_1, \ldots, \vec{\textbf{v}}_m]\)</span>. This means pasting the column vectors together to make an <span class="math inline">\(n \times m\)</span> matrix (<span class="math inline">\(n\)</span> rows <span class="math inline">\(m\)</span> columns).</p>
-<p>Consider the thing <span class="math inline">\(\vec{\textbf{v}}_1 \wedge \vec{\textbf{v}}_2 \wedge \cdots \wedge \vec{\textbf{v}}_m\)</span>, which can be visualized as the hyperparallelogram <span class="math inline">\(\left\{\sum_{i=1}^{m} t_i\vec{\textbf{v}}_i \,\middle\vert\, t_i \in [0,1], i = 1, 2, \ldots, m \right\}\)</span> but is apparently a different thing in a different vector space of things. We wonder how to compute <strong>the hyperarea of this hyperparallelogram</strong>.</p>
+<p>Let <span class="math inline">\(\vec{\textbf{v}}_1, \ldots,
+\vec{\textbf{v}}_m\)</span> be elements of <span
+class="math inline">\(\mathbb{R}^n\)</span> where <span
+class="math inline">\(m \leq n\)</span>, i.e. column vectors with <span
+class="math inline">\(n\)</span> real elements. Let <span
+class="math inline">\(V = [\vec{\textbf{v}}_1, \ldots,
+\vec{\textbf{v}}_m]\)</span>. This means pasting the column vectors
+together to make an <span class="math inline">\(n \times m\)</span>
+matrix (<span class="math inline">\(n\)</span> rows <span
+class="math inline">\(m\)</span> columns).</p>
+<p>Consider the thing <span class="math inline">\(\vec{\textbf{v}}_1
+\wedge \vec{\textbf{v}}_2 \wedge \cdots \wedge
+\vec{\textbf{v}}_m\)</span>, which can be visualized as the
+hyperparallelogram <span class="math inline">\(\left\{\sum_{i=1}^{m}
+t_i\vec{\textbf{v}}_i \,\middle\vert\, t_i \in [0,1], i = 1, 2, \ldots,
+m \right\}\)</span> but is apparently a different thing in a different
+vector space of things. We wonder how to compute <strong>the hyperarea
+of this hyperparallelogram</strong>.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/wedge">→ read more<span class="offscreen"> |Wedge|</span></a>
 	</footer>
@@ -287,15 +456,34 @@ Day 3 (Excursions)
 		</p>
 	</header>
 	
-	<p><a href="http://www.artofproblemsolving.com/community/c1285h1042959">original sillier post</a></p>
-<p>The “Extreme Value Theorem”, according to my old calculus textbook (Larson, Hostetler, Edwards, 8th ed.), is “A continuous function defined on a closed interval attains a minimum and a maximum on the interval.” The calculus textbook continues,</p>
+	<p><a
+href="http://www.artofproblemsolving.com/community/c1285h1042959">original
+sillier post</a></p>
+<p>The “Extreme Value Theorem”, according to my old calculus textbook
+(Larson, Hostetler, Edwards, 8th ed.), is “A continuous function defined
+on a closed interval attains a minimum and a maximum on the interval.”
+The calculus textbook continues,</p>
 <blockquote>
-<p>Although [it] is intuitively plausible, a proof of this theorem is not within the scope of this text.</p>
+<p>Although [it] is intuitively plausible, a proof of this theorem is
+not within the scope of this text.</p>
 </blockquote>
-<p>Of course Rudin proves this, but coming from an unrigorous calculus background, the required deductions span three chapters and are very hard to motivate. That’s probably because it proves things for extremely general objects.</p>
-<p>In particular, I have no idea why the definition of “compact” is what it is: “a set for which every open cover has a finite subcovering”. Therefore, here’s a less general but more motivated proof, from the grounds-up.</p>
+<p>Of course Rudin proves this, but coming from an unrigorous calculus
+background, the required deductions span three chapters and are very
+hard to motivate. That’s probably because it proves things for extremely
+general objects.</p>
+<p>In particular, I have no idea why the definition of “compact” is what
+it is: “a set for which every open cover has a finite subcovering”.
+Therefore, here’s a less general but more motivated proof, from the
+grounds-up.</p>
 <h3 id="definitions">Definitions</h3>
-<p><strong>Real numbers</strong> are hard to define. We only need to know that we can add, subtract, multiply, divide, and compare them, i.e. they’re an ordered field, and that they have the <strong>least-upper-bound property</strong>. That is, if we have a set of real numbers that are bounded above, then the set has a <em>least upper bound</em>, a bound that “perfectly fits” the set. Precisely, the bound must be such that every element of the set is less than or equal to it, and no smaller value satisfies the same property.</p>
+<p><strong>Real numbers</strong> are hard to define. We only need to
+know that we can add, subtract, multiply, divide, and compare them,
+i.e. they’re an ordered field, and that they have the
+<strong>least-upper-bound property</strong>. That is, if we have a set
+of real numbers that are bounded above, then the set has a <em>least
+upper bound</em>, a bound that “perfectly fits” the set. Precisely, the
+bound must be such that every element of the set is less than or equal
+to it, and no smaller value satisfies the same property.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/evt">→ read more<span class="offscreen"> Extreme Value Theorem</span></a>
 	</footer>
@@ -343,21 +531,48 @@ Mnemonic Here’s my mnemonic table for digits, inspired by an old Martin Gardne
 	</header>
 	
 	<blockquote>
-“I have been told that any encryption becomes safer if the underlying algorithm is maximally obscured, what is most conveniently done by coding it in Haskell.” – rankk
+“I have been told that any encryption becomes safer if the underlying
+algorithm is maximally obscured, what is most conveniently done by
+coding it in Haskell.” – rankk
 </blockquote>
-<p>Functional programming is terribly addicting! Partly I think the completely different way of thinking makes it feel like learning programming, and falling in love with it, all over again. Partly there’s this evil sense of satisfaction from using <code>$</code>s (and later <code>&lt;$&gt;</code>s and <code>=&lt;&lt;</code>s and <code>&amp;&amp;&amp;</code>s) to improve readability for initiated Haskellers and worsen it for everybody else. Partly it’s because <a href="http://learnyouahaskell.com/"><i>Learn You a Haskell for Great Good!</i></a> is such a fun read — there are too many funny bits to list but my favorite so far is when the author analyzes the first verse of Avril Lavigne’s <em>Girlfriend</em>.</p>
-<p>Although I think my code in Haskell tends to be more readable than in other languages, code obfuscation in Haskell is almost natural: all you have to do is refactor the wrong function to be “pointfree”, which means that even though it’s a function that takes arguments, you define it without parameters by manipulating and joining a bunch of other functions. Example (plus a few other tiny obfuscations):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" title="1">isPrime <span class="ot">=</span> liftA2 (<span class="op">&amp;&amp;</span>) (liftA2 (<span class="op">$</span>) (<span class="fu">all</span> <span class="op">.</span> ((<span class="op">.</span>) (<span class="dv">0</span> <span class="op">/=</span>)) <span class="op">.</span> <span class="fu">rem</span>) (<span class="fu">flip</span></a>
-<a class="sourceLine" id="cb1-2" title="2">    <span class="fu">takeWhile</span> [<span class="dv">2</span><span class="op">..</span>] <span class="op">.</span> (<span class="fu">flip</span> (<span class="op">.</span>) <span class="op">$</span> liftA2 (<span class="op">*</span>) <span class="fu">id</span> <span class="fu">id</span>) <span class="op">.</span> (<span class="op">&gt;=</span>))) ((<span class="op">&lt;</span>) <span class="dv">1</span>)</a></code></pre></div>
-<p>QQ wordpress why no Haskell highlighting <ins>(Editor’s note from 2017: The migration should highlight this now!)</ins></p>
+<p>Functional programming is terribly addicting! Partly I think the
+completely different way of thinking makes it feel like learning
+programming, and falling in love with it, all over again. Partly there’s
+this evil sense of satisfaction from using <code>$</code>s (and later
+<code>&lt;$&gt;</code>s and <code>=&lt;&lt;</code>s and
+<code>&amp;&amp;&amp;</code>s) to improve readability for initiated
+Haskellers and worsen it for everybody else. Partly it’s because
+<a href="http://learnyouahaskell.com/"><i>Learn You a Haskell for Great
+Good!</i></a> is such a fun read — there are too many funny bits to list
+but my favorite so far is when the author analyzes the first verse of
+Avril Lavigne’s <em>Girlfriend</em>.</p>
+<p>Although I think my code in Haskell tends to be more readable than in
+other languages, code obfuscation in Haskell is almost natural: all you
+have to do is refactor the wrong function to be “pointfree”, which means
+that even though it’s a function that takes arguments, you define it
+without parameters by manipulating and joining a bunch of other
+functions. Example (plus a few other tiny obfuscations):</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>isPrime <span class="ot">=</span> liftA2 (<span class="op">&amp;&amp;</span>) (liftA2 (<span class="op">$</span>) (<span class="fu">all</span> <span class="op">.</span> ((<span class="op">.</span>) (<span class="dv">0</span> <span class="op">/=</span>)) <span class="op">.</span> <span class="fu">rem</span>) (<span class="fu">flip</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">takeWhile</span> [<span class="dv">2</span><span class="op">..</span>] <span class="op">.</span> (<span class="fu">flip</span> (<span class="op">.</span>) <span class="op">$</span> liftA2 (<span class="op">*</span>) <span class="fu">id</span> <span class="fu">id</span>) <span class="op">.</span> (<span class="op">&gt;=</span>))) ((<span class="op">&lt;</span>) <span class="dv">1</span>)</span></code></pre></div>
+<p>QQ wordpress why no Haskell highlighting <ins>(Editor’s note from
+2017: The migration should highlight this now!)</ins></p>
 <p>Also, for some reason, you can do this in Haskell:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb2-1" title="1">ghci<span class="op">&gt;</span> <span class="kw">let</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span> <span class="ot">=</span> <span class="dv">5</span> <span class="kw">in</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="dv">5</span></a></code></pre></div>
-<p>(via <a href="http://www.yellosoft.us/evilgenius/">Haskell for the Evil Genius</a>)</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ghci<span class="op">&gt;</span> <span class="kw">let</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span> <span class="ot">=</span> <span class="dv">5</span> <span class="kw">in</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span></span></code></pre></div>
+<p>(via <a href="http://www.yellosoft.us/evilgenius/">Haskell for the
+Evil Genius</a>)</p>
 <hr />
-<p>Okay, but seriously now. I wrote this about my journey to learn functional programming in the <a href="//blog.vero.site/post/programming">programming babble post</a> half a year ago:</p>
+<p>Okay, but seriously now. I wrote this about my journey to learn
+functional programming in the
+<a href="//blog.vero.site/post/programming">programming babble post</a> half a
+year ago:</p>
 <blockquote>
-The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes).
+The main obstacle I have is that it’s hard to optimize or get
+asymptotics when computation is expensive (a big problem if you’re
+trying to learn through Project Euler problems, particularly ones with
+lots of primes).
 </blockquote>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/haskell">→ read more<span class="offscreen"> Haskell and Primes</span></a>
@@ -370,7 +585,7 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
 	</footer></section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

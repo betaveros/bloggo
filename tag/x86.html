@@ -86,18 +86,32 @@ Tag → x86
 <p>Welcome to pwn.</p>
 <p><code>nc pwn.chal.csaw.io 1005</code></p>
 </blockquote>
-<p>Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with security professionals who probably have decades of experience and who follow security developments for a living or whatever, there remains a competition where scrubs like me can apply our extremely basic CTF skills and still feel kinda smart by earning points. Now that I’ve graduated and am no longer eligible, our team was pretty small and I didn’t dedicate the full weekend to the CTF, but it means I got to do the really easy challenges in the categories that I was the worst at, by which I mean pwn.</p>
-<p><code>baby_boi</code> is pretty much the simplest possible modern ROP (the modern security protections NX and ASLR are not artificially disabled, but you get everything you need to work around them). We even get source code.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" title="1"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv[]) {</a>
-<a class="sourceLine" id="cb1-5" title="5">  <span class="dt">char</span> buf[<span class="dv">32</span>];</a>
-<a class="sourceLine" id="cb1-6" title="6">  printf(<span class="st">&quot;Hello!</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
-<a class="sourceLine" id="cb1-7" title="7">  printf(<span class="st">&quot;Here I am: %p</span><span class="sc">\n</span><span class="st">&quot;</span>, printf);</a>
-<a class="sourceLine" id="cb1-8" title="8">  gets(buf);</a>
-<a class="sourceLine" id="cb1-9" title="9">}</a></code></pre></div>
-<p>So there’s nothing novel here for experienced pwners, but I feel like there is a shortage of tutorials that walk you through how to solve a textbook ROP the way you’d want to solve it in a CTF, so here is a writeup.</p>
+<p>Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with
+security professionals who probably have decades of experience and who
+follow security developments for a living or whatever, there remains a
+competition where scrubs like me can apply our extremely basic CTF
+skills and still feel kinda smart by earning points. Now that I’ve
+graduated and am no longer eligible, our team was pretty small and I
+didn’t dedicate the full weekend to the CTF, but it means I got to do
+the really easy challenges in the categories that I was the worst at, by
+which I mean pwn.</p>
+<p><code>baby_boi</code> is pretty much the simplest possible modern ROP
+(the modern security protections NX and ASLR are not artificially
+disabled, but you get everything you need to work around them). We even
+get source code.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">[])</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">char</span> buf<span class="op">[</span><span class="dv">32</span><span class="op">];</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">&quot;Hello!</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">&quot;Here I am: </span><span class="sc">%p\n</span><span class="st">&quot;</span><span class="op">,</span> printf<span class="op">);</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  gets<span class="op">(</span>buf<span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>So there’s nothing novel here for experienced pwners, but I feel like
+there is a shortage of tutorials that walk you through how to solve a
+textbook ROP the way you’d want to solve it in a CTF, so here is a
+writeup.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/baby-boi">→ read more<span class="offscreen"> baby_boi (A Textbook CTF ROP Tutorial)</span></a>
 	</footer>
@@ -123,11 +137,32 @@ Tag → x86
 	</header>
 	
 	<blockquote>
-<p>We’ve burrowed ourselves deep within the facility, gaining access to the programable logic controllers (PLC) that drive their nuclear enrichment centrifuges. Kinetic damage is necessary, we need you to neutralize these machines.</p>
-<p>You can access this challenge at <a href="https://wargames.ret2.systems/csaw_2018_plc_challenge">https://wargames.ret2.systems/csaw_2018_plc_challenge</a></p>
+<p>We’ve burrowed ourselves deep within the facility, gaining access to
+the programable logic controllers (PLC) that drive their nuclear
+enrichment centrifuges. Kinetic damage is necessary, we need you to
+neutralize these machines.</p>
+<p>You can access this challenge at <a
+href="https://wargames.ret2.systems/csaw_2018_plc_challenge">https://wargames.ret2.systems/csaw_2018_plc_challenge</a></p>
 </blockquote>
-<p>A much belated post. This is a pwn challenge on a custom online wargaming platform. We are provided with the assembly of what’s ostensibly a programmable logic controller (PLC) for a centrifuge in a nuclear reactor. The challenge looks like it’s still up, so you can take a look and follow along.</p>
-<p>This was the first <a href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a> (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like <code>until</code>, no pwntools utilities for packing/unpacking numbers, … no <code>one_gadget</code>), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use <code>gdb</code> (or fictionalized web knockoffs thereof).</p>
+<p>A much belated post. This is a pwn challenge on a custom online
+wargaming platform. We are provided with the assembly of what’s
+ostensibly a programmable logic controller (PLC) for a centrifuge in a
+nuclear reactor. The challenge looks like it’s still up, so you can take
+a look and follow along.</p>
+<p>This was the first <a
+href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a>
+(okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF,
+which I was pretty excited about. The web platform meant I had to worry
+less about setup, and even though some of the tools it provided were a
+little lacking (no gdb shortcuts like <code>until</code>, no pwntools
+utilities for packing/unpacking numbers, … no <code>one_gadget</code>),
+I think they ultimately made the whole thing a lot more educational for
+me, so kudos to the folks behind it. I’ve included a brief description
+of all the exploit techniques that lead up to ROP when we get to that,
+so hopefully this post will be useful even if you don’t know much about
+pwning binaries. The prerequisites would be some knowledge with x86
+assembly, how executables are loaded into memory, and how to use
+<code>gdb</code> (or fictionalized web knockoffs thereof).</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/plc">→ read more<span class="offscreen"> PLC</span></a>
 	</footer>
@@ -152,12 +187,24 @@ Tag → x86
 		</p>
 	</header>
 	
-	<p>Woo, first CTF writeup. I got the opportunity to participate in the 2017 CSAW CTF finals with Don’t Hack Alone.</p>
+	<p>Woo, first CTF writeup. I got the opportunity to participate in the
+2017 CSAW CTF finals with Don’t Hack Alone.</p>
 <blockquote>
-<p>Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.</p>
+<p>Dumped by my core, left to bleed out bytes on the heap, I was
+stripped of my dignity… The last thing I could do was to let other
+programs strip me of my null-bytes just so my memory could live on.</p>
 </blockquote>
-<p>We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.</p>
-<p>Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from <code><a href="https://github.com/betaveros/xxb">xxb</a></code> but <code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
+<p>We are provided with a core dump. Examining the flavor-text and the
+dump, we notice that the dump has no null bytes; we conjecture that they
+have been stripped out.</p>
+<p>Next, we examine the hexdump and look for any clues. There are a
+bunch of ASCII strings, but they look like normal debugging symbols. One
+thing that jumps out is that there are a couple fairly convincing
+regular striped patterns that become vertically aligned if you display
+20 bytes in each line. Once we do that, we notice the following section.
+(This dump is from <code><a
+href="https://github.com/betaveros/xxb">xxb</a></code> but
+<code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/thoroughly-stripped">→ read more<span class="offscreen"> Thoroughly Stripped</span></a>
 	</footer>
@@ -166,7 +213,7 @@ Tag → x86
 		</section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

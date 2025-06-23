@@ -65,6 +65,40 @@ Category → CS
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/js-safe-2" class="post-link">JS Safe 2.0</a></h3>
+		
+		<h4 class="post-subtitle">Google CTF 2018</h4>
+		
+		<p class="post-meta">
+		
+		2018-06-28
+		(2515 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<blockquote>
+<p>You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML
+file that can store secrets in the browser’s localStorage. This means
+that you won’t be able to extract any secret from it (the secrets are on
+the computer of the owner), but it looks like it was hand-crafted to
+work only with the password of the owner…</p>
+</blockquote>
+<p>The challenge consists of a fancy HTML file with a cute but
+irrelevant animated cube and some embedded JavaScript.</p>
+<p><img src="/img/js-safe-2-empty.png" alt="Screenshot of JS Safe 2.0 with a text box and a cube" /></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/js-safe-2">→ read more<span class="offscreen"> JS Safe 2.0</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/shellql" class="post-link">shellql</a></h3>
 		
 		<h4 class="post-subtitle">DEF CON CTF Qualifiers 2018</h4>
@@ -82,22 +116,40 @@ Category → CS
 		</p>
 	</header>
 	
-	<p>The hardest challenge of not very many I solved in this CTF. What a struggle! I have a long way to improve. It was pretty fun though. (I solved “You Already Know”, and got the essence of “ghettohackers: Throwback”, but didn’t guess the right flag format and believe I was asleep when they released the hint about it.)</p>
-<p>The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension <code>shellme.so</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode php"><code class="sourceCode php"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">$link</span> = <span class="fu">mysqli_connect</span><span class="ot">(</span><span class="st">&#39;localhost&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">);</span></a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">if</span> <span class="ot">(</span><span class="kw">isset</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]))</span></a>
-<a class="sourceLine" id="cb1-4" title="4">{</a>
-<a class="sourceLine" id="cb1-5" title="5">   <span class="kw">if</span> <span class="ot">(</span><span class="fu">strlen</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">])</span> &lt;= <span class="dv">1000</span><span class="ot">)</span></a>
-<a class="sourceLine" id="cb1-6" title="6">   {</a>
-<a class="sourceLine" id="cb1-7" title="7">      <span class="kw">echo</span> <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">];</span></a>
-<a class="sourceLine" id="cb1-8" title="8">      shellme<span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]);</span></a>
-<a class="sourceLine" id="cb1-9" title="9">   }</a>
-<a class="sourceLine" id="cb1-10" title="10">   <span class="kw">exit</span><span class="ot">();</span></a>
-<a class="sourceLine" id="cb1-11" title="11">}</a></code></pre></div>
-<p>The extension basically just executes <code>$_POST['shell']</code> as shellcode after a strict SECCOMP call, <a href="http://man7.org/linux/man-pages/man2/prctl.2.html">prctl</a>(<a href="https://elixir.bootlin.com/linux/v4.16.8/source/include/uapi/linux/prctl.h#L68">22</a>, <a href="https://elixir.bootlin.com/linux/v4.1/source/include/uapi/linux/seccomp.h#L10">1</a>). This means that we can only use the four syscalls <code>read</code>, <code>write</code>, and <code>exit</code>, and <code>sigreturn</code>, where the latter two aren’t particularly useful.</p>
+	<p>The hardest challenge of not very many I solved in this CTF. What a
+struggle! I have a long way to improve. It was pretty fun though. (I
+solved “You Already Know”, and got the essence of “ghettohackers:
+Throwback”, but didn’t guess the right flag format and believe I was
+asleep when they released the hint about it.)</p>
+<p>The challenge consists of a simple PHP script that opens a MySQL
+connection and then feeds our input into a custom PHP extension
+<code>shellme.so</code>.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">$link</span> <span class="op">=</span> <span class="fu">mysqli_connect</span>(<span class="st">&#39;localhost&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span>)<span class="ot">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="kw">isset</span>(<span class="va">$_POST</span>[<span class="st">&#39;shell&#39;</span>]))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">strlen</span>(<span class="va">$_POST</span>[<span class="st">&#39;shell&#39;</span>]) <span class="op">&lt;=</span> <span class="dv">1000</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>   {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">echo</span> <span class="va">$_POST</span>[<span class="st">&#39;shell&#39;</span>]<span class="ot">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      shellme(<span class="va">$_POST</span>[<span class="st">&#39;shell&#39;</span>])<span class="ot">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>   }</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>   <span class="cf">exit</span>()<span class="ot">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The extension basically just executes <code>$_POST['shell']</code> as
+shellcode after a strict SECCOMP call, <a
+href="http://man7.org/linux/man-pages/man2/prctl.2.html">prctl</a>(<a
+href="https://elixir.bootlin.com/linux/v4.16.8/source/include/uapi/linux/prctl.h#L68">22</a>,
+<a
+href="https://elixir.bootlin.com/linux/v4.1/source/include/uapi/linux/seccomp.h#L10">1</a>).
+This means that we can only use the four syscalls <code>read</code>,
+<code>write</code>, and <code>exit</code>, and <code>sigreturn</code>,
+where the latter two aren’t particularly useful.</p>
 <figure>
-<img src="/img/shell_this.png" alt="Disassembled innermost function of interest in shellme.so" /><figcaption>Disassembled innermost function of interest in <code>shellme.so</code></figcaption>
+<img src="/img/shell_this.png"
+alt="Disassembled innermost function of interest in shellme.so" />
+<figcaption aria-hidden="true">Disassembled innermost function of
+interest in <code>shellme.so</code></figcaption>
 </figure>
 <p>The goal is to read the flag from the open MySQL connection.</p>
 	<footer class="post-footer">
@@ -124,13 +176,34 @@ Category → CS
 		</p>
 	</header>
 	
-	<p>We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called <em>Wolf</em>. Concretely, every type in Wolf’s type system has an associated <em>secrecy</em>: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.</p>
-<p>Of course, this is a CTF, so the challenge is all about breaking the theoretical guarantees of the type system. When we submit code, it’s evaluated in a context with a private integer variable <code>flag</code>; our code is typechecked, executed, and printed, but only if its type is public. The goal is to break the type system and write code that produces a public value that depends on <code>flag</code>, so that we can exfiltrate <code>flag</code> itself.</p>
-<p>In all, there are three progressively harder Wolf problems, named Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the flag of the challenge before it, so that you need to solve them in order (unless you can somehow blindly exploit servers running SML programs).</p>
+	<p>We are presented with a big zip file of SML code, which implements an
+interpreter for a small ML-like language with a form of taint analysis
+in its type checker, called <em>Wolf</em>. Concretely, every type in
+Wolf’s type system has an associated <em>secrecy</em>: it is either
+“private” or “public”, and in theory, the type system makes it
+impossible to do any computation on private data to get a public
+result.</p>
+<p>Of course, this is a CTF, so the challenge is all about breaking the
+theoretical guarantees of the type system. When we submit code, it’s
+evaluated in a context with a private integer variable
+<code>flag</code>; our code is typechecked, executed, and printed, but
+only if its type is public. The goal is to break the type system and
+write code that produces a public value that depends on
+<code>flag</code>, so that we can exfiltrate <code>flag</code>
+itself.</p>
+<p>In all, there are three progressively harder Wolf problems, named
+Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the
+flag of the challenge before it, so that you need to solve them in order
+(unless you can somehow blindly exploit servers running SML
+programs).</p>
 <h3 id="wolf-overview">Wolf Overview</h3>
-<p>Let’s first go over the Wolf syntax and semantics. (There are small differences between the three problems, but they’re syntactically identical and only semantically differ in cases that we’ll naturally get to.) The <code>examples</code> folder has some examples of valid code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">let</span> x = (<span class="dv">5</span> :&gt; <span class="kw">private</span> <span class="dt">int</span>) <span class="kw">in</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="dv">6</span></a></code></pre></div>
+<p>Let’s first go over the Wolf syntax and semantics. (There are small
+differences between the three problems, but they’re syntactically
+identical and only semantically differ in cases that we’ll naturally get
+to.) The <code>examples</code> folder has some examples of valid
+code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ml"><code class="sourceCode ocaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> x = (<span class="dv">5</span> :&gt; <span class="kw">private</span> <span class="dt">int</span>) <span class="kw">in</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span></span></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/doggo">→ read more<span class="offscreen"> Pupper/Doggo</span></a>
 	</footer>
@@ -155,10 +228,19 @@ Category → CS
 		</p>
 	</header>
 	
-	<p>This challenge is a video of somebody’s messy desk, with what is apparently the audio from a <a href="https://www.youtube.com/watch?v=WwnI0RS6J5A">Futurama clip</a>. The desk is indeed extremely messy and full of things that aren’t particularly useful for us, but close examination reveals a QR code reflected in the globe in the middle.</p>
-<p>The challenge is all about getting that QR code. After trying our best to clean up the image, we ended up with this:</p>
+	<p>This challenge is a video of somebody’s messy desk, with what is
+apparently the audio from a <a
+href="https://www.youtube.com/watch?v=WwnI0RS6J5A">Futurama clip</a>.
+The desk is indeed extremely messy and full of things that aren’t
+particularly useful for us, but close examination reveals a QR code
+reflected in the globe in the middle.</p>
+<p>The challenge is all about getting that QR code. After trying our
+best to clean up the image, we ended up with this:</p>
 <figure>
-<img src="/img/messy-qr.png" alt="Maximally enhanced image of the QR code" /><figcaption>Maximally enhanced image of the QR code</figcaption>
+<img src="/img/messy-qr.png"
+alt="Maximally enhanced image of the QR code" />
+<figcaption aria-hidden="true">Maximally enhanced image of the QR
+code</figcaption>
 </figure>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/messy-desk">→ read more<span class="offscreen"> Messy Desk</span></a>
@@ -184,12 +266,24 @@ Category → CS
 		</p>
 	</header>
 	
-	<p>Woo, first CTF writeup. I got the opportunity to participate in the 2017 CSAW CTF finals with Don’t Hack Alone.</p>
+	<p>Woo, first CTF writeup. I got the opportunity to participate in the
+2017 CSAW CTF finals with Don’t Hack Alone.</p>
 <blockquote>
-<p>Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.</p>
+<p>Dumped by my core, left to bleed out bytes on the heap, I was
+stripped of my dignity… The last thing I could do was to let other
+programs strip me of my null-bytes just so my memory could live on.</p>
 </blockquote>
-<p>We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.</p>
-<p>Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from <code><a href="https://github.com/betaveros/xxb">xxb</a></code> but <code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
+<p>We are provided with a core dump. Examining the flavor-text and the
+dump, we notice that the dump has no null bytes; we conjecture that they
+have been stripped out.</p>
+<p>Next, we examine the hexdump and look for any clues. There are a
+bunch of ASCII strings, but they look like normal debugging symbols. One
+thing that jumps out is that there are a couple fairly convincing
+regular striped patterns that become vertically aligned if you display
+20 bytes in each line. Once we do that, we notice the following section.
+(This dump is from <code><a
+href="https://github.com/betaveros/xxb">xxb</a></code> but
+<code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/thoroughly-stripped">→ read more<span class="offscreen"> Thoroughly Stripped</span></a>
 	</footer>
@@ -215,7 +309,13 @@ Category → CS
 	</header>
 	
 	<p>(Okay, this post is backdated.)</p>
-<p>Disassembling the executable produces a huge amount of code. There are some basic obfuscations like a lot of trivial identity functions nested in each other, and a few functions that wrap around identity functions but just add some constant multiple of 16. Most of the meat is in one very large function, though. If you disassemble this function with IDA, you see a lot of variable initializations and then a lot of interesting loops that are quite similar:</p>
+<p>Disassembling the executable produces a huge amount of code. There
+are some basic obfuscations like a lot of trivial identity functions
+nested in each other, and a few functions that wrap around identity
+functions but just add some constant multiple of 16. Most of the meat is
+in one very large function, though. If you disassemble this function
+with IDA, you see a lot of variable initializations and then a lot of
+interesting loops that are quite similar:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/sakura">→ read more<span class="offscreen"> Sakura</span></a>
 	</footer>
@@ -239,7 +339,10 @@ Category → CS
 	</header>
 	
 	<p><code>--... ---.. ....- ..... ..--- ----- ....- ....- ...-- -.... ...-- -.... ...-- . ....- ....- ..--- ----- ....- ..... ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -.... ....- ....- ..--- ----- ...-- ..-. ....- ----- ..--- ----- ...-- ..--- ...-- ..-. ....- ..... ...-- .- ...-- ..... ....- ----- ....- ..... ...-- -.... ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ...-- ..-. ...-- ---.. ....- ....- ....- ..... ..--- ----- ...-- -.. ...-- .- ...-- -.-. ...-- -.... ..--- ----- ...-- --... ...-- .- ...-- ..-. ...-- ..... ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ....- ....- ....- ----- ...-- . ...-- -.... ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- ....- ....- ----- ....- ----- ...-- -.. ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ....- ---.. ...-- ..-. ..... -.-. ....- ..... ....- ----- ..... -.-. ...-- -.... ...-- ..--- ....- ...-- ....- ..... ...-- ----. ..... -... ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- .- ....- ..... ..... -..</code></p>
-<p><code>..--- ..... ....- ----- ...-- ..... ...-- ..--- ....- .- ..--- ----- --... ---.. ..--- ----- ...-- ..... ...-- .- ...-- ..... ..--- ----- ...-- ..--- ..--- ----- ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- --... ---.. ..--- ----- ....- ---.. ...-- ..--- ...-- ..-. ....- ..... ...-- -.... ...-- ..... ..--- ----- ....- ..... ....- ----- ..--- ----- ...-- ..... ....- ----- ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ..--- ----- ...-- -.. ....- ----- ...-- ..-. ...-- ---.. ..--- ----- ....- ..... ...-- .- ...-- . ...-- -.... -.... ----. ..--- ----- --... ---.. ..--- ----- ...-- ....- ....- ----- ...-- . ....- .---- ...-- .- ...-- -.. ...-- -.... ...-- ..... ..--- -----</code> <a href="https://github.com/betaveros/bcodex"><code>...-- ...-- ...-- ....- ....- ----- ...-- ..... ...-- -.... ....- ----.</code></a> <code>..--- ----- ...-- --... ....- ...-- ....- ----- ...-- . ..--- ----- --... --... ...-- ..--- ....- ....- ...-- -.-. ...-- -.... ...-- -.. ...-- -.. ..--- ----- ....- ..... ....- ----- ..--- ----- --... ----. ...-- ..--- ....- --... ...-- ..--- ..--- ....- ...-- ....- ....- ...-- ...-- .- ....- .---- ....- ..... ..--- ----- ....- ....- ....- ----- ..--- ----- ...-- .- ....- ..... ..--- ----- ...-- ....- ....- ----- ....- -.... ...-- -.. ...-- ..... ..--- ----- ....- ...-- ....- -.... ...-- ..-. ..--- ----- ...-- .- ...-- ..-. ..--- ----- ...-- ..--- ...-- ..-. ....- .- ..--- ----- ...-- . ....- ----- ...-- ..... ...-- -.... ....- ...-- ...-- ..-. ..--- ----- ...-- ...-- ....- ...-- ....- ----- ....- ---.. ....- ....- ...-- -.... ....- ...-- ..... -.. ..--- -----</code> <a href="http://betaveros.github.io/bcodex/"><code>..--- .- ....- ----- ....- -.... ..--- ----- ...-- ....- ...-- ..--- ...-- ..-. ..--- ----- ....- ..... ....- ...-- ....- .- ..--- ----- ...-- .- ....- ..... ..--- ----- ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -----</code></a></p>
+<p><code>..--- ..... ....- ----- ...-- ..... ...-- ..--- ....- .- ..--- ----- --... ---.. ..--- ----- ...-- ..... ...-- .- ...-- ..... ..--- ----- ...-- ..--- ..--- ----- ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- --... ---.. ..--- ----- ....- ---.. ...-- ..--- ...-- ..-. ....- ..... ...-- -.... ...-- ..... ..--- ----- ....- ..... ....- ----- ..--- ----- ...-- ..... ....- ----- ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ..--- ----- ...-- -.. ....- ----- ...-- ..-. ...-- ---.. ..--- ----- ....- ..... ...-- .- ...-- . ...-- -.... -.... ----. ..--- ----- --... ---.. ..--- ----- ...-- ....- ....- ----- ...-- . ....- .---- ...-- .- ...-- -.. ...-- -.... ...-- ..... ..--- -----</code>
+<a href="https://github.com/betaveros/bcodex"><code>...-- ...-- ...-- ....- ....- ----- ...-- ..... ...-- -.... ....- ----.</code></a>
+<code>..--- ----- ...-- --... ....- ...-- ....- ----- ...-- . ..--- ----- --... --... ...-- ..--- ....- ....- ...-- -.-. ...-- -.... ...-- -.. ...-- -.. ..--- ----- ....- ..... ....- ----- ..--- ----- --... ----. ...-- ..--- ....- --... ...-- ..--- ..--- ....- ...-- ....- ....- ...-- ...-- .- ....- .---- ....- ..... ..--- ----- ....- ....- ....- ----- ..--- ----- ...-- .- ....- ..... ..--- ----- ...-- ....- ....- ----- ....- -.... ...-- -.. ...-- ..... ..--- ----- ....- ...-- ....- -.... ...-- ..-. ..--- ----- ...-- .- ...-- ..-. ..--- ----- ...-- ..--- ...-- ..-. ....- .- ..--- ----- ...-- . ....- ----- ...-- ..... ...-- -.... ....- ...-- ...-- ..-. ..--- ----- ...-- ...-- ....- ...-- ....- ----- ....- ---.. ....- ....- ...-- -.... ....- ...-- ..... -.. ..--- -----</code>
+<a href="http://betaveros.github.io/bcodex/"><code>..--- .- ....- ----- ....- -.... ..--- ----- ...-- ....- ...-- ..--- ...-- ..-. ..--- ----- ....- ..... ....- ...-- ....- .- ..--- ----- ...-- .- ....- ..... ..--- ----- ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -----</code></a></p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/bcodex">→ read more<span class="offscreen"> 020315040524</span></a>
 	</footer>
@@ -262,30 +365,62 @@ Category → CS
 		</p>
 	</header>
 	
-	<p>Did I say “fun”? That was short for function calls. Which are fun too, admittedly. Blah, I always go to such lengths to come up with snappy yet justified post titles and end up achieving neither.</p>
+	<p>Did I say “fun”? That was short for function calls. Which are fun
+too, admittedly. Blah, I always go to such lengths to come up with
+snappy yet justified post titles and end up achieving neither.</p>
 <p>One more complimentary breakfast later:</p>
 <p>This is it.</p>
-<p>Google Code Jam World Finals. <a href="/img/nametag.jpg"><img src="/img/nametag.jpg?w=170" alt="[Google Code Jam 2015 name tag with my name and handle and country]" width="170" height="300" class="aligncenter size-medium wp-image-3374" /></a> Let me take a moment to reflect. Seriously. I do not know how I made it this far this year. I guess I might be a top-500-ish competitive programmer globally, maybe even top-150-ish, but definitely not top-25-ish. And <a href="https://code.google.com/codejam/contest/4254486/dashboard#s=p3">Log Set</a>, the hard problem that got me through Round 3, doesn’t seem like it plays to my forte particularly either. It’s a bit mathy, but the math bits aren’t the hard part; I think it’s largely implementation, with one psychological hurdle where you have to realize that, because of how few distinct integers there are in S′, you can efficiently solve the subset-sum instances you need to produce the lexicographically earliest answer. I’m actually kind of impressed I got that. It seems like the sort of hurdle I usually get stuck on. How did this happen?</p>
-<p>Maybe randomness. Maybe I was just particularly clear-minded during the round and wrote less buggy code than usual, because I had no expectation of making it whatsoever and so could look at the contest detachedly (until midway through the contest I accidentally noticed that my rank was under 20, and even then I tried very very hard not to think about it, and it kind of worked).</p>
+<p>Google Code Jam World Finals.
+<a href="/img/nametag.jpg"><img src="/img/nametag.jpg?w=170" alt="[Google Code Jam 2015 name tag with my name and handle and country]" width="170" height="300" class="aligncenter size-medium wp-image-3374" /></a>
+Let me take a moment to reflect. Seriously. I do not know how I made it
+this far this year. I guess I might be a top-500-ish competitive
+programmer globally, maybe even top-150-ish, but definitely not
+top-25-ish. And
+<a href="https://code.google.com/codejam/contest/4254486/dashboard#s=p3">Log
+Set</a>, the hard problem that got me through Round 3, doesn’t seem like
+it plays to my forte particularly either. It’s a bit mathy, but the math
+bits aren’t the hard part; I think it’s largely implementation, with one
+psychological hurdle where you have to realize that, because of how few
+distinct integers there are in S′, you can efficiently solve the
+subset-sum instances you need to produce the lexicographically earliest
+answer. I’m actually kind of impressed I got that. It seems like the
+sort of hurdle I usually get stuck on. How did this happen?</p>
+<p>Maybe randomness. Maybe I was just particularly clear-minded during
+the round and wrote less buggy code than usual, because I had no
+expectation of making it whatsoever and so could look at the contest
+detachedly (until midway through the contest I accidentally noticed that
+my rank was under 20, and even then I tried very very hard not to think
+about it, and it kind of worked).</p>
 <p>But it happened, and now I’m here. Time to roll.</p>
-<p>In some emails much earlier in the Code Jam logistical process, Google had asked for “requests for changes and/or additions” to the software that would be installed on our competition computers, and I had sent them a long list:</p>
+<p>In some emails much earlier in the Code Jam logistical process,
+Google had asked for “requests for changes and/or additions” to the
+software that would be installed on our competition computers, and I had
+sent them a long list:</p>
 <blockquote>
-<p>Hi,<br /> Here are some things I’d like if they were installed, in decreasing order of priority:</p>
+<p>Hi,<br /> Here are some things I’d like if they were installed, in
+decreasing order of priority:</p>
 <ol>
 <li>
 The Vim plugin syntastic ( https://github.com/scrooloose/syntastic )
 </li>
 <li>
-a Haskell compiler (probably Haskell Platform 2014.2.0.0 https://www.haskell.org/platform/ even though it’s a year old)
+a Haskell compiler (probably Haskell Platform 2014.2.0.0
+https://www.haskell.org/platform/ even though it’s a year old)
 </li>
 <li>
-the Haskell package hdevtools ( https://hackage.haskell.org/package/hdevtools ) so that the above two may be integrated
+the Haskell package hdevtools (
+https://hackage.haskell.org/package/hdevtools ) so that the above two
+may be integrated
 </li>
 <li>
-(I don’t have enough Linux experience to name a specific thing to install, but command-line utilities that are the equivalent of pbcopy and pbpaste on Mac OS X, which allow me to redirect text into or out of the clipboard from the command line easily)
+(I don’t have enough Linux experience to name a specific thing to
+install, but command-line utilities that are the equivalent of pbcopy
+and pbpaste on Mac OS X, which allow me to redirect text into or out of
+the clipboard from the command line easily)
 </li>
 </ol>
-Of course, this is my first Code Jam and I don’t know how reasonable these requests are. Any nontrivial subset would be appreciated.
+Of course, this is my first Code Jam and I don’t know how reasonable
+these requests are. Any nontrivial subset would be appreciated.
 </blockquote>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/jam">→ read more<span class="offscreen"> Jam-Packed Fun and Games</span></a>
@@ -332,38 +467,22 @@ Of course, this is my first Code Jam and I don’t know how reasonable these req
 		</p>
 	</header>
 	
-	<p><strong>tl;dr: anybody want to add me on Line or tell/remind me about other phone chat apps? betaveros as always.</strong></p>
+	<p><strong>tl;dr: anybody want to add me on Line or tell/remind me about
+other phone chat apps? betaveros as always.</strong></p>
 <p>Wow, talk about uninspired post titles.</p>
-<p>I got a new phone today. Or, well, it’s second-hand, actually. I try to make electronics last a long time, but I think this was justified given the state of my last phone’s screen:</p>
+<p>I got a new phone today. Or, well, it’s second-hand, actually. I try
+to make electronics last a long time, but I think this was justified
+given the state of my last phone’s screen:</p>
 <p><a href="/img/screen.jpg"><img src="/img/screen.jpg?w=269" alt="old phone screen, with a visibly malfunctioning black patch" width="269" height="300" class="aligncenter size-medium wp-image-3142" /></a></p>
-<p>Besides, I’m going off to college and all. Anyway, the phone is pretty cool. It’s a slick shade of red, it came with a cover and everything, and it has one of those fancy 3x3-grid locks. How secure are those again?</p>
-<p>Well, we could just <a href="https://stackoverflow.com/questions/6979524/android-lock-password-combinations">find the answer on StackOverflow</a>, but that’s boring.</p>
+<p>Besides, I’m going off to college and all. Anyway, the phone is
+pretty cool. It’s a slick shade of red, it came with a cover and
+everything, and it has one of those fancy 3x3-grid locks. How secure are
+those again?</p>
+<p>Well, we could just
+<a href="https://stackoverflow.com/questions/6979524/android-lock-password-combinations">find
+the answer on StackOverflow</a>, but that’s boring.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/phone">→ read more<span class="offscreen"> Phone</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/chi-banner" class="post-link">Chi Banner</a></h3>
-		
-		<p class="post-meta">
-		
-		2015-07-14
-		(318 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	Okay, I think I’m figuring this out. When I make a filler post for the streak, it should be an unabashed filler post, so I can accumulate some of the blogging time I find each day to work on a serious post (and for doing the other important stuff I should be doing!) instead of wasting it right away.
-Life. I’m programming something for Dad involving a parser using Jison, and one of the tasks involved stuffing a custom lexer into the parser.
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/chi-banner">→ read more<span class="offscreen"> Chi Banner</span></a>
 	</footer>
 </article>
 
@@ -373,7 +492,7 @@ Life. I’m programming something for Dad involving a parser using Jison, and on
 	</footer></section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

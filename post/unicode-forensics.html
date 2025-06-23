@@ -69,44 +69,103 @@ I’ve blurred the messed-up file names because I’m not convinced it’s impos
 		
 		</p>
 	</header>
-	<article><p>What do you do when you get a bunch of files like this from a zipfile?</p>
+	<article><p>What do you do when you get a bunch of files like this from a
+zipfile?</p>
 <figure>
 <a href="/img/mojibake.png"><img src="/img/mojibake.png" alt="I&#039;ve blurred the messed-up file names because I&#039;m not sure it&#039;s impossible to reconstruct the Chinese names of people from them and I&#039;d rather err towards being paranoid about privacy. Except for the one file name whose author&#039;s identity I&#039;m OK with disclosing." /></a>
 <figcaption>
-I’ve blurred the messed-up file names because I’m not convinced it’s impossible to reconstruct the Chinese names of people from them and I’d rather err towards being paranoid about privacy. Except for the one file name whose author’s identity I’m OK with disclosing.
+I’ve blurred the messed-up file names because I’m not convinced it’s
+impossible to reconstruct the Chinese names of people from them and I’d
+rather err towards being paranoid about privacy. Except for the one file
+name whose author’s identity I’m OK with disclosing.
 </figcaption>
 </figure>
-<p>Back story: I have been tasked with collecting everybody’s Chinese assignments for this semester. I didn’t even do that part yet (I really should); first the girl who handled last semester’s assignments had to pass on the files she collected to me, and I unzipped the attachment to reveal these file names.</p>
-<p>Well, I thought, no big deal, I <a href="http://www.joelonsoftware.com/articles/Unicode.html">understand Unicode (somewhat)</a>, I’ll just do something like decode them as latin1 and re-encode them as UTF-8, right? Or maybe Big5? In fact, maybe <a href="https://github.com/LuminosoInsight/python-ftfy"><code>python-ftfy</code></a> will just automagically fix it for me; I’ve been waiting for a chance to use that, like the dozens of other things on my GitHub star list…</p>
+<p>Back story: I have been tasked with collecting everybody’s Chinese
+assignments for this semester. I didn’t even do that part yet (I really
+should); first the girl who handled last semester’s assignments had to
+pass on the files she collected to me, and I unzipped the attachment to
+reveal these file names.</p>
+<p>Well, I thought, no big deal, I
+<a href="http://www.joelonsoftware.com/articles/Unicode.html">understand
+Unicode (somewhat)</a>, I’ll just do something like decode them as
+latin1 and re-encode them as UTF-8, right? Or maybe Big5? In fact, maybe
+<a href="https://github.com/LuminosoInsight/python-ftfy"><code>python-ftfy</code></a>
+will just automagically fix it for me; I’ve been waiting for a chance to
+use that, like the dozens of other things on my GitHub star list…</p>
 <p>I wish.</p>
-<p>ftfy did nothing to the text. Also, UTF-8 was not high on my list because the filenames strongly suggested a double-byte encoding. By eyeballing the filenames and comparing them to the organized naming scheme of some other files that had, thankfully, survived the .zip intact, I noted that every Chinese character had replaced with two characters, while underscores had survived unscathed. It was a simple substitution cipher with a lot of crib text available. So that rules out the most common UTF-8, but it gives me a lot of information, so this can’t be hard, right?</p>
-<p>One of the files that I knew belonged to me came out as such, according to Python’s <code>os.listdir</code>:</p>
+<p>ftfy did nothing to the text. Also, UTF-8 was not high on my list
+because the filenames strongly suggested a double-byte encoding. By
+eyeballing the filenames and comparing them to the organized naming
+scheme of some other files that had, thankfully, survived the .zip
+intact, I noted that every Chinese character had replaced with two
+characters, while underscores had survived unscathed. It was a simple
+substitution cipher with a lot of crib text available. So that rules out
+the most common UTF-8, but it gives me a lot of information, so this
+can’t be hard, right?</p>
+<p>One of the files that I knew belonged to me came out as such,
+according to Python’s <code>os.listdir</code>:</p>
 <p><code>'i\xcc\x81\xc2\xaci\xcc\x82a\xcc\x8aa\xcc\x82\xe2\x88\x82_e\xcc\x80Wn\xcc\x83n.pdf'</code></p>
 <p>After <code>codecs.decode(_, 'utf_8')</code> we get:</p>
-<p><code>u'i\u0301\xaci\u0302a\u030aa\u0302\u2202_e\u0300Wn\u0303n.pdf'</code> Attempt at UTF-8 rendition: <code>í¬îåâ∂_èWñn.pdf</code></p>
-<p>That’s really weird; those codepoints are kinda large, and there’s a literal <code>i</code> at the start, and it doesn’t look at all like the two-characters-for-one pattern we noticed from staring at the plaintext. Oh, they’re using combining characters. How do we fix that?</p>
-<p>Fumble, mumble, search. Oh, I want <code>unicodedata.normalize('NFC', _)</code>.</p>
-<p><code>u'\xed\xac\xee\xe5\xe2\u2202_\xe8W\xf1n.pdf'</code> Attempt at UTF-8 rendition: <code>í¬îåâ∂_èWñn.pdf</code></p>
-<p>Although the byte sequences are totally different, they look the same, which is the point. <em>holds up fist</em> This… is… UNICODE!!!</p>
-<p>Anyway, the code points in the normalized version make more sense. Except for that conspicuous <code>\u2202</code> or <code>∂</code>, of course. Indeed, although it looks promising, if we now try e.g. <code>codecs.encode(_, 'windows-1252')</code> we get,</p>
+<p><code>u'i\u0301\xaci\u0302a\u030aa\u0302\u2202_e\u0300Wn\u0303n.pdf'</code>
+Attempt at UTF-8 rendition: <code>í¬îåâ∂_èWñn.pdf</code></p>
+<p>That’s really weird; those codepoints are kinda large, and there’s a
+literal <code>i</code> at the start, and it doesn’t look at all like the
+two-characters-for-one pattern we noticed from staring at the plaintext.
+Oh, they’re using combining characters. How do we fix that?</p>
+<p>Fumble, mumble, search. Oh, I want
+<code>unicodedata.normalize('NFC', _)</code>.</p>
+<p><code>u'\xed\xac\xee\xe5\xe2\u2202_\xe8W\xf1n.pdf'</code> Attempt at
+UTF-8 rendition: <code>í¬îåâ∂_èWñn.pdf</code></p>
+<p>Although the byte sequences are totally different, they look the
+same, which is the point. <em>holds up fist</em> This… is…
+UNICODE!!!</p>
+<p>Anyway, the code points in the normalized version make more sense.
+Except for that conspicuous <code>\u2202</code> or <code>∂</code>, of
+course. Indeed, although it looks promising, if we now try
+e.g. <code>codecs.encode(_, 'windows-1252')</code> we get,</p>
 <p><code>UnicodeEncodeError: 'charmap' codec can't encode character u'\u2202' in position 5: character maps to</code></p>
-<p>One can get around this by passing a third argument to <code>encode</code> to make it ignore or replace the invalid parts, but the result of the first couple of codepoints, after further pseudomagical decoding and encoding, is still nonsense. Alas.</p>
-<p>I continued to try passing the filenames in and out of <code>codecs.encode</code> and <code>codecs.decode</code> with various combinations of <code>utf_8</code> and <code>latin_1</code> and <code>big5</code> and <code>windows-1252</code>, to no avail.</p>
-<p>Then I did other stuff. Homework, college forms, writing a bilingual graduation song, talking to other dragons about 1994 video games, and did I mention I started taking driving lessons now? Yeah. That sort of thing.</p>
-<p>Around that last thing, I asked the previous caretaker and learned that the computer she collected these files had a Japanese locale. So I added <code>shift_jis</code> and <code>euc_jp</code> to the mix, but still nothing.</p>
-<p>I later tried unzipping it with <code>unzip</code> from the command-line — the results were even worse — as well as unzipping it from a Windows computer — even worse than the command line.</p>
+<p>One can get around this by passing a third argument to
+<code>encode</code> to make it ignore or replace the invalid parts, but
+the result of the first couple of codepoints, after further
+pseudomagical decoding and encoding, is still nonsense. Alas.</p>
+<p>I continued to try passing the filenames in and out of
+<code>codecs.encode</code> and <code>codecs.decode</code> with various
+combinations of <code>utf_8</code> and <code>latin_1</code> and
+<code>big5</code> and <code>windows-1252</code>, to no avail.</p>
+<p>Then I did other stuff. Homework, college forms, writing a bilingual
+graduation song, talking to other dragons about 1994 video games, and
+did I mention I started taking driving lessons now? Yeah. That sort of
+thing.</p>
+<p>Around that last thing, I asked the previous caretaker and learned
+that the computer she collected these files had a Japanese locale. So I
+added <code>shift_jis</code> and <code>euc_jp</code> to the mix, but
+still nothing.</p>
+<p>I later tried unzipping it with <code>unzip</code> from the
+command-line — the results were even worse — as well as unzipping it
+from a Windows computer — even worse than the command line.</p>
 <p>So the problem remained, until…</p>
 <hr />
-<p>The resolution is very anticlimactic; it took me half a week to think of getting at the files programmatically straight from the zip archive, instead of unzipping first. Python spat out half the file names from the zip file as <code>unicode</code> and the other half as <code>str</code>. From there it was easy guessing.</p>
+<p>The resolution is very anticlimactic; it took me half a week to think
+of getting at the files programmatically straight from the zip archive,
+instead of unzipping first. Python spat out half the file names from the
+zip file as <code>unicode</code> and the other half as <code>str</code>.
+From there it was easy guessing.</p>
 <script type="application/javascript" src="https://gist.github.com/betaveros/cea1a430266ae8f124c8.js"></script>
 
-<p>There were still three file names that failed, but they were easy to fix manually.</p>
-<p>I’m not sure why I eventually decided to blog about this anymore, honestly. Especially compared to my 12 other drafts. Oops.</p>
+<p>There were still three file names that failed, but they were easy to
+fix manually.</p>
+<p>I’m not sure why I eventually decided to blog about this anymore,
+honestly. Especially compared to my 12 other drafts. Oops.</p>
 <ins datetime="2015-05-18T23:23:41+00:00">
-ETA: I thought this script would be a one-trick pony but, amazingly, I ended up using it again the day after, this time with <code>Big5</code> after I copied some files to a Windows laptop, converted them to .pdf, and sent them back in a .zip.
+ETA: I thought this script would be a one-trick pony but, amazingly, I
+ended up using it again the day after, this time with <code>Big5</code>
+after I copied some files to a Windows laptop, converted them to .pdf,
+and sent them back in a .zip.
 </ins>
 <ins datetime="2015-05-24T13:42:17+00:00">
-ETA2: This script came in handy <em>again</em> after I copied a zip file to an Ubuntu desktop computer with an actual CD drive so I could burn everything to a disc!
+ETA2: This script came in handy <em>again</em> after I copied a zip file
+to an Ubuntu desktop computer with an actual CD drive so I could burn
+everything to a disc!
 </ins>
 </article>
 	<footer class="post-footer">
@@ -139,7 +198,7 @@ ETA2: This script came in handy <em>again</em> after I copied a zip file to an U
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

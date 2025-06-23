@@ -65,6 +65,53 @@ Category → CS
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/advent-rocket" class="post-link">Rocket Equation</a></h3>
+		
+		<h4 class="post-subtitle">Advent of Code 2019, Day 1</h4>
+		
+		<p class="post-meta">
+		
+		2019-12-01
+		(992 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>, <a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>It’s December, so it’s time for a lot of things, including <a
+href="https://adventofcode.com/">Advent of Code</a>. I will not be able
+to be as competitive as I was last year, and already lost a lot of
+points to a really silly mistake on day 1, but I’ll be playing when I
+can and <a
+href="https://github.com/betaveros/advent-of-code-golf-2019">golfing</a>
+the problems when I have time (so far: 7 + 14 bytes).</p>
+<p>As one might expect, <a
+href="https://adventofcode.com/2019/day/1">Day 1</a> is not too complex,
+but the second part can be analyzed to some mathematical depth and was
+discussed a bit on Reddit; plus, it occurred to me recently that I set
+up KaTeX on my blog but never used it, so I was looking for an excuse to
+write some equations anyway.</p>
+<p>The problem statement for part 2, in brief: We are tasked with
+calculating the total mass of fuel required to launch a rocket module of
+a given mass. For something of mass <span
+class="math inline">\(m\)</span>, one can compute the directly required
+mass of fuel by dividing <span class="math inline">\(m\)</span> by 3,
+rounding down, and subtracting 2; if the result is negative, it is taken
+to be 0 instead. However, the directly required fuel also requires fuel
+itself, calculated from its own mass by the same procedure, and that
+required fuel requires fuel based on its own mass, and so on until you
+reach fuel with 0 requirement.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/advent-rocket">→ read more<span class="offscreen"> Rocket Equation</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/callsite" class="post-link">callsite</a></h3>
 		
 		<h4 class="post-subtitle">CSAW CTF Qualifiers 2019</h4>
@@ -85,12 +132,14 @@ Category → CS
 	<blockquote>
 <p>Call me maybe? <code>nc rev.chal.csaw.io 1001</code></p>
 </blockquote>
-<p>A rev with a nasty binary. There are so many functions. I do not like this binary.</p>
+<p>A rev with a nasty binary. There are so many functions. I do not like
+this binary.</p>
 <figure>
 <a href="/img/callsite-gross.png"><img src="/img/callsite-gross.png" alt="Screenshot of IDA Pro on the callsite binary, with a lot of code and functions." /></a>
 </figure>
 <h3 id="static-analysis">Static Analysis</h3>
-<p>After staring at the sea of functions in IDA for a little bit, I gave up and tried dumb things instead.</p>
+<p>After staring at the sea of functions in IDA for a little bit, I gave
+up and tried dumb things instead.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/callsite">→ read more<span class="offscreen"> callsite</span></a>
 	</footer>
@@ -119,7 +168,8 @@ Category → CS
 <p>come get me</p>
 <p>http://web.chal.csaw.io:1003</p>
 </blockquote>
-<p>This was a web challenge with a few pages. The “User” page displayed some user information:</p>
+<p>This was a web challenge with a few pages. The “User” page displayed
+some user information:</p>
 <figure>
 <a href="/img/unagi-user.png"><img src="/img/unagi-user.png" alt="Screenshot of User page, transcribed below" /></a>
 </figure>
@@ -133,7 +183,9 @@ Email: bob@fakesite.com<br />
 Group: CSAW2019<br />
 Intro: Bob is cool too</p>
 </blockquote>
-<p>The “About” page simply told us, “Flag is located at /flag.txt, come get it”. The most interesting page was “Upload”, where we could view an example users XML file:</p>
+<p>The “About” page simply told us, “Flag is located at /flag.txt, come
+get it”. The most interesting page was “Upload”, where we could view an
+example users XML file:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/unagi">→ read more<span class="offscreen"> unagi</span></a>
 	</footer>
@@ -162,18 +214,32 @@ Intro: Bob is cool too</p>
 <p>Welcome to pwn.</p>
 <p><code>nc pwn.chal.csaw.io 1005</code></p>
 </blockquote>
-<p>Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with security professionals who probably have decades of experience and who follow security developments for a living or whatever, there remains a competition where scrubs like me can apply our extremely basic CTF skills and still feel kinda smart by earning points. Now that I’ve graduated and am no longer eligible, our team was pretty small and I didn’t dedicate the full weekend to the CTF, but it means I got to do the really easy challenges in the categories that I was the worst at, by which I mean pwn.</p>
-<p><code>baby_boi</code> is pretty much the simplest possible modern ROP (the modern security protections NX and ASLR are not artificially disabled, but you get everything you need to work around them). We even get source code.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" title="1"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv[]) {</a>
-<a class="sourceLine" id="cb1-5" title="5">  <span class="dt">char</span> buf[<span class="dv">32</span>];</a>
-<a class="sourceLine" id="cb1-6" title="6">  printf(<span class="st">&quot;Hello!</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
-<a class="sourceLine" id="cb1-7" title="7">  printf(<span class="st">&quot;Here I am: %p</span><span class="sc">\n</span><span class="st">&quot;</span>, printf);</a>
-<a class="sourceLine" id="cb1-8" title="8">  gets(buf);</a>
-<a class="sourceLine" id="cb1-9" title="9">}</a></code></pre></div>
-<p>So there’s nothing novel here for experienced pwners, but I feel like there is a shortage of tutorials that walk you through how to solve a textbook ROP the way you’d want to solve it in a CTF, so here is a writeup.</p>
+<p>Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with
+security professionals who probably have decades of experience and who
+follow security developments for a living or whatever, there remains a
+competition where scrubs like me can apply our extremely basic CTF
+skills and still feel kinda smart by earning points. Now that I’ve
+graduated and am no longer eligible, our team was pretty small and I
+didn’t dedicate the full weekend to the CTF, but it means I got to do
+the really easy challenges in the categories that I was the worst at, by
+which I mean pwn.</p>
+<p><code>baby_boi</code> is pretty much the simplest possible modern ROP
+(the modern security protections NX and ASLR are not artificially
+disabled, but you get everything you need to work around them). We even
+get source code.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">[])</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">char</span> buf<span class="op">[</span><span class="dv">32</span><span class="op">];</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">&quot;Hello!</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">&quot;Here I am: </span><span class="sc">%p\n</span><span class="st">&quot;</span><span class="op">,</span> printf<span class="op">);</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  gets<span class="op">(</span>buf<span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>So there’s nothing novel here for experienced pwners, but I feel like
+there is a shortage of tutorials that walk you through how to solve a
+textbook ROP the way you’d want to solve it in a CTF, so here is a
+writeup.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/baby-boi">→ read more<span class="offscreen"> baby_boi (A Textbook CTF ROP Tutorial)</span></a>
 	</footer>
@@ -198,13 +264,34 @@ Intro: Bob is cool too</p>
 		</p>
 	</header>
 	
-	<p>We interrupt the irregularly scheduled philosophical posts for some programming memes:</p>
-<p>Over the last few days, the Internet has divided itself over what the value of the expression 8÷2(2+2) should be. Some say it should be evaluated as (8÷2)×(2+2) = 16. Some say it should be evaluated as 8÷(2×(2+2)) = 1.</p>
-<p>At the risk of belaboring the obvious, the core dispute here is not really mathematical. There is not some sequence of mathematical operations that produces some number, where mathematicians disagree about what number it produces. Instead, this is a dispute about mathematical notation: what sequence of mathematical operations the expression corresponds to the way it’s written. Specifically, it is a dispute about whether multiplication written as juxtaposition (how “2” is written right next to “(2+2)”) has strictly higher precedence than division. It is closer to a linguistic or typographical dispute than a purely mathematical one, and the correct answer to the dispute is that whoever wrote the expression that way should learn to write math better.</p>
-<p>This debate is not even new. The internet had fun arguing over <a href="https://knowyourmeme.com/memes/48293">48÷2(9+3) and 6÷2(1+2)</a>, which are functionally identical ambiguous expressions, eight years ago. I don’t know why the debate is resurging now and why we still haven’t gotten tired of it.</p>
-<p>But life is short, so since we’re here anyway, let’s make some additional memes.</p>
+	<p>We interrupt the irregularly scheduled philosophical posts for some
+programming memes:</p>
+<p>Over the last few days, the Internet has divided itself over what the
+value of the expression 8÷2(2+2) should be. Some say it should be
+evaluated as (8÷2)×(2+2) = 16. Some say it should be evaluated as
+8÷(2×(2+2)) = 1.</p>
+<p>At the risk of belaboring the obvious, the core dispute here is not
+really mathematical. There is not some sequence of mathematical
+operations that produces some number, where mathematicians disagree
+about what number it produces. Instead, this is a dispute about
+mathematical notation: what sequence of mathematical operations the
+expression corresponds to the way it’s written. Specifically, it is a
+dispute about whether multiplication written as juxtaposition (how “2”
+is written right next to “(2+2)”) has strictly higher precedence than
+division. It is closer to a linguistic or typographical dispute than a
+purely mathematical one, and the correct answer to the dispute is that
+whoever wrote the expression that way should learn to write math
+better.</p>
+<p>This debate is not even new. The internet had fun arguing over <a
+href="https://knowyourmeme.com/memes/48293">48÷2(9+3) and 6÷2(1+2)</a>,
+which are functionally identical ambiguous expressions, eight years ago.
+I don’t know why the debate is resurging now and why we still haven’t
+gotten tired of it.</p>
+<p>But life is short, so since we’re here anyway, let’s make some
+additional memes.</p>
 <h3 id="asking-the-computer">Asking the computer</h3>
-<p>Some of my coworkers had the idea to ask some programming languages what the answer was. The results were underwhelming.</p>
+<p>Some of my coworkers had the idea to ask some programming languages
+what the answer was. The results were underwhelming.</p>
 <pre><code>$ python3
 Python 3.6.7 (default, Oct 22 2018, 11:32:17)
 [GCC 8.2.0] on linux
@@ -240,7 +327,22 @@ TypeError: &#39;int&#39; object is not callable</code></pre>
 	<pre><code>http://111.186.63.17/perf.data.gz
 
 Environment: Ubuntu 16.04+latex</code></pre>
-<p>In this challenge, we get a gzipped file called <code>perf.data</code> and a minimal description of an environment. Googling this reveals that <code>perf.data</code> is a record format of the <code>perf</code> tool, a Linux profiler. Installing <code>perf</code> allows us to read <code>perf.data</code> and see some pretty interactive tables of statistics in our terminal describing the profiling results, from which we can see some libraries and addresses being called, but they don’t reveal much about what’s going on. One hacky way to see more of the underlying data in a more human-readable way (and to see just how much of it there is) is <code>perf report -D</code>, which dumps the raw data in an ASCII format, but this is still not that useful. (One might hope that one could simply grep for the flag in this big text dump, but it’s nowhere to be seen.) Still, from this file, we can definitely read off all the exact library versions that the <code>perf record</code> was run against.</p>
+<p>In this challenge, we get a gzipped file called
+<code>perf.data</code> and a minimal description of an environment.
+Googling this reveals that <code>perf.data</code> is a record format of
+the <code>perf</code> tool, a Linux profiler. Installing
+<code>perf</code> allows us to read <code>perf.data</code> and see some
+pretty interactive tables of statistics in our terminal describing the
+profiling results, from which we can see some libraries and addresses
+being called, but they don’t reveal much about what’s going on. One
+hacky way to see more of the underlying data in a more human-readable
+way (and to see just how much of it there is) is
+<code>perf report -D</code>, which dumps the raw data in an ASCII
+format, but this is still not that useful. (One might hope that one
+could simply grep for the flag in this big text dump, but it’s nowhere
+to be seen.) Still, from this file, we can definitely read off all the
+exact library versions that the <code>perf record</code> was run
+against.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/refrain">→ read more<span class="offscreen"> refrain</span></a>
 	</footer>
@@ -263,9 +365,27 @@ Environment: Ubuntu 16.04+latex</code></pre>
 		</p>
 	</header>
 	
-	<p>A more accurate but less informative title for this post would be “How I wish React and Redux were explained to me”. Note that this does <em>not</em> imply that this method of explanation is suitable for anybody else. I suspect it won’t be for most people.</p>
-<p>I had to learn React and Redux the past summer for my internship at MemSQL, and there were hundreds of articles that explain React and Redux in addition to the (fine) built-in documentation, but none of them scratched the itch; I wanted to know what was going on completely, including some of the technical details and the philosophy I ought to be following, as well as efficiently. I did not need another explanation about how to think functionally, in JavaScript types or with immutable data. React’s chapter on <a href="https://reactjs.org/docs/conditional-rendering.html">Conditional Rendering</a>, for example, felt so inefficient — I know what <code>if</code> statements and conditional expressions are, and I know how to refactor complicated subexpressions into variables…</p>
-<p>So here’s the guide I wish I had. I think. It’s been months since I started it (as usual, for posts on this blog) and it is probably incomplete. However, I haven’t written React/Redux deeply in a while, so I didn’t have much motivation to continue to investigate the incomplete bits; and the perfect is the enemy of the good, so here it is.</p>
+	<p>A more accurate but less informative title for this post would be
+“How I wish React and Redux were explained to me”. Note that this does
+<em>not</em> imply that this method of explanation is suitable for
+anybody else. I suspect it won’t be for most people.</p>
+<p>I had to learn React and Redux the past summer for my internship at
+MemSQL, and there were hundreds of articles that explain React and Redux
+in addition to the (fine) built-in documentation, but none of them
+scratched the itch; I wanted to know what was going on completely,
+including some of the technical details and the philosophy I ought to be
+following, as well as efficiently. I did not need another explanation
+about how to think functionally, in JavaScript types or with immutable
+data. React’s chapter on <a
+href="https://reactjs.org/docs/conditional-rendering.html">Conditional
+Rendering</a>, for example, felt so inefficient — I know what
+<code>if</code> statements and conditional expressions are, and I know
+how to refactor complicated subexpressions into variables…</p>
+<p>So here’s the guide I wish I had. I think. It’s been months since I
+started it (as usual, for posts on this blog) and it is probably
+incomplete. However, I haven’t written React/Redux deeply in a while, so
+I didn’t have much motivation to continue to investigate the incomplete
+bits; and the perfect is the enemy of the good, so here it is.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/react-redux">→ read more<span class="offscreen"> React and Redux the Hard FP Way</span></a>
 	</footer>
@@ -291,11 +411,32 @@ Environment: Ubuntu 16.04+latex</code></pre>
 	</header>
 	
 	<blockquote>
-<p>We’ve burrowed ourselves deep within the facility, gaining access to the programable logic controllers (PLC) that drive their nuclear enrichment centrifuges. Kinetic damage is necessary, we need you to neutralize these machines.</p>
-<p>You can access this challenge at <a href="https://wargames.ret2.systems/csaw_2018_plc_challenge">https://wargames.ret2.systems/csaw_2018_plc_challenge</a></p>
+<p>We’ve burrowed ourselves deep within the facility, gaining access to
+the programable logic controllers (PLC) that drive their nuclear
+enrichment centrifuges. Kinetic damage is necessary, we need you to
+neutralize these machines.</p>
+<p>You can access this challenge at <a
+href="https://wargames.ret2.systems/csaw_2018_plc_challenge">https://wargames.ret2.systems/csaw_2018_plc_challenge</a></p>
 </blockquote>
-<p>A much belated post. This is a pwn challenge on a custom online wargaming platform. We are provided with the assembly of what’s ostensibly a programmable logic controller (PLC) for a centrifuge in a nuclear reactor. The challenge looks like it’s still up, so you can take a look and follow along.</p>
-<p>This was the first <a href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a> (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like <code>until</code>, no pwntools utilities for packing/unpacking numbers, … no <code>one_gadget</code>), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use <code>gdb</code> (or fictionalized web knockoffs thereof).</p>
+<p>A much belated post. This is a pwn challenge on a custom online
+wargaming platform. We are provided with the assembly of what’s
+ostensibly a programmable logic controller (PLC) for a centrifuge in a
+nuclear reactor. The challenge looks like it’s still up, so you can take
+a look and follow along.</p>
+<p>This was the first <a
+href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a>
+(okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF,
+which I was pretty excited about. The web platform meant I had to worry
+less about setup, and even though some of the tools it provided were a
+little lacking (no gdb shortcuts like <code>until</code>, no pwntools
+utilities for packing/unpacking numbers, … no <code>one_gadget</code>),
+I think they ultimately made the whole thing a lot more educational for
+me, so kudos to the folks behind it. I’ve included a brief description
+of all the exploit techniques that lead up to ROP when we get to that,
+so hopefully this post will be useful even if you don’t know much about
+pwning binaries. The prerequisites would be some knowledge with x86
+assembly, how executables are loaded into memory, and how to use
+<code>gdb</code> (or fictionalized web knockoffs thereof).</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/plc">→ read more<span class="offscreen"> PLC</span></a>
 	</footer>
@@ -321,11 +462,20 @@ Environment: Ubuntu 16.04+latex</code></pre>
 	</header>
 	
 	<blockquote>
-<p>The villains are communicating with their own proprietary file format. Figure out what it is.</p>
+<p>The villains are communicating with their own proprietary file
+format. Figure out what it is.</p>
 <pre><code>$ nc proprietary.ctfcompetition.com 1337</code></pre>
 </blockquote>
-<p>We get a server that will talk to us on a port and a <code>flag.ctf</code> file that’s definitely not a binary. It’s a <a href="https://en.wikipedia.org/wiki/Black_box">black-box</a> reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.</p>
-<p>For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not <code>P6</code>, it complains:</p>
+<p>We get a server that will talk to us on a port and a
+<code>flag.ctf</code> file that’s definitely not a binary. It’s a <a
+href="https://en.wikipedia.org/wiki/Black_box">black-box</a> reversing
+challenge! I was @-mentioned as the person who might want to due to
+solving bananaScript (CSAW CTF Quals 2017) as a black box, although that
+gave a binary that it was possible in theory to reverse. Here black-box
+reversing is the only option.</p>
+<p>For the first few lines of input that the server wants, it responds
+with quite helpful error messages to help you appease it. If the first
+line you give it is not <code>P6</code>, it complains:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/proprietary-format">→ read more<span class="offscreen"> Proprietary Format</span></a>
 	</footer>
@@ -351,43 +501,25 @@ Environment: Ubuntu 16.04+latex</code></pre>
 	</header>
 	
 	<blockquote>
-<p>You discover this cat enthusiast chat app, but the annoying thing about it is that you’re always banned when you start talking about dogs. Maybe if you would somehow get to know the admin’s password, you could fix that.</p>
+<p>You discover this cat enthusiast chat app, but the annoying thing
+about it is that you’re always banned when you start talking about dogs.
+Maybe if you would somehow get to know the admin’s password, you could
+fix that.</p>
 </blockquote>
-<p>This challenge is a simple chat app written in NodeJS. The home page redirects you to a chat room labeled with a random UUID. Anybody can join the same chat room with the URL.</p>
+<p>This challenge is a simple chat app written in NodeJS. The home page
+redirects you to a chat room labeled with a random UUID. Anybody can
+join the same chat room with the URL.</p>
 <p><img src="/img/cat-chat-0.png" alt="Fresh Cat Chat room" /></p>
-<p>In a chat room, you can chat and issue two commands, <code>/name</code> to set your name and <code>/report</code> to report that somebody is talking about dogs. After anybody in the chat room issues <code>/report</code>, the admin shows up, listens for a while, and bans anybody who mentions the word “dog”.</p>
-<p>There are two more commands, <code>/secret</code> and <code>/ban</code>, which are in the server source code and also described in comments in the HTML source if you didn’t notice:</p>
+<p>In a chat room, you can chat and issue two commands,
+<code>/name</code> to set your name and <code>/report</code> to report
+that somebody is talking about dogs. After anybody in the chat room
+issues <code>/report</code>, the admin shows up, listens for a while,
+and bans anybody who mentions the word “dog”.</p>
+<p>There are two more commands, <code>/secret</code> and
+<code>/ban</code>, which are in the server source code and also
+described in comments in the HTML source if you didn’t notice:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/cat-chat">→ read more<span class="offscreen"> Cat Chat</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/js-safe-2" class="post-link">JS Safe 2.0</a></h3>
-		
-		<h4 class="post-subtitle">Google CTF 2018</h4>
-		
-		<p class="post-meta">
-		
-		2018-06-28
-		(2515 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML file that can store secrets in the browser’s localStorage. This means that you won’t be able to extract any secret from it (the secrets are on the computer of the owner), but it looks like it was hand-crafted to work only with the password of the owner…</p>
-</blockquote>
-<p>The challenge consists of a fancy HTML file with a cute but irrelevant animated cube and some embedded JavaScript.</p>
-<p><img src="/img/js-safe-2-empty.png" alt="Screenshot of JS Safe 2.0 with a text box and a cube" /></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/js-safe-2">→ read more<span class="offscreen"> JS Safe 2.0</span></a>
 	</footer>
 </article>
 
@@ -397,7 +529,7 @@ Environment: Ubuntu 16.04+latex</code></pre>
 	</footer></section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

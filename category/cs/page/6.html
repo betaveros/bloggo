@@ -65,6 +65,73 @@ Category → CS
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/cabal" class="post-link">Adventures in Cabal Installations</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-04-13
+		(1550 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>First Google Code Jam!</p>
+<p>The format of this competition, allowing us to run programs on our
+own machines, brought up a very interesting issue for me: what
+programming language should I be using? (I had had similar
+considerations for IPSC 2013, but GCJ’s problems are closer to the
+traditional ACM-ICPC style.)</p>
+<p>The obvious choice is C++, the language I use for roughly every other
+competition, but its safety (or lack thereof) is not very appealing. I
+need speed, but not <em>that much</em> speed. Unfortunately I still
+haven’t gotten around to learning any other friendlier mid-level
+languages (on the list: D, Go, or Rust), so I have no close substitutes
+for C++ right now.</p>
+<p>Python is certainly available for a reliable arbitrary-length integer
+type, if nothing else.</p>
+<p>As for non-candidates, Java has <code>BigInteger</code> and memory
+safety, but all in all I decided the benefits are too minor and it’s too
+ugly without operator overloading. Scala is probably way too slow. So I
+don’t expect to be writing either language.</p>
+<p>The only difficult choice I have to make is, of course, Haskell —
+which can be quite fast, even while it’s ridiculously type-safe and
+expressive and referentially transparent and easy to reason about, once
+you’ve:</p>
+<ul>
+<li>figured out how to do the problem</li>
+<li>scrapped step 1 and <em>actually</em> figured out how to do the
+problem <em>functionally</em></li>
+<li>gotten the thing to compile</li>
+</ul>
+<p>Even if I can handle step 1, step 2 is by no means a simple task, as
+my struggle to implement a mere
+<a href="//blog.vero.site/post/haskell">Sieve of Eratosthenes</a>
+efficiently shows. That is fun, but not at all intuitive; I am doubtful
+I can do this under contest conditions. It is extremely difficult to
+transfer my skills in learning how to implement, say, a segment tree or
+treap into this language.</p>
+<p>But! Google links to the
+<a href="http://www.go-hero.net/jam/10/round/0">programming language
+breakdown for 2010 Qualification Round</a> as an example, and much to my
+surprise, Haskell ranks somewhere between sixth and tenth place in
+popularity (depending on what you sort by), so there are functional
+superprogrammers who can presumably do something like this.</p>
+<p>As it happens, I ended up implementing all four solutions to the
+qualification rounds in Haskell, because of the relaxed time limit and
+lack of any involved algorithms and data structures. I think it was
+worth it.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/cabal">→ read more<span class="offscreen"> Adventures in Cabal Installations</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/time" class="post-link">The Sands of Time</a></h3>
 		
 		<p class="post-meta">
@@ -80,16 +147,51 @@ Category → CS
 		</p>
 	</header>
 	
-	<p>Random video! Although I feel that I’ve heard it earlier, my first conscious memory of getting linked to it is from <a href="http://usamoarchive.wordpress.com/2012/03/01/youre-older-than-youve-ever-been/">this post</a>. At first I thought it would be the right background music for this post, but upon further reflection I think it mainly suited me while I was writing this post. Well, it’s topical if you mentally replace “day” with “year”.</p>
+	<p>Random video! Although I feel that I’ve heard it earlier, my first
+conscious memory of getting linked to it is from
+<a href="http://usamoarchive.wordpress.com/2012/03/01/youre-older-than-youve-ever-been/">this
+post</a>. At first I thought it would be the right background music for
+this post, but upon further reflection I think it mainly suited me while
+I was writing this post. Well, it’s topical if you mentally replace
+“day” with “year”.</p>
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe src="https://www.youtube.com/embed/q2bo_u_YmW8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-<p>Anyway. Around this time a year ago, I paused my participation in big high-school competitions, for a variety of reasons.</p>
-<p>Firstly, I stopped attempting to make IMO both because I wouldn’t get that much from the training and because other people ought to have the opportunity. I was concerned that I might condition myself to only be able to do math with the short-term motivation of contests. Better to focus on college math and maybe some original research, I thought. During the year, I did lots of the former and very little of the latter. Meh.</p>
-<p>As for the IOI, my obvious next target: I was tired of training and going abroad while paranoid about whether my immune system would hold up. I didn’t feel that the IOI was worth that. To some degree, I also felt burned out about programming. Long story short, my treatment should end soon, and learning Haskell completely resolved the burnout problem.</p>
-<p>But the most important reason, I think, was that “high school was too short”. I started math competitions ridiculously early and didn’t spend much time exploring other interests. I thought I knew myself well enough that I could say I didn’t have many more interests at all, but I was completely wrong (psych nerds will reflexively note this to be the <a href="https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect">Dunning-Kruger effect</a>). I coded lots in weird languages — Haskell, as mentioned previously, plus Scala, plus all manner of other magical command line tools. I wrote my first math problem and submitted it officially, picked up a new instrument, went to a debate competition, served as an unimportant tech guy for MUN, discovered and became hooked on Pentatonix, participated in three puzzle hunts in Australia and one in Massachusetts, figured out my rough political stance, rode a boat, got retweeted by <span class="citation" data-cites="eevee">@eevee</span> and <span class="citation" data-cites="Kyrgyzstan_News">@Kyrgyzstan_News</span>, increased my Neopets™ fortune by over 3400%, and lurked on FurAffinity a little too much.</p>
+<p>Anyway. Around this time a year ago, I paused my participation in big
+high-school competitions, for a variety of reasons.</p>
+<p>Firstly, I stopped attempting to make IMO both because I wouldn’t get
+that much from the training and because other people ought to have the
+opportunity. I was concerned that I might condition myself to only be
+able to do math with the short-term motivation of contests. Better to
+focus on college math and maybe some original research, I thought.
+During the year, I did lots of the former and very little of the latter.
+Meh.</p>
+<p>As for the IOI, my obvious next target: I was tired of training and
+going abroad while paranoid about whether my immune system would hold
+up. I didn’t feel that the IOI was worth that. To some degree, I also
+felt burned out about programming. Long story short, my treatment should
+end soon, and learning Haskell completely resolved the burnout
+problem.</p>
+<p>But the most important reason, I think, was that “high school was too
+short”. I started math competitions ridiculously early and didn’t spend
+much time exploring other interests. I thought I knew myself well enough
+that I could say I didn’t have many more interests at all, but I was
+completely wrong (psych nerds will reflexively note this to be the
+<a href="https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect">Dunning-Kruger
+effect</a>). I coded lots in weird languages — Haskell, as mentioned
+previously, plus Scala, plus all manner of other magical command line
+tools. I wrote my first math problem and submitted it officially, picked
+up a new instrument, went to a debate competition, served as an
+unimportant tech guy for MUN, discovered and became hooked on
+Pentatonix, participated in three puzzle hunts in Australia and one in
+Massachusetts, figured out my rough political stance, rode a boat, got
+retweeted by <span class="citation" data-cites="eevee">@eevee</span> and
+<span class="citation"
+data-cites="Kyrgyzstan_News">@Kyrgyzstan_News</span>, increased my
+Neopets™ fortune by over 3400%, and lurked on FurAffinity a little too
+much.</p>
 <p>But now, dear competition world, I’m back.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/time">→ read more<span class="offscreen"> The Sands of Time</span></a>
@@ -113,9 +215,22 @@ Category → CS
 		</p>
 	</header>
 	
-	<p>Funny, I go on a trip to Penghu followed by a four-day science camp and also get dragged into drawing classes and some sort of movie advising joint, and this is what I decide to blog about.</p>
-<p>Since it’s summer, I went back to <a href="http://www.rankk.org/">Rankk</a> and solved stuff. This is lots of fun if you’re good with computers, plus a little math, cryptography, and general puzzling. I’m still stuck on level 8… oh well. Since the levels didn’t seem very indicative of difficulty to me, I decided to do some analysis.</p>
-<p>New challenges have been added to Rankk over time, so my metric of difficulty is the number of solvers divided by the time from release to now. Of course this is far from perfect; for example, a challenge’s author doesn’t always seem consistently counted as a solver, problems with lower numbers and problems that will help level up are more likely to get checked out by new rankkers, and so on. But this is just for fun.</p>
+	<p>Funny, I go on a trip to Penghu followed by a four-day science camp
+and also get dragged into drawing classes and some sort of movie
+advising joint, and this is what I decide to blog about.</p>
+<p>Since it’s summer, I went back to
+<a href="http://www.rankk.org/">Rankk</a> and solved stuff. This is lots
+of fun if you’re good with computers, plus a little math, cryptography,
+and general puzzling. I’m still stuck on level 8… oh well. Since the
+levels didn’t seem very indicative of difficulty to me, I decided to do
+some analysis.</p>
+<p>New challenges have been added to Rankk over time, so my metric of
+difficulty is the number of solvers divided by the time from release to
+now. Of course this is far from perfect; for example, a challenge’s
+author doesn’t always seem consistently counted as a solver, problems
+with lower numbers and problems that will help level up are more likely
+to get checked out by new rankkers, and so on. But this is just for
+fun.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/rankk-stats">→ read more<span class="offscreen"> Rankk Solving Statistics</span></a>
 	</footer>
@@ -139,21 +254,48 @@ Category → CS
 	</header>
 	
 	<blockquote>
-“I have been told that any encryption becomes safer if the underlying algorithm is maximally obscured, what is most conveniently done by coding it in Haskell.” – rankk
+“I have been told that any encryption becomes safer if the underlying
+algorithm is maximally obscured, what is most conveniently done by
+coding it in Haskell.” – rankk
 </blockquote>
-<p>Functional programming is terribly addicting! Partly I think the completely different way of thinking makes it feel like learning programming, and falling in love with it, all over again. Partly there’s this evil sense of satisfaction from using <code>$</code>s (and later <code>&lt;$&gt;</code>s and <code>=&lt;&lt;</code>s and <code>&amp;&amp;&amp;</code>s) to improve readability for initiated Haskellers and worsen it for everybody else. Partly it’s because <a href="http://learnyouahaskell.com/"><i>Learn You a Haskell for Great Good!</i></a> is such a fun read — there are too many funny bits to list but my favorite so far is when the author analyzes the first verse of Avril Lavigne’s <em>Girlfriend</em>.</p>
-<p>Although I think my code in Haskell tends to be more readable than in other languages, code obfuscation in Haskell is almost natural: all you have to do is refactor the wrong function to be “pointfree”, which means that even though it’s a function that takes arguments, you define it without parameters by manipulating and joining a bunch of other functions. Example (plus a few other tiny obfuscations):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" title="1">isPrime <span class="ot">=</span> liftA2 (<span class="op">&amp;&amp;</span>) (liftA2 (<span class="op">$</span>) (<span class="fu">all</span> <span class="op">.</span> ((<span class="op">.</span>) (<span class="dv">0</span> <span class="op">/=</span>)) <span class="op">.</span> <span class="fu">rem</span>) (<span class="fu">flip</span></a>
-<a class="sourceLine" id="cb1-2" title="2">    <span class="fu">takeWhile</span> [<span class="dv">2</span><span class="op">..</span>] <span class="op">.</span> (<span class="fu">flip</span> (<span class="op">.</span>) <span class="op">$</span> liftA2 (<span class="op">*</span>) <span class="fu">id</span> <span class="fu">id</span>) <span class="op">.</span> (<span class="op">&gt;=</span>))) ((<span class="op">&lt;</span>) <span class="dv">1</span>)</a></code></pre></div>
-<p>QQ wordpress why no Haskell highlighting <ins>(Editor’s note from 2017: The migration should highlight this now!)</ins></p>
+<p>Functional programming is terribly addicting! Partly I think the
+completely different way of thinking makes it feel like learning
+programming, and falling in love with it, all over again. Partly there’s
+this evil sense of satisfaction from using <code>$</code>s (and later
+<code>&lt;$&gt;</code>s and <code>=&lt;&lt;</code>s and
+<code>&amp;&amp;&amp;</code>s) to improve readability for initiated
+Haskellers and worsen it for everybody else. Partly it’s because
+<a href="http://learnyouahaskell.com/"><i>Learn You a Haskell for Great
+Good!</i></a> is such a fun read — there are too many funny bits to list
+but my favorite so far is when the author analyzes the first verse of
+Avril Lavigne’s <em>Girlfriend</em>.</p>
+<p>Although I think my code in Haskell tends to be more readable than in
+other languages, code obfuscation in Haskell is almost natural: all you
+have to do is refactor the wrong function to be “pointfree”, which means
+that even though it’s a function that takes arguments, you define it
+without parameters by manipulating and joining a bunch of other
+functions. Example (plus a few other tiny obfuscations):</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>isPrime <span class="ot">=</span> liftA2 (<span class="op">&amp;&amp;</span>) (liftA2 (<span class="op">$</span>) (<span class="fu">all</span> <span class="op">.</span> ((<span class="op">.</span>) (<span class="dv">0</span> <span class="op">/=</span>)) <span class="op">.</span> <span class="fu">rem</span>) (<span class="fu">flip</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">takeWhile</span> [<span class="dv">2</span><span class="op">..</span>] <span class="op">.</span> (<span class="fu">flip</span> (<span class="op">.</span>) <span class="op">$</span> liftA2 (<span class="op">*</span>) <span class="fu">id</span> <span class="fu">id</span>) <span class="op">.</span> (<span class="op">&gt;=</span>))) ((<span class="op">&lt;</span>) <span class="dv">1</span>)</span></code></pre></div>
+<p>QQ wordpress why no Haskell highlighting <ins>(Editor’s note from
+2017: The migration should highlight this now!)</ins></p>
 <p>Also, for some reason, you can do this in Haskell:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb2-1" title="1">ghci<span class="op">&gt;</span> <span class="kw">let</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span> <span class="ot">=</span> <span class="dv">5</span> <span class="kw">in</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="dv">5</span></a></code></pre></div>
-<p>(via <a href="http://www.yellosoft.us/evilgenius/">Haskell for the Evil Genius</a>)</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ghci<span class="op">&gt;</span> <span class="kw">let</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span> <span class="ot">=</span> <span class="dv">5</span> <span class="kw">in</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span></span></code></pre></div>
+<p>(via <a href="http://www.yellosoft.us/evilgenius/">Haskell for the
+Evil Genius</a>)</p>
 <hr />
-<p>Okay, but seriously now. I wrote this about my journey to learn functional programming in the <a href="//blog.vero.site/post/programming">programming babble post</a> half a year ago:</p>
+<p>Okay, but seriously now. I wrote this about my journey to learn
+functional programming in the
+<a href="//blog.vero.site/post/programming">programming babble post</a> half a
+year ago:</p>
 <blockquote>
-The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes).
+The main obstacle I have is that it’s hard to optimize or get
+asymptotics when computation is expensive (a big problem if you’re
+trying to learn through Project Euler problems, particularly ones with
+lots of primes).
 </blockquote>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/haskell">→ read more<span class="offscreen"> Haskell and Primes</span></a>
@@ -177,7 +319,10 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
 		</p>
 	</header>
 	
-	<p>because my title needs to mean something. <ins date="2019-02-05T18:08:23-0500">(note from the future: before late 2017, when I <a href="//blog.vero.site/post/hello-again">migrated to Hugo and GitHub Pages</a>, the blog was called “BetaWorldProblems”.)</ins></p>
+	<p>because my title needs to mean something.
+<ins date="2019-02-05T18:08:23-0500">(note from the future: before late
+2017, when I <a href="//blog.vero.site/post/hello-again">migrated to Hugo and
+GitHub Pages</a>, the blog was called “BetaWorldProblems”.)</ins></p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/problems">→ read more<span class="offscreen"> Example &#34;BetaWorldProblems&#34;</span></a>
 	</footer>
@@ -200,7 +345,12 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
 		</p>
 	</header>
 	
-	<p>Google just announced <a href="http://googlereader.blogspot.tw/2013/03/powering-down-google-reader.html">it’s shutting down Google Reader</a> in three and a half months… I am participating in the friendly Reddit DDoS-hug of all the alternatives (<a href="http://www.reddit.com/r/AskReddit/comments/1a8zgj/what_are_some_good_web_rss_readers_to_replace/c8v71t5">list</a>, but scroll around in the thread for a few more). Darn.</p>
+	<p>Google just announced
+<a href="http://googlereader.blogspot.tw/2013/03/powering-down-google-reader.html">it’s
+shutting down Google Reader</a> in three and a half months… I am
+participating in the friendly Reddit DDoS-hug of all the alternatives
+(<a href="http://www.reddit.com/r/AskReddit/comments/1a8zgj/what_are_some_good_web_rss_readers_to_replace/c8v71t5">list</a>,
+but scroll around in the thread for a few more). Darn.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/google-reader-powering-down">→ read more<span class="offscreen"> Google Reader Powering Down</span></a>
 	</footer>
@@ -224,15 +374,34 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
 	</header>
 	
 	<p>So, what have I been doing with programming recently?</p>
-<p><a href="http://www.scala-lang.org/">Scala</a> is an amazing multiparadigm programming language that runs on the Java Virtual Machine and interoperates with Java. I learned about it last time reading random articles on Twitter.</p>
-<p>When I say “amazing” I mean “This is a language in which my code gives me nerdgasms every time I read it.” Wheeee.</p>
-<p>Okay, it’s not perfect. People say it’s too academic. It has a notoriously complicated type system (which is <a href="http://scientopia.org/blogs/goodmath/2013/01/21/types-gone-wild-ski-at-compile-time/"><em>Turing-Complete</em> at compile time</a>). Its documentation is a bit patchy too. For a serious introduction, the Scala website has plenty of links under documentation, and a <a href="http://www.scala-lang.org/node/104">tour of features</a>. Somebody wrote <a href="http://www.naildrivin5.com/scalatour">another tour</a> that explains things a bit more. So here, instead of introducing it seriously, I’m just going to screw with its features.</p>
-<p>Example of freedom. Scala lets names consist of symbols, and treats one-parameter methods and infix operators exactly the same. The full tokenization rules are a bit detailed and I put them at the bottom of this post for the interested. This lets you create classes with arithmetic and domain-specific languages easily, but it also creates some silly opportunities:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode scala"><code class="sourceCode scala"><a class="sourceLine" id="cb1-1" title="1">scala&gt; <span class="kw">val</span> * = <span class="dv">12</span></a>
-<a class="sourceLine" id="cb1-2" title="2">*: Int = <span class="dv">12</span></a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4">scala&gt; * * * * *</a>
-<a class="sourceLine" id="cb1-5" title="5">res0: Int = <span class="dv">1728</span></a></code></pre></div>
+<p><a href="http://www.scala-lang.org/">Scala</a> is an amazing
+multiparadigm programming language that runs on the Java Virtual Machine
+and interoperates with Java. I learned about it last time reading random
+articles on Twitter.</p>
+<p>When I say “amazing” I mean “This is a language in which my code
+gives me nerdgasms every time I read it.” Wheeee.</p>
+<p>Okay, it’s not perfect. People say it’s too academic. It has a
+notoriously complicated type system (which is
+<a href="http://scientopia.org/blogs/goodmath/2013/01/21/types-gone-wild-ski-at-compile-time/"><em>Turing-Complete</em>
+at compile time</a>). Its documentation is a bit patchy too. For a
+serious introduction, the Scala website has plenty of links under
+documentation, and a <a href="http://www.scala-lang.org/node/104">tour
+of features</a>. Somebody wrote
+<a href="http://www.naildrivin5.com/scalatour">another tour</a> that
+explains things a bit more. So here, instead of introducing it
+seriously, I’m just going to screw with its features.</p>
+<p>Example of freedom. Scala lets names consist of symbols, and treats
+one-parameter methods and infix operators exactly the same. The full
+tokenization rules are a bit detailed and I put them at the bottom of
+this post for the interested. This lets you create classes with
+arithmetic and domain-specific languages easily, but it also creates
+some silly opportunities:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode scala"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>scala<span class="op">&gt;</span> <span class="kw">val</span> <span class="op">*</span> <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">*:</span> <span class="bu">Int</span> <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>scala<span class="op">&gt;</span> <span class="op">*</span> <span class="op">*</span> <span class="op">*</span> <span class="op">*</span> <span class="op">*</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>res0<span class="op">:</span> <span class="bu">Int</span> <span class="op">=</span> <span class="dv">1728</span></span></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/scala">→ read more<span class="offscreen"> Adventures in Scala Pseudo-Abuse</span></a>
 	</footer>
@@ -280,9 +449,40 @@ Just like Twitter, I barely know how to use Git either, but that’s okay. For v
 		</p>
 	</header>
 	
-	<p>Okay I don’t actually know how this pointless rambling got so long. I know the longer it is the more people will just tend to skim, because I do that all the time. So I went back and refactored—er, rewrote all the somewhat tangential bits (wow these puns are too easy) into footnotes. Manually. Obviously if I have to do this again I’ll write a script for it. But the post is still really long, and I bet nobody will read the whole thing. Oh well.</p>
-<p>Life updates: I got out of the hospital Friday two-and-a-half weeks ago, went to the preliminaries of NPSC (a national team programming contest) with classmates, threw up a lot, went back into the hospital, and came out again. I wrote a lot of stuff about the experience and how much it sucked (hint: <em>a lot</em>) when I started this draft around that time, but now putting so much detail in this post feels weird. I’m mostly good now.</p>
-<p>Three years ago NPSC was the only programming contest I really knew of; now I’ve participated in quite a few more, both online and locally, but it’s still the only contest I’ve entered that gives you real-time verdicts. I believe it inherits this from being modeled after ACM-ICPC, but that’s for college people and I’m less clear on how it works. All the other contests, namely <a href="https://www.topcoder.com/">TopCoder</a>, <a href="http://www.codeforces.com/">CodeForces</a>, <a href="http://usaco.org/">USACO</a>, and the other local individual competition (there doesn’t appear to be an English name so for the purpose of this post I’ll just call it “Nameless Local”; there’s a nation-wide competition in one-and-a-half weeks!), have system tests after the contest that don’t allow you to resubmit afterwards.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> They all give pretests that you get to know about right away, just to catch super-silly non-algorithmic mistakes like failing to remove the debug statements or reading input from the wrong place, but these contain weak test cases and don’t guarantee that the solution will pass the system tests and get full score.</p>
+	<p>Okay I don’t actually know how this pointless rambling got so long. I
+know the longer it is the more people will just tend to skim, because I
+do that all the time. So I went back and refactored—er, rewrote all the
+somewhat tangential bits (wow these puns are too easy) into footnotes.
+Manually. Obviously if I have to do this again I’ll write a script for
+it. But the post is still really long, and I bet nobody will read the
+whole thing. Oh well.</p>
+<p>Life updates: I got out of the hospital Friday two-and-a-half weeks
+ago, went to the preliminaries of NPSC (a national team programming
+contest) with classmates, threw up a lot, went back into the hospital,
+and came out again. I wrote a lot of stuff about the experience and how
+much it sucked (hint: <em>a lot</em>) when I started this draft around
+that time, but now putting so much detail in this post feels weird. I’m
+mostly good now.</p>
+<p>Three years ago NPSC was the only programming contest I really knew
+of; now I’ve participated in quite a few more, both online and locally,
+but it’s still the only contest I’ve entered that gives you real-time
+verdicts. I believe it inherits this from being modeled after ACM-ICPC,
+but that’s for college people and I’m less clear on how it works. All
+the other contests, namely
+<a href="https://www.topcoder.com/">TopCoder</a>,
+<a href="http://www.codeforces.com/">CodeForces</a>,
+<a href="http://usaco.org/">USACO</a>, and the other local individual
+competition (there doesn’t appear to be an English name so for the
+purpose of this post I’ll just call it “Nameless Local”; there’s a
+nation-wide competition in one-and-a-half weeks!), have system tests
+after the contest that don’t allow you to resubmit afterwards.<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> They all give pretests that you get
+to know about right away, just to catch super-silly non-algorithmic
+mistakes like failing to remove the debug statements or reading input
+from the wrong place, but these contain weak test cases and don’t
+guarantee that the solution will pass the system tests and get full
+score.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/programming">→ read more<span class="offscreen"> Ridiculously Long-Winded Programming Babble</span></a>
 	</footer>
@@ -312,38 +512,13 @@ Basically, it’s a thing you can paste logic puzzle images into to solve them i
 	</footer>
 </article>
 
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/debug" class="post-link">Adventures in Meta-Debugging</a></h3>
-		
-		<p class="post-meta">
-		
-		2012-11-05
-		(807 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Okay did I mention how I sucked at the command line? This is part of the journey towards stopping. Yes, I’m on a Mac and it’s not very *nix-y in some ways but it’s enough for me for now.</p>
-<p>Today’s story starts when I learned about <a href="https://www.gnu.org/software/gdb/"><code>gdb</code></a>, the pure-command-line GNU Debugger, which is incredibly cool. I have tried and failed to learn how to use the debug function on many of my IDEs; I found shotgunning <code>printf</code> statements as needed faster. This may well be the first time I found a command-line tool so much more intuitive than the GUI-equipped programs. Wow.</p>
-<p>Then I learned that for some reason the <code>gdb</code> on this computer was 6.3, which is 1.2~1.5 major versions behind (depending on how you count) and missing a frustrating amount of features. (The one that the current Code::Blocks installer installs is also something like 6.4. Blech.)</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/debug">→ read more<span class="offscreen"> Adventures in Meta-Debugging</span></a>
-	</footer>
-</article>
-
 		<footer class="list-footer">
 		<nav class="pagination">
 			<h3 class="offscreen">Pagination</h3><a class="pagination-previous" href="/category/cs/page/5">← newer posts</a><a class="pagination-next" href="/category/cs/page/7">older posts →</a></nav>
 	</footer></section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

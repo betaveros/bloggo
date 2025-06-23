@@ -82,13 +82,34 @@ Tag → haskell
 		</p>
 	</header>
 	
-	<p>We interrupt the irregularly scheduled philosophical posts for some programming memes:</p>
-<p>Over the last few days, the Internet has divided itself over what the value of the expression 8÷2(2+2) should be. Some say it should be evaluated as (8÷2)×(2+2) = 16. Some say it should be evaluated as 8÷(2×(2+2)) = 1.</p>
-<p>At the risk of belaboring the obvious, the core dispute here is not really mathematical. There is not some sequence of mathematical operations that produces some number, where mathematicians disagree about what number it produces. Instead, this is a dispute about mathematical notation: what sequence of mathematical operations the expression corresponds to the way it’s written. Specifically, it is a dispute about whether multiplication written as juxtaposition (how “2” is written right next to “(2+2)”) has strictly higher precedence than division. It is closer to a linguistic or typographical dispute than a purely mathematical one, and the correct answer to the dispute is that whoever wrote the expression that way should learn to write math better.</p>
-<p>This debate is not even new. The internet had fun arguing over <a href="https://knowyourmeme.com/memes/48293">48÷2(9+3) and 6÷2(1+2)</a>, which are functionally identical ambiguous expressions, eight years ago. I don’t know why the debate is resurging now and why we still haven’t gotten tired of it.</p>
-<p>But life is short, so since we’re here anyway, let’s make some additional memes.</p>
+	<p>We interrupt the irregularly scheduled philosophical posts for some
+programming memes:</p>
+<p>Over the last few days, the Internet has divided itself over what the
+value of the expression 8÷2(2+2) should be. Some say it should be
+evaluated as (8÷2)×(2+2) = 16. Some say it should be evaluated as
+8÷(2×(2+2)) = 1.</p>
+<p>At the risk of belaboring the obvious, the core dispute here is not
+really mathematical. There is not some sequence of mathematical
+operations that produces some number, where mathematicians disagree
+about what number it produces. Instead, this is a dispute about
+mathematical notation: what sequence of mathematical operations the
+expression corresponds to the way it’s written. Specifically, it is a
+dispute about whether multiplication written as juxtaposition (how “2”
+is written right next to “(2+2)”) has strictly higher precedence than
+division. It is closer to a linguistic or typographical dispute than a
+purely mathematical one, and the correct answer to the dispute is that
+whoever wrote the expression that way should learn to write math
+better.</p>
+<p>This debate is not even new. The internet had fun arguing over <a
+href="https://knowyourmeme.com/memes/48293">48÷2(9+3) and 6÷2(1+2)</a>,
+which are functionally identical ambiguous expressions, eight years ago.
+I don’t know why the debate is resurging now and why we still haven’t
+gotten tired of it.</p>
+<p>But life is short, so since we’re here anyway, let’s make some
+additional memes.</p>
 <h3 id="asking-the-computer">Asking the computer</h3>
-<p>Some of my coworkers had the idea to ask some programming languages what the answer was. The results were underwhelming.</p>
+<p>Some of my coworkers had the idea to ask some programming languages
+what the answer was. The results were underwhelming.</p>
 <pre><code>$ python3
 Python 3.6.7 (default, Oct 22 2018, 11:32:17)
 [GCC 8.2.0] on linux
@@ -120,7 +141,10 @@ TypeError: &#39;int&#39; object is not callable</code></pre>
 	</header>
 	
 	<p><code>--... ---.. ....- ..... ..--- ----- ....- ....- ...-- -.... ...-- -.... ...-- . ....- ....- ..--- ----- ....- ..... ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -.... ....- ....- ..--- ----- ...-- ..-. ....- ----- ..--- ----- ...-- ..--- ...-- ..-. ....- ..... ...-- .- ...-- ..... ....- ----- ....- ..... ...-- -.... ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ...-- ..-. ...-- ---.. ....- ....- ....- ..... ..--- ----- ...-- -.. ...-- .- ...-- -.-. ...-- -.... ..--- ----- ...-- --... ...-- .- ...-- ..-. ...-- ..... ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ....- ....- ....- ----- ...-- . ...-- -.... ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- ....- ....- ----- ....- ----- ...-- -.. ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ....- ---.. ...-- ..-. ..... -.-. ....- ..... ....- ----- ..... -.-. ...-- -.... ...-- ..--- ....- ...-- ....- ..... ...-- ----. ..... -... ..--- ----- ...-- ..--- ...-- ..-. ...-- ..... ..--- ----- ...-- ..... ....- ----- ...-- .- ...-- ..-. ...-- ---.. ..--- ----- ...-- .- ....- ..... ..... -..</code></p>
-<p><code>..--- ..... ....- ----- ...-- ..... ...-- ..--- ....- .- ..--- ----- --... ---.. ..--- ----- ...-- ..... ...-- .- ...-- ..... ..--- ----- ...-- ..--- ..--- ----- ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- --... ---.. ..--- ----- ....- ---.. ...-- ..--- ...-- ..-. ....- ..... ...-- -.... ...-- ..... ..--- ----- ....- ..... ....- ----- ..--- ----- ...-- ..... ....- ----- ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ..--- ----- ...-- -.. ....- ----- ...-- ..-. ...-- ---.. ..--- ----- ....- ..... ...-- .- ...-- . ...-- -.... -.... ----. ..--- ----- --... ---.. ..--- ----- ...-- ....- ....- ----- ...-- . ....- .---- ...-- .- ...-- -.. ...-- -.... ...-- ..... ..--- -----</code> <a href="https://github.com/betaveros/bcodex"><code>...-- ...-- ...-- ....- ....- ----- ...-- ..... ...-- -.... ....- ----.</code></a> <code>..--- ----- ...-- --... ....- ...-- ....- ----- ...-- . ..--- ----- --... --... ...-- ..--- ....- ....- ...-- -.-. ...-- -.... ...-- -.. ...-- -.. ..--- ----- ....- ..... ....- ----- ..--- ----- --... ----. ...-- ..--- ....- --... ...-- ..--- ..--- ....- ...-- ....- ....- ...-- ...-- .- ....- .---- ....- ..... ..--- ----- ....- ....- ....- ----- ..--- ----- ...-- .- ....- ..... ..--- ----- ...-- ....- ....- ----- ....- -.... ...-- -.. ...-- ..... ..--- ----- ....- ...-- ....- -.... ...-- ..-. ..--- ----- ...-- .- ...-- ..-. ..--- ----- ...-- ..--- ...-- ..-. ....- .- ..--- ----- ...-- . ....- ----- ...-- ..... ...-- -.... ....- ...-- ...-- ..-. ..--- ----- ...-- ...-- ....- ...-- ....- ----- ....- ---.. ....- ....- ...-- -.... ....- ...-- ..... -.. ..--- -----</code> <a href="http://betaveros.github.io/bcodex/"><code>..--- .- ....- ----- ....- -.... ..--- ----- ...-- ....- ...-- ..--- ...-- ..-. ..--- ----- ....- ..... ....- ...-- ....- .- ..--- ----- ...-- .- ....- ..... ..--- ----- ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -----</code></a></p>
+<p><code>..--- ..... ....- ----- ...-- ..... ...-- ..--- ....- .- ..--- ----- --... ---.. ..--- ----- ...-- ..... ...-- .- ...-- ..... ..--- ----- ...-- ..--- ..--- ----- ....- ..... ...-- ----. ...-- .- ...-- ..-. ...-- ---.. ..--- ----- --... ---.. ..--- ----- ....- ---.. ...-- ..--- ...-- ..-. ....- ..... ...-- -.... ...-- ..... ..--- ----- ....- ..... ....- ----- ..--- ----- ...-- ..... ....- ----- ..--- ----- ...-- --... ....- ----- ....- ...-- ..--- ----- ...-- ..--- ..--- ----- ...-- -.. ....- ----- ...-- ..-. ...-- ---.. ..--- ----- ....- ..... ...-- .- ...-- . ...-- -.... -.... ----. ..--- ----- --... ---.. ..--- ----- ...-- ....- ....- ----- ...-- . ....- .---- ...-- .- ...-- -.. ...-- -.... ...-- ..... ..--- -----</code>
+<a href="https://github.com/betaveros/bcodex"><code>...-- ...-- ...-- ....- ....- ----- ...-- ..... ...-- -.... ....- ----.</code></a>
+<code>..--- ----- ...-- --... ....- ...-- ....- ----- ...-- . ..--- ----- --... --... ...-- ..--- ....- ....- ...-- -.-. ...-- -.... ...-- -.. ...-- -.. ..--- ----- ....- ..... ....- ----- ..--- ----- --... ----. ...-- ..--- ....- --... ...-- ..--- ..--- ....- ...-- ....- ....- ...-- ...-- .- ....- .---- ....- ..... ..--- ----- ....- ....- ....- ----- ..--- ----- ...-- .- ....- ..... ..--- ----- ...-- ....- ....- ----- ....- -.... ...-- -.. ...-- ..... ..--- ----- ....- ...-- ....- -.... ...-- ..-. ..--- ----- ...-- .- ...-- ..-. ..--- ----- ...-- ..--- ...-- ..-. ....- .- ..--- ----- ...-- . ....- ----- ...-- ..... ...-- -.... ....- ...-- ...-- ..-. ..--- ----- ...-- ...-- ....- ...-- ....- ----- ....- ---.. ....- ....- ...-- -.... ....- ...-- ..... -.. ..--- -----</code>
+<a href="http://betaveros.github.io/bcodex/"><code>..--- .- ....- ----- ....- -.... ..--- ----- ...-- ....- ...-- ..--- ...-- ..-. ..--- ----- ....- ..... ....- ...-- ....- .- ..--- ----- ...-- .- ....- ..... ..--- ----- ...-- ----. ...-- -.... ....- ...-- ...-- -.... ..... -----</code></a></p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/bcodex">→ read more<span class="offscreen"> 020315040524</span></a>
 	</footer>
@@ -143,12 +167,20 @@ TypeError: &#39;int&#39; object is not callable</code></pre>
 		</p>
 	</header>
 	
-	<p><strong>tl;dr: anybody want to add me on Line or tell/remind me about other phone chat apps? betaveros as always.</strong></p>
+	<p><strong>tl;dr: anybody want to add me on Line or tell/remind me about
+other phone chat apps? betaveros as always.</strong></p>
 <p>Wow, talk about uninspired post titles.</p>
-<p>I got a new phone today. Or, well, it’s second-hand, actually. I try to make electronics last a long time, but I think this was justified given the state of my last phone’s screen:</p>
+<p>I got a new phone today. Or, well, it’s second-hand, actually. I try
+to make electronics last a long time, but I think this was justified
+given the state of my last phone’s screen:</p>
 <p><a href="/img/screen.jpg"><img src="/img/screen.jpg?w=269" alt="old phone screen, with a visibly malfunctioning black patch" width="269" height="300" class="aligncenter size-medium wp-image-3142" /></a></p>
-<p>Besides, I’m going off to college and all. Anyway, the phone is pretty cool. It’s a slick shade of red, it came with a cover and everything, and it has one of those fancy 3x3-grid locks. How secure are those again?</p>
-<p>Well, we could just <a href="https://stackoverflow.com/questions/6979524/android-lock-password-combinations">find the answer on StackOverflow</a>, but that’s boring.</p>
+<p>Besides, I’m going off to college and all. Anyway, the phone is
+pretty cool. It’s a slick shade of red, it came with a cover and
+everything, and it has one of those fancy 3x3-grid locks. How secure are
+those again?</p>
+<p>Well, we could just
+<a href="https://stackoverflow.com/questions/6979524/android-lock-password-combinations">find
+the answer on StackOverflow</a>, but that’s boring.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/phone">→ read more<span class="offscreen"> Phone</span></a>
 	</footer>
@@ -172,19 +204,50 @@ TypeError: &#39;int&#39; object is not callable</code></pre>
 	</header>
 	
 	<p>First Google Code Jam!</p>
-<p>The format of this competition, allowing us to run programs on our own machines, brought up a very interesting issue for me: what programming language should I be using? (I had had similar considerations for IPSC 2013, but GCJ’s problems are closer to the traditional ACM-ICPC style.)</p>
-<p>The obvious choice is C++, the language I use for roughly every other competition, but its safety (or lack thereof) is not very appealing. I need speed, but not <em>that much</em> speed. Unfortunately I still haven’t gotten around to learning any other friendlier mid-level languages (on the list: D, Go, or Rust), so I have no close substitutes for C++ right now.</p>
-<p>Python is certainly available for a reliable arbitrary-length integer type, if nothing else.</p>
-<p>As for non-candidates, Java has <code>BigInteger</code> and memory safety, but all in all I decided the benefits are too minor and it’s too ugly without operator overloading. Scala is probably way too slow. So I don’t expect to be writing either language.</p>
-<p>The only difficult choice I have to make is, of course, Haskell — which can be quite fast, even while it’s ridiculously type-safe and expressive and referentially transparent and easy to reason about, once you’ve:</p>
+<p>The format of this competition, allowing us to run programs on our
+own machines, brought up a very interesting issue for me: what
+programming language should I be using? (I had had similar
+considerations for IPSC 2013, but GCJ’s problems are closer to the
+traditional ACM-ICPC style.)</p>
+<p>The obvious choice is C++, the language I use for roughly every other
+competition, but its safety (or lack thereof) is not very appealing. I
+need speed, but not <em>that much</em> speed. Unfortunately I still
+haven’t gotten around to learning any other friendlier mid-level
+languages (on the list: D, Go, or Rust), so I have no close substitutes
+for C++ right now.</p>
+<p>Python is certainly available for a reliable arbitrary-length integer
+type, if nothing else.</p>
+<p>As for non-candidates, Java has <code>BigInteger</code> and memory
+safety, but all in all I decided the benefits are too minor and it’s too
+ugly without operator overloading. Scala is probably way too slow. So I
+don’t expect to be writing either language.</p>
+<p>The only difficult choice I have to make is, of course, Haskell —
+which can be quite fast, even while it’s ridiculously type-safe and
+expressive and referentially transparent and easy to reason about, once
+you’ve:</p>
 <ul>
 <li>figured out how to do the problem</li>
-<li>scrapped step 1 and <em>actually</em> figured out how to do the problem <em>functionally</em></li>
+<li>scrapped step 1 and <em>actually</em> figured out how to do the
+problem <em>functionally</em></li>
 <li>gotten the thing to compile</li>
 </ul>
-<p>Even if I can handle step 1, step 2 is by no means a simple task, as my struggle to implement a mere <a href="//blog.vero.site/post/haskell">Sieve of Eratosthenes</a> efficiently shows. That is fun, but not at all intuitive; I am doubtful I can do this under contest conditions. It is extremely difficult to transfer my skills in learning how to implement, say, a segment tree or treap into this language.</p>
-<p>But! Google links to the <a href="http://www.go-hero.net/jam/10/round/0">programming language breakdown for 2010 Qualification Round</a> as an example, and much to my surprise, Haskell ranks somewhere between sixth and tenth place in popularity (depending on what you sort by), so there are functional superprogrammers who can presumably do something like this.</p>
-<p>As it happens, I ended up implementing all four solutions to the qualification rounds in Haskell, because of the relaxed time limit and lack of any involved algorithms and data structures. I think it was worth it.</p>
+<p>Even if I can handle step 1, step 2 is by no means a simple task, as
+my struggle to implement a mere
+<a href="//blog.vero.site/post/haskell">Sieve of Eratosthenes</a>
+efficiently shows. That is fun, but not at all intuitive; I am doubtful
+I can do this under contest conditions. It is extremely difficult to
+transfer my skills in learning how to implement, say, a segment tree or
+treap into this language.</p>
+<p>But! Google links to the
+<a href="http://www.go-hero.net/jam/10/round/0">programming language
+breakdown for 2010 Qualification Round</a> as an example, and much to my
+surprise, Haskell ranks somewhere between sixth and tenth place in
+popularity (depending on what you sort by), so there are functional
+superprogrammers who can presumably do something like this.</p>
+<p>As it happens, I ended up implementing all four solutions to the
+qualification rounds in Haskell, because of the relaxed time limit and
+lack of any involved algorithms and data structures. I think it was
+worth it.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/cabal">→ read more<span class="offscreen"> Adventures in Cabal Installations</span></a>
 	</footer>
@@ -208,21 +271,48 @@ TypeError: &#39;int&#39; object is not callable</code></pre>
 	</header>
 	
 	<blockquote>
-“I have been told that any encryption becomes safer if the underlying algorithm is maximally obscured, what is most conveniently done by coding it in Haskell.” – rankk
+“I have been told that any encryption becomes safer if the underlying
+algorithm is maximally obscured, what is most conveniently done by
+coding it in Haskell.” – rankk
 </blockquote>
-<p>Functional programming is terribly addicting! Partly I think the completely different way of thinking makes it feel like learning programming, and falling in love with it, all over again. Partly there’s this evil sense of satisfaction from using <code>$</code>s (and later <code>&lt;$&gt;</code>s and <code>=&lt;&lt;</code>s and <code>&amp;&amp;&amp;</code>s) to improve readability for initiated Haskellers and worsen it for everybody else. Partly it’s because <a href="http://learnyouahaskell.com/"><i>Learn You a Haskell for Great Good!</i></a> is such a fun read — there are too many funny bits to list but my favorite so far is when the author analyzes the first verse of Avril Lavigne’s <em>Girlfriend</em>.</p>
-<p>Although I think my code in Haskell tends to be more readable than in other languages, code obfuscation in Haskell is almost natural: all you have to do is refactor the wrong function to be “pointfree”, which means that even though it’s a function that takes arguments, you define it without parameters by manipulating and joining a bunch of other functions. Example (plus a few other tiny obfuscations):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" title="1">isPrime <span class="ot">=</span> liftA2 (<span class="op">&amp;&amp;</span>) (liftA2 (<span class="op">$</span>) (<span class="fu">all</span> <span class="op">.</span> ((<span class="op">.</span>) (<span class="dv">0</span> <span class="op">/=</span>)) <span class="op">.</span> <span class="fu">rem</span>) (<span class="fu">flip</span></a>
-<a class="sourceLine" id="cb1-2" title="2">    <span class="fu">takeWhile</span> [<span class="dv">2</span><span class="op">..</span>] <span class="op">.</span> (<span class="fu">flip</span> (<span class="op">.</span>) <span class="op">$</span> liftA2 (<span class="op">*</span>) <span class="fu">id</span> <span class="fu">id</span>) <span class="op">.</span> (<span class="op">&gt;=</span>))) ((<span class="op">&lt;</span>) <span class="dv">1</span>)</a></code></pre></div>
-<p>QQ wordpress why no Haskell highlighting <ins>(Editor’s note from 2017: The migration should highlight this now!)</ins></p>
+<p>Functional programming is terribly addicting! Partly I think the
+completely different way of thinking makes it feel like learning
+programming, and falling in love with it, all over again. Partly there’s
+this evil sense of satisfaction from using <code>$</code>s (and later
+<code>&lt;$&gt;</code>s and <code>=&lt;&lt;</code>s and
+<code>&amp;&amp;&amp;</code>s) to improve readability for initiated
+Haskellers and worsen it for everybody else. Partly it’s because
+<a href="http://learnyouahaskell.com/"><i>Learn You a Haskell for Great
+Good!</i></a> is such a fun read — there are too many funny bits to list
+but my favorite so far is when the author analyzes the first verse of
+Avril Lavigne’s <em>Girlfriend</em>.</p>
+<p>Although I think my code in Haskell tends to be more readable than in
+other languages, code obfuscation in Haskell is almost natural: all you
+have to do is refactor the wrong function to be “pointfree”, which means
+that even though it’s a function that takes arguments, you define it
+without parameters by manipulating and joining a bunch of other
+functions. Example (plus a few other tiny obfuscations):</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>isPrime <span class="ot">=</span> liftA2 (<span class="op">&amp;&amp;</span>) (liftA2 (<span class="op">$</span>) (<span class="fu">all</span> <span class="op">.</span> ((<span class="op">.</span>) (<span class="dv">0</span> <span class="op">/=</span>)) <span class="op">.</span> <span class="fu">rem</span>) (<span class="fu">flip</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">takeWhile</span> [<span class="dv">2</span><span class="op">..</span>] <span class="op">.</span> (<span class="fu">flip</span> (<span class="op">.</span>) <span class="op">$</span> liftA2 (<span class="op">*</span>) <span class="fu">id</span> <span class="fu">id</span>) <span class="op">.</span> (<span class="op">&gt;=</span>))) ((<span class="op">&lt;</span>) <span class="dv">1</span>)</span></code></pre></div>
+<p>QQ wordpress why no Haskell highlighting <ins>(Editor’s note from
+2017: The migration should highlight this now!)</ins></p>
 <p>Also, for some reason, you can do this in Haskell:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb2-1" title="1">ghci<span class="op">&gt;</span> <span class="kw">let</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span> <span class="ot">=</span> <span class="dv">5</span> <span class="kw">in</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="dv">5</span></a></code></pre></div>
-<p>(via <a href="http://www.yellosoft.us/evilgenius/">Haskell for the Evil Genius</a>)</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ghci<span class="op">&gt;</span> <span class="kw">let</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span> <span class="ot">=</span> <span class="dv">5</span> <span class="kw">in</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span></span></code></pre></div>
+<p>(via <a href="http://www.yellosoft.us/evilgenius/">Haskell for the
+Evil Genius</a>)</p>
 <hr />
-<p>Okay, but seriously now. I wrote this about my journey to learn functional programming in the <a href="//blog.vero.site/post/programming">programming babble post</a> half a year ago:</p>
+<p>Okay, but seriously now. I wrote this about my journey to learn
+functional programming in the
+<a href="//blog.vero.site/post/programming">programming babble post</a> half a
+year ago:</p>
 <blockquote>
-The main obstacle I have is that it’s hard to optimize or get asymptotics when computation is expensive (a big problem if you’re trying to learn through Project Euler problems, particularly ones with lots of primes).
+The main obstacle I have is that it’s hard to optimize or get
+asymptotics when computation is expensive (a big problem if you’re
+trying to learn through Project Euler problems, particularly ones with
+lots of primes).
 </blockquote>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/haskell">→ read more<span class="offscreen"> Haskell and Primes</span></a>
@@ -246,9 +336,40 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
 		</p>
 	</header>
 	
-	<p>Okay I don’t actually know how this pointless rambling got so long. I know the longer it is the more people will just tend to skim, because I do that all the time. So I went back and refactored—er, rewrote all the somewhat tangential bits (wow these puns are too easy) into footnotes. Manually. Obviously if I have to do this again I’ll write a script for it. But the post is still really long, and I bet nobody will read the whole thing. Oh well.</p>
-<p>Life updates: I got out of the hospital Friday two-and-a-half weeks ago, went to the preliminaries of NPSC (a national team programming contest) with classmates, threw up a lot, went back into the hospital, and came out again. I wrote a lot of stuff about the experience and how much it sucked (hint: <em>a lot</em>) when I started this draft around that time, but now putting so much detail in this post feels weird. I’m mostly good now.</p>
-<p>Three years ago NPSC was the only programming contest I really knew of; now I’ve participated in quite a few more, both online and locally, but it’s still the only contest I’ve entered that gives you real-time verdicts. I believe it inherits this from being modeled after ACM-ICPC, but that’s for college people and I’m less clear on how it works. All the other contests, namely <a href="https://www.topcoder.com/">TopCoder</a>, <a href="http://www.codeforces.com/">CodeForces</a>, <a href="http://usaco.org/">USACO</a>, and the other local individual competition (there doesn’t appear to be an English name so for the purpose of this post I’ll just call it “Nameless Local”; there’s a nation-wide competition in one-and-a-half weeks!), have system tests after the contest that don’t allow you to resubmit afterwards.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> They all give pretests that you get to know about right away, just to catch super-silly non-algorithmic mistakes like failing to remove the debug statements or reading input from the wrong place, but these contain weak test cases and don’t guarantee that the solution will pass the system tests and get full score.</p>
+	<p>Okay I don’t actually know how this pointless rambling got so long. I
+know the longer it is the more people will just tend to skim, because I
+do that all the time. So I went back and refactored—er, rewrote all the
+somewhat tangential bits (wow these puns are too easy) into footnotes.
+Manually. Obviously if I have to do this again I’ll write a script for
+it. But the post is still really long, and I bet nobody will read the
+whole thing. Oh well.</p>
+<p>Life updates: I got out of the hospital Friday two-and-a-half weeks
+ago, went to the preliminaries of NPSC (a national team programming
+contest) with classmates, threw up a lot, went back into the hospital,
+and came out again. I wrote a lot of stuff about the experience and how
+much it sucked (hint: <em>a lot</em>) when I started this draft around
+that time, but now putting so much detail in this post feels weird. I’m
+mostly good now.</p>
+<p>Three years ago NPSC was the only programming contest I really knew
+of; now I’ve participated in quite a few more, both online and locally,
+but it’s still the only contest I’ve entered that gives you real-time
+verdicts. I believe it inherits this from being modeled after ACM-ICPC,
+but that’s for college people and I’m less clear on how it works. All
+the other contests, namely
+<a href="https://www.topcoder.com/">TopCoder</a>,
+<a href="http://www.codeforces.com/">CodeForces</a>,
+<a href="http://usaco.org/">USACO</a>, and the other local individual
+competition (there doesn’t appear to be an English name so for the
+purpose of this post I’ll just call it “Nameless Local”; there’s a
+nation-wide competition in one-and-a-half weeks!), have system tests
+after the contest that don’t allow you to resubmit afterwards.<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> They all give pretests that you get
+to know about right away, just to catch super-silly non-algorithmic
+mistakes like failing to remove the debug statements or reading input
+from the wrong place, but these contain weak test cases and don’t
+guarantee that the solution will pass the system tests and get full
+score.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/programming">→ read more<span class="offscreen"> Ridiculously Long-Winded Programming Babble</span></a>
 	</footer>
@@ -273,22 +394,54 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
 		</p>
 	</header>
 	
-	<p><code><a href="https://diagrams.github.io/">diagrams</a></code> is a nifty Haskell library for making vector diagrams. I keep coming back to it to generate graphics for puzzles:</p>
+	<p><code><a href="https://diagrams.github.io/">diagrams</a></code> is a
+nifty Haskell library for making vector diagrams. I keep coming back to
+it to generate graphics for puzzles:</p>
 <ul>
-<li>the very old <a href="https://blog.vero.site/post/signature-puzzle">A Signature Puzzle</a> from this blog</li>
-<li><a href="https://dp.puzzlehunt.net/puzzle/a-fork-in-the-road.html">A Fork in the Road</a> (DP Puzzle Hunt)</li>
-<li><a href="https://2020.galacticpuzzlehunt.com/puzzle/symbols">Symbols</a> (Galactic Puzzle Hunt 2020)</li>
-<li><a href="https://silphpuzzlehunt.com/puzzle/a-lot-of-research">A Lot of Research into Things That Have Very Little Meaning</a> (Silph Puzzle Hunt)</li>
+<li>the very old <a
+href="https://blog.vero.site/post/signature-puzzle">A Signature
+Puzzle</a> from this blog</li>
+<li><a href="https://dp.puzzlehunt.net/puzzle/a-fork-in-the-road.html">A
+Fork in the Road</a> (DP Puzzle Hunt)</li>
+<li><a
+href="https://2020.galacticpuzzlehunt.com/puzzle/symbols">Symbols</a>
+(Galactic Puzzle Hunt 2020)</li>
+<li><a href="https://silphpuzzlehunt.com/puzzle/a-lot-of-research">A Lot
+of Research into Things That Have Very Little Meaning</a> (Silph Puzzle
+Hunt)</li>
 </ul>
-<p>I got sick of relearning it every time, and I think there’s some small chance other people will find it useful too, so I wrote something up. This post is a sort of reference that tries to compromise between the <a href="https://diagrams.github.io/doc/quickstart.html">quick start tutorial</a> and <a href="https://diagrams.github.io/doc/manual.html">manual</a> on one hand, and the API reference on the other, to try to be deeper and more comprehensive than the former, but also flow better and be easier to navigate than the latter. Some types are just really intimidating when fully written out…</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" title="1"><span class="ot">circle ::</span> (<span class="dt">TrailLike</span> t, <span class="dt">V</span> t <span class="op">~</span> <span class="dt">V2</span>, <span class="dt">N</span> t <span class="op">~</span> n, <span class="dt">Transformable</span> t) <span class="ot">=&gt;</span> n <span class="ot">-&gt;</span> t</a></code></pre></div>
-<p>To avoid unhelpfully generic types, I will deal concretely with two-dimensional diagrams that measure everything in <code>Double</code>, and will frequently abbreviate complex types with an asterisk, like I will write <code>V2*</code> for <code>V2 Double</code>. I will introduce these aliases along the way for easy greppability. They’re not legal Haskell, of course.</p>
-<p>This reference assumes basic-to-intermediate Haskell knowledge. Some of the more intermediate stuff includes:</p>
+<p>I got sick of relearning it every time, and I think there’s some
+small chance other people will find it useful too, so I wrote something
+up. This post is a sort of reference that tries to compromise between
+the <a href="https://diagrams.github.io/doc/quickstart.html">quick start
+tutorial</a> and <a
+href="https://diagrams.github.io/doc/manual.html">manual</a> on one
+hand, and the API reference on the other, to try to be deeper and more
+comprehensive than the former, but also flow better and be easier to
+navigate than the latter. Some types are just really intimidating when
+fully written out…</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">circle ::</span> (<span class="dt">TrailLike</span> t, <span class="dt">V</span> t <span class="op">~</span> <span class="dt">V2</span>, <span class="dt">N</span> t <span class="op">~</span> n, <span class="dt">Transformable</span> t) <span class="ot">=&gt;</span> n <span class="ot">-&gt;</span> t</span></code></pre></div>
+<p>To avoid unhelpfully generic types, I will deal concretely with
+two-dimensional diagrams that measure everything in <code>Double</code>,
+and will frequently abbreviate complex types with an asterisk, like I
+will write <code>V2*</code> for <code>V2 Double</code>. I will introduce
+these aliases along the way for easy greppability. They’re not legal
+Haskell, of course.</p>
+<p>This reference assumes basic-to-intermediate Haskell knowledge. Some
+of the more intermediate stuff includes:</p>
 <ul>
-<li>Monoids, and that the Haskell <code>Monoid</code> operator is <code>&lt;&gt;</code></li>
-<li>Typeclasses. I will sometimes write fake type signatures as abbreviations for typeclass restrictions: for example, <code>TrailLike</code> is a typeclass, and I might say or write that a function returns <code>TrailLike</code> when I really mean <code>TrailLike t =&gt; t</code>, any type <code>t</code> that is in that typeclass.</li>
+<li>Monoids, and that the Haskell <code>Monoid</code> operator is
+<code>&lt;&gt;</code></li>
+<li>Typeclasses. I will sometimes write fake type signatures as
+abbreviations for typeclass restrictions: for example,
+<code>TrailLike</code> is a typeclass, and I might say or write that a
+function returns <code>TrailLike</code> when I really mean
+<code>TrailLike t =&gt; t</code>, any type <code>t</code> that is in
+that typeclass.</li>
 </ul>
-<p>van Laarhoven lenses may help, but mostly I’ll try to black-box them.</p>
+<p>van Laarhoven lenses may help, but mostly I’ll try to black-box
+them.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/ref/diagrams">→ read more<span class="offscreen"> diagrams Reference</span></a>
 	</footer>
@@ -297,7 +450,7 @@ The main obstacle I have is that it’s hard to optimize or get asymptotics when
 		</section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

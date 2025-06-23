@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>Vim Digraphs: The Unnecessarily Detailed Guide</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="In Vim, in Insert mode, if you type Ctrl-K followed by two characters, you can insert a special Unicode character corresponding to those two characters. The two-character combo is often easier to remember than other codes. These are called digraphs.
+For example, Ctrl-K12 will insert ½.
+Everything below this is unnecessary detail.
+What are all the digraphs? I used to think the big table :help digraphs-table at the bottom of Vim’s help page for digraphs was exhaustive. As the page explains, the mnemonics are based on RFC1345, an Internet standard that provides two-character mnemonics for various characters.
+" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/digraphs" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+<div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/ref">References</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Vim Digraphs: The Unnecessarily Detailed Guide</h1>
+		
+		<p class="post-meta">
+		
+		2025-06-22
+		(2830 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>In Vim, in Insert mode, if you type <kbd>Ctrl-K</kbd> followed by two
+characters, you can insert a special Unicode character corresponding to
+those two characters. The two-character combo is often easier to
+remember than other codes. These are called digraphs.</p>
+<p>For example, <kbd>Ctrl-K</kbd><kbd>1</kbd><kbd>2</kbd> will insert
+<code>½</code>.</p>
+<p>Everything below this is unnecessary detail.</p>
+<h3 id="what-are-all-the-digraphs">What are all the digraphs?</h3>
+<p>I used to think the big table <code><a
+href="https://vimhelp.org/digraph.txt.html#digraph-table">:help
+digraphs-table</a></code> at the bottom of Vim’s help page for digraphs
+was exhaustive. As the page explains, the mnemonics are based on <a
+href="https://datatracker.ietf.org/doc/html/rfc1345">RFC1345</a>, an
+Internet standard that provides two-character mnemonics for various
+characters.</p>
+<p>To locate ourselves on a timeline: this RFC is from June 1992. To
+define what a “character” is, it refers to “ISO 2DIS 10646”. That’s a
+version<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> of ISO 10646, a standard which had
+sort of competed with Unicode for a while before they became <a
+href="https://en.wikipedia.org/wiki/Universal_Coded_Character_Set">unified</a>
+in 1991, shortly before our RFC. Of course, these standard(s) hadn’t
+“won” at the time; single-byte encodings with all kinds of competing
+codepages were all the rage still. I assume this is the time about which
+<a
+href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/">Joel
+Spolsky wrote</a> that Americans’ résumés would arrive in Israel as
+rגsumגs.</p>
+<p>However, at some point, I accidentally discovered that you can use
+the digraph <code>22</code> for the superscript 2 character,
+<code>²</code>. This is not in RFC1345 or on that help page! It does get
+printed by <code>:digraphs</code>, but it’s harder to find, and since
+it’s easier to type than the help page’s <code>2S</code>, I wanted to
+learn what other digraphs there were that I didn’t know about.</p>
+<p>In the <a
+href="https://github.com/vim/vim/blob/master/src/digraph.c">Vim source
+code</a> (or <a
+href="https://github.com/neovim/neovim/blob/master/src/nvim/digraph.c">Neovim</a>),
+the <code>22</code> digraph and several others have a comment saying,
+“Vim 5.x compatible”. Vim 5.0 was released in February 1998. But Vim had
+digraphs before then; the comment means that the digraphs
+<em>without</em> the comment were added <em>after</em> Vim 5.x: in
+September 2001, when Vim 6.0 was released. Vim’s documentation notes as
+much, in a <a
+href="https://vimhelp.org/version6.txt.html#digraphs-changed">short
+section</a> under <code>:help incompatible-6</code>:</p>
+<blockquote>
+<p>The default digraphs now correspond to RFC1345. This is very
+different from what was used in Vim 5.x.</p>
+</blockquote>
+<p>(Understandably, this section is not in NeoVim’s docs.)</p>
+<p>To track down our mystery digraphs, we need to go further back in Vim
+history. This is a little tricky. The (now-)official Vim git repo only
+goes as far back as 7.0<a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a>; even the official Vim source
+mirrors only go back to 3.0.</p>
+<p>Fortunately, the <a
+href="https://github.com/vim/vim-history">vim-history</a> GitHub repo
+has older versions, including <a
+href="https://github.com/vim/vim-history/blob/81d8b473260b31ea465268f9463b8cbf61c329d4/src/version.c">version
+notes</a><a href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a> saying that digraphs were added in
+Vim 1.18. No release date for 1.18 is documented, but the repo lists
+release dates for 1.17 in April 1992 and for 1.27 in April 1993, so it
+seems likely that 1.18 came out mid-1992. Interestingly, the version
+notes say that “CTRL-K for entering digraphs” was only added in version
+1.25. Before then, you could only use digraphs with the “one character,
+backspace, the other character” song and dance (which might have been
+helpfully analogous to a typewriter for some users), and only if
+digraphs were specifically enabled.<a href="#fn4" class="footnote-ref"
+id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>Anyway, the <a
+href="https://github.com/vim/vim-history/blob/c86bb8a460c9beb641304589f81b1880cba5f550/src/digraph.c">1.24
+version of digraphs</a> is the earliest source code I could find, and
+there it is, the <code>22</code> digraph for <code>²</code>.</p>
+<h4 id="while-were-randomly-rabbit-holing">While we’re randomly
+rabbit-holing</h4>
+<p>I couldn’t help but notice the contributors on top of the file:</p>
+<pre><code>Bram Moolenaar          mool@oce.nl
+Tim Thompson            twitch!tjt
+Tony Andrews            onecom!wldrdg!tony 
+G. R. (Fred) Walter     watmath!watcgl!grwalter</code></pre>
+<p>You know what other standard we take for granted today hadn’t “won”
+yet? <em>Email addresses.</em> Bram Moolenaar had an email address, but
+the other three contributors’ contact information was provided as <a
+href="https://en.wikipedia.org/wiki/UUCP#Bang_path">UUCP bang
+paths</a>.</p>
+<h3 id="a-short-history-of-digraphs-and-code-pages">A short history of
+digraphs and code pages</h3>
+<p>If you trace the file a bit further, you find that the <a
+href="https://github.com/vim/vim-history/commit/268329193b8d760248a9e27125a50f57887342f3#diff-33c77b5dd57a61bc8459e48aedc23c111e48343e0c1dc37d4192f1a2ba08fe6b">next
+commit we have, 1.27</a>, switches to a file <code>digraph.c.uue</code>.
+I realized shortly after actually typing this out that I don’t actually
+know whether the file was provided as such back in 1993 or whether this
+was the archivist’s decision. (The repository history is clearly
+post-hoc since Git itself came out in 2005.) I considered checking every
+commit to write down every digraph change, but quickly decided that that
+would be far too time-consuming. Let’s just check in on
+<code>digraph.c</code> at the start of each major version.</p>
+<ul>
+<li><p>In <a
+href="https://github.com/vim/vim-history/blob/v2.0/src/digraph.c">v2.0</a>
+(December 1993) Vim can be compiled with “standard MSDOS digraphs” or
+“standard ISO digraphs”. It looks like “standard MSDOS digraphs” use the
+same mnemonics applied to <a
+href="https://en.wikipedia.org/wiki/Code_page_437">Code page
+437</a>.</p></li>
+<li><p>In <a
+href="https://github.com/vim/vim-history/blob/v3.0/src/digraph.c">v3.0</a>
+(August 1994) the digraphs are mostly the same as v2.0. (I couldn’t
+figure out why git blame shows a large change.)</p></li>
+<li><p>In <a
+href="https://github.com/vim/vim-history/blob/v4.0/src/digraph.c">v4.0</a>
+(May 1996) Vim gained “<a
+href="https://en.wikipedia.org/wiki/HP-UX">HPUX</a> digraphs” for <a
+href="https://en.wikipedia.org/wiki/HP_Roman#HP_Roman_Extension">HP
+Roman</a>.</p></li>
+<li><p>In <a
+href="https://github.com/vim/vim-history/blob/v5.0/src/digraph.c">v5.0</a>
+(February 1998), under an <a
+href="https://en.wikipedia.org/wiki/MiNT">ATARI MiNT</a> preprocessor
+guard, Vim gained “ATARI digraphs” for the <a
+href="https://en.wikipedia.org/wiki/Atari_ST_character_set">Atari ST
+character set</a>.</p></li>
+<li><p>In <a
+href="https://github.com/vim/vim-history/blob/vim-6-0/src/digraph.c">v6.0</a>
+(August 2001), Vim gained digraphs for <a
+href="https://en.wikipedia.org/wiki/EBCDIC">EBCDIC</a> and MACOS (<a
+href="https://en.wikipedia.org/wiki/Mac_OS_Roman">Mac OS Roman</a>), in
+addition to the modern RFC1345 digraphs. The old digraphs that didn’t
+conflict with the new ones were generally kept around (though <a
+href="#every-old-vim-digraph">see below</a>), but all old digraphs were
+still available under an OLD_DIGRAPHS preprocessor guard. There were
+also a few tweaks and additions to those old default digraphs in <a
+href="https://github.com/vim/vim-history/commit/2b6ade85b98b1018fcb120b1b9c982b6917a8c49">v5.2</a>:
+<code>AA</code>/<code>aa</code> were added next to
+<code>A@</code>/<code>a@</code> for Å/å, and a few digraphs for
+characters where <a
+href="https://en.wikipedia.org/wiki/ISO/IEC_8859-15">ISO 8859-15</a>
+diverged from ISO 8859-1 were added.</p></li>
+<li><p>In <a
+href="https://github.com/vim/vim/blob/071d4279d6ab81b7187b48f3a0fc61e587b6db6c/src/digraph.c">v7.0</a>
+(May 2006) the digraphs are mostly the same as v6.0. From this point on,
+though, Vim started to shed support for operating systems and their code
+pages as they faded into obscurity. (Also, we have real git commits and
+it’s easier to find major changes.) Vim dropped MS-DOS in <a
+href="https://github.com/vim/vim/commit/48e330aff911be1c798c88a973af6437a8141fce">7.4.1399</a>,
+MACOS in <a
+href="https://github.com/vim/vim/commit/135059724f140ceac889c9f8136bd1bf5c41d49d">8.1.0805</a>,
+MiNT in <a
+href="https://github.com/vim/vim/commit/e3f915d12c8fe0466918a29ab4eaef153f71a2cd">8.2.1215</a>,
+EBCDIC in <a
+href="https://github.com/vim/vim/commit/424bcae1fb0f69e0aef5e0cf84fd771cf34a0fb7">8.2.4273</a>,
+and OLD_DIGRAPHS and HPUX_DIGRAPHS in <a
+href="https://github.com/vim/vim/commit/e27d6e6382795e86ea4dd3a86396350a4c29b6fb">9.0.0328</a>.
+On the other hand, it also gained new default digraphs in tiny
+batches:</p>
+<ul>
+<li><code>=e</code> for € EURO SIGN in <a
+href="https://github.com/vim/vim/commit/3fdfa4a9a52ab3d1a790262ee872a49853ad4626#diff-efe634b85bc9750dd1a43fe43106ae5550d437ce4622c2fa4f7290a7911c6444">7.0017</a>,</li>
+<li><code>Eu</code> for € EURO SIGN (again) in <a
+href="https://github.com/vim/vim/commit/f75a963eea9a893bb60c0b8eb425b2161de4919f#diff-efe634b85bc9750dd1a43fe43106ae5550d437ce4622c2fa4f7290a7911c6444">7.0146</a>,</li>
+<li><code>=R</code> and <code>=P</code> for ₽ RUBLE SIGN (called ROUBLE
+SIGN in the source code) in <a
+href="https://github.com/vim/vim/commit/e8d1f20cbd425e33e4fcc09d46f98e5c9e6a833e">7.4.335</a>,</li>
+<li><code>,.</code> for … HORIZONTAL ELLIPSIS in <a
+href="https://github.com/vim/vim/commit/81615517249bb78cba9c37c9834b787c1b265521">8.0.0062</a>,</li>
+<li><code>W`</code>, <code>w`</code>, <code>Y`</code>, and
+<code>y`</code> for some letters with graves (Ẁ, ẁ, Ỳ, ỳ) in <a
+href="https://github.com/vim/vim/commit/816e7660e1efb918ad85b5c78d21b957d1bcad17">8.0.0749</a>,</li>
+<li><code>oo</code> for • BULLET in <a
+href="https://github.com/vim/vim/commit/57ad94c5a9ee6f3626e1ec728519a8558a4346c8">8.2.1635</a>,</li>
+<li><code>4'</code> for ⁗ QUADRUPLE PRIME in <a
+href="https://github.com/vim/vim/commit/47416d1a7441f8c815438903e78ba0a2d877699e">9.0.2056</a>,
+and</li>
+<li><code>.=</code> for ≐ APPROACHES THE LIMIT in <a
+href="https://github.com/vim/vim/commit/3a621188ee52badfe7aa783db12588a78dcd8ed6">9.1.1065</a>.</li>
+</ul>
+<p>That last one was committed in February this year, after I started
+writing this post. I have a few dozen custom digraphs in my vimrc file;
+maybe only a handful are digraphs I could imagine being broadly useful
+and memorable, but I have never once considered the option of trying to
+upstream any of them to every Vim user ever. I admire the
+hustle.</p></li>
+</ul>
+<p>I’ve given up on documenting the digraphs for every now-dead
+codepage, not only because there are so many but because it would often
+be anachronistic to describe “what character” each digraph was for in
+modern terms. Unicode still hadn’t won! In pursuit of economy, several
+code pages deliberately conflate the German eszett ß with the Greek beta
+β. HPUX had digraphs <code>L-</code> and <code>L=</code> for one-bar £
+and two-bar ₤ pound signs, even though today they’re considered
+typographical variations — in fact, the HP Roman codepage is the
+<em>reason</em> Unicode has a separate ₤ character.<a href="#fn5"
+class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>
+MACOS had the <code>AP</code> digraph for the Apple logo, which is a
+private-use character, U+F8FF, today. Are you on a macOS device? </p>
+<p>For a similar rabbit hole, you can read about the <a
+href="https://blog.glyphdrawing.club/why-is-there-a-small-house-in-ibm-s-code-page-437/">“small
+house” in Code Page 437</a> on Glyph Drawing Club.</p>
+<h3 id="every-old-vim-digraph">Every old Vim digraph</h3>
+<p>Here are the final “old Vim digraphs” before they were removed in
+9.0.0328, and each of their ultimate fates. I also provide the new,
+RFC-compliant digraph for the character each old digraph was for. The
+unintuitive digraphs, like <code>e=</code> mapping to
+<code>U+00A4</code>, are related to the <a
+href="https://en.wikipedia.org/wiki/ISO/IEC_8859-15">ISO 8859-15</a>
+divergence.</p>
+<p>Surprisingly, four digraphs — <code>""</code>, <code>rO</code>,
+<code>,,</code>, and <code>i"</code> — were not preserved even though
+they don’t conflict with any RFC digraphs, and even though some similar
+digraphs (<code>cO</code> for ©, <code>a"</code> for ä, <code>e"</code>
+for ë, etc.) were preserved.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Digraph</th>
+<th>Old meaning</th>
+<th>New meaning</th>
+<th>RFC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>~!</code></td>
+<td><code>U+00A1</code> ¡</td>
+<td>🧊 preserved</td>
+<td><code>!I</code></td>
+</tr>
+<tr class="even">
+<td><code>c|</code></td>
+<td><code>U+00A2</code> ¢</td>
+<td>🧊 preserved</td>
+<td><code>Ct</code></td>
+</tr>
+<tr class="odd">
+<td><code>$$</code></td>
+<td><code>U+00A3</code> £</td>
+<td>🧊 preserved</td>
+<td><code>Pd</code></td>
+</tr>
+<tr class="even">
+<td><code>e=</code></td>
+<td><code>U+00A4</code> ¤</td>
+<td>🔀 remapped <code>U+0435</code> е</td>
+<td><code>Cu</code></td>
+</tr>
+<tr class="odd">
+<td><code>ox</code></td>
+<td><code>U+00A4</code> ¤</td>
+<td>🧊 preserved</td>
+<td><code>Cu</code></td>
+</tr>
+<tr class="even">
+<td><code>Y-</code></td>
+<td><code>U+00A5</code> ¥</td>
+<td>🧊 preserved</td>
+<td><code>Ye</code></td>
+</tr>
+<tr class="odd">
+<td><code>||</code></td>
+<td><code>U+00A6</code> ¦</td>
+<td>🧊 preserved</td>
+<td><code>BB</code></td>
+</tr>
+<tr class="even">
+<td><code>pa</code></td>
+<td><code>U+00A7</code> §</td>
+<td>🔀 remapped <code>U+3071</code> ぱ</td>
+<td><code>SE</code></td>
+</tr>
+<tr class="odd">
+<td><code>""</code></td>
+<td><code>U+00A8</code> ¨</td>
+<td>⛔ removed</td>
+<td><code>':</code></td>
+</tr>
+<tr class="even">
+<td><code>cO</code></td>
+<td><code>U+00A9</code> ©</td>
+<td>🧊 preserved</td>
+<td><code>Co</code></td>
+</tr>
+<tr class="odd">
+<td><code>a-</code></td>
+<td><code>U+00AA</code> ª</td>
+<td>🔀 remapped <code>U+0101</code> ā</td>
+<td><code>-a</code></td>
+</tr>
+<tr class="even">
+<td><code>&lt;&lt;</code></td>
+<td><code>U+00AB</code> «</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>-,</code></td>
+<td><code>U+00AC</code> ¬</td>
+<td>🧊 preserved</td>
+<td><code>NO</code></td>
+</tr>
+<tr class="even">
+<td><code>--</code></td>
+<td><code>U+00AD</code> ­</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>rO</code></td>
+<td><code>U+00AE</code> ®</td>
+<td>⛔ removed</td>
+<td><code>Rg</code></td>
+</tr>
+<tr class="even">
+<td><code>-=</code></td>
+<td><code>U+00AF</code> ¯</td>
+<td>🧊 preserved</td>
+<td><code>'m</code></td>
+</tr>
+<tr class="odd">
+<td><code>~o</code></td>
+<td><code>U+00B0</code> °</td>
+<td>🧊 preserved</td>
+<td><code>DG</code></td>
+</tr>
+<tr class="even">
+<td><code>+-</code></td>
+<td><code>U+00B1</code> ±</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>22</code></td>
+<td><code>U+00B2</code> ²</td>
+<td>🧊 preserved</td>
+<td><code>2S</code></td>
+</tr>
+<tr class="even">
+<td><code>33</code></td>
+<td><code>U+00B3</code> ³</td>
+<td>🧊 preserved</td>
+<td><code>3S</code></td>
+</tr>
+<tr class="odd">
+<td><code>''</code></td>
+<td><code>U+00B4</code> ´</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>ju</code></td>
+<td><code>U+00B5</code> µ</td>
+<td>🔀 remapped <code>U+044E</code> ю</td>
+<td><code>My</code></td>
+</tr>
+<tr class="odd">
+<td><code>pp</code></td>
+<td><code>U+00B6</code> ¶</td>
+<td>🧊 preserved</td>
+<td><code>PI</code></td>
+</tr>
+<tr class="even">
+<td><code>~.</code></td>
+<td><code>U+00B7</code> ·</td>
+<td>🧊 preserved</td>
+<td><code>.M</code></td>
+</tr>
+<tr class="odd">
+<td><code>,,</code></td>
+<td><code>U+00B8</code> ¸</td>
+<td>⛔ removed</td>
+<td><code>',</code></td>
+</tr>
+<tr class="even">
+<td><code>11</code></td>
+<td><code>U+00B9</code> ¹</td>
+<td>🧊 preserved</td>
+<td><code>1S</code></td>
+</tr>
+<tr class="odd">
+<td><code>o-</code></td>
+<td><code>U+00BA</code> º</td>
+<td>🔀 remapped <code>U+014D</code> ō</td>
+<td><code>-o</code></td>
+</tr>
+<tr class="even">
+<td><code>&gt;&gt;</code></td>
+<td><code>U+00BB</code> »</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>14</code></td>
+<td><code>U+00BC</code> ¼</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>12</code></td>
+<td><code>U+00BD</code> ½</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>34</code></td>
+<td><code>U+00BE</code> ¾</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>~?</code></td>
+<td><code>U+00BF</code> ¿</td>
+<td>🧊 preserved</td>
+<td><code>?I</code></td>
+</tr>
+<tr class="odd">
+<td><code>A`</code></td>
+<td><code>U+00C0</code> À</td>
+<td>🧊 preserved</td>
+<td><code>A!</code></td>
+</tr>
+<tr class="even">
+<td><code>A'</code></td>
+<td><code>U+00C1</code> Á</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>A^</code></td>
+<td><code>U+00C2</code> Â</td>
+<td>🧊 preserved</td>
+<td><code>A&gt;</code></td>
+</tr>
+<tr class="even">
+<td><code>A~</code></td>
+<td><code>U+00C3</code> Ã</td>
+<td>🧊 preserved</td>
+<td><code>A?</code></td>
+</tr>
+<tr class="odd">
+<td><code>A"</code></td>
+<td><code>U+00C4</code> Ä</td>
+<td>🧊 preserved</td>
+<td><code>A:</code></td>
+</tr>
+<tr class="even">
+<td><code>A@</code></td>
+<td><code>U+00C5</code> Å</td>
+<td>🧊 preserved</td>
+<td><code>AA</code></td>
+</tr>
+<tr class="odd">
+<td><code>AA</code></td>
+<td><code>U+00C5</code> Å</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>AE</code></td>
+<td><code>U+00C6</code> Æ</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>C,</code></td>
+<td><code>U+00C7</code> Ç</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>E`</code></td>
+<td><code>U+00C8</code> È</td>
+<td>🧊 preserved</td>
+<td><code>E!</code></td>
+</tr>
+<tr class="odd">
+<td><code>E'</code></td>
+<td><code>U+00C9</code> É</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>E^</code></td>
+<td><code>U+00CA</code> Ê</td>
+<td>🧊 preserved</td>
+<td><code>E&gt;</code></td>
+</tr>
+<tr class="odd">
+<td><code>E"</code></td>
+<td><code>U+00CB</code> Ë</td>
+<td>🧊 preserved</td>
+<td><code>E:</code></td>
+</tr>
+<tr class="even">
+<td><code>I`</code></td>
+<td><code>U+00CC</code> Ì</td>
+<td>🧊 preserved</td>
+<td><code>I!</code></td>
+</tr>
+<tr class="odd">
+<td><code>I'</code></td>
+<td><code>U+00CD</code> Í</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>I^</code></td>
+<td><code>U+00CE</code> Î</td>
+<td>🧊 preserved</td>
+<td><code>I&gt;</code></td>
+</tr>
+<tr class="odd">
+<td><code>I"</code></td>
+<td><code>U+00CF</code> Ï</td>
+<td>🧊 preserved</td>
+<td><code>I:</code></td>
+</tr>
+<tr class="even">
+<td><code>D-</code></td>
+<td><code>U+00D0</code> Ð</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>N~</code></td>
+<td><code>U+00D1</code> Ñ</td>
+<td>🧊 preserved</td>
+<td><code>N?</code></td>
+</tr>
+<tr class="even">
+<td><code>O`</code></td>
+<td><code>U+00D2</code> Ò</td>
+<td>🧊 preserved</td>
+<td><code>O!</code></td>
+</tr>
+<tr class="odd">
+<td><code>O'</code></td>
+<td><code>U+00D3</code> Ó</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>O^</code></td>
+<td><code>U+00D4</code> Ô</td>
+<td>🧊 preserved</td>
+<td><code>O&gt;</code></td>
+</tr>
+<tr class="odd">
+<td><code>O~</code></td>
+<td><code>U+00D5</code> Õ</td>
+<td>🧊 preserved</td>
+<td><code>O?</code></td>
+</tr>
+<tr class="even">
+<td><code>O"</code></td>
+<td><code>U+00D6</code> Ö</td>
+<td>🔀 remapped <code>U+0150</code> Ő</td>
+<td><code>O:</code></td>
+</tr>
+<tr class="odd">
+<td><code>/\</code></td>
+<td><code>U+00D7</code> ×</td>
+<td>🧊 preserved</td>
+<td><code>*X</code></td>
+</tr>
+<tr class="even">
+<td><code>OE</code></td>
+<td><code>U+00D7</code> ×</td>
+<td>🔀 remapped <code>U+0152</code> Œ</td>
+<td><code>*X</code></td>
+</tr>
+<tr class="odd">
+<td><code>O/</code></td>
+<td><code>U+00D8</code> Ø</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>U`</code></td>
+<td><code>U+00D9</code> Ù</td>
+<td>🧊 preserved</td>
+<td><code>U!</code></td>
+</tr>
+<tr class="odd">
+<td><code>U'</code></td>
+<td><code>U+00DA</code> Ú</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>U^</code></td>
+<td><code>U+00DB</code> Û</td>
+<td>🧊 preserved</td>
+<td><code>U&gt;</code></td>
+</tr>
+<tr class="odd">
+<td><code>U"</code></td>
+<td><code>U+00DC</code> Ü</td>
+<td>🔀 remapped <code>U+0170</code> Ű</td>
+<td><code>U:</code></td>
+</tr>
+<tr class="even">
+<td><code>Y'</code></td>
+<td><code>U+00DD</code> Ý</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>Ip</code></td>
+<td><code>U+00DE</code> Þ</td>
+<td>🧊 preserved</td>
+<td><code>TH</code></td>
+</tr>
+<tr class="even">
+<td><code>ss</code></td>
+<td><code>U+00DF</code> ß</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>a`</code></td>
+<td><code>U+00E0</code> à</td>
+<td>🧊 preserved</td>
+<td><code>a!</code></td>
+</tr>
+<tr class="even">
+<td><code>a'</code></td>
+<td><code>U+00E1</code> á</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>a^</code></td>
+<td><code>U+00E2</code> â</td>
+<td>🧊 preserved</td>
+<td><code>a&gt;</code></td>
+</tr>
+<tr class="even">
+<td><code>a~</code></td>
+<td><code>U+00E3</code> ã</td>
+<td>🧊 preserved</td>
+<td><code>a?</code></td>
+</tr>
+<tr class="odd">
+<td><code>a"</code></td>
+<td><code>U+00E4</code> ä</td>
+<td>🧊 preserved</td>
+<td><code>a:</code></td>
+</tr>
+<tr class="even">
+<td><code>a@</code></td>
+<td><code>U+00E5</code> å</td>
+<td>🧊 preserved</td>
+<td><code>aa</code></td>
+</tr>
+<tr class="odd">
+<td><code>aa</code></td>
+<td><code>U+00E5</code> å</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>ae</code></td>
+<td><code>U+00E6</code> æ</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>c,</code></td>
+<td><code>U+00E7</code> ç</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>e`</code></td>
+<td><code>U+00E8</code> è</td>
+<td>🧊 preserved</td>
+<td><code>e!</code></td>
+</tr>
+<tr class="odd">
+<td><code>e'</code></td>
+<td><code>U+00E9</code> é</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>e^</code></td>
+<td><code>U+00EA</code> ê</td>
+<td>🧊 preserved</td>
+<td><code>e&gt;</code></td>
+</tr>
+<tr class="odd">
+<td><code>e"</code></td>
+<td><code>U+00EB</code> ë</td>
+<td>🧊 preserved</td>
+<td><code>e:</code></td>
+</tr>
+<tr class="even">
+<td><code>i`</code></td>
+<td><code>U+00EC</code> ì</td>
+<td>🧊 preserved</td>
+<td><code>i!</code></td>
+</tr>
+<tr class="odd">
+<td><code>i'</code></td>
+<td><code>U+00ED</code> í</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>i^</code></td>
+<td><code>U+00EE</code> î</td>
+<td>🧊 preserved</td>
+<td><code>i&gt;</code></td>
+</tr>
+<tr class="odd">
+<td><code>i"</code></td>
+<td><code>U+00EF</code> ï</td>
+<td>⛔ removed</td>
+<td><code>i:</code></td>
+</tr>
+<tr class="even">
+<td><code>d-</code></td>
+<td><code>U+00F0</code> ð</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>n~</code></td>
+<td><code>U+00F1</code> ñ</td>
+<td>🧊 preserved</td>
+<td><code>n?</code></td>
+</tr>
+<tr class="even">
+<td><code>o`</code></td>
+<td><code>U+00F2</code> ò</td>
+<td>🧊 preserved</td>
+<td><code>o!</code></td>
+</tr>
+<tr class="odd">
+<td><code>o'</code></td>
+<td><code>U+00F3</code> ó</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>o^</code></td>
+<td><code>U+00F4</code> ô</td>
+<td>🧊 preserved</td>
+<td><code>o&gt;</code></td>
+</tr>
+<tr class="odd">
+<td><code>o~</code></td>
+<td><code>U+00F5</code> õ</td>
+<td>🧊 preserved</td>
+<td><code>o?</code></td>
+</tr>
+<tr class="even">
+<td><code>o"</code></td>
+<td><code>U+00F6</code> ö</td>
+<td>🔀 remapped <code>U+0151</code> ő</td>
+<td><code>o:</code></td>
+</tr>
+<tr class="odd">
+<td><code>:-</code></td>
+<td><code>U+00F7</code> ÷</td>
+<td>⛔/✅ effectively RFC-compliant</td>
+<td><code>-:</code></td>
+</tr>
+<tr class="even">
+<td><code>oe</code></td>
+<td><code>U+00F7</code> ÷</td>
+<td>🔀 remapped <code>U+0153</code> œ</td>
+<td><code>-:</code></td>
+</tr>
+<tr class="odd">
+<td><code>o/</code></td>
+<td><code>U+00F8</code> ø</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>u`</code></td>
+<td><code>U+00F9</code> ù</td>
+<td>🧊 preserved</td>
+<td><code>u!</code></td>
+</tr>
+<tr class="odd">
+<td><code>u'</code></td>
+<td><code>U+00FA</code> ú</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>u^</code></td>
+<td><code>U+00FB</code> û</td>
+<td>🧊 preserved</td>
+<td><code>u&gt;</code></td>
+</tr>
+<tr class="odd">
+<td><code>u"</code></td>
+<td><code>U+00FC</code> ü</td>
+<td>🔀 remapped <code>U+0171</code> ű</td>
+<td><code>u:</code></td>
+</tr>
+<tr class="even">
+<td><code>y'</code></td>
+<td><code>U+00FD</code> ý</td>
+<td>✅ RFC-compliant</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>ip</code></td>
+<td><code>U+00FE</code> þ</td>
+<td>⛔/🔀 removed (RFC <code>pi</code> = ぴ)</td>
+<td><code>th</code></td>
+</tr>
+<tr class="even">
+<td><code>y"</code></td>
+<td><code>U+00FF</code> ÿ</td>
+<td>🧊 preserved</td>
+<td><code>y:</code></td>
+</tr>
+</tbody>
+</table>
+<p>All remaining default digraphs that aren’t from the RFC were added
+after 7.0 and mentioned above, though how Vim’s digraphs help page
+discusses them varies. That page documents a subset of those digraphs in
+the big <code>:help digraph-table</code> table that I originally hoped
+was exhaustive, and calls out a different subset in the prose as
+additions to RFC1345. Though, <a
+href="https://github.com/vim/vim/commit/3a621188ee52badfe7aa783db12588a78dcd8ed6">9.1.1065</a>,
+the last commit to add a digraph, also revises the prose to say that the
+default digraphs come from “RFC1345 mnemonics (with some additions)”, so
+arguably that base is now fully covered.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Digraph</th>
+<th>Meaning</th>
+<th>Doc in table?</th>
+<th>Doc in prose?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>W`</code></td>
+<td><code>U+1E80</code> Ẁ</td>
+<td>🚫 no</td>
+<td>🚫 no</td>
+</tr>
+<tr class="even">
+<td><code>w`</code></td>
+<td><code>U+1E81</code> ẁ</td>
+<td>🚫 no</td>
+<td>🚫 no</td>
+</tr>
+<tr class="odd">
+<td><code>Y`</code></td>
+<td><code>U+1EF2</code> Ỳ</td>
+<td>🚫 no</td>
+<td>🚫 no</td>
+</tr>
+<tr class="even">
+<td><code>y`</code></td>
+<td><code>U+1EF3</code> ỳ</td>
+<td>🚫 no</td>
+<td>🚫 no</td>
+</tr>
+<tr class="odd">
+<td><code>oo</code></td>
+<td><code>U+2022</code> •</td>
+<td>✅ yes</td>
+<td>🚫 no</td>
+</tr>
+<tr class="even">
+<td><code>,.</code></td>
+<td><code>U+2026</code> …</td>
+<td>✅ yes</td>
+<td>🚫 no</td>
+</tr>
+<tr class="odd">
+<td><code>4'</code></td>
+<td><code>U+2057</code> ⁗</td>
+<td>✅ yes</td>
+<td>✅ yes</td>
+</tr>
+<tr class="even">
+<td><code>=e</code></td>
+<td><code>U+20AC</code> €</td>
+<td>🚫 no</td>
+<td>✅ yes</td>
+</tr>
+<tr class="odd">
+<td><code>Eu</code></td>
+<td><code>U+20AC</code> €</td>
+<td>✅ yes</td>
+<td>✅ yes</td>
+</tr>
+<tr class="even">
+<td><code>=P</code></td>
+<td><code>U+20BD</code> ₽</td>
+<td>✅ yes</td>
+<td>✅ yes</td>
+</tr>
+<tr class="odd">
+<td><code>=R</code></td>
+<td><code>U+20BD</code> ₽</td>
+<td>✅ yes</td>
+<td>✅ yes</td>
+</tr>
+<tr class="even">
+<td><code>.=</code></td>
+<td><code>U+2250</code> ≐</td>
+<td>✅ yes</td>
+<td>🤷</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-do-you-implement-digraphs-in-the-wild">How do you implement
+digraphs in the wild?</h3>
+<p>(Really stretching the concept of relevance here.)</p>
+<p>I have a problem where I will have tiny conveniences on some
+computers that I own and then get annoyed that I don’t have them on
+other devices or operating systems. I’m also enough of a web dev that I
+can fix this. Digraphs are easy enough: In a text area, capture the
+keydown event. If it’s <kbd>Ctrl-K</kbd>, activate digraph mode and
+capture and <code>preventDefault</code> the next two keydown events.
+After the second such event, look up the digraph and append it.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>textarea<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">&#39;keydown&#39;</span><span class="op">,</span> <span class="kw">function</span>(e) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (e<span class="op">.</span><span class="at">ctrlKey</span> <span class="op">&amp;&amp;</span> e<span class="op">.</span><span class="at">key</span> <span class="op">===</span> <span class="st">&#39;k&#39;</span>) {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        e<span class="op">.</span><span class="fu">preventDefault</span>()<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        isDigraphMode <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">// ...</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (isDigraphMode) {</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">// look some stuff up with previous/current e.key</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<p>Problem: I can’t <kbd>Ctrl-K</kbd> on my phone. Solution: Pick a
+different typeable key, say the backslash. (In practice I made it
+customizable.)</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>textarea<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">&#39;keydown&#39;</span><span class="op">,</span> <span class="kw">function</span>(e) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (e<span class="op">.</span><span class="at">ctrlKey</span> <span class="op">&amp;&amp;</span> e<span class="op">.</span><span class="at">key</span> <span class="op">===</span> <span class="st">&#39;k&#39;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>            <span class="op">||</span> (<span class="op">!</span>isDigraphMode <span class="op">&amp;&amp;</span> e<span class="op">.</span><span class="at">key</span> <span class="op">===</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">&quot;</span>)) {</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        e<span class="op">.</span><span class="fu">preventDefault</span>()<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        isDigraphMode <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">// ...</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (isDigraphMode) {</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">// look some stuff up with e.key and any buffered presses</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<p>Surprisingly, although this works on my computer and a few other
+desktop and mobile browsers I checked, it doesn’t work on Android
+Chrome, where <code>e.key</code> is always <code>"Unidentified"</code>.
+Some StackOverflow issues like <a
+href="https://stackoverflow.com/questions/59584061/why-is-unidentified-returned-on-keyboard-input-on-mobile">Why
+is “Unidentified” returned on keyboard input on mobile?</a> point to <a
+href="https://bugs.chromium.org/p/chromium/issues/detail?id=118639">issue
+118639</a> on the Chromium bug tracker, but it denies access for me.
+According to a <a
+href="https://web.archive.org/web/20190321091758/https://bugs.chromium.org/p/chromium/issues/detail?id=118639">Wayback
+Machine snapshot</a>, this bug was opened in March 2012 and a fix was
+merged in August 2014, but then the fix was reverted in April 2015 and
+the bug was marked as WontFix.</p>
+<blockquote>
+<p>Too many non-western-keyboard use-cases depend on having “compose”
+key-codes instead of guessed “proper” ones. We’ve tried fixes that
+compromise but they never get all the edge-cases.</p>
+<p>The bottom line is that if you want your keyboard-knowledgeable web
+page to work with Chrome, you’re going to have to be tolerant of IME’s
+idiosyncrasies with regard to key-codes.</p>
+</blockquote>
+<p>The best resolution I found is to capture the <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Element/beforeinput_event"><code>beforeinput</code>
+event</a> instead, whose meaning maybe is simpler in a world with so
+many input methods — “if you would insert this text, don’t”.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>textarea<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">&#39;beforeinput&#39;</span><span class="op">,</span> <span class="kw">function</span>(e) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (e<span class="op">.</span><span class="at">data</span> <span class="op">===</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">&quot;</span>) {</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        e<span class="op">.</span><span class="fu">preventDefault</span>()<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        isDigraphMode <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">// ...</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<p>Anyway I now have a <a
+href="https://betaveros.github.io/digraphs.html">digraphs.html</a> with
+an obnoxious number of custom digraphs I can use anywhere I have an
+internet connection and a modern JavaScript-enabled browser.</p>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>…which version?</p>
+<p>DIS likely stands for <a
+href="https://www.iso.org/stages-and-resources-for-standards-development.html">Draft
+International Standard</a>, an official abbreviation for an official
+stage of the ISO standards development process. My best guess, then, is
+that “2DIS” stands for the 2nd Draft International Standard. But this is
+<em>not</em> an official abbreviation or concept, and bafflingly, this
+RFC is essentially the only document I can find online that uses this
+abbreviation this way. (Some other versions of ISO standards are
+referenced online with the abbreviation “DIS2”, but even that is rare.)
+In any case, it’s beyond my research ability to find this version
+exactly or determine what distinguished it from previous or future
+versions. At best I can mention that June 1992 is the same month that
+Unicode 1.0.1 was published, so I’d assume 2DIS corresponds to something
+before that.<a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The first commit in the repo, <code>0c62f8408</code>,
+only adds a README file. The new few commits say
+<code>updated for version 7.0001</code>, then there’s the highly
+relatable commit message <code>Various changes</code>, then
+<code>updated for version 7.0002</code>.<a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Those version notes were removed with the 4.0 release.
+This sentence was added to <code>src/version.c</code>, which remains
+there:</p>
+<blockquote>
+<p>All the remarks about older versions have been removed, they are not
+very interesting.</p>
+</blockquote>
+<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn4"><p>Some shallow digging around the code to corroborate
+this. In v1.24, there is one reference to the <code>getdigraph</code>
+function in <code>edit.c</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef DIGRAPHS</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>p_dg<span class="op">)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>backspaced<span class="op">)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                c <span class="op">=</span> getdigraph<span class="op">(</span>backspaced<span class="op">,</span> c<span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            backspaced <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>c <span class="op">==</span> BS <span class="op">&amp;&amp;</span> inserted<span class="op">)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                backspaced <span class="op">=</span> inserted<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                inserted <span class="op">=</span> c<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif </span><span class="co">/* DIGRAPHS */</span></span></code></pre></div>
+<p>In the next commit we have, v1.27, the above block of code is
+preserved as-is, but there is an additional reference:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef DIGRAPHS</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>              <span class="cf">case</span> Ctrl<span class="op">(</span><span class="ch">&#39;K&#39;</span><span class="op">):</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                outchar<span class="op">(</span><span class="ch">&#39;?&#39;</span><span class="op">);</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                AppendToRedobuff<span class="op">(</span><span class="st">&quot;</span><span class="sc">\026</span><span class="st">&quot;</span><span class="op">);</span>    <span class="co">/* CTRL-V */</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                setcursor<span class="op">();</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                c <span class="op">=</span> vgetc<span class="op">();</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                outstrn<span class="op">(</span>transchar<span class="op">(</span>c<span class="op">));</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                setcursor<span class="op">();</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                c <span class="op">=</span> getdigraph<span class="op">(</span>c<span class="op">,</span> vgetc<span class="op">());</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">goto</span> normalchar<span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif </span><span class="co">/* DIGRAPHS */</span></span></code></pre></div>
+<p>(I expanded the tabs in these code blocks but otherwise kept them
+as-is)<a href="#fnref4" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>See <a
+href="https://www.unicode.org/versions/Unicode8.0.0/ch22.pdf">Unicode
+8.0, chapter 22.1</a>.<a href="#fnref5" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+  <p class="comments-meta">if you liked this post, click to make an invisible number go up: <button class="btn like-button">like</button></p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/right-back-here">← Right Back Here</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+</div>
+<footer class="site-footer">
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://www.goatcounter.com/">GoatCounter</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>
+  window.goatcounter = { path: function(p) { return '/blog' + p; } }
+  for (let but of document.getElementsByClassName('like-button')) {
+    but.addEventListener('click', function (ev) {
+      goatcounter.count({
+        path: function (p) { return 'like/blog' + p; }
+      });
+    });
+  }
+</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</body>
+</html>

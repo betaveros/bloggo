@@ -61,6 +61,46 @@
 		
 			<article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/coming" class="post-link">...And They Don&#39;t Stop Coming</a></h3>
+		
+		<p class="post-meta">
+		
+		2021-12-31
+		(1512 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/2OXgMj6NF08" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>It’s another year, huh.</p>
+<p>2021 is the first year during which I held a full-time job
+continuously. My disposable income and discretionary spending have both
+increased the most sharply since, well, ever. It’s weird.</p>
+<p>We are still in a pandemic. Greek letters continue to be associated
+with uncool things. I got vaccinated and started taking measured (but
+still small) risks. Funny story: my first vaccination was a complete
+surprise, as my roommate knocked on my door mid-day to inform me that
+somebody he knew had extra vaccines to give out — except that the night
+before I had a dream about being vaccinated, which was weird enough that
+I wrote that dream down, something I do only once every few months. I
+also got boosted just a few days ago.</p>
+<p>What else happened to me in 2021?</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/coming">→ read more<span class="offscreen"> ...And They Don&#39;t Stop Coming</span></a>
+	</footer>
+</article>
+
+		
+			<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/elliptic-curves" class="post-link">Just Enough Elliptic Curves to Be Dangerous</a></h3>
 		
 		<p class="post-meta">
@@ -76,21 +116,63 @@
 		</p>
 	</header>
 	
-	<p>A famous Trail of Bits post says to <a href="https://blog.trailofbits.com/2019/07/08/fuck-rsa/">stop using RSA</a>: it’s simple enough to make people think they can implement it correctly, but full of invisible traps. In contrast, although elliptic curve cryptography (ECC) implementations could also fall into subtle traps, they usually don’t. The post conjectures that this is because ECC intimidates people into using cryptographically sound libraries instead of implementing their own.</p>
-<p>If you do want to understand ECC just enough to produce your own trap-ridden implementation, though, this post aims to get you there. (Assuming some mathematical background chosen in a not particularly principled way, approximately what I had before writing this post.) Hence the title. Because I have a cryptographic conscience, I will still point out the traps I know of; but there are probably traps I don’t know about.</p>
-<p>This post contains a lot of handwaving and straight-up giving up on proofs. You don’t need to know the proofs to be dangerous. The ethos is sort of like <a href="https://web.evanchen.cc/napkin.html">Napkin</a>, but way shoddier and with zero pretense of pedagogical soundness. Still, here are some concrete questions that I learned the answer to while writing this post:</p>
+	<p>A famous Trail of Bits post says to <a
+href="https://blog.trailofbits.com/2019/07/08/fuck-rsa/">stop using
+RSA</a>: it’s simple enough to make people think they can implement it
+correctly, but full of invisible traps. In contrast, although elliptic
+curve cryptography (ECC) implementations could also fall into subtle
+traps, they usually don’t. The post conjectures that this is because ECC
+intimidates people into using cryptographically sound libraries instead
+of implementing their own.</p>
+<p>If you do want to understand ECC just enough to produce your own
+trap-ridden implementation, though, this post aims to get you there.
+(Assuming some mathematical background chosen in a not particularly
+principled way, approximately what I had before writing this post.)
+Hence the title. Because I have a cryptographic conscience, I will still
+point out the traps I know of; but there are probably traps I don’t know
+about.</p>
+<p>This post contains a lot of handwaving and straight-up giving up on
+proofs. You don’t need to know the proofs to be dangerous. The ethos is
+sort of like <a href="https://web.evanchen.cc/napkin.html">Napkin</a>,
+but way shoddier and with zero pretense of pedagogical soundness. Still,
+here are some concrete questions that I learned the answer to while
+writing this post:</p>
 <ul>
 <li>Why does the group law hold, sort of intuitively?</li>
-<li>Why do people have to modify Curve25519 before using it to compute digital signatures?</li>
-<li>What is a “quadratic twist” and why should I care about it to pick a secure elliptic curve?</li>
-<li>How is it possible that an isogeny can be described as surjective but not injective while mapping a finite elliptic curve to another elliptic curve of the same cardinality?</li>
+<li>Why do people have to modify Curve25519 before using it to compute
+digital signatures?</li>
+<li>What is a “quadratic twist” and why should I care about it to pick a
+secure elliptic curve?</li>
+<li>How is it possible that an isogeny can be described as surjective
+but not injective while mapping a finite elliptic curve to another
+elliptic curve of the same cardinality?</li>
 <li>How many claws does an alligator have?</li>
 </ul>
-<p>Elliptic curves have a lot of complicated algebra. If you ever studied algebra in high school and did exercises where you had to simplify or factor or graph some really complicated algebraic expression, and you learned that algebra is also the name of a field in higher mathematics, you might have assumed that working algebraists just dealt with even more complicated expressions. If you then studied algebra in college, you’d probably have realized that that’s not really what algebra is about at all; the difficulty comes from <em>new abstractions</em>, like a bunch of the terms above.</p>
-<p>Well… the study of elliptic curves involves a bunch of complicated expressions like what your high school self might have imagined. Sometimes, notes will just explode into a trainwreck of terms like</p>
-<p><span class="math display">\[\begin{align*}\psi_1 &amp;= 1 \\ \psi_2 &amp;= 2y \\ \psi_3 &amp;= 3x^4 + 6Ax^2 + 12Bx - A^2 \\ \psi_4 &amp;= 4y(x^6 + 5Ax^4 + 20Bx^3 - 5A^2x^2 - 4ABx - A^3 - 8B^2).\end{align*}\]</span></p>
-<p>“This is REAL Math, done by REAL Mathematicians,” one is tempted to quip. The <a href="https://hyperelliptic.org/EFD/">Explicit-Formulas Database</a> is a fun place to take a gander through. I will copy formulas into this post from time to time when there’s something about them I want to call attention to, but in general we won’t do any complicated algebraic manipulations in this post. Just be prepared.</p>
-<p>Because I’m focusing on conceptual understanding (and am lazy), this post contains almost no code, and definitely no code that’s runnable in any real programming language.</p>
+<p>Elliptic curves have a lot of complicated algebra. If you ever
+studied algebra in high school and did exercises where you had to
+simplify or factor or graph some really complicated algebraic
+expression, and you learned that algebra is also the name of a field in
+higher mathematics, you might have assumed that working algebraists just
+dealt with even more complicated expressions. If you then studied
+algebra in college, you’d probably have realized that that’s not really
+what algebra is about at all; the difficulty comes from <em>new
+abstractions</em>, like a bunch of the terms above.</p>
+<p>Well… the study of elliptic curves involves a bunch of complicated
+expressions like what your high school self might have imagined.
+Sometimes, notes will just explode into a trainwreck of terms like</p>
+<p><span class="math display">\[\begin{align*}\psi_1 &amp;= 1 \\ \psi_2
+&amp;= 2y \\ \psi_3 &amp;= 3x^4 + 6Ax^2 + 12Bx - A^2 \\ \psi_4 &amp;=
+4y(x^6 + 5Ax^4 + 20Bx^3 - 5A^2x^2 - 4ABx - A^3 -
+8B^2).\end{align*}\]</span></p>
+<p>“This is REAL Math, done by REAL Mathematicians,” one is tempted to
+quip. The <a href="https://hyperelliptic.org/EFD/">Explicit-Formulas
+Database</a> is a fun place to take a gander through. I will copy
+formulas into this post from time to time when there’s something about
+them I want to call attention to, but in general we won’t do any
+complicated algebraic manipulations in this post. Just be prepared.</p>
+<p>Because I’m focusing on conceptual understanding (and am lazy), this
+post contains almost no code, and definitely no code that’s runnable in
+any real programming language.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/elliptic-curves">→ read more<span class="offscreen"> Just Enough Elliptic Curves to Be Dangerous</span></a>
 	</footer>
@@ -109,10 +191,43 @@
 		</p>
 	</header>
 	
-	<p>Imagine you had a button you could press whenever you saw or heard something you wanted to remember. By holding that button down for about a minute, you’ll be able to remember that thing <em>forever</em>. There are no undesirable side effects. Sounds like a pretty good deal, right?</p>
-<p>There’s only one catch: you have to regularly find new things to press the button on. If you stop for more than a few days, the effects wear off. If you ask me, it still seems almost too good to be true! But it’s not. It’s the magic of <a href="https://en.wikipedia.org/wiki/Spaced_repetition">spaced repetition</a>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<p>I had known about this magic for a long time and read blog posts from all directions telling me to use it, typically but not necessarily through <a href="https://apps.ankiweb.net/">Anki</a>. Examples include Nicky Case’s <a href="https://ncase.me/remember/">interactive guide</a> and Alexey Guzey’s <a href="https://guzey.com/things/software/anki/">guide</a>; and because this has been so well-covered, I won’t go into how or why spaced repetition works or how one would use Anki in this post. Still, for a long time, I found the one “catch” to be of the -22 variety: I didn’t use Anki regularly because I didn’t have any flash cards of things I wanted to remember; but I didn’t make any flash cards of things I wanted to remember because, given that I didn’t use Anki regularly, making those flash cards wouldn’t actually help me remember those things.</p>
-<p>Here is the One Weird Anki Trick that got me to finally turn spaced repetition into a habit: I created an Anki deck with a bunch of amusing but utterly useless cards,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> in order to make studying the Anki deck an entertaining activity I actually wanted to do. (Getting the mobile app and syncing my deck online also helped a lot.) Only after I started to habitually check my Anki deck did I start adding cards for the things I actually wanted to learn. I keep everything in one deck,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> so that my fun cards are spread out among my “work” cards, and when I find myself losing motivation, I add more useless entertainment cards.</p>
+	<p>Imagine you had a button you could press whenever you saw or heard
+something you wanted to remember. By holding that button down for about
+a minute, you’ll be able to remember that thing <em>forever</em>. There
+are no undesirable side effects. Sounds like a pretty good deal,
+right?</p>
+<p>There’s only one catch: you have to regularly find new things to
+press the button on. If you stop for more than a few days, the effects
+wear off. If you ask me, it still seems almost too good to be true! But
+it’s not. It’s the magic of <a
+href="https://en.wikipedia.org/wiki/Spaced_repetition">spaced
+repetition</a>.<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a></p>
+<p>I had known about this magic for a long time and read blog posts from
+all directions telling me to use it, typically but not necessarily
+through <a href="https://apps.ankiweb.net/">Anki</a>. Examples include
+Nicky Case’s <a href="https://ncase.me/remember/">interactive guide</a>
+and Alexey Guzey’s <a
+href="https://guzey.com/things/software/anki/">guide</a>; and because
+this has been so well-covered, I won’t go into how or why spaced
+repetition works or how one would use Anki in this post. Still, for a
+long time, I found the one “catch” to be of the -22 variety: I didn’t
+use Anki regularly because I didn’t have any flash cards of things I
+wanted to remember; but I didn’t make any flash cards of things I wanted
+to remember because, given that I didn’t use Anki regularly, making
+those flash cards wouldn’t actually help me remember those things.</p>
+<p>Here is the One Weird Anki Trick that got me to finally turn spaced
+repetition into a habit: I created an Anki deck with a bunch of amusing
+but utterly useless cards,<a href="#fn2" class="footnote-ref"
+id="fnref2" role="doc-noteref"><sup>2</sup></a> in order to make
+studying the Anki deck an entertaining activity I actually wanted to do.
+(Getting the mobile app and syncing my deck online also helped a lot.)
+Only after I started to habitually check my Anki deck did I start adding
+cards for the things I actually wanted to learn. I keep everything in
+one deck,<a href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a> so that my fun cards are spread out
+among my “work” cards, and when I find myself losing motivation, I add
+more useless entertainment cards.</p>
 <p>That’s it. That’s the whole post.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/anki-trick">→ read more<span class="offscreen"> One Weird Anki Trick</span></a>
@@ -137,23 +252,75 @@
 		</p>
 	</header>
 	
-	<p>I subscribed to Discord Nitro a month ago, but only recently did I start thinking about the full range of powers the subscription granted me. I could create my own reactions, dump them in my personal server, and use them to react anywhere.</p>
-<p>However, when I finally started trying to create some reactions, I hit an interesting snag: Discord can be used in dark and light mode,<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and a reaction will have the same color on both modes. If I wanted my reaction to be as clearly readable in both modes as possible, what color should I make it?</p>
-<p>(I could, of course, just outline my reaction with a contrasting color, but let’s say that’s cheating. With the limited space in a reaction, outlining isn’t that great of a solution anyway.)</p>
-<p>Now, one can’t <em>really</em> just compute the “contrast of two colors” given only their RGB components; there’s no universally agreed-on definition of <a href="https://en.wikipedia.org/wiki/Contrast_(vision)">contrast in vision</a>, and even if there were one, the contrast of two given colors would depend on the color space and possibly the viewer’s biology. But, to get a concrete answer to this question, we can use the standard sRGB model and the W3C’s definitions of <a href="https://www.w3.org/TR/WCAG/#dfn-contrast-ratio">contrast ratio</a> and <a href="https://www.w3.org/TR/WCAG/#dfn-relative-luminance">relative luminance</a>.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> As of time of writing on my computer,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Discord reactions have background <span style="padding:0.15em 0.4em;background-color:#2f3136;color:white">#2f3136</span> on dark mode and <span style="padding:0.15em 0.4em;background-color:#f2f3f5">#f2f3f5</span> on light mode. Reactions you’ve reacted with have background <span style="padding:0.15em 0.4em;background-color:#3b405a;color:white">#3b405a</span> on dark mode and <span style="padding:0.15em 0.4em;background-color:#e7e9fd">#e7e9fd</span> on light mode. Because the dark mode background gets lighter and the light mode background gets darker, we’ll use the latter colors so we’re optimizing the worst-case contrast.</p>
-<p>There are smarter approaches, but the 256<sup>3</sup> = 16,777,216 possible 8-bit colors are perfectly feasible to brute force, so I wrote a short Python script to check all of them, which is at the bottom of this post. Under the parameters I’ve outlined, the optimal color for a Discord reaction is <span style="padding:0.15em 0.4em;background-color:#ff4103">rgb(255, 65, 3) or #ff4103.</span> A demo:</p>
+	<p>I subscribed to Discord Nitro a month ago, but only recently did I
+start thinking about the full range of powers the subscription granted
+me. I could create my own reactions, dump them in my personal server,
+and use them to react anywhere.</p>
+<p>However, when I finally started trying to create some reactions, I
+hit an interesting snag: Discord can be used in dark and light mode,<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> and a reaction will have the same
+color on both modes. If I wanted my reaction to be as clearly readable
+in both modes as possible, what color should I make it?</p>
+<p>(I could, of course, just outline my reaction with a contrasting
+color, but let’s say that’s cheating. With the limited space in a
+reaction, outlining isn’t that great of a solution anyway.)</p>
+<p>Now, one can’t <em>really</em> just compute the “contrast of two
+colors” given only their RGB components; there’s no universally
+agreed-on definition of <a
+href="https://en.wikipedia.org/wiki/Contrast_(vision)">contrast in
+vision</a>, and even if there were one, the contrast of two given colors
+would depend on the color space and possibly the viewer’s biology. But,
+to get a concrete answer to this question, we can use the standard sRGB
+model and the W3C’s definitions of <a
+href="https://www.w3.org/TR/WCAG/#dfn-contrast-ratio">contrast ratio</a>
+and <a
+href="https://www.w3.org/TR/WCAG/#dfn-relative-luminance">relative
+luminance</a>.<a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a> As of time of writing on my
+computer,<a href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a> Discord reactions have background
+<span
+style="padding:0.15em 0.4em;background-color:#2f3136;color:white">#2f3136</span>
+on dark mode and <span
+style="padding:0.15em 0.4em;background-color:#f2f3f5">#f2f3f5</span> on
+light mode. Reactions you’ve reacted with have background <span
+style="padding:0.15em 0.4em;background-color:#3b405a;color:white">#3b405a</span>
+on dark mode and <span
+style="padding:0.15em 0.4em;background-color:#e7e9fd">#e7e9fd</span> on
+light mode. Because the dark mode background gets lighter and the light
+mode background gets darker, we’ll use the latter colors so we’re
+optimizing the worst-case contrast.</p>
+<p>There are smarter approaches, but the 256<sup>3</sup> = 16,777,216
+possible 8-bit colors are perfectly feasible to brute force, so I wrote
+a short Python script to check all of them, which is at the bottom of
+this post. Under the parameters I’ve outlined, the optimal color for a
+Discord reaction is <span
+style="padding:0.15em 0.4em;background-color:#ff4103">rgb(255, 65, 3) or
+#ff4103.</span> A demo:</p>
 <table>
 <tr>
 <td style="background-color:#3b405a;color:#ff4103">
-#ff4103 <strong>#ff4103</strong> ●<br> <small><abbr title="Contrast Ratio">CR</abbr>: 2.90738237</small>
+#ff4103 <strong>#ff4103</strong> ●<br>
+<small><abbr title="Contrast Ratio">CR</abbr>: 2.90738237</small>
 </td>
 <td style="background-color:#e7e9fd;color:#ff4103">
-#ff4103 <strong>#ff4103</strong> ● <br> <small><abbr title="Contrast Ratio">CR</abbr>: 2.90738217</small>
+#ff4103 <strong>#ff4103</strong> ● <br>
+<small><abbr title="Contrast Ratio">CR</abbr>: 2.90738217</small>
 </td>
 </tr>
 </table>
-<p>That was simple enough, but this color’s worst-case contrast ratio is less than 0.0000002 better than the runner-up. Surely even very mild aesthetic considerations will outweigh that. (It’s highly doubtful that the formulae I used were intended to have this degree of precision in the first place.)</p>
-<p>After playing with a few ways to get a spread of options, I settled on categorizing colors into six buckets of saturation and twelve buckets of hue in the <a href="https://en.wikipedia.org/wiki/HSL_and_HSV#Formal_derivation">simple HSV model</a>, and then finding the optimal color within each bucket. Here is a table of my results:</p>
+<p>That was simple enough, but this color’s worst-case contrast ratio is
+less than 0.0000002 better than the runner-up. Surely even very mild
+aesthetic considerations will outweigh that. (It’s highly doubtful that
+the formulae I used were intended to have this degree of precision in
+the first place.)</p>
+<p>After playing with a few ways to get a spread of options, I settled
+on categorizing colors into six buckets of saturation and twelve buckets
+of hue in the <a
+href="https://en.wikipedia.org/wiki/HSL_and_HSV#Formal_derivation">simple
+HSV model</a>, and then finding the optimal color within each bucket.
+Here is a table of my results:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/discord-color">→ read more<span class="offscreen"> What Color Should My Discord Roles/Reactions Be?</span></a>
 	</footer>
@@ -177,17 +344,61 @@
 		</p>
 	</header>
 	
-	<p>This post is motivated by reasons very similar to the ones that motivated my <a href="//blog.vero.site/post/react-redux">React and Redux “tutorial”</a>. Again, it should be more accurately but less informatively titled “How I wish SQL SELECTs were explained to me”. Again, it does not imply that this method of explanation is suitable for anybody else. One difference is that this time, I mostly only wanted to learn about SQL SELECTs to the extent it would help me perform and optimize queries in Django’s ORM, but to prevent this post from languishing forever in my drafts folder, that material has been sectioned off into a possible future post, because I figured out what I wanted, ran out of steam, and am now trying to learn TLA⁺. Just me things.</p>
+	<p>This post is motivated by reasons very similar to the ones that
+motivated my <a href="//blog.vero.site/post/react-redux">React and Redux
+“tutorial”</a>. Again, it should be more accurately but less
+informatively titled “How I wish SQL SELECTs were explained to me”.
+Again, it does not imply that this method of explanation is suitable for
+anybody else. One difference is that this time, I mostly only wanted to
+learn about SQL SELECTs to the extent it would help me perform and
+optimize queries in Django’s ORM, but to prevent this post from
+languishing forever in my drafts folder, that material has been
+sectioned off into a possible future post, because I figured out what I
+wanted, ran out of steam, and am now trying to learn TLA⁺. Just me
+things.</p>
 <h3 id="background">Background</h3>
-<p>The SQL standard is confusing and almost never completely implemented; there are huge inconsistencies between SQL implementations. I will focus on SQLite because it’s popular and easy to play with, but generally try to stay away from unpopular or nonstandard features. <a href="https://www.sqlite.org/lang_select.html">SQLite’s SELECT documentation</a> is good reading for <em>one</em> particular SQL implementation.</p>
-<p>A SQL database is a place where you store and query a bunch of data that’s organized into tables. A table is a homogeneous list of rows. A row is a heterogeneous tuple of values of various simple data types. The data types supported depend on the SQL implementation; typical examples are integers and strings of various sizes, floating point numbers, and dates/datetimes. All of these types can be nullable; NULL is a SQL value that can appear just about anywhere. (Like many of the other SQL features, NULL is handled somewhat inconsistently across SQL implementations, but as a first-order approximation it’s closer to a floating-point NaN than, say, Java’s “null”. We’ll talk more about it later.) However, note that you can’t have a variable-size list of other things in a row. And just to make sure it’s clear, all the rows in a given table must have the same data types in the same order.</p>
-<p>A “column” is just what you’d intuitively expect it to be: it’s the homogeneous list of all values in a particular position in each row of a table, which all have the same data type. One thing I haven’t mentioned yet is that table columns all have names. This is true both for tables stored in the database and for the ephemeral tables that are the output of queries.</p>
-<p>Since I’ll also be referring to more complex types like lists and tuples often seen in conventional programming languages, I’ll call these simple data types “scalar types” and values of those types “scalars”. This is not SQL terminology; documentation usually just calls these “data types”. Here’s <a href="https://www.sqlite.org/datatype3.html">SQLite’s page on data types</a>.</p>
-<p>To play along, install SQLite and run it. You should get dropped into a connection to an ephemeral in-memory database, which is plenty enough for our purposes. Make a table and mutter some magic incantations to make the output a little prettier for us:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">CREATE</span> <span class="kw">TABLE</span> a (<span class="kw">id</span> <span class="dt">int</span>);</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">INSERT</span> <span class="kw">INTO</span> a <span class="kw">VALUES</span> (<span class="dv">1</span>), (<span class="dv">2</span>), (<span class="dv">3</span>), (<span class="dv">4</span>);</a>
-<a class="sourceLine" id="cb1-3" title="3">.headers <span class="kw">on</span></a>
-<a class="sourceLine" id="cb1-4" title="4">.<span class="kw">mode</span> <span class="kw">column</span></a></code></pre></div>
+<p>The SQL standard is confusing and almost never completely
+implemented; there are huge inconsistencies between SQL implementations.
+I will focus on SQLite because it’s popular and easy to play with, but
+generally try to stay away from unpopular or nonstandard features. <a
+href="https://www.sqlite.org/lang_select.html">SQLite’s SELECT
+documentation</a> is good reading for <em>one</em> particular SQL
+implementation.</p>
+<p>A SQL database is a place where you store and query a bunch of data
+that’s organized into tables. A table is a homogeneous list of rows. A
+row is a heterogeneous tuple of values of various simple data types. The
+data types supported depend on the SQL implementation; typical examples
+are integers and strings of various sizes, floating point numbers, and
+dates/datetimes. All of these types can be nullable; NULL is a SQL value
+that can appear just about anywhere. (Like many of the other SQL
+features, NULL is handled somewhat inconsistently across SQL
+implementations, but as a first-order approximation it’s closer to a
+floating-point NaN than, say, Java’s “null”. We’ll talk more about it
+later.) However, note that you can’t have a variable-size list of other
+things in a row. And just to make sure it’s clear, all the rows in a
+given table must have the same data types in the same order.</p>
+<p>A “column” is just what you’d intuitively expect it to be: it’s the
+homogeneous list of all values in a particular position in each row of a
+table, which all have the same data type. One thing I haven’t mentioned
+yet is that table columns all have names. This is true both for tables
+stored in the database and for the ephemeral tables that are the output
+of queries.</p>
+<p>Since I’ll also be referring to more complex types like lists and
+tuples often seen in conventional programming languages, I’ll call these
+simple data types “scalar types” and values of those types “scalars”.
+This is not SQL terminology; documentation usually just calls these
+“data types”. Here’s <a
+href="https://www.sqlite.org/datatype3.html">SQLite’s page on data
+types</a>.</p>
+<p>To play along, install SQLite and run it. You should get dropped into
+a connection to an ephemeral in-memory database, which is plenty enough
+for our purposes. Make a table and mutter some magic incantations to
+make the output a little prettier for us:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> a (<span class="kw">id</span> <span class="dt">int</span>);</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> a <span class="kw">VALUES</span> (<span class="dv">1</span>), (<span class="dv">2</span>), (<span class="dv">3</span>), (<span class="dv">4</span>);</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>.headers <span class="kw">on</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>.<span class="kw">mode</span> <span class="kw">column</span></span></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/sql-select">→ read more<span class="offscreen"> SQL Selects the Hard FP Way</span></a>
 	</footer>
@@ -211,10 +422,48 @@
 		</p>
 	</header>
 	
-	<p>Did you know that it’s harder to become an MIT admissions blogger as an MIT student than it is to get into MIT as an applicant? It was true my year, in which 18,306 students applied and 1,467 were admitted (8.0%),<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> whereas 69 students applied for 5 blogging spots (7.2%).<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Anecdotally it might also be true for future years.</p>
-<p>I was among the 92.8% who got rejected in the latter process. Although I obviously would have preferred things go the other way, I can’t say I was surprised, firstly because, objectively, the odds were against me (as they were for every other individual applicant); secondly because, to the extent I can make educated guesses about the criteria the folks at MIT Admissions would have chosen bloggers by, I would have been close to the worst possible candidate;<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> thirdly because my application probably wasn’t very good.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
-<p>I didn’t dwell on it; I just thought to myself some vague consoling thoughts and moved on. No matter what I missed out on, at least I retained complete freedom: to choose what to write about, when to post it, and how to format and typeset it, down to the very last <code style="box-shadow: 1px -1px 3px rgba(170,0,0,0.5)">box-shadow</code>. Right? But, although I mostly successfully avoided thinking about it, there really was a lot to like about being an admissions blogger! I liked writing — or perhaps, I liked <em>being a person who has written a lot</em> more, and having a commitment to blog regularly would be a way to force myself to become that person. I liked the idea of getting to share things with thousands of readers, or less euphemistically I liked the thought of being, if ever so slightly, famous.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> I liked the idea of having a sketched portrait and being part of official events with “Blogger” in the title and all that jazz. Collectively these things just felt <em>cool</em>.</p>
-<p>The thing is, though, that there were things I could do to try to get those things for myself, and I didn’t do them. I know how to force myself to blog regularly, which is just by announcing publicly to nobody in particular that I’ll blog regularly (it’s worked effectively at least twice). I know many places I could promote my blog and try to get more readers. I can buy a sketched portrait.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> It’s not that hard.</p>
+	<p>Did you know that it’s harder to become an MIT admissions blogger as
+an MIT student than it is to get into MIT as an applicant? It was true
+my year, in which 18,306 students applied and 1,467 were admitted
+(8.0%),<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> whereas 69 students applied for 5
+blogging spots (7.2%).<a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a> Anecdotally it might also be true
+for future years.</p>
+<p>I was among the 92.8% who got rejected in the latter process.
+Although I obviously would have preferred things go the other way, I
+can’t say I was surprised, firstly because, objectively, the odds were
+against me (as they were for every other individual applicant); secondly
+because, to the extent I can make educated guesses about the criteria
+the folks at MIT Admissions would have chosen bloggers by, I would have
+been close to the worst possible candidate;<a href="#fn3"
+class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>
+thirdly because my application probably wasn’t very good.<a href="#fn4"
+class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>I didn’t dwell on it; I just thought to myself some vague consoling
+thoughts and moved on. No matter what I missed out on, at least I
+retained complete freedom: to choose what to write about, when to post
+it, and how to format and typeset it, down to the very last
+<code style="box-shadow: 1px -1px 3px rgba(170,0,0,0.5)">box-shadow</code>.
+Right? But, although I mostly successfully avoided thinking about it,
+there really was a lot to like about being an admissions blogger! I
+liked writing — or perhaps, I liked <em>being a person who has written a
+lot</em> more, and having a commitment to blog regularly would be a way
+to force myself to become that person. I liked the idea of getting to
+share things with thousands of readers, or less euphemistically I liked
+the thought of being, if ever so slightly, famous.<a href="#fn5"
+class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> I
+liked the idea of having a sketched portrait and being part of official
+events with “Blogger” in the title and all that jazz. Collectively these
+things just felt <em>cool</em>.</p>
+<p>The thing is, though, that there were things I could do to try to get
+those things for myself, and I didn’t do them. I know how to force
+myself to blog regularly, which is just by announcing publicly to nobody
+in particular that I’ll blog regularly (it’s worked effectively at least
+twice). I know many places I could promote my blog and try to get more
+readers. I can buy a sketched portrait.<a href="#fn6"
+class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>
+It’s not that hard.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/blogging-advice">→ read more<span class="offscreen"> Blogging Advice For People Exactly Like Me</span></a>
 	</footer>
@@ -238,15 +487,60 @@
 		</p>
 	</header>
 	
-	<p>Note: if you are viewing this shortly after it’s published and somehow don’t want to be spoiled on Mystery Hunt, make sure this spoiler formatting shows up: <span class="spoiler">this text should be spoilered</span>; if it doesn’t, try shift-refreshing. (There are Correct Ways to fix this, but I’m too lazy to do them. Sorry.)</p>
+	<p>Note: if you are viewing this shortly after it’s published and
+somehow don’t want to be spoiled on Mystery Hunt, make sure this spoiler
+formatting shows up: <span class="spoiler">this text should be
+spoilered</span>; if it doesn’t, try shift-refreshing. (There are
+Correct Ways to fix this, but I’m too lazy to do them. Sorry.)</p>
 <hr />
 <p>Well, we did it.</p>
-<p><a href="https://perpendicular.institute/">✈✈✈ Galactic Trendsetters ✈✈✈ ran an MIT Mystery Hunt.</a></p>
-<p>Somehow, it slipped my mind until trying to write the 2020 year-end post that I’d probably want to write a post on all this. In fact, there was one major project that I started in 2019, but that I didn’t think of mentioning in my 2019 year-end post because it wasn’t ready to be announced at that time, and that I almost forgot that I had never mentioned. But this post is a pretty good place to announce it.</p>
-<p>Planning Mystery Hunt is a massive year-long endeavor. I didn’t have any leadership or otherwise high-responsibility roles, which made sense because I was busy writing a masters thesis for the first four months of Mystery Hunt planning. Because of that, and because I know many many other people on our team have written and will be writing blog posts (<a href="https://fortenf.org/e/2021/01/28/mystery-hunt-2021-part-1.html">Rahul’s post</a>, <a href="http://www.npinsker.me/puzzles/retrospective">Nathan’s post</a>, <a href="https://mitadmissions.org/blogs/entry/two-hundred-puzzles-2/">CJ’s post</a>, maybe more to come?) I will focus on the things I did specifically. (So there is minimal discussion of the theme, overall organization, or big decisions like our COVID-19 response; I think the linked posts cover these well already.)</p>
+<p><a href="https://perpendicular.institute/">✈✈✈ Galactic Trendsetters
+✈✈✈ ran an MIT Mystery Hunt.</a></p>
+<p>Somehow, it slipped my mind until trying to write the 2020 year-end
+post that I’d probably want to write a post on all this. In fact, there
+was one major project that I started in 2019, but that I didn’t think of
+mentioning in my 2019 year-end post because it wasn’t ready to be
+announced at that time, and that I almost forgot that I had never
+mentioned. But this post is a pretty good place to announce it.</p>
+<p>Planning Mystery Hunt is a massive year-long endeavor. I didn’t have
+any leadership or otherwise high-responsibility roles, which made sense
+because I was busy writing a masters thesis for the first four months of
+Mystery Hunt planning. Because of that, and because I know many many
+other people on our team have written and will be writing blog posts (<a
+href="https://fortenf.org/e/2021/01/28/mystery-hunt-2021-part-1.html">Rahul’s
+post</a>, <a
+href="http://www.npinsker.me/puzzles/retrospective">Nathan’s post</a>,
+<a
+href="https://mitadmissions.org/blogs/entry/two-hundred-puzzles-2/">CJ’s
+post</a>, maybe more to come?) I will focus on the things I did
+specifically. (So there is minimal discussion of the theme, overall
+organization, or big decisions like our COVID-19 response; I think the
+linked posts cover these well already.)</p>
 <h3 id="puzzle-writing-software">Puzzle-Writing Software</h3>
-<p>One part I did largely have “ownership” of, and that I sank a lot of time into, was maintaining our software for writing puzzles — the website where authors submitted puzzle ideas and drafts, testsolvers tested puzzles, and editors tracked and discussed the statuses of all the puzzles. This role was largely a continuation of me owning the same component for Galactic Puzzle Hunt since 2018, which itself grew out of the comparative advantage of having worked on it a little when <a href="//blog.vero.site/post/hunt">writing with Random Fish for the 2015 MIT Mystery Hunt</a>. There is some life lesson about specialization or pigeonholing to be learned here. But, to start at the beginning:</p>
-<p><a href="https://github.com/mysteryhunt/puzzle-editing/">Puzzletron</a> is a piece of PHP software used for organizing puzzle writing for puzzlehunts. The <a href="https://github.com/mysteryhunt/puzzle-editing/commit/f67a67d63aa78708c4ca94132f1dce9dbbc116ac">first commit on GitHub</a> says it was imported from Metaphysical Plant in 2011; it’s likely older. There are active commits each year until January 2018, and AMA responses from <a href="https://www.reddit.com/r/mysteryhunt/comments/am5s1d/were_setec_astronomy_and_we_just_ran_a_mystery/efjrzs4/">Setec (2019)</a> and <a href="https://www.reddit.com/r/mysteryhunt/comments/eucu3x/ama_we_are_left_out_design_team_for_the_2020/ffnzq80/?utm_source=reddit&amp;utm_medium=web2x&amp;context=3">Left Out (2020)</a> mentioning it, so I believe most if not all Mystery Hunt writing teams used and improved Puzzletron and passed it down over those years.</p>
+<p>One part I did largely have “ownership” of, and that I sank a lot of
+time into, was maintaining our software for writing puzzles — the
+website where authors submitted puzzle ideas and drafts, testsolvers
+tested puzzles, and editors tracked and discussed the statuses of all
+the puzzles. This role was largely a continuation of me owning the same
+component for Galactic Puzzle Hunt since 2018, which itself grew out of
+the comparative advantage of having worked on it a little when <a
+href="//blog.vero.site/post/hunt">writing with Random Fish for the 2015
+MIT Mystery Hunt</a>. There is some life lesson about specialization or
+pigeonholing to be learned here. But, to start at the beginning:</p>
+<p><a
+href="https://github.com/mysteryhunt/puzzle-editing/">Puzzletron</a> is
+a piece of PHP software used for organizing puzzle writing for
+puzzlehunts. The <a
+href="https://github.com/mysteryhunt/puzzle-editing/commit/f67a67d63aa78708c4ca94132f1dce9dbbc116ac">first
+commit on GitHub</a> says it was imported from Metaphysical Plant in
+2011; it’s likely older. There are active commits each year until
+January 2018, and AMA responses from <a
+href="https://www.reddit.com/r/mysteryhunt/comments/am5s1d/were_setec_astronomy_and_we_just_ran_a_mystery/efjrzs4/">Setec
+(2019)</a> and <a
+href="https://www.reddit.com/r/mysteryhunt/comments/eucu3x/ama_we_are_left_out_design_team_for_the_2020/ffnzq80/?utm_source=reddit&amp;utm_medium=web2x&amp;context=3">Left
+Out (2020)</a> mentioning it, so I believe most if not all Mystery Hunt
+writing teams used and improved Puzzletron and passed it down over those
+years.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/2021-hunt">→ read more<span class="offscreen"> 2021 MIT Mystery Hunt</span></a>
 	</footer>
@@ -274,11 +568,36 @@
   <iframe src="https://www.youtube.com/embed/Is73BbYhFz4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-<p>It’s a strange and darkly funny story — Tim Minchin wrote the album this is from, <a href="https://tim-minchin.lnk.to/ApartTogetherAlbumWE"><cite>Apart Together</cite></a>, well before the pandemic hit and social distancing became the norm, and I assume I am not alone in finding that the song resonates unusually strongly as a result.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> By Jove, it resonates.</p>
-<p>Nobody needs me to say that it’s been a rough year. People have been complaining that each of the last few years were terrible, and looking forward to the next one, and being disappointed — as if years were coherent bundles of quality, and there was any reason to expect discontinuities in how things are going to occur around January 1st — and as if there were additionally any reason to expect such discontinuities, if they did exist, to be positive ones.</p>
+<p>It’s a strange and darkly funny story — Tim Minchin wrote the album
+this is from, <a
+href="https://tim-minchin.lnk.to/ApartTogetherAlbumWE"><cite>Apart
+Together</cite></a>, well before the pandemic hit and social distancing
+became the norm, and I assume I am not alone in finding that the song
+resonates unusually strongly as a result.<a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> By
+Jove, it resonates.</p>
+<p>Nobody needs me to say that it’s been a rough year. People have been
+complaining that each of the last few years were terrible, and looking
+forward to the next one, and being disappointed — as if years were
+coherent bundles of quality, and there was any reason to expect
+discontinuities in how things are going to occur around January 1st —
+and as if there were additionally any reason to expect such
+discontinuities, if they did exist, to be positive ones.</p>
 <p>Seriously, do you remember when we thought 2015–2018 were bad?</p>
 
-<p>And yet… I feel like overall, 2020 went quite a bit better than expectations for me. Which maybe means it’s astronomically better than the average person’s 2020. I had a long draft for this post that slowly accumulated words over the year as usual, but a lot of the ramblings I’d usually include now seem unusually vapid, and a lot of the deeper trends and experiences I might normally reflect on are things I don’t think I’ve really gone through or thought about for long enough to achieve closure on. This is partly due to the pandemic scrambling a lot of plans and partly because last January, nearly a full year ago, <a href="//blog.vero.site/post/2020-hunt">✈✈✈ Galactic Trendsetters ✈✈✈ won Mystery Hunt</a> and so we’re writing the 2021 hunt. The ramifications are still being felt and will accelerate until it actually happens two weeks from now, and that’s all I’ll say about it here.</p>
+<p>And yet… I feel like overall, 2020 went quite a bit better than
+expectations for me. Which maybe means it’s astronomically better than
+the average person’s 2020. I had a long draft for this post that slowly
+accumulated words over the year as usual, but a lot of the ramblings I’d
+usually include now seem unusually vapid, and a lot of the deeper trends
+and experiences I might normally reflect on are things I don’t think
+I’ve really gone through or thought about for long enough to achieve
+closure on. This is partly due to the pandemic scrambling a lot of plans
+and partly because last January, nearly a full year ago, <a
+href="//blog.vero.site/post/2020-hunt">✈✈✈ Galactic Trendsetters ✈✈✈ won
+Mystery Hunt</a> and so we’re writing the 2021 hunt. The ramifications
+are still being felt and will accelerate until it actually happens two
+weeks from now, and that’s all I’ll say about it here.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/and-i-feel-fine">→ read more<span class="offscreen"> …And I Feel Fine</span></a>
 	</footer>
@@ -302,15 +621,82 @@
 		</p>
 	</header>
 	
-	<p><a href="https://adventofcode.com/">Advent of Code</a> (briefly, “AoC”) is a series of 25 festive programming puzzles<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> released daily December 1–25. Each puzzle has two parts, which use the same text input and are related; to solve a part, you submit the right output corresponding to the input on the website.</p>
-<p>If you’re reading this, I suspect there’s a good chance you knew that already, but in case you’re new to Advent of Code, let me try to briefly explain why I like Advent of Code, from the perspective of somebody who’s spent a lot of their life so far doing programming competitions.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+	<p><a href="https://adventofcode.com/">Advent of Code</a> (briefly,
+“AoC”) is a series of 25 festive programming puzzles<a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+released daily December 1–25. Each puzzle has two parts, which use the
+same text input and are related; to solve a part, you submit the right
+output corresponding to the input on the website.</p>
+<p>If you’re reading this, I suspect there’s a good chance you knew that
+already, but in case you’re new to Advent of Code, let me try to briefly
+explain why I like Advent of Code, from the perspective of somebody
+who’s spent a lot of their life so far doing programming competitions.<a
+href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a></p>
 <ul>
-<li>The event has a fantastic community surrounding it. I’m the most familiar with <a href="https://www.reddit.com/r/adventofcode/">the subreddit</a>, which is full of helpful people, interesting discussions, non-programming community games, and the occasional <a href="https://www.reddit.com/r/adventofcode/comments/e6iw6l/day_5_browserbased_interactive_intcode_processor/">wonderfully</a>, <a href="https://www.reddit.com/r/adventofcode/comments/e7ylwd/i_solved_day_8_entirely_in_minecraft/">spectacularly</a> <a href="https://www.reddit.com/r/adventofcode/comments/eb79s0/2019_day_10_blowing_up_asteroids_in_unity/">overengineered</a> <a href="https://www.reddit.com/r/adventofcode/comments/ea8mif/2019_day_13_excel_did_you_think_i_would_give_up/">solution</a> to a puzzle; but I know there are also many smaller chatrooms and subcommunities focused on, say, specific timezones or programming languages.</li>
-<li>Another aspect is the unique two-part format of each puzzle. Even though they use the same input, you don’t get to see the second part until after you’ve solved the first one, a feature that Eric Wastl (AoC’s creator) has taken full advantage of in designing puzzles. The second part is often a surprising twist on the first part, which keeps you on your toes and challenges you to keep your code moderately general or refactorable in a way that I think almost no other programming challenges do. This sometimes even happens between days in a calendar, when a puzzle turns out to be about some model of computation you implemented two or five or ten days ago — hope you kept your code and remember how it works!</li>
-<li>Finally, AoC also has some non-rigorous puzzles that force you to use your intuition and “human intelligence”, either by interpreting the problem statement heuristically or writing code to let you explore the input. There are quite a few puzzles where it’s infeasible to write code that handles every step of obtaining the output from the input. The result is that Advent of Code can feature quite a few challenges that I’ve found particularly compelling because I think they simply could not be posed on any other contest platform.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></li>
+<li>The event has a fantastic community surrounding it. I’m the most
+familiar with <a href="https://www.reddit.com/r/adventofcode/">the
+subreddit</a>, which is full of helpful people, interesting discussions,
+non-programming community games, and the occasional <a
+href="https://www.reddit.com/r/adventofcode/comments/e6iw6l/day_5_browserbased_interactive_intcode_processor/">wonderfully</a>,
+<a
+href="https://www.reddit.com/r/adventofcode/comments/e7ylwd/i_solved_day_8_entirely_in_minecraft/">spectacularly</a>
+<a
+href="https://www.reddit.com/r/adventofcode/comments/eb79s0/2019_day_10_blowing_up_asteroids_in_unity/">overengineered</a>
+<a
+href="https://www.reddit.com/r/adventofcode/comments/ea8mif/2019_day_13_excel_did_you_think_i_would_give_up/">solution</a>
+to a puzzle; but I know there are also many smaller chatrooms and
+subcommunities focused on, say, specific timezones or programming
+languages.</li>
+<li>Another aspect is the unique two-part format of each puzzle. Even
+though they use the same input, you don’t get to see the second part
+until after you’ve solved the first one, a feature that Eric Wastl
+(AoC’s creator) has taken full advantage of in designing puzzles. The
+second part is often a surprising twist on the first part, which keeps
+you on your toes and challenges you to keep your code moderately general
+or refactorable in a way that I think almost no other programming
+challenges do. This sometimes even happens between days in a calendar,
+when a puzzle turns out to be about some model of computation you
+implemented two or five or ten days ago — hope you kept your code and
+remember how it works!</li>
+<li>Finally, AoC also has some non-rigorous puzzles that force you to
+use your intuition and “human intelligence”, either by interpreting the
+problem statement heuristically or writing code to let you explore the
+input. There are quite a few puzzles where it’s infeasible to write code
+that handles every step of obtaining the output from the input. The
+result is that Advent of Code can feature quite a few challenges that
+I’ve found particularly compelling because I think they simply could not
+be posed on any other contest platform.<a href="#fn3"
+class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a></li>
 </ul>
-<p>These are the things that make AoC stand out to me, but it also does a lot of other things well — the challenges are fun, approachable, and varied even aside from their interrelations; there is a long, dramatic story tying everything together (although it’s an <a href="https://tvtropes.org/pmwiki/pmwiki.php/Main/ExcusePlot">Excuse Plot</a> if there ever was such a thing); and, although this is obviously subjective, I find the website’s minimalist-adjacent, terminal-esque aesthetic really charming (there is a <em>lot</em> of detail in <a href="https://adventofcode.com/2019">2019’s calendar</a>… after you solve everything). I’ve only done the last two years of Advent of Code, but it really seems like a one-of-a-kind event to me.</p>
-<p>Anyway, one particular feature Advent of Code has is a leaderboard, which you can get on by being one of the first 100 people worldwide to solve each puzzle. The competition is fierce — every year, thousands of people compete to get on the leaderboard. Near the start of AoC 2019, <a href="https://gist.github.com/mcpower/87427528b9ba5cac6f0c679370789661">mcpower</a> (<a href="https://www.reddit.com/r/adventofcode/comments/e2wjhf/tips_for_getting_on_the_advent_of_code_leaderboard/">reddit discussion</a>) and <a href="https://kevinyap.ca/2019/12/going-fast-in-advent-of-code/">Kevin Yap</a> (<a href="https://www.reddit.com/r/adventofcode/comments/e82f7a/going_fast_in_advent_of_code/">reddit discussion</a>) wrote some articles about how to do this, both of which are worth reading. I also thought about writing such an article and started a draft, but I didn’t get it anywhere close to publishable before AoC had concluded, at which point I assumed few people would be interested. But here it is now.</p>
+<p>These are the things that make AoC stand out to me, but it also does
+a lot of other things well — the challenges are fun, approachable, and
+varied even aside from their interrelations; there is a long, dramatic
+story tying everything together (although it’s an <a
+href="https://tvtropes.org/pmwiki/pmwiki.php/Main/ExcusePlot">Excuse
+Plot</a> if there ever was such a thing); and, although this is
+obviously subjective, I find the website’s minimalist-adjacent,
+terminal-esque aesthetic really charming (there is a <em>lot</em> of
+detail in <a href="https://adventofcode.com/2019">2019’s calendar</a>…
+after you solve everything). I’ve only done the last two years of Advent
+of Code, but it really seems like a one-of-a-kind event to me.</p>
+<p>Anyway, one particular feature Advent of Code has is a leaderboard,
+which you can get on by being one of the first 100 people worldwide to
+solve each puzzle. The competition is fierce — every year, thousands of
+people compete to get on the leaderboard. Near the start of AoC 2019, <a
+href="https://gist.github.com/mcpower/87427528b9ba5cac6f0c679370789661">mcpower</a>
+(<a
+href="https://www.reddit.com/r/adventofcode/comments/e2wjhf/tips_for_getting_on_the_advent_of_code_leaderboard/">reddit
+discussion</a>) and <a
+href="https://kevinyap.ca/2019/12/going-fast-in-advent-of-code/">Kevin
+Yap</a> (<a
+href="https://www.reddit.com/r/adventofcode/comments/e82f7a/going_fast_in_advent_of_code/">reddit
+discussion</a>) wrote some articles about how to do this, both of which
+are worth reading. I also thought about writing such an article and
+started a draft, but I didn’t get it anywhere close to publishable
+before AoC had concluded, at which point I assumed few people would be
+interested. But here it is now.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/advent-leaderboard">→ read more<span class="offscreen"> Advent of Code: How to Leaderboard</span></a>
 	</footer>
@@ -336,39 +722,47 @@
 		</p>
 	</header>
 	
-	<p>By a strange quirk of fate, I have started writing C++ for a living.</p>
-<p>Learning C++ was about as complicated as I think I expected it to be. By line count, I’ve written a lot of C++ for programming competitions, but I knew that I had only ever used a small cross-section of the language: basic control flow and variables, STL containers and algorithms, structs on which you mechanically define <code>bool operator&lt;(const T&amp; other) const</code> so STL algorithms can order them, and the very occasional macro or templated helper function. There were many features I wasn’t even aware existed.</p>
-<p>In the process of learning C++ professionally, one rabbit hole I fell into quickly was C++11’s defining feature, the <em>rvalue reference</em>, and how it can be used to implement <em>move semantics</em> and <em>perfect forwarding</em>. By poring over a copy of the widely recommended book <a href="https://www.amazon.com/Effective-Modern-Specific-Ways-Improve/dp/1491903996"><cite>Effective Modern C++</cite></a>, by Scott Meyers, and a few dozen StackOverflow answers and blog posts, I roughly understood it after a few days, but still had a sort of blind-men-feeling-the-elephant feeling. I was confused about what lay under some of the abstractions I had been using, unsure of the full shape of the pitfalls that some of the guides had pointed out to me, and generally uncomfortable that there were still many small variations of the code I had seen that I couldn’t predict the behavior of. It took many more days to work myself out of there, and I wished I had had a guide that explained rvalue references and their applications to a bit more depth than what might be necessary for day-to-day use. So here’s my attempt to explain rvalue references in my own fundamental I-want-to-know-how-things-work-no-<em>really</em> style.</p>
-<p>(If this vision doesn’t resonate with you, there are many other posts explaining rvalue references out there that you might prefer. Feel free to just skim the executive summary and/or check out some of the linked articles in the Background section.)</p>
+	<p>By a strange quirk of fate, I have started writing C++ for a
+living.</p>
+<p>Learning C++ was about as complicated as I think I expected it to be.
+By line count, I’ve written a lot of C++ for programming competitions,
+but I knew that I had only ever used a small cross-section of the
+language: basic control flow and variables, STL containers and
+algorithms, structs on which you mechanically define
+<code>bool operator&lt;(const T&amp; other) const</code> so STL
+algorithms can order them, and the very occasional macro or templated
+helper function. There were many features I wasn’t even aware
+existed.</p>
+<p>In the process of learning C++ professionally, one rabbit hole I fell
+into quickly was C++11’s defining feature, the <em>rvalue
+reference</em>, and how it can be used to implement <em>move
+semantics</em> and <em>perfect forwarding</em>. By poring over a copy of
+the widely recommended book <a
+href="https://www.amazon.com/Effective-Modern-Specific-Ways-Improve/dp/1491903996"><cite>Effective
+Modern C++</cite></a>, by Scott Meyers, and a few dozen StackOverflow
+answers and blog posts, I roughly understood it after a few days, but
+still had a sort of blind-men-feeling-the-elephant feeling. I was
+confused about what lay under some of the abstractions I had been using,
+unsure of the full shape of the pitfalls that some of the guides had
+pointed out to me, and generally uncomfortable that there were still
+many small variations of the code I had seen that I couldn’t predict the
+behavior of. It took many more days to work myself out of there, and I
+wished I had had a guide that explained rvalue references and their
+applications to a bit more depth than what might be necessary for
+day-to-day use. So here’s my attempt to explain rvalue references in my
+own fundamental I-want-to-know-how-things-work-no-<em>really</em>
+style.</p>
+<p>(If this vision doesn’t resonate with you, there are many other posts
+explaining rvalue references out there that you might prefer. Feel free
+to just skim the executive summary and/or check out some of the linked
+articles in the Background section.)</p>
 <h3 id="executive-summary">Executive Summary</h3>
-<p>I got… pretty carried away when writing this post, and a lot of it is just for my own understanding, which may or may not be useful to readers. Here’s a much more concise rundown (assuming you know basic C++ already):</p>
+<p>I got… pretty carried away when writing this post, and a lot of it is
+just for my own understanding, which may or may not be useful to
+readers. Here’s a much more concise rundown (assuming you know basic C++
+already):</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/rvalue-references">→ read more<span class="offscreen"> C&#43;&#43; Rvalue References: The Unnecessarily Detailed Guide</span></a>
-	</footer>
-</article>
-
-		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/45" class="post-link">45/101</a></h3>
-		
-		<p class="post-meta">
-		
-		2020-05-12
-		(45 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Not a very completionist run. I graded myself pretty strictly though — both sides of every “and” need to count; “all” means literally all; fuzzy actions and phrases require full psychological commitment to qualify.</p>
-<p><a href="/img/45.jpg"><img src="/img/45.jpg" alt="&quot;101 Thiings To Do Before You Graduate&quot; poster with 45 things crossed off" /></a></p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/45">→ read more<span class="offscreen"> 45/101</span></a>
 	</footer>
 </article>
 
@@ -390,7 +784,7 @@
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

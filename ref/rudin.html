@@ -68,25 +68,45 @@
 		
 		</p>
 	</header>
-	<article><p>Brevity has been chosen over accuracy because the whole point is that you should know this stuff already.</p>
-<h3 id="chapter-2-basic-topology-some-ch.-3">Chapter 2: Basic Topology (+ some Ch. 3)</h3>
-<p>An <strong>isolated point</strong> of E is in E but not a limit point of it. E is <strong>perfect</strong> if it is exactly equal to its set of limit points. Equivalently, it is closed and has no isolated points. Ex. 2.44: The Cantor set is perfect.</p>
-<p>A <strong>compact set</strong> is a set for which every open cover has a finite subcover.</p>
-<p>Compactness or compact sets have these properties (with made-up names):</p>
+	<article><p>Brevity has been chosen over accuracy because the whole point is that
+you should know this stuff already.</p>
+<h3 id="chapter-2-basic-topology-some-ch.-3">Chapter 2: Basic Topology
+(+ some Ch. 3)</h3>
+<p>An <strong>isolated point</strong> of E is in E but not a limit point
+of it. E is <strong>perfect</strong> if it is exactly equal to its set
+of limit points. Equivalently, it is closed and has no isolated points.
+Ex. 2.44: The Cantor set is perfect.</p>
+<p>A <strong>compact set</strong> is a set for which every open cover
+has a finite subcover.</p>
+<p>Compactness or compact sets have these properties (with made-up
+names):</p>
 <ul>
-<li>2.33, <strong>space-independence</strong>: still compact regardless of what space you consider it part of</li>
+<li>2.33, <strong>space-independence</strong>: still compact regardless
+of what space you consider it part of</li>
 <li>2.34, <strong>closed</strong></li>
 <li>2.35, <strong>hereditary</strong>: closed subsets are compact</li>
-<li>2.36, corollary <strong>telescoping descent</strong>: a descending sequence of nonempty compact <span class="math inline">\(K_1 \supseteq K_2 \supseteq K_3 \supseteq \cdots\)</span> contains at least one point
+<li>2.36, corollary <strong>telescoping descent</strong>: a descending
+sequence of nonempty compact <span class="math inline">\(K_1 \supseteq
+K_2 \supseteq K_3 \supseteq \cdots\)</span> contains at least one point
 <ul>
-<li>2.36 actually says if the K<sub>i</sub> are compact and any finite subcollection has nonempty intersection, then the entire colleciton has nonempty intersection.</li>
-<li>3.10(b), <abbr title="I called it this name in a certain complex analysis post"><strong>shrinking convergence</strong></abbr>: if the <span class="math inline">\(K_i\)</span> get infinitely small, they contain exactly one point.</li>
+<li>2.36 actually says if the K<sub>i</sub> are compact and any finite
+subcollection has nonempty intersection, then the entire colleciton has
+nonempty intersection.</li>
+<li>3.10(b),
+<abbr title="I called it this name in a certain complex analysis post"><strong>shrinking
+convergence</strong></abbr>: if the <span
+class="math inline">\(K_i\)</span> get infinitely small, they contain
+exactly one point.</li>
 </ul></li>
-<li>2.37, <strong>infinite accumulation</strong>: infinite subsets have at least one limit point
+<li>2.37, <strong>infinite accumulation</strong>: infinite subsets have
+at least one limit point
 <ul>
-<li>3.6, <strong>sequential compactness</strong>: infinite sequences have convergent subsequences
+<li>3.6, <strong>sequential compactness</strong>: infinite sequences
+have convergent subsequences
 <ul>
-<li>(Note from the future: This is the actual name of this property in topology. In general, neither compactness nor sequential compactness imply the other, but they are equivalent in metric spaces.)</li>
+<li>(Note from the future: This is the actual name of this property in
+topology. In general, neither compactness nor sequential compactness
+imply the other, but they are equivalent in metric spaces.)</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -94,33 +114,69 @@
 <ul>
 <li>4.8: A function is continuous iff it inverts open sets to open sets.
 <ul>
-<li>Corollary: A function is continuous iff it inverts closed sets to closed sets</li>
+<li>Corollary: A function is continuous iff it inverts closed sets to
+closed sets</li>
 </ul></li>
 <li>4.9: A continuous function maps compact sets to compact sets.</li>
-<li>4.19: A continuous function on a compact domain is uniformly continuous.</li>
+<li>4.19: A continuous function on a compact domain is uniformly
+continuous.</li>
 </ul>
 <h3 id="chapter-5-differentiation">Chapter 5: Differentiation</h3>
 <ul>
-<li>5.6(b) is <a href="%7B%%20post_url%202014-10-21-operation-exchange%20%%7D#dc">the differentiable function with discontinuous derivative</a>.</li>
+<li>5.6(b) is <a
+href="%7B%%20post_url%202014-10-21-operation-exchange%20%%7D#dc">the
+differentiable function with discontinuous derivative</a>.</li>
 <li>5.12: derivatives attain intermediate values.</li>
-<li>5.15, <strong>Taylor’s Theorem</strong> (not exact form): Let <span class="math inline">\(f\)</span> be <span class="math inline">\(n\)</span> times differentiable near <span class="math inline">\(\alpha\)</span>. Then <span class="math inline">\(f\)</span> is equal to the degree-<span class="math inline">\(n\)</span> Taylor polynomial near <span class="math inline">\(\alpha\)</span> plus a remainder <span class="math inline">\(h(x)(x - \alpha)^n\)</span> with <span class="math inline">\(h\)</span> tending to 0 at <span class="math inline">\(\alpha\)</span>.
+<li>5.15, <strong>Taylor’s Theorem</strong> (not exact form): Let <span
+class="math inline">\(f\)</span> be <span
+class="math inline">\(n\)</span> times differentiable near <span
+class="math inline">\(\alpha\)</span>. Then <span
+class="math inline">\(f\)</span> is equal to the degree-<span
+class="math inline">\(n\)</span> Taylor polynomial near <span
+class="math inline">\(\alpha\)</span> plus a remainder <span
+class="math inline">\(h(x)(x - \alpha)^n\)</span> with <span
+class="math inline">\(h\)</span> tending to 0 at <span
+class="math inline">\(\alpha\)</span>.
 <ul>
-<li>Rudin states the theorem with the <strong>Lagrange form</strong> of the remainder: at <span class="math inline">\(x\)</span> near <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(f\)</span> is equal to the degree-<span class="math inline">\(n\)</span> Taylor polynomial <em>after</em> the coefficient of the degree-<span class="math inline">\(n\)</span> term is fudged into using <span class="math inline">\(f^{(n)}(\xi_L)\)</span> (instead of <span class="math inline">\(f^{(n)}(x)\)</span> for some <span class="math inline">\(\xi_L\)</span> between α and x.</li>
-<li>Also the theorem’s conditions are tricky about what exactly is required at endpoints of intervals.</li>
+<li>Rudin states the theorem with the <strong>Lagrange form</strong> of
+the remainder: at <span class="math inline">\(x\)</span> near <span
+class="math inline">\(\alpha\)</span>, <span
+class="math inline">\(f\)</span> is equal to the degree-<span
+class="math inline">\(n\)</span> Taylor polynomial <em>after</em> the
+coefficient of the degree-<span class="math inline">\(n\)</span> term is
+fudged into using <span class="math inline">\(f^{(n)}(\xi_L)\)</span>
+(instead of <span class="math inline">\(f^{(n)}(x)\)</span> for some
+<span class="math inline">\(\xi_L\)</span> between α and x.</li>
+<li>Also the theorem’s conditions are tricky about what exactly is
+required at endpoints of intervals.</li>
 </ul></li>
 </ul>
-<h3 id="chapter-8-some-special-functions">Chapter 8: Some Special Functions</h3>
+<h3 id="chapter-8-some-special-functions">Chapter 8: Some Special
+Functions</h3>
 <ul>
-<li><p>8.8, <strong>algeraic completeness of <span class="math inline">\(\mathbb{C}\)</span></strong>.</p>
-<span class="math inline">\(f\)</span> has an infimum of magnitude and attains it. Recenter it at that infimum and note that it behaves like its smallest-degree nonconstant monomial nearby, which means we can perturb its value towards 0 if the infimum is nonzero. So the infimum is zero.</li>
-<li>8.14: A <abbr title="According to Wikipedia this is inaccurate because Lipschitz-continuity only makes sense on intervals">“Lipschitz-continuous-at-a-point”</abbr> function is approached by its Fourier series.</li>
-<li>8.15: A <span class="math inline">\(2\pi\)</span>-periodic continuous function is uniformly approximate-able by trigonometric polynomials.</li>
-<li>8.16, <strong>Parseval’s theorem</strong>:
+<li><p>8.8, <strong>algeraic completeness of <span
+class="math inline">\(\mathbb{C}\)</span></strong>.</p>
+<p><span class="math inline">\(f\)</span> has an infimum of magnitude
+and attains it. Recenter it at that infimum and note that it behaves
+like its smallest-degree nonconstant monomial nearby, which means we can
+perturb its value towards 0 if the infimum is nonzero. So the infimum is
+zero.</p></li>
+<li><p>8.14: A
+<abbr title="According to Wikipedia this is inaccurate because Lipschitz-continuity only makes sense on intervals">“Lipschitz-continuous-at-a-point”</abbr>
+function is approached by its Fourier series.</p></li>
+<li><p>8.15: A <span class="math inline">\(2\pi\)</span>-periodic
+continuous function is uniformly approximate-able by trigonometric
+polynomials.</p></li>
+<li><p>8.16, <strong>Parseval’s theorem</strong>:</p>
 <ul>
-<li>the integral of the square of a function’s absolute difference from its Fourier series tends to 0</li>
-<li>the “dot product” of two functions tends to the dot product of their Fourier series coefficients (with fudge factors due to non-orthonormality)</li>
+<li>the integral of the square of a function’s absolute difference from
+its Fourier series tends to 0</li>
+<li>the “dot product” of two functions tends to the dot product of their
+Fourier series coefficients (with fudge factors due to
+non-orthonormality)</li>
 </ul></li>
-<li><p>8.19: the gamma function is the only extension of the factorial function with a convex log.</p></li>
+<li><p>8.19: the gamma function is the only extension of the factorial
+function with a convex log.</p></li>
 </ul></article>
 	<footer class="post-footer">
 		
@@ -144,7 +200,7 @@
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

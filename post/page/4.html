@@ -55,6 +55,32 @@
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/45" class="post-link">45/101</a></h3>
+		
+		<p class="post-meta">
+		
+		2020-05-12
+		(45 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Not a very completionist run. I graded myself pretty strictly though
+— both sides of every “and” need to count; “all” means literally all;
+fuzzy actions and phrases require full psychological commitment to
+qualify.</p>
+<p><a href="/img/45.jpg"><img src="/img/45.jpg" alt="&quot;101 Thiings To Do Before You Graduate&quot; poster with 45 things crossed off" /></a></p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/45">→ read more<span class="offscreen"> 45/101</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/modulo" class="post-link">Signed Modulo</a></h3>
 		
 		<p class="post-meta">
@@ -70,17 +96,62 @@
 		</p>
 	</header>
 	
-	<p>One thing many mathematically-inclined programmers run into when implementing mathematical algorithms, particularly number-theoretic ones, is that the <a href="https://en.wikipedia.org/wiki/Modulo_operation">modulo operation</a> doesn’t behave how they expect or prefer.</p>
-<p>In many languages, this operator is denoted <code>%</code>. Concretely, one might prefer that, if the second argument is positive, then the modulo operation would always give a nonnegative result. Under this behavior, the expression <code>(-5) % 3</code> would evaluate to <code>1</code> rather than <code>-2</code>. This is a lot more useful for number theory because then for positive integers <code>n</code>, the <code>% n</code> operation actually maps integers to exactly the <code>n</code> canonical representatives for the residue classes. As a result, <span class="math inline">\(a \equiv b \mod n\)</span> if and only if <code>a % n == b % n</code>. You can also do things like index into a length-<code>n</code> array with <code>a % n</code> and know that the index will be in-bounds. Finally, there are also optimization opportunities: modding by a power of 2 becomes equivalent to a simple bitwise AND, which is really fast on modern computers.</p>
-<p>A few programming languages, notably Python, do implement <code>%</code> this way. However, the majority of languages today, including pretty much everything remotely descended from C, do not; instead, <code>(-5) % 3</code> is <code>-2</code>. This post attempts to track down why.</p>
+	<p>One thing many mathematically-inclined programmers run into when
+implementing mathematical algorithms, particularly number-theoretic
+ones, is that the <a
+href="https://en.wikipedia.org/wiki/Modulo_operation">modulo
+operation</a> doesn’t behave how they expect or prefer.</p>
+<p>In many languages, this operator is denoted <code>%</code>.
+Concretely, one might prefer that, if the second argument is positive,
+then the modulo operation would always give a nonnegative result. Under
+this behavior, the expression <code>(-5) % 3</code> would evaluate to
+<code>1</code> rather than <code>-2</code>. This is a lot more useful
+for number theory because then for positive integers <code>n</code>, the
+<code>% n</code> operation actually maps integers to exactly the
+<code>n</code> canonical representatives for the residue classes. As a
+result, <span class="math inline">\(a \equiv b \mod n\)</span> if and
+only if <code>a % n == b % n</code>. You can also do things like index
+into a length-<code>n</code> array with <code>a % n</code> and know that
+the index will be in-bounds. Finally, there are also optimization
+opportunities: modding by a power of 2 becomes equivalent to a simple
+bitwise AND, which is really fast on modern computers.</p>
+<p>A few programming languages, notably Python, do implement
+<code>%</code> this way. However, the majority of languages today,
+including pretty much everything remotely descended from C, do not;
+instead, <code>(-5) % 3</code> is <code>-2</code>. This post attempts to
+track down why.</p>
 <hr />
-<p>The first thing to note is that there is a more important number-theoretic identity we’d like to have:</p>
-<p><span class="math display">\[\texttt{a} = (\texttt{a / b}) \cdot \texttt{b} + (\texttt{a \% b}). \tag{1}\]</span></p>
-<p>In words, the integer division and modulo operators should give a breakdown of <code>a</code> into a sum of some copies of <code>b</code> plus a remainder. Note that this equation also implies that specifying the rounding behavior of division is equivalent to specifying the sign behavior of the modulo operation, which will come up repeatedly later.</p>
-<p>It’s also very uncontroversial that that remainder should have no copies of <code>b</code>, positive or negative, left over, which gives the constraint:</p>
-<p><span class="math display">\[|\texttt{a \% b}| &lt; |\texttt{b}|. \tag{2}\]</span></p>
-<p>Every programming language I can think of satisfies these two constraints.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> So far so good. However, these two constraints don’t uniquely determine the values of <code>a % b</code> when <code>a</code> isn’t divisible by <code>b</code>; there are two possible values for <code>a % b</code>, one positive and one negative. Concretely, we could express <span class="math inline">\(-5\)</span> as either <span class="math inline">\((-1) \cdot 3 + (-2)\)</span> or <span class="math inline">\((-2) \cdot 3 + 1\)</span>, so <code>(-5) % 3</code> could be <code>-2</code> or <code>1</code>.</p>
-<p>It’s still mostly uncontroversial that, if <code>a</code> and <code>b</code> are both positive, then <code>a % b</code> should be nonnegative as well; we could call this constraint (3).<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> However, if <code>a</code> is negative and <code>b</code> is positive, programming languages start to diverge in their behavior. Why?</p>
+<p>The first thing to note is that there is a more important
+number-theoretic identity we’d like to have:</p>
+<p><span class="math display">\[\texttt{a} = (\texttt{a / b}) \cdot
+\texttt{b} + (\texttt{a \% b}). \tag{1}\]</span></p>
+<p>In words, the integer division and modulo operators should give a
+breakdown of <code>a</code> into a sum of some copies of <code>b</code>
+plus a remainder. Note that this equation also implies that specifying
+the rounding behavior of division is equivalent to specifying the sign
+behavior of the modulo operation, which will come up repeatedly
+later.</p>
+<p>It’s also very uncontroversial that that remainder should have no
+copies of <code>b</code>, positive or negative, left over, which gives
+the constraint:</p>
+<p><span class="math display">\[|\texttt{a \% b}| &lt; |\texttt{b}|.
+\tag{2}\]</span></p>
+<p>Every programming language I can think of satisfies these two
+constraints.<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> So far so good. However, these two
+constraints don’t uniquely determine the values of <code>a % b</code>
+when <code>a</code> isn’t divisible by <code>b</code>; there are two
+possible values for <code>a % b</code>, one positive and one negative.
+Concretely, we could express <span class="math inline">\(-5\)</span> as
+either <span class="math inline">\((-1) \cdot 3 + (-2)\)</span> or <span
+class="math inline">\((-2) \cdot 3 + 1\)</span>, so
+<code>(-5) % 3</code> could be <code>-2</code> or <code>1</code>.</p>
+<p>It’s still mostly uncontroversial that, if <code>a</code> and
+<code>b</code> are both positive, then <code>a % b</code> should be
+nonnegative as well; we could call this constraint (3).<a href="#fn2"
+class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
+However, if <code>a</code> is negative and <code>b</code> is positive,
+programming languages start to diverge in their behavior. Why?</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/modulo">→ read more<span class="offscreen"> Signed Modulo</span></a>
 	</footer>
@@ -102,11 +173,38 @@
 		</p>
 	</header>
 	
-	<p>Fifth year with ✈✈✈ Galactic Trendsetters ✈✈✈ (previously: <a href="//blog.vero.site/post/2019-hunt">2019</a>, <a href="//blog.vero.site/post/2018-hunt">2018</a>, <a href="//blog.vero.site/post/january">2017</a>, <a href="//blog.vero.site/post/whoosh">2016</a>; writing with Random in <a href="//blog.vero.site/post/hunt">2015</a>).</p>
+	<p>Fifth year with ✈✈✈ Galactic Trendsetters ✈✈✈ (previously: <a
+href="//blog.vero.site/post/2019-hunt">2019</a>, <a
+href="//blog.vero.site/post/2018-hunt">2018</a>, <a
+href="//blog.vero.site/post/january">2017</a>, <a
+href="//blog.vero.site/post/whoosh">2016</a>; writing with Random in <a
+href="//blog.vero.site/post/hunt">2015</a>).</p>
 <p>We won!</p>
-<p>But apparently I’m still really busy, so I’ll probably just focus on a few highlights of things I personally experienced and get this post out the door.</p>
-<p>The theme in a few sentences: As suggested by <a href="https://www.reddit.com/r/mysteryhunt/comments/eo475t/you_are_cordially_invited/">the invitation</a> sent out to teams, there was a wedding. It turned out to actually be a real wedding between two prolific puzzle writers on Left Out, the organizing team. To the surprise of everybody who expected either one, three, or maybe five subversions of this announcement, the wedding actually succeeded (a COIN that would prevent all love in the universe was briefly reported missing, but then immediately found by the bride). Instead, we joined the newlyweds on a trip to an amusement park called Penny Park, which we learned was struggling and closing this weekend. It was up to help its regain its popularity and stay open by solving puzzles. The <a href="https://www.reddit.com/r/mysteryhunt/">Mystery Hunt subreddit</a> has lots of other cool links and discussions, including this <a href="https://public.flourish.studio/visualisation/1267425/">animated bar chart</a>, so I won’t spend more time here.</p>
-<p>I’m pretty sure the best story I personally experienced was how we solved the metameta, the biggest puzzle that stood between us and winning hunt, and the moment at which we went, holy smokes we might have won Mystery Hunt! We got all the pennies required for the final metameta at Sunday 5:48:09am, and it took us until 12:47:30pm, just under <em>seven hours later</em>, to solve it…</p>
+<p>But apparently I’m still really busy, so I’ll probably just focus on
+a few highlights of things I personally experienced and get this post
+out the door.</p>
+<p>The theme in a few sentences: As suggested by <a
+href="https://www.reddit.com/r/mysteryhunt/comments/eo475t/you_are_cordially_invited/">the
+invitation</a> sent out to teams, there was a wedding. It turned out to
+actually be a real wedding between two prolific puzzle writers on Left
+Out, the organizing team. To the surprise of everybody who expected
+either one, three, or maybe five subversions of this announcement, the
+wedding actually succeeded (a COIN that would prevent all love in the
+universe was briefly reported missing, but then immediately found by the
+bride). Instead, we joined the newlyweds on a trip to an amusement park
+called Penny Park, which we learned was struggling and closing this
+weekend. It was up to help its regain its popularity and stay open by
+solving puzzles. The <a
+href="https://www.reddit.com/r/mysteryhunt/">Mystery Hunt subreddit</a>
+has lots of other cool links and discussions, including this <a
+href="https://public.flourish.studio/visualisation/1267425/">animated
+bar chart</a>, so I won’t spend more time here.</p>
+<p>I’m pretty sure the best story I personally experienced was how we
+solved the metameta, the biggest puzzle that stood between us and
+winning hunt, and the moment at which we went, holy smokes we might have
+won Mystery Hunt! We got all the pennies required for the final metameta
+at Sunday 5:48:09am, and it took us until 12:47:30pm, just under
+<em>seven hours later</em>, to solve it…</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/2020-hunt">→ read more<span class="offscreen"> 2020 MIT Mystery Hunt</span></a>
 	</footer>
@@ -132,10 +230,32 @@
   <iframe src="https://www.youtube.com/embed/cPAbx5kgCJo" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-<p>This is a weird song choice — I have not even watched the movie. But there is a story, and there is a thematic correspondence.</p>
-<p>The story is that I was interning remotely at a coworking space over the summer. One night, I attended a karaoke event hosted there, the kind where adult human beings socialize and where I didn’t know anybody else, and I sang this song. Afterwards, another attendee told me that her kid (yeah, you know, people in my reference class have children) loved Moana and was really excited about my performance.</p>
-<p>The thematic correspondence is less obvious and harder for me to describe. I’m going much less further this year than I could be, and am less sure about next year than I expected to be at this point for reasons I’m not ready to share yet (this seems to be happening more and more on this blog, but there’s not much I can do about it — so it goes). But it really is the case that there are some things I can’t deny about myself, some attractor states that my values and way of thinking keep dragging me towards.</p>
-<p>Frivolous examples: I went through another online Dominion phase and at least two Protobowl phases, the highlight of which is learning a good deal about <a href="https://en.wikipedia.org/wiki/%C3%89mile_Durkheim">Émile Durkheim</a> and then buzzing on him the next day. I did Advent of Code again, with the same golfing setup as last year, a foray into making an auxiliary <a href="https://betaveros.github.io/extra-aoc-stats/">over-the-top leaderboard</a> in Svelte, and (surprisingly to myself) getting first. I have a shiny Charizard with Blast Burn now.</p>
+<p>This is a weird song choice — I have not even watched the movie. But
+there is a story, and there is a thematic correspondence.</p>
+<p>The story is that I was interning remotely at a coworking space over
+the summer. One night, I attended a karaoke event hosted there, the kind
+where adult human beings socialize and where I didn’t know anybody else,
+and I sang this song. Afterwards, another attendee told me that her kid
+(yeah, you know, people in my reference class have children) loved Moana
+and was really excited about my performance.</p>
+<p>The thematic correspondence is less obvious and harder for me to
+describe. I’m going much less further this year than I could be, and am
+less sure about next year than I expected to be at this point for
+reasons I’m not ready to share yet (this seems to be happening more and
+more on this blog, but there’s not much I can do about it — so it goes).
+But it really is the case that there are some things I can’t deny about
+myself, some attractor states that my values and way of thinking keep
+dragging me towards.</p>
+<p>Frivolous examples: I went through another online Dominion phase and
+at least two Protobowl phases, the highlight of which is learning a good
+deal about <a
+href="https://en.wikipedia.org/wiki/%C3%89mile_Durkheim">Émile
+Durkheim</a> and then buzzing on him the next day. I did Advent of Code
+again, with the same golfing setup as last year, a foray into making an
+auxiliary <a
+href="https://betaveros.github.io/extra-aoc-stats/">over-the-top
+leaderboard</a> in Svelte, and (surprisingly to myself) getting first. I
+have a shiny Charizard with Blast Burn now.</p>
 <figure>
 <a href="/img/shiny-charizard.png"><img src="/img/shiny-charizard.png" alt="Shiny Charizard in Pokémon Go" width="360" height="640" /></a>
 </figure>
@@ -162,9 +282,29 @@
 		</p>
 	</header>
 	
-	<p>It’s December, so it’s time for a lot of things, including <a href="https://adventofcode.com/">Advent of Code</a>. I will not be able to be as competitive as I was last year, and already lost a lot of points to a really silly mistake on day 1, but I’ll be playing when I can and <a href="https://github.com/betaveros/advent-of-code-golf-2019">golfing</a> the problems when I have time (so far: 7 + 14 bytes).</p>
-<p>As one might expect, <a href="https://adventofcode.com/2019/day/1">Day 1</a> is not too complex, but the second part can be analyzed to some mathematical depth and was discussed a bit on Reddit; plus, it occurred to me recently that I set up KaTeX on my blog but never used it, so I was looking for an excuse to write some equations anyway.</p>
-<p>The problem statement for part 2, in brief: We are tasked with calculating the total mass of fuel required to launch a rocket module of a given mass. For something of mass <span class="math inline">\(m\)</span>, one can compute the directly required mass of fuel by dividing <span class="math inline">\(m\)</span> by 3, rounding down, and subtracting 2; if the result is negative, it is taken to be 0 instead. However, the directly required fuel also requires fuel itself, calculated from its own mass by the same procedure, and that required fuel requires fuel based on its own mass, and so on until you reach fuel with 0 requirement.</p>
+	<p>It’s December, so it’s time for a lot of things, including <a
+href="https://adventofcode.com/">Advent of Code</a>. I will not be able
+to be as competitive as I was last year, and already lost a lot of
+points to a really silly mistake on day 1, but I’ll be playing when I
+can and <a
+href="https://github.com/betaveros/advent-of-code-golf-2019">golfing</a>
+the problems when I have time (so far: 7 + 14 bytes).</p>
+<p>As one might expect, <a
+href="https://adventofcode.com/2019/day/1">Day 1</a> is not too complex,
+but the second part can be analyzed to some mathematical depth and was
+discussed a bit on Reddit; plus, it occurred to me recently that I set
+up KaTeX on my blog but never used it, so I was looking for an excuse to
+write some equations anyway.</p>
+<p>The problem statement for part 2, in brief: We are tasked with
+calculating the total mass of fuel required to launch a rocket module of
+a given mass. For something of mass <span
+class="math inline">\(m\)</span>, one can compute the directly required
+mass of fuel by dividing <span class="math inline">\(m\)</span> by 3,
+rounding down, and subtracting 2; if the result is negative, it is taken
+to be 0 instead. However, the directly required fuel also requires fuel
+itself, calculated from its own mass by the same procedure, and that
+required fuel requires fuel based on its own mass, and so on until you
+reach fuel with 0 requirement.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/advent-rocket">→ read more<span class="offscreen"> Rocket Equation</span></a>
 	</footer>
@@ -191,12 +331,14 @@
 	<blockquote>
 <p>Call me maybe? <code>nc rev.chal.csaw.io 1001</code></p>
 </blockquote>
-<p>A rev with a nasty binary. There are so many functions. I do not like this binary.</p>
+<p>A rev with a nasty binary. There are so many functions. I do not like
+this binary.</p>
 <figure>
 <a href="/img/callsite-gross.png"><img src="/img/callsite-gross.png" alt="Screenshot of IDA Pro on the callsite binary, with a lot of code and functions." /></a>
 </figure>
 <h3 id="static-analysis">Static Analysis</h3>
-<p>After staring at the sea of functions in IDA for a little bit, I gave up and tried dumb things instead.</p>
+<p>After staring at the sea of functions in IDA for a little bit, I gave
+up and tried dumb things instead.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/callsite">→ read more<span class="offscreen"> callsite</span></a>
 	</footer>
@@ -224,7 +366,8 @@
 <p>come get me</p>
 <p>http://web.chal.csaw.io:1003</p>
 </blockquote>
-<p>This was a web challenge with a few pages. The “User” page displayed some user information:</p>
+<p>This was a web challenge with a few pages. The “User” page displayed
+some user information:</p>
 <figure>
 <a href="/img/unagi-user.png"><img src="/img/unagi-user.png" alt="Screenshot of User page, transcribed below" /></a>
 </figure>
@@ -238,7 +381,9 @@ Email: bob@fakesite.com<br />
 Group: CSAW2019<br />
 Intro: Bob is cool too</p>
 </blockquote>
-<p>The “About” page simply told us, “Flag is located at /flag.txt, come get it”. The most interesting page was “Upload”, where we could view an example users XML file:</p>
+<p>The “About” page simply told us, “Flag is located at /flag.txt, come
+get it”. The most interesting page was “Upload”, where we could view an
+example users XML file:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/unagi">→ read more<span class="offscreen"> unagi</span></a>
 	</footer>
@@ -266,18 +411,32 @@ Intro: Bob is cool too</p>
 <p>Welcome to pwn.</p>
 <p><code>nc pwn.chal.csaw.io 1005</code></p>
 </blockquote>
-<p>Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with security professionals who probably have decades of experience and who follow security developments for a living or whatever, there remains a competition where scrubs like me can apply our extremely basic CTF skills and still feel kinda smart by earning points. Now that I’ve graduated and am no longer eligible, our team was pretty small and I didn’t dedicate the full weekend to the CTF, but it means I got to do the really easy challenges in the categories that I was the worst at, by which I mean pwn.</p>
-<p><code>baby_boi</code> is pretty much the simplest possible modern ROP (the modern security protections NX and ASLR are not artificially disabled, but you get everything you need to work around them). We even get source code.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" title="1"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv[]) {</a>
-<a class="sourceLine" id="cb1-5" title="5">  <span class="dt">char</span> buf[<span class="dv">32</span>];</a>
-<a class="sourceLine" id="cb1-6" title="6">  printf(<span class="st">&quot;Hello!</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
-<a class="sourceLine" id="cb1-7" title="7">  printf(<span class="st">&quot;Here I am: %p</span><span class="sc">\n</span><span class="st">&quot;</span>, printf);</a>
-<a class="sourceLine" id="cb1-8" title="8">  gets(buf);</a>
-<a class="sourceLine" id="cb1-9" title="9">}</a></code></pre></div>
-<p>So there’s nothing novel here for experienced pwners, but I feel like there is a shortage of tutorials that walk you through how to solve a textbook ROP the way you’d want to solve it in a CTF, so here is a writeup.</p>
+<p>Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with
+security professionals who probably have decades of experience and who
+follow security developments for a living or whatever, there remains a
+competition where scrubs like me can apply our extremely basic CTF
+skills and still feel kinda smart by earning points. Now that I’ve
+graduated and am no longer eligible, our team was pretty small and I
+didn’t dedicate the full weekend to the CTF, but it means I got to do
+the really easy challenges in the categories that I was the worst at, by
+which I mean pwn.</p>
+<p><code>baby_boi</code> is pretty much the simplest possible modern ROP
+(the modern security protections NX and ASLR are not artificially
+disabled, but you get everything you need to work around them). We even
+get source code.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">[])</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">char</span> buf<span class="op">[</span><span class="dv">32</span><span class="op">];</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">&quot;Hello!</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">&quot;Here I am: </span><span class="sc">%p\n</span><span class="st">&quot;</span><span class="op">,</span> printf<span class="op">);</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  gets<span class="op">(</span>buf<span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>So there’s nothing novel here for experienced pwners, but I feel like
+there is a shortage of tutorials that walk you through how to solve a
+textbook ROP the way you’d want to solve it in a CTF, so here is a
+writeup.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/baby-boi">→ read more<span class="offscreen"> baby_boi (A Textbook CTF ROP Tutorial)</span></a>
 	</footer>
@@ -300,7 +459,8 @@ Intro: Bob is cool too</p>
 	</header>
 	
 	<div class="series">
-<p>not part of the ongoing series, but you can almost pretend it is. This sentence and the one before it are not a puzzle.</p>
+<p>not part of the ongoing series, but you can almost pretend it is.
+This sentence and the one before it are not a puzzle.</p>
 </div>
 <blockquote>
 <p>Imagine a word search.</p>
@@ -308,13 +468,34 @@ Intro: Bob is cool too</p>
 <p>Now imagine you aren’t told it’s a word search.</p>
 <p>Now imagine it isn’t a word search.</p>
 <footer>
-— <a href="http://www.gmpuzzles.com/blog/2013/04/ask-dr-sudoku-13-puzzle-hunting/">Mike Develin, via Thomas Snyder</a> (aka Dr. Sudoku)
+— <a
+href="http://www.gmpuzzles.com/blog/2013/04/ask-dr-sudoku-13-puzzle-hunting/">Mike
+Develin, via Thomas Snyder</a> (aka Dr. Sudoku)
 </footer>
 </blockquote>
-<p>This post aims to be a fairly comprehensive introduction to puzzlehunts and their puzzles, a single post where I can just point people. I erred towards comprehensiveness in this post because I am not aware of any similar resources, especially for puzzlers interested in trying harder puzzlehunts who might not know any more experienced puzzlers to solve with. It’s possible to start solving some puzzles after reading much shorter guides, e.g. Puzzled Pint’s <a href="http://www.puzzledpint.com/files/3513/8254/7894/2013_10_22_Puzzling_Basics_Infographic.pdf">“Puzzling Basics” (PDF)</a>, so feel free to skip around, stop reading midway through, or bookmark this to read only after you’ve spent more time solving.</p>
+<p>This post aims to be a fairly comprehensive introduction to
+puzzlehunts and their puzzles, a single post where I can just point
+people. I erred towards comprehensiveness in this post because I am not
+aware of any similar resources, especially for puzzlers interested in
+trying harder puzzlehunts who might not know any more experienced
+puzzlers to solve with. It’s possible to start solving some puzzles
+after reading much shorter guides, e.g. Puzzled Pint’s <a
+href="http://www.puzzledpint.com/files/3513/8254/7894/2013_10_22_Puzzling_Basics_Infographic.pdf">“Puzzling
+Basics” (PDF)</a>, so feel free to skip around, stop reading midway
+through, or bookmark this to read only after you’ve spent more time
+solving.</p>
 <h3 id="what-is-a-puzzlehunt">What is a Puzzlehunt?</h3>
-<p>A <strong>puzzlehunt</strong><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> is an event where people, usually in teams, solve a series of <strong>puzzles</strong>.</p>
-<p>This is not a very useful definition. The more interesting question is, what is the kind of “puzzle”<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> that appears in a puzzlehunt? The concept of a puzzlehunt puzzle is fuzzy and difficult to define precisely. Just about any hard rule one might try to state will be broken by some puzzle, sometimes deliberately. Still, here are some common features of puzzlehunt puzzles:</p>
+<p>A <strong>puzzlehunt</strong><a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a> is an event where
+people, usually in teams, solve a series of
+<strong>puzzles</strong>.</p>
+<p>This is not a very useful definition. The more interesting question
+is, what is the kind of “puzzle”<a href="#fn2" class="footnote-ref"
+id="fnref2" role="doc-noteref"><sup>2</sup></a> that appears in a
+puzzlehunt? The concept of a puzzlehunt puzzle is fuzzy and difficult to
+define precisely. Just about any hard rule one might try to state will
+be broken by some puzzle, sometimes deliberately. Still, here are some
+common features of puzzlehunt puzzles:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/puzzlehunts">→ read more<span class="offscreen"> Introduction to Puzzlehunts</span></a>
 	</footer>
@@ -337,39 +518,50 @@ Intro: Bob is cool too</p>
 	</header>
 	
 	<div class="series">
-<p>part of the “what I learned after four years at MIT” series, I guess?</p>
+<p>part of the “what I learned after four years at MIT” series, I
+guess?</p>
 </div>
-<p>When I was very young, I thought cooking was easy. I sliced plastic vegetables with a toy knife and then Velcroed them back together, ad infinitum. For at least some time, I wanted to be a chef when I grew up.</p>
-<p>When I was slightly less young, I thought cooking was hard. My reference points were mostly (1) my parents, who seemed to know how to make a million different dishes in inscrutable ways without thinking, and (2) MasterChef contestants (who I assume were better at cooking than my parents because they were, well, on MasterChef) messing things up and getting kicked off the show.</p>
-<p>Now, I think I probably elided some meaningful distinctions there in my youthful naïveté. Cooking food that will keep you from getting kicked off MasterChef is hard. Cooking edible food is easy.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Cooking storebought dumplings in particular is so stupidly easy it’s unfair. More generally, though, most recipes tolerate a lot of substitutions,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> number fudging,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> and even straight-up skipping pesky instructions, like the ones in baking recipes where you mix two sets of ingredients separately in specific orders. There are reasons for those steps, but ignoring them and dumping everything into the same mixing bowl usually won’t make your results inedible. You can also just decide to omit ingredients you don’t like. Probably the least tolerant ingredient measurements in recipes are the measurements of baking soda or baking powder, which by the way are different things, in baking recipes. But otherwise you’d really be surprised how many corners you can get away with cutting — I’ve even completely winged one baking soda/powder measurement with decent results. I think this is especially important to know for people from technical backgrounds like me, who have an instinct to treat the numbers in recipes as precisely measured, painstakingly optimized choices to produce the best dish. They usually aren’t, and even if they are optimized for the recipe author’s palate, they probably won’t be optimized for yours.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> And they certainly aren’t optimized for any tradeoffs you might want to make between food quality versus the time and effort you’re putting into cooking. Make the tradeoffs you want. You’re not on MasterChef.</p>
+<p>When I was very young, I thought cooking was easy. I sliced plastic
+vegetables with a toy knife and then Velcroed them back together, ad
+infinitum. For at least some time, I wanted to be a chef when I grew
+up.</p>
+<p>When I was slightly less young, I thought cooking was hard. My
+reference points were mostly (1) my parents, who seemed to know how to
+make a million different dishes in inscrutable ways without thinking,
+and (2) MasterChef contestants (who I assume were better at cooking than
+my parents because they were, well, on MasterChef) messing things up and
+getting kicked off the show.</p>
+<p>Now, I think I probably elided some meaningful distinctions there in
+my youthful naïveté. Cooking food that will keep you from getting kicked
+off MasterChef is hard. Cooking edible food is easy.<a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+Cooking storebought dumplings in particular is so stupidly easy it’s
+unfair. More generally, though, most recipes tolerate a lot of
+substitutions,<a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a> number fudging,<a href="#fn3"
+class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> and
+even straight-up skipping pesky instructions, like the ones in baking
+recipes where you mix two sets of ingredients separately in specific
+orders. There are reasons for those steps, but ignoring them and dumping
+everything into the same mixing bowl usually won’t make your results
+inedible. You can also just decide to omit ingredients you don’t like.
+Probably the least tolerant ingredient measurements in recipes are the
+measurements of baking soda or baking powder, which by the way are
+different things, in baking recipes. But otherwise you’d really be
+surprised how many corners you can get away with cutting — I’ve even
+completely winged one baking soda/powder measurement with decent
+results. I think this is especially important to know for people from
+technical backgrounds like me, who have an instinct to treat the numbers
+in recipes as precisely measured, painstakingly optimized choices to
+produce the best dish. They usually aren’t, and even if they are
+optimized for the recipe author’s palate, they probably won’t be
+optimized for yours.<a href="#fn4" class="footnote-ref" id="fnref4"
+role="doc-noteref"><sup>4</sup></a> And they certainly aren’t optimized
+for any tradeoffs you might want to make between food quality versus the
+time and effort you’re putting into cooking. Make the tradeoffs you
+want. You’re not on MasterChef.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/cook">→ read more<span class="offscreen"> Cook Like You&#39;re Not on MasterChef</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/money" class="post-link">Money Matters</a></h3>
-		
-		<p class="post-meta">
-		
-		2019-08-21
-		(1637 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/thoughts">Thoughts</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<div class="series">
-<p>part of the “what I learned after four years at MIT” series, I guess?</p>
-</div>
-<p>There’s some oft-cited psychology studies that suggest that once your salary goes above $75,000, additional money doesn’t make you happier. This sounds like a sage bit of life advice if it were true, the ultimate rebuff against excessive greed and materialism and sacrificing other things for a six-digit salary, but it overstates the case a bit. <a href="https://80000hours.org/articles/money-and-happiness/">80,000 Hours’ analysis of money and happiness</a> is probably the analysis I’d trust the most here; I think it would be more accurate just to say that you get diminishing returns of happiness from salaries above $70,000.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Still, that was enough for me to decide fairly early on that I wasn’t interested in trying to get a high-paying job for its own sake, or in spending too much effort trying to invest my way to a fortune.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> I wanted my job to be personally satisfying and good for the world, while paying enough for me and my family (current and future) to get by, but I planned to treat any additional money after that as little more than a bonus used for breaking ties.</p>
-<p>I still mostly stand by that decision today, but over the intervening years I realized there were a whole host of reasons to want money that weren’t that selfish at all.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/money">→ read more<span class="offscreen"> Money Matters</span></a>
 	</footer>
 </article>
 <footer class="list-footer">
@@ -377,7 +569,7 @@ Intro: Bob is cool too</p>
 			<h3 class="offscreen">Pagination</h3><a class="pagination-previous" href="/post/page/3">← newer posts</a><a class="pagination-next" href="/post/page/5">older posts →</a></nav>
 	</footer></section>
 </div><footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

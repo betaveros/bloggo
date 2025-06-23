@@ -55,6 +55,48 @@
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/react-redux" class="post-link">React and Redux the Hard FP Way</a></h3>
+		
+		<p class="post-meta">
+		
+		2018-12-07
+		(3097 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>A more accurate but less informative title for this post would be
+“How I wish React and Redux were explained to me”. Note that this does
+<em>not</em> imply that this method of explanation is suitable for
+anybody else. I suspect it won’t be for most people.</p>
+<p>I had to learn React and Redux the past summer for my internship at
+MemSQL, and there were hundreds of articles that explain React and Redux
+in addition to the (fine) built-in documentation, but none of them
+scratched the itch; I wanted to know what was going on completely,
+including some of the technical details and the philosophy I ought to be
+following, as well as efficiently. I did not need another explanation
+about how to think functionally, in JavaScript types or with immutable
+data. React’s chapter on <a
+href="https://reactjs.org/docs/conditional-rendering.html">Conditional
+Rendering</a>, for example, felt so inefficient — I know what
+<code>if</code> statements and conditional expressions are, and I know
+how to refactor complicated subexpressions into variables…</p>
+<p>So here’s the guide I wish I had. I think. It’s been months since I
+started it (as usual, for posts on this blog) and it is probably
+incomplete. However, I haven’t written React/Redux deeply in a while, so
+I didn’t have much motivation to continue to investigate the incomplete
+bits; and the perfect is the enemy of the good, so here it is.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/react-redux">→ read more<span class="offscreen"> React and Redux the Hard FP Way</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/plc" class="post-link">PLC</a></h3>
 		
 		<h4 class="post-subtitle">CSAW CTF Qualifiers 2018</h4>
@@ -73,11 +115,32 @@
 	</header>
 	
 	<blockquote>
-<p>We’ve burrowed ourselves deep within the facility, gaining access to the programable logic controllers (PLC) that drive their nuclear enrichment centrifuges. Kinetic damage is necessary, we need you to neutralize these machines.</p>
-<p>You can access this challenge at <a href="https://wargames.ret2.systems/csaw_2018_plc_challenge">https://wargames.ret2.systems/csaw_2018_plc_challenge</a></p>
+<p>We’ve burrowed ourselves deep within the facility, gaining access to
+the programable logic controllers (PLC) that drive their nuclear
+enrichment centrifuges. Kinetic damage is necessary, we need you to
+neutralize these machines.</p>
+<p>You can access this challenge at <a
+href="https://wargames.ret2.systems/csaw_2018_plc_challenge">https://wargames.ret2.systems/csaw_2018_plc_challenge</a></p>
 </blockquote>
-<p>A much belated post. This is a pwn challenge on a custom online wargaming platform. We are provided with the assembly of what’s ostensibly a programmable logic controller (PLC) for a centrifuge in a nuclear reactor. The challenge looks like it’s still up, so you can take a look and follow along.</p>
-<p>This was the first <a href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a> (okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF, which I was pretty excited about. The web platform meant I had to worry less about setup, and even though some of the tools it provided were a little lacking (no gdb shortcuts like <code>until</code>, no pwntools utilities for packing/unpacking numbers, … no <code>one_gadget</code>), I think they ultimately made the whole thing a lot more educational for me, so kudos to the folks behind it. I’ve included a brief description of all the exploit techniques that lead up to ROP when we get to that, so hopefully this post will be useful even if you don’t know much about pwning binaries. The prerequisites would be some knowledge with x86 assembly, how executables are loaded into memory, and how to use <code>gdb</code> (or fictionalized web knockoffs thereof).</p>
+<p>A much belated post. This is a pwn challenge on a custom online
+wargaming platform. We are provided with the assembly of what’s
+ostensibly a programmable logic controller (PLC) for a centrifuge in a
+nuclear reactor. The challenge looks like it’s still up, so you can take
+a look and follow along.</p>
+<p>This was the first <a
+href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a>
+(okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF,
+which I was pretty excited about. The web platform meant I had to worry
+less about setup, and even though some of the tools it provided were a
+little lacking (no gdb shortcuts like <code>until</code>, no pwntools
+utilities for packing/unpacking numbers, … no <code>one_gadget</code>),
+I think they ultimately made the whole thing a lot more educational for
+me, so kudos to the folks behind it. I’ve included a brief description
+of all the exploit techniques that lead up to ROP when we get to that,
+so hopefully this post will be useful even if you don’t know much about
+pwning binaries. The prerequisites would be some knowledge with x86
+assembly, how executables are loaded into memory, and how to use
+<code>gdb</code> (or fictionalized web knockoffs thereof).</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/plc">→ read more<span class="offscreen"> PLC</span></a>
 	</footer>
@@ -102,11 +165,20 @@
 	</header>
 	
 	<blockquote>
-<p>The villains are communicating with their own proprietary file format. Figure out what it is.</p>
+<p>The villains are communicating with their own proprietary file
+format. Figure out what it is.</p>
 <pre><code>$ nc proprietary.ctfcompetition.com 1337</code></pre>
 </blockquote>
-<p>We get a server that will talk to us on a port and a <code>flag.ctf</code> file that’s definitely not a binary. It’s a <a href="https://en.wikipedia.org/wiki/Black_box">black-box</a> reversing challenge! I was @-mentioned as the person who might want to due to solving bananaScript (CSAW CTF Quals 2017) as a black box, although that gave a binary that it was possible in theory to reverse. Here black-box reversing is the only option.</p>
-<p>For the first few lines of input that the server wants, it responds with quite helpful error messages to help you appease it. If the first line you give it is not <code>P6</code>, it complains:</p>
+<p>We get a server that will talk to us on a port and a
+<code>flag.ctf</code> file that’s definitely not a binary. It’s a <a
+href="https://en.wikipedia.org/wiki/Black_box">black-box</a> reversing
+challenge! I was @-mentioned as the person who might want to due to
+solving bananaScript (CSAW CTF Quals 2017) as a black box, although that
+gave a binary that it was possible in theory to reverse. Here black-box
+reversing is the only option.</p>
+<p>For the first few lines of input that the server wants, it responds
+with quite helpful error messages to help you appease it. If the first
+line you give it is not <code>P6</code>, it complains:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/proprietary-format">→ read more<span class="offscreen"> Proprietary Format</span></a>
 	</footer>
@@ -131,12 +203,23 @@
 	</header>
 	
 	<blockquote>
-<p>You discover this cat enthusiast chat app, but the annoying thing about it is that you’re always banned when you start talking about dogs. Maybe if you would somehow get to know the admin’s password, you could fix that.</p>
+<p>You discover this cat enthusiast chat app, but the annoying thing
+about it is that you’re always banned when you start talking about dogs.
+Maybe if you would somehow get to know the admin’s password, you could
+fix that.</p>
 </blockquote>
-<p>This challenge is a simple chat app written in NodeJS. The home page redirects you to a chat room labeled with a random UUID. Anybody can join the same chat room with the URL.</p>
+<p>This challenge is a simple chat app written in NodeJS. The home page
+redirects you to a chat room labeled with a random UUID. Anybody can
+join the same chat room with the URL.</p>
 <p><img src="/img/cat-chat-0.png" alt="Fresh Cat Chat room" /></p>
-<p>In a chat room, you can chat and issue two commands, <code>/name</code> to set your name and <code>/report</code> to report that somebody is talking about dogs. After anybody in the chat room issues <code>/report</code>, the admin shows up, listens for a while, and bans anybody who mentions the word “dog”.</p>
-<p>There are two more commands, <code>/secret</code> and <code>/ban</code>, which are in the server source code and also described in comments in the HTML source if you didn’t notice:</p>
+<p>In a chat room, you can chat and issue two commands,
+<code>/name</code> to set your name and <code>/report</code> to report
+that somebody is talking about dogs. After anybody in the chat room
+issues <code>/report</code>, the admin shows up, listens for a while,
+and bans anybody who mentions the word “dog”.</p>
+<p>There are two more commands, <code>/secret</code> and
+<code>/ban</code>, which are in the server source code and also
+described in comments in the HTML source if you didn’t notice:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/cat-chat">→ read more<span class="offscreen"> Cat Chat</span></a>
 	</footer>
@@ -161,9 +244,14 @@
 	</header>
 	
 	<blockquote>
-<p>You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML file that can store secrets in the browser’s localStorage. This means that you won’t be able to extract any secret from it (the secrets are on the computer of the owner), but it looks like it was hand-crafted to work only with the password of the owner…</p>
+<p>You stumbled upon someone’s “JS Safe” on the web. It’s a simple HTML
+file that can store secrets in the browser’s localStorage. This means
+that you won’t be able to extract any secret from it (the secrets are on
+the computer of the owner), but it looks like it was hand-crafted to
+work only with the password of the owner…</p>
 </blockquote>
-<p>The challenge consists of a fancy HTML file with a cute but irrelevant animated cube and some embedded JavaScript.</p>
+<p>The challenge consists of a fancy HTML file with a cute but
+irrelevant animated cube and some embedded JavaScript.</p>
 <p><img src="/img/js-safe-2-empty.png" alt="Screenshot of JS Safe 2.0 with a text box and a cube" /></p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/js-safe-2">→ read more<span class="offscreen"> JS Safe 2.0</span></a>
@@ -188,22 +276,40 @@
 		</p>
 	</header>
 	
-	<p>The hardest challenge of not very many I solved in this CTF. What a struggle! I have a long way to improve. It was pretty fun though. (I solved “You Already Know”, and got the essence of “ghettohackers: Throwback”, but didn’t guess the right flag format and believe I was asleep when they released the hint about it.)</p>
-<p>The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension <code>shellme.so</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode php"><code class="sourceCode php"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">$link</span> = <span class="fu">mysqli_connect</span><span class="ot">(</span><span class="st">&#39;localhost&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">);</span></a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">if</span> <span class="ot">(</span><span class="kw">isset</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]))</span></a>
-<a class="sourceLine" id="cb1-4" title="4">{</a>
-<a class="sourceLine" id="cb1-5" title="5">   <span class="kw">if</span> <span class="ot">(</span><span class="fu">strlen</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">])</span> &lt;= <span class="dv">1000</span><span class="ot">)</span></a>
-<a class="sourceLine" id="cb1-6" title="6">   {</a>
-<a class="sourceLine" id="cb1-7" title="7">      <span class="kw">echo</span> <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">];</span></a>
-<a class="sourceLine" id="cb1-8" title="8">      shellme<span class="ot">(</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;shell&#39;</span><span class="ot">]);</span></a>
-<a class="sourceLine" id="cb1-9" title="9">   }</a>
-<a class="sourceLine" id="cb1-10" title="10">   <span class="kw">exit</span><span class="ot">();</span></a>
-<a class="sourceLine" id="cb1-11" title="11">}</a></code></pre></div>
-<p>The extension basically just executes <code>$_POST['shell']</code> as shellcode after a strict SECCOMP call, <a href="http://man7.org/linux/man-pages/man2/prctl.2.html">prctl</a>(<a href="https://elixir.bootlin.com/linux/v4.16.8/source/include/uapi/linux/prctl.h#L68">22</a>, <a href="https://elixir.bootlin.com/linux/v4.1/source/include/uapi/linux/seccomp.h#L10">1</a>). This means that we can only use the four syscalls <code>read</code>, <code>write</code>, and <code>exit</code>, and <code>sigreturn</code>, where the latter two aren’t particularly useful.</p>
+	<p>The hardest challenge of not very many I solved in this CTF. What a
+struggle! I have a long way to improve. It was pretty fun though. (I
+solved “You Already Know”, and got the essence of “ghettohackers:
+Throwback”, but didn’t guess the right flag format and believe I was
+asleep when they released the hint about it.)</p>
+<p>The challenge consists of a simple PHP script that opens a MySQL
+connection and then feeds our input into a custom PHP extension
+<code>shellme.so</code>.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">$link</span> <span class="op">=</span> <span class="fu">mysqli_connect</span>(<span class="st">&#39;localhost&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span><span class="ot">,</span> <span class="st">&#39;shellql&#39;</span>)<span class="ot">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="kw">isset</span>(<span class="va">$_POST</span>[<span class="st">&#39;shell&#39;</span>]))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">strlen</span>(<span class="va">$_POST</span>[<span class="st">&#39;shell&#39;</span>]) <span class="op">&lt;=</span> <span class="dv">1000</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>   {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">echo</span> <span class="va">$_POST</span>[<span class="st">&#39;shell&#39;</span>]<span class="ot">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      shellme(<span class="va">$_POST</span>[<span class="st">&#39;shell&#39;</span>])<span class="ot">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>   }</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>   <span class="cf">exit</span>()<span class="ot">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The extension basically just executes <code>$_POST['shell']</code> as
+shellcode after a strict SECCOMP call, <a
+href="http://man7.org/linux/man-pages/man2/prctl.2.html">prctl</a>(<a
+href="https://elixir.bootlin.com/linux/v4.16.8/source/include/uapi/linux/prctl.h#L68">22</a>,
+<a
+href="https://elixir.bootlin.com/linux/v4.1/source/include/uapi/linux/seccomp.h#L10">1</a>).
+This means that we can only use the four syscalls <code>read</code>,
+<code>write</code>, and <code>exit</code>, and <code>sigreturn</code>,
+where the latter two aren’t particularly useful.</p>
 <figure>
-<img src="/img/shell_this.png" alt="Disassembled innermost function of interest in shellme.so" /><figcaption>Disassembled innermost function of interest in <code>shellme.so</code></figcaption>
+<img src="/img/shell_this.png"
+alt="Disassembled innermost function of interest in shellme.so" />
+<figcaption aria-hidden="true">Disassembled innermost function of
+interest in <code>shellme.so</code></figcaption>
 </figure>
 <p>The goal is to read the flag from the open MySQL connection.</p>
 	<footer class="post-footer">
@@ -229,13 +335,34 @@
 		</p>
 	</header>
 	
-	<p>We are presented with a big zip file of SML code, which implements an interpreter for a small ML-like language with a form of taint analysis in its type checker, called <em>Wolf</em>. Concretely, every type in Wolf’s type system has an associated <em>secrecy</em>: it is either “private” or “public”, and in theory, the type system makes it impossible to do any computation on private data to get a public result.</p>
-<p>Of course, this is a CTF, so the challenge is all about breaking the theoretical guarantees of the type system. When we submit code, it’s evaluated in a context with a private integer variable <code>flag</code>; our code is typechecked, executed, and printed, but only if its type is public. The goal is to break the type system and write code that produces a public value that depends on <code>flag</code>, so that we can exfiltrate <code>flag</code> itself.</p>
-<p>In all, there are three progressively harder Wolf problems, named Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the flag of the challenge before it, so that you need to solve them in order (unless you can somehow blindly exploit servers running SML programs).</p>
+	<p>We are presented with a big zip file of SML code, which implements an
+interpreter for a small ML-like language with a form of taint analysis
+in its type checker, called <em>Wolf</em>. Concretely, every type in
+Wolf’s type system has an associated <em>secrecy</em>: it is either
+“private” or “public”, and in theory, the type system makes it
+impossible to do any computation on private data to get a public
+result.</p>
+<p>Of course, this is a CTF, so the challenge is all about breaking the
+theoretical guarantees of the type system. When we submit code, it’s
+evaluated in a context with a private integer variable
+<code>flag</code>; our code is typechecked, executed, and printed, but
+only if its type is public. The goal is to break the type system and
+write code that produces a public value that depends on
+<code>flag</code>, so that we can exfiltrate <code>flag</code>
+itself.</p>
+<p>In all, there are three progressively harder Wolf problems, named
+Pupper, Doggo, and Woofer. Doggo and Woofer are each encrypted with the
+flag of the challenge before it, so that you need to solve them in order
+(unless you can somehow blindly exploit servers running SML
+programs).</p>
 <h3 id="wolf-overview">Wolf Overview</h3>
-<p>Let’s first go over the Wolf syntax and semantics. (There are small differences between the three problems, but they’re syntactically identical and only semantically differ in cases that we’ll naturally get to.) The <code>examples</code> folder has some examples of valid code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode ml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">let</span> x = (<span class="dv">5</span> :&gt; <span class="kw">private</span> <span class="dt">int</span>) <span class="kw">in</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="dv">6</span></a></code></pre></div>
+<p>Let’s first go over the Wolf syntax and semantics. (There are small
+differences between the three problems, but they’re syntactically
+identical and only semantically differ in cases that we’ll naturally get
+to.) The <code>examples</code> folder has some examples of valid
+code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ml"><code class="sourceCode ocaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> x = (<span class="dv">5</span> :&gt; <span class="kw">private</span> <span class="dt">int</span>) <span class="kw">in</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span></span></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/doggo">→ read more<span class="offscreen"> Pupper/Doggo</span></a>
 	</footer>
@@ -259,10 +386,19 @@
 		</p>
 	</header>
 	
-	<p>This challenge is a video of somebody’s messy desk, with what is apparently the audio from a <a href="https://www.youtube.com/watch?v=WwnI0RS6J5A">Futurama clip</a>. The desk is indeed extremely messy and full of things that aren’t particularly useful for us, but close examination reveals a QR code reflected in the globe in the middle.</p>
-<p>The challenge is all about getting that QR code. After trying our best to clean up the image, we ended up with this:</p>
+	<p>This challenge is a video of somebody’s messy desk, with what is
+apparently the audio from a <a
+href="https://www.youtube.com/watch?v=WwnI0RS6J5A">Futurama clip</a>.
+The desk is indeed extremely messy and full of things that aren’t
+particularly useful for us, but close examination reveals a QR code
+reflected in the globe in the middle.</p>
+<p>The challenge is all about getting that QR code. After trying our
+best to clean up the image, we ended up with this:</p>
 <figure>
-<img src="/img/messy-qr.png" alt="Maximally enhanced image of the QR code" /><figcaption>Maximally enhanced image of the QR code</figcaption>
+<img src="/img/messy-qr.png"
+alt="Maximally enhanced image of the QR code" />
+<figcaption aria-hidden="true">Maximally enhanced image of the QR
+code</figcaption>
 </figure>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/messy-desk">→ read more<span class="offscreen"> Messy Desk</span></a>
@@ -286,10 +422,44 @@
 	</header>
 	
 	<p>It feels a little surreal watching #DeleteFacebook.</p>
-<p>On one hand, despite how hard it is to keep an issue trending in today’s fast news cycle, this issue has managed to continue burning for a while. Somewhat recently (March 21), we got two high-profile Facebook account deletions from <a href="https://twitter.com/brianacton/status/976231995846963201">Brian Acton (WhatsApp cofounder)</a> and <a href="https://techcrunch.com/2018/03/23/elon-musk-deletes-own-spacex-and-tesla-facebook-pages-after-deletefacebook/">Elon Musk</a>. Other apparent examples include <a href="https://www.usatoday.com/story/money/2018/03/28/playboy-dumps-facebook-amid-public-furor-over-users-data-leaks/465156002/">Playboy and Cher</a>, or see <a href="http://time.com/money/5220854/delete-facebook-celebrities-companies-cutting-ties-privacy/">Time</a> or <a href="https://www.cnet.com/news/several-companies-and-people-are-pulling-back-from-facebook/">CNET</a> for a few more. Facebook’s U.S. and Canada user base <a href="https://www.recode.net/2018/1/31/16957122/facebook-daily-active-user-decline-us-canda-q4-earnings-2018">declined for the first time last quarter</a>.</p>
-<p>On the other hand, for me and for a lot of people, the scandal just doesn’t seem that qualitatively different from things we’ve known about Facebook for a long time — its stance on privacy, its psychological effects, its willingness to manipulate the user experience. Why is this time different? (Here’s the <a href="https://www.reddit.com/r/NoStupidQuestions/comments/87u9ro/why_is_everyone_all_of_a_sudden_mad_at_facebook/">/r/NoStupidQuestions thread.</a> I don’t actually know which answer I believe the most.)</p>
-<p>Is this time really different? I’m not optimistic. The decline could simply be Facebook running out of potential users to add and space to grow. According to a recent Raymond James survey, about half of surveyed users did not plan to change how much they used Facebook, while only 8% would stop using it, and this may still be an overestimate of people who will actually leave or delete their accounts.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Mark Zuckerberg himself <a href="https://www.nytimes.com/2018/03/21/technology/mark-zuckerberg-q-and-a.html">told the New York Times</a>, “I don’t think we’ve seen a meaningful number of people act on [the #DeleteFacebook campaign]”.</p>
-<p>I myself have to admit upfront that, even though I <a href="//blog.vero.site/post/me-and-facebook">barely use Facebook any more</a> and have carefully contemplated deleting my Facebook account for a long time, I still haven’t pulled the trigger.</p>
+<p>On one hand, despite how hard it is to keep an issue trending in
+today’s fast news cycle, this issue has managed to continue burning for
+a while. Somewhat recently (March 21), we got two high-profile Facebook
+account deletions from <a
+href="https://twitter.com/brianacton/status/976231995846963201">Brian
+Acton (WhatsApp cofounder)</a> and <a
+href="https://techcrunch.com/2018/03/23/elon-musk-deletes-own-spacex-and-tesla-facebook-pages-after-deletefacebook/">Elon
+Musk</a>. Other apparent examples include <a
+href="https://www.usatoday.com/story/money/2018/03/28/playboy-dumps-facebook-amid-public-furor-over-users-data-leaks/465156002/">Playboy
+and Cher</a>, or see <a
+href="http://time.com/money/5220854/delete-facebook-celebrities-companies-cutting-ties-privacy/">Time</a>
+or <a
+href="https://www.cnet.com/news/several-companies-and-people-are-pulling-back-from-facebook/">CNET</a>
+for a few more. Facebook’s U.S. and Canada user base <a
+href="https://www.recode.net/2018/1/31/16957122/facebook-daily-active-user-decline-us-canda-q4-earnings-2018">declined
+for the first time last quarter</a>.</p>
+<p>On the other hand, for me and for a lot of people, the scandal just
+doesn’t seem that qualitatively different from things we’ve known about
+Facebook for a long time — its stance on privacy, its psychological
+effects, its willingness to manipulate the user experience. Why is this
+time different? (Here’s the <a
+href="https://www.reddit.com/r/NoStupidQuestions/comments/87u9ro/why_is_everyone_all_of_a_sudden_mad_at_facebook/">/r/NoStupidQuestions
+thread.</a> I don’t actually know which answer I believe the most.)</p>
+<p>Is this time really different? I’m not optimistic. The decline could
+simply be Facebook running out of potential users to add and space to
+grow. According to a recent Raymond James survey, about half of surveyed
+users did not plan to change how much they used Facebook, while only 8%
+would stop using it, and this may still be an overestimate of people who
+will actually leave or delete their accounts.<a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+Mark Zuckerberg himself <a
+href="https://www.nytimes.com/2018/03/21/technology/mark-zuckerberg-q-and-a.html">told
+the New York Times</a>, “I don’t think we’ve seen a meaningful number of
+people act on [the #DeleteFacebook campaign]”.</p>
+<p>I myself have to admit upfront that, even though I <a
+href="//blog.vero.site/post/me-and-facebook">barely use Facebook any more</a> and
+have carefully contemplated deleting my Facebook account for a long
+time, I still haven’t pulled the trigger.</p>
 <p>Why? What will it take to change this?</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/on-delete-facebook">→ read more<span class="offscreen"> On #DeleteFacebook</span></a>
@@ -312,40 +482,37 @@
 		</p>
 	</header>
 	
-	<p>My third MIT Mystery Hunt with ✈✈✈ Galactic Trendsetters ✈✈✈ (also see: <a href="//blog.vero.site/post/january">2017</a> and <a href="//blog.vero.site/post/whoosh">2016</a>, writing with Random in <a href="//blog.vero.site/post/hunt">2015</a>). It was a good hunt with a fun theme, solid puzzles, and extraordinary production quality, marred only by a fickle unlock structure and a handful of unnecessarily involved extractions.</p>
-<p>Since we had been told the hunt would be smaller than past years’ (now a controversial statement since the coin was <em>not</em> found particularly early) and we didn’t particularly want to win (yet), part of our team temporarily split off this year to hunt as Teammate. Based on our Discord channel, ✈✈✈ Galactic Trendsetters ✈✈✈ had 75 people this year, including remote solvers and people who dropped in and out.</p>
-<p>A short description of the hunt structure: This year’s hunt theme was <em>Inside Out</em>, the Disney movie about anthropomorphized emotions. This was revealed through a kickoff that demonstrated the hunt’s extraordinary production quality, in which we watched the unveiling of the Health &amp; Safety hunt, first directly, then in the Control Room with the emotions of a distraught hunter (Miss Terry Hunter) and a lot of beautiful memory orbs and scenery. After Terry’s emotions became overwhelmed in response to the theme, we had to help her emotions to allow her to complete the Health &amp; Safety hunt. The intro round took place in the Control Room; we had to solve 34 regular puzzles and five metapuzzles (somewhat overlapping, with some regular puzzles belonging to more than one metapuzzle) to help each of the five emotions get back to the Control Room. The rest of the hunt consisted of recovering memory orbs from each of four Islands of Personality, each of which had its own theme and meta structure, and which we could choose the unlock order of.</p>
+	<p>My third MIT Mystery Hunt with ✈✈✈ Galactic Trendsetters ✈✈✈ (also
+see: <a href="//blog.vero.site/post/january">2017</a> and <a
+href="//blog.vero.site/post/whoosh">2016</a>, writing with Random in <a
+href="//blog.vero.site/post/hunt">2015</a>). It was a good hunt with a
+fun theme, solid puzzles, and extraordinary production quality, marred
+only by a fickle unlock structure and a handful of unnecessarily
+involved extractions.</p>
+<p>Since we had been told the hunt would be smaller than past years’
+(now a controversial statement since the coin was <em>not</em> found
+particularly early) and we didn’t particularly want to win (yet), part
+of our team temporarily split off this year to hunt as Teammate. Based
+on our Discord channel, ✈✈✈ Galactic Trendsetters ✈✈✈ had 75 people this
+year, including remote solvers and people who dropped in and out.</p>
+<p>A short description of the hunt structure: This year’s hunt theme was
+<em>Inside Out</em>, the Disney movie about anthropomorphized emotions.
+This was revealed through a kickoff that demonstrated the hunt’s
+extraordinary production quality, in which we watched the unveiling of
+the Health &amp; Safety hunt, first directly, then in the Control Room
+with the emotions of a distraught hunter (Miss Terry Hunter) and a lot
+of beautiful memory orbs and scenery. After Terry’s emotions became
+overwhelmed in response to the theme, we had to help her emotions to
+allow her to complete the Health &amp; Safety hunt. The intro round took
+place in the Control Room; we had to solve 34 regular puzzles and five
+metapuzzles (somewhat overlapping, with some regular puzzles belonging
+to more than one metapuzzle) to help each of the five emotions get back
+to the Control Room. The rest of the hunt consisted of recovering memory
+orbs from each of four Islands of Personality, each of which had its own
+theme and meta structure, and which we could choose the unlock order
+of.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/2018-hunt">→ read more<span class="offscreen"> 2018 MIT Mystery Hunt</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/transformation" class="post-link">Transformation</a></h3>
-		
-		<p class="post-meta">
-		
-		2017-12-31
-		(1588 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>I think this is the right video for this year.</p>
-
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/lX44CAz-JhU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
-
-<p>I love the music and the animation. The music video spells out the central conceit somewhat explicitly, but I think the lyrics by themselves have a hint of ambiguity — is it a harmful addiction that you just can’t escape from, or an essential part of your identity that you just can’t deny?</p>
-<p>What parts of me can I just not deny, huh? Unfortunately 2017 is also the year I decide my online presence should probably be a little more professional, so you might have to read between the lines a bit.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/transformation">→ read more<span class="offscreen"> Transformation</span></a>
 	</footer>
 </article>
 <footer class="list-footer">
@@ -353,7 +520,7 @@
 			<h3 class="offscreen">Pagination</h3><a class="pagination-previous" href="/post/page/5">← newer posts</a><a class="pagination-next" href="/post/page/7">older posts →</a></nav>
 	</footer></section>
 </div><footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

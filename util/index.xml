@@ -22,8 +22,11 @@ factor! append? fancy? </description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//blog.vero.site/util/poker</guid>
-      <description>&lt;p&gt;Format poker cards for forum games and whatever without reaching for Unicode input methods.&lt;/p&gt;
-&lt;p&gt;The regex employed is essentially &lt;code&gt;/\b([A2-9TJQK]|10)([CDHS])\b/g&lt;/code&gt;. You have to type in uppercase (otherwise even “as” would be filtered).&lt;/p&gt;</description>
+      <description>&lt;p&gt;Format poker cards for forum games and whatever without reaching for
+Unicode input methods.&lt;/p&gt;
+&lt;p&gt;The regex employed is essentially
+&lt;code&gt;/\b([A2-9TJQK]|10)([CDHS])\b/g&lt;/code&gt;. You have to type in
+uppercase (otherwise even “as” would be filtered).&lt;/p&gt;</description>
     </item>
     
   </channel>

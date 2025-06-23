@@ -105,15 +105,34 @@ I’ve blurred the messed-up file names because I’m not convinced it’s impos
 	</header>
 	
 	<p>So, what have I been doing with programming recently?</p>
-<p><a href="http://www.scala-lang.org/">Scala</a> is an amazing multiparadigm programming language that runs on the Java Virtual Machine and interoperates with Java. I learned about it last time reading random articles on Twitter.</p>
-<p>When I say “amazing” I mean “This is a language in which my code gives me nerdgasms every time I read it.” Wheeee.</p>
-<p>Okay, it’s not perfect. People say it’s too academic. It has a notoriously complicated type system (which is <a href="http://scientopia.org/blogs/goodmath/2013/01/21/types-gone-wild-ski-at-compile-time/"><em>Turing-Complete</em> at compile time</a>). Its documentation is a bit patchy too. For a serious introduction, the Scala website has plenty of links under documentation, and a <a href="http://www.scala-lang.org/node/104">tour of features</a>. Somebody wrote <a href="http://www.naildrivin5.com/scalatour">another tour</a> that explains things a bit more. So here, instead of introducing it seriously, I’m just going to screw with its features.</p>
-<p>Example of freedom. Scala lets names consist of symbols, and treats one-parameter methods and infix operators exactly the same. The full tokenization rules are a bit detailed and I put them at the bottom of this post for the interested. This lets you create classes with arithmetic and domain-specific languages easily, but it also creates some silly opportunities:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode scala"><code class="sourceCode scala"><a class="sourceLine" id="cb1-1" title="1">scala&gt; <span class="kw">val</span> * = <span class="dv">12</span></a>
-<a class="sourceLine" id="cb1-2" title="2">*: Int = <span class="dv">12</span></a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4">scala&gt; * * * * *</a>
-<a class="sourceLine" id="cb1-5" title="5">res0: Int = <span class="dv">1728</span></a></code></pre></div>
+<p><a href="http://www.scala-lang.org/">Scala</a> is an amazing
+multiparadigm programming language that runs on the Java Virtual Machine
+and interoperates with Java. I learned about it last time reading random
+articles on Twitter.</p>
+<p>When I say “amazing” I mean “This is a language in which my code
+gives me nerdgasms every time I read it.” Wheeee.</p>
+<p>Okay, it’s not perfect. People say it’s too academic. It has a
+notoriously complicated type system (which is
+<a href="http://scientopia.org/blogs/goodmath/2013/01/21/types-gone-wild-ski-at-compile-time/"><em>Turing-Complete</em>
+at compile time</a>). Its documentation is a bit patchy too. For a
+serious introduction, the Scala website has plenty of links under
+documentation, and a <a href="http://www.scala-lang.org/node/104">tour
+of features</a>. Somebody wrote
+<a href="http://www.naildrivin5.com/scalatour">another tour</a> that
+explains things a bit more. So here, instead of introducing it
+seriously, I’m just going to screw with its features.</p>
+<p>Example of freedom. Scala lets names consist of symbols, and treats
+one-parameter methods and infix operators exactly the same. The full
+tokenization rules are a bit detailed and I put them at the bottom of
+this post for the interested. This lets you create classes with
+arithmetic and domain-specific languages easily, but it also creates
+some silly opportunities:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode scala"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>scala<span class="op">&gt;</span> <span class="kw">val</span> <span class="op">*</span> <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">*:</span> <span class="bu">Int</span> <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>scala<span class="op">&gt;</span> <span class="op">*</span> <span class="op">*</span> <span class="op">*</span> <span class="op">*</span> <span class="op">*</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>res0<span class="op">:</span> <span class="bu">Int</span> <span class="op">=</span> <span class="dv">1728</span></span></code></pre></div>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/scala">→ read more<span class="offscreen"> Adventures in Scala Pseudo-Abuse</span></a>
 	</footer>
@@ -122,7 +141,7 @@ I’ve blurred the messed-up file names because I’m not convinced it’s impos
 		</section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

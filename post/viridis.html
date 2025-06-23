@@ -75,14 +75,18 @@ This seems like it should be easy to answer. Just go into matplotlib and find th
 		
 		</p>
 	</header>
-	<article><p>If you’ve dabbled in data visualization, there’s a good chance you’ve encountered the colormap <code>viridis</code>, which was <a href="https://bids.github.io/colormap/">created for matplotlib in ~2015</a>.</p>
+	<article><p>If you’ve dabbled in data visualization, there’s a good chance you’ve
+encountered the colormap <code>viridis</code>, which was <a
+href="https://bids.github.io/colormap/">created for matplotlib in
+~2015</a>.</p>
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <figure>
 <div class="d3-viridis" style="display: flex" alt="viridis gradient">
 
 </div>
 <figcaption>
-This particular gradient is brought to you by <a href="//blog.vero.site/post/d3">d3</a>
+This particular gradient is brought to you by
+<a href="//blog.vero.site/post/d3">d3</a>
 </figcaption>
 </figure>
 <script>
@@ -117,269 +121,375 @@ d3.select(".d3-four-viridis").selectAll("span").data(d3.range(256)).join("span")
 d3.select(".d3-seven-viridis").selectAll("span").data(d3.range(256)).join("span").style("background-color", i => degree_seven_viridis(i / 255)).style("flex", "1").style("min-height", "1em");
 });
 </script>
-<p>You may also know about some of the considerations went into the colormap’s design, chiefly perceptual uniformity: equally distant colors on the colormap should “look equally different” to humans.</p>
-<p>I won’t discuss color theory much here; the talk introducing viridis (below) is quite good, and there are many other resources online, such as Jamie Wong’s <a href="https://jamie-wong.com/post/color/">From Hexcodes to Eyeballs</a> or Bartosz Ciechanowski’s <a href="https://ciechanow.ski/color-spaces/">Color Spaces</a>.</p>
+<p>You may also know about some of the considerations went into the
+colormap’s design, chiefly perceptual uniformity: equally distant colors
+on the colormap should “look equally different” to humans.</p>
+<p>I won’t discuss color theory much here; the talk introducing viridis
+(below) is quite good, and there are many other resources online, such
+as Jamie Wong’s <a href="https://jamie-wong.com/post/color/">From
+Hexcodes to Eyeballs</a> or Bartosz Ciechanowski’s <a
+href="https://ciechanow.ski/color-spaces/">Color Spaces</a>.</p>
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe src="https://www.youtube.com/embed/xAoljeRJ3lU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-<p>Instead, I nerd-sniped myself with a different question: How is viridis, specifically, defined?</p>
-<p>This seems like it should be easy to answer. Just go into matplotlib and find the <a href="https://github.com/matplotlib/matplotlib/blob/a04e35f76f15020b43d06b4644b5e3d544b07deb/lib/matplotlib/_cm_listed.py#L774">source code for viridis</a>, right? Unfortunately, that source code is just a list of 256 RGB triples along which colors are interpolated. This makes sense for efficiency and even portability because (as we’ll see) the formula for producing viridis is incredibly complicated, but it isn’t a very satisfying answer. How did those triples originally come to be?</p>
+<p>Instead, I nerd-sniped myself with a different question: How is
+viridis, specifically, defined?</p>
+<p>This seems like it should be easy to answer. Just go into matplotlib
+and find the <a
+href="https://github.com/matplotlib/matplotlib/blob/a04e35f76f15020b43d06b4644b5e3d544b07deb/lib/matplotlib/_cm_listed.py#L774">source
+code for viridis</a>, right? Unfortunately, that source code is just a
+list of 256 RGB triples along which colors are interpolated. This makes
+sense for efficiency and even portability because (as we’ll see) the
+formula for producing viridis is incredibly complicated, but it isn’t a
+very satisfying answer. How did those triples originally come to be?</p>
 <h3 id="the-color-space">The color space</h3>
-<p>The first ingredient of <code>viridis</code> is the uniform color space it uses, CIECAM02-UCS, which parametrizes colors by the three variables <span class="math inline">\(J&#39;\)</span>, <span class="math inline">\(a&#39;\)</span>, and <span class="math inline">\(b&#39;\)</span>. CIECAM02-UCS is built on top of <a href="https://en.wikipedia.org/wiki/CIECAM02">CIECAM02</a>, a color appearance model published in 2002.</p>
-<p>Actually, CIECAM02-UCS and CIECAM02 don’t provide a single mapping of colors to their spaces. You have to set something like eight other parameters:</p>
+<p>The first ingredient of <code>viridis</code> is the uniform color
+space it uses, CIECAM02-UCS, which parametrizes colors by the three
+variables <span class="math inline">\(J&#39;\)</span>, <span
+class="math inline">\(a&#39;\)</span>, and <span
+class="math inline">\(b&#39;\)</span>. CIECAM02-UCS is built on top of
+<a href="https://en.wikipedia.org/wiki/CIECAM02">CIECAM02</a>, a color
+appearance model published in 2002.</p>
+<p>Actually, CIECAM02-UCS and CIECAM02 don’t provide a single mapping of
+colors to their spaces. You have to set something like eight other
+parameters:</p>
 <ul>
-<li>whitepoint in the XYZ color space <span class="math inline">\(X_w, Y_w, Z_w\)</span></li>
+<li>whitepoint in the XYZ color space <span class="math inline">\(X_w,
+Y_w, Z_w\)</span></li>
 <li>background luminance <span class="math inline">\(Y_b\)</span></li>
-<li>luminance of the adapting field <span class="math inline">\(L_A\)</span></li>
+<li>luminance of the adapting field <span
+class="math inline">\(L_A\)</span></li>
 <li>degree of adaptation <span class="math inline">\(F\)</span></li>
 <li>impact of surrounding <span class="math inline">\(c\)</span></li>
-<li>chromatic induction factor <span class="math inline">\(N_c\)</span></li>
+<li>chromatic induction factor <span
+class="math inline">\(N_c\)</span></li>
 </ul>
-<p>Given those parameters, CIECAM02 provides a mapping between colors and seven “appearance correlates” <span class="math inline">\((J, C, h, Q, M, s, H)\)</span>. CIECAM02-UCS then defines a mapping between <span class="math inline">\((J, M, h)\)</span> and <span class="math inline">\((J&#39;, a&#39;, b&#39;)\)</span>. I’m not going to explain what all these variables mean (not least because I don’t understand them), but I hope that knowledge of their existence helps contextualize how complicated the model we’re working with.</p>
-<p>It happens that <code>viridis</code> was originally generated with a <a href="https://colorspacious.readthedocs.io/en/latest/changes.html#v1-0-0">buggily parametrized of CIECAM02-UCS</a> where <span class="math inline">\(L_A\)</span> was 125× too large, i.e. the viewing conditions are 125× lighter than the default. However, it turns out that this only marginally affects the perceptual uniformity, so nobody has bothered to fix it.</p>
+<p>Given those parameters, CIECAM02 provides a mapping between colors
+and seven “appearance correlates” <span class="math inline">\((J, C, h,
+Q, M, s, H)\)</span>. CIECAM02-UCS then defines a mapping between <span
+class="math inline">\((J, M, h)\)</span> and <span
+class="math inline">\((J&#39;, a&#39;, b&#39;)\)</span>. I’m not going
+to explain what all these variables mean (not least because I don’t
+understand them), but I hope that knowledge of their existence helps
+contextualize how complicated the model we’re working with.</p>
+<p>It happens that <code>viridis</code> was originally generated with a
+<a
+href="https://colorspacious.readthedocs.io/en/latest/changes.html#v1-0-0">buggily
+parametrized of CIECAM02-UCS</a> where <span
+class="math inline">\(L_A\)</span> was 125× too large, i.e. the viewing
+conditions are 125× lighter than the default. However, it turns out that
+this only marginally affects the perceptual uniformity, so nobody has
+bothered to fix it.</p>
 <figure>
 <a href="/img/viridis.png"><img src="/img/viridis.png" alt="Diagram showing viridis's perceptual uniformity. The perceptual derivative has length 123.9 and an RMS deviation of 1.4 (1.2%); the perceptual lightness derivative has length 73.7 and RMS deviaion from flat 0.3 (0.4%)" /></a>
 <figcaption>
-Diagram generated from the <a href="https://github.com/BIDS/colormap/tree/master">original colormap repo</a> for viridis. The “perceptual derivative” curve is almost but not quite flat, so the perceptual uniformity is imperfect.
+Diagram generated from the
+<a href="https://github.com/BIDS/colormap/tree/master">original colormap
+repo</a> for viridis. The “perceptual derivative” curve is almost but
+not quite flat, so the perceptual uniformity is imperfect.
 </figcaption>
 </figure>
 <figure>
 <a href="/img/viridis-buggy.png"><img src="/img/viridis-buggy.png" alt="Diagram showing viridis's perceptual uniformity under buggy conditions. The perceptual derivative has length 141.8 and an RMS deviation of 0.0 (0.0%); the perceptual lightness derivative has length 73.6 and RMS deviaion from flat 0.0 (0.0%)" /></a>
 <figcaption>
-Diagram for viridis generated with the buggy L<sub>A</sub> setting. The “perceptual derivative” curve is completely flat, which is ideal — under this model, which unfortunately assumes unusual viewing conditions.
+Diagram for viridis generated with the buggy L<sub>A</sub> setting. The
+“perceptual derivative” curve is completely flat, which is ideal — under
+this model, which unfortunately assumes unusual viewing conditions.
 </figcaption>
 </figure>
-<p>The code to convert between all these colorspaces is also super complicated. The <code>colorspacious</code> library internally has a <a href="https://colorspacious.readthedocs.io/en/latest/reference.html#specifying-colorspaces">graph of colorspaces</a> it knows how to convert between, and literally uses a breadth-first search to find paths between pairs of colorspaces it’s asked to convert between. The conversion between sRGB and CIECAM02-UCS has four edges: sRGB ↔ XYZ100 ↔ CIECAM02 ↔ CIECAM02-UCS.</p>
-<h4 id="aside-other-color-appearance-models">Aside: Other color appearance models</h4>
-<p>There are far more <a href="https://en.wikipedia.org/wiki/Color_appearance_model">color appearance models</a> than I expected. CIELAB was the perceptually uniform color space I was familiar with, but it was published in 1976 and is not that good (at being perceptually uniform) by today’s standards. CIECAM02 and its UCS have a successor from 2016, CAM16 and CAM16-UCS, but they don’t seem that popular, I assume because they’re even more complicated than CAM02.</p>
-<p>I think the most popular “modern” color space is <a href="https://bottosson.github.io/posts/oklab/">Oklab</a>, created by Björn Ottosson in 2020, which is super simple — a cube root sandwiched by two 3×3 linear transformations — but punches well above its weight, and has <a href="https://caniuse.com/mdn-css_types_color_oklab">decent CSS support in browsers</a> (93% as of time of writing<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>). Raph Levien has an <a href="https://raphlinus.github.io/color/2021/01/18/oklab-critique.html">interactive review</a> that compares it to several other contenders.</p>
+<p>The code to convert between all these colorspaces is also super
+complicated. The <code>colorspacious</code> library internally has a <a
+href="https://colorspacious.readthedocs.io/en/latest/reference.html#specifying-colorspaces">graph
+of colorspaces</a> it knows how to convert between, and literally uses a
+breadth-first search to find paths between pairs of colorspaces it’s
+asked to convert between. The conversion between sRGB and CIECAM02-UCS
+has four edges: sRGB ↔︎ XYZ100 ↔︎ CIECAM02 ↔︎ CIECAM02-UCS.</p>
+<h4 id="aside-other-color-appearance-models">Aside: Other color
+appearance models</h4>
+<p>There are far more <a
+href="https://en.wikipedia.org/wiki/Color_appearance_model">color
+appearance models</a> than I expected. CIELAB was the perceptually
+uniform color space I was familiar with, but it was published in 1976
+and is not that good (at being perceptually uniform) by today’s
+standards. CIECAM02 and its UCS have a successor from 2016, CAM16 and
+CAM16-UCS, but they don’t seem that popular, I assume because they’re
+even more complicated than CAM02.</p>
+<p>I think the most popular “modern” color space is <a
+href="https://bottosson.github.io/posts/oklab/">Oklab</a>, created by
+Björn Ottosson in 2020, which is super simple — a cube root sandwiched
+by two 3×3 linear transformations — but punches well above its weight,
+and has <a href="https://caniuse.com/mdn-css_types_color_oklab">decent
+CSS support in browsers</a> (93% as of time of writing<a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>).
+Raph Levien has an <a
+href="https://raphlinus.github.io/color/2021/01/18/oklab-critique.html">interactive
+review</a> that compares it to several other contenders.</p>
 <h3 id="the-parameters">The parameters</h3>
-<p>The second ingredient to <code>viridis</code> is just a bunch of numbers from <a href="https://github.com/BIDS/colormap/blob/master/option_d.py">“option d” in the original repo</a>. These are somewhat arbitrary, as they were produced by a human dragging points around in a custom GUI, which you can see at <a href="https://youtu.be/xAoljeRJ3lU?t=955">15:55 in the viridis talk</a>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1">parameters <span class="op">=</span> {</a>
-<a class="sourceLine" id="cb1-2" title="2">    <span class="st">&#39;xp&#39;</span>: [<span class="fl">22.674387857633945</span>, <span class="fl">11.221508276482126</span>, <span class="fl">-14.356589454756971</span>, <span class="fl">-47.18817758739222</span>, <span class="fl">-34.59001004812521</span>, <span class="fl">-6.0516291196352654</span>],</a>
-<a class="sourceLine" id="cb1-3" title="3">    <span class="st">&#39;yp&#39;</span>: [<span class="op">-</span><span class="fl">20.102530541012214</span>, <span class="fl">-33.08246073298429</span>, <span class="fl">-42.24476439790574</span>, <span class="fl">-5.595549738219887</span>, <span class="fl">42.5065445026178</span>, <span class="fl">40.13395157135497</span>],</a>
-<a class="sourceLine" id="cb1-4" title="4">    <span class="st">&#39;min_JK&#39;</span>: <span class="fl">18.8671875</span>,</a>
-<a class="sourceLine" id="cb1-5" title="5">    <span class="st">&#39;max_JK&#39;</span>: <span class="fl">92.5</span>,</a>
-<a class="sourceLine" id="cb1-6" title="6">}</a></code></pre></div>
-<p><code>min_JK</code> and <code>max_JK</code> specify a minimum and maximum value along the <span class="math inline">\(J\)</span>-axis, while <code>xp</code> and <code>yp</code> (somewhat confusingly) specify six control points for a Bezier curve in the <span class="math inline">\(ab\)</span>-plane. Then, the colors of viridis are obtained by linearly interpolating between <code>min_JK</code> and <code>max_JK</code> and moving along the curve by arc length in the <span class="math inline">\(ab\)</span>-plane. Arc length is also just approximated by splitting the curve into linear segments.</p>
-<p>Here is some code that drills somewhat deeply into <code>viscm</code> and <code>colorspacious</code> to produce <code>viridis</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" title="1"><span class="im">from</span> viscm.gui <span class="im">import</span> BezierCMapModel</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="im">from</span> viscm.bezierbuilder <span class="im">import</span> SingleBezierCurveModel, ControlPointModel</a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="im">import</span> numpy <span class="im">as</span> np</a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="im">from</span> colorspacious <span class="im">import</span> (</a>
-<a class="sourceLine" id="cb2-5" title="5">    CIECAM02Space,</a>
-<a class="sourceLine" id="cb2-6" title="6">    CIECAM02Surround,</a>
-<a class="sourceLine" id="cb2-7" title="7">)</a>
-<a class="sourceLine" id="cb2-8" title="8"></a>
-<a class="sourceLine" id="cb2-9" title="9">xp <span class="op">=</span> [</a>
-<a class="sourceLine" id="cb2-10" title="10">    <span class="fl">22.674387857633945</span>,</a>
-<a class="sourceLine" id="cb2-11" title="11">    <span class="fl">11.221508276482126</span>,</a>
-<a class="sourceLine" id="cb2-12" title="12">    <span class="fl">-14.356589454756971</span>,</a>
-<a class="sourceLine" id="cb2-13" title="13">    <span class="fl">-47.18817758739222</span>,</a>
-<a class="sourceLine" id="cb2-14" title="14">    <span class="fl">-34.59001004812521</span>,</a>
-<a class="sourceLine" id="cb2-15" title="15">    <span class="fl">-6.0516291196352654</span>,</a>
-<a class="sourceLine" id="cb2-16" title="16">]</a>
-<a class="sourceLine" id="cb2-17" title="17">yp <span class="op">=</span> [</a>
-<a class="sourceLine" id="cb2-18" title="18">    <span class="fl">-20.102530541012214</span>,</a>
-<a class="sourceLine" id="cb2-19" title="19">    <span class="fl">-33.08246073298429</span>,</a>
-<a class="sourceLine" id="cb2-20" title="20">    <span class="fl">-42.24476439790574</span>,</a>
-<a class="sourceLine" id="cb2-21" title="21">    <span class="fl">-5.595549738219887</span>,</a>
-<a class="sourceLine" id="cb2-22" title="22">    <span class="fl">42.5065445026178</span>,</a>
-<a class="sourceLine" id="cb2-23" title="23">    <span class="fl">40.13395157135497</span>,</a>
-<a class="sourceLine" id="cb2-24" title="24">]</a>
-<a class="sourceLine" id="cb2-25" title="25">min_JK <span class="op">=</span> <span class="fl">18.8671875</span></a>
-<a class="sourceLine" id="cb2-26" title="26">max_JK <span class="op">=</span> <span class="fl">92.5</span></a>
-<a class="sourceLine" id="cb2-27" title="27"></a>
-<a class="sourceLine" id="cb2-28" title="28">buggy_sRGB_viewing_conditions <span class="op">=</span> CIECAM02Space(</a>
-<a class="sourceLine" id="cb2-29" title="29">    XYZ100_w<span class="op">=</span><span class="st">&quot;D65&quot;</span>,</a>
-<a class="sourceLine" id="cb2-30" title="30">    Y_b<span class="op">=</span><span class="dv">20</span>,</a>
-<a class="sourceLine" id="cb2-31" title="31">    L_A<span class="op">=</span>(<span class="dv">64</span> <span class="op">/</span> np.pi) <span class="op">*</span> <span class="dv">5</span>,  <span class="co"># bug: should be / 5</span></a>
-<a class="sourceLine" id="cb2-32" title="32">    surround<span class="op">=</span>CIECAM02Surround.AVERAGE,</a>
-<a class="sourceLine" id="cb2-33" title="33">)</a>
-<a class="sourceLine" id="cb2-34" title="34"></a>
-<a class="sourceLine" id="cb2-35" title="35">buggy_CAM02UCS <span class="op">=</span> {</a>
-<a class="sourceLine" id="cb2-36" title="36">    <span class="st">&quot;name&quot;</span>: <span class="st">&quot;CAM02-UCS&quot;</span>,</a>
-<a class="sourceLine" id="cb2-37" title="37">    <span class="st">&quot;ciecam02_space&quot;</span>: buggy_sRGB_viewing_conditions,</a>
-<a class="sourceLine" id="cb2-38" title="38">}</a>
-<a class="sourceLine" id="cb2-39" title="39"></a>
-<a class="sourceLine" id="cb2-40" title="40">model <span class="op">=</span> BezierCMapModel(</a>
-<a class="sourceLine" id="cb2-41" title="41">    bezier_model<span class="op">=</span>SingleBezierCurveModel(</a>
-<a class="sourceLine" id="cb2-42" title="42">        control_point_model<span class="op">=</span>ControlPointModel(xp<span class="op">=</span>xp, yp<span class="op">=</span>yp), method<span class="op">=</span><span class="st">&quot;Bezier&quot;</span></a>
-<a class="sourceLine" id="cb2-43" title="43">    ),</a>
-<a class="sourceLine" id="cb2-44" title="44">    min_Jp<span class="op">=</span>min_JK,</a>
-<a class="sourceLine" id="cb2-45" title="45">    max_Jp<span class="op">=</span>max_JK,</a>
-<a class="sourceLine" id="cb2-46" title="46">    uniform_space<span class="op">=</span>buggy_CAM02UCS,</a>
-<a class="sourceLine" id="cb2-47" title="47">)</a>
-<a class="sourceLine" id="cb2-48" title="48"></a>
-<a class="sourceLine" id="cb2-49" title="49"><span class="bu">print</span>(model.get_sRGB(<span class="dv">256</span>)[<span class="dv">0</span>].tolist())</a></code></pre></div>
+<p>The second ingredient to <code>viridis</code> is just a bunch of
+numbers from <a
+href="https://github.com/BIDS/colormap/blob/master/option_d.py">“option
+d” in the original repo</a>. These are somewhat arbitrary, as they were
+produced by a human dragging points around in a custom GUI, which you
+can see at <a href="https://youtu.be/xAoljeRJ3lU?t=955">15:55 in the
+viridis talk</a>.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>parameters <span class="op">=</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;xp&#39;</span>: [<span class="fl">22.674387857633945</span>, <span class="fl">11.221508276482126</span>, <span class="op">-</span><span class="fl">14.356589454756971</span>, <span class="op">-</span><span class="fl">47.18817758739222</span>, <span class="op">-</span><span class="fl">34.59001004812521</span>, <span class="op">-</span><span class="fl">6.0516291196352654</span>],</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;yp&#39;</span>: [<span class="op">-</span><span class="fl">20.102530541012214</span>, <span class="op">-</span><span class="fl">33.08246073298429</span>, <span class="op">-</span><span class="fl">42.24476439790574</span>, <span class="op">-</span><span class="fl">5.595549738219887</span>, <span class="fl">42.5065445026178</span>, <span class="fl">40.13395157135497</span>],</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;min_JK&#39;</span>: <span class="fl">18.8671875</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;max_JK&#39;</span>: <span class="fl">92.5</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><code>min_JK</code> and <code>max_JK</code> specify a minimum and
+maximum value along the <span class="math inline">\(J\)</span>-axis,
+while <code>xp</code> and <code>yp</code> (somewhat confusingly) specify
+six control points for a Bezier curve in the <span
+class="math inline">\(ab\)</span>-plane. Then, the colors of viridis are
+obtained by linearly interpolating between <code>min_JK</code> and
+<code>max_JK</code> and moving along the curve by arc length in the
+<span class="math inline">\(ab\)</span>-plane. Arc length is also just
+approximated by splitting the curve into linear segments.</p>
+<p>Here is some code that drills somewhat deeply into <code>viscm</code>
+and <code>colorspacious</code> to produce <code>viridis</code>:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> viscm.gui <span class="im">import</span> BezierCMapModel</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> viscm.bezierbuilder <span class="im">import</span> SingleBezierCurveModel, ControlPointModel</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> colorspacious <span class="im">import</span> (</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    CIECAM02Space,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    CIECAM02Surround,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>xp <span class="op">=</span> [</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fl">22.674387857633945</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fl">11.221508276482126</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">14.356589454756971</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">47.18817758739222</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">34.59001004812521</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">6.0516291196352654</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>yp <span class="op">=</span> [</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">20.102530541012214</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">33.08246073298429</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">42.24476439790574</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">5.595549738219887</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="fl">42.5065445026178</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="fl">40.13395157135497</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>min_JK <span class="op">=</span> <span class="fl">18.8671875</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>max_JK <span class="op">=</span> <span class="fl">92.5</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>buggy_sRGB_viewing_conditions <span class="op">=</span> CIECAM02Space(</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    XYZ100_w<span class="op">=</span><span class="st">&quot;D65&quot;</span>,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    Y_b<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    L_A<span class="op">=</span>(<span class="dv">64</span> <span class="op">/</span> np.pi) <span class="op">*</span> <span class="dv">5</span>,  <span class="co"># bug: should be / 5</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    surround<span class="op">=</span>CIECAM02Surround.AVERAGE,</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>buggy_CAM02UCS <span class="op">=</span> {</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;name&quot;</span>: <span class="st">&quot;CAM02-UCS&quot;</span>,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ciecam02_space&quot;</span>: buggy_sRGB_viewing_conditions,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> BezierCMapModel(</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    bezier_model<span class="op">=</span>SingleBezierCurveModel(</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        control_point_model<span class="op">=</span>ControlPointModel(xp<span class="op">=</span>xp, yp<span class="op">=</span>yp), method<span class="op">=</span><span class="st">&quot;Bezier&quot;</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    min_Jp<span class="op">=</span>min_JK,</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    max_Jp<span class="op">=</span>max_JK,</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    uniform_space<span class="op">=</span>buggy_CAM02UCS,</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.get_sRGB(<span class="dv">256</span>)[<span class="dv">0</span>].tolist())</span></code></pre></div>
 <h4 id="expanded-in-gory-detail">Expanded in gory detail</h4>
-<p>Still, I wanted to dig deeper, so I manually inlined all the conversion formulae and performed constant folding and cancellation of a few roundtrip things like conversions between radians and degrees, just to see what it would look like:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" title="1"><span class="im">import</span> math</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="im">import</span> numpy <span class="im">as</span> np</a>
-<a class="sourceLine" id="cb3-3" title="3"></a>
-<a class="sourceLine" id="cb3-4" title="4">xp <span class="op">=</span> [</a>
-<a class="sourceLine" id="cb3-5" title="5">    <span class="fl">22.674387857633945</span>,</a>
-<a class="sourceLine" id="cb3-6" title="6">    <span class="fl">11.221508276482126</span>,</a>
-<a class="sourceLine" id="cb3-7" title="7">    <span class="fl">-14.356589454756971</span>,</a>
-<a class="sourceLine" id="cb3-8" title="8">    <span class="fl">-47.18817758739222</span>,</a>
-<a class="sourceLine" id="cb3-9" title="9">    <span class="fl">-34.59001004812521</span>,</a>
-<a class="sourceLine" id="cb3-10" title="10">    <span class="fl">-6.0516291196352654</span>,</a>
-<a class="sourceLine" id="cb3-11" title="11">]</a>
-<a class="sourceLine" id="cb3-12" title="12">yp <span class="op">=</span> [</a>
-<a class="sourceLine" id="cb3-13" title="13">    <span class="fl">-20.102530541012214</span>,</a>
-<a class="sourceLine" id="cb3-14" title="14">    <span class="fl">-33.08246073298429</span>,</a>
-<a class="sourceLine" id="cb3-15" title="15">    <span class="fl">-42.24476439790574</span>,</a>
-<a class="sourceLine" id="cb3-16" title="16">    <span class="fl">-5.595549738219887</span>,</a>
-<a class="sourceLine" id="cb3-17" title="17">    <span class="fl">42.5065445026178</span>,</a>
-<a class="sourceLine" id="cb3-18" title="18">    <span class="fl">40.13395157135497</span>,</a>
-<a class="sourceLine" id="cb3-19" title="19">]</a>
-<a class="sourceLine" id="cb3-20" title="20">min_Jp <span class="op">=</span> <span class="fl">18.8671875</span></a>
-<a class="sourceLine" id="cb3-21" title="21">max_Jp <span class="op">=</span> <span class="fl">92.5</span></a>
-<a class="sourceLine" id="cb3-22" title="22"></a>
-<a class="sourceLine" id="cb3-23" title="23"></a>
-<a class="sourceLine" id="cb3-24" title="24"><span class="kw">def</span> bezier(t, p):</a>
-<a class="sourceLine" id="cb3-25" title="25">    n <span class="op">=</span> <span class="bu">len</span>(xp) <span class="op">-</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb3-26" title="26">    ret <span class="op">=</span> np.zeros_like(t)</a>
-<a class="sourceLine" id="cb3-27" title="27">    <span class="cf">for</span> k, c <span class="kw">in</span> <span class="bu">enumerate</span>(p):</a>
-<a class="sourceLine" id="cb3-28" title="28">        ret <span class="op">+=</span> math.comb(n, k) <span class="op">*</span> t<span class="op">**</span>k <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> t) <span class="op">**</span> (n <span class="op">-</span> k) <span class="op">*</span> c</a>
-<a class="sourceLine" id="cb3-29" title="29">    <span class="cf">return</span> ret</a>
-<a class="sourceLine" id="cb3-30" title="30"></a>
-<a class="sourceLine" id="cb3-31" title="31"></a>
-<a class="sourceLine" id="cb3-32" title="32"><span class="kw">def</span> get_sRGB(num<span class="op">=</span><span class="dv">256</span>):</a>
-<a class="sourceLine" id="cb3-33" title="33">    at <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, num)</a>
-<a class="sourceLine" id="cb3-34" title="34">    grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1000</span>)</a>
-<a class="sourceLine" id="cb3-35" title="35"></a>
-<a class="sourceLine" id="cb3-36" title="36">    <span class="co"># Interpolate along arc length:</span></a>
-<a class="sourceLine" id="cb3-37" title="37"></a>
-<a class="sourceLine" id="cb3-38" title="38">    arclength_deltas <span class="op">=</span> np.concatenate(</a>
-<a class="sourceLine" id="cb3-39" title="39">        [np.zeros((<span class="dv">1</span>,)), np.hypot(np.diff(bezier(grid, xp)), np.diff(bezier(grid, yp)))]</a>
-<a class="sourceLine" id="cb3-40" title="40">    )</a>
-<a class="sourceLine" id="cb3-41" title="41">    arclength <span class="op">=</span> np.cumsum(arclength_deltas)</a>
-<a class="sourceLine" id="cb3-42" title="42">    arclength <span class="op">/=</span> arclength[<span class="op">-</span><span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb3-43" title="43">    at_grid <span class="op">=</span> np.interp(at, arclength, grid)</a>
-<a class="sourceLine" id="cb3-44" title="44"></a>
-<a class="sourceLine" id="cb3-45" title="45">    <span class="co"># Construct the desired Jp, ap, bp args:</span></a>
-<a class="sourceLine" id="cb3-46" title="46"></a>
-<a class="sourceLine" id="cb3-47" title="47">    ap, bp <span class="op">=</span> bezier(at_grid, xp), bezier(at_grid, yp)</a>
-<a class="sourceLine" id="cb3-48" title="48">    Jp <span class="op">=</span> (max_Jp <span class="op">-</span> min_Jp) <span class="op">*</span> at <span class="op">+</span> min_Jp</a>
-<a class="sourceLine" id="cb3-49" title="49"></a>
-<a class="sourceLine" id="cb3-50" title="50">    <span class="co"># Convert from Jpapbp to sRGB in a bunch of intermingled steps:</span></a>
-<a class="sourceLine" id="cb3-51" title="51"></a>
-<a class="sourceLine" id="cb3-52" title="52">    J <span class="op">=</span> <span class="op">-</span>Jp <span class="op">/</span> (<span class="fl">0.007</span> <span class="op">*</span> Jp <span class="op">-</span> <span class="fl">1.7</span>)</a>
-<a class="sourceLine" id="cb3-53" title="53">    Mp <span class="op">=</span> np.hypot(ap, bp)</a>
-<a class="sourceLine" id="cb3-54" title="54">    p_2 <span class="op">=</span> <span class="fl">1.2400517785408007</span> <span class="op">*</span> J<span class="op">**</span><span class="fl">0.7520055720356568</span> <span class="op">+</span> <span class="fl">0.305</span></a>
-<a class="sourceLine" id="cb3-55" title="55">    denom <span class="op">=</span> (</a>
-<a class="sourceLine" id="cb3-56" title="56">        <span class="fl">0.9266715362288499</span></a>
-<a class="sourceLine" id="cb3-57" title="57">        <span class="op">*</span> (ap <span class="op">*</span> np.cos(<span class="dv">2</span>) <span class="op">-</span> bp <span class="op">*</span> np.sin(<span class="dv">2</span>) <span class="op">+</span> <span class="fl">3.8</span> <span class="op">*</span> Mp)</a>
-<a class="sourceLine" id="cb3-58" title="58">        <span class="op">*</span> (np.sqrt(J) <span class="op">/</span> (np.exp(<span class="fl">0.0228</span> <span class="op">*</span> Mp) <span class="op">-</span> <span class="dv">1</span>)) <span class="op">**</span> (<span class="dv">10</span> <span class="op">/</span> <span class="dv">9</span>)</a>
-<a class="sourceLine" id="cb3-59" title="59">        <span class="op">+</span> <span class="fl">0.47826086956521735</span> <span class="op">*</span> ap</a>
-<a class="sourceLine" id="cb3-60" title="60">        <span class="op">+</span> <span class="fl">4.695652173913044</span> <span class="op">*</span> bp</a>
-<a class="sourceLine" id="cb3-61" title="61">    )</a>
-<a class="sourceLine" id="cb3-62" title="62">    RGBprime_a <span class="op">=</span> (</a>
-<a class="sourceLine" id="cb3-63" title="63">        np.array(</a>
-<a class="sourceLine" id="cb3-64" title="64">            [</a>
-<a class="sourceLine" id="cb3-65" title="65">                [<span class="dv">460</span>, <span class="dv">451</span>, <span class="dv">288</span>],</a>
-<a class="sourceLine" id="cb3-66" title="66">                [<span class="dv">460</span>, <span class="dv">-891</span>, <span class="dv">-261</span>],</a>
-<a class="sourceLine" id="cb3-67" title="67">                [<span class="dv">460</span>, <span class="dv">-220</span>, <span class="dv">-6300</span>],</a>
-<a class="sourceLine" id="cb3-68" title="68">            ], dtype<span class="op">=</span><span class="bu">float</span></a>
-<a class="sourceLine" id="cb3-69" title="69">        ) <span class="op">@</span></a>
-<a class="sourceLine" id="cb3-70" title="70">        np.stack([p_2, p_2 <span class="op">*</span> ap <span class="op">/</span> denom, p_2 <span class="op">*</span> bp <span class="op">/</span> denom])</a>
-<a class="sourceLine" id="cb3-71" title="71">        <span class="op">/</span> <span class="dv">1403</span></a>
-<a class="sourceLine" id="cb3-72" title="72">        <span class="op">-</span> <span class="fl">0.1</span></a>
-<a class="sourceLine" id="cb3-73" title="73">    )</a>
-<a class="sourceLine" id="cb3-74" title="74">    RGBprime <span class="op">=</span> (</a>
-<a class="sourceLine" id="cb3-75" title="75">        np.sign(RGBprime_a)</a>
-<a class="sourceLine" id="cb3-76" title="76">        <span class="op">*</span> <span class="fl">125.22084473955428</span></a>
-<a class="sourceLine" id="cb3-77" title="77">        <span class="op">*</span> ((<span class="fl">27.13</span> <span class="op">*</span> np.<span class="bu">abs</span>(RGBprime_a)) <span class="op">/</span> (<span class="dv">400</span> <span class="op">-</span> np.<span class="bu">abs</span>(RGBprime_a))) <span class="op">**</span> (<span class="dv">1</span> <span class="op">/</span> <span class="fl">0.42</span>)</a>
-<a class="sourceLine" id="cb3-78" title="78">    )</a>
-<a class="sourceLine" id="cb3-79" title="79">    sRGB_linear <span class="op">=</span> np.array(</a>
-<a class="sourceLine" id="cb3-80" title="80">        [</a>
-<a class="sourceLine" id="cb3-81" title="81">            [</a>
-<a class="sourceLine" id="cb3-82" title="82">                <span class="fl">0.05445103258222664</span>,</a>
-<a class="sourceLine" id="cb3-83" title="83">                <span class="fl">-0.045965885248447864</span>,</a>
-<a class="sourceLine" id="cb3-84" title="84">                <span class="fl">0.0016306136373998147</span>,</a>
-<a class="sourceLine" id="cb3-85" title="85">            ],</a>
-<a class="sourceLine" id="cb3-86" title="86">            [</a>
-<a class="sourceLine" id="cb3-87" title="87">                <span class="fl">-0.011667849760570772</span>,</a>
-<a class="sourceLine" id="cb3-88" title="88">                <span class="fl">0.023233202975236258</span>,</a>
-<a class="sourceLine" id="cb3-89" title="89">                <span class="fl">-0.0015950261251939332</span>,</a>
-<a class="sourceLine" id="cb3-90" title="90">            ],</a>
-<a class="sourceLine" id="cb3-91" title="91">            [</a>
-<a class="sourceLine" id="cb3-92" title="92">                <span class="fl">0.00037596436229076315</span>,</a>
-<a class="sourceLine" id="cb3-93" title="93">                <span class="fl">-0.001981804005149333</span>,</a>
-<a class="sourceLine" id="cb3-94" title="94">                <span class="fl">0.011546891102251636</span>,</a>
-<a class="sourceLine" id="cb3-95" title="95">            ],</a>
-<a class="sourceLine" id="cb3-96" title="96">        ]</a>
-<a class="sourceLine" id="cb3-97" title="97">    ) <span class="op">@</span> RGBprime</a>
-<a class="sourceLine" id="cb3-98" title="98">    <span class="cf">return</span> np.where(</a>
-<a class="sourceLine" id="cb3-99" title="99">        sRGB_linear <span class="op">&lt;=</span> <span class="fl">0.0031308</span>,</a>
-<a class="sourceLine" id="cb3-100" title="100">        sRGB_linear <span class="op">*</span> <span class="fl">12.92</span>,</a>
-<a class="sourceLine" id="cb3-101" title="101">        <span class="fl">1.055</span> <span class="op">*</span> sRGB_linear <span class="op">**</span> (<span class="dv">1</span> <span class="op">/</span> <span class="fl">2.4</span>) <span class="op">-</span> <span class="fl">0.055</span>,</a>
-<a class="sourceLine" id="cb3-102" title="102">    ).T</a>
-<a class="sourceLine" id="cb3-103" title="103"></a>
-<a class="sourceLine" id="cb3-104" title="104"><span class="bu">print</span>(get_sRGB())</a></code></pre></div>
+<p>Still, I wanted to dig deeper, so I manually inlined all the
+conversion formulae and performed constant folding and cancellation of a
+few roundtrip things like conversions between radians and degrees, just
+to see what it would look like:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>xp <span class="op">=</span> [</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fl">22.674387857633945</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fl">11.221508276482126</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">14.356589454756971</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">47.18817758739222</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">34.59001004812521</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">6.0516291196352654</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>yp <span class="op">=</span> [</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">20.102530541012214</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">33.08246073298429</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">42.24476439790574</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">5.595549738219887</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fl">42.5065445026178</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="fl">40.13395157135497</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>min_Jp <span class="op">=</span> <span class="fl">18.8671875</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>max_Jp <span class="op">=</span> <span class="fl">92.5</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bezier(t, p):</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(xp) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    ret <span class="op">=</span> np.zeros_like(t)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k, c <span class="kw">in</span> <span class="bu">enumerate</span>(p):</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        ret <span class="op">+=</span> math.comb(n, k) <span class="op">*</span> t<span class="op">**</span>k <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> t) <span class="op">**</span> (n <span class="op">-</span> k) <span class="op">*</span> c</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ret</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_sRGB(num<span class="op">=</span><span class="dv">256</span>):</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    at <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, num)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1000</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Interpolate along arc length:</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    arclength_deltas <span class="op">=</span> np.concatenate(</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>        [np.zeros((<span class="dv">1</span>,)), np.hypot(np.diff(bezier(grid, xp)), np.diff(bezier(grid, yp)))]</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    arclength <span class="op">=</span> np.cumsum(arclength_deltas)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    arclength <span class="op">/=</span> arclength[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    at_grid <span class="op">=</span> np.interp(at, arclength, grid)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Construct the desired Jp, ap, bp args:</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    ap, bp <span class="op">=</span> bezier(at_grid, xp), bezier(at_grid, yp)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    Jp <span class="op">=</span> (max_Jp <span class="op">-</span> min_Jp) <span class="op">*</span> at <span class="op">+</span> min_Jp</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert from Jpapbp to sRGB in a bunch of intermingled steps:</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>    J <span class="op">=</span> <span class="op">-</span>Jp <span class="op">/</span> (<span class="fl">0.007</span> <span class="op">*</span> Jp <span class="op">-</span> <span class="fl">1.7</span>)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>    Mp <span class="op">=</span> np.hypot(ap, bp)</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    p_2 <span class="op">=</span> <span class="fl">1.2400517785408007</span> <span class="op">*</span> J<span class="op">**</span><span class="fl">0.7520055720356568</span> <span class="op">+</span> <span class="fl">0.305</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    denom <span class="op">=</span> (</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>        <span class="fl">0.9266715362288499</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>        <span class="op">*</span> (ap <span class="op">*</span> np.cos(<span class="dv">2</span>) <span class="op">-</span> bp <span class="op">*</span> np.sin(<span class="dv">2</span>) <span class="op">+</span> <span class="fl">3.8</span> <span class="op">*</span> Mp)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>        <span class="op">*</span> (np.sqrt(J) <span class="op">/</span> (np.exp(<span class="fl">0.0228</span> <span class="op">*</span> Mp) <span class="op">-</span> <span class="dv">1</span>)) <span class="op">**</span> (<span class="dv">10</span> <span class="op">/</span> <span class="dv">9</span>)</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="fl">0.47826086956521735</span> <span class="op">*</span> ap</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="fl">4.695652173913044</span> <span class="op">*</span> bp</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>    RGBprime_a <span class="op">=</span> (</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>        np.array(</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>            [</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>                [<span class="dv">460</span>, <span class="dv">451</span>, <span class="dv">288</span>],</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>                [<span class="dv">460</span>, <span class="op">-</span><span class="dv">891</span>, <span class="op">-</span><span class="dv">261</span>],</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>                [<span class="dv">460</span>, <span class="op">-</span><span class="dv">220</span>, <span class="op">-</span><span class="dv">6300</span>],</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>            ], dtype<span class="op">=</span><span class="bu">float</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>        ) <span class="op">@</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>        np.stack([p_2, p_2 <span class="op">*</span> ap <span class="op">/</span> denom, p_2 <span class="op">*</span> bp <span class="op">/</span> denom])</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>        <span class="op">/</span> <span class="dv">1403</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> <span class="fl">0.1</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>    RGBprime <span class="op">=</span> (</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>        np.sign(RGBprime_a)</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>        <span class="op">*</span> <span class="fl">125.22084473955428</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>        <span class="op">*</span> ((<span class="fl">27.13</span> <span class="op">*</span> np.<span class="bu">abs</span>(RGBprime_a)) <span class="op">/</span> (<span class="dv">400</span> <span class="op">-</span> np.<span class="bu">abs</span>(RGBprime_a))) <span class="op">**</span> (<span class="dv">1</span> <span class="op">/</span> <span class="fl">0.42</span>)</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>    sRGB_linear <span class="op">=</span> np.array(</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>        [</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>            [</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>                <span class="fl">0.05445103258222664</span>,</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span><span class="fl">0.045965885248447864</span>,</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>                <span class="fl">0.0016306136373998147</span>,</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>            ],</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>            [</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span><span class="fl">0.011667849760570772</span>,</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>                <span class="fl">0.023233202975236258</span>,</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span><span class="fl">0.0015950261251939332</span>,</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>            ],</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>            [</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>                <span class="fl">0.00037596436229076315</span>,</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span><span class="fl">0.001981804005149333</span>,</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>                <span class="fl">0.011546891102251636</span>,</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>            ],</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">@</span> RGBprime</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.where(</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>        sRGB_linear <span class="op">&lt;=</span> <span class="fl">0.0031308</span>,</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>        sRGB_linear <span class="op">*</span> <span class="fl">12.92</span>,</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>        <span class="fl">1.055</span> <span class="op">*</span> sRGB_linear <span class="op">**</span> (<span class="dv">1</span> <span class="op">/</span> <span class="fl">2.4</span>) <span class="op">-</span> <span class="fl">0.055</span>,</span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>    ).T</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(get_sRGB())</span></code></pre></div>
 <p>Pretty complicated!</p>
 <h3 id="approximating-viridis">Approximating viridis</h3>
-<p>I wasn’t fully transparent with my intentions at the beginning of this post. The thought beneath the <a href="https://en.wikipedia.org/wiki/XY_problem">XY problem</a> was, if I wanted to get a viridis-like colorscheme in a new programming language, how little code could I do it with?</p>
-<p>After working out the above code, I decided it was easier to approximate viridis as a black box. There is precedent online: here’s a <a href="https://www.shadertoy.com/view/WlfXRN">shadertoy with a degree-6 polynomial approximation</a> of viridis and the other matplotlib colorschemes. It looks like they built on somebody else’s methodology, with a tweak to minimize maximum error rather than least squares error. I decided to do a similar thing, but try to minimize maximum <em>linear RGB distance</em>, approximated using the derivative of linear RGB at the known colors, so that we can just do linear programming. <code><a href="https://docs.scipy.org/doc/scipy/tutorial/optimize.html#linear-programming-linprog">scipy.optimize.linprog</a></code> will do the heavy lifting.</p>
-<p>After trying a few degrees, I settled on 4 and 7 as good enough points on the tradeoff curve:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb4-1" title="1"><span class="im">import</span> option_d</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="im">import</span> numpy <span class="im">as</span> np</a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="im">import</span> scipy.optimize</a>
-<a class="sourceLine" id="cb4-4" title="4"></a>
-<a class="sourceLine" id="cb4-5" title="5">viridis <span class="op">=</span> np.array(option_d.cm_data)</a>
-<a class="sourceLine" id="cb4-6" title="6"></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="cf">for</span> degree <span class="kw">in</span> [<span class="dv">4</span>, <span class="dv">7</span>]:</a>
-<a class="sourceLine" id="cb4-8" title="8">    <span class="bu">print</span>(<span class="ss">f&quot;</span><span class="sc">{</span>degree<span class="op">=</span><span class="sc">}</span><span class="ss">&quot;</span>)</a>
-<a class="sourceLine" id="cb4-9" title="9">    <span class="cf">for</span> column <span class="kw">in</span> viridis.T:</a>
-<a class="sourceLine" id="cb4-10" title="10">        <span class="co"># Optimize a length-(degree+2) vector, whose first (degree+1) elements</span></a>
-<a class="sourceLine" id="cb4-11" title="11">        <span class="co"># are the coefficients of the polynomial approximation and whose last</span></a>
-<a class="sourceLine" id="cb4-12" title="12">        <span class="co"># element is the maximum allowed approximation of linear RGB distance</span></a>
-<a class="sourceLine" id="cb4-13" title="13">        <span class="co"># (let&#39;s call it &quot;tolerance&quot;)</span></a>
-<a class="sourceLine" id="cb4-14" title="14"></a>
-<a class="sourceLine" id="cb4-15" title="15">        <span class="co"># We have 512 constraints, two per point in original viridis, that</span></a>
-<a class="sourceLine" id="cb4-16" title="16">        <span class="co"># the point differs from the approximation by less than the tolerance.</span></a>
-<a class="sourceLine" id="cb4-17" title="17">        <span class="co"># The first 256 constraints check that (approximation - tolerance &lt;= original)</span></a>
-<a class="sourceLine" id="cb4-18" title="18">        <span class="co"># The last 256 constraints check that (-approximation - tolerance &lt;= -original)</span></a>
-<a class="sourceLine" id="cb4-19" title="19"></a>
-<a class="sourceLine" id="cb4-20" title="20">        constraints <span class="op">=</span> np.zeros((<span class="dv">512</span>, degree <span class="op">+</span> <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb4-21" title="21">        <span class="co"># Weight the tolerance by the derivative of linear RGB at the known</span></a>
-<a class="sourceLine" id="cb4-22" title="22">        <span class="co"># viridis channel value:</span></a>
-<a class="sourceLine" id="cb4-23" title="23">        weight <span class="op">=</span> np.where(column <span class="op">&lt;</span> <span class="fl">0.04045</span>, <span class="dv">1</span><span class="op">/</span><span class="fl">12.92</span>, ((column <span class="op">+</span> <span class="fl">0.055</span>)<span class="op">/</span><span class="fl">1.055</span>)<span class="op">**</span><span class="fl">1.4</span> <span class="op">/</span> <span class="fl">1.055</span>)</a>
-<a class="sourceLine" id="cb4-24" title="24">        constraints[:, <span class="dv">-1</span>] <span class="op">=</span> <span class="dv">-1</span><span class="op">/</span>np.concatenate([weight, weight])</a>
-<a class="sourceLine" id="cb4-25" title="25">        <span class="co"># Coefficients for the coefficients:</span></a>
-<a class="sourceLine" id="cb4-26" title="26">        constraints[:<span class="dv">256</span>, :<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">256</span>)[:, <span class="va">None</span>] <span class="op">**</span> np.arange(degree <span class="op">+</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb4-27" title="27">        constraints[<span class="dv">256</span>:, :<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="op">-</span>(np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">256</span>)[:, <span class="va">None</span>] <span class="op">**</span> np.arange(degree <span class="op">+</span> <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb4-28" title="28"></a>
-<a class="sourceLine" id="cb4-29" title="29">        <span class="co"># The constant RHS:</span></a>
-<a class="sourceLine" id="cb4-30" title="30">        cbound <span class="op">=</span> np.concatenate([column, <span class="op">-</span>column])</a>
-<a class="sourceLine" id="cb4-31" title="31"></a>
-<a class="sourceLine" id="cb4-32" title="32">        <span class="co"># We just want to minimize the tolerance:</span></a>
-<a class="sourceLine" id="cb4-33" title="33">        minimizer <span class="op">=</span> np.zeros((degree <span class="op">+</span> <span class="dv">2</span>,))</a>
-<a class="sourceLine" id="cb4-34" title="34">        minimizer[<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-35" title="35"></a>
-<a class="sourceLine" id="cb4-36" title="36">        <span class="co"># (Note, we might have wanted to add a hard constraint that our</span></a>
-<a class="sourceLine" id="cb4-37" title="37">        <span class="co"># polynomial approximation stays within [0, 1], but fortunately it</span></a>
-<a class="sourceLine" id="cb4-38" title="38">        <span class="co"># doesn&#39;t affect our answer)</span></a>
-<a class="sourceLine" id="cb4-39" title="39"></a>
-<a class="sourceLine" id="cb4-40" title="40">        result <span class="op">=</span> scipy.optimize.linprog(minimizer, A_ub<span class="op">=</span>constraints, b_ub<span class="op">=</span>cbound, bounds<span class="op">=</span>(<span class="va">None</span>, <span class="va">None</span>))</a>
-<a class="sourceLine" id="cb4-41" title="41">        <span class="bu">print</span>(result.x[:<span class="op">-</span><span class="dv">1</span>])</a></code></pre></div>
+<p>I wasn’t fully transparent with my intentions at the beginning of
+this post. The thought beneath the <a
+href="https://en.wikipedia.org/wiki/XY_problem">XY problem</a> was, if I
+wanted to get a viridis-like colorscheme in a new programming language,
+how little code could I do it with?</p>
+<p>After working out the above code, I decided it was easier to
+approximate viridis as a black box. There is precedent online: here’s a
+<a href="https://www.shadertoy.com/view/WlfXRN">shadertoy with a
+degree-6 polynomial approximation</a> of viridis and the other
+matplotlib colorschemes. It looks like they built on somebody else’s
+methodology, with a tweak to minimize maximum error rather than least
+squares error. I decided to do a similar thing, but try to minimize
+maximum <em>linear RGB distance</em>, approximated using the derivative
+of linear RGB at the known colors, so that we can just do linear
+programming.
+<code><a href="https://docs.scipy.org/doc/scipy/tutorial/optimize.html#linear-programming-linprog">scipy.optimize.linprog</a></code>
+will do the heavy lifting.</p>
+<p>After trying a few degrees, I settled on 4 and 7 as good enough
+points on the tradeoff curve:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> option_d</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>viridis <span class="op">=</span> np.array(option_d.cm_data)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> degree <span class="kw">in</span> [<span class="dv">4</span>, <span class="dv">7</span>]:</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;</span><span class="sc">{</span>degree<span class="op">=</span><span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> column <span class="kw">in</span> viridis.T:</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Optimize a length-(degree+2) vector, whose first (degree+1) elements</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># are the coefficients of the polynomial approximation and whose last</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># element is the maximum allowed approximation of linear RGB distance</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># (let&#39;s call it &quot;tolerance&quot;)</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># We have 512 constraints, two per point in original viridis, that</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the point differs from the approximation by less than the tolerance.</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># The first 256 constraints check that (approximation - tolerance &lt;= original)</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># The last 256 constraints check that (-approximation - tolerance &lt;= -original)</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        constraints <span class="op">=</span> np.zeros((<span class="dv">512</span>, degree <span class="op">+</span> <span class="dv">2</span>))</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Weight the tolerance by the derivative of linear RGB at the known</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># viridis channel value:</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        weight <span class="op">=</span> np.where(column <span class="op">&lt;</span> <span class="fl">0.04045</span>, <span class="dv">1</span><span class="op">/</span><span class="fl">12.92</span>, ((column <span class="op">+</span> <span class="fl">0.055</span>)<span class="op">/</span><span class="fl">1.055</span>)<span class="op">**</span><span class="fl">1.4</span> <span class="op">/</span> <span class="fl">1.055</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        constraints[:, <span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">/</span>np.concatenate([weight, weight])</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Coefficients for the coefficients:</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        constraints[:<span class="dv">256</span>, :<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">256</span>)[:, <span class="va">None</span>] <span class="op">**</span> np.arange(degree <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        constraints[<span class="dv">256</span>:, :<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="op">-</span>(np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">256</span>)[:, <span class="va">None</span>] <span class="op">**</span> np.arange(degree <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># The constant RHS:</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        cbound <span class="op">=</span> np.concatenate([column, <span class="op">-</span>column])</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># We just want to minimize the tolerance:</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        minimizer <span class="op">=</span> np.zeros((degree <span class="op">+</span> <span class="dv">2</span>,))</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        minimizer[<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># (Note, we might have wanted to add a hard constraint that our</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># polynomial approximation stays within [0, 1], but fortunately it</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># doesn&#39;t affect our answer)</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> scipy.optimize.linprog(minimizer, A_ub<span class="op">=</span>constraints, b_ub<span class="op">=</span>cbound, bounds<span class="op">=</span>(<span class="va">None</span>, <span class="va">None</span>))</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(result.x[:<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
 <p>Rounded and formatted ready-to-copy code, here are the results:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">def</span> degree_four_viridis(t):</a>
-<a class="sourceLine" id="cb5-2" title="2">    <span class="cf">return</span> [</a>
-<a class="sourceLine" id="cb5-3" title="3">        (((<span class="op">-</span><span class="fl">5.5793</span><span class="op">*</span>t <span class="op">+</span> <span class="fl">13.5837</span>)<span class="op">*</span>t <span class="op">-</span> <span class="fl">8.5613</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">1.3097</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.2446</span>,</a>
-<a class="sourceLine" id="cb5-4" title="4">        (((<span class="op">-</span><span class="fl">0.5587</span><span class="op">*</span>t <span class="op">+</span>  <span class="fl">0.7695</span>)<span class="op">*</span>t <span class="op">-</span> <span class="fl">0.5851</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">1.2498</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.0284</span>,</a>
-<a class="sourceLine" id="cb5-5" title="5">        ((( <span class="fl">0.5341</span><span class="op">*</span>t <span class="op">-</span>  <span class="fl">0.8296</span>)<span class="op">*</span>t <span class="op">-</span> <span class="fl">1.0321</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">1.0515</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.3552</span>,</a>
-<a class="sourceLine" id="cb5-6" title="6">    ]</a>
-<a class="sourceLine" id="cb5-7" title="7"></a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="kw">def</span> degree_seven_viridis(t):</a>
-<a class="sourceLine" id="cb5-9" title="9">    <span class="cf">return</span> [</a>
-<a class="sourceLine" id="cb5-10" title="10">        ((((((<span class="fl">42.3473</span><span class="op">*</span>t <span class="op">-</span> <span class="fl">148.6685</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">194.9250</span>)<span class="op">*</span>t <span class="op">-</span> <span class="fl">119.0426</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">37.8497</span>)<span class="op">*</span>t <span class="op">-</span> <span class="fl">7.2161</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.5286</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.2707</span>,</a>
-<a class="sourceLine" id="cb5-11" title="11">        (((((( <span class="fl">4.8916</span><span class="op">*</span>t <span class="op">-</span>  <span class="fl">12.2295</span>)<span class="op">*</span>t <span class="op">+</span>   <span class="fl">9.1748</span>)<span class="op">*</span>t <span class="op">-</span>   <span class="fl">1.3875</span>)<span class="op">*</span>t <span class="op">-</span>  <span class="fl">0.2732</span>)<span class="op">*</span>t <span class="op">-</span> <span class="fl">0.7410</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">1.4669</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.0041</span>,</a>
-<a class="sourceLine" id="cb5-12" title="12">        ((((((<span class="fl">22.6620</span><span class="op">*</span>t <span class="op">-</span>  <span class="fl">56.3548</span>)<span class="op">*</span>t <span class="op">+</span>  <span class="fl">54.0592</span>)<span class="op">*</span>t <span class="op">-</span>  <span class="fl">29.8980</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">13.5239</span>)<span class="op">*</span>t <span class="op">-</span> <span class="fl">6.0311</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">1.8471</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.3253</span>,</a>
-<a class="sourceLine" id="cb5-13" title="13">    ]</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> degree_four_viridis(t):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        (((<span class="op">-</span><span class="fl">5.5793</span><span class="op">*</span>t <span class="op">+</span> <span class="fl">13.5837</span>)<span class="op">*</span>t <span class="op">-</span> <span class="fl">8.5613</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">1.3097</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.2446</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        (((<span class="op">-</span><span class="fl">0.5587</span><span class="op">*</span>t <span class="op">+</span>  <span class="fl">0.7695</span>)<span class="op">*</span>t <span class="op">-</span> <span class="fl">0.5851</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">1.2498</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.0284</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        ((( <span class="fl">0.5341</span><span class="op">*</span>t <span class="op">-</span>  <span class="fl">0.8296</span>)<span class="op">*</span>t <span class="op">-</span> <span class="fl">1.0321</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">1.0515</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.3552</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> degree_seven_viridis(t):</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        ((((((<span class="fl">42.3473</span><span class="op">*</span>t <span class="op">-</span> <span class="fl">148.6685</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">194.9250</span>)<span class="op">*</span>t <span class="op">-</span> <span class="fl">119.0426</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">37.8497</span>)<span class="op">*</span>t <span class="op">-</span> <span class="fl">7.2161</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.5286</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.2707</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        (((((( <span class="fl">4.8916</span><span class="op">*</span>t <span class="op">-</span>  <span class="fl">12.2295</span>)<span class="op">*</span>t <span class="op">+</span>   <span class="fl">9.1748</span>)<span class="op">*</span>t <span class="op">-</span>   <span class="fl">1.3875</span>)<span class="op">*</span>t <span class="op">-</span>  <span class="fl">0.2732</span>)<span class="op">*</span>t <span class="op">-</span> <span class="fl">0.7410</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">1.4669</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.0041</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        ((((((<span class="fl">22.6620</span><span class="op">*</span>t <span class="op">-</span>  <span class="fl">56.3548</span>)<span class="op">*</span>t <span class="op">+</span>  <span class="fl">54.0592</span>)<span class="op">*</span>t <span class="op">-</span>  <span class="fl">29.8980</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">13.5239</span>)<span class="op">*</span>t <span class="op">-</span> <span class="fl">6.0311</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">1.8471</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.3253</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    ]</span></code></pre></div>
 <figure>
 <div class="d3-viridis" style="display: flex">
 
@@ -391,21 +501,34 @@ Diagram for viridis generated with the buggy L<sub>A</sub> setting. The “perce
 
 </div>
 </figure>
-<p>There are three stripes in the above figure: in order, original viridis, the degree-7 approximation, and the degree-4 approximation. I can’t tell the difference between viridis and the degree-4 approximation unless I squint quite a bit, and only on the lower end. I can’t tell the difference between viridis and the degree-7 approximation at all.</p>
+<p>There are three stripes in the above figure: in order, original
+viridis, the degree-7 approximation, and the degree-4 approximation. I
+can’t tell the difference between viridis and the degree-4 approximation
+unless I squint quite a bit, and only on the lower end. I can’t tell the
+difference between viridis and the degree-7 approximation at all.</p>
 <figure>
 <a href="/img/viridis-4.png"><img src="/img/viridis-4.png" alt="A degree-4 approximation of viridis's perceptual uniformity. The perceptual derivative has length 122.1 and an RMS deviation of 11.2 (9.1%); the perceptual lightness derivative has length 73.8 and RMS deviaion from flat 6.8 (9.2%)" /></a>
 </figure>
 <figure>
 <a href="/img/viridis-7.png"><img src="/img/viridis-7.png" alt="A degree-7 approximation of viridis's perceptual uniformity. The perceptual derivative has length 124.4 and an RMS deviation of 3.5 (2.8%); the perceptual lightness derivative has length 73.7 and RMS deviaion from flat 2.3 (3.1%)" /></a>
 </figure>
-<h3 id="approximating-viridis-and-its-desiderata">Approximating viridis and its desiderata</h3>
-<p>We could try something even fancier, where we optimize the coefficients of a low-degree polynomial to be close to viridis but also have low perceptual uniformity derivative, i.e. we optimize a loss function that combines distance from viridis with the same metrics used to evaluate colormaps above. This is no longer linear programming; I think I just tried random hillclimbing with a bunch of random variations on the loss function, starting from the quadratic approximation of viridis produced by the above code. Here’s my favorite result:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">def</span> knockoff_viridis(t):</a>
-<a class="sourceLine" id="cb6-2" title="2">    <span class="cf">return</span> [</a>
-<a class="sourceLine" id="cb6-3" title="3">        (<span class="op">+</span><span class="fl">0.994</span><span class="op">*</span>t <span class="op">-</span> <span class="fl">0.009</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.014</span>,</a>
-<a class="sourceLine" id="cb6-4" title="4">        (<span class="op">-</span><span class="fl">0.031</span><span class="op">*</span>t <span class="op">+</span> <span class="fl">0.895</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.135</span>,</a>
-<a class="sourceLine" id="cb6-5" title="5">        (<span class="op">-</span><span class="fl">0.726</span><span class="op">*</span>t <span class="op">+</span> <span class="fl">0.682</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.161</span>,</a>
-<a class="sourceLine" id="cb6-6" title="6">    ]</a></code></pre></div>
+<h3 id="approximating-viridis-and-its-desiderata">Approximating viridis
+and its desiderata</h3>
+<p>We could try something even fancier, where we optimize the
+coefficients of a low-degree polynomial to be close to viridis but also
+have low perceptual uniformity derivative, i.e. we optimize a loss
+function that combines distance from viridis with the same metrics used
+to evaluate colormaps above. This is no longer linear programming; I
+think I just tried random hillclimbing with a bunch of random variations
+on the loss function, starting from the quadratic approximation of
+viridis produced by the above code. Here’s my favorite result:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> knockoff_viridis(t):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        (<span class="op">+</span><span class="fl">0.994</span><span class="op">*</span>t <span class="op">-</span> <span class="fl">0.009</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.014</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        (<span class="op">-</span><span class="fl">0.031</span><span class="op">*</span>t <span class="op">+</span> <span class="fl">0.895</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.135</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        (<span class="op">-</span><span class="fl">0.726</span><span class="op">*</span>t <span class="op">+</span> <span class="fl">0.682</span>)<span class="op">*</span>t <span class="op">+</span> <span class="fl">0.161</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    ]</span></code></pre></div>
 <figure>
 <div class="d3-viridis" style="display: flex">
 
@@ -417,14 +540,23 @@ Diagram for viridis generated with the buggy L<sub>A</sub> setting. The “perce
 <figure>
 <a href="/img/knockoff-viridis.png"><img src="/img/knockoff-viridis.png" alt="Diagram showing knockoff viridis's perceptual uniformity. The perceptual derivative has length 96.4 and an RMS deviation of 0.5 (0.6%); the perceptual lightness derivative has length 83.1 and RMS deviaion from flat 0.7 (0.9%)" /></a>
 </figure>
-<p>It’s pretty different from viridis and uses color much less effectively, but for being so simple, I think the curves are pretty good.</p>
-<p>Obviously, there are all kinds of tweaks you can make to the loss function, the optimization process, and the degree of the polynomial, but I decided that I had generated enough different options to call it a day. (As with the original viridis, all the colorschemes and code in this post are dedicated to the public domain / CC0.)</p>
-<section class="footnotes">
+<p>It’s pretty different from viridis and uses color much less
+effectively, but for being so simple, I think the curves are pretty
+good.</p>
+<p>Obviously, there are all kinds of tweaks you can make to the loss
+function, the optimization process, and the degree of the polynomial,
+but I decided that I had generated enough different options to call it a
+day. (As with the original viridis, all the colorschemes and code in
+this post are dedicated to the public domain / CC0.)</p>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>The first number I had written down was 91%, which gives you some sense of how long I’ve procrastinated finishing this post.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>The first number I had written down was 91%, which gives
+you some sense of how long I’ve procrastinated finishing this post.<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</section></article>
+</aside></article>
 	<footer class="post-footer">
 		
 	</footer>
@@ -447,7 +579,7 @@ Diagram for viridis generated with the buggy L<sub>A</sub> setting. The “perce
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

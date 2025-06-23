@@ -86,7 +86,8 @@ The “About” page simply told us, “Flag is located at /flag.txt, come get i
 <p>come get me</p>
 <p>http://web.chal.csaw.io:1003</p>
 </blockquote>
-<p>This was a web challenge with a few pages. The “User” page displayed some user information:</p>
+<p>This was a web challenge with a few pages. The “User” page displayed
+some user information:</p>
 <figure>
 <a href="/img/unagi-user.png"><img src="/img/unagi-user.png" alt="Screenshot of User page, transcribed below" /></a>
 </figure>
@@ -100,55 +101,96 @@ Email: bob@fakesite.com<br />
 Group: CSAW2019<br />
 Intro: Bob is cool too</p>
 </blockquote>
-<p>The “About” page simply told us, “Flag is located at /flag.txt, come get it”. The most interesting page was “Upload”, where we could view an example users XML file:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">&lt;users&gt;</span></a>
-<a class="sourceLine" id="cb1-2" title="2">  <span class="kw">&lt;user&gt;</span></a>
-<a class="sourceLine" id="cb1-3" title="3">    <span class="kw">&lt;username&gt;</span>alice<span class="kw">&lt;/username&gt;</span></a>
-<a class="sourceLine" id="cb1-4" title="4">    <span class="kw">&lt;password&gt;</span>passwd1<span class="kw">&lt;/password&gt;</span></a>
-<a class="sourceLine" id="cb1-5" title="5">    <span class="kw">&lt;name&gt;</span>Alice<span class="kw">&lt;/name&gt;</span></a>
-<a class="sourceLine" id="cb1-6" title="6">    <span class="kw">&lt;email&gt;</span>alice@fakesite.com<span class="kw">&lt;/email&gt;</span></a>
-<a class="sourceLine" id="cb1-7" title="7">    <span class="kw">&lt;group&gt;</span>CSAW2019<span class="kw">&lt;/group&gt;</span></a>
-<a class="sourceLine" id="cb1-8" title="8">  <span class="kw">&lt;/user&gt;</span></a>
-<a class="sourceLine" id="cb1-9" title="9">  <span class="kw">&lt;user&gt;</span></a>
-<a class="sourceLine" id="cb1-10" title="10">    <span class="kw">&lt;username&gt;</span>bob<span class="kw">&lt;/username&gt;</span></a>
-<a class="sourceLine" id="cb1-11" title="11">    <span class="kw">&lt;password&gt;</span>passwd2<span class="kw">&lt;/password&gt;</span></a>
-<a class="sourceLine" id="cb1-12" title="12">    <span class="kw">&lt;name&gt;</span>Bob<span class="kw">&lt;/name&gt;</span></a>
-<a class="sourceLine" id="cb1-13" title="13">    <span class="kw">&lt;email&gt;</span>bob@fakesite.com<span class="kw">&lt;/email&gt;</span></a>
-<a class="sourceLine" id="cb1-14" title="14">    <span class="kw">&lt;group&gt;</span>CSAW2019<span class="kw">&lt;/group&gt;</span></a>
-<a class="sourceLine" id="cb1-15" title="15">  <span class="kw">&lt;/user&gt;</span></a>
-<a class="sourceLine" id="cb1-16" title="16"><span class="kw">&lt;/users&gt;</span></a></code></pre></div>
-<p>More importantly, we could also upload a file of our own, where the information we provided would be sent back to us, formatted analogously to the “User” page.</p>
+<p>The “About” page simply told us, “Flag is located at /flag.txt, come
+get it”. The most interesting page was “Upload”, where we could view an
+example users XML file:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">users</span>&gt;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">user</span>&gt;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">username</span>&gt;alice&lt;/<span class="kw">username</span>&gt;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">password</span>&gt;passwd1&lt;/<span class="kw">password</span>&gt;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">name</span>&gt;Alice&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">email</span>&gt;alice@fakesite.com&lt;/<span class="kw">email</span>&gt;</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">group</span>&gt;CSAW2019&lt;/<span class="kw">group</span>&gt;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">user</span>&gt;</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">user</span>&gt;</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">username</span>&gt;bob&lt;/<span class="kw">username</span>&gt;</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">password</span>&gt;passwd2&lt;/<span class="kw">password</span>&gt;</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">name</span>&gt;Bob&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">email</span>&gt;bob@fakesite.com&lt;/<span class="kw">email</span>&gt;</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">group</span>&gt;CSAW2019&lt;/<span class="kw">group</span>&gt;</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">user</span>&gt;</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">users</span>&gt;</span></code></pre></div>
+<p>More importantly, we could also upload a file of our own, where the
+information we provided would be sent back to us, formatted analogously
+to the “User” page.</p>
 <figure>
 <a href="/img/unagi-upload.png"><img src="/img/unagi-upload.png" alt="Screenshot of Upload page, with a form to Upload New Users" /></a>
 </figure>
-<p>Doing some searching for vulnerabilities related to XML quickly reveals <a href="https://www.owasp.org/index.php/XML_External_Entity_%28XXE%29_Processing">XML Eternal Entity Processing</a>, or XXE for short. A minimal example of an XXE exploit would look like:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb2-1" title="1"><span class="er">&lt;</span>!ENTITY yeet SYSTEM &quot;file:///flag.txt&quot;&gt;</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw">&lt;users&gt;&lt;user&gt;&lt;name&gt;</span><span class="dv">&amp;yeet;</span><span class="kw">&lt;/name&gt;&lt;/user&gt;&lt;/users&gt;</span></a></code></pre></div>
-<p>Here we define the entity <code>&amp;yeet;</code> to transclude the file <code>file:///flag.txt</code>, so that, in theory, if it’s processed and we get to see the results, we’ll also get the contents of that file. (Note that we omitted all fields other than <code>name</code> just because, after testing, the “Upload” page still worked with XML with such a structure; had it not, we might have had to add back all the other fields with dummy content.)</p>
-<p>Alas, if we attempt to upload this file, we don’t get any output back. Instead, we get a small message at the top of the screen:</p>
+<p>Doing some searching for vulnerabilities related to XML quickly
+reveals <a
+href="https://www.owasp.org/index.php/XML_External_Entity_%28XXE%29_Processing">XML
+Eternal Entity Processing</a>, or XXE for short. A minimal example of an
+XXE exploit would look like:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>!ENTITY yeet SYSTEM &quot;file:///flag.txt&quot;&gt;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">users</span>&gt;&lt;<span class="kw">user</span>&gt;&lt;<span class="kw">name</span>&gt;<span class="dv">&amp;yeet;</span>&lt;/<span class="kw">name</span>&gt;&lt;/<span class="kw">user</span>&gt;&lt;/<span class="kw">users</span>&gt;</span></code></pre></div>
+<p>Here we define the entity <code>&amp;yeet;</code> to transclude the
+file <code>file:///flag.txt</code>, so that, in theory, if it’s
+processed and we get to see the results, we’ll also get the contents of
+that file. (Note that we omitted all fields other than <code>name</code>
+just because, after testing, the “Upload” page still worked with XML
+with such a structure; had it not, we might have had to add back all the
+other fields with dummy content.)</p>
+<p>Alas, if we attempt to upload this file, we don’t get any output
+back. Instead, we get a small message at the top of the screen:</p>
 <blockquote>
 <p>WAF blocked uploaded file. Please try again</p>
 </blockquote>
-<p>A “WAF”, it turns out, is a Web Application Firewall, basically something that sits in front of your application filtering out suspicious inputs that look like exploits. After trying a bunch of things, I decided the WAF was very strict but very dumb, simply checking for words like ENTITY and SYSTEM anywhere in the file, without regard for whether they were in a comment or anything. (This is more or less what the <a href="https://github.com/osirislab/CSAW-CTF-2019-Quals/blob/master/web/unagi/src/upload.php">posted challenge source</a> reveals.)</p>
-<p>So, more Googling led me to this article, <a href="https://lab.wallarm.com/xxe-that-can-bypass-waf-protection-98f679452ce0">“XXE that can bypass WAF protection”</a>. I tried several of the methods. Eventually after an hour or two of fiddling and trying the various strategies, I got the encoding bypass to work, by taking this XML:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-16&quot; <span class="kw">?&gt;</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="dt">&lt;!DOCTYPE </span>users <span class="dt">[&lt;!ENTITY</span> yeet SYSTEM <span class="st">&quot;file:///flag.txt&quot;</span><span class="dt">&gt;]&gt;</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="kw">&lt;users&gt;&lt;user&gt;&lt;name&gt;</span><span class="dv">&amp;yeet;</span><span class="kw">&lt;/name&gt;&lt;/user&gt;&lt;/users&gt;</span></a></code></pre></div>
+<p>A “WAF”, it turns out, is a Web Application Firewall, basically
+something that sits in front of your application filtering out
+suspicious inputs that look like exploits. After trying a bunch of
+things, I decided the WAF was very strict but very dumb, simply checking
+for words like ENTITY and SYSTEM anywhere in the file, without regard
+for whether they were in a comment or anything. (This is more or less
+what the <a
+href="https://github.com/osirislab/CSAW-CTF-2019-Quals/blob/master/web/unagi/src/upload.php">posted
+challenge source</a> reveals.)</p>
+<p>So, more Googling led me to this article, <a
+href="https://lab.wallarm.com/xxe-that-can-bypass-waf-protection-98f679452ce0">“XXE
+that can bypass WAF protection”</a>. I tried several of the methods.
+Eventually after an hour or two of fiddling and trying the various
+strategies, I got the encoding bypass to work, by taking this XML:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;?xml</span><span class="ot"> version=</span><span class="st">&quot;1.0&quot;</span><span class="ot"> encoding=</span><span class="st">&quot;UTF-16&quot;</span> <span class="fu">?&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> <span class="dt">users</span> <span class="dt">[&lt;!ENTITY</span> <span class="dt">yeet</span> SYSTEM <span class="st">&quot;file:///flag.txt&quot;</span><span class="dt">&gt;]&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">users</span>&gt;&lt;<span class="kw">user</span>&gt;&lt;<span class="kw">name</span>&gt;<span class="dv">&amp;yeet;</span>&lt;/<span class="kw">name</span>&gt;&lt;/<span class="kw">user</span>&gt;&lt;/<span class="kw">users</span>&gt;</span></code></pre></div>
 <p>and converting it to UTF-16, exactly as described on that page:</p>
 <pre><code>$ iconv -f utf-8 -t utf-16be &lt; xxe.xml &gt; xxe-utf-16.xml</code></pre>
-<p>Uploading <code>xxe-utf-16.xml</code> produces interesting output.</p>
+<p>Uploading <code>xxe-utf-16.xml</code> produces interesting
+output.</p>
 <blockquote>
 <p>Name: AAAAAAAAAAAAAAAAAAAA</p>
 </blockquote>
-<p>That doesn’t looks like something we entered, so it seems that our injection worked, but it doesn’t look like a flag either. More experimenting reveals that, unfortunately, when the name or any of the other visible fields in the sample XML are echoed back to us, they are truncated to a fixed length. So maybe the flag is later in <code>/flag.txt</code>, so it’s being hidden by the truncation? How can we work around this?</p>
-<p>All that remains is a little bit of lateral thinking. If you compare the Users page and the sample XML more carefully, you’ll see that one field on the Users page is unaccounted for:</p>
+<p>That doesn’t looks like something we entered, so it seems that our
+injection worked, but it doesn’t look like a flag either. More
+experimenting reveals that, unfortunately, when the name or any of the
+other visible fields in the sample XML are echoed back to us, they are
+truncated to a fixed length. So maybe the flag is later in
+<code>/flag.txt</code>, so it’s being hidden by the truncation? How can
+we work around this?</p>
+<p>All that remains is a little bit of lateral thinking. If you compare
+the Users page and the sample XML more carefully, you’ll see that one
+field on the Users page is unaccounted for:</p>
 <blockquote>
 <p>Intro: Alice is cool</p>
 </blockquote>
-<p>Maybe, just maybe, this corresponds to an <code>&lt;intro&gt;</code> tag? Let’s try it:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-16&quot; <span class="kw">?&gt;</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="dt">&lt;!DOCTYPE </span>users <span class="dt">[&lt;!ENTITY</span> yeet SYSTEM <span class="st">&quot;file:///flag.txt&quot;</span><span class="dt">&gt;]&gt;</span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="kw">&lt;users&gt;&lt;user&gt;&lt;intro&gt;</span><span class="dv">&amp;yeet;</span><span class="kw">&lt;/intro&gt;&lt;/user&gt;&lt;/users&gt;</span></a></code></pre></div>
+<p>Maybe, just maybe, this corresponds to an <code>&lt;intro&gt;</code>
+tag? Let’s try it:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;?xml</span><span class="ot"> version=</span><span class="st">&quot;1.0&quot;</span><span class="ot"> encoding=</span><span class="st">&quot;UTF-16&quot;</span> <span class="fu">?&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> <span class="dt">users</span> <span class="dt">[&lt;!ENTITY</span> <span class="dt">yeet</span> SYSTEM <span class="st">&quot;file:///flag.txt&quot;</span><span class="dt">&gt;]&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">users</span>&gt;&lt;<span class="kw">user</span>&gt;&lt;<span class="kw">intro</span>&gt;<span class="dv">&amp;yeet;</span>&lt;/<span class="kw">intro</span>&gt;&lt;/<span class="kw">user</span>&gt;&lt;/<span class="kw">users</span>&gt;</span></code></pre></div>
 <p>Converting to UTF-16 as before and uploading, we see:</p>
 <figure>
 <a href="/img/unagi-flag.png"><img src="/img/unagi-flag.png" alt="Screenshot of User page displaying the flag after our uploaded exploit" /></a>
@@ -183,7 +225,7 @@ Intro: Bob is cool too</p>
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

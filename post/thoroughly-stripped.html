@@ -74,12 +74,24 @@ Next, we examine the hexdump and look for any clues. There are a bunch of ASCII 
 		
 		</p>
 	</header>
-	<article><p>Woo, first CTF writeup. I got the opportunity to participate in the 2017 CSAW CTF finals with Don’t Hack Alone.</p>
+	<article><p>Woo, first CTF writeup. I got the opportunity to participate in the
+2017 CSAW CTF finals with Don’t Hack Alone.</p>
 <blockquote>
-<p>Dumped by my core, left to bleed out bytes on the heap, I was stripped of my dignity… The last thing I could do was to let other programs strip me of my null-bytes just so my memory could live on.</p>
+<p>Dumped by my core, left to bleed out bytes on the heap, I was
+stripped of my dignity… The last thing I could do was to let other
+programs strip me of my null-bytes just so my memory could live on.</p>
 </blockquote>
-<p>We are provided with a core dump. Examining the flavor-text and the dump, we notice that the dump has no null bytes; we conjecture that they have been stripped out.</p>
-<p>Next, we examine the hexdump and look for any clues. There are a bunch of ASCII strings, but they look like normal debugging symbols. One thing that jumps out is that there are a couple fairly convincing regular striped patterns that become vertically aligned if you display 20 bytes in each line. Once we do that, we notice the following section. (This dump is from <code><a href="https://github.com/betaveros/xxb">xxb</a></code> but <code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
+<p>We are provided with a core dump. Examining the flavor-text and the
+dump, we notice that the dump has no null bytes; we conjecture that they
+have been stripped out.</p>
+<p>Next, we examine the hexdump and look for any clues. There are a
+bunch of ASCII strings, but they look like normal debugging symbols. One
+thing that jumps out is that there are a couple fairly convincing
+regular striped patterns that become vertically aligned if you display
+20 bytes in each line. Once we do that, we notice the following section.
+(This dump is from <code><a
+href="https://github.com/betaveros/xxb">xxb</a></code> but
+<code>xxd -c 20 thoroughlyStripped</code> is quite sufficient.)</p>
 <pre class="small"><code>(00000370) 66ff ffff 5548 89e5 be66 488d 3d16 1820 e8b1 feff | f???UH???fH?=:: ????
 (00000384) ff90 5dc3 5548 89e5 be6c 488d 3dfe 1720 e899 feff | ??]?UH???lH?=?: ????
 (00000398) ff90 5dc3 5548 89e5 be61 488d 3de6 1720 e881 feff | ??]?UH???aH?=?: ????
@@ -98,18 +110,35 @@ Next, we examine the hexdump and look for any clues. There are a bunch of ASCII 
 (0000049c) ff90 5dc3 5548 89e5 be64 488d 3dae 1620 e849 fdff | ??]?UH???dH?=?: ?I??
 (000004b0) ff90 5dc3 5548 89e5 be7d 488d 3d96 1620 e831 fdff | ??]?UH???}H?=?: ?1??
 (000004c4) ff90 5dc3 5548 89e5 e85f feff ffe8 72fe ffff e885 | ??]?UH???_????r?????</code></pre>
-<p>The ASCII characters <code>flag{sty_incoekd}</code> can be read down a column. This absolutely looks like the structure of a flag, but it isn’t. Upon closer examination, we realize each character is unique: it seems to be the flag deduplicated, with only the first occurrence of each character preserved.</p>
-<p>(We tried for some time to directly guess the flag based on this hypothesis, but didn’t succeed. After getting the flag, I think guessing it this way would have been hard but not entirely impossible.)</p>
-<p>One might hope there’s a sequence of indices into these characters somewhere, something that starts as an arithmetic progression but sometimes repeats earlier elements, but none of the other patterns seem to fit and it’s not at all obvious where to find one. So let’s try to understand this pattern better. Disassembling it doesn’t yield great results because null bytes are randomly missing, but it does allow us to recognize 20-byte chunks that have the outline of a function definition and each hold a character:</p>
+<p>The ASCII characters <code>flag{sty_incoekd}</code> can be read down
+a column. This absolutely looks like the structure of a flag, but it
+isn’t. Upon closer examination, we realize each character is unique: it
+seems to be the flag deduplicated, with only the first occurrence of
+each character preserved.</p>
+<p>(We tried for some time to directly guess the flag based on this
+hypothesis, but didn’t succeed. After getting the flag, I think guessing
+it this way would have been hard but not entirely impossible.)</p>
+<p>One might hope there’s a sequence of indices into these characters
+somewhere, something that starts as an arithmetic progression but
+sometimes repeats earlier elements, but none of the other patterns seem
+to fit and it’s not at all obvious where to find one. So let’s try to
+understand this pattern better. Disassembling it doesn’t yield great
+results because null bytes are randomly missing, but it does allow us to
+recognize 20-byte chunks that have the outline of a function definition
+and each hold a character:</p>
 <pre><code>55                      push   rbp
 48 89 e5                mov    rbp,rsp
 ...
 5d                      pop    rbp
 c3                      ret</code></pre>
-<p>So for instance, the first chunk looks like <code>554889e5be66488d3d161820e8b1feffff905dc3</code> (with some null bytes inserted, in the original executable), and gives this garbage assembly:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" title="1"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> <span class="st">&quot;554889e5be66488d3d161820e8b1feffff905dc3&quot;</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(disasm(unhex(s), arch<span class="op">=</span><span class="st">&quot;amd64&quot;</span>))</a></code></pre></div>
+<p>So for instance, the first chunk looks like
+<code>554889e5be66488d3d161820e8b1feffff905dc3</code> (with some null
+bytes inserted, in the original executable), and gives this garbage
+assembly:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> <span class="st">&quot;554889e5be66488d3d161820e8b1feffff905dc3&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(disasm(unhex(s), arch<span class="op">=</span><span class="st">&quot;amd64&quot;</span>))</span></code></pre></div>
 <pre class="small"><code>   0:   55                      push   rbp
    1:   48 89 e5                mov    rbp,rsp
    4:   be 66 48 8d 3d          mov    esi,0x3d8d4866
@@ -119,7 +148,14 @@ c3                      ret</code></pre>
   11:   90                      nop
   12:   5d                      pop    rbp
   13:   c3                      ret</code></pre>
-<p>Of course, the addresses assigned by the assembler are complete garbage because we know null bytes have been stripped. Still, it’s not hard to take an educated stab at inserting null bytes to get sensible instructions where we load <code>%esi</code> and <code>%rdi</code> (the registers used for passing the first two arguments in x86-64) with values, the first of which is the ASCII character we noticed earlier, and then call a nearby function, although I didn’t bother doing this during the CTF.</p>
+<p>Of course, the addresses assigned by the assembler are complete
+garbage because we know null bytes have been stripped. Still, it’s not
+hard to take an educated stab at inserting null bytes to get sensible
+instructions where we load <code>%esi</code> and <code>%rdi</code> (the
+registers used for passing the first two arguments in x86-64) with
+values, the first of which is the ASCII character we noticed earlier,
+and then call a nearby function, although I didn’t bother doing this
+during the CTF.</p>
 <pre class="small"><code>   0:   55                      push   rbp
    1:   48 89 e5                mov    rbp,rsp
    4:   be 66 00 00 00          mov    esi,0x66
@@ -128,7 +164,14 @@ c3                      ret</code></pre>
   15:   90                      nop
   16:   5d                      pop    rbp
   17:   c3                      ret</code></pre>
-<p>More broadly, this is helpful because it reminds us that <code>e8</code> followed by four bytes is a relative call, and just a little below that pattern we see just a lot of relative calls in a row with nothing in between. This also explains why we couldn’t find a simple arithmetic-progression-with-duplicates: even calling the same function twice will produce different bytecode because the calls will be at different relative offsets. It does not look like any null bytes have been stripped here.</p>
+<p>More broadly, this is helpful because it reminds us that
+<code>e8</code> followed by four bytes is a relative call, and just a
+little below that pattern we see just a lot of relative calls in a row
+with nothing in between. This also explains why we couldn’t find a
+simple arithmetic-progression-with-duplicates: even calling the same
+function twice will produce different bytecode because the calls will be
+at different relative offsets. It does not look like any null bytes have
+been stripped here.</p>
 <pre class="small"><code>(000004c4) .... .... .... .... e85f feff ffe8 72fe ffff e885 | ??]?UH???_????r?????
 (000004d8) feff ffe8 98fe ffff e8ab feff ffe8 befe ffff e8d1 | ????????????????????
 (000004ec) feff ffe8 6cfe ffff e8df feff ffe8 f2fe ffff e805 | ????l??????????????:
@@ -136,15 +179,24 @@ c3                      ret</code></pre>
 (00000514) ffff ffe8 2cfe ffff e827 feff ffe8 42ff ffff e84d | ????,????&#39;????B????M
 (00000528) feff ffe8 38ff ffff e8bb feff ffe8 46ff ffff e8c9 | ????8?????????F?????
 (0000053c) feff ffe8 54ff ffff e85f feff ffe8 62ff ffff</code></pre>
-<p>We can parse these offsets and, since each relative call is 5 bytes, add 5 to each subsequent offset to obtain a fixed offset against some point in memory, which it seems pretty reasonable to assume will be the first function that does something with the character <code>f</code>. If we normalize these fixed offsets against their start, we see that all the distances are multiples of 24, so this also confirms that each chunk was originally 24 bytes before the null bytes were removed. Dividing and indexing tells us which characters were used in each of the invoked function calls, which is just the flag, and 200 points.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python breakword"><code class="sourceCode python"><a class="sourceLine" id="cb7-1" title="1"><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="op">&gt;&gt;&gt;</span> deduplicated_flag <span class="op">=</span> <span class="st">&quot;flag</span><span class="sc">{sty_incoekd}</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> <span class="st">&quot;e85ffeffffe872feffffe885feffffe898feffffe8abfeffffe8befeffffe8d1feffffe86cfeffffe8dffeffffe8f2feffffe805ffffffe818ffffffe8e3feffffe826ffffffe839ffffffe82cfeffffe827feffffe842ffffffe84dfeffffe838ffffffe8bbfeffffe846ffffffe8c9feffffe854ffffffe85ffeffffe862ffffff&quot;</span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="op">&gt;&gt;&gt;</span> offsets <span class="op">=</span> [u32(unhex(chunk[<span class="dv">2</span>:]), sign<span class="op">=</span><span class="st">&quot;signed&quot;</span>) <span class="cf">for</span> chunk <span class="kw">in</span> group(<span class="dv">10</span>, s)]</a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="op">&gt;&gt;&gt;</span> normalized_offsets <span class="op">=</span> [off <span class="op">-</span> offsets[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">5</span><span class="op">*</span>i <span class="cf">for</span> i, off <span class="kw">in</span> <span class="bu">enumerate</span>(offsets)]</a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="op">&gt;&gt;&gt;</span> <span class="cf">assert</span> <span class="bu">all</span>(off <span class="op">%</span> <span class="dv">24</span> <span class="op">==</span> <span class="dv">0</span> <span class="cf">for</span> off <span class="kw">in</span> normalized_offsets)</a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span> <span class="st">&#39;&#39;</span>.join(deduplicated_flag[off <span class="op">//</span> <span class="dv">24</span>] <span class="cf">for</span> off <span class="kw">in</span> normalized_offsets)</a>
-<a class="sourceLine" id="cb7-8" title="8">flag{stay_in_college_kids}</a></code></pre></div></article>
+<p>We can parse these offsets and, since each relative call is 5 bytes,
+add 5 to each subsequent offset to obtain a fixed offset against some
+point in memory, which it seems pretty reasonable to assume will be the
+first function that does something with the character <code>f</code>. If
+we normalize these fixed offsets against their start, we see that all
+the distances are multiples of 24, so this also confirms that each chunk
+was originally 24 bytes before the null bytes were removed. Dividing and
+indexing tells us which characters were used in each of the invoked
+function calls, which is just the flag, and 200 points.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python breakword"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> deduplicated_flag <span class="op">=</span> <span class="st">&quot;flag</span><span class="sc">{sty_incoekd}</span><span class="st">&quot;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> s <span class="op">=</span> <span class="st">&quot;e85ffeffffe872feffffe885feffffe898feffffe8abfeffffe8befeffffe8d1feffffe86cfeffffe8dffeffffe8f2feffffe805ffffffe818ffffffe8e3feffffe826ffffffe839ffffffe82cfeffffe827feffffe842ffffffe84dfeffffe838ffffffe8bbfeffffe846ffffffe8c9feffffe854ffffffe85ffeffffe862ffffff&quot;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> offsets <span class="op">=</span> [u32(unhex(chunk[<span class="dv">2</span>:]), sign<span class="op">=</span><span class="st">&quot;signed&quot;</span>) <span class="cf">for</span> chunk <span class="kw">in</span> group(<span class="dv">10</span>, s)]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> normalized_offsets <span class="op">=</span> [off <span class="op">-</span> offsets[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">5</span><span class="op">*</span>i <span class="cf">for</span> i, off <span class="kw">in</span> <span class="bu">enumerate</span>(offsets)]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">assert</span> <span class="bu">all</span>(off <span class="op">%</span> <span class="dv">24</span> <span class="op">==</span> <span class="dv">0</span> <span class="cf">for</span> off <span class="kw">in</span> normalized_offsets)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span> <span class="st">&#39;&#39;</span>.join(deduplicated_flag[off <span class="op">//</span> <span class="dv">24</span>] <span class="cf">for</span> off <span class="kw">in</span> normalized_offsets)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>flag{stay_in_college_kids}</span></code></pre></div></article>
 	<footer class="post-footer">
 		
 		<ul class="post-tags">
@@ -175,7 +227,7 @@ c3                      ret</code></pre>
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

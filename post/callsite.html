@@ -76,25 +76,37 @@ Static Analysis After staring at the sea of functions in IDA for a little bit, I
 	<article><blockquote>
 <p>Call me maybe? <code>nc rev.chal.csaw.io 1001</code></p>
 </blockquote>
-<p>A rev with a nasty binary. There are so many functions. I do not like this binary.</p>
+<p>A rev with a nasty binary. There are so many functions. I do not like
+this binary.</p>
 <figure>
 <a href="/img/callsite-gross.png"><img src="/img/callsite-gross.png" alt="Screenshot of IDA Pro on the callsite binary, with a lot of code and functions." /></a>
 </figure>
 <h3 id="static-analysis">Static Analysis</h3>
-<p>After staring at the sea of functions in IDA for a little bit, I gave up and tried dumb things instead.</p>
+<p>After staring at the sea of functions in IDA for a little bit, I gave
+up and tried dumb things instead.</p>
 <pre><code>$ strings callsite | grep flag
 flag.txt
 WARNING: Unsupported flag value(s) of 0x%x in DT_FLAGS_1.
 s-&gt;_flags2 &amp; _IO_FLAGS2_FORTIFY
 version == NULL || (flags &amp; ~(DL_LOOKUP_ADD_DEPENDENCY | DL_LOOKUP_GSCOPE_LOCK)) == 0
 imap-&gt;l_type == lt_loaded &amp;&amp; (imap-&gt;l_flags_1 &amp; DF_1_NODELETE) == 0</code></pre>
-<p>Oh neat, <code>flag.txt</code> is a lead. It’s not hard to find the string in IDA, and then follow cross-references to reach the code referencing it.</p>
+<p>Oh neat, <code>flag.txt</code> is a lead. It’s not hard to find the
+string in IDA, and then follow cross-references to reach the code
+referencing it.</p>
 <figure>
 <a href="/img/callsite-flag.png"><img src="/img/callsite-flag.png" alt="Screenshot of IDA Pro of part of the callsite binary using flag.txt." /></a>
 </figure>
-<p>Purely circumstantially, this looks a lot like code we’d like to call to print the flag. Phew! We’ve found the most important lines of assembly from among the hundreds of functions. It appears that there is a comparison between some string and the suspiciously alphanumeric string “aaGr6xly5gT42” before the code to print the flag.</p>
+<p>Purely circumstantially, this looks a lot like code we’d like to call
+to print the flag. Phew! We’ve found the most important lines of
+assembly from among the hundreds of functions. It appears that there is
+a comparison between some string and the suspiciously alphanumeric
+string “aaGr6xly5gT42” before the code to print the flag.</p>
 <h3 id="dynamic-analysis">Dynamic Analysis</h3>
-<p>After trying a bunch of things in <code>gdb</code> I basically just learned that <code>callsite 1234 5678</code> segfaults while trying to execute the address 0x1234. In addition, there were some suspicious strings to be found in the registers when that segfault happens. (This output is from <code>voltron show reg</code>.)</p>
+<p>After trying a bunch of things in <code>gdb</code> I basically just
+learned that <code>callsite 1234 5678</code> segfaults while trying to
+execute the address 0x1234. In addition, there were some suspicious
+strings to be found in the registers when that segfault happens. (This
+output is from <code>voltron show reg</code>.)</p>
 <pre><code>[ o d I t s z a P c ]
 [                   ]
 RIP 0000000000001234 | 4....... |
@@ -117,14 +129,33 @@ R15 0000000000000000 | ........ |
 CS  0033  DS  0000
 ES  0000  FS  0000
 GS  0000  SS  002B</code></pre>
-<p>More in-depth interactive stepping allowed me to determine that the segfaulting instruction was <code>0x40068f</code>, although this wasn’t actually that useful:</p>
+<p>More in-depth interactive stepping allowed me to determine that the
+segfaulting instruction was <code>0x40068f</code>, although this wasn’t
+actually that useful:</p>
 <pre><code>.text:000000000040068F                 call    [rsp+0C8h+var_C0]</code></pre>
-<p>However, the function in which this instruction resides disassembles moderately well, and it has a few clues in the form of string literals:</p>
+<p>However, the function in which this instruction resides disassembles
+moderately well, and it has a few clues in the form of string
+literals:</p>
 <figure>
 <a href="/img/callsite-sub.png"><img src="/img/callsite-sub.png" alt="Screenshot of IDA Pro on the subroutine" /></a>
 </figure>
-<p>There’s some <code>"%lx"</code> energy floating around, corroborating how our first argument was interpreted as hexadecimal to obtain an address. As for <code>"aa"</code>, which suspiciously appears at the start of the string we saw pointed to by our registers as well as the string literal being compared against, fortenforge figured out that the C <a href="http://man7.org/linux/man-pages/man3/crypt.3.html">crypt</a> function was being called on the second argument we passed to <code>callsite</code>, and the result was this suspicious string. <code>crypt</code> is an ancient DES-based hash function with a salt of exactly two characters, which happened to be <code>aa</code> in this case. So it seems like we should reverse the hash <code>aaGr6xly5gT42</code> to figure out what the second argument should be.</p>
-<p>We fed the hash to <a href="https://hashcat.net/hashcat/">hashcat</a> for maybe an hour before fortenforge also realized we could probably just cut the Gordian knot by jumping to the code after the check at <code>0x400cbb</code>. I did so, and:</p>
+<p>There’s some <code>"%lx"</code> energy floating around, corroborating
+how our first argument was interpreted as hexadecimal to obtain an
+address. As for <code>"aa"</code>, which suspiciously appears at the
+start of the string we saw pointed to by our registers as well as the
+string literal being compared against, fortenforge figured out that the
+C <a href="http://man7.org/linux/man-pages/man3/crypt.3.html">crypt</a>
+function was being called on the second argument we passed to
+<code>callsite</code>, and the result was this suspicious string.
+<code>crypt</code> is an ancient DES-based hash function with a salt of
+exactly two characters, which happened to be <code>aa</code> in this
+case. So it seems like we should reverse the hash
+<code>aaGr6xly5gT42</code> to figure out what the second argument should
+be.</p>
+<p>We fed the hash to <a href="https://hashcat.net/hashcat/">hashcat</a>
+for maybe an hour before fortenforge also realized we could probably
+just cut the Gordian knot by jumping to the code after the check at
+<code>0x400cbb</code>. I did so, and:</p>
 <pre><code>$ nc rev.chal.csaw.io 1001
 Give me two args, space separated:
 400cbb whatever
@@ -159,7 +190,7 @@ Wrong!</code></pre>
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

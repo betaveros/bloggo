@@ -68,136 +68,405 @@
 		
 		</p>
 	</header>
-	<article><p>It seems like a rite of passage to create one of these because there are so many Coq tactic cheat sheets out there and there’s just so much to learn. Here’s mine.</p>
+	<article><p>It seems like a rite of passage to create one of these because there
+are so many Coq tactic cheat sheets out there and there’s just so much
+to learn. Here’s mine.</p>
 <p>This is mostly about tactics but I realized not really.</p>
 <p>Links:</p>
 <ul>
-<li><a href="https://coq.inria.fr/refman/proof-engine/tactics.html">Coq Tactics</a>. Authoritative but dense.</li>
-<li><a href="https://softwarefoundations.cis.upenn.edu/lf-current/index.html">Logical Foundations</a> (Software Foundations Volume 1). I think the order of ideas makes pedagogical sense but also makes it hard for me to look up particular tactics or concepts.</li>
+<li><p><a
+href="https://coq.inria.fr/refman/proof-engine/tactics.html">Coq
+Tactics</a>. Authoritative but dense.</p></li>
+<li><p><a
+href="https://softwarefoundations.cis.upenn.edu/lf-current/index.html">Logical
+Foundations</a> (Software Foundations Volume 1). I think the order of
+ideas makes pedagogical sense but also makes it hard for me to look up
+particular tactics or concepts.</p></li>
 <li><p>Other Coq cheat sheets found by Googling “Coq cheat sheets”:</p>
 <ul>
-<li><a href="https://pjreddie.com/coq-tactics/">Coq Tactics Index</a> (Joseph Redmon)</li>
-<li><a href="https://www.cs.cornell.edu/courses/cs3110/2018sp/a5/coq-tactics-cheatsheet.html">Coq Tactics Cheatsheet</a> (Cornell CS3110)</li>
-<li><a href="http://adam.chlipala.net/itp/tactic-reference.html">Coq Tactics Quick Reference</a> (Adam Chlipala) / the <a href="http://adam.chlipala.net/frap/">Formal Reasoning About Programs</a> book also has a nice appendix</li>
-<li><a href="https://www.cis.upenn.edu/~rrand/popl_2016/reference.html">Coq Tactics</a> (UPenn ???)</li>
+<li><a href="https://pjreddie.com/coq-tactics/">Coq Tactics Index</a>
+(Joseph Redmon)</li>
+<li><a
+href="https://www.cs.cornell.edu/courses/cs3110/2018sp/a5/coq-tactics-cheatsheet.html">Coq
+Tactics Cheatsheet</a> (Cornell CS3110)</li>
+<li><a href="http://adam.chlipala.net/itp/tactic-reference.html">Coq
+Tactics Quick Reference</a> (Adam Chlipala) / the <a
+href="http://adam.chlipala.net/frap/">Formal Reasoning About
+Programs</a> book also has a nice appendix</li>
+<li><a
+href="https://www.cis.upenn.edu/~rrand/popl_2016/reference.html">Coq
+Tactics</a> (UPenn ???)</li>
 </ul></li>
 </ul>
-<p>Meta-notes: I cover a lot of weak tactics because I like knowing exactly what my tools are doing. I try to use the variants of tactics that explicitly name things produced when possible. I am sure there is nomenclature I don’t understand precisely and use sloppily in this list; I am also sloppy with metavariables. Even things that are correct might be horrible style. There are likely other errors and omissions. They might be fixed one day. I’m putting this up nevertheless because it’s personally useful.</p>
-<h3 id="things-i-wish-i-knew-but-didnt-learn-from-software-foundations-or-coq-tactic-cheat-sheets">Things I wish I knew but didn’t learn from Software Foundations or Coq tactic cheat sheets</h3>
+<p>Meta-notes: I cover a lot of weak tactics because I like knowing
+exactly what my tools are doing. I try to use the variants of tactics
+that explicitly name things produced when possible. I am sure there is
+nomenclature I don’t understand precisely and use sloppily in this list;
+I am also sloppy with metavariables. Even things that are correct might
+be horrible style. There are likely other errors and omissions. They
+might be fixed one day. I’m putting this up nevertheless because it’s
+personally useful.</p>
+<h3
+id="things-i-wish-i-knew-but-didnt-learn-from-software-foundations-or-coq-tactic-cheat-sheets">Things
+I wish I knew but didn’t learn from Software Foundations or Coq tactic
+cheat sheets</h3>
 <ul>
-<li>The first two sections are not about tactics per se but how to find theorems to use and how to use them. Knowing how to use all of these query commands is super useful.</li>
-<li>To clean up repeating subexpressions with “local variables”, I find <code>remember expr as X eqn:Hname.</code> easier to work with than <code>set (X := expr).</code></li>
-<li><code>pose proof expr as Hname.</code> adds <code>expr</code> to the context, with name <code>Hname</code>. Modus ponens where you know <code>H1</code> and <code>H2</code>, which is “<code>H1</code> implies <code>H3</code>”, is just <code>pose proof (H2 H1) as H3</code>.</li>
-<li>Software Foundations covers bullets and curly braces early, but I like subgoal specification with <code>1:</code>, <code>2:</code> etc., which can really help limit nesting depth. <code>2: (tactic that solves subgoal 2).</code> If you want more bullets, there are infinitely many, not just three. After <code>-</code> <code>+</code> <code>*</code> you can use <code>--</code> <code>++</code> <code>**</code> <code>---</code> etc.</li>
+<li>The first two sections are not about tactics per se but how to find
+theorems to use and how to use them. Knowing how to use all of these
+query commands is super useful.</li>
+<li>To clean up repeating subexpressions with “local variables”, I find
+<code>remember expr as X eqn:Hname.</code> easier to work with than
+<code>set (X := expr).</code></li>
+<li><code>pose proof expr as Hname.</code> adds <code>expr</code> to the
+context, with name <code>Hname</code>. Modus ponens where you know
+<code>H1</code> and <code>H2</code>, which is “<code>H1</code> implies
+<code>H3</code>”, is just <code>pose proof (H2 H1) as H3</code>.</li>
+<li>Software Foundations covers bullets and curly braces early, but I
+like subgoal specification with <code>1:</code>, <code>2:</code> etc.,
+which can really help limit nesting depth.
+<code>2: (tactic that solves subgoal 2).</code> If you want more
+bullets, there are infinitely many, not just three. After <code>-</code>
+<code>+</code> <code>*</code> you can use <code>--</code>
+<code>++</code> <code>**</code> <code>---</code> etc.</li>
 </ul>
 <h3 id="how-to-fish">How to fish</h3>
 <ul>
-<li>Use the queries. <code>Search "foo".</code> <code>Check foo.</code> <code>About foo.</code> <code>Compute foo.</code> <code>Print foo.</code> To look up notation (e.g. what does <code>&lt;&gt;</code> mean?) use <code>Locate</code> (e.g. <code>Locate "&lt;&gt;"</code>).</li>
-<li>To look up a simple abstract theorem about natural numbers or equality without knowing what it’s called, <code>SearchPattern</code> is useful. For example, I was looking to prove <code>x &lt;&gt; y</code> given <code>y &lt;&gt; x</code>. <code>SearchPattern (_ &lt;&gt; _ -&gt; _ &lt;&gt; _).</code> found the theorem for me (it was called <code>not_eq_sym</code>). Similarly <code>SearchRewrite</code> on some expression pattern searches for theorems you could use to rewrite that expression.</li>
+<li>Use the queries. <code>Search "foo".</code> <code>Check foo.</code>
+<code>About foo.</code> <code>Compute foo.</code>
+<code>Print foo.</code> To look up notation (e.g. what does
+<code>&lt;&gt;</code> mean?) use <code>Locate</code>
+(e.g. <code>Locate "&lt;&gt;"</code>).</li>
+<li>To look up a simple abstract theorem about natural numbers or
+equality without knowing what it’s called, <code>SearchPattern</code> is
+useful. For example, I was looking to prove <code>x &lt;&gt; y</code>
+given <code>y &lt;&gt; x</code>.
+<code>SearchPattern (_ &lt;&gt; _ -&gt; _ &lt;&gt; _).</code> found the
+theorem for me (it was called <code>not_eq_sym</code>). Similarly
+<code>SearchRewrite</code> on some expression pattern searches for
+theorems you could use to rewrite that expression.</li>
 </ul>
 <h3 id="how-to-use-hypotheses">How to use hypotheses</h3>
-<p>To use that example again: If you run <code>Check not_eq_sym.</code> you’ll get:</p>
+<p>To use that example again: If you run <code>Check not_eq_sym.</code>
+you’ll get:</p>
 <pre><code>not_eq_sym
      : forall (A : Type) (x y : A), x &lt;&gt; y -&gt; y &lt;&gt; x</code></pre>
-<p>Mathematically, <code>not_eq_sym</code> says: for any type <code>A</code> and any two things <code>x</code> and <code>y</code> of type <code>A</code>, if <code>x &lt;&gt; y</code>, then <code>y &lt;&gt; x</code>.</p>
-<p>However the literalist programmer view is more like: <code>not_eq_sym</code> is a (fully curried) function that takes in a type <code>A</code>, two things <code>x</code> and <code>y</code> of type <code>A</code>, and finally a proof of the Prop <code>x &lt;&gt; y</code>, and outputs a proof of the Prop <code>y &lt;&gt; x</code>. So if you supplied these four arguments, just by writing <code>not_eq_sym A x y H</code> where <code>H</code> is a proof of <code>x &lt;&gt; y</code>, you’d get a proof of <code>y &lt;&gt; x</code> out.</p>
-<p>Well, not quite; you’d actually write <code>@not_eq_sym A x y H</code>. Here <code>@</code> makes all <em>implicit</em> arguments of <code>not_eq_sym</code> explicit. If you also run <code>About not_eq_sym.</code>, you’ll see (among other text):</p>
+<p>Mathematically, <code>not_eq_sym</code> says: for any type
+<code>A</code> and any two things <code>x</code> and <code>y</code> of
+type <code>A</code>, if <code>x &lt;&gt; y</code>, then
+<code>y &lt;&gt; x</code>.</p>
+<p>However the literalist programmer view is more like:
+<code>not_eq_sym</code> is a (fully curried) function that takes in a
+type <code>A</code>, two things <code>x</code> and <code>y</code> of
+type <code>A</code>, and finally a proof of the Prop
+<code>x &lt;&gt; y</code>, and outputs a proof of the Prop
+<code>y &lt;&gt; x</code>. So if you supplied these four arguments, just
+by writing <code>not_eq_sym A x y H</code> where <code>H</code> is a
+proof of <code>x &lt;&gt; y</code>, you’d get a proof of
+<code>y &lt;&gt; x</code> out.</p>
+<p>Well, not quite; you’d actually write
+<code>@not_eq_sym A x y H</code>. Here <code>@</code> makes all
+<em>implicit</em> arguments of <code>not_eq_sym</code> explicit. If you
+also run <code>About not_eq_sym.</code>, you’ll see (among other
+text):</p>
 <pre><code>not_eq_sym : forall (A : Type) (x y : A), x &lt;&gt; y -&gt; y &lt;&gt; x
 
 Arguments A, x, y are implicit</code></pre>
-<p>Without the <code>@</code> you only need to supply (and are only allowed to supply) the one non-implicit argument, <code>H</code>, to <code>not_eq_sym</code>. In practice arguments are usually implicit because they’re deducible from the others, so <code>not_eq_sym H</code> is pretty good.</p>
-<p>Implicits can appear in other ways and cause weird issues, such as when you’re trying to rewrite or do something else to an expression that seems to exactly match one side of the rule you’re rewriting with, but Coq refuses to operate on that expression even though it’s in plain sight. The expressions might actually be different because they have implicit arguments that differ. You can see those implicits in the expressions by issusing <code>Show Print Implicit.</code>, or fiddling with your CoqIDE settings.</p>
-<h3 id="finishing-a-proof-of-something-true">Finishing a proof of something true</h3>
+<p>Without the <code>@</code> you only need to supply (and are only
+allowed to supply) the one non-implicit argument, <code>H</code>, to
+<code>not_eq_sym</code>. In practice arguments are usually implicit
+because they’re deducible from the others, so <code>not_eq_sym H</code>
+is pretty good.</p>
+<p>Implicits can appear in other ways and cause weird issues, such as
+when you’re trying to rewrite or do something else to an expression that
+seems to exactly match one side of the rule you’re rewriting with, but
+Coq refuses to operate on that expression even though it’s in plain
+sight. The expressions might actually be different because they have
+implicit arguments that differ. You can see those implicits in the
+expressions by issusing <code>Show Print Implicit.</code>, or fiddling
+with your CoqIDE settings.</p>
+<h3 id="finishing-a-proof-of-something-true">Finishing a proof of
+something true</h3>
 <ul>
-<li><code>reflexivity.</code> proves something is equal to itself. It can handle some simplification.</li>
-<li><p><code>exact T.</code> proves a Prop that’s exactly the same as theorem or hypothesis T. “Exactly the same” includes quantifiers! But you can apply arguments to T. For example if your theorem <code>all_foo</code> says <code>forall x : foo x</code> and you want to prove <code>foo y</code> for a specific known <code>y</code>, you could use <code>exact (all_foo y)</code>.</p>
-Side note: <code>I</code> is the name for the unique thing of type <code>True</code>, so if you end up with the goal <code>True</code> after simplification and want to prove it with the weakest possible tactic, I think <code>exact I.</code> fits the bill.</li>
-<li><code>assumption.</code> proves a Prop that is one of our hypotheses, i.e., is in our context. It’s <code>exact T.</code> without needing to specify <code>T</code>.</li>
-<li><code>refine X.</code> proves a Prop that’s exactly the same as <code>X</code>, just like <code>exact X.</code>, except that <code>X</code> here can be an expression with <em>holes</em>, or <code>_</code>. It opens up one subgoal for each <code>_</code>.</li>
-<li><code>apply H.</code> proves a Prop that directly follows from a theorem or hypothesis <code>H</code> (or, if the theorem is “P implies our goal”, sets the goal to P instead; see below). So <code>apply all_foo.</code> would work instead of <code>exact (all_foo y).</code></li>
-<li><code>trivial.</code> is a weak tactic that proves some very easy goals, including the power of <code>reflexivity</code> and <code>assumption</code> at least.</li>
-<li><code>easy.</code> is slightly more powerful. It does <code>split</code> too.</li>
-<li><p>There are a lot of automated tactics that can handle proving generally true math facts. We are told to use <code>lia</code> in 6.826.</p></li>
+<li><p><code>reflexivity.</code> proves something is equal to itself. It
+can handle some simplification.</p></li>
+<li><p><code>exact T.</code> proves a Prop that’s exactly the same as
+theorem or hypothesis T. “Exactly the same” includes quantifiers! But
+you can apply arguments to T. For example if your theorem
+<code>all_foo</code> says <code>forall x : foo x</code> and you want to
+prove <code>foo y</code> for a specific known <code>y</code>, you could
+use <code>exact (all_foo y)</code>.</p>
+<p>Side note: <code>I</code> is the name for the unique thing of type
+<code>True</code>, so if you end up with the goal <code>True</code>
+after simplification and want to prove it with the weakest possible
+tactic, I think <code>exact I.</code> fits the bill.</p></li>
+<li><p><code>assumption.</code> proves a Prop that is one of our
+hypotheses, i.e., is in our context. It’s <code>exact T.</code> without
+needing to specify <code>T</code>.</p></li>
+<li><p><code>refine X.</code> proves a Prop that’s exactly the same as
+<code>X</code>, just like <code>exact X.</code>, except that
+<code>X</code> here can be an expression with <em>holes</em>, or
+<code>_</code>. It opens up one subgoal for each
+<code>_</code>.</p></li>
+<li><p><code>apply H.</code> proves a Prop that directly follows from a
+theorem or hypothesis <code>H</code> (or, if the theorem is “P implies
+our goal”, sets the goal to P instead; see below). So
+<code>apply all_foo.</code> would work instead of
+<code>exact (all_foo y).</code></p></li>
+<li><p><code>trivial.</code> is a weak tactic that proves some very easy
+goals, including the power of <code>reflexivity</code> and
+<code>assumption</code> at least.</p></li>
+<li><p><code>easy.</code> is slightly more powerful. It does
+<code>split</code> too.</p></li>
+<li><p>There are a lot of automated tactics that can handle proving
+generally true math facts. We are told to use <code>lia</code> in
+6.826.</p></li>
 </ul>
-<h3 id="finishing-a-proof-of-something-false">Finishing a proof of something false</h3>
+<h3 id="finishing-a-proof-of-something-false">Finishing a proof of
+something false</h3>
 <ul>
-<li><code>discriminate H.</code> proves anything, given an equality <code>H</code> that says something equals something structurally different (with different constructors). You don’t need to specify <code>H</code>.</li>
-<li><code>contradiction.</code> proves anything if a hypothesis is false. Note that it has to be a hypothesis and not a thing before <code>-&gt;</code>; if you want to do that, <code>intros</code> it. It also searches for two contradictory hypotheses.</li>
-<li><code>absurd P.</code> proves anything by breaking into subgoals <code>P</code> and <code>~P</code>.</li>
+<li><code>discriminate H.</code> proves anything, given an equality
+<code>H</code> that says something equals something structurally
+different (with different constructors). You don’t need to specify
+<code>H</code>.</li>
+<li><code>contradiction.</code> proves anything if a hypothesis is
+false. Note that it has to be a hypothesis and not a thing before
+<code>-&gt;</code>; if you want to do that, <code>intros</code> it. It
+also searches for two contradictory hypotheses.</li>
+<li><code>absurd P.</code> proves anything by breaking into subgoals
+<code>P</code> and <code>~P</code>.</li>
 </ul>
-<p>Sidebar: <code>congruence.</code> generalizes <code>discriminate</code> and <code>injection</code> in some way.</p>
-<h3 id="modifying-the-goal-with-existing-facts">Modifying the goal with existing facts</h3>
+<p>Sidebar: <code>congruence.</code> generalizes
+<code>discriminate</code> and <code>injection</code> in some way.</p>
+<h3 id="modifying-the-goal-with-existing-facts">Modifying the goal with
+existing facts</h3>
 <ul>
-<li><code>apply H.</code> sets the goal to P if <code>H</code> is “P implies our goal” (or, directly proves a Prop that directly follows from a theorem; see above). <code>H</code> can also take more than one argument or premise, in which case <code>apply H.</code> opens up one subgoal per premise. (So in fact, finishing a goal via “<code>apply H.</code>” is just the special case where there are zero premises.)
+<li><code>apply H.</code> sets the goal to P if <code>H</code> is “P
+implies our goal” (or, directly proves a Prop that directly follows from
+a theorem; see above). <code>H</code> can also take more than one
+argument or premise, in which case <code>apply H.</code> opens up one
+subgoal per premise. (So in fact, finishing a goal via
+“<code>apply H.</code>” is just the special case where there are zero
+premises.)
 <ul>
-<li><code>eapply</code> is similar to <code>apply</code>, but it uses existential variables when it can’t figure out some of the variables, and just expects you to fill those in later. This was really hard for me for me to understand, but here’s an artificial example: let’s say you want to prove an equality <code>a = b</code> by the transitive property. <code>a = b</code> matches the conclusion of the built-in theorem <code>eq_trans</code>, which is <code>x = y -&gt; y = z -&gt; x = z</code>. However, <code>apply eq_trans.</code> will fail, because Coq can’t figure out what you want <code>y</code> to be. You could solve this by explicitly specifying what <code>y</code> is by passing some arguments to <code>eq_trans</code>. Alternatively, you can <code>eapply eq_trans.</code> and Coq will create a new existential variable to pass as <code>y</code>. Later, if you implicitly use any tactic that implies something about that variable, Coq will collapse or elaborate that variable.</li>
+<li><code>eapply</code> is similar to <code>apply</code>, but it uses
+existential variables when it can’t figure out some of the variables,
+and just expects you to fill those in later. This was really hard for me
+for me to understand, but here’s an artificial example: let’s say you
+want to prove an equality <code>a = b</code> by the transitive property.
+<code>a = b</code> matches the conclusion of the built-in theorem
+<code>eq_trans</code>, which is
+<code>x = y -&gt; y = z -&gt; x = z</code>. However,
+<code>apply eq_trans.</code> will fail, because Coq can’t figure out
+what you want <code>y</code> to be. You could solve this by explicitly
+specifying what <code>y</code> is by passing some arguments to
+<code>eq_trans</code>. Alternatively, you can
+<code>eapply eq_trans.</code> and Coq will create a new existential
+variable to pass as <code>y</code>. Later, if you implicitly use any
+tactic that implies something about that variable, Coq will collapse or
+elaborate that variable.</li>
 </ul></li>
-<li><code>simpl.</code> simplifies the expression. It’s often not necessary in a finished proof, but can help clarify what the goal looks like in the interactive process.</li>
-<li><code>rewrite -&gt; H.</code> resp. <code>rewrite &lt;- H.</code> If H is something that says “A = B”, replace A with B in the goal, resp., B with A. If <code>H</code> requires some hypotheses, it will open up those hypotheses as subgoals, coming last.</li>
-<li><code>rewrite -&gt; H by tactic.</code> resp. <code>rewrite &lt;- H by tactic.</code> As above but immediately solve the subgoals.</li>
-<li><code>subst x.</code> substitutes <code>x</code> everywhere it appears. If you defined <code>x := expr</code> or got an equation like <code>x = expr</code> then this will replace <code>x</code> with <code>expr</code> everywhere and then get rid of <code>x</code>. This is useful if you had two variables <code>x</code> and <code>y</code> introduced in different places in your proof, proved they were equal, and want to fully get rid of one from your context. You can write <code>subst.</code> without <code>x</code> and it will do it automatically.</li>
-<li><code>unfold f.</code> Unfold some function f in the goal; approximately, inline it. This may be required if <code>f</code> is a <code>match</code> expression; Coq won’t automatically “simplify” expressions with <code>f</code> since they might actually get more complicated.</li>
-<li><code>replace term with term'.</code> Replace <code>term</code> with <code>term'</code> in the goal, and adds a new goal to prove that <code>term = term'</code>, putting it last.</li>
-<li><code>replace term with term' by tactic.</code> Same, but prove that new goal immediately with a tactic.</li>
-<li><code>change term with term'.</code> Roughly same as <code>replace</code> without opening subgoals, if the terms are “convertible”. I was told this means something like “you can prove they’re equal by <code>reflexivity</code>”.</li>
-<li><code>symmetry.</code> swaps the goal <code>a = b</code> with <code>b = a</code>.</li>
-<li><code>exfalso.</code> explicitly sets the goal to <code>False</code>; sometimes this makes applying theorems easier.</li>
+<li><code>simpl.</code> simplifies the expression. It’s often not
+necessary in a finished proof, but can help clarify what the goal looks
+like in the interactive process.</li>
+<li><code>rewrite -&gt; H.</code> resp. <code>rewrite &lt;- H.</code> If
+H is something that says “A = B”, replace A with B in the goal, resp., B
+with A. If <code>H</code> requires some hypotheses, it will open up
+those hypotheses as subgoals, coming last.</li>
+<li><code>rewrite -&gt; H by tactic.</code> resp.
+<code>rewrite &lt;- H by tactic.</code> As above but immediately solve
+the subgoals.</li>
+<li><code>subst x.</code> substitutes <code>x</code> everywhere it
+appears. If you defined <code>x := expr</code> or got an equation like
+<code>x = expr</code> then this will replace <code>x</code> with
+<code>expr</code> everywhere and then get rid of <code>x</code>. This is
+useful if you had two variables <code>x</code> and <code>y</code>
+introduced in different places in your proof, proved they were equal,
+and want to fully get rid of one from your context. You can write
+<code>subst.</code> without <code>x</code> and it will do it
+automatically.</li>
+<li><code>unfold f.</code> Unfold some function f in the goal;
+approximately, inline it. This may be required if <code>f</code> is a
+<code>match</code> expression; Coq won’t automatically “simplify”
+expressions with <code>f</code> since they might actually get more
+complicated.</li>
+<li><code>replace term with term'.</code> Replace <code>term</code> with
+<code>term'</code> in the goal, and adds a new goal to prove that
+<code>term = term'</code>, putting it last.</li>
+<li><code>replace term with term' by tactic.</code> Same, but prove that
+new goal immediately with a tactic.</li>
+<li><code>change term with term'.</code> Roughly same as
+<code>replace</code> without opening subgoals, if the terms are
+“convertible”. I was told this means something like “you can prove
+they’re equal by <code>reflexivity</code>”.</li>
+<li><code>symmetry.</code> swaps the goal <code>a = b</code> with
+<code>b = a</code>.</li>
+<li><code>exfalso.</code> explicitly sets the goal to
+<code>False</code>; sometimes this makes applying theorems easier.</li>
 </ul>
 <h3 id="adding-intermediate-goals">Adding intermediate goals</h3>
 <ul>
-<li><code>assert U as Name.</code> adds hypothesis U with name <code>Name</code> to context; immediately opens subgoal U. <code>Name</code> can be a destruct pattern.</li>
-<li><code>assert U as Name by tactic.</code> Same, but immediately prove the subgoal with a tactic instead.</li>
-<li><code>enough U as Name.</code> is the same, but U is proved afterwards.</li>
-<li><code>cut P.</code> splits the goal into <code>P -&gt; goal</code> and <code>P</code>.</li>
-<li><code>transitivity X.</code> lets you prove <code>A = B</code> through subgoals <code>A = X</code> and <code>X = B</code>.</li>
+<li><code>assert U as Name.</code> adds hypothesis U with name
+<code>Name</code> to context; immediately opens subgoal U.
+<code>Name</code> can be a destruct pattern.</li>
+<li><code>assert U as Name by tactic.</code> Same, but immediately prove
+the subgoal with a tactic instead.</li>
+<li><code>enough U as Name.</code> is the same, but U is proved
+afterwards.</li>
+<li><code>cut P.</code> splits the goal into <code>P -&gt; goal</code>
+and <code>P</code>.</li>
+<li><code>transitivity X.</code> lets you prove <code>A = B</code>
+through subgoals <code>A = X</code> and <code>X = B</code>.</li>
 </ul>
-<p>(There’s also an <code>assert (Name : U)</code> syntax but I never remember the order.)</p>
+<p>(There’s also an <code>assert (Name : U)</code> syntax but I never
+remember the order.)</p>
 <h3 id="splitting-into-cases">Splitting into cases</h3>
 <ul>
-<li><code>constructor.</code> splits the goal into cases if it’s some kind of product type. It’s actually basically just <code>apply</code>ing the constructor. When the goal is a sum type, <code>constructor N.</code> for some number <code>N</code> more precisely chooses to prove the <code>N</code>th constructor.</li>
-<li><code>f_equal.</code>, when the goal is to prove that two calls to the same function are equal, splits into proving that each of the corresponding arguments are equal. (Note that the original goal being true very much doesn’t imply these goals are all true, although it does if the function is a constructor.)</li>
-<li><code>destruct expr as [pattern].</code> splits <code>expr</code> apart, possibly breaking into cases, depending on what constructor <code>expr</code> is. Here <code>[pattern]</code> should be an “intro pattern of disjunctions and conjunctions”. If <code>expr</code> is a product then <code>[pattern]</code> could be <code>[H1 H2]</code>; if <code>expr</code> is a sum then <code>[pattern]</code> could be <code>[H1 | H2]</code>; this could be nested, e.g. <code>[H1 H2 | H3 H4 H5 | ]</code> if it’s a sum of cases with 2, 3, and 0 fields, respectively (and this is what I mean elsewhere by <code>[pattern]</code>). You can even omit “as …” if there’s nothing to destruct to.</li>
-<li><code>destruct expr eqn:Hname.</code> does the same, but also giving you a hypothesis with name <code>Hname</code> that states that <code>expr</code> equals what the case is.</li>
-<li><code>induction n as [pattern].</code> splits into base case and induction hypothesis based on what constructor <code>n</code> is. Every branch of the pattern comes with an induction hypothesis. Note: <code>induction</code> behind the scenes is just <code>apply</code> on the “inductive principle” Coq generated when it or you declared the type of <code>n</code>. It seems to have the name of the type of <code>n</code> concatenated with <code>_ind</code>.</li>
+<li><code>constructor.</code> splits the goal into cases if it’s some
+kind of product type. It’s actually basically just <code>apply</code>ing
+the constructor. When the goal is a sum type,
+<code>constructor N.</code> for some number <code>N</code> more
+precisely chooses to prove the <code>N</code>th constructor.</li>
+<li><code>f_equal.</code>, when the goal is to prove that two calls to
+the same function are equal, splits into proving that each of the
+corresponding arguments are equal. (Note that the original goal being
+true very much doesn’t imply these goals are all true, although it does
+if the function is a constructor.)</li>
+<li><code>destruct expr as [pattern].</code> splits <code>expr</code>
+apart, possibly breaking into cases, depending on what constructor
+<code>expr</code> is. Here <code>[pattern]</code> should be an “intro
+pattern of disjunctions and conjunctions”. If <code>expr</code> is a
+product then <code>[pattern]</code> could be <code>[H1 H2]</code>; if
+<code>expr</code> is a sum then <code>[pattern]</code> could be
+<code>[H1 | H2]</code>; this could be nested,
+e.g. <code>[H1 H2 | H3 H4 H5 | ]</code> if it’s a sum of cases with 2,
+3, and 0 fields, respectively (and this is what I mean elsewhere by
+<code>[pattern]</code>). You can even omit “as …” if there’s nothing to
+destruct to.</li>
+<li><code>destruct expr eqn:Hname.</code> does the same, but also giving
+you a hypothesis with name <code>Hname</code> that states that
+<code>expr</code> equals what the case is.</li>
+<li><code>induction n as [pattern].</code> splits into base case and
+induction hypothesis based on what constructor <code>n</code> is. Every
+branch of the pattern comes with an induction hypothesis. Note:
+<code>induction</code> behind the scenes is just <code>apply</code> on
+the “inductive principle” Coq generated when it or you declared the type
+of <code>n</code>. It seems to have the name of the type of
+<code>n</code> concatenated with <code>_ind</code>.</li>
 </ul>
-<p>Coq is constructive, so you can’t assume <code>P \/ ~P</code> (“P or not P”) in full generality. However you can do this for many common cases of <code>P</code>. Theorems that prove this often have <code>dec</code> in their name for “decidable”. Consider <code>SearchPattern</code> for not just <code>_ \/ _</code>, but also <code>{_} + {_}</code> (where either <code>_</code> could be further refined depending on what you’re looking for).</p>
-<p>The difference, based on my limited understanding and a Piazza answer: <code>_ \/ _</code> is a Prop but <code>{_} + {_}</code> is a Type. Prop and Type belong to different “universes”, approximately proof stuff and computable stuff, and Coq enforces that information can’t flow from the proof universe to the computable universe. So a <code>{_} + {_}</code> is stronger than a <code>_ \/ _</code> in that (after specifying any variables needed) you can explicitly compute which branch of the <code>{_} + {_}</code> you have evidence for, and use that information in a function that computes something.</p>
-<p>In proofs, you use them in the same way, though: <code>destruct</code> into two cases to do case analysis. Example of theorems of two kinds:</p>
+<p>Coq is constructive, so you can’t assume <code>P \/ ~P</code> (“P or
+not P”) in full generality. However you can do this for many common
+cases of <code>P</code>. Theorems that prove this often have
+<code>dec</code> in their name for “decidable”. Consider
+<code>SearchPattern</code> for not just <code>_ \/ _</code>, but also
+<code>{_} + {_}</code> (where either <code>_</code> could be further
+refined depending on what you’re looking for).</p>
+<p>The difference, based on my limited understanding and a Piazza
+answer: <code>_ \/ _</code> is a Prop but <code>{_} + {_}</code> is a
+Type. Prop and Type belong to different “universes”, approximately proof
+stuff and computable stuff, and Coq enforces that information can’t flow
+from the proof universe to the computable universe. So a
+<code>{_} + {_}</code> is stronger than a <code>_ \/ _</code> in that
+(after specifying any variables needed) you can explicitly compute which
+branch of the <code>{_} + {_}</code> you have evidence for, and use that
+information in a function that computes something.</p>
+<p>In proofs, you use them in the same way, though:
+<code>destruct</code> into two cases to do case analysis. Example of
+theorems of two kinds:</p>
 <pre><code>Nat.eq_dec: forall n m : nat, {n = m} + {n &lt;&gt; m}
 le_gt_dec: forall n m : nat, {n &lt;= m} + {n &gt; m}
 le_dec: forall n m : nat, {n &lt;= m} + {~ n &lt;= m}</code></pre>
 <pre><code>Nat.eq_0_gt_0_cases: forall n : nat, n = 0 \/ 0 &lt; n
 gt_0_eq: forall n : nat, n &gt; 0 \/ 0 = n
 Nat.lt_trichotomy: forall n m : nat, n &lt; m \/ n = m \/ m &lt; n</code></pre>
-<p>Note that you probably <code>destruct</code> these into patterns to name the proofs of things, and won’t want <code>eqn:</code>.</p>
+<p>Note that you probably <code>destruct</code> these into patterns to
+name the proofs of things, and won’t want <code>eqn:</code>.</p>
 <h3 id="modifying-hypotheses">Modifying hypotheses</h3>
 <ul>
-<li><code>apply H in H2 as Hname.</code> If H is “P implies Q” and H2 is “P”, conclude Q, with name <code>Hname</code>.</li>
-<li><code>pose proof H as Hname.</code> Add <code>H</code> to the context, with name <code>Hname</code>. Typically <code>H</code> will be an expression. Concrete applications: if <code>H1</code> is a theorem “P implies Q” and <code>H2</code> is a hypothesis in the context that “P”, <code>pose proof (H1 H2) as Hname.</code></li>
-<li><code>specialize (H1 H2).</code> Kind of like <code>pose proof</code> specifically for plugging arguments into a local hypothesis <code>H1</code>. The name “specialize” makes the most sense if the arguments are universally quantified variables, e.g. the hypothesis <code>H</code> says <code>forall x : T, foo x</code> and you have a specific <code>y</code> for which you want to know <code>foo y</code>, so you <code>specialize (H y).</code> On the other hand this is more reliably useful when <code>H2</code> is a premise of <code>H1</code>, since you get a strictly stronger result. Note that the result replaces <code>H</code> with the result of specialization, which makes more sense in the universally quantified variable interpretation but is more reliably useful in the premise interpretation. If you want to get a specialized version without losing the generalized version, use <code>pose proof</code> above.</li>
-<li><code>rewrite -&gt; H in H2.</code> / <code>rewrite &lt;- H in H2.</code> / <code>replace term with term' in H2.</code> / <code>replace term with term' in H2 by tactic.</code> / <code>change term with term' in H2.</code> / <code>unfold X in H.</code> / <code>simpl in H.</code> / <code>symmetry in H.</code> all do the same rewriting you’d expect in a hypothesis instead of the goal.</li>
-<li><code>inversion H.</code> analyzes H using constructor injectivity and disjointness. That is, it unwraps a constructor from both sides: e.g. if H is <code>S x = S y</code>, conclude <code>x = y</code>; or, if H claims the equality of different constructors, it explodes the case.</li>
+<li><code>apply H in H2 as Hname.</code> If H is “P implies Q” and H2 is
+“P”, conclude Q, with name <code>Hname</code>.</li>
+<li><code>pose proof H as Hname.</code> Add <code>H</code> to the
+context, with name <code>Hname</code>. Typically <code>H</code> will be
+an expression. Concrete applications: if <code>H1</code> is a theorem “P
+implies Q” and <code>H2</code> is a hypothesis in the context that “P”,
+<code>pose proof (H1 H2) as Hname.</code></li>
+<li><code>specialize (H1 H2).</code> Kind of like
+<code>pose proof</code> specifically for plugging arguments into a local
+hypothesis <code>H1</code>. The name “specialize” makes the most sense
+if the arguments are universally quantified variables, e.g. the
+hypothesis <code>H</code> says <code>forall x : T, foo x</code> and you
+have a specific <code>y</code> for which you want to know
+<code>foo y</code>, so you <code>specialize (H y).</code> On the other
+hand this is more reliably useful when <code>H2</code> is a premise of
+<code>H1</code>, since you get a strictly stronger result. Note that the
+result replaces <code>H</code> with the result of specialization, which
+makes more sense in the universally quantified variable interpretation
+but is more reliably useful in the premise interpretation. If you want
+to get a specialized version without losing the generalized version, use
+<code>pose proof</code> above.</li>
+<li><code>rewrite -&gt; H in H2.</code> /
+<code>rewrite &lt;- H in H2.</code> /
+<code>replace term with term' in H2.</code> /
+<code>replace term with term' in H2 by tactic.</code> /
+<code>change term with term' in H2.</code> / <code>unfold X in H.</code>
+/ <code>simpl in H.</code> / <code>symmetry in H.</code> all do the same
+rewriting you’d expect in a hypothesis instead of the goal.</li>
+<li><code>inversion H.</code> analyzes H using constructor injectivity
+and disjointness. That is, it unwraps a constructor from both sides:
+e.g. if H is <code>S x = S y</code>, conclude <code>x = y</code>; or, if
+H claims the equality of different constructors, it explodes the
+case.</li>
 <li><code>clear H.</code> deletes something.</li>
-<li><code>rename Hold into Hnew.</code> renames a hypothesis in the context.</li>
-<li><code>remember expr as X eqn:Hname.</code> introduces a new variable <code>X</code> equal to the expression and an equation that the variable <code>X</code> equals the expression. (There’s also <code>set (X := expr).</code> but this gives you a definition instead of an equation, which seems a bit harder to work with; you can <code>unfold</code> the newly defined variable, but can’t directly refer to the definition by name to rewrite the expression into the variable if it comes up later.)</li>
+<li><code>rename Hold into Hnew.</code> renames a hypothesis in the
+context.</li>
+<li><code>remember expr as X eqn:Hname.</code> introduces a new variable
+<code>X</code> equal to the expression and an equation that the variable
+<code>X</code> equals the expression. (There’s also
+<code>set (X := expr).</code> but this gives you a definition instead of
+an equation, which seems a bit harder to work with; you can
+<code>unfold</code> the newly defined variable, but can’t directly refer
+to the definition by name to rewrite the expression into the variable if
+it comes up later.)</li>
 </ul>
-<h3 id="introducing-universally-quantified-variables-or-lhss-of-implications">Introducing universally quantified variables or LHS’s of implications</h3>
+<h3
+id="introducing-universally-quantified-variables-or-lhss-of-implications">Introducing
+universally quantified variables or LHS’s of implications</h3>
 <ul>
-<li><p><code>intros n.</code> introduce universally quantified variables or LHS’s of implications into the context.</p>
+<li><p><code>intros n.</code> introduce universally quantified variables
+or LHS’s of implications into the context.</p>
 <ul>
-<li><code>intros [pattern].</code> combines it with a <code>destruct</code>.</li>
+<li><code>intros [pattern].</code> combines it with a
+<code>destruct</code>.</li>
 </ul></li>
-<li><code>revert m.</code> basically undoes an <code>intros</code> when it’s simple.</li>
-<li><code>generalize m.</code> undoes an <code>intro</code> in more cases, replacing <code>m</code> with a universally quantified variable. But <code>m</code> can be an expression.</li>
-<li><p><code>generalize dependent m.</code> undoes an <code>intro</code> in even more cases. It clears hypotheses depending on <code>m</code>.</p></li>
+<li><p><code>revert m.</code> basically undoes an <code>intros</code>
+when it’s simple.</p></li>
+<li><p><code>generalize m.</code> undoes an <code>intro</code> in more
+cases, replacing <code>m</code> with a universally quantified variable.
+But <code>m</code> can be an expression.</p></li>
+<li><p><code>generalize dependent m.</code> undoes an <code>intro</code>
+in even more cases. It clears hypotheses depending on
+<code>m</code>.</p></li>
 </ul>
 <h3 id="working-with-ands-and-ors">Working with Ands and Ors</h3>
 <ul>
-<li><code>split.</code> when trying to prove <code>A /\ B</code>, split into subgoals <code>A</code> and <code>B</code>. (This actually works for any goal with one constructor, and is basically just <code>constructor 1.</code>)</li>
-<li><code>left.</code> when trying to prove <code>A \/ B</code>, specifically prove <code>A</code>. (This actually works for any goal with two constructors, and is basically just <code>constructor 1.</code>)</li>
-<li><code>right.</code> when trying to prove <code>A \/ B</code>, specifically prove <code>B</code>. (This actually works for any goal with two constructors, and is basically just <code>constructor 2.</code>)</li>
-<li><code>destruct Hand as [Hleft Hright].</code> turns a hypothesis <code>A /\ B</code> into hypotheses <code>A</code> and <code>B</code>.</li>
-<li><code>destruct Hor as [Hleft | Hright].</code> uses a hypothesis <code>A \/ B</code> by splitting into cases where either <code>A</code> (named <code>Hleft</code>) or <code>B</code> (named <code>Hright</code>) is true.</li>
+<li><code>split.</code> when trying to prove <code>A /\ B</code>, split
+into subgoals <code>A</code> and <code>B</code>. (This actually works
+for any goal with one constructor, and is basically just
+<code>constructor 1.</code>)</li>
+<li><code>left.</code> when trying to prove <code>A \/ B</code>,
+specifically prove <code>A</code>. (This actually works for any goal
+with two constructors, and is basically just
+<code>constructor 1.</code>)</li>
+<li><code>right.</code> when trying to prove <code>A \/ B</code>,
+specifically prove <code>B</code>. (This actually works for any goal
+with two constructors, and is basically just
+<code>constructor 2.</code>)</li>
+<li><code>destruct Hand as [Hleft Hright].</code> turns a hypothesis
+<code>A /\ B</code> into hypotheses <code>A</code> and
+<code>B</code>.</li>
+<li><code>destruct Hor as [Hleft | Hright].</code> uses a hypothesis
+<code>A \/ B</code> by splitting into cases where either <code>A</code>
+(named <code>Hleft</code>) or <code>B</code> (named <code>Hright</code>)
+is true.</li>
 </ul>
 <p>The underlying proof objects, for the curious:</p>
 <pre><code>conj : forall A B : Prop, A -&gt; B -&gt; A /\ B
@@ -208,18 +477,25 @@ or_intror : forall A B : Prop, B -&gt; A \/ B</code></pre>
 proj2: forall A B : Prop, A /\ B -&gt; B</code></pre>
 <h3 id="working-with-existence">Working with Existence</h3>
 <ul>
-<li><code>exists x.</code> is how you prove an <code>exists a, (something about a)</code>, by explicitly exhibiting an <code>x</code> satisfying that something.</li>
-<li><code>destruct Hexists as [x H].</code> turns an existence result into the explicit example (“witness”) satisfying that result and the hypothesis stating that the result does hold for the witness.</li>
+<li><code>exists x.</code> is how you prove an
+<code>exists a, (something about a)</code>, by explicitly exhibiting an
+<code>x</code> satisfying that something.</li>
+<li><code>destruct Hexists as [x H].</code> turns an existence result
+into the explicit example (“witness”) satisfying that result and the
+hypothesis stating that the result does hold for the witness.</li>
 </ul>
 <pre><code>ex_intro : forall (A : Type) (P : A -&gt; Prop) (x : A), P x -&gt; exists y, P y</code></pre>
-<p>What <em>is</em> this <code>exists y, P y</code> business anyway? It’s special notation for <code>ex</code>:</p>
+<p>What <em>is</em> this <code>exists y, P y</code> business anyway?
+It’s special notation for <code>ex</code>:</p>
 <pre><code>&quot;&#39;exists&#39; x .. y , p&quot; := ex (fun x =&gt; .. (ex (fun y =&gt; p)) ..) : type_scope (default interpretation)
 &quot;&#39;exists&#39; ! x .. y , p&quot; := ex (unique (fun x =&gt; .. (ex (unique (fun y =&gt; p))) ..)) : type_scope (default interpretation)</code></pre>
 <pre><code>ex : forall A : Type, (A -&gt; Prop) -&gt; Prop
 
 Argument A is implicit</code></pre>
-<p>And <code>ex_intro</code> above is the one constructor of this type.</p>
-<h3 id="equality-and-negation-while-were-at-it">Equality and negation, while we’re at it</h3>
+<p>And <code>ex_intro</code> above is the one constructor of this
+type.</p>
+<h3 id="equality-and-negation-while-were-at-it">Equality and negation,
+while we’re at it</h3>
 <pre><code>eq_refl : forall (A : Type) (x : A), x = x
 
 &quot;x = y&quot; := eq x y : type_scope (default interpretation)
@@ -227,59 +503,121 @@ Argument A is implicit</code></pre>
 <h3 id="working-with-subgoals">Working with subgoals</h3>
 <p>These are the things that come out of case-splitting tactics.</p>
 <ul>
-<li><p>Bullets. Basically when you’ve spilt your goal into N subgoals, you make a list with N items, one per subgoal, each with the same bullet. It’s checked that you’ve totally finished a subgoal before you go to the next bullet on the same level. Nested levels must have different bullet types.</p>
+<li><p>Bullets. Basically when you’ve spilt your goal into N subgoals,
+you make a list with N items, one per subgoal, each with the same
+bullet. It’s checked that you’ve totally finished a subgoal before you
+go to the next bullet on the same level. Nested levels must have
+different bullet types.</p>
 <pre><code>(* some tactic that splits into three cases *)
 - (* handle case 1 *)
   + (* handle case 1.1 *)
   + (* handle case 1.2 *)
 - (* handle case 2 *)
 - (* handle case 3 *)</code></pre>
-<p>Software Foundations introduces you to the three bullets <code>-</code>, <code>+</code>, and <code>*</code>, but you can get more by repeating any of these: <code>--</code>, <code>++</code>, <code>**</code>, <code>---</code>, etc. Whether you’d want to is another matter.</p></li>
-<li><p><code>{</code> <code>}</code> serve a similar goal. <code>{</code> narrows down to a single subgoal; <code>}</code> forces you to have finished it. They can be arbitrarily nested, and reset the bullet context so you can reuse the same bullets inside and outside <code>{}</code>s. Also note that finishing one subgoal with <code>}</code> doesn’t require you to start the next one with <code>{</code>. Sometimes something like this will make sense, especially if the tactic splits into two cases with really different “weight” (e.g. <code>assert</code>ing a relatively easy lemma before continuing).</p>
+<p>Software Foundations introduces you to the three bullets
+<code>-</code>, <code>+</code>, and <code>*</code>, but you can get more
+by repeating any of these: <code>--</code>, <code>++</code>,
+<code>**</code>, <code>---</code>, etc. Whether you’d want to is another
+matter.</p></li>
+<li><p><code>{</code> <code>}</code> serve a similar goal.
+<code>{</code> narrows down to a single subgoal; <code>}</code> forces
+you to have finished it. They can be arbitrarily nested, and reset the
+bullet context so you can reuse the same bullets inside and outside
+<code>{}</code>s. Also note that finishing one subgoal with
+<code>}</code> doesn’t require you to start the next one with
+<code>{</code>. Sometimes something like this will make sense,
+especially if the tactic splits into two cases with really different
+“weight” (e.g. <code>assert</code>ing a relatively easy lemma before
+continuing).</p>
 <pre><code>(* some tactic that splits into two cases *)
 { (* handle case 1 *) }
 (* handle case 2 *)</code></pre></li>
-<li><code>1:</code>, <code>2:</code>, etc. solves a specifically numbered subgoal with a tactic or bracketed logic. I like to use this when my goal splits into two or more cases where a particular case is very easy and I don’t want to spend a layer of bullets on this split. I have no idea whether this is good style. For example, if my goal splits into two cases and the second case can be proven with <code>reflexivity</code> but the first case is very complex, I might do <code>split. 2: reflexivity.</code> and then continue with the proof of case 1. Comma-separated numbers and ranges denoted with hyphens both work. Cases are 1-indexed.</li>
-<li><code>;</code> (semicolon) solves all subgoals with the same tactic. For example, you could use <code>split; reflexivity.</code> to prove something like <code>a = a /\ b = b</code>.</li>
-<li><code>repeat</code> some tacic e.g. <code>repeat rewrite -&gt; H.</code> repeats a tactic until it fails.</li>
-<li><p><code>all:</code> applies a tactic to all subgoals. This is like <code>;</code> but you get to pause beforehand, and also is how you use goal-reordering tactics.</p></li>
+<li><p><code>1:</code>, <code>2:</code>, etc. solves a specifically
+numbered subgoal with a tactic or bracketed logic. I like to use this
+when my goal splits into two or more cases where a particular case is
+very easy and I don’t want to spend a layer of bullets on this split. I
+have no idea whether this is good style. For example, if my goal splits
+into two cases and the second case can be proven with
+<code>reflexivity</code> but the first case is very complex, I might do
+<code>split. 2: reflexivity.</code> and then continue with the proof of
+case 1. Comma-separated numbers and ranges denoted with hyphens both
+work. Cases are 1-indexed.</p></li>
+<li><p><code>;</code> (semicolon) solves all subgoals with the same
+tactic. For example, you could use <code>split; reflexivity.</code> to
+prove something like <code>a = a /\ b = b</code>.</p></li>
+<li><p><code>repeat</code> some tacic
+e.g. <code>repeat rewrite -&gt; H.</code> repeats a tactic until it
+fails.</p></li>
+<li><p><code>all:</code> applies a tactic to all subgoals. This is like
+<code>;</code> but you get to pause beforehand, and also is how you use
+goal-reordering tactics.</p></li>
 </ul>
-<p>You can try tactics but not fail if they don’t apply. This is likely only useful acting on multiple subgoals at once, so most likely after <code>;</code> or <code>all:</code>. I think they should probably be used sparingly. Or maybe in custom tactics.</p>
+<p>You can try tactics but not fail if they don’t apply. This is likely
+only useful acting on multiple subgoals at once, so most likely after
+<code>;</code> or <code>all:</code>. I think they should probably be
+used sparingly. Or maybe in custom tactics.</p>
 <ul>
 <li><code>try</code> tries a tactic but doesn’t fail if it fails.</li>
-<li><code>||</code> combines two tactics, trying the left tactic before trying the right tactic.</li>
+<li><code>||</code> combines two tactics, trying the left tactic before
+trying the right tactic.</li>
 </ul>
 <h3 id="cheating">“Cheating”</h3>
 <ul>
-<li><code>admit.</code> lets you pretend a subgoal is proved and move on. The proof will need to end with <code>Admitted.</code> instead of <code>Qed.</code></li>
+<li><code>admit.</code> lets you pretend a subgoal is proved and move
+on. The proof will need to end with <code>Admitted.</code> instead of
+<code>Qed.</code></li>
 </ul>
-<h3 id="custom-tactics-and-hint-databases">Custom tactics and hint databases</h3>
-<p>Let’s say you’re building a hint database called <code>foo</code>. If you got a theorem <code>bar</code> that you want to rewrite rightwards automatically, you can add it like:</p>
+<h3 id="custom-tactics-and-hint-databases">Custom tactics and hint
+databases</h3>
+<p>Let’s say you’re building a hint database called <code>foo</code>. If
+you got a theorem <code>bar</code> that you want to rewrite rightwards
+automatically, you can add it like:</p>
 <pre><code>Hint Rewrite bar : foo.</code></pre>
-<p>Probably only do this if <code>bar</code> doesn’t take any premises. If you want to autorewrite using a theorem <code>bar</code> with premises that might not always be true, and you only want to autorewrite when the premises can be automatically proven, you can say that the premises must be solved with <code>auto</code> to use the hint:</p>
+<p>Probably only do this if <code>bar</code> doesn’t take any premises.
+If you want to autorewrite using a theorem <code>bar</code> with
+premises that might not always be true, and you only want to autorewrite
+when the premises can be automatically proven, you can say that the
+premises must be solved with <code>auto</code> to use the hint:</p>
 <pre><code>Hint Rewrite bar2 using (solve [ auto ]) : foo.</code></pre>
 <p>After all that you can use <code>autorewrite with foo.</code></p>
 <p>The simplest way to build a custom tactic just looks like:</p>
 <pre><code>Ltac my_tactic := tactic1; tactic2; tactic3.</code></pre>
-<p>More interesting tactics will pattern match on the goal or on hypotheses. Use the syntax <code>match goal with ...</code>. The pattern has <code>|-</code> to separate hypotheses from the goal.</p>
-<p>You can name hypotheses. To name variables or expressions that might appear in the hypotheses or goal but might vary and that you want to use in the tactic, use a question mark in front of a name in the pattern. Don’t use that question mark in the body of the tactic. Example:</p>
+<p>More interesting tactics will pattern match on the goal or on
+hypotheses. Use the syntax <code>match goal with ...</code>. The pattern
+has <code>|-</code> to separate hypotheses from the goal.</p>
+<p>You can name hypotheses. To name variables or expressions that might
+appear in the hypotheses or goal but might vary and that you want to use
+in the tactic, use a question mark in front of a name in the pattern.
+Don’t use that question mark in the body of the tactic. Example:</p>
 <pre><code>Ltac subst_Some_eq :=
   match goal with
   | H : Some ?a = Some ?b |- _ =&gt;
         inversion H; subst b
   end.</code></pre>
-<p>If you want to pattern-match on any expression anywhere, use <code>context[ ]</code>.</p>
+<p>If you want to pattern-match on any expression anywhere, use
+<code>context[ ]</code>.</p>
 <pre><code>Ltac destruct_if :=
   match goal with
   | |- context[if ?a then _ else _] =&gt; destruct a
   end.</code></pre>
-<p>If you only want to do something if some variable <code>?x</code> is a variable, you can use <code>is_var x</code> before the tactic. <code>match</code> backtracks and tries matching its pattern to more hypotheses; it also tries the next branch if the branch pattern doesn’t match or if the tactics fail. Alternate: <code>lazymatch</code> doesn’t backtrack from tactic failures.</p>
-<p><code>progress</code> on some tactic only works if the tactic makes progress.</p>
-<p><code>idtac</code> is a tactic that does nothing, plus you can pass arguments to debug.</p>
-<p>The <code>fail</code> tactic takes a number, the number of levels to propagate the failure up, and then extra debugging stuff.</p>
-<p><code>first [ t1 | t2 | ... ]</code> takes some tactics and does the first one that succeeds.</p>
+<p>If you only want to do something if some variable <code>?x</code> is
+a variable, you can use <code>is_var x</code> before the tactic.
+<code>match</code> backtracks and tries matching its pattern to more
+hypotheses; it also tries the next branch if the branch pattern doesn’t
+match or if the tactics fail. Alternate: <code>lazymatch</code> doesn’t
+backtrack from tactic failures.</p>
+<p><code>progress</code> on some tactic only works if the tactic makes
+progress.</p>
+<p><code>idtac</code> is a tactic that does nothing, plus you can pass
+arguments to debug.</p>
+<p>The <code>fail</code> tactic takes a number, the number of levels to
+propagate the failure up, and then extra debugging stuff.</p>
+<p><code>first [ t1 | t2 | ... ]</code> takes some tactics and does the
+first one that succeeds.</p>
 <p><code>type of X</code> gives the, well, type of <code>X</code></p>
-<p>Ltac is also a functional programming language! Use <code>constr:(...)</code> to break back into Gallina. Note that <code>match</code> patterns are implicitly Gallina.</p>
+<p>Ltac is also a functional programming language! Use
+<code>constr:(...)</code> to break back into Gallina. Note that
+<code>match</code> patterns are implicitly Gallina.</p>
 <pre class="coq"><code>(* can&#39;t infer T sad *)
 Ltac map T f l :=
   let rec map_impl l :=
@@ -290,18 +628,29 @@ Ltac map T f l :=
 
 Goal False.
 let ls := map (nat * nat)%type ltac:(fun x -&gt; constr:((x, x))) (1 :: 2 :: 3 :: nil) in pose ls.</code></pre>
-<p>You can’t do <code>;</code> in functional programming Ltac, it turns into a procedure thing.</p>
-<p>Brackets are super precise. This applies these three tactics respectively to the three focused goals. There must be exactly three. You can omit tactics to do <code>idtac</code>, the identity tactic.</p>
+<p>You can’t do <code>;</code> in functional programming Ltac, it turns
+into a procedure thing.</p>
+<p>Brackets are super precise. This applies these three tactics
+respectively to the three focused goals. There must be exactly three.
+You can omit tactics to do <code>idtac</code>, the identity tactic.</p>
 <pre><code>[&gt; tactic1 | tactic2 | tactic3 ]</code></pre>
-<p>Note that in a proof script you have to apply to all focused goals so it would look like <code>all: [&gt; tactic1 | tactic2 | tactic3 ]</code> although this is a silly way to do it. If you’re putting this after a semicolon, you can drop the <code>&gt;</code>. I’m not sure how this works.</p>
+<p>Note that in a proof script you have to apply to all focused goals so
+it would look like <code>all: [&gt; tactic1 | tactic2 | tactic3 ]</code>
+although this is a silly way to do it. If you’re putting this after a
+semicolon, you can drop the <code>&gt;</code>. I’m not sure how this
+works.</p>
 <h3 id="frap-tactics">FRAP tactics</h3>
 <ul>
 <li><code>simplify.</code> improves on <code>simpl.</code></li>
-<li><code>cases expr.</code> improves on <code>destruct expr.</code> (No patterns though.)</li>
+<li><code>cases expr.</code> improves on <code>destruct expr.</code> (No
+patterns though.)</li>
 <li><code>invert x.</code> improves on <code>inversion x.</code></li>
 <li><code>linear_arithmetic.</code> improves on <code>lia.</code></li>
-<li><code>propositional.</code> handles and simplifies things based on propositional logic: conjunctions, disjunctions, implications…</li>
-<li><code>first_order.</code> handles and simplifies things based on first order logic. It’s more powerful, but riskier; it might run forever.</li>
+<li><code>propositional.</code> handles and simplifies things based on
+propositional logic: conjunctions, disjunctions, implications…</li>
+<li><code>first_order.</code> handles and simplifies things based on
+first order logic. It’s more powerful, but riskier; it might run
+forever.</li>
 </ul></article>
 	<footer class="post-footer">
 		
@@ -325,7 +674,7 @@ let ls := map (nat * nat)%type ltac:(fun x -&gt; constr:((x, x))) (1 :: 2 :: 3 :
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

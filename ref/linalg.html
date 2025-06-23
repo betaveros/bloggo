@@ -69,23 +69,47 @@
 		</p>
 	</header>
 	<article><p>This is a matrix.</p>
-<p><span class="math display">\[\begin{bmatrix} 1 &amp; 2 &amp; 3 \\\\ 4 &amp; 5 &amp; 6 \end{bmatrix}\]</span></p>
-<p>It has 2 rows and 3 columns, so it is a <span class="math inline">\(2 \times 3\)</span> matrix.</p>
-<p>Matrix addition and multiplication-by-a-scalar is done componentwise. Matrix multiplication is done trickily; it’s associative, distributive, commutative with scalars, linear, anticommutative-under-transposition.</p>
+<p><span class="math display">\[\begin{bmatrix} 1 &amp; 2 &amp; 3 \\\\ 4
+&amp; 5 &amp; 6 \end{bmatrix}\]</span></p>
+<p>It has 2 rows and 3 columns, so it is a <span class="math inline">\(2
+\times 3\)</span> matrix.</p>
+<p>Matrix addition and multiplication-by-a-scalar is done componentwise.
+Matrix multiplication is done trickily; it’s associative, distributive,
+commutative with scalars, linear,
+anticommutative-under-transposition.</p>
 <hr />
-<p>Vectors are like columns of matrices, or matrices with one column. Except row vectors are rows of matrices.</p>
+<p>Vectors are like columns of matrices, or matrices with one column.
+Except row vectors are rows of matrices.</p>
 <p>The three <strong>elementary row operations</strong> are:</p>
 <ol type="1">
 <li>exchanging two rows</li>
 <li>multiplying a row by a nonzero scalar</li>
 <li>adding a multiple of a row to another row</li>
 </ol>
-<p>They can each be represented by multiplying by a simple matrix to the left. Also, they’re uniquely reversible.</p>
-<p>A matrix is in <strong>echelon form</strong> if the nonzero elements are like an inverted staircase. This is vague because echelon form is not unique and usually you can just row-reduce as well. A matrix is in <strong>row-reduced echelon form</strong> if the nonzero elements are like an inverted staircase and every column where the staircase steps down has one 1 and the rest 0s. Row-reduced echelon form is useful for proving stuff. In both cases, the first nonzero entry in a nonzero row is called a <em>pivot entry</em> and the column it belongs to is called a <em>pivot column</em>. Other columns are <em>nonpivot</em> or <em>free</em>.</p>
+<p>They can each be represented by multiplying by a simple matrix to the
+left. Also, they’re uniquely reversible.</p>
+<p>A matrix is in <strong>echelon form</strong> if the nonzero elements
+are like an inverted staircase. This is vague because echelon form is
+not unique and usually you can just row-reduce as well. A matrix is in
+<strong>row-reduced echelon form</strong> if the nonzero elements are
+like an inverted staircase and every column where the staircase steps
+down has one 1 and the rest 0s. Row-reduced echelon form is useful for
+proving stuff. In both cases, the first nonzero entry in a nonzero row
+is called a <em>pivot entry</em> and the column it belongs to is called
+a <em>pivot column</em>. Other columns are <em>nonpivot</em> or
+<em>free</em>.</p>
 <hr />
-<p>A set of vectors, or anything else that behaves kind of like vectors, is a <em>vector space</em> if it’s closed under addition and multiplication by scalars. Also, it should probably be nonempty, so it includes <span class="math inline">\(\vec{\textbf{0}}\)</span>.</p>
-<p>The <em>nullspace</em> of a matrix <span class="math inline">\(A\)</span> is the space of column vectors <span class="math inline">\(\vec{\textbf{X}}\)</span> so that <span class="math inline">\(AX = \vec{\textbf{0}}\)</span>.</p>
-<p>Vector spaces have unique dimension, i.e. all spanning bases have the same size. Proof: Take one spanning base and express it in terms of another. Adjust the base elements one by one to match each other.</p>
+<p>A set of vectors, or anything else that behaves kind of like vectors,
+is a <em>vector space</em> if it’s closed under addition and
+multiplication by scalars. Also, it should probably be nonempty, so it
+includes <span class="math inline">\(\vec{\textbf{0}}\)</span>.</p>
+<p>The <em>nullspace</em> of a matrix <span
+class="math inline">\(A\)</span> is the space of column vectors <span
+class="math inline">\(\vec{\textbf{X}}\)</span> so that <span
+class="math inline">\(AX = \vec{\textbf{0}}\)</span>.</p>
+<p>Vector spaces have unique dimension, i.e. all spanning bases have the
+same size. Proof: Take one spanning base and express it in terms of
+another. Adjust the base elements one by one to match each other.</p>
 <p>The dimension of the nullspace is the <em>nullity</em>.</p>
 </article>
 	<footer class="post-footer">
@@ -110,7 +134,7 @@
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

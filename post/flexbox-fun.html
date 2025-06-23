@@ -70,68 +70,212 @@ While making these changes, I ended up digging through the flexbox spec to debug
 		
 		</p>
 	</header>
-	<article><p>This post is brought to you by “I am procrastinating other stuff by doing some long overdue maintenance on my blog”. Mainly, I finally replaced the old <code>float</code>-based layout from the random Hugo theme I forked, which I had been keeping just because it wasn’t broken, with flexbox, so that I could more easily tweak some other things. If things look broken, you may need to force-refresh or clear your cache, and on the off chance things look mostly the same but you feel like something about the layout feels subtly different, that’s what’s up.</p>
-<p>While making these changes, I ended up digging through the <a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/">flexbox spec</a> to debug an issue and learned some interesting things. (This and other links in this post are permalinks to the November 2018 spec, which I believe is the most recent official version as of time of writing, but it’s nearly three years and there have been quite a few changes in the “editor’s draft”. Also, this post is not a flexbox tutorial and will not make sense if you are already familiar with flexbox.)</p>
+	<article><p>This post is brought to you by “I am procrastinating other stuff by
+doing some long overdue maintenance on my blog”. Mainly, I finally
+replaced the old <code>float</code>-based layout from the random Hugo
+theme I forked, which I had been keeping just because it wasn’t broken,
+with flexbox, so that I could more easily tweak some other things. If
+things look broken, you may need to force-refresh or clear your cache,
+and on the off chance things look mostly the same but you feel like
+something about the layout feels subtly different, that’s what’s up.</p>
+<p>While making these changes, I ended up digging through the <a
+href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/">flexbox
+spec</a> to debug an issue and learned some interesting things. (This
+and other links in this post are permalinks to the November 2018 spec,
+which I believe is the most recent official version as of time of
+writing, but it’s nearly three years and there have been quite a few
+changes in the “editor’s draft”. Also, this post is not a flexbox
+tutorial and will not make sense if you are already familiar with
+flexbox.)</p>
 <ol type="1">
-<li><p>If the <a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#valdef-flex-flex-grow">values of <code>flex-grow</code> sum to less than 1</a>, only that fraction of all the free space will be allocated. Most people will never encounter this unusual behavior because <code>flex-grow</code> is usually a nonnegative integer. The reason for it is basically to allow <code>flex-grow</code> to animate smoothly.</p></li>
-<li><p>You can <a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#visibility-collapse">collapse flex items with <code>visibility: collapse</code></a>, causing them to not render except that their <em>cross size</em> is still taken into account. (The cross size is the dimension perpendicular to the flex main axis, i.e. the height of a flex row and the width of a flex column.) This is mainly useful when the flex item might be dynamically collapsed and uncollapsed, and you want to limit the ripple effects of that on the layout; the spec link has a more complete example.</p></li>
-<li><p>(The previous two fun facts were just window dressing, this is the fun issue I was actually investigating…) In browsers today, in a flex row, <code>width</code> counts towards the max-content of the flex container, but <code>flex-basis</code> doesn’t.</p>
-<p>As a concrete example, many browsers currently render the inner <code>&lt;div&gt;</code> below as actually 200em wide, way overflowing the container:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">&lt;div</span><span class="ot"> style=</span><span class="st">&quot;display: flex&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb1-2" title="2">  <span class="kw">&lt;div</span><span class="ot"> style=</span><span class="st">&quot;display: flex&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb1-3" title="3">    <span class="kw">&lt;div</span><span class="ot"> style=</span><span class="st">&quot;background-color: orange; width: 200em&quot;</span><span class="kw">&gt;</span>hello<span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb1-4" title="4">  <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw">&lt;/div&gt;</span></a></code></pre></div>
-<p>However, they render the inner <code>&lt;div&gt;</code> below as just the width of “hello”:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">&lt;div</span><span class="ot"> style=</span><span class="st">&quot;display: flex&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb2-2" title="2">  <span class="kw">&lt;div</span><span class="ot"> style=</span><span class="st">&quot;display: flex&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb2-3" title="3">    <span class="kw">&lt;div</span><span class="ot"> style=</span><span class="st">&quot;background-color: orange; flex-basis: 200em&quot;</span><span class="kw">&gt;</span>hello<span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb2-4" title="4">  <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="kw">&lt;/div&gt;</span></a></code></pre></div>
-<p>The top <a href="https://stackoverflow.com/a/34355447">StackOverflow answer on flex-basis vs width</a> argues that, according to the spec, there should be <em>“no difference”</em> between <code>width</code> and <code>flex-basis</code> under some simple preconditions (including, of course, that the flex direction is <code>row</code> or <code>row-reverse</code> — for reasons we’ll explore, I don’t think this claim is true, but I am not confident that I’m right or that this isn’t the result of spec changes since the answer). However, nested flex containers are quite buggy in browsers, with several important aspects ironically only functioning correctly in Edge. Here’s the most recently updated <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1055887">Firefox bug</a> and <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=240765">Chromium bug</a> I found. Why do <code>width</code> and <code>flex-basis</code> behave weirdly in nested flex containers? I could not find any resources that seemed more worth investigating than the W3C spec itself.</p>
+<li><p>If the <a
+href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#valdef-flex-flex-grow">values
+of <code>flex-grow</code> sum to less than 1</a>, only that fraction of
+all the free space will be allocated. Most people will never encounter
+this unusual behavior because <code>flex-grow</code> is usually a
+nonnegative integer. The reason for it is basically to allow
+<code>flex-grow</code> to animate smoothly.</p></li>
+<li><p>You can <a
+href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#visibility-collapse">collapse
+flex items with <code>visibility: collapse</code></a>, causing them to
+not render except that their <em>cross size</em> is still taken into
+account. (The cross size is the dimension perpendicular to the flex main
+axis, i.e. the height of a flex row and the width of a flex column.)
+This is mainly useful when the flex item might be dynamically collapsed
+and uncollapsed, and you want to limit the ripple effects of that on the
+layout; the spec link has a more complete example.</p></li>
+<li><p>(The previous two fun facts were just window dressing, this is
+the fun issue I was actually investigating…) In browsers today, in a
+flex row, <code>width</code> counts towards the max-content of the flex
+container, but <code>flex-basis</code> doesn’t.</p>
+<p>As a concrete example, many browsers currently render the inner
+<code>&lt;div&gt;</code> below as actually 200em wide, way overflowing
+the container:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;display: flex&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">div</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;display: flex&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">div</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;background-color: orange; width: 200em&quot;</span><span class="dt">&gt;</span>hello<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>However, they render the inner <code>&lt;div&gt;</code> below as just
+the width of “hello”:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;display: flex&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">div</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;display: flex&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">div</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;background-color: orange; flex-basis: 200em&quot;</span><span class="dt">&gt;</span>hello<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>The top <a href="https://stackoverflow.com/a/34355447">StackOverflow
+answer on flex-basis vs width</a> argues that, according to the spec,
+there should be <em>“no difference”</em> between <code>width</code> and
+<code>flex-basis</code> under some simple preconditions (including, of
+course, that the flex direction is <code>row</code> or
+<code>row-reverse</code> — for reasons we’ll explore, I don’t think this
+claim is true, but I am not confident that I’m right or that this isn’t
+the result of spec changes since the answer). However, nested flex
+containers are quite buggy in browsers, with several important aspects
+ironically only functioning correctly in Edge. Here’s the most recently
+updated <a
+href="https://bugzilla.mozilla.org/show_bug.cgi?id=1055887">Firefox
+bug</a> and <a
+href="https://bugs.chromium.org/p/chromium/issues/detail?id=240765">Chromium
+bug</a> I found. Why do <code>width</code> and <code>flex-basis</code>
+behave weirdly in nested flex containers? I could not find any resources
+that seemed more worth investigating than the W3C spec itself.</p>
 <blockquote>
-Authors writing web pages should generally be served well by the individual property descriptions, and do not need to read this section unless they have a deep-seated urge to understand arcane details of CSS layout.
+Authors writing web pages should generally be served well by the
+individual property descriptions, and do not need to read this section
+unless they have a deep-seated urge to understand arcane details of CSS
+layout.
 <footer>
-— the spec, <a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#layout-algorithm">§ 9. Flex Layout Algorithm</a>
+— the spec, <a
+href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#layout-algorithm">§
+9. Flex Layout Algorithm</a>
 </footer>
 </blockquote>
-<p>Crudely, when items don’t have explicit sizes, the flexbox layout algorithm starts by <a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#hypothetical-main-size">sizing the flex items “under a max-content constraint”</a>, which roughly means that it lays the items out in an imaginary void where they’re allowed to take up as much space as they want, but won’t take up any extra space for no reason. For example, text will all go on a single line and never wrap. Then it uses the size of that imaginary laid-out item as a starting point to flex.</p>
-<p>You can actually replicate the imaginary void layout with <code>width: max-content</code>, and indeed, these two examples show the same diverging behavior as the two previous examples:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">&lt;div</span><span class="ot"> style=</span><span class="st">&quot;display: flex; width: max-content&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb3-2" title="2">  <span class="kw">&lt;div</span><span class="ot"> style=</span><span class="st">&quot;background-color: orange; width: 200em&quot;</span><span class="kw">&gt;</span>hello<span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="kw">&lt;/div&gt;</span></a></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">&lt;div</span><span class="ot"> style=</span><span class="st">&quot;display: flex; width: max-content&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb4-2" title="2">  <span class="kw">&lt;div</span><span class="ot"> style=</span><span class="st">&quot;background-color: orange; flex-basis: 200em&quot;</span><span class="kw">&gt;</span>hello<span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="kw">&lt;/div&gt;</span></a></code></pre></div>
-<p>In our case, the flex item is itself a flex container, so we have to size it “under a max-content constraint”. As far as I can determine, this is calculated based on <a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#intrinsic-main-sizes">§ 9.9.1. Flex Container Intrinsic Main Sizes</a>, which has an algorithm that’s incredibly convoluted, for what seems to be the same reason Fun Fact #1 is true: to ensure that changing <code>flex-grow</code> or <code>flex-shrink</code> smoothly also changes calculated dimensions smoothly. Based on the expository green note, our case seems to boil down to wanting the “max-content contribution” of the single flex item, which is then defined in <a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#intrinsic-item-contributions">§ 9.9.3. Flex Item Intrinsic Size Contributions</a>:</p>
+<p>Crudely, when items don’t have explicit sizes, the flexbox layout
+algorithm starts by <a
+href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#hypothetical-main-size">sizing
+the flex items “under a max-content constraint”</a>, which roughly means
+that it lays the items out in an imaginary void where they’re allowed to
+take up as much space as they want, but won’t take up any extra space
+for no reason. For example, text will all go on a single line and never
+wrap. Then it uses the size of that imaginary laid-out item as a
+starting point to flex.</p>
+<p>You can actually replicate the imaginary void layout with
+<code>width: max-content</code>, and indeed, these two examples show the
+same diverging behavior as the two previous examples:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;display: flex; width: max-content&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">div</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;background-color: orange; width: 200em&quot;</span><span class="dt">&gt;</span>hello<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;display: flex; width: max-content&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">div</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;background-color: orange; flex-basis: 200em&quot;</span><span class="dt">&gt;</span>hello<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>In our case, the flex item is itself a flex container, so we have to
+size it “under a max-content constraint”. As far as I can determine,
+this is calculated based on <a
+href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#intrinsic-main-sizes">§ 9.9.1.
+Flex Container Intrinsic Main Sizes</a>, which has an algorithm that’s
+incredibly convoluted, for what seems to be the same reason Fun Fact #1
+is true: to ensure that changing <code>flex-grow</code> or
+<code>flex-shrink</code> smoothly also changes calculated dimensions
+smoothly. Based on the expository green note, our case seems to boil
+down to wanting the “max-content contribution” of the single flex item,
+which is then defined in <a
+href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#intrinsic-item-contributions">§ 9.9.3.
+Flex Item Intrinsic Size Contributions</a>:</p>
 <blockquote>
-<p>The main-size max-content contribution of a flex item is the larger of its outer max-content size and outer preferred size (its width/height as appropriate) clamped by its flex base size as a maximum (if it is not growable) and/or as a minimum (if it is not shrinkable), and then further clamped by its min/max main size.</p>
+<p>The main-size max-content contribution of a flex item is the larger
+of its outer max-content size and outer preferred size (its width/height
+as appropriate) clamped by its flex base size as a maximum (if it is not
+growable) and/or as a minimum (if it is not shrinkable), and then
+further clamped by its min/max main size.</p>
 </blockquote>
-<p>The plot thickens. This is one of very few references to “preferred size” — that is, the <code>width</code> or <code>height</code> (of a flex row item or flex column item, respectively) — rather than “flex base size” in the flexbox spec; the latter is what <code>flex-basis</code> controls, but often defaults to <code>width</code> or <code>height</code>, and is why they’re so similar. As far as I understand:</p>
+<p>The plot thickens. This is one of very few references to “preferred
+size” — that is, the <code>width</code> or <code>height</code> (of a
+flex row item or flex column item, respectively) — rather than “flex
+base size” in the flexbox spec; the latter is what
+<code>flex-basis</code> controls, but often defaults to
+<code>width</code> or <code>height</code>, and is why they’re so
+similar. As far as I understand:</p>
 <ul>
-<li>In our first examples, the innermost <code>&lt;div&gt;</code>s have preferred sizes of 200em. That’s also their flex base size, so that’s their main-size max-content contribution.</li>
-<li>In our second examples, the innermost <code>&lt;div&gt;</code>s do not have preferred sizes, so we take their max-content size, the width of the text inside them. Because they are shrinkable (<code>flex-shrink</code> defaults to 1), we <em>don’t</em> clamp by their flex base size. So their main-size max-content contribution is actually the width of their text.</li>
+<li>In our first examples, the innermost <code>&lt;div&gt;</code>s have
+preferred sizes of 200em. That’s also their flex base size, so that’s
+their main-size max-content contribution.</li>
+<li>In our second examples, the innermost <code>&lt;div&gt;</code>s do
+not have preferred sizes, so we take their max-content size, the width
+of the text inside them. Because they are shrinkable
+(<code>flex-shrink</code> defaults to 1), we <em>don’t</em> clamp by
+their flex base size. So their main-size max-content contribution is
+actually the width of their text.</li>
 </ul>
-<p>I don’t know why the spec is like this exactly and could easily have misunderstood or skipped something, but this logic seems to suggest that our two <code>&lt;div&gt;</code>s should indeed be laid out differently. (This is arguably different from the reported browser bugs and examples, where the inner <code>&lt;div&gt;</code> has the expected size but the middle <code>&lt;div&gt;</code> is sized strangely, and where I think the § 9.9.1 algorithm should just be summing up the flex base sizes because the items are inflexible, but doesn’t appear to be.)</p>
-<p>Anyway: because <code>flex-grow</code> defaults to 0, it makes sense that our narrow second examples stay narrow; but <code>flex-shrink</code> does default to 1, so in our first examples, there’s the remaining question of why the inner <code>&lt;div&gt;</code>s don’t shrink to fit in the outer <code>&lt;div&gt;</code>. While the algorithm for <a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#resolve-flexible-lengths">resolving flexible lengths</a> is pretty intimidating, the important part is what it considers a “min/max violation”: when the width passes the “min/max main size”, which in our case is <code>min-width</code>.</p>
-<p>Now (and these are from the CSS Sizing module rather than flexbox), the <a href="https://www.w3.org/TR/2021/WD-css-sizing-3-20211217/#min-size-properties">default value of <code>min-width</code></a> is <code>auto</code>, which is actually <a href="https://www.w3.org/TR/2021/WD-css-sizing-3-20211217/#valdef-width-auto">just 0 for most vanilla HTML elements</a>; but <a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#min-size-auto">§ 4.5. Automatic Minimum Size of Flex Items</a> overrides that definition for flexbox items to… yet another complicated amalgamation of conditions, but in our case I believe it’s the “min-content main size” of the item. Since the item is itself a container, we’re sent back to <a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#intrinsic-main-sizes">§ 9.9.1</a> and <a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#intrinsic-item-contributions">§ 9.9.3</a> to read the min counterparts to the metrics we previously encountered, and want to calculate the “min-content contribution” of the single innermost flex item. But here we just end up using the preferred size, 200em, as the min-content contribution again.</p>
-<p>Therefore, it makes sense that none of the <code>&lt;div&gt;</code>s shrink in the first example in each pair.</p></li>
-<li><p>But I actually glossed over the most fun fact of all: we saw two inner <code>&lt;div&gt;</code>s, one way too wide and the other way too narrow, but there’s a good chance neither behavior is what we want. Instead, we want the <code>&lt;div&gt;</code> to “start out too wide”, but flex by shrinking to the width of the outer <code>&lt;div&gt;</code>. Isn’t flexing the point of flexbox?</p>
+<p>I don’t know why the spec is like this exactly and could easily have
+misunderstood or skipped something, but this logic seems to suggest that
+our two <code>&lt;div&gt;</code>s should indeed be laid out differently.
+(This is arguably different from the reported browser bugs and examples,
+where the inner <code>&lt;div&gt;</code> has the expected size but the
+middle <code>&lt;div&gt;</code> is sized strangely, and where I think
+the § 9.9.1 algorithm should just be summing up the flex base sizes
+because the items are inflexible, but doesn’t appear to be.)</p>
+<p>Anyway: because <code>flex-grow</code> defaults to 0, it makes sense
+that our narrow second examples stay narrow; but
+<code>flex-shrink</code> does default to 1, so in our first examples,
+there’s the remaining question of why the inner
+<code>&lt;div&gt;</code>s don’t shrink to fit in the outer
+<code>&lt;div&gt;</code>. While the algorithm for <a
+href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#resolve-flexible-lengths">resolving
+flexible lengths</a> is pretty intimidating, the important part is what
+it considers a “min/max violation”: when the width passes the “min/max
+main size”, which in our case is <code>min-width</code>.</p>
+<p>Now (and these are from the CSS Sizing module rather than flexbox),
+the <a
+href="https://www.w3.org/TR/2021/WD-css-sizing-3-20211217/#min-size-properties">default
+value of <code>min-width</code></a> is <code>auto</code>, which is
+actually <a
+href="https://www.w3.org/TR/2021/WD-css-sizing-3-20211217/#valdef-width-auto">just
+0 for most vanilla HTML elements</a>; but <a
+href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#min-size-auto">§ 4.5.
+Automatic Minimum Size of Flex Items</a> overrides that definition for
+flexbox items to… yet another complicated amalgamation of conditions,
+but in our case I believe it’s the “min-content main size” of the item.
+Since the item is itself a container, we’re sent back to <a
+href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#intrinsic-main-sizes">§ 9.9.1</a>
+and <a
+href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#intrinsic-item-contributions">§ 9.9.3</a>
+to read the min counterparts to the metrics we previously encountered,
+and want to calculate the “min-content contribution” of the single
+innermost flex item. But here we just end up using the preferred size,
+200em, as the min-content contribution again.</p>
+<p>Therefore, it makes sense that none of the <code>&lt;div&gt;</code>s
+shrink in the first example in each pair.</p></li>
+<li><p>But I actually glossed over the most fun fact of all: we saw two
+inner <code>&lt;div&gt;</code>s, one way too wide and the other way too
+narrow, but there’s a good chance neither behavior is what we want.
+Instead, we want the <code>&lt;div&gt;</code> to “start out too wide”,
+but flex by shrinking to the width of the outer
+<code>&lt;div&gt;</code>. Isn’t flexing the point of flexbox?</p>
 <p>One solution is to just set the width of the middle container.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">&lt;div</span><span class="ot"> style=</span><span class="st">&quot;display: flex&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb5-2" title="2">  <span class="kw">&lt;div</span><span class="ot"> style=</span><span class="st">&quot;display: flex; width: 100%&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb5-3" title="3">    <span class="kw">&lt;div</span><span class="ot"> style=</span><span class="st">&quot;background-color: orange; width: 200em&quot;</span><span class="kw">&gt;</span>hello<span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb5-4" title="4">  <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="kw">&lt;/div&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;display: flex&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">div</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;display: flex; width: 100%&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">div</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;background-color: orange; width: 200em&quot;</span><span class="dt">&gt;</span>hello<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div>
 <p>Another is to override the flex-item min-width.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">&lt;div</span><span class="ot"> style=</span><span class="st">&quot;display: flex&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-2" title="2">  <span class="kw">&lt;div</span><span class="ot"> style=</span><span class="st">&quot;display: flex; min-width: 0&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-3" title="3">    <span class="kw">&lt;div</span><span class="ot"> style=</span><span class="st">&quot;background-color: orange; width: 200em&quot;</span><span class="kw">&gt;</span>hello<span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-4" title="4">  <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="kw">&lt;/div&gt;</span></a></code></pre></div>
-<p>Setting the flex-basis of the middle container does <em>not</em> work, because min-width is “stronger”.</p></li>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;display: flex&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">div</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;display: flex; min-width: 0&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">div</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;background-color: orange; width: 200em&quot;</span><span class="dt">&gt;</span>hello<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>Setting the flex-basis of the middle container does <em>not</em>
+work, because min-width is “stronger”.</p></li>
 </ol>
-<p>Here is a quick <a href="https://codepen.io/betaveros/pen/OJZxdWE">CodePen</a> with all the examples in this post.</p></article>
+<p>Here is a quick <a
+href="https://codepen.io/betaveros/pen/OJZxdWE">CodePen</a> with all the
+examples in this post.</p></article>
 	<footer class="post-footer">
 		
 	</footer>
@@ -154,7 +298,7 @@ Authors writing web pages should generally be served well by the individual prop
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2024 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,
