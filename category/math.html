@@ -65,6 +65,50 @@ Category → math
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/imo-2025" class="post-link">Gold-medaling the 2025 IMO was easier than average</a></h3>
+		
+		<p class="post-meta">
+		
+		2025-09-03
+		(1425 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<div class="series">
+<p>(Background/disclaimer: I work at Anthropic, far from any efforts
+related to math reasoning or evaluations; opinions are my own. I was an
+IMO gold medalist in 2012.)</p>
+</div>
+<p>I way missed the news window on this one, but I thought it was
+interesting and a bit underappreciated that the fraction of gold
+medalists at the 2025 IMO (72/630 = 11.4%) is the highest it’s been
+since 1981.</p>
+<p>Crudely, IMO gold medals are awarded to the highest-scoring 1/12 of
+contestants.<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> However, because scores are integers
+up to 42 and there’s no provision for tiebreaking, it’s possible for a
+lot of contestants to be tied around the threshold. In that case, either
+all of them get a gold medal or none do, and the fraction of gold
+medalists might deviate substantially from 1/12. That’s what happened
+this year: 46 contestants all won a gold medal by scoring exactly 35
+points.</p>
+<p>Here’s a comparison with the fraction of IMO gold medalists for each
+year since 2000. (See <a href="#appendix-full-stats">appendix 1</a> for
+a full table and <a href="#appendix-reference-class">appendix 2</a> for
+discussion of the choice of 2000.)</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/imo-2025">→ read more<span class="offscreen"> Gold-medaling the 2025 IMO was easier than average</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/elliptic-curves" class="post-link">Just Enough Elliptic Curves to Be Dangerous</a></h3>
 		
 		<p class="post-meta">
@@ -510,72 +554,6 @@ to it, and no smaller value satisfies the same property.</p>
 Mnemonic Here’s my mnemonic table for digits, inspired by an old Martin Gardner column. I wrote from memory the first 132 digits of 2012! correctly at IMO 2012 with this table. I had remembered more, but unfortunately, if I recall correctly, I confused myself over whether I had encoded a 5 or a 2 by the S of “nose”, because this is supposed to be more of a phonetic code than a spelling one — otherwise double letters would be confusing and lots of randomly appearing digraphs would be wasted, because English is weird.
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/numbers">→ read more<span class="offscreen"> Numbers</span></a>
-	</footer>
-</article>
-
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/haskell" class="post-link">Haskell and Primes</a></h3>
-		
-		<p class="post-meta">
-		
-		2013-05-25
-		(682 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/math">Math</a>, <a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-“I have been told that any encryption becomes safer if the underlying
-algorithm is maximally obscured, what is most conveniently done by
-coding it in Haskell.” – rankk
-</blockquote>
-<p>Functional programming is terribly addicting! Partly I think the
-completely different way of thinking makes it feel like learning
-programming, and falling in love with it, all over again. Partly there’s
-this evil sense of satisfaction from using <code>$</code>s (and later
-<code>&lt;$&gt;</code>s and <code>=&lt;&lt;</code>s and
-<code>&amp;&amp;&amp;</code>s) to improve readability for initiated
-Haskellers and worsen it for everybody else. Partly it’s because
-<a href="http://learnyouahaskell.com/"><i>Learn You a Haskell for Great
-Good!</i></a> is such a fun read — there are too many funny bits to list
-but my favorite so far is when the author analyzes the first verse of
-Avril Lavigne’s <em>Girlfriend</em>.</p>
-<p>Although I think my code in Haskell tends to be more readable than in
-other languages, code obfuscation in Haskell is almost natural: all you
-have to do is refactor the wrong function to be “pointfree”, which means
-that even though it’s a function that takes arguments, you define it
-without parameters by manipulating and joining a bunch of other
-functions. Example (plus a few other tiny obfuscations):</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>isPrime <span class="ot">=</span> liftA2 (<span class="op">&amp;&amp;</span>) (liftA2 (<span class="op">$</span>) (<span class="fu">all</span> <span class="op">.</span> ((<span class="op">.</span>) (<span class="dv">0</span> <span class="op">/=</span>)) <span class="op">.</span> <span class="fu">rem</span>) (<span class="fu">flip</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">takeWhile</span> [<span class="dv">2</span><span class="op">..</span>] <span class="op">.</span> (<span class="fu">flip</span> (<span class="op">.</span>) <span class="op">$</span> liftA2 (<span class="op">*</span>) <span class="fu">id</span> <span class="fu">id</span>) <span class="op">.</span> (<span class="op">&gt;=</span>))) ((<span class="op">&lt;</span>) <span class="dv">1</span>)</span></code></pre></div>
-<p>QQ wordpress why no Haskell highlighting <ins>(Editor’s note from
-2017: The migration should highlight this now!)</ins></p>
-<p>Also, for some reason, you can do this in Haskell:</p>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ghci<span class="op">&gt;</span> <span class="kw">let</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span> <span class="ot">=</span> <span class="dv">5</span> <span class="kw">in</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span></span></code></pre></div>
-<p>(via <a href="http://www.yellosoft.us/evilgenius/">Haskell for the
-Evil Genius</a>)</p>
-<hr />
-<p>Okay, but seriously now. I wrote this about my journey to learn
-functional programming in the
-<a href="//blog.vero.site/post/programming">programming babble post</a> half a
-year ago:</p>
-<blockquote>
-The main obstacle I have is that it’s hard to optimize or get
-asymptotics when computation is expensive (a big problem if you’re
-trying to learn through Project Euler problems, particularly ones with
-lots of primes).
-</blockquote>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/haskell">→ read more<span class="offscreen"> Haskell and Primes</span></a>
 	</footer>
 </article>
 

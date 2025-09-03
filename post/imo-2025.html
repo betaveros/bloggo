@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>Gold-medaling the 2025 IMO was easier than average</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content=" (Background/disclaimer: I work at Anthropic, far from any efforts related to math reasoning or evaluations; opinions are my own. I was an IMO gold medalist in 2012.)
+I way missed the news window on this one, but I thought it was interesting and a bit underappreciated that the fraction of gold medalists at the 2025 IMO (72/630 = 11.4%) is the highest it’s been since 1981.
+Crudely, IMO gold medals are awarded to the highest-scoring 1/12 of contestants.1 However, because scores are integers up to 42 and there’s no provision for tiebreaking, it’s possible for a lot of contestants to be tied around the threshold. In that case, either all of them get a gold medal or none do, and the fraction of gold medalists might deviate substantially from 1/12. That’s what happened this year: 46 contestants all won a gold medal by scoring exactly 35 points.
+Here’s a comparison with the fraction of IMO gold medalists for each year since 2000. (See appendix 1 for a full table and appendix 2 for discussion of the choice of 2000.)
+" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/imo-2025" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+<div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/ref">References</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Gold-medaling the 2025 IMO was easier than average</h1>
+		
+		<p class="post-meta">
+		
+		2025-09-03
+		(1425 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><div class="series">
+<p>(Background/disclaimer: I work at Anthropic, far from any efforts
+related to math reasoning or evaluations; opinions are my own. I was an
+IMO gold medalist in 2012.)</p>
+</div>
+<p>I way missed the news window on this one, but I thought it was
+interesting and a bit underappreciated that the fraction of gold
+medalists at the 2025 IMO (72/630 = 11.4%) is the highest it’s been
+since 1981.</p>
+<p>Crudely, IMO gold medals are awarded to the highest-scoring 1/12 of
+contestants.<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> However, because scores are integers
+up to 42 and there’s no provision for tiebreaking, it’s possible for a
+lot of contestants to be tied around the threshold. In that case, either
+all of them get a gold medal or none do, and the fraction of gold
+medalists might deviate substantially from 1/12. That’s what happened
+this year: 46 contestants all won a gold medal by scoring exactly 35
+points.</p>
+<p>Here’s a comparison with the fraction of IMO gold medalists for each
+year since 2000. (See <a href="#appendix-full-stats">appendix 1</a> for
+a full table and <a href="#appendix-reference-class">appendix 2</a> for
+discussion of the choice of 2000.)</p>
+<figure id="medal-cutoff-bee-swarm" style="text-align: center">
+</figure>
+<style>
+#stats-body { margin: 0 auto; }
+#stats-body td { padding: .1em .4em; border: 0; }
+#stats-head th { background-color: #f2f2f2; position: sticky; top: 0; z-index: 10; }
+.stat-cell { text-align: right; font-variant-numeric: tabular-nums; }
+.medal-gold { fill: #FFCC00; }
+.medal-silver { fill: #CCCCCC; }
+.medal-bronze { fill: #CC9966; }
+.medal-hm { fill: #FF3399; }
+.medal-none { fill: #99CCFF; }
+</style>
+<p>In fact, bizarrely, 35 is the <em>mode</em> of the scores this year;
+the last time the modal score was a gold medal score was in 1994. And,
+of course, 35 is the same score claimed by AI systems from Google,
+OpenAI, and others.</p>
+<p>We can also consider the IMO 2025 problems individually. In the Epoch
+AI newsletter, Greg Burnham <a
+href="https://epoch.ai/gradient-updates/we-didnt-learn-much-from-the-imo">combines
+a subjective analysis</a> with Evan Chen’s <a
+href="https://web.evanchen.cc/upload/MOHS-hardness.pdf">MOHS</a> ratings
+to argue that the first five problems at IMO 2025 were unusually easy
+and the sixth was unusually hard, so it’s not surprising that the first
+five problems were exactly the ones solved by these AIs. Though I’m not
+sure the MOHS scale is rigorous enough to make sense as the
+<i>x</i>-axis of a bar chart,<a href="#fn2" class="footnote-ref"
+id="fnref2" role="doc-noteref"><sup>2</sup></a> it’s easy to corroborate
+the high-level story with the official IMO statistics. Based on average
+scores, this year’s Problem 6 was the fourth hardest and its Problem 3
+was by far the easiest of all Problem 3s and 6s since 2000.<a
+href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a></p>
+<figure id="bee-swarm-plot" style="text-align: center">
+</figure>
+<p>Despite all this, 88th percentile among some of the best high school
+students in the world is still impressive. I was particularly impressed
+that the AI systems produced natural language proofs from natural
+language statements, rather than formal proofs from formal statements
+(with a proof assistant like Lean, as <a
+href="https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/">Google
+DeepMind’s AlphaProof</a> did last year).<a href="#fn4"
+class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>I would rather bang on the drum that the IMO is a lousy benchmark
+even for humans. It’s not primarily intended to be one! There are only
+six problems on it! Scores will have a lot more variance based on
+whether the specific problems chosen for the IMO are similar to problems
+you’ve practiced or are just better at for whatever reason. I hope it’s
+intuitive why you might not want to evaluate, say, lawyers with a
+six-question law exam. To say nothing of the once-in-a-lifetime
+circumstances — jet-lagged in a foreign country, eating and drinking an
+unfamiliar local cuisine, possibly missing all their usual math
+stationery because of delayed luggage<a href="#fn5" class="footnote-ref"
+id="fnref5" role="doc-noteref"><sup>5</sup></a> — that nearly all
+official contestants solve these problems in.</p>
+<p>One redeeming quality of using the IMO as an evaluation might be
+that, because IMO problems are widely scrutinized for originality, the
+models are very unlikely to have seen the problems in training (i.e.,
+test-set contamination is less likely). I have no reason to think this
+happened this year, but I don’t think it’s impossible, and because there
+are, again, only six problems, the small probability that this has
+happened is a bigger deal. Funny anecdote: when <a
+href="https://artofproblemsolving.com/community/c6h1670582p10626557">IMO
+2018 Problem 3</a> came out, several internet sleuths recognized the
+problem from older publications, one of which had among its coauthors…
+yours truly, while he was in fourth grade.</p>
+<p>Many researchers around the world have developed many benchmarks and
+other methods for evaluating frontier AI systems. Some of these
+evaluations have their own issues, but at least they’re trying to be
+evaluations, and together, I think they form a compelling case that
+frontier AI systems have impressive capabilities, including in solving
+difficult math problems. I don’t think that these systems’ raw scores
+and medal ranking at IMO 2025 add much to the mix.</p>
+<p>For more commentary from a math contest insider, read <a
+href="https://mathstodon.xyz/@tao/114881418225852441">Terence
+Tao</a>.</p>
+<h3 id="appendix-full-stats">Appendix 1: Full gold medal stats</h3>
+<figure>
+<table style="margin: 0 auto">
+<thead id="stats-head">
+<tr>
+<th>
+Year
+</th>
+<th>
+Gold %
+</th>
+<th>
+Cutoff
+</th>
+<th>
+Score Distribution
+</th>
+</thead>
+<tbody id="stats-body">
+</tbody>
+</table>
+</figure>
+<p>I threw a page with <a href="http://betaveros.github.io/imo">even
+“fuller” stats</a> onto GitHub. Though, consider the next appendix.</p>
+<h3 id="appendix-reference-class">Appendix 2: What’s the right reference
+class?</h3>
+<p>To argue that an IMO is easier than average, what IMOs should I
+average over?</p>
+<p>I think the easiest answer to defend is “IMOs after 1981
+(inclusive)”, since there was no “official” <a
+href="https://artofproblemsolving.com/wiki/index.php?title=1980_IMO">IMO
+1980</a> due to political sanctions and 1979 → 1981 is the last time the
+maximum number of points changed. With that reference point, while 2025
+is still an outlier, it pales in comparison to 1981.</p>
+<figure id="full-medal-cutoff-bee-swarm" style="text-align: center">
+</figure>
+<p>Since the <a
+href="https://www.imo-official.org/year_individual_r.aspx?year=1981&amp;column=total&amp;order=desc">IMO
+1981 scores</a> are apparently lost to time, we might start per-problem
+comparisons from 1982 out of practicality. 2025’s P3 also looks like
+less of an outlier:</p>
+<figure id="threes-bee-swarm-plot" style="text-align: center">
+</figure>
+<p>However, by slicing this data differently we can see that problems
+have gotten much harder since then:</p>
+<figure id="eras-bee-swarm-plot" style="text-align: center">
+</figure>
+<p>I picked 2000 because it’s a round number and it matches the start of
+MOHS ratings, but based on the IMO alone I don’t have a good reason to
+pick it over 1999 or 2001.</p>
+<h3 id="appendix-3-full-problem-distribution">Appendix 3: Full problem
+distribution</h3>
+<figure id="full-bee-swarm-plot" style="text-align: center">
+</figure>
+<h3 id="p.s.">P.S.</h3>
+<p>If you like building bespoke visualizations to make sense of the
+messy, surprising behavior of LLMs, you may be interested in joining <a
+href="https://job-boards.greenhouse.io/anthropic/jobs/4020305008">Anthropic’s
+interpretability team</a> 🙂</p>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script>
+const averageScores = [[1982,119,[549,154,362,450,655,304]],[1983,40,[143,114,143,162,86,85]],[1984,192,[875,617,304,855,486,282]],[1985,209,[854,782,164,504,386,422]],[1986,210,[805,851,183,689,872,409]],[1987,237,[821,1115,511,835,1007,433]],[1988,268,[1058,865,464,625,890,170]],[1989,291,[884,1230,389,1161,1108,735]],[1990,308,[886,1091,644,910,1292,463]],[1991,312,[1185,1317,798,976,1186,564]],[1992,350,[1277,1037,666,1225,265,789]],[1993,413,[837,798,467,951,1397,750]],[1994,385,[986,1926,1514,1287,1240,805]],[1995,412,[2083,704,1288,1892,1405,436]],[1996,424,[1346,861,1017,899,209,951]],[1997,460,[1139,1793,818,1722,1543,375]],[1998,419,[1343,1146,738,1451,1228,284]],[1999,450,[1934,752,713,1264,815,518]],[2000,461,[1888,1276,302,1467,753,484]],[2001,473,[1724,733,415,1529,1291,368]],[2002,479,[1652,1704,283,1866,1086,196]],[2003,457,[1626,1053,185,2117,737,264]],[2004,486,[2237,1342,492,1983,1221,611]],[2005,513,[1341,1565,468,1928,1113,690]],[2006,498,[2796,913,328,2489,589,93]],[2007,520,[1759,1310,158,2954,987,79]],[2008,535,[2664,1371,430,2355,1111,139]],[2009,565,[2714,2096,576,1647,1398,95]],[2010,516,[2812,1330,240,2758,481,190]],[2011,563,[3011,368,594,2291,1835,179]],[2012,547,[3077,1395,226,2060,910,184]],[2013,527,[2165,1331,414,2868,1292,156]],[2014,560,[2995,1664,283,2906,957,190]],[2015,577,[2485,784,377,2766,873,205]],[2016,602,[3174,1224,151,2856,1010,485]],[2017,615,[3655,1417,26,3093,596,181]],[2018,594,[2931,1750,165,2353,1601,379]],[2019,621,[3216,1490,355,2320,2215,250]],[2020,616,[3273,1385,579,2426,1723,174]],[2021,619,[2720,232,230,2363,1332,298]],[2022,589,[3263,2536,476,3220,2073,402]],[2023,618,[3612,1954,776,2915,1494,170]],[2024,609,[3392,1549,266,2956,1368,241]],[2025,630,[3286,2083,1008,3197,1891,116]]];
+
+const problemData = [];
+averageScores.forEach(([year, num, averages]) => {
+    averages.forEach((average, i) => {
+        problemData.push({
+            year: year,
+            problem: i + 1,
+            averageScore: average / num,
+            id: `${year}-P${i+1}`
+        });
+    });
+});
+
+const problemColors = [
+    d3.schemeCategory10[0],
+    d3.schemeCategory10[1],
+    d3.schemeCategory10[3],
+    d3.schemeCategory10[2],
+    d3.schemeCategory10[8],
+    d3.schemeCategory10[4],
+];
+
+window.addEventListener("DOMContentLoaded", () => {
+    renderBeeSwarm(
+        d3.select("#bee-swarm-plot"),
+        problem => problem.year >= 2000 && problem.problem % 3 === 0,
+        7,
+        d => problemColors[d.problem - 1],
+        "P3's and P6's, 2000+",
+        [2,5].map(
+            i => [problemColors[i], `Problem ${i+1}`],
+        ),
+    );
+    renderBeeSwarm(
+        d3.select("#eras-bee-swarm-plot"),
+        problem => problem.problem % 3 === 0,
+        5,
+        d => d.year >= 2000 ? problemColors[1] : problemColors[0],
+        "P3's and P6's, before vs. after 2000",
+        [
+            [problemColors[0], "1999 and earlier"],
+            [problemColors[1], "2000 and later"],
+        ],
+    );
+    renderBeeSwarm(
+        d3.select("#threes-bee-swarm-plot"),
+        problem => problem.problem % 3 === 0,
+        5,
+        d => problemColors[d.problem - 1],
+        "P3's and P6's, 1982+",
+        [2, 5].map(
+            i => [problemColors[i], `Problem ${i+1}`],
+        ),
+    );
+    renderBeeSwarm(
+        d3.select("#full-bee-swarm-plot"),
+        problem => true,
+        4,
+        d => problemColors[d.problem - 1],
+        "1982+, all",
+        [0,1,2,3,4,5].map(
+            i => [problemColors[i], `Problem ${i+1}`],
+        ),
+    );
+});
+
+function renderBeeSwarm(selection, predicate, radius, colorizer, subtitle, legendData) {
+    const margin = {top: 40, right: 40, bottom: 40, left: 40};
+    const width = 700 - margin.left - margin.right;
+    const height = 270 - margin.top - margin.bottom;
+
+    const svg = selection
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+        .style("max-width", "100%")
+        .style("height", "auto");
+
+    const g = svg.append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+    
+    const filteredProblemData = problemData.filter(predicate);
+
+    // Set up scales
+    const xScale = d3.scaleLinear()
+        .domain([0, Math.ceil(Math.max(...filteredProblemData.map(problem => problem.averageScore)))])
+        .range([0, width]);
+
+    // Create bee swarm positions
+    const sortedData = [...filteredProblemData].sort((a, b) => {
+        if ((a.problem - 1) % 3 !== (b.problem - 1) % 3) {
+            return (b.problem - 1) % 3 - (a.problem - 1) % 3;
+        }
+        return a.averageScore - b.averageScore;
+    });
+    const positions = calculateBeeSwarmPositions(sortedData, "averageScore", xScale, radius);
+
+    const yScale = y => height - radius * 1.2 - y;
+
+    // Add axes
+    g.append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(d3.axisBottom(xScale))
+        .style("font-family", "inherit")
+        .style("font-size", "16px")
+        .append("text")
+        .attr("x", width / 2)
+        .attr("y", 35)
+        .attr("fill", "black")
+        .style("text-anchor", "middle")
+        .style("font-size", "16px")
+        .text("Average Score");
+
+    // Add title
+    g.append("text")
+        .attr("x", width / 2)
+        .attr("y", -15)
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .text(`IMO Problem Difficulty Distribution (${subtitle})`);
+
+    // Add points
+    g.selectAll(".bee-point")
+        .data(positions)
+        .enter().append("circle")
+        .attr("class", "bee-point")
+        .attr("cx", d => d.x)
+        .attr("cy", d => yScale(d.y))
+        .attr("r", radius)
+        .attr("fill", colorizer)
+        .attr("stroke", "#000")
+        .attr("stroke-width", d => d.year === 2025 ? 2 : 0.5)
+        .append("title")
+        .text(d => `${d.year} Problem ${d.problem}: avg ${d.averageScore.toFixed(2)}`);
+
+    // Add annotations for 2025 Problem 3 and Problem 6
+    const annotatePoints = positions.filter(d => d.year === 2025);
+    
+    annotatePoints.forEach(d => {
+        const pointX = d.x;
+        const pointY = yScale(d.y);
+        
+        // Position label above the point, but below the legend
+        let labelX = pointX + {
+            1: 30,
+            4: -30,
+            2: 23,
+            5: -23,
+            3: 0,
+            6: 0,
+        }[d.problem];
+        let labelY = 65;
+        
+        // Add annotation line (straight up to bottom of text box)
+        g.append("line")
+            .attr("x1", pointX)
+            .attr("y1", pointY - radius)
+            .attr("x2", pointX)
+            .attr("y2", labelY + 4) // Connect to bottom edge of text box
+            .attr("stroke", "#333")
+            .attr("stroke-width", 1)
+            .attr("stroke-dasharray", "2,2").lower();
+        
+        // Add label background
+        const labelText = `2025 P${d.problem}`;
+        const labelWidth = labelText.length * 9 + 8;
+        
+        g.append("rect")
+            .attr("x", labelX - labelWidth/2)
+            .attr("y", labelY - 16)
+            .attr("width", labelWidth)
+            .attr("height", 22)
+            .attr("fill", "white")
+            .attr("stroke", "#333")
+            .attr("stroke-width", 1)
+            .attr("rx", 3);
+        
+        // Add label text
+        g.append("text")
+            .attr("x", labelX)
+            .attr("y", labelY)
+            .attr("text-anchor", "middle")
+            .attr("font-size", "16px")
+            .attr("font-weight", "bold")
+            .attr("fill", "#333")
+            .text(labelText);
+    });
+
+    // Add legend (same as scatterplot)
+    const legend = g.append("g")
+        .attr("class", "legend")
+        .attr("transform", `translate(0, 20)`);
+
+    let legendX = 0;
+    for (let [color, text] of legendData) {
+        const legendRow = legend.append("g")
+            .attr("transform", `translate(${legendX}, 0)`);
+
+        legendX += 20 + text.length * 10;
+
+        legendRow.append("circle")
+            .attr("r", 5)
+            .attr("fill", color) // problemColors[i])
+            .attr("stroke", "#000")
+            .attr("stroke-width", 0.5);
+
+        legendRow.append("text")
+            .attr("x", 10)
+            .attr("y", 0)
+            .attr("dy", "0.35em")
+            .style("font-size", "16px")
+            .text(text); // `Problem ${i+1}`);
+    }
+}
+
+function calculateBeeSwarmPositions(sortedData, xAttribute, xScale, radius) {
+    const positions = [];
+    const spacing = radius * 2.2; // Spacing between points
+
+    sortedData.forEach(d => {
+        const x = xScale(d[xAttribute]);
+
+        // If overlap, try stacking upward
+        for (let level = 0; level <= 20; level++) {
+            const testY = level * spacing;
+
+            if (!hasOverlap(x, testY, positions, radius)) {
+                positions.push({...d, x: x, y: testY});
+                return;
+            }
+        }
+
+        // Fallback: place at a high level
+        positions.push({...d, x: x, y: 20 * spacing});
+    });
+
+    return positions;
+}
+
+// Check if a position overlaps with existing points
+function hasOverlap(x, y, positions, radius) {
+    const minDistance = radius * 2.2;
+    return positions.some(pos => {
+        const dx = x - pos.x;
+        const dy = y - pos.y;
+        return Math.sqrt(dx * dx + dy * dy) < minDistance;
+    });
+}
+
+const COLORS = {
+    gold: '#FFCC00',
+    silver: '#CCCCCC',
+    bronze: '#CC9966',
+    hm: '#FF3399',
+    none: '#99CCFF',
+    goldCutoff: '#806100',
+    silverCutoff: '#666666',
+    bronzeCutoff: '#885c2c'
+};
+
+function processYearData(data) {
+    return data.map(d => ({ total: d[0], medal: d[1] }));
+}
+
+function calculateStats(processedData) {
+    const total = processedData.length;
+    const scores = processedData.map(d => d.total);
+
+    // Medal counts
+    const gold = processedData.filter(d => d.medal === 'G').length;
+    const silver = processedData.filter(d => d.medal === 'S').length;
+    const bronze = processedData.filter(d => d.medal === 'B').length;
+    const goldPct = (gold / total * 100);
+
+    // Medal cutoffs
+    const goldScores = processedData.filter(d => d.medal === 'G').map(d => d.total);
+    const silverScores = processedData.filter(d => d.medal === 'S').map(d => d.total);
+    const bronzeScores = processedData.filter(d => d.medal === 'B').map(d => d.total);
+    
+    const goldCutoff = goldScores.length > 0 ? Math.min(...goldScores) : null;
+    const silverCutoff = silverScores.length > 0 ? Math.min(...silverScores) : null;
+    const bronzeCutoff = bronzeScores.length > 0 ? Math.min(...bronzeScores) : null;
+
+    return { total, gold, goldPct, goldCutoff, silverCutoff, bronzeCutoff };
+}
+
+function getMaxScore(year) {
+    if (year >= 1980) return 42;
+    if (year === 1971 || year === 1967 || year === 1964) return 42;
+    if (year === 1962) return 46;
+    if (year === 1960) return 44;
+    return 40;
+}
+
+function createHistogramData(processedData, year) {
+    const scoreGroups = d3.group(processedData, d => d.total);
+    const medalCounts = new Map();
+
+    // Initialize all scores to 0 counts
+    for (let score = 0; score <= 42; score++) {
+        medalCounts.set(score, { 'G': 0, 'S': 0, 'B': 0, 'H': 0, '': 0 });
+    }
+
+    // Fill in actual counts
+    scoreGroups.forEach((contestants, score) => {
+        const counts = { 'G': 0, 'S': 0, 'B': 0, 'H': 0, '': 0 };
+        contestants.forEach(contestant => {
+            counts[contestant.medal] = (counts[contestant.medal] || 0) + 1;
+        });
+        medalCounts.set(score, counts);
+    });
+
+    return Array.from(medalCounts, ([score, medals]) => ({
+        score,
+        count: Object.values(medals).reduce((a, b) => a + b, 0),
+        medals
+    })).filter(d => d.count > 0);
+}
+
+function createStackedChart(histogramData, cellId, stats, year) {
+    const margin = {top: 0, right: 5, bottom: 15, left: 25};
+    const width = 480 - margin.left - margin.right;
+    const height = 30 - margin.top - margin.bottom;
+
+    const svg = d3.select(cellId)
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+        .style("max-width", "100%")
+        .style("height", "auto");
+
+    const g = svg.append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    const totalContestants = histogramData.reduce((sum, d) => sum + d.count, 0);
+
+    // Create segments ordered by score (contestants arranged left to right by their scores)
+    const segments = [];
+    let runningTotal = 0;
+
+    const maxScore = getMaxScore(year);
+    const sortedHistogramData = histogramData
+        .filter(d => d.count > 0)
+        .sort((a, b) => a.score - b.score);
+
+    sortedHistogramData.forEach(scoreData => {
+        // Within each score, order by medal hierarchy
+        const medalOrder = ['', 'H', 'B', 'S', 'G'];
+
+        medalOrder.forEach(medalType => {
+            const count = scoreData.medals[medalType];
+            if (count > 0) {
+                segments.push({
+                    score: scoreData.score,
+                    medalType: medalType,
+                    count: count,
+                    x0: runningTotal,
+                    x1: runningTotal + count
+                });
+                runningTotal += count;
+            }
+        });
+    });
+
+    const x = d3.scaleLinear()
+        .domain([0, totalContestants])
+        .range([0, width]);
+
+    const barHeight = height;
+    const barY = (height - barHeight) / 2;
+
+    g.selectAll(".stacked-segment")
+        .data(segments)
+        .enter().append("rect")
+        .attr("class", d => {
+            switch(d.medalType) {
+                case 'G': return 'stacked-segment medal-gold';
+                case 'S': return 'stacked-segment medal-silver';
+                case 'B': return 'stacked-segment medal-bronze';
+                case 'H': return 'stacked-segment medal-hm';
+                default: return 'stacked-segment medal-none';
+            }
+        })
+        .attr("x", d => x(d.x0))
+        .attr("y", barY)
+        .attr("width", (d, i) => {
+            return x(d.x1) - x(d.x0);
+        })
+        .attr("height", barHeight)
+        .append("title")
+        .text(d => `Score ${d.score}, ${d.medalType}: ${d.count}`);
+
+    const standardTicks = [];
+    for (let i = 0; i <= maxScore; i += 7) {
+        standardTicks.push(i);
+    }
+    if (standardTicks[standardTicks.length - 1] !== maxScore) {
+        standardTicks.push(maxScore);
+    }
+
+    const cutoffTicks = [stats.goldCutoff, stats.silverCutoff, stats.bronzeCutoff];
+    const allTicks = [...new Set([...standardTicks, ...cutoffTicks])].sort((a, b) => a - b);
+
+    // each tick at the START of its score region
+    const tickPositions = allTicks.map(score => {
+        let cumulative = 0;
+        for (let s = 0; s < score; s++) {
+            const scoreData = histogramData.find(d => d.score === s);
+            if (scoreData) {
+                cumulative += scoreData.count;
+            }
+        }
+        return { score: score, position: cumulative };
+    });
+
+    tickPositions.sort((a, b) =>
+        Number(cutoffTicks.includes(b.score)) - Number(cutoffTicks.includes(a.score))
+        || b.score - a.score
+    );
+
+    // Add tick marks with overlap prevention
+    const minLabelSpacing = 12; // pixels
+
+    // Add all tick lines
+    tickPositions.forEach(({ score, position }) => {
+        const xPos = x(position);
+
+        // Determine if this is a medal cutoff tick
+        const isGoldCutoff = score == stats.goldCutoff;
+        const isSilverCutoff = score == stats.silverCutoff;
+        const isBronzeCutoff = score == stats.bronzeCutoff;
+        const isMedalCutoff = isGoldCutoff || isSilverCutoff || isBronzeCutoff;
+
+        // Set color and width based on tick type
+        const tickColor = isGoldCutoff ? COLORS.goldCutoff :
+                         isSilverCutoff ? COLORS.silverCutoff :
+                         isBronzeCutoff ? COLORS.bronzeCutoff : "#000";
+        const tickWidth = isMedalCutoff ? 2 : 1;
+
+        // Add tick line
+        g.append("line")
+            .attr("x1", xPos)
+            .attr("x2", xPos)
+            .attr("y1", barY)
+            .attr("y2", barY + barHeight + 3)
+            .attr("stroke", tickColor)
+            .attr("stroke-width", tickWidth);
+    });
+
+    const labelPositions = [];
+    tickPositions.forEach(({ score, position }) => {
+        const xPos = x(position);
+        let adjustedX = xPos;
+
+        for (let existingPos of labelPositions) {
+            if (Math.abs(adjustedX - existingPos) < minLabelSpacing) {
+                // Move to the left of the existing label
+                // adjustedX = existingPos - minLabelSpacing;
+                return;
+            }
+        }
+
+        adjustedX = Math.max(adjustedX, 0);
+
+        labelPositions.push(adjustedX);
+
+        // Add tick label at adjusted position
+        g.append("text")
+            .attr("x", adjustedX)
+            .attr("y", barY + barHeight + 15)
+            .attr("text-anchor", "middle")
+            .attr("font-size", "10px")
+            .style("fill", score == stats.goldCutoff ? COLORS.goldCutoff :
+                           score == stats.silverCutoff ? COLORS.silverCutoff :
+                           score == stats.bronzeCutoff ? COLORS.bronzeCutoff : "#000000")
+            .style("font-weight", (score == stats.goldCutoff || score == stats.silverCutoff || score == stats.bronzeCutoff) ? "bold" : "normal")
+            .text(score);
+    });
+}
+
+function makeStatTd(text) {
+    const cell = document.createElement('td');
+    cell.textContent = text;
+    cell.className = 'stat-cell';
+    return cell;
+}
+
+function renderTable() {
+    const tbody = document.getElementById('stats-body');
+    tbody.innerHTML = '';
+
+    tableData.forEach(({ year, stats, histogramData }) => {
+        const row = document.createElement('tr');
+
+        row.appendChild(makeStatTd(year));
+        row.appendChild(makeStatTd(stats.goldPct.toFixed(1) + '%'));
+        row.appendChild(makeStatTd(stats.goldCutoff));
+
+        const chartCell = document.createElement('td');
+        row.appendChild(chartCell);
+
+        tbody.appendChild(row);
+
+        createStackedChart(histogramData, chartCell, stats, year);
+    });
+}
+
+function processAllYears(allYearData) {
+    tableData = allYearData.map(([year, data]) => {
+        const processedData = processYearData(data);
+        const stats = calculateStats(processedData);
+        const histogramData = createHistogramData(processedData, year);
+        return { year, stats, histogramData };
+    });
+
+    createMedalCutoffBeeSwarm(
+        d3.select("#full-medal-cutoff-bee-swarm"),
+        tableData,
+        5,
+        "1981+",
+        ".0%",
+    );
+
+    tableData = tableData.filter(d => d.year >= 2000);
+    tableData.sort((a, b) => b.stats.goldPct - a.stats.goldPct);
+
+    renderTable();
+    createMedalCutoffBeeSwarm(
+        d3.select("#medal-cutoff-bee-swarm"),
+        tableData,
+        9,
+        "2000+",
+        ".1%",
+    );
+}
+
+function createMedalCutoffBeeSwarm(rootSel, tableData, radius, subtitle, tickFormat) {
+    const margin = {top: 40, right: 40, bottom: 40, left: 40};
+    const width = 700 - margin.left - margin.right;
+    const height = 180 - margin.top - margin.bottom;
+
+    const svg = rootSel
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+        .style("max-width", "100%")
+        .style("height", "auto");
+
+    const g = svg.append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    const fractionData = [];
+    tableData.forEach(({ year, stats, histogramData }) => {
+        if (year >= 1981) {
+            const totalContestants = histogramData.reduce((sum, d) => sum + d.count, 0);
+
+            let aboveGold = 0;
+            histogramData.forEach(d => {
+                if (d.score >= stats.goldCutoff) {
+                    aboveGold += d.count;
+                }
+            });
+            fractionData.push({
+                year: year,
+                fraction: aboveGold / totalContestants,
+                medalType: 'Gold',
+                id: `${year}-Gold`
+            });
+        }
+    });
+
+    // Set up scales
+    const xScale = d3.scaleLinear()
+        .domain(d3.extent(fractionData, d => d.fraction))
+        .range([0, width])
+        .nice();
+
+    // Calculate bee swarm positions
+    const sortedData = [...fractionData].sort((a, b) => a.fraction - b.fraction);
+    const positions = calculateBeeSwarmPositions(sortedData, "fraction", xScale, radius);
+
+    const yScale = y => height - radius * 1.2 - y;
+
+    // Add axes
+    g.append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(d3.axisBottom(xScale).tickFormat(d3.format(tickFormat)))
+        .style("font-family", "inherit")
+        .style("font-size", "16px");
+
+    // Add title
+    g.append("text")
+        .attr("x", width / 2)
+        .attr("y", -15)
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .text(`Fraction of Gold Medalists (${subtitle})`);
+
+    const shouldAnnotate = d => d.year === 2025 || d.year === 1981 || d.year === 1983;
+
+    // Add points
+    g.selectAll(".medal-bee-point")
+        .data(positions)
+        .enter().append("circle")
+        .attr("class", "medal-bee-point")
+        .attr("cx", d => d.x)
+        .attr("cy", d => yScale(d.y))
+        .attr("r", radius)
+        .attr("fill", COLORS.gold)
+        .attr("stroke", "#000")
+        .attr("stroke-width", d => shouldAnnotate(d) ? 2 : 0.5)
+        .append("title")
+        .text(d => `${d.year} ${d.medalType}: ${(d.fraction*100).toFixed(1)}%`);
+    const annotatePoints = positions.filter(shouldAnnotate);
+    
+    annotatePoints.forEach(d => {
+        const pointX = d.x;
+        const pointY = yScale(d.y);
+        
+        // Position label above the point, but below the legend
+        const labelX = pointX;
+        const labelY = 20;
+        
+        // Add annotation line (straight up to bottom of text box)
+        g.append("line")
+            .attr("x1", pointX)
+            .attr("y1", pointY - radius)
+            .attr("x2", labelX)
+            .attr("y2", labelY + 4) // Connect to bottom edge of text box
+            .attr("stroke", "#333")
+            .attr("stroke-width", 1)
+            .attr("stroke-dasharray", "2,2").lower();
+        
+        // Add label background
+        const labelText = String(d.year);
+        const labelWidth = labelText.length * 9 + 10; // Approximate width
+        
+        g.append("rect")
+            .attr("x", labelX - labelWidth/2)
+            .attr("y", labelY - 16)
+            .attr("width", labelWidth)
+            .attr("height", 22)
+            .attr("fill", "white")
+            .attr("stroke", "#333")
+            .attr("stroke-width", 1)
+            .attr("rx", 3);
+        
+        // Add label text
+        g.append("text")
+            .attr("x", labelX)
+            .attr("y", labelY)
+            .attr("text-anchor", "middle")
+            .attr("font-size", "16px")
+            .attr("font-weight", "bold")
+            .attr("fill", "#333")
+            .text(labelText);
+    });
+}
+
+fetch('/js/imo-individuals.json')
+    .then(response => response.json())
+    .then(processAllYears)
+    .catch(error => console.error(error));
+
+</script>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>The more formal rules are that:</p>
+<ol type="i">
+<li>roughly half of contestants should get a medal; and</li>
+<li>the ratio of gold : silver : bronze medals should be roughly
+1 : 2 : 3.</li>
+</ol>
+<p>There is a slight bias for fewer medals in that a supermajority vote
+is required to award medals to more than 1/2 of contestants, but that
+vote does pass from time to time. All this is laid out in 5.6 of the <a
+href="https://www.imo-official.org/documents/RegulationsIMO.pdf">IMO
+regulations (PDF)</a>.</p>
+<p>I was not able to verify when these proportions (half, then
+1 : 2 : 3) were established or changed in the history of the IMO. The
+earliest reference I found was the book <cite>International Mathematical
+Olympiads 1978–1985 and Forty Supplementary Problems</cite>, by Murray
+S. Klamkin, which reprints the rules of the 1984 IMO in its Appendix
+A:</p>
+<blockquote>
+<p>(IV.3.) The total number of awarded prizes will not exceed half of
+the number of all contestants. The number of 1st, 2nd, and 3rd prizes
+awarded will if possible be in the ratio 1 : 2 : 3.</p>
+</blockquote>
+<p>(The option of, and procedure for, giving more than half the
+contestants medals has changed since then.) This was via Joseph Myers’s
+<a
+href="https://www.polyomino.org.uk/publications/2017/imo-medal-boundaries.pdf">Analysis
+of IMO medal boundary choices (PDF)</a>, <a
+href="https://github.com/jsm28/medal-boundaries">code on GitHub</a>,
+which is also fascinating.<a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>To quote § 3.6:</p>
+<blockquote>
+<p>These ratings are a whole lot of nonsense. Don’t take them
+seriously.</p>
+</blockquote>
+<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn3"><p>For those unfamiliar, the IMO is taken over two days,
+with contestants solving Problems 1–3 on the first day and Problems 4–6
+on the second. The intent is generally for the problems to increase in
+difficulty significantly within each day, and perhaps slightly from Day
+1 to Day 2; that is, 1 ≲ 4 ≪ 2 ≲ 5 ≪ 3 ≲ 6. So Problems 3 and 6 are
+usually the hardest problems. That said, problem difficulty is
+notoriously difficult to estimate.</p>
+<p>The statistics may also mislead us about problem difficulty for a
+variety of reasons, a major one of which is that contestants solve them
+in sets of three with a time limit for the full set. For example, it’s
+likely that IMO 2017 Problem 3’s average score (the lowest of any
+problem since 2000) is artificially low because it came after an
+unusually time-consuming Problem 2, so contestants had less time to try
+it. See <a
+href="https://web.evanchen.cc/upload/MOHS-hardness.pdf#section.14">§ 3.5
+of the MOHS document</a> for an elaboration and several other
+considerations.<a href="#fnref3" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>I think proof assistants correct for a lot of modern
+LLMs’ deficiencies (e.g., hallucinations). On the other hand, one might
+argue that an LLM equipped with a proof assistant is the right reference
+class if you’re trying to assess whether an LLM can contribute to novel
+math research or something. Anyway, I don’t work in these specific
+aspects of machine learning; I’m at best a formal verification
+enthusiast who took two classes in college.<a href="#fnref4"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Ask me how I know.</p>
+<p>…Actually, you can <a href="//blog.vero.site/post/metal-chopsticks">read about it
+on this very blog</a>. Though please keep in mind that I wrote the
+linked post <strong>thirteen years ago</strong>.<a href="#fnref5"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside></article>
+	<footer class="post-footer">
+		
+		<ul class="post-tags">
+			
+		</ul>
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+  <p class="comments-meta">if you liked this post, click to make an invisible number go up: <button class="btn like-button">like</button></p>
+	
+	
+	
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/digraphs">← Vim Digraphs: The Unnecessarily Detailed Guide</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+</div>
+<footer class="site-footer">
+	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://www.goatcounter.com/">GoatCounter</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>
+  window.goatcounter = { path: function(p) { return '/blog' + p; } }
+  for (let but of document.getElementsByClassName('like-button')) {
+    but.addEventListener('click', function (ev) {
+      goatcounter.count({
+        path: function (p) { return 'like/blog' + p; }
+      });
+    });
+  }
+</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</body>
+</html>

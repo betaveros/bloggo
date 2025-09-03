@@ -6,7 +6,37 @@
     <description>Recent content on Bounded-Error Log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Jun 2025 20:17:04 -0700</lastBuildDate><atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Sep 2025 01:02:59 -0700</lastBuildDate><atom:link href="//blog.vero.site/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gold-medaling the 2025 IMO was easier than average</title>
+      <link>//blog.vero.site/post/imo-2025</link>
+      <pubDate>Wed, 03 Sep 2025 01:02:59 -0700</pubDate>
+      
+      <guid>//blog.vero.site/post/imo-2025</guid>
+      <description>&lt;div class=&#34;series&#34;&gt;
+&lt;p&gt;(Background/disclaimer: I work at Anthropic, far from any efforts
+related to math reasoning or evaluations; opinions are my own. I was an
+IMO gold medalist in 2012.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;I way missed the news window on this one, but I thought it was
+interesting and a bit underappreciated that the fraction of gold
+medalists at the 2025 IMO (72/630 = 11.4%) is the highest it’s been
+since 1981.&lt;/p&gt;
+&lt;p&gt;Crudely, IMO gold medals are awarded to the highest-scoring 1/12 of
+contestants.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;
+role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; However, because scores are integers
+up to 42 and there’s no provision for tiebreaking, it’s possible for a
+lot of contestants to be tied around the threshold. In that case, either
+all of them get a gold medal or none do, and the fraction of gold
+medalists might deviate substantially from 1/12. That’s what happened
+this year: 46 contestants all won a gold medal by scoring exactly 35
+points.&lt;/p&gt;
+&lt;p&gt;Here’s a comparison with the fraction of IMO gold medalists for each
+year since 2000. (See &lt;a href=&#34;#appendix-full-stats&#34;&gt;appendix 1&lt;/a&gt; for
+a full table and &lt;a href=&#34;#appendix-reference-class&#34;&gt;appendix 2&lt;/a&gt; for
+discussion of the choice of 2000.)&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Vim Digraphs: The Unnecessarily Detailed Guide</title>
       <link>//blog.vero.site/post/digraphs</link>
