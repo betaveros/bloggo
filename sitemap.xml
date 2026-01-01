@@ -2,19 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>//blog.vero.site/tags</loc>
+    <lastmod>2025-12-31T19:49:40-08:00</lastmod>
+    <priority>0</priority>
+  </url><url>
+    <loc>//blog.vero.site/post/behind</loc>
+    <lastmod>2025-12-31T19:49:40-08:00</lastmod>
+  </url><url>
     <loc>//blog.vero.site/</loc>
-    <lastmod>2025-09-03T01:02:59-07:00</lastmod>
+    <lastmod>2025-12-31T19:49:40-08:00</lastmod>
   </url><url>
     <loc>//blog.vero.site/categories</loc>
-    <lastmod>2025-09-03T01:02:59-07:00</lastmod>
+    <lastmod>2025-12-31T19:49:40-08:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/category/life</loc>
+    <lastmod>2025-12-31T19:49:40-08:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/post</loc>
+    <lastmod>2025-12-31T19:49:40-08:00</lastmod>
+  </url><url>
+    <loc>//blog.vero.site/tag/year-end-post</loc>
+    <lastmod>2025-12-31T19:49:40-08:00</lastmod>
   </url><url>
     <loc>//blog.vero.site/post/imo-2025</loc>
     <lastmod>2025-09-03T01:02:59-07:00</lastmod>
   </url><url>
     <loc>//blog.vero.site/category/math</loc>
-    <lastmod>2025-09-03T01:02:59-07:00</lastmod>
-  </url><url>
-    <loc>//blog.vero.site/post</loc>
     <lastmod>2025-09-03T01:02:59-07:00</lastmod>
   </url><url>
     <loc>//blog.vero.site/category/cs</loc>
@@ -23,17 +36,7 @@
     <loc>//blog.vero.site/post/digraphs</loc>
     <lastmod>2025-06-22T20:17:04-07:00</lastmod>
   </url><url>
-    <loc>//blog.vero.site/tags</loc>
-    <lastmod>2024-12-31T14:41:03-08:00</lastmod>
-    <priority>0</priority>
-  </url><url>
-    <loc>//blog.vero.site/category/life</loc>
-    <lastmod>2024-12-31T14:41:03-08:00</lastmod>
-  </url><url>
     <loc>//blog.vero.site/post/right-back-here</loc>
-    <lastmod>2024-12-31T14:41:03-08:00</lastmod>
-  </url><url>
-    <loc>//blog.vero.site/tag/year-end-post</loc>
     <lastmod>2024-12-31T14:41:03-08:00</lastmod>
   </url><url>
     <loc>//blog.vero.site/post/viridis</loc>

@@ -55,6 +55,79 @@
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/blazingfast" class="post-link">blazingfast</a></h3>
+		
+		<h4 class="post-subtitle">DiceCTF 2022 (Web, 140 pts)</h4>
+		
+		<p class="post-meta">
+		
+		2022-02-14
+		(1404 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Last weekend <a
+href="https://galhacktictrendsetters.wordpress.com/">Galhacktic
+Trendsetters</a> sort of spontaneously decided to do <a
+href="https://ctf.dicega.ng/">DiceCTF 2022</a>, months or years after
+most of us had done another CTF. It was a lot of fun and we placed
+6th!</p>
+<blockquote>
+<p>I made a blazing fast MoCkInG CaSe converter!</p>
+<p>blazingfast.mc.ax</p>
+</blockquote>
+<p>We’re presented with a website that converts text to AlTeRnAtInG
+CaSe. The core converter is written in WASM, and also checks that its
+input doesn’t have any of the characters <code>&lt;&gt;&amp;"</code>.
+The JavaScript wrapper takes an input from the URL, converts it to
+uppercase, feeds it to the converter, and if the check passes, injects
+the output into an <code>innerHTML</code>. The goal is to compose a URL
+that, when visited by an admin bot, leaks the flag from
+<code>localStorage</code>.</p>
+<p>The converter is compiled from this C code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> length<span class="op">,</span> ptr <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> buf<span class="op">[</span><span class="dv">1000</span><span class="op">];</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> init<span class="op">(</span><span class="dt">int</span> size<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    length <span class="op">=</span> size<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    ptr <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> read<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> buf<span class="op">[</span>ptr<span class="op">++];</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> write<span class="op">(</span><span class="dt">char</span> c<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    buf<span class="op">[</span>ptr<span class="op">++]</span> <span class="op">=</span> c<span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> mock<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> length<span class="op">;</span> i <span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">1</span> <span class="op">&amp;&amp;</span> buf<span class="op">[</span>i<span class="op">]</span> <span class="op">&gt;=</span> <span class="dv">65</span> <span class="op">&amp;&amp;</span> buf<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;=</span> <span class="dv">90</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            buf<span class="op">[</span>i<span class="op">]</span> <span class="op">+=</span> <span class="dv">32</span><span class="op">;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>buf<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> <span class="ch">&#39;&lt;&#39;</span> <span class="op">||</span> buf<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> <span class="ch">&#39;&gt;&#39;</span> <span class="op">||</span> buf<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> <span class="ch">&#39;&amp;&#39;</span> <span class="op">||</span> buf<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> <span class="ch">&#39;&quot;&#39;</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    ptr <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/blazingfast">→ read more<span class="offscreen"> blazingfast</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/2022-hunt" class="post-link">2022 MIT Mystery Hunt</a></h3>
 		
 		<p class="post-meta">
@@ -643,103 +716,6 @@ are still being felt and will accelerate until it actually happens two
 weeks from now, and that’s all I’ll say about it here.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/and-i-feel-fine">→ read more<span class="offscreen"> …And I Feel Fine</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/advent-leaderboard" class="post-link">Advent of Code: How to Leaderboard</a></h3>
-		
-		<p class="post-meta">
-		
-		2020-11-24
-		(5762 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p><a href="https://adventofcode.com/">Advent of Code</a> (briefly,
-“AoC”) is a series of 25 festive programming puzzles<a href="#fn1"
-class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
-released daily December 1–25. Each puzzle has two parts, which use the
-same text input and are related; to solve a part, you submit the right
-output corresponding to the input on the website.</p>
-<p>If you’re reading this, I suspect there’s a good chance you knew that
-already, but in case you’re new to Advent of Code, let me try to briefly
-explain why I like Advent of Code, from the perspective of somebody
-who’s spent a lot of their life so far doing programming competitions.<a
-href="#fn2" class="footnote-ref" id="fnref2"
-role="doc-noteref"><sup>2</sup></a></p>
-<ul>
-<li>The event has a fantastic community surrounding it. I’m the most
-familiar with <a href="https://www.reddit.com/r/adventofcode/">the
-subreddit</a>, which is full of helpful people, interesting discussions,
-non-programming community games, and the occasional <a
-href="https://www.reddit.com/r/adventofcode/comments/e6iw6l/day_5_browserbased_interactive_intcode_processor/">wonderfully</a>,
-<a
-href="https://www.reddit.com/r/adventofcode/comments/e7ylwd/i_solved_day_8_entirely_in_minecraft/">spectacularly</a>
-<a
-href="https://www.reddit.com/r/adventofcode/comments/eb79s0/2019_day_10_blowing_up_asteroids_in_unity/">overengineered</a>
-<a
-href="https://www.reddit.com/r/adventofcode/comments/ea8mif/2019_day_13_excel_did_you_think_i_would_give_up/">solution</a>
-to a puzzle; but I know there are also many smaller chatrooms and
-subcommunities focused on, say, specific timezones or programming
-languages.</li>
-<li>Another aspect is the unique two-part format of each puzzle. Even
-though they use the same input, you don’t get to see the second part
-until after you’ve solved the first one, a feature that Eric Wastl
-(AoC’s creator) has taken full advantage of in designing puzzles. The
-second part is often a surprising twist on the first part, which keeps
-you on your toes and challenges you to keep your code moderately general
-or refactorable in a way that I think almost no other programming
-challenges do. This sometimes even happens between days in a calendar,
-when a puzzle turns out to be about some model of computation you
-implemented two or five or ten days ago — hope you kept your code and
-remember how it works!</li>
-<li>Finally, AoC also has some non-rigorous puzzles that force you to
-use your intuition and “human intelligence”, either by interpreting the
-problem statement heuristically or writing code to let you explore the
-input. There are quite a few puzzles where it’s infeasible to write code
-that handles every step of obtaining the output from the input. The
-result is that Advent of Code can feature quite a few challenges that
-I’ve found particularly compelling because I think they simply could not
-be posed on any other contest platform.<a href="#fn3"
-class="footnote-ref" id="fnref3"
-role="doc-noteref"><sup>3</sup></a></li>
-</ul>
-<p>These are the things that make AoC stand out to me, but it also does
-a lot of other things well — the challenges are fun, approachable, and
-varied even aside from their interrelations; there is a long, dramatic
-story tying everything together (although it’s an <a
-href="https://tvtropes.org/pmwiki/pmwiki.php/Main/ExcusePlot">Excuse
-Plot</a> if there ever was such a thing); and, although this is
-obviously subjective, I find the website’s minimalist-adjacent,
-terminal-esque aesthetic really charming (there is a <em>lot</em> of
-detail in <a href="https://adventofcode.com/2019">2019’s calendar</a>…
-after you solve everything). I’ve only done the last two years of Advent
-of Code, but it really seems like a one-of-a-kind event to me.</p>
-<p>Anyway, one particular feature Advent of Code has is a leaderboard,
-which you can get on by being one of the first 100 people worldwide to
-solve each puzzle. The competition is fierce — every year, thousands of
-people compete to get on the leaderboard. Near the start of AoC 2019, <a
-href="https://gist.github.com/mcpower/87427528b9ba5cac6f0c679370789661">mcpower</a>
-(<a
-href="https://www.reddit.com/r/adventofcode/comments/e2wjhf/tips_for_getting_on_the_advent_of_code_leaderboard/">reddit
-discussion</a>) and <a
-href="https://kevinyap.ca/2019/12/going-fast-in-advent-of-code/">Kevin
-Yap</a> (<a
-href="https://www.reddit.com/r/adventofcode/comments/e82f7a/going_fast_in_advent_of_code/">reddit
-discussion</a>) wrote some articles about how to do this, both of which
-are worth reading. I also thought about writing such an article and
-started a draft, but I didn’t get it anywhere close to publishable
-before AoC had concluded, at which point I assumed few people would be
-interested. But here it is now.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/advent-leaderboard">→ read more<span class="offscreen"> Advent of Code: How to Leaderboard</span></a>
 	</footer>
 </article>
 <footer class="list-footer">

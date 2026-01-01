@@ -55,6 +55,52 @@
 	</header>
 	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/2023-hunt" class="post-link">2023 MIT Mystery Hunt</a></h3>
+		
+		<p class="post-meta">
+		
+		2023-01-25
+		(4533 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/puzzles">Puzzles</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>My seventh year doing Mystery Hunt with ✈✈✈ Galactic Trendsetters
+✈✈✈, and after a hiatus it was in person again! This also makes it my
+first in-person Mystery Hunt as an alumnus, where I flew in and stayed
+at a hotel. How time marches on… I appreciated getting to see everybody
+on Galactic, as well as quite a few internet puzzlers at the location
+where all the cool people always go, Flour Bakery and Cafe.</p>
+<p>Campus hadn’t changed too much. There were more card readers, but
+also fancy kiosks where ID cards could be printed on demand (via the
+official 1.2/5★-rated app). I set aside a little time before kickoff to
+try to locate a working kiosk to print my ID, but the two kiosks I found
+west of Mass Ave, in W20 and W35, were both out of order; only much
+later did I print a card in 16. But I am a card-carrying alumnus now.
+Galactic had two classrooms in 4-2 and lots of masks and tests. One of
+my teammates brought their dog. It was a fun time.</p>
+<p>As typical nowadays, the hunt announcement and kickoff began with a
+facade theme of a museum. However, the twist was handled a bit
+differently — kickoff had an additional diegetic level: normally the
+story is followed by an out-of-character talk about health/safety and
+policies, but this year that talk, while still in a different universe
+from the museum, was intertwined with an introduction to MATE, the AI
+who had ostensibly been writing all the puzzles. Over the course of the
+hunt, instead of discovering a possibly predictable secret plan or
+betrayal by MATE, we instead found ourselves on its side because (in the
+outer fictional diegetic level) teammate had shut off some other “overly
+creative” AIs and overworked MATE.</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/2023-hunt">→ read more<span class="offscreen"> 2023 MIT Mystery Hunt</span></a>
+	</footer>
+</article>
+<article class="post-entry">
+	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/one-step" class="post-link">One Step Forward to Tomorrow</a></h3>
 		
 		<p class="post-meta">
@@ -600,79 +646,6 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a hr
 <p>More precisely, the gauntlet does the following:</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/ti1337se">→ read more<span class="offscreen"> TI-1337 Silver Edition</span></a>
-	</footer>
-</article>
-<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/blazingfast" class="post-link">blazingfast</a></h3>
-		
-		<h4 class="post-subtitle">DiceCTF 2022 (Web, 140 pts)</h4>
-		
-		<p class="post-meta">
-		
-		2022-02-14
-		(1404 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<p>Last weekend <a
-href="https://galhacktictrendsetters.wordpress.com/">Galhacktic
-Trendsetters</a> sort of spontaneously decided to do <a
-href="https://ctf.dicega.ng/">DiceCTF 2022</a>, months or years after
-most of us had done another CTF. It was a lot of fun and we placed
-6th!</p>
-<blockquote>
-<p>I made a blazing fast MoCkInG CaSe converter!</p>
-<p>blazingfast.mc.ax</p>
-</blockquote>
-<p>We’re presented with a website that converts text to AlTeRnAtInG
-CaSe. The core converter is written in WASM, and also checks that its
-input doesn’t have any of the characters <code>&lt;&gt;&amp;"</code>.
-The JavaScript wrapper takes an input from the URL, converts it to
-uppercase, feeds it to the converter, and if the check passes, injects
-the output into an <code>innerHTML</code>. The goal is to compose a URL
-that, when visited by an admin bot, leaks the flag from
-<code>localStorage</code>.</p>
-<p>The converter is compiled from this C code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> length<span class="op">,</span> ptr <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> buf<span class="op">[</span><span class="dv">1000</span><span class="op">];</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> init<span class="op">(</span><span class="dt">int</span> size<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    length <span class="op">=</span> size<span class="op">;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    ptr <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> read<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> buf<span class="op">[</span>ptr<span class="op">++];</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> write<span class="op">(</span><span class="dt">char</span> c<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    buf<span class="op">[</span>ptr<span class="op">++]</span> <span class="op">=</span> c<span class="op">;</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> mock<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> length<span class="op">;</span> i <span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">1</span> <span class="op">&amp;&amp;</span> buf<span class="op">[</span>i<span class="op">]</span> <span class="op">&gt;=</span> <span class="dv">65</span> <span class="op">&amp;&amp;</span> buf<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;=</span> <span class="dv">90</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            buf<span class="op">[</span>i<span class="op">]</span> <span class="op">+=</span> <span class="dv">32</span><span class="op">;</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>buf<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> <span class="ch">&#39;&lt;&#39;</span> <span class="op">||</span> buf<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> <span class="ch">&#39;&gt;&#39;</span> <span class="op">||</span> buf<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> <span class="ch">&#39;&amp;&#39;</span> <span class="op">||</span> buf<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> <span class="ch">&#39;&quot;&#39;</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    ptr <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/blazingfast">→ read more<span class="offscreen"> blazingfast</span></a>
 	</footer>
 </article>
 <footer class="list-footer">
