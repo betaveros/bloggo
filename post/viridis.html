@@ -10,7 +10,7 @@ This particular gradient is brought to you by d3 You may also know about some of
 I won’t discuss color theory much here; the talk introducing viridis (below) is quite good, and there are many other resources online, such as Jamie Wong’s From Hexcodes to Eyeballs or Bartosz Ciechanowski’s Color Spaces.
 Instead, I nerd-sniped myself with a different question: How is viridis, specifically, defined?
 This seems like it should be easy to answer. Just go into matplotlib and find the source code for viridis, right? Unfortunately, that source code is just a list of 256 RGB triples along which colors are interpolated. This makes sense for efficiency and even portability because (as we’ll see) the formula for producing viridis is incredibly complicated, but it isn’t a very satisfying answer. How did those triples originally come to be?
-" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+" /><meta name="generator" content="Hugo 0.166.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/viridis" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -129,10 +129,9 @@ on the colormap should “look equally different” to humans.</p>
 as Jamie Wong’s <a href="https://jamie-wong.com/post/color/">From
 Hexcodes to Eyeballs</a> or Bartosz Ciechanowski’s <a
 href="https://ciechanow.ski/color-spaces/">Color Spaces</a>.</p>
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/xAoljeRJ3lU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/xAoljeRJ3lU?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
 
 <p>Instead, I nerd-sniped myself with a different question: How is
 viridis, specifically, defined?</p>
@@ -563,9 +562,6 @@ href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
 	<section id="isso-thread"></section>
   <p class="comments-meta">if you liked this post, click to make an invisible number go up: <button class="btn like-button">like</button></p>
-	
-	
-	
 	<footer class="post-footer">
 		<nav class="pagination">
 			
@@ -579,7 +575,7 @@ href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2026 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

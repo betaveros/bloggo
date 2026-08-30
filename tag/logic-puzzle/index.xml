@@ -1,817 +1,374 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>logic puzzle on Bounded-Error Log</title>
-    <link>//blog.vero.site/tag/logic-puzzle</link>
-    <description>Recent content in logic puzzle on Bounded-Error Log</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 23 Dec 2015 00:25:46 +0800</lastBuildDate><atom:link href="//blog.vero.site/tag/logic-puzzle/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Puzzle 49 / Triple Back</title>
-      <link>//blog.vero.site/post/puzzle-49</link>
-      <pubDate>Wed, 23 Dec 2015 00:25:46 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-49</guid>
-      <description>&lt;p&gt;I’m not really satisfied with the execution, but eh, what the hell.
-My brain can only function at so much of its full capacity when it’s a
-few kilometers up in the sky.&lt;/p&gt;
-&lt;p&gt;This is a
-&lt;a href=&#34;https://mellowmelon.wordpress.com/2009/12/20/puzzle-135/&#34;&gt;Triple
-Back&lt;/a&gt;, variant on
-&lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s
-Double Back&lt;/a&gt;. Briefly, draw a closed loop through all square centers
-visiting each bold-outlined area exactly three (= ⌊π⌋) times. Shaded
-cells do not influence solving, only aesthetics.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 48 / Double Back</title>
-      <link>//blog.vero.site/post/puzzle-48</link>
-      <pubDate>Sun, 06 Sep 2015 23:15:44 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-48</guid>
-      <description>&lt;p&gt;At least one person wants me to post. I’m not even going to try do a
-life summary. It’s too hard. Let’s just say:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-right now, my blog drafts contain a backlog of ~7500 words and counting;
-&lt;/li&gt;
-&lt;li&gt;
-I was not accepted as an MIT Admissions blogger, which is bad because my
-blogging will continue to not reach a large audience, but good because
-my blogging will continue to not reach a large audience. Maybe it had
-something to do with the fact that, because the application form
-wouldn’t let me submit without any media, I panickedly cranked out the
-following puzzle in an hour or so to attach.
-&lt;/li&gt;
-&lt;/ol&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 47 / Fillomino [LITS &#43; Walls]</title>
-      <link>//blog.vero.site/post/puzzle-47</link>
-      <pubDate>Mon, 30 Mar 2015 20:01:26 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-47</guid>
-      <description>&lt;p&gt;CLICKBAIT PERSONALITY TEST THAT YOU CAN DO WITHOUT SOLVING THE
-PUZZLE: What do you see in the puzzle image below? I have my own
-thoughts but I won’t bias you by posting them yet. Sound out your
-thoughts in the comments below! (I don’t expect this to work but I’d
-love to be proven wrong)&lt;/p&gt;
-&lt;p&gt;Okay so apparently how puzzles work is I go nearly a year without
-posting one and then when I post a terrible one, I feel guilty and
-obligated to post a legitimate one soon after. Testsolved by
-chaotic_iak.&lt;/p&gt;
-&lt;p&gt;This is a Fillomino (write a number in every empty cell so that every
-group of cells with the same number that is connected through its edges
-has that number of cells) where each tetromino has had their 4s replaced
-by one of L, I, T, or S describing their shape, and they obey the rules
-of LITS — they can touch if they are not congruent, they must all be
-connected, and their squares cannot form a 2×2 block. In addition, cells
-separated by a thick border may not contain the same number or
-letter.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 46 / Fillomino [LITS &#43; Extra Region &#43; Walls &#43; Anti-Walls &#43; Inequality &#43; Tapa &#43; Masyu]</title>
-      <link>//blog.vero.site/post/puzzle-46</link>
-      <pubDate>Sun, 29 Mar 2015 13:01:08 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-46</guid>
-      <description>&lt;blockquote&gt;
-5:27 PM &lt;strong&gt;phenomist&lt;/strong&gt;: do you use gridderface to make
-pretty puzzles?&lt;br /&gt;
-…&lt;br /&gt;
-5:52 PM &lt;strong&gt;phenomist&lt;/strong&gt;: actually nvm excel is probably
-easier lol
-&lt;/blockquote&gt;
-&lt;p&gt;Okay I’m sorry this is a horrible puzzle where the rules don’t make
-sense and I didn’t even get it testsolved. I just wanted an image to
-concisely demonstrate the capabilities of
-&lt;a href=&#34;https://github.com/betaveros/gridderface&#34;&gt;gridderface&lt;/a&gt;, my
-puzzle marking and creation program, for the project homepage, after
-somebody expressed interest in using the program to write a puzzle. Then
-I got tremendously carried away.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 45 / Fillomino [No-Path]</title>
-      <link>//blog.vero.site/post/puzzle-45</link>
-      <pubDate>Tue, 15 Apr 2014 08:15:37 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-45</guid>
-      <description>&lt;p&gt;As requested, a puzzle post! Straight from the WTF-variant
-department. Quite hard.&lt;/p&gt;
-&lt;p&gt;This is a
-&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;,
-with the additional constraint that for each polyomino, there must
-&lt;em&gt;not&lt;/em&gt; exist a path (i.e. a sequence of cells, each orthogonally
-adjacent to the next) that includes each of the polyomino’s cells
-exactly once (and does not include cells outside the polyomino).&lt;/p&gt;
-&lt;p&gt;As a degenerate case, 1-ominoes are banned as well.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 44 / ???</title>
-      <link>//blog.vero.site/post/puzzle-44</link>
-      <pubDate>Tue, 19 Nov 2013 00:00:26 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-44</guid>
-      <description>&lt;ins datetime=&#34;2013-11-18T23:20:18+00:00&#34;&gt;
-Edit 11/19 7:23 AM UTC+8: Fixed some transcription errors on right:
-&lt;strong&gt;R4C17 is D instead of N, and R15C17 is G instead of E.&lt;/strong&gt;
-Neither change should greatly impact solvability. Thanks to ksun for
-pointing out an error.
-&lt;/ins&gt;
-&lt;p&gt;Logic puzzles are easy to construct if one doesn’t have some specific
-pattern or theme in mind. It’s just that, given the increasing number of
-constructors and puzzles with amazing themes, I don’t think it’s very
-meaningful for me to just construct more puzzles of the same genres by
-putting down clues randomly. That’s why, for my seventeenth birthday, I
-took the puzzlehunt route and made something without instructions that
-is not completely solved by logical deduction. Still, I’ve provided all
-the information needed to do this puzzle initially, so I hope my not
-getting the inductive bits test-solved can be excused.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 43 / Fillomino [Nonrectangular &#43; Walls]</title>
-      <link>//blog.vero.site/post/puzzle-43</link>
-      <pubDate>Mon, 30 Sep 2013 20:52:46 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-43</guid>
-      <description>&lt;p&gt;I’m extremely satisfied — a little incredulous, in fact — with how
-this puzzle came out.
-&lt;a href=&#34;https://chaosatthesky.wordpress.com/&#34;&gt;chaotic_iak&lt;/a&gt; labels it
-the “most ridiculous fillomino ever in history”. Apparently, it’s rather
-tricky.&lt;/p&gt;
-&lt;ins datetime=&#34;2013-09-30T13:05:57+00:00&#34;&gt;
-ETA: Journalistic responsibility compels me to mention that chaotic_iak
-also added, “might be beaten later”. Oops?
-&lt;/ins&gt;
-&lt;p&gt;This is a
-&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;
-combining the
-&lt;a href=&#34;http://mathgrant.blogspot.tw/2011/09/monday-mutant-95-polyominous-no.html&#34;&gt;Nonrectangular&lt;/a&gt;
-(polyominoes can’t be rectangles) and
-&lt;a href=&#34;http://mathgrant.blogspot.tw/2012/10/fillomino-fillia-2-preview-series-walls.html&#34;&gt;Walls&lt;/a&gt;
-(polyominoes can’t span thick lines) variant rules. I think the first
-variant first came from mathgrant; I’m not as sure about the second, but
-they both appeared in
-&lt;a href=&#34;http://logicmastersindia.com/forum/forums/thread-view.asp?tid=525&amp;amp;posts=64&amp;amp;start=1&#34;&gt;Fillomino-Fillia
-2&lt;/a&gt;, at least.&lt;/p&gt;
-&lt;p&gt;Write a number in every empty cell so that every group of cells with
-the same number that is connected through its edges is a shape that’s
-not a rectangle with that number of cells. In addition, cells separated
-by a thick border may not contain the same number.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 42 / Fillomino [Greater-Than]</title>
-      <link>//blog.vero.site/post/puzzle-42</link>
-      <pubDate>Fri, 19 Jul 2013 08:57:13 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-42</guid>
-      <description>&lt;p&gt;Oops, I forgot the “puzzles” category was semi-reserved for puzzles I
-constructed/wrote, because among other things an LMI bot is following
-it. Anyway, if this makes up for anything, I have a puzzle that I’ve
-procrastinated posting for very, very long.&lt;/p&gt;
-&lt;p&gt;This is a
-&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;
-puzzle. Inequality signs in the grid must be satisfied by the two
-numbers they touch.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>MUMS Puzzle Hunt 2013</title>
-      <link>//blog.vero.site/post/mums</link>
-      <pubDate>Fri, 24 May 2013 21:44:24 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/mums</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/informatix.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/informatix.jpg?w=300&#34; alt=&#34;Informatix [MUMS Puzzle Hunt 2013]&#34;/&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;So, I somehow managed to
-&lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/teamstats.html?team=not+AoPS&#34;&gt;get
-25 points all by myself&lt;/a&gt; in
-&lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/&#34;&gt;MUMS Puzzle
-Hunt 2013&lt;/a&gt;. Well, I pestered chaotic_iak a little with
-&lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/2013/puzzles/3.3_Diagnosus_ghQ3AcbJ.html&#34;&gt;3.3
-Diagnosus (.html with animated .gif)&lt;/a&gt; but we still didn’t recognize
-all the Pokémon until hint 3, at which point Google sufficed for me.&lt;/p&gt;
-&lt;p&gt;This is nowhere near the top, but compared to the usual results of
-whatever AoPS team I form, it’s amazing. By far the best result of AoPS
-was on CiSRA in 2010 (46th with 58 points), before I discovered puzzle
-hunts in AoPS; unfortunately due to people getting older and the influx
-of younger and younger people to the fora, there are less possible
-teammates each year and they have less time, so here I am by myself.
-(Also I could have accepted an invitation from a guy in the
-some-form-of-Elephant team, but I figure if you can win two MUMS hunts
-in a row you don’t need any more people.)&lt;/p&gt;
-&lt;p&gt;All in all: Yay!&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 41 / Slitherlink [Clones]</title>
-      <link>//blog.vero.site/post/puzzle-41</link>
-      <pubDate>Sat, 27 Apr 2013 17:27:26 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-41</guid>
-      <description>&lt;p&gt;I survived midterms.&lt;/p&gt;
-&lt;p&gt;This is a
-&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/slitherlink.html&#34;&gt;Slitherlink&lt;/a&gt;
-mutant. Draw a loop through adjacent vertices that cannot intersect
-itself. Each number indicates how many of the four edges around it are
-drawn. In addition, each pair of colored squares in corresponding
-positions (e.g. R1C1 and R6C6, R2C8 and R7C3) must have an equal number
-of edges drawn around them (i.e. if there were numbers placed there,
-they would be equal).&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 40 / Fillomino [Samurai]</title>
-      <link>//blog.vero.site/post/puzzle-40</link>
-      <pubDate>Sun, 24 Mar 2013 00:03:13 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-40</guid>
-      <description>&lt;p&gt;Yeah, and there’s this. chaotic_iak rejected this variant for his
-&lt;a href=&#34;https://chaosatthesky.wordpress.com/puzzles/#fff&#34;&gt;February
-sequence&lt;/a&gt; in order to get consistent 7x7 dimensions, so I made one.
-It’s been about a month. I have no idea why I procrastinated posting it
-until now.&lt;/p&gt;
-&lt;p&gt;This is a Samurai
-&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;,
-which means each grid satisfies the constraints on its own. Write a
-number in every empty cell so that, in each square grid, every group of
-cells with the same number that is connected through its edges has that
-number of cells. Note that the two grids must contain the same numbers
-where they overlap, but the grouping should be considered independently.
-I’d explain this really carefully if it weren’t the main gimmick of this
-puzzle.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 39 / Contact &#43; Slitherlink [Antisymmetric]</title>
-      <link>//blog.vero.site/post/puzzle-39</link>
-      <pubDate>Thu, 28 Feb 2013 21:38:54 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-39</guid>
-      <description>&lt;p&gt;Yay crazy hybrids! I guess this one is kind of hard.&lt;/p&gt;
-&lt;p&gt;Draw a loop through adjacent vertices that cannot intersect itself.
-For each pair of symmetrically placed numbers, one is a Slitherlink clue
-which indicates how many of the four edges around it are drawn, and one
-is a Contact clue which indicates the total length of all straight
-segments adjacent to it where segment length is always measured up to
-the nearest turns in the loop.&lt;/p&gt;
-&lt;del datetime=&#34;2017-11-25T16:26:24-0500&#34;&gt;
-Please click on the image if it looks weird, which it very likely will.
-&lt;/del&gt;
-&lt;p&gt;&lt;ins datetime=&#34;2017-11-25T16:26:37-0500&#34;&gt;(This was a WordPress bug
-that should no longer be relevant.)&lt;/ins&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 38 / Contact</title>
-      <link>//blog.vero.site/post/puzzle-38</link>
-      <pubDate>Sun, 10 Feb 2013 00:00:47 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-38</guid>
-      <description>&lt;p&gt;A &lt;a href=&#34;http://inabapuzzle.com/honkaku/contact.html&#34;&gt;Naoki Inaba
-(JP)&lt;/a&gt; type, as seen on
-&lt;a href=&#34;http://puzzleparasite.blogspot.tw/2012/01/rules-contact.html&#34;&gt;Para’s
-Puzzle Site&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Draw a loop through adjacent vertices that cannot intersect itself;
-each number indicates the total length of all straight segments adjacent
-to it, where segment length is always measured up to the nearest turns
-in the loop.&lt;/p&gt;
-&lt;p&gt;Let’s see how well WordPress’s scheduling works again. Happy Chinese
-New Year!&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 37 / Slitherlink &#43; Masyu</title>
-      <link>//blog.vero.site/post/puzzle-37</link>
-      <pubDate>Thu, 24 Jan 2013 15:16:51 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-37</guid>
-      <description>&lt;p&gt;Nikoli
-&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/slitherlink.html&#34;&gt;Slitherlink&lt;/a&gt;
-+ &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/masyu.html&#34;&gt;Masyu&lt;/a&gt;
-hybrid; I don’t know who first put them together but combinations like
-this aren’t rare.&lt;/p&gt;
-&lt;p&gt;Draw a loop through vertices that cannot intersect itself; each
-number indicates how many of the four edges around it are drawn; the
-loop must pass through all large dots, and it must go straight through
-white dots while turning either before or after (or both), while it must
-turn on black dots without turning either before or after.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 36 / Fillomino [LITS]</title>
-      <link>//blog.vero.site/post/puzzle-36</link>
-      <pubDate>Wed, 23 Jan 2013 18:29:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-36</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://mathgrant.blogspot.tw/2012/11/monday-mutant-119-polyominous-tetra.html&#34;&gt;mathgrant’s
-hybrid type&lt;/a&gt;: a Fillomino (write a number in every empty cell so that
-every group of cells with the same number that is connected through its
-edges has that number of cells) where each tetromino has had their 4s
-replaced by one of L, I, T, or S describing their shape, and they obey
-the rules of LITS — they can touch if they are not congruent, they must
-all be connected, and their squares cannot form a 2x2 block.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 35 / Double Back</title>
-      <link>//blog.vero.site/post/puzzle-35</link>
-      <pubDate>Fri, 04 Jan 2013 22:42:10 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-35</guid>
-      <description>&lt;p&gt;This is another
-&lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s
-Double Back&lt;/a&gt;. Briefly, draw a closed loop through all square centers
-visiting each bold-outlined area twice. Shaded cells do not influence
-solving, only aesthetics.&lt;/p&gt;
-&lt;p&gt;It’s mostly easy, I think. It’s okay if you don’t know what the theme
-means. (Yes, chao, I want more contrib points.) Also, WordPress seems to
-have stopped automatically linking images to their files. Hmm.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 34 / Snail&#39;s Nest</title>
-      <link>//blog.vero.site/post/puzzle-34</link>
-      <pubDate>Tue, 18 Dec 2012 22:08:43 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-34</guid>
-      <description>&lt;p&gt;It’s been a while, hasn’t it? This is something I constructed
-semi-experimentally to stop failing at an entire genre of puzzles, and
-then procrastinated posting just about forever. I only test-solved this
-on paper; I hope I didn’t do anything silly while digitizing.&lt;/p&gt;
-&lt;p&gt;Rules paraphrased from USPC because I can’t find any good links:
-Write each of the given words into its own snail; letters must be
-entered from the outside of the snail spirally inward. Not all squares
-will be used; squares with “-” must stay blank. Each letter can appear
-at most once in each row and column.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Gridderface 0.5</title>
-      <link>//blog.vero.site/post/gridderface-0-5</link>
-      <pubDate>Tue, 27 Nov 2012 17:53:13 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/gridderface-0-5</guid>
-      <description>Okay, I give up. Here it is: Gridderface is a (quoting the project description, which I wrote anyway so whatever) “keyboard inferface for marking grid-based puzzles in Java” that I’ve been working on for too long. It is open-source under the GPL v3.
-Basically, it’s a thing you can paste logic puzzle images into to solve them in, like people do in Paint, when you can’t or don’t want to print them.</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 33 / Ice Barns</title>
-      <link>//blog.vero.site/post/puzzle-33</link>
-      <pubDate>Thu, 22 Nov 2012 20:59:38 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-33</guid>
-      <description>&lt;p&gt;Noticed this at &lt;a href=&#34;http://meanderlawn.blogspot.tw/&#34;&gt;meander
-lawn&lt;/a&gt; who has a really broad puzzle blogroll… I don’t really know
-what I’m doing and may have misinterpreted something, but here goes.
-(Ahahaha puzzle 33 on 11/22… I wish it was intentional :P)&lt;/p&gt;
-&lt;p&gt;Draw a path through square centers which enters and exits through the
-given places. Outside the “ice barns” (the gray things), the path may
-turn freely but may not self-intersect; inside “ice barns” the path may
-self-intersect but may not turn. Each ice barn (not necessarily every
-cell but every region, I think) must be passed over. The path must pass
-through each given arrow in the given direction.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 32 / Slitherlink [Crosslink &#43; Liar]</title>
-      <link>//blog.vero.site/post/puzzle-32</link>
-      <pubDate>Mon, 19 Nov 2012 00:00:44 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-32</guid>
-      <description>&lt;p&gt;Yes, a “big” crazy mutant puzzle for a “milestone”
-&lt;a href=&#34;https://xkcd.com/1000/&#34;&gt;(as seen on xkcd)&lt;/a&gt;, both for this
-blog and for my life. Things are rough now, but I prepared this
-ridiculously ahead of time. It’s still not &lt;em&gt;really&lt;/em&gt; big, but I’m
-not so experienced and I don’t have the inspiration for something like
-&lt;a href=&#34;http://www.artofproblemsolving.com/Forum/viewtopic.php?f=535&amp;amp;t=506208&#34;&gt;an
-entire mini-puzzlehunt&lt;/a&gt;. Also, I think I should attempt more
-word-bank-based puzzles some day so I won’t fail as completely at
-them.&lt;/p&gt;
-&lt;p&gt;But anyway: This is a Slitherlink combining MellowMelon’s
-&lt;a href=&#34;https://mellowmelon.wordpress.com/slitherlink/crosslink/&#34;&gt;Crosslink&lt;/a&gt;
-and
-&lt;a href=&#34;https://mellowmelon.wordpress.com/category/puzzle-types/slitherlink/liar-slitherlink/&#34;&gt;Liar&lt;/a&gt;
-variations. Draw a loop through vertices that can intersect itself but
-must go straight both times if it does; each number normally indicates
-how many of the four edges around it are draw, but exactly one clue in
-each row and column is false. Have fun.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 31 / Fillomino [Sashigane]</title>
-      <link>//blog.vero.site/post/puzzle-31</link>
-      <pubDate>Fri, 09 Nov 2012 17:03:16 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-31</guid>
-      <description>&lt;p&gt;This is a
-&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;
-puzzle where every polyomino is required to be an L-shape, as in
-&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/sashigane.html&#34;&gt;Sashigane&lt;/a&gt;.
-Write a number in every empty cell so that every group of cells with the
-same number that is connected through its edges is an L-shape (with arms
-of positive length and 1-cell thickness) with that number of cells.&lt;/p&gt;
-&lt;p&gt;My second, and now symmetric, attempt at this crazy self-invented
-mutant; &lt;a href=&#34;//blog.vero.site/post/puzzle-22&#34;&gt;puzzle 22&lt;/a&gt; was the first.
-A word of warning: I can’t solve this without bifurcating near the end,
-so logic purists may be disappointed, but I like the clue arrangement
-too much. In fact I suspect this puzzle could have many more clues
-removed without affecting uniqueness, so tight are the rule constraints
-in this type.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 30 / Fillomino [Skyscrapers]</title>
-      <link>//blog.vero.site/post/puzzle-30</link>
-      <pubDate>Fri, 09 Nov 2012 16:58:09 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-30</guid>
-      <description>&lt;p&gt;Haha, way-overdue
-&lt;a href=&#34;http://logicmastersindia.com/FF2/&#34;&gt;Fillomino-Fillia&lt;/a&gt;
-practice puzzle. This is a
-&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;
-puzzle; in addition to normal rules, treat numbers inside the grid as
-building heights. Numbers outside the grid indicate how many buildings
-can be seen from that direction, where a building blocks all buildings
-of lower or equal height behind it.&lt;/p&gt;
-&lt;p&gt;Edit: I should warn that the arithmetic here is pretty annoying.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 29 / Corral [Antisymmetric Multiplicative]</title>
-      <link>//blog.vero.site/post/puzzle-29</link>
-      <pubDate>Thu, 08 Nov 2012 17:35:43 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-29</guid>
-      <description>&lt;p&gt;This is a
-&lt;a href=&#34;https://mellowmelon.wordpress.com/corral/&#34;&gt;Corral&lt;/a&gt; puzzle in
-which half the clues are
-&lt;a href=&#34;http://mathgrant.blogspot.tw/2012/08/monday-mutant-117-inner-limits.html&#34;&gt;multiplicative&lt;/a&gt;.
-For each symmetric pair of clues, one is normal and one is
-multiplicative.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 28 / Fillomino [Nonrectangular]</title>
-      <link>//blog.vero.site/post/puzzle-28</link>
-      <pubDate>Wed, 24 Oct 2012 20:39:47 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-28</guid>
-      <description>&lt;p&gt;This is a
-&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;
-puzzle where every polyomino is required to be nonrectangular (which
-also bans squares). Write a number in every empty cell so that every
-group of cells with the same number that is connected through its edges
-is a shape that’s not a rectangle with that number of cells.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://logicmastersindia.com/FF2/&#34;&gt;Fillomino-Fillia 2&lt;/a&gt; is
-coming! Anyway I don’t know how to judge difficulty but this is probably
-terrible practice. I should try a Skyscrapers if I can keep pretending
-USH homework doesn’t exist which I probably shouldn’t.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 27 / LITS</title>
-      <link>//blog.vero.site/post/puzzle-27</link>
-      <pubDate>Tue, 23 Oct 2012 19:37:35 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-27</guid>
-      <description>&lt;p&gt;Nice and tricky. (I think.)&lt;/p&gt;
-&lt;p&gt;In fact I tried to be too tricky and spent a very long time fixing an
-ambiguity. It was worth it though.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/lits.html&#34;&gt;LITS -
-Nikoli.&lt;/a&gt; Exactly one tetromino per region, no 2x2s, they’re
-connected, adjacent tetrominoes are noncongruent.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 26 / Double Back</title>
-      <link>//blog.vero.site/post/puzzle-26</link>
-      <pubDate>Wed, 10 Oct 2012 08:48:10 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-26</guid>
-      <description>&lt;p&gt;That’s not a picture. Why is it recreated as one? Oh well.&lt;/p&gt;
-&lt;p&gt;You can interpret this as me about reaching level 8.1 (the user
-ranking) on &lt;a href=&#34;https://www.rankk.org/&#34;&gt;rankk&lt;/a&gt; or complaining
-about how infuriating level 8.1 (the puzzle) is. I’m torn.&lt;/p&gt;
-&lt;p&gt;This is one of a bunch of
-&lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s
-Double Backs&lt;/a&gt;. Briefly, draw a closed loop through all square centers
-visiting each bold-outlined area twice. Shaded cells do not influence
-solving, only aesthetics.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 25 / Double Back</title>
-      <link>//blog.vero.site/post/puzzle-25</link>
-      <pubDate>Wed, 10 Oct 2012 08:40:02 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-25</guid>
-      <description>&lt;p&gt;Most uncreative picture ever! But it’s suitable after
-&lt;a href=&#34;http://puzzle.cisra.com.au/&#34;&gt;CiSRA’s Puzzle Week&lt;/a&gt;. This
-might be the first time our AoPS team managed all four puzzles in a
-group.&lt;/p&gt;
-&lt;p&gt;…sigh, now I must handle the guilt for squeezing out so much time
-from my normal schedule.&lt;/p&gt;
-&lt;p&gt;This is one of a bunch of
-&lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s
-Double Backs&lt;/a&gt;. Briefly, draw a closed loop through all square centers
-visiting each bold-outlined area twice. Shaded cells do not influence
-solving, only aesthetics.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 24 / Double Back</title>
-      <link>//blog.vero.site/post/puzzle-24</link>
-      <pubDate>Wed, 10 Oct 2012 08:26:11 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-24</guid>
-      <description>&lt;p&gt;Right, back to puzzles because I have nothing substantial to say.
-Circumstantial evidence suggests I created this one in June.&lt;/p&gt;
-&lt;p&gt;This is one of a bunch of
-&lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s
-Double Backs&lt;/a&gt;. Draw a closed loop through all square centers visiting
-each bold-outlined area twice.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 23 / Corral [Multiplicative]</title>
-      <link>//blog.vero.site/post/puzzle-23</link>
-      <pubDate>Wed, 19 Sep 2012 21:49:01 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-23</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://mathgrant.blogspot.tw/2012/08/monday-mutant-117-inner-limits.html&#34;&gt;Too
-lazy to explain rules today&lt;/a&gt; although this is probably an easy
-one.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 22 / Fillomino [Sashigane]</title>
-      <link>//blog.vero.site/post/puzzle-22</link>
-      <pubDate>Mon, 10 Sep 2012 21:07:31 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-22</guid>
-      <description>&lt;p&gt;This is a
-&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;
-puzzle where every polyomino is required to be an L-shape, as in
-&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/sashigane.html&#34;&gt;Sashigane&lt;/a&gt;.
-Write a number in every empty cell so that every group of cells with the
-same number that is connected through its edges is an L-shape (with arms
-of positive length and 1-cell thickness) with that number of cells.&lt;/p&gt;
-&lt;p&gt;May be slightly reminiscent of
-&lt;a href=&#34;http://mathgrant.blogspot.com/2011/09/monday-mutant-95-polyominous-no.html&#34;&gt;no-rectangle
-Fillominoes&lt;/a&gt;. &lt;em&gt;Slightly…&lt;/em&gt; (Has anybody done this before? It
-seems so interesting that I feel like I couldn’t be first.)&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 21 / LITS</title>
-      <link>//blog.vero.site/post/puzzle-21</link>
-      <pubDate>Sat, 25 Aug 2012 10:27:40 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-21</guid>
-      <description>&lt;p&gt;I made this a long time ago but put it off until I had programmed
-enough to digitize it without my fingers leaving the home row. I think
-the finish is interesting.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/lits.html&#34;&gt;LITS -
-Nikoli.&lt;/a&gt; Exactly one tetromino per region, no 2x2s, they’re
-connected, adjacent tetrominoes are noncongruent.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 20 / Sashigane</title>
-      <link>//blog.vero.site/post/puzzle-20</link>
-      <pubDate>Wed, 22 Aug 2012 07:12:36 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-20</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/20-sashigane.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/20-sashigane.png&#34; alt=&#34;&#34; title=&#34;Sashigane&#34; width=&#34;345&#34; height=&#34;345&#34; class=&#34;aligncenter size-full wp-image-1302&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Yeah, I lied last time I made one of these; the original Nikoli name
-wasn’t that hard to remember, and “sashigane puzzles” has shown up as a
-search query, so here you go. Perfect opposite-type-clue rotational
-symmetry, chaotic_iak! I hope you’re satisfied now.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 19 / Yajilin</title>
-      <link>//blog.vero.site/post/puzzle-19</link>
-      <pubDate>Thu, 02 Aug 2012 14:16:36 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-19</guid>
-      <description>&lt;p&gt;I have just realized that I have only ever tried one level of
-difficulty in puzzle construction, viz., “as hard as I can make it”.
-This is mainly because I don’t want to construct anything overly trivial
-with the same few tricks, but, well, maybe it’s not the best idea for
-actually trying to build an audience.&lt;/p&gt;
-&lt;p&gt;Am I actually trying to build an audience? Am I? *shudders*&lt;/p&gt;
-&lt;p&gt;(Yajilin summary: fill in some cells, draw a loop through the rest,
-filled cells aren’t adjacent, arrows denote # of filled cells along some
-ray; &lt;a href=&#34;https://mellowmelon.wordpress.com/yajilin/&#34;&gt;MellowMelon’s
-rules&lt;/a&gt;)&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 18 / Smullyanic Dynasty</title>
-      <link>//blog.vero.site/post/puzzle-18</link>
-      <pubDate>Wed, 01 Aug 2012 19:03:44 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-18</guid>
-      <description>&lt;p&gt;Again, the
-&lt;a href=&#34;http://zotmeister.dreamwidth.org/2005/03/22/&#34;&gt;Zotmeister
-type&lt;/a&gt;. (Short rules: each cell states how many liars are in the 3x3
-square centered at it, liars incorrectly so. Liars satisfy the “dynasty”
-rule i.e. liars are not orthogonally adjacent and non-liars are
-connected through sides.)&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 17 / Corral</title>
-      <link>//blog.vero.site/post/puzzle-17</link>
-      <pubDate>Mon, 30 Jul 2012 19:07:41 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-17</guid>
-      <description>&lt;p&gt;Corral puzzle, aka Cave aka Bag etc. (Yes, from nikoli.) Short rules:
-draw a loop along the grid lines; each numbered cell is in the loop and
-the number denotes how many cells can be seen vertically or horizontally
-from that cell, plus the cell itself. Stealing link to
-&lt;a href=&#34;https://mellowmelon.wordpress.com/corral/&#34;&gt;MellowMelon’s long
-rules&lt;/a&gt;.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 16 / Slitherlink [Domino]</title>
-      <link>//blog.vero.site/post/puzzle-16</link>
-      <pubDate>Wed, 06 Jun 2012 19:57:09 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-16</guid>
-      <description>&lt;p&gt;Slitherlink with 20 clues taken out as dominoes and their original
-positions shaded. For more lucid rules please visit
-&lt;a href=&#34;https://mellowmelon.wordpress.com/2010/10/21/puzzle-263/&#34;&gt;MellowMelon’s
-puzzle 263&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Domino set is all possible dominoes exactly once each:
-&lt;strong&gt;{00,01,02,03,11,12,13,22,23,33}&lt;/strong&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 15 / Sudoku / Happy Birthday!</title>
-      <link>//blog.vero.site/post/puzzle-15</link>
-      <pubDate>Sun, 25 Mar 2012 00:00:08 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-15</guid>
-      <description>&lt;p&gt;A bonus gift for the birthday of a very important person! Ignore the
-colors while solving.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 14 / Slitherlink</title>
-      <link>//blog.vero.site/post/puzzle-14</link>
-      <pubDate>Thu, 22 Mar 2012 20:46:51 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-14</guid>
-      <description>&lt;p&gt;Just a normal one this time.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 13 / Akari</title>
-      <link>//blog.vero.site/post/puzzle-13</link>
-      <pubDate>Mon, 19 Mar 2012 06:44:28 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-13</guid>
-      <description>&lt;p&gt;Somewhat depressing almost-symmetry.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 12 / Sashigane</title>
-      <link>//blog.vero.site/post/puzzle-12</link>
-      <pubDate>Tue, 13 Mar 2012 13:30:47 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-12</guid>
-      <description>&lt;p&gt;If you are reading this, then our APMO testing time is over! There’s
-a small chance of me being really happy or really frustrated about how I
-did, but I’m betting on a solid “meh.”&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://mathgrant.blogspot.com/2012/01/rules-ellbound.html&#34;&gt;Rules
-page&lt;/a&gt; by mathgrant. There’s no way I’m going to memorize the Japanese
-name yet. [edit: It’s Sashigane. It’s not that hard.]&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 11 / Smullyanic Dynasty</title>
-      <link>//blog.vero.site/post/puzzle-11</link>
-      <pubDate>Tue, 06 Mar 2012 18:25:47 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-11</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://zotmeister.dreamwidth.org/2005/03/22/&#34;&gt;Ruleset&lt;/a&gt;
-designed by Zotmeister.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 10 / Nurikabe 3</title>
-      <link>//blog.vero.site/post/puzzle-10</link>
-      <pubDate>Sat, 03 Mar 2012 18:00:11 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-10</guid>
-      <description>&lt;p&gt;A ratio-preserving enlargement of the janko.at sample invocation
-puzzle, perhaps. I wanted to try using smaller clues. Finally a grid too
-large for full-size displaying! Is that even supposed to be an
-achievement?&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 9 / Yajilin</title>
-      <link>//blog.vero.site/post/puzzle-9</link>
-      <pubDate>Tue, 28 Feb 2012 12:00:09 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-9</guid>
-      <description>Man, hacking new puzzle types into the image generator is an amazing way to procrastinate.</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 8 / Fillomino</title>
-      <link>//blog.vero.site/post/puzzle-8</link>
-      <pubDate>Sun, 26 Feb 2012 12:00:58 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-8</guid>
-      <description>Hey, a “theme” (look at the corners)!
-Honestly though I’m just spreading out my puzzle posts so there’s some illusion of regularity.</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 7 / Slitherlink [All Twos]</title>
-      <link>//blog.vero.site/post/puzzle-7</link>
-      <pubDate>Wed, 22 Feb 2012 18:47:04 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-7</guid>
-      <description>It’s 2/22 and I have low standards.
-This is a normal Slitherlink, except all the 2s have been given to you. Thus, empty squares cannot have exactly two edges around them. Of course it’s been done before (guess who?)
-I appear to be drastically overshooting a monthly schedule :P</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 6 / Fillomino</title>
-      <link>//blog.vero.site/post/puzzle-6</link>
-      <pubDate>Tue, 21 Feb 2012 17:55:52 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-6</guid>
-      <description>Not actually my first try, but I guess I don’t need to resort to 6x6s to fill up my quota just yet, do I?
-Okay for the absolutely uninformed, this is a Fillomino (or see MellowMelon’s rule page).
-I’ve switched to 32x32 pixel cells because they seem a reasonable size and it’s possible to express all pixel sizes as an exact floating-point fraction of the cell side so my image generator can be used in a general way to get perfect stroke thicknesses without worrying about any rounding errors no matter how obviously numerically insignificant they would be in this case.</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 5 (Liar Slitherlink)</title>
-      <link>//blog.vero.site/post/puzzle-5</link>
-      <pubDate>Tue, 14 Feb 2012 12:19:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-5</guid>
-      <description>One puzzle a month! What a prolific schedule!
-A Liar Slitherlink as created by MellowMelon (probably). Normal Slitherlink rules except exactly one clue in each row and column is false; you figure out which. But I bet you knew that already.</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 4 / Nurikabe (&#43;Lists of Obscure Stuff)</title>
-      <link>//blog.vero.site/post/puzzle-4</link>
-      <pubDate>Wed, 11 Jan 2012 21:11:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-4</guid>
-      <description>I was like “Let’s make a 15x15!” and got confused by the graph lines and stopped early. Anyway, I think the steps aren’t so trivial now. I’m still too lazy to fix my generator, however.
-yes, normal Nurikabe </description>
-    </item>
-    
-    <item>
-      <title>Puzzle 3 / Nurikabe</title>
-      <link>//blog.vero.site/post/puzzle-3</link>
-      <pubDate>Tue, 10 Jan 2012 17:00:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-3</guid>
-      <description>&lt;p&gt;I only just managed to make a 10x10 that’s not broken.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.janko.at/Applets/Nurikabe/q.php?w=450&amp;amp;h=340&amp;amp;r=10&amp;amp;c=10&amp;amp;p=,,4,,,,3,,,/,8,,,,,,,,/,,,5,,,,,,/,,,,,,,3,,/,,,,,,,,,/,,,,,,,,,/,,,,,,,7,,/,3,,,,,,,3,/,,2,,,,,,,/,,,,,4,,,,&#34;&gt;janko.at
-applet&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 2 / Slitherlink</title>
-      <link>//blog.vero.site/post/puzzle-2</link>
-      <pubDate>Sun, 01 Jan 2012 00:01:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-2</guid>
-      <description>Written for the new year of 2012.
-(janko.at applet)</description>
-    </item>
-    
-    <item>
-      <title>Puzzle 1 (Wild Slitherlink Appeared!)</title>
-      <link>//blog.vero.site/post/puzzle-1</link>
-      <pubDate>Mon, 28 Nov 2011 19:24:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/puzzle-1</guid>
-      <description></description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Logic Puzzle on Bounded-Error Log</title>
+		<link>//blog.vero.site/tag/logic-puzzle</link>
+		<description>Recent content in Logic Puzzle on Bounded-Error Log</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Wed, 23 Dec 2015 00:25:46 +0800</lastBuildDate>
+		
+			<atom:link href="//blog.vero.site/tag/logic-puzzle/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Puzzle 49 / Triple Back</title>
+				<link>//blog.vero.site/post/puzzle-49</link>
+				<pubDate>Wed, 23 Dec 2015 00:25:46 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-49</guid>
+				<description>&lt;p&gt;I’m not really satisfied with the execution, but eh, what the hell.&#xA;My brain can only function at so much of its full capacity when it’s a&#xA;few kilometers up in the sky.&lt;/p&gt;&#xA;&lt;p&gt;This is a&#xA;&lt;a href=&#34;https://mellowmelon.wordpress.com/2009/12/20/puzzle-135/&#34;&gt;Triple&#xA;Back&lt;/a&gt;, variant on&#xA;&lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s&#xA;Double Back&lt;/a&gt;. Briefly, draw a closed loop through all square centers&#xA;visiting each bold-outlined area exactly three (= ⌊π⌋) times. Shaded&#xA;cells do not influence solving, only aesthetics.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 48 / Double Back</title>
+				<link>//blog.vero.site/post/puzzle-48</link>
+				<pubDate>Sun, 06 Sep 2015 23:15:44 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-48</guid>
+				<description>&lt;p&gt;At least one person wants me to post. I’m not even going to try do a&#xA;life summary. It’s too hard. Let’s just say:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;right now, my blog drafts contain a backlog of ~7500 words and counting;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;I was not accepted as an MIT Admissions blogger, which is bad because my&#xA;blogging will continue to not reach a large audience, but good because&#xA;my blogging will continue to not reach a large audience. Maybe it had&#xA;something to do with the fact that, because the application form&#xA;wouldn’t let me submit without any media, I panickedly cranked out the&#xA;following puzzle in an hour or so to attach.&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 47 / Fillomino [LITS &#43; Walls]</title>
+				<link>//blog.vero.site/post/puzzle-47</link>
+				<pubDate>Mon, 30 Mar 2015 20:01:26 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-47</guid>
+				<description>&lt;p&gt;CLICKBAIT PERSONALITY TEST THAT YOU CAN DO WITHOUT SOLVING THE&#xA;PUZZLE: What do you see in the puzzle image below? I have my own&#xA;thoughts but I won’t bias you by posting them yet. Sound out your&#xA;thoughts in the comments below! (I don’t expect this to work but I’d&#xA;love to be proven wrong)&lt;/p&gt;&#xA;&lt;p&gt;Okay so apparently how puzzles work is I go nearly a year without&#xA;posting one and then when I post a terrible one, I feel guilty and&#xA;obligated to post a legitimate one soon after. Testsolved by&#xA;chaotic_iak.&lt;/p&gt;&#xA;&lt;p&gt;This is a Fillomino (write a number in every empty cell so that every&#xA;group of cells with the same number that is connected through its edges&#xA;has that number of cells) where each tetromino has had their 4s replaced&#xA;by one of L, I, T, or S describing their shape, and they obey the rules&#xA;of LITS — they can touch if they are not congruent, they must all be&#xA;connected, and their squares cannot form a 2×2 block. In addition, cells&#xA;separated by a thick border may not contain the same number or&#xA;letter.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 46 / Fillomino [LITS &#43; Extra Region &#43; Walls &#43; Anti-Walls &#43; Inequality &#43; Tapa &#43; Masyu]</title>
+				<link>//blog.vero.site/post/puzzle-46</link>
+				<pubDate>Sun, 29 Mar 2015 13:01:08 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-46</guid>
+				<description>&lt;blockquote&gt;&#xA;5:27 PM &lt;strong&gt;phenomist&lt;/strong&gt;: do you use gridderface to make&#xA;pretty puzzles?&lt;br /&gt;&#xA;…&lt;br /&gt;&#xA;5:52 PM &lt;strong&gt;phenomist&lt;/strong&gt;: actually nvm excel is probably&#xA;easier lol&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Okay I’m sorry this is a horrible puzzle where the rules don’t make&#xA;sense and I didn’t even get it testsolved. I just wanted an image to&#xA;concisely demonstrate the capabilities of&#xA;&lt;a href=&#34;https://github.com/betaveros/gridderface&#34;&gt;gridderface&lt;/a&gt;, my&#xA;puzzle marking and creation program, for the project homepage, after&#xA;somebody expressed interest in using the program to write a puzzle. Then&#xA;I got tremendously carried away.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 45 / Fillomino [No-Path]</title>
+				<link>//blog.vero.site/post/puzzle-45</link>
+				<pubDate>Tue, 15 Apr 2014 08:15:37 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-45</guid>
+				<description>&lt;p&gt;As requested, a puzzle post! Straight from the WTF-variant&#xA;department. Quite hard.&lt;/p&gt;&#xA;&lt;p&gt;This is a&#xA;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;,&#xA;with the additional constraint that for each polyomino, there must&#xA;&lt;em&gt;not&lt;/em&gt; exist a path (i.e. a sequence of cells, each orthogonally&#xA;adjacent to the next) that includes each of the polyomino’s cells&#xA;exactly once (and does not include cells outside the polyomino).&lt;/p&gt;&#xA;&lt;p&gt;As a degenerate case, 1-ominoes are banned as well.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 44 / ???</title>
+				<link>//blog.vero.site/post/puzzle-44</link>
+				<pubDate>Tue, 19 Nov 2013 00:00:26 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-44</guid>
+				<description>&lt;ins datetime=&#34;2013-11-18T23:20:18+00:00&#34;&gt;&#xA;Edit 11/19 7:23 AM UTC+8: Fixed some transcription errors on right:&#xA;&lt;strong&gt;R4C17 is D instead of N, and R15C17 is G instead of E.&lt;/strong&gt;&#xA;Neither change should greatly impact solvability. Thanks to ksun for&#xA;pointing out an error.&#xA;&lt;/ins&gt;&#xA;&lt;p&gt;Logic puzzles are easy to construct if one doesn’t have some specific&#xA;pattern or theme in mind. It’s just that, given the increasing number of&#xA;constructors and puzzles with amazing themes, I don’t think it’s very&#xA;meaningful for me to just construct more puzzles of the same genres by&#xA;putting down clues randomly. That’s why, for my seventeenth birthday, I&#xA;took the puzzlehunt route and made something without instructions that&#xA;is not completely solved by logical deduction. Still, I’ve provided all&#xA;the information needed to do this puzzle initially, so I hope my not&#xA;getting the inductive bits test-solved can be excused.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 43 / Fillomino [Nonrectangular &#43; Walls]</title>
+				<link>//blog.vero.site/post/puzzle-43</link>
+				<pubDate>Mon, 30 Sep 2013 20:52:46 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-43</guid>
+				<description>&lt;p&gt;I’m extremely satisfied — a little incredulous, in fact — with how&#xA;this puzzle came out.&#xA;&lt;a href=&#34;https://chaosatthesky.wordpress.com/&#34;&gt;chaotic_iak&lt;/a&gt; labels it&#xA;the “most ridiculous fillomino ever in history”. Apparently, it’s rather&#xA;tricky.&lt;/p&gt;&#xA;&lt;ins datetime=&#34;2013-09-30T13:05:57+00:00&#34;&gt;&#xA;ETA: Journalistic responsibility compels me to mention that chaotic_iak&#xA;also added, “might be beaten later”. Oops?&#xA;&lt;/ins&gt;&#xA;&lt;p&gt;This is a&#xA;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;&#xA;combining the&#xA;&lt;a href=&#34;http://mathgrant.blogspot.tw/2011/09/monday-mutant-95-polyominous-no.html&#34;&gt;Nonrectangular&lt;/a&gt;&#xA;(polyominoes can’t be rectangles) and&#xA;&lt;a href=&#34;http://mathgrant.blogspot.tw/2012/10/fillomino-fillia-2-preview-series-walls.html&#34;&gt;Walls&lt;/a&gt;&#xA;(polyominoes can’t span thick lines) variant rules. I think the first&#xA;variant first came from mathgrant; I’m not as sure about the second, but&#xA;they both appeared in&#xA;&lt;a href=&#34;http://logicmastersindia.com/forum/forums/thread-view.asp?tid=525&amp;amp;posts=64&amp;amp;start=1&#34;&gt;Fillomino-Fillia&#xA;2&lt;/a&gt;, at least.&lt;/p&gt;&#xA;&lt;p&gt;Write a number in every empty cell so that every group of cells with&#xA;the same number that is connected through its edges is a shape that’s&#xA;not a rectangle with that number of cells. In addition, cells separated&#xA;by a thick border may not contain the same number.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 42 / Fillomino [Greater-Than]</title>
+				<link>//blog.vero.site/post/puzzle-42</link>
+				<pubDate>Fri, 19 Jul 2013 08:57:13 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-42</guid>
+				<description>&lt;p&gt;Oops, I forgot the “puzzles” category was semi-reserved for puzzles I&#xA;constructed/wrote, because among other things an LMI bot is following&#xA;it. Anyway, if this makes up for anything, I have a puzzle that I’ve&#xA;procrastinated posting for very, very long.&lt;/p&gt;&#xA;&lt;p&gt;This is a&#xA;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;&#xA;puzzle. Inequality signs in the grid must be satisfied by the two&#xA;numbers they touch.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>MUMS Puzzle Hunt 2013</title>
+				<link>//blog.vero.site/post/mums</link>
+				<pubDate>Fri, 24 May 2013 21:44:24 +0800</pubDate>
+				<guid>//blog.vero.site/post/mums</guid>
+				<description>&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/informatix.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/informatix.jpg?w=300&#34; alt=&#34;Informatix [MUMS Puzzle Hunt 2013]&#34;/&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;So, I somehow managed to&#xA;&lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/teamstats.html?team=not+AoPS&#34;&gt;get&#xA;25 points all by myself&lt;/a&gt; in&#xA;&lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/&#34;&gt;MUMS Puzzle&#xA;Hunt 2013&lt;/a&gt;. Well, I pestered chaotic_iak a little with&#xA;&lt;a href=&#34;http://www.ms.unimelb.edu.au/~mums/puzzlehunt/2013/puzzles/3.3_Diagnosus_ghQ3AcbJ.html&#34;&gt;3.3&#xA;Diagnosus (.html with animated .gif)&lt;/a&gt; but we still didn’t recognize&#xA;all the Pokémon until hint 3, at which point Google sufficed for me.&lt;/p&gt;&#xA;&lt;p&gt;This is nowhere near the top, but compared to the usual results of&#xA;whatever AoPS team I form, it’s amazing. By far the best result of AoPS&#xA;was on CiSRA in 2010 (46th with 58 points), before I discovered puzzle&#xA;hunts in AoPS; unfortunately due to people getting older and the influx&#xA;of younger and younger people to the fora, there are less possible&#xA;teammates each year and they have less time, so here I am by myself.&#xA;(Also I could have accepted an invitation from a guy in the&#xA;some-form-of-Elephant team, but I figure if you can win two MUMS hunts&#xA;in a row you don’t need any more people.)&lt;/p&gt;&#xA;&lt;p&gt;All in all: Yay!&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 41 / Slitherlink [Clones]</title>
+				<link>//blog.vero.site/post/puzzle-41</link>
+				<pubDate>Sat, 27 Apr 2013 17:27:26 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-41</guid>
+				<description>&lt;p&gt;I survived midterms.&lt;/p&gt;&#xA;&lt;p&gt;This is a&#xA;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/slitherlink.html&#34;&gt;Slitherlink&lt;/a&gt;&#xA;mutant. Draw a loop through adjacent vertices that cannot intersect&#xA;itself. Each number indicates how many of the four edges around it are&#xA;drawn. In addition, each pair of colored squares in corresponding&#xA;positions (e.g. R1C1 and R6C6, R2C8 and R7C3) must have an equal number&#xA;of edges drawn around them (i.e. if there were numbers placed there,&#xA;they would be equal).&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 40 / Fillomino [Samurai]</title>
+				<link>//blog.vero.site/post/puzzle-40</link>
+				<pubDate>Sun, 24 Mar 2013 00:03:13 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-40</guid>
+				<description>&lt;p&gt;Yeah, and there’s this. chaotic_iak rejected this variant for his&#xA;&lt;a href=&#34;https://chaosatthesky.wordpress.com/puzzles/#fff&#34;&gt;February&#xA;sequence&lt;/a&gt; in order to get consistent 7x7 dimensions, so I made one.&#xA;It’s been about a month. I have no idea why I procrastinated posting it&#xA;until now.&lt;/p&gt;&#xA;&lt;p&gt;This is a Samurai&#xA;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;,&#xA;which means each grid satisfies the constraints on its own. Write a&#xA;number in every empty cell so that, in each square grid, every group of&#xA;cells with the same number that is connected through its edges has that&#xA;number of cells. Note that the two grids must contain the same numbers&#xA;where they overlap, but the grouping should be considered independently.&#xA;I’d explain this really carefully if it weren’t the main gimmick of this&#xA;puzzle.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 39 / Contact &#43; Slitherlink [Antisymmetric]</title>
+				<link>//blog.vero.site/post/puzzle-39</link>
+				<pubDate>Thu, 28 Feb 2013 21:38:54 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-39</guid>
+				<description>&lt;p&gt;Yay crazy hybrids! I guess this one is kind of hard.&lt;/p&gt;&#xA;&lt;p&gt;Draw a loop through adjacent vertices that cannot intersect itself.&#xA;For each pair of symmetrically placed numbers, one is a Slitherlink clue&#xA;which indicates how many of the four edges around it are drawn, and one&#xA;is a Contact clue which indicates the total length of all straight&#xA;segments adjacent to it where segment length is always measured up to&#xA;the nearest turns in the loop.&lt;/p&gt;&#xA;&lt;del datetime=&#34;2017-11-25T16:26:24-0500&#34;&gt;&#xA;Please click on the image if it looks weird, which it very likely will.&#xA;&lt;/del&gt;&#xA;&lt;p&gt;&lt;ins datetime=&#34;2017-11-25T16:26:37-0500&#34;&gt;(This was a WordPress bug&#xA;that should no longer be relevant.)&lt;/ins&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 38 / Contact</title>
+				<link>//blog.vero.site/post/puzzle-38</link>
+				<pubDate>Sun, 10 Feb 2013 00:00:47 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-38</guid>
+				<description>&lt;p&gt;A &lt;a href=&#34;http://inabapuzzle.com/honkaku/contact.html&#34;&gt;Naoki Inaba&#xA;(JP)&lt;/a&gt; type, as seen on&#xA;&lt;a href=&#34;http://puzzleparasite.blogspot.tw/2012/01/rules-contact.html&#34;&gt;Para’s&#xA;Puzzle Site&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Draw a loop through adjacent vertices that cannot intersect itself;&#xA;each number indicates the total length of all straight segments adjacent&#xA;to it, where segment length is always measured up to the nearest turns&#xA;in the loop.&lt;/p&gt;&#xA;&lt;p&gt;Let’s see how well WordPress’s scheduling works again. Happy Chinese&#xA;New Year!&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 37 / Slitherlink &#43; Masyu</title>
+				<link>//blog.vero.site/post/puzzle-37</link>
+				<pubDate>Thu, 24 Jan 2013 15:16:51 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-37</guid>
+				<description>&lt;p&gt;Nikoli&#xA;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/slitherlink.html&#34;&gt;Slitherlink&lt;/a&gt;&#xA;+ &lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/masyu.html&#34;&gt;Masyu&lt;/a&gt;&#xA;hybrid; I don’t know who first put them together but combinations like&#xA;this aren’t rare.&lt;/p&gt;&#xA;&lt;p&gt;Draw a loop through vertices that cannot intersect itself; each&#xA;number indicates how many of the four edges around it are drawn; the&#xA;loop must pass through all large dots, and it must go straight through&#xA;white dots while turning either before or after (or both), while it must&#xA;turn on black dots without turning either before or after.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 36 / Fillomino [LITS]</title>
+				<link>//blog.vero.site/post/puzzle-36</link>
+				<pubDate>Wed, 23 Jan 2013 18:29:00 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-36</guid>
+				<description>&lt;p&gt;&lt;a href=&#34;http://mathgrant.blogspot.tw/2012/11/monday-mutant-119-polyominous-tetra.html&#34;&gt;mathgrant’s&#xA;hybrid type&lt;/a&gt;: a Fillomino (write a number in every empty cell so that&#xA;every group of cells with the same number that is connected through its&#xA;edges has that number of cells) where each tetromino has had their 4s&#xA;replaced by one of L, I, T, or S describing their shape, and they obey&#xA;the rules of LITS — they can touch if they are not congruent, they must&#xA;all be connected, and their squares cannot form a 2x2 block.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 35 / Double Back</title>
+				<link>//blog.vero.site/post/puzzle-35</link>
+				<pubDate>Fri, 04 Jan 2013 22:42:10 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-35</guid>
+				<description>&lt;p&gt;This is another&#xA;&lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s&#xA;Double Back&lt;/a&gt;. Briefly, draw a closed loop through all square centers&#xA;visiting each bold-outlined area twice. Shaded cells do not influence&#xA;solving, only aesthetics.&lt;/p&gt;&#xA;&lt;p&gt;It’s mostly easy, I think. It’s okay if you don’t know what the theme&#xA;means. (Yes, chao, I want more contrib points.) Also, WordPress seems to&#xA;have stopped automatically linking images to their files. Hmm.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 34 / Snail&#39;s Nest</title>
+				<link>//blog.vero.site/post/puzzle-34</link>
+				<pubDate>Tue, 18 Dec 2012 22:08:43 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-34</guid>
+				<description>&lt;p&gt;It’s been a while, hasn’t it? This is something I constructed&#xA;semi-experimentally to stop failing at an entire genre of puzzles, and&#xA;then procrastinated posting just about forever. I only test-solved this&#xA;on paper; I hope I didn’t do anything silly while digitizing.&lt;/p&gt;&#xA;&lt;p&gt;Rules paraphrased from USPC because I can’t find any good links:&#xA;Write each of the given words into its own snail; letters must be&#xA;entered from the outside of the snail spirally inward. Not all squares&#xA;will be used; squares with “-” must stay blank. Each letter can appear&#xA;at most once in each row and column.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Gridderface 0.5</title>
+				<link>//blog.vero.site/post/gridderface-0-5</link>
+				<pubDate>Tue, 27 Nov 2012 17:53:13 +0800</pubDate>
+				<guid>//blog.vero.site/post/gridderface-0-5</guid>
+				<description>&lt;p&gt;Okay, I give up. Here it is:&#xA;&lt;a href=&#34;http://sourceforge.net/projects/gridderface/&#34;&gt;Gridderface&lt;/a&gt;&#xA;is a (quoting the project description, which I wrote anyway so whatever)&#xA;“keyboard inferface for marking grid-based puzzles in Java” that I’ve&#xA;been working on for too long. It is open-source under the GPL v3.&lt;/p&gt;&#xA;&lt;p&gt;Basically, it’s a thing you can paste logic puzzle images into to&#xA;solve them in, like people do in Paint, when you can’t or don’t want to&#xA;print them. As the description explained, it’s meant to be used in a&#xA;very keyboard-intense way, because I’m that kind of guy. Also, I get a&#xA;lot of time the computer without either a printer or a mouse, and&#xA;drawing things (particularly e.g. numbers in Fillominos) on trackpads&#xA;&lt;em&gt;sucks&lt;/em&gt;. Still, the mouse is perhaps usable.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 33 / Ice Barns</title>
+				<link>//blog.vero.site/post/puzzle-33</link>
+				<pubDate>Thu, 22 Nov 2012 20:59:38 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-33</guid>
+				<description>&lt;p&gt;Noticed this at &lt;a href=&#34;http://meanderlawn.blogspot.tw/&#34;&gt;meander&#xA;lawn&lt;/a&gt; who has a really broad puzzle blogroll… I don’t really know&#xA;what I’m doing and may have misinterpreted something, but here goes.&#xA;(Ahahaha puzzle 33 on 11/22… I wish it was intentional :P)&lt;/p&gt;&#xA;&lt;p&gt;Draw a path through square centers which enters and exits through the&#xA;given places. Outside the “ice barns” (the gray things), the path may&#xA;turn freely but may not self-intersect; inside “ice barns” the path may&#xA;self-intersect but may not turn. Each ice barn (not necessarily every&#xA;cell but every region, I think) must be passed over. The path must pass&#xA;through each given arrow in the given direction.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 32 / Slitherlink [Crosslink &#43; Liar]</title>
+				<link>//blog.vero.site/post/puzzle-32</link>
+				<pubDate>Mon, 19 Nov 2012 00:00:44 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-32</guid>
+				<description>&lt;p&gt;Yes, a “big” crazy mutant puzzle for a “milestone”&#xA;&lt;a href=&#34;https://xkcd.com/1000/&#34;&gt;(as seen on xkcd)&lt;/a&gt;, both for this&#xA;blog and for my life. Things are rough now, but I prepared this&#xA;ridiculously ahead of time. It’s still not &lt;em&gt;really&lt;/em&gt; big, but I’m&#xA;not so experienced and I don’t have the inspiration for something like&#xA;&lt;a href=&#34;http://www.artofproblemsolving.com/Forum/viewtopic.php?f=535&amp;amp;t=506208&#34;&gt;an&#xA;entire mini-puzzlehunt&lt;/a&gt;. Also, I think I should attempt more&#xA;word-bank-based puzzles some day so I won’t fail as completely at&#xA;them.&lt;/p&gt;&#xA;&lt;p&gt;But anyway: This is a Slitherlink combining MellowMelon’s&#xA;&lt;a href=&#34;https://mellowmelon.wordpress.com/slitherlink/crosslink/&#34;&gt;Crosslink&lt;/a&gt;&#xA;and&#xA;&lt;a href=&#34;https://mellowmelon.wordpress.com/category/puzzle-types/slitherlink/liar-slitherlink/&#34;&gt;Liar&lt;/a&gt;&#xA;variations. Draw a loop through vertices that can intersect itself but&#xA;must go straight both times if it does; each number normally indicates&#xA;how many of the four edges around it are draw, but exactly one clue in&#xA;each row and column is false. Have fun.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 31 / Fillomino [Sashigane]</title>
+				<link>//blog.vero.site/post/puzzle-31</link>
+				<pubDate>Fri, 09 Nov 2012 17:03:16 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-31</guid>
+				<description>&lt;p&gt;This is a&#xA;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;&#xA;puzzle where every polyomino is required to be an L-shape, as in&#xA;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/sashigane.html&#34;&gt;Sashigane&lt;/a&gt;.&#xA;Write a number in every empty cell so that every group of cells with the&#xA;same number that is connected through its edges is an L-shape (with arms&#xA;of positive length and 1-cell thickness) with that number of cells.&lt;/p&gt;&#xA;&lt;p&gt;My second, and now symmetric, attempt at this crazy self-invented&#xA;mutant; &lt;a href=&#34;//blog.vero.site/post/puzzle-22&#34;&gt;puzzle 22&lt;/a&gt; was the&#xA;first. A word of warning: I can’t solve this without bifurcating near&#xA;the end, so logic purists may be disappointed, but I like the clue&#xA;arrangement too much. In fact I suspect this puzzle could have many more&#xA;clues removed without affecting uniqueness, so tight are the rule&#xA;constraints in this type.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 30 / Fillomino [Skyscrapers]</title>
+				<link>//blog.vero.site/post/puzzle-30</link>
+				<pubDate>Fri, 09 Nov 2012 16:58:09 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-30</guid>
+				<description>&lt;p&gt;Haha, way-overdue&#xA;&lt;a href=&#34;http://logicmastersindia.com/FF2/&#34;&gt;Fillomino-Fillia&lt;/a&gt;&#xA;practice puzzle. This is a&#xA;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;&#xA;puzzle; in addition to normal rules, treat numbers inside the grid as&#xA;building heights. Numbers outside the grid indicate how many buildings&#xA;can be seen from that direction, where a building blocks all buildings&#xA;of lower or equal height behind it.&lt;/p&gt;&#xA;&lt;p&gt;Edit: I should warn that the arithmetic here is pretty annoying.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 29 / Corral [Antisymmetric Multiplicative]</title>
+				<link>//blog.vero.site/post/puzzle-29</link>
+				<pubDate>Thu, 08 Nov 2012 17:35:43 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-29</guid>
+				<description>&lt;p&gt;This is a&#xA;&lt;a href=&#34;https://mellowmelon.wordpress.com/corral/&#34;&gt;Corral&lt;/a&gt; puzzle in&#xA;which half the clues are&#xA;&lt;a href=&#34;http://mathgrant.blogspot.tw/2012/08/monday-mutant-117-inner-limits.html&#34;&gt;multiplicative&lt;/a&gt;.&#xA;For each symmetric pair of clues, one is normal and one is&#xA;multiplicative.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 28 / Fillomino [Nonrectangular]</title>
+				<link>//blog.vero.site/post/puzzle-28</link>
+				<pubDate>Wed, 24 Oct 2012 20:39:47 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-28</guid>
+				<description>&lt;p&gt;This is a&#xA;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;&#xA;puzzle where every polyomino is required to be nonrectangular (which&#xA;also bans squares). Write a number in every empty cell so that every&#xA;group of cells with the same number that is connected through its edges&#xA;is a shape that’s not a rectangle with that number of cells.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://logicmastersindia.com/FF2/&#34;&gt;Fillomino-Fillia 2&lt;/a&gt; is&#xA;coming! Anyway I don’t know how to judge difficulty but this is probably&#xA;terrible practice. I should try a Skyscrapers if I can keep pretending&#xA;USH homework doesn’t exist which I probably shouldn’t.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 27 / LITS</title>
+				<link>//blog.vero.site/post/puzzle-27</link>
+				<pubDate>Tue, 23 Oct 2012 19:37:35 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-27</guid>
+				<description>&lt;p&gt;Nice and tricky. (I think.)&lt;/p&gt;&#xA;&lt;p&gt;In fact I tried to be too tricky and spent a very long time fixing an&#xA;ambiguity. It was worth it though.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/lits.html&#34;&gt;LITS -&#xA;Nikoli.&lt;/a&gt; Exactly one tetromino per region, no 2x2s, they’re&#xA;connected, adjacent tetrominoes are noncongruent.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 26 / Double Back</title>
+				<link>//blog.vero.site/post/puzzle-26</link>
+				<pubDate>Wed, 10 Oct 2012 08:48:10 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-26</guid>
+				<description>&lt;p&gt;That’s not a picture. Why is it recreated as one? Oh well.&lt;/p&gt;&#xA;&lt;p&gt;You can interpret this as me about reaching level 8.1 (the user&#xA;ranking) on &lt;a href=&#34;https://www.rankk.org/&#34;&gt;rankk&lt;/a&gt; or complaining&#xA;about how infuriating level 8.1 (the puzzle) is. I’m torn.&lt;/p&gt;&#xA;&lt;p&gt;This is one of a bunch of&#xA;&lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s&#xA;Double Backs&lt;/a&gt;. Briefly, draw a closed loop through all square centers&#xA;visiting each bold-outlined area twice. Shaded cells do not influence&#xA;solving, only aesthetics.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 25 / Double Back</title>
+				<link>//blog.vero.site/post/puzzle-25</link>
+				<pubDate>Wed, 10 Oct 2012 08:40:02 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-25</guid>
+				<description>&lt;p&gt;Most uncreative picture ever! But it’s suitable after&#xA;&lt;a href=&#34;http://puzzle.cisra.com.au/&#34;&gt;CiSRA’s Puzzle Week&lt;/a&gt;. This&#xA;might be the first time our AoPS team managed all four puzzles in a&#xA;group.&lt;/p&gt;&#xA;&lt;p&gt;…sigh, now I must handle the guilt for squeezing out so much time&#xA;from my normal schedule.&lt;/p&gt;&#xA;&lt;p&gt;This is one of a bunch of&#xA;&lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s&#xA;Double Backs&lt;/a&gt;. Briefly, draw a closed loop through all square centers&#xA;visiting each bold-outlined area twice. Shaded cells do not influence&#xA;solving, only aesthetics.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 24 / Double Back</title>
+				<link>//blog.vero.site/post/puzzle-24</link>
+				<pubDate>Wed, 10 Oct 2012 08:26:11 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-24</guid>
+				<description>&lt;p&gt;Right, back to puzzles because I have nothing substantial to say.&#xA;Circumstantial evidence suggests I created this one in June.&lt;/p&gt;&#xA;&lt;p&gt;This is one of a bunch of&#xA;&lt;a href=&#34;https://mellowmelon.wordpress.com/double-back/&#34;&gt;MellowMelon’s&#xA;Double Backs&lt;/a&gt;. Draw a closed loop through all square centers visiting&#xA;each bold-outlined area twice.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 23 / Corral [Multiplicative]</title>
+				<link>//blog.vero.site/post/puzzle-23</link>
+				<pubDate>Wed, 19 Sep 2012 21:49:01 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-23</guid>
+				<description>&lt;p&gt;&lt;a href=&#34;http://mathgrant.blogspot.tw/2012/08/monday-mutant-117-inner-limits.html&#34;&gt;Too&#xA;lazy to explain rules today&lt;/a&gt; although this is probably an easy&#xA;one.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 22 / Fillomino [Sashigane]</title>
+				<link>//blog.vero.site/post/puzzle-22</link>
+				<pubDate>Mon, 10 Sep 2012 21:07:31 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-22</guid>
+				<description>&lt;p&gt;This is a&#xA;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;&#xA;puzzle where every polyomino is required to be an L-shape, as in&#xA;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/sashigane.html&#34;&gt;Sashigane&lt;/a&gt;.&#xA;Write a number in every empty cell so that every group of cells with the&#xA;same number that is connected through its edges is an L-shape (with arms&#xA;of positive length and 1-cell thickness) with that number of cells.&lt;/p&gt;&#xA;&lt;p&gt;May be slightly reminiscent of&#xA;&lt;a href=&#34;http://mathgrant.blogspot.com/2011/09/monday-mutant-95-polyominous-no.html&#34;&gt;no-rectangle&#xA;Fillominoes&lt;/a&gt;. &lt;em&gt;Slightly…&lt;/em&gt; (Has anybody done this before? It&#xA;seems so interesting that I feel like I couldn’t be first.)&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 21 / LITS</title>
+				<link>//blog.vero.site/post/puzzle-21</link>
+				<pubDate>Sat, 25 Aug 2012 10:27:40 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-21</guid>
+				<description>&lt;p&gt;I made this a long time ago but put it off until I had programmed&#xA;enough to digitize it without my fingers leaving the home row. I think&#xA;the finish is interesting.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/lits.html&#34;&gt;LITS -&#xA;Nikoli.&lt;/a&gt; Exactly one tetromino per region, no 2x2s, they’re&#xA;connected, adjacent tetrominoes are noncongruent.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 20 / Sashigane</title>
+				<link>//blog.vero.site/post/puzzle-20</link>
+				<pubDate>Wed, 22 Aug 2012 07:12:36 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-20</guid>
+				<description>&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/20-sashigane.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/20-sashigane.png&#34; alt=&#34;&#34; title=&#34;Sashigane&#34; width=&#34;345&#34; height=&#34;345&#34; class=&#34;aligncenter size-full wp-image-1302&#34; /&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Yeah, I lied last time I made one of these; the original Nikoli name&#xA;wasn’t that hard to remember, and “sashigane puzzles” has shown up as a&#xA;search query, so here you go. Perfect opposite-type-clue rotational&#xA;symmetry, chaotic_iak! I hope you’re satisfied now.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 19 / Yajilin</title>
+				<link>//blog.vero.site/post/puzzle-19</link>
+				<pubDate>Thu, 02 Aug 2012 14:16:36 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-19</guid>
+				<description>&lt;p&gt;I have just realized that I have only ever tried one level of&#xA;difficulty in puzzle construction, viz., “as hard as I can make it”.&#xA;This is mainly because I don’t want to construct anything overly trivial&#xA;with the same few tricks, but, well, maybe it’s not the best idea for&#xA;actually trying to build an audience.&lt;/p&gt;&#xA;&lt;p&gt;Am I actually trying to build an audience? Am I? *shudders*&lt;/p&gt;&#xA;&lt;p&gt;(Yajilin summary: fill in some cells, draw a loop through the rest,&#xA;filled cells aren’t adjacent, arrows denote # of filled cells along some&#xA;ray; &lt;a href=&#34;https://mellowmelon.wordpress.com/yajilin/&#34;&gt;MellowMelon’s&#xA;rules&lt;/a&gt;)&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 18 / Smullyanic Dynasty</title>
+				<link>//blog.vero.site/post/puzzle-18</link>
+				<pubDate>Wed, 01 Aug 2012 19:03:44 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-18</guid>
+				<description>&lt;p&gt;Again, the&#xA;&lt;a href=&#34;http://zotmeister.dreamwidth.org/2005/03/22/&#34;&gt;Zotmeister&#xA;type&lt;/a&gt;. (Short rules: each cell states how many liars are in the 3x3&#xA;square centered at it, liars incorrectly so. Liars satisfy the “dynasty”&#xA;rule i.e. liars are not orthogonally adjacent and non-liars are&#xA;connected through sides.)&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 17 / Corral</title>
+				<link>//blog.vero.site/post/puzzle-17</link>
+				<pubDate>Mon, 30 Jul 2012 19:07:41 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-17</guid>
+				<description>&lt;p&gt;Corral puzzle, aka Cave aka Bag etc. (Yes, from nikoli.) Short rules:&#xA;draw a loop along the grid lines; each numbered cell is in the loop and&#xA;the number denotes how many cells can be seen vertically or horizontally&#xA;from that cell, plus the cell itself. Stealing link to&#xA;&lt;a href=&#34;https://mellowmelon.wordpress.com/corral/&#34;&gt;MellowMelon’s long&#xA;rules&lt;/a&gt;.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 16 / Slitherlink [Domino]</title>
+				<link>//blog.vero.site/post/puzzle-16</link>
+				<pubDate>Wed, 06 Jun 2012 19:57:09 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-16</guid>
+				<description>&lt;p&gt;Slitherlink with 20 clues taken out as dominoes and their original&#xA;positions shaded. For more lucid rules please visit&#xA;&lt;a href=&#34;https://mellowmelon.wordpress.com/2010/10/21/puzzle-263/&#34;&gt;MellowMelon’s&#xA;puzzle 263&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Domino set is all possible dominoes exactly once each:&#xA;&lt;strong&gt;{00,01,02,03,11,12,13,22,23,33}&lt;/strong&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 15 / Sudoku / Happy Birthday!</title>
+				<link>//blog.vero.site/post/puzzle-15</link>
+				<pubDate>Sun, 25 Mar 2012 00:00:08 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-15</guid>
+				<description>&lt;p&gt;A bonus gift for the birthday of a very important person! Ignore the&#xA;colors while solving.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 14 / Slitherlink</title>
+				<link>//blog.vero.site/post/puzzle-14</link>
+				<pubDate>Thu, 22 Mar 2012 20:46:51 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-14</guid>
+				<description>&lt;p&gt;Just a normal one this time.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 13 / Akari</title>
+				<link>//blog.vero.site/post/puzzle-13</link>
+				<pubDate>Mon, 19 Mar 2012 06:44:28 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-13</guid>
+				<description>&lt;p&gt;Somewhat depressing almost-symmetry.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 12 / Sashigane</title>
+				<link>//blog.vero.site/post/puzzle-12</link>
+				<pubDate>Tue, 13 Mar 2012 13:30:47 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-12</guid>
+				<description>&lt;p&gt;If you are reading this, then our APMO testing time is over! There’s&#xA;a small chance of me being really happy or really frustrated about how I&#xA;did, but I’m betting on a solid “meh.”&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://mathgrant.blogspot.com/2012/01/rules-ellbound.html&#34;&gt;Rules&#xA;page&lt;/a&gt; by mathgrant. There’s no way I’m going to memorize the Japanese&#xA;name yet. [edit: It’s Sashigane. It’s not that hard.]&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 11 / Smullyanic Dynasty</title>
+				<link>//blog.vero.site/post/puzzle-11</link>
+				<pubDate>Tue, 06 Mar 2012 18:25:47 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-11</guid>
+				<description>&lt;p&gt;&lt;a href=&#34;http://zotmeister.dreamwidth.org/2005/03/22/&#34;&gt;Ruleset&lt;/a&gt;&#xA;designed by Zotmeister.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 10 / Nurikabe 3</title>
+				<link>//blog.vero.site/post/puzzle-10</link>
+				<pubDate>Sat, 03 Mar 2012 18:00:11 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-10</guid>
+				<description>&lt;p&gt;A ratio-preserving enlargement of the janko.at sample invocation&#xA;puzzle, perhaps. I wanted to try using smaller clues. Finally a grid too&#xA;large for full-size displaying! Is that even supposed to be an&#xA;achievement?&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 9 / Yajilin</title>
+				<link>//blog.vero.site/post/puzzle-9</link>
+				<pubDate>Tue, 28 Feb 2012 12:00:09 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-9</guid>
+				<description>&lt;p&gt;Man, hacking new puzzle types into the image generator is an amazing&#xA;way to procrastinate.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/9-yajilin.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/9-yajilin.png&#34; alt=&#34;&#34; title=&#34;Yajilin1&#34; width=&#34;345&#34; height=&#34;345&#34; class=&#34;aligncenter size-full wp-image-871&#34; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 8 / Fillomino</title>
+				<link>//blog.vero.site/post/puzzle-8</link>
+				<pubDate>Sun, 26 Feb 2012 12:00:58 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-8</guid>
+				<description>&lt;p&gt;Hey, a “theme” (look at the corners)!&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/8-fillomino.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/8-fillomino.png&#34; alt=&#34;&#34; title=&#34;Fillomino 2&#34; width=&#34;345&#34; height=&#34;345&#34; class=&#34;aligncenter size-full wp-image-865&#34; /&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Honestly though I’m just spreading out my puzzle posts so there’s&#xA;some illusion of regularity.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 7 / Slitherlink [All Twos]</title>
+				<link>//blog.vero.site/post/puzzle-7</link>
+				<pubDate>Wed, 22 Feb 2012 18:47:04 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-7</guid>
+				<description>&lt;p&gt;It’s 2/22 and I have low standards.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/7-slitherlink-all-twos.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/7-slitherlink-all-twos.png&#34; alt=&#34;&#34; title=&#34;Slitherlink 4 [All Twos]&#34; width=&#34;345&#34; height=&#34;345&#34; class=&#34;aligncenter size-full wp-image-854&#34; /&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;This is a normal Slitherlink, except all the 2s have been given to&#xA;you. Thus, empty squares cannot have exactly two edges around them. Of&#xA;course&#xA;&lt;a href=&#34;http://mellowmelon.wordpress.com/2011/08/29/puzzle-350/&#34;&gt;it’s&#xA;been done before&lt;/a&gt; (guess who?)&lt;/p&gt;&#xA;&lt;p&gt;I appear to be drastically overshooting a monthly schedule :P&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 6 / Fillomino</title>
+				<link>//blog.vero.site/post/puzzle-6</link>
+				<pubDate>Tue, 21 Feb 2012 17:55:52 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-6</guid>
+				<description>&lt;p&gt;Not actually my first try, but I guess I don’t need to resort to 6x6s&#xA;to fill up my quota just yet, do I?&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/6-fillomino.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/6-fillomino.png&#34; alt=&#34;&#34; title=&#34;Fillomino 1&#34; width=&#34;345&#34; height=&#34;345&#34; class=&#34;aligncenter size-full wp-image-845&#34; /&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Okay for the absolutely uninformed, this is a&#xA;&lt;a href=&#34;http://www.nikoli.co.jp/en/puzzles/fillomino.html&#34;&gt;Fillomino&lt;/a&gt;&#xA;(or see&#xA;&lt;a href=&#34;http://mellowmelon.wordpress.com/fillomino/&#34;&gt;MellowMelon’s rule&#xA;page&lt;/a&gt;).&lt;/p&gt;&#xA;&lt;p&gt;I’ve switched to 32x32 pixel cells because they seem a reasonable&#xA;size and it’s possible to express all pixel sizes as an exact&#xA;floating-point fraction of the cell side so my image generator can be&#xA;used in a general way to get perfect stroke thicknesses without worrying&#xA;about any rounding errors no matter how obviously numerically&#xA;insignificant they would be in this case.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 5 (Liar Slitherlink)</title>
+				<link>//blog.vero.site/post/puzzle-5</link>
+				<pubDate>Tue, 14 Feb 2012 12:19:00 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-5</guid>
+				<description>&lt;p&gt;One puzzle a month! What a prolific schedule!&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/5-liar-slitherlink.png&#34; title=&#34;Liar Slitherlink&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/5-liar-slitherlink.png&#34; /&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;A&#xA;&lt;a href=&#34;http://mellowmelon.wordpress.com/category/puzzle-types/slitherlink/liar-slitherlink/&#34;&gt;Liar&#xA;Slitherlink&lt;/a&gt; as created by&#xA;&lt;a href=&#34;http://mellowmelon.wordpress.com/&#34;&gt;MellowMelon&lt;/a&gt; (probably).&#xA;Normal Slitherlink rules except exactly one clue in each row and column&#xA;is false; you figure out which. But I bet you knew that already.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 4 / Nurikabe (&#43;Lists of Obscure Stuff)</title>
+				<link>//blog.vero.site/post/puzzle-4</link>
+				<pubDate>Wed, 11 Jan 2012 21:11:00 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-4</guid>
+				<description>&lt;p&gt;I was like “Let’s make a 15x15!” and got confused by the graph lines&#xA;and stopped early. Anyway, I think the steps aren’t so trivial now. I’m&#xA;still too lazy to fix my generator, however.&lt;/p&gt;&#xA;&lt;figure&gt;&#xA;&lt;a href=&#34;//blog.vero.site/img/4-nurikabe.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/4-nurikabe.png&#34; /&gt;&lt;/a&gt;&#xA;&lt;figcaption&gt;&#xA;yes, normal Nurikabe&#xA;&lt;/figcaption&gt;&#xA;&lt;/figure&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 3 / Nurikabe</title>
+				<link>//blog.vero.site/post/puzzle-3</link>
+				<pubDate>Tue, 10 Jan 2012 17:00:00 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-3</guid>
+				<description>&lt;p&gt;I only just managed to make a 10x10 that’s not broken.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://www.janko.at/Applets/Nurikabe/q.php?w=450&amp;amp;h=340&amp;amp;r=10&amp;amp;c=10&amp;amp;p=,,4,,,,3,,,/,8,,,,,,,,/,,,5,,,,,,/,,,,,,,3,,/,,,,,,,,,/,,,,,,,,,/,,,,,,,7,,/,3,,,,,,,3,/,,2,,,,,,,/,,,,,4,,,,&#34;&gt;janko.at&#xA;applet&lt;/a&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 2 / Slitherlink</title>
+				<link>//blog.vero.site/post/puzzle-2</link>
+				<pubDate>Sun, 01 Jan 2012 00:01:00 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-2</guid>
+				<description>&lt;p&gt;Written for &lt;a href=&#34;//blog.vero.site/post/hello&#34;&gt;the new year of&#xA;2012&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/2-slitherlink.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/2-slitherlink.png&#34; alt=&#34;&#34; title=&#34;20(x)12 Slitherlink&#34; /&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://www.janko.at/Applets/Slitherlink/q.php?w=800&amp;amp;h=550&amp;amp;r=12&amp;amp;c=20&amp;amp;p=3,3,2,3,1,1,,1,1,3,1,,2,,2,2,2,1,1,1/1,,,,,2,,1,,,2,,1,,1,,,,,3/2,2,1,2,,1,,1,,,1,,3,,2,3,0,2,,3/,,,3,,0,,1,,,1,,1,,,,,3,,2/,,2,,,2,,2,3,1,3,,3,,,,3,,,1/,0,,,0,,,,,,,,,,,2,,,1,/,2,,,3,,,,,,,,,,,1,,,3,/1,,,1,,,,3,,2,3,0,3,,0,,,2,,/2,,2,,,,,2,,1,,,3,,1,,2,,,/3,,2,1,2,0,,3,,2,,,1,,2,,1,3,2,1/1,,,,,1,,2,,2,,,2,,1,,,,,1/1,3,1,2,2,1,,2,,3,1,1,2,,1,2,2,2,2,1,/&#34;&gt;(janko.at&#xA;applet)&lt;/a&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Puzzle 1 (Wild Slitherlink Appeared!)</title>
+				<link>//blog.vero.site/post/puzzle-1</link>
+				<pubDate>Mon, 28 Nov 2011 19:24:00 +0800</pubDate>
+				<guid>//blog.vero.site/post/puzzle-1</guid>
+				<description>&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/1-slitherlink.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/1-slitherlink.png&#34; alt=&#34;&#34; title=&#34;Puzzle 1: Slitherlink&#34; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

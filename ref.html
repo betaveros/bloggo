@@ -5,7 +5,7 @@
 <title>Posts | Bounded-Error Log</title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.166.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/ref" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -53,8 +53,7 @@
 	<header class="list-header">
 		<h2 class="list-label">References</h2>
 	</header>
-	<article class="content">
-</article><article class="post-entry">
+	<article class="content"></article><article class="post-entry">
 	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/ref/paper" class="post-link">Paper Size</a></h3>
 		
@@ -165,11 +164,18 @@ f_\epsilon(x) = \begin{cases} 0 &amp; \text{if } |x| \geq \epsilon \\ 1
 		</p>
 	</header>
 	
-	This is a matrix.
-\[\begin{bmatrix} 1 &amp; 2 &amp; 3 \\\\ 4 &amp; 5 &amp; 6 \end{bmatrix}\]
-It has 2 rows and 3 columns, so it is a \(2 \times 3\) matrix.
-Matrix addition and multiplication-by-a-scalar is done componentwise. Matrix multiplication is done trickily; it’s associative, distributive, commutative with scalars, linear, anticommutative-under-transposition.
-Vectors are like columns of matrices, or matrices with one column. Except row vectors are rows of matrices.
+	<p>This is a matrix.</p>
+<p><span class="math display">\[\begin{bmatrix} 1 &amp; 2 &amp; 3 \\\\ 4
+&amp; 5 &amp; 6 \end{bmatrix}\]</span></p>
+<p>It has 2 rows and 3 columns, so it is a <span class="math inline">\(2
+\times 3\)</span> matrix.</p>
+<p>Matrix addition and multiplication-by-a-scalar is done componentwise.
+Matrix multiplication is done trickily; it’s associative, distributive,
+commutative with scalars, linear,
+anticommutative-under-transposition.</p>
+<hr />
+<p>Vectors are like columns of matrices, or matrices with one column.
+Except row vectors are rows of matrices.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/ref/linalg">→ read more<span class="offscreen"> Linear Algebra</span></a>
 	</footer>
@@ -250,10 +256,17 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="
 		</p>
 	</header>
 	
-	Very simple to explain: if \(P\) is a statement, \([P]\) is 1 if \(P\) is true and 0 if not. So for example
-\[\begin{aligned} \lbrack 1 &lt; 2\rbrack &amp;= 1 \\ \lbrack 1 &gt; 2\rbrack &amp;= 0 \end{aligned}\]
-It’s like using a boolean as an integer in C or Python.
-It’s useful to keep yourself organized when you’re writing summations, especially if you’re summing across terms with a weird condition or if you need to exchange two sums.
+	<p>Very simple to explain: if <span class="math inline">\(P\)</span> is
+a statement, <span class="math inline">\([P]\)</span> is 1 if <span
+class="math inline">\(P\)</span> is true and 0 if not. So for
+example</p>
+<p><span class="math display">\[\begin{aligned} \lbrack 1 &lt; 2\rbrack
+&amp;= 1 \\ \lbrack 1 &gt; 2\rbrack &amp;= 0 \end{aligned}\]</span></p>
+<p>It’s like using a boolean as an integer in C or Python.</p>
+<p>It’s useful to keep yourself organized when you’re writing
+summations, especially if you’re summing across terms with a weird
+condition or if you need to exchange two sums. It’s also useful for
+writing pathological functions concisely.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/ref/iverson">→ read more<span class="offscreen"> Iverson Bracket</span></a>
 	</footer>
@@ -561,7 +574,7 @@ Z &amp;= 0.0193339r + 0.1191920g + 0.9503041b
 			<h3 class="offscreen">Pagination</h3><a class="pagination-next" href="/ref/page/2">older posts →</a></nav>
 	</footer></section>
 </div><footer class="site-footer">
-	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2026 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

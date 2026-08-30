@@ -8,8 +8,8 @@
 <meta name="description" content="Last weekend Galhacktic Trendsetters sort of spontaneously decided to do DiceCTF 2022, months or years after most of us had done another CTF. It was a lot of fun and we placed 6th!
 Back in the day the silver edition was the top of the line Texas Instruments calculator, but now the security is looking a little obsolete. Can you break it?
 It’s yet another Python jail. We input a string and, after it makes it through a gauntlet of checks and processing, it gets exec’d.
-#!/usr/bin/env python3 import dis import sys banned = [&amp;quot;MAKE_FUNCTION&amp;quot;, &amp;quot;CALL_FUNCTION&amp;quot;, &amp;quot;CALL_FUNCTION_KW&amp;quot;, &amp;quot;CALL_FUNCTION_EX&amp;quot;] used_gift = False def gift(target, name, value): global used_gift if used_gift: sys.exit(1) used_gift = True setattr(target, name, value) print(&amp;quot;Welcome to the TI-1337 Silver Edition. Enter your calculations below:&amp;quot;) math = input(&amp;quot;&amp;gt; &amp;quot;) if len(math) &amp;gt; 1337: print(&amp;quot;Nobody needs that much math!&amp;quot;) sys.exit(1) code = compile(math, &amp;quot;&amp;lt;math&amp;gt;&amp;quot;, &amp;quot;exec&amp;quot;) bytecode = list(code.co_code) instructions = list(dis.get_instructions(code)) for i, inst in enumerate(instructions): if inst.is_jump_target: print(&amp;quot;Math doesn&amp;#39;t need control flow!&amp;quot;) sys.exit(1) nextoffset = instructions[i&#43;1].offset if i&#43;1 &amp;lt; len(instructions) else len(bytecode) if inst.opname in banned: bytecode[inst.offset:instructions[i&#43;1].offset] = [-1]*(instructions[i&#43;1].offset-inst.offset) names = list(code.co_names) for i, name in enumerate(code.co_names): if &amp;quot;__&amp;quot; in name: names[i] = &amp;quot;$INVALID$&amp;quot; code = code.replace(co_code=bytes(b for b in bytecode if b &amp;gt;= 0), co_names=tuple(names), co_stacksize=2**20) v = {} exec(code, {&amp;quot;__builtins__&amp;quot;: {&amp;quot;gift&amp;quot;: gift}}, v) if v: print(&amp;quot;\n&amp;quot;.join(f&amp;quot;{name} = {val}&amp;quot; for name, val in v.items())) else: print(&amp;quot;No results stored.&amp;quot;) More precisely, the gauntlet does the following:
-" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+#!/usr/bin/env python3 import dis import sys banned = [&quot;MAKE_FUNCTION&quot;, &quot;CALL_FUNCTION&quot;, &quot;CALL_FUNCTION_KW&quot;, &quot;CALL_FUNCTION_EX&quot;] used_gift = False def gift(target, name, value): global used_gift if used_gift: sys.exit(1) used_gift = True setattr(target, name, value) print(&quot;Welcome to the TI-1337 Silver Edition. Enter your calculations below:&quot;) math = input(&quot;&gt; &quot;) if len(math) &gt; 1337: print(&quot;Nobody needs that much math!&quot;) sys.exit(1) code = compile(math, &quot;&lt;math&gt;&quot;, &quot;exec&quot;) bytecode = list(code.co_code) instructions = list(dis.get_instructions(code)) for i, inst in enumerate(instructions): if inst.is_jump_target: print(&quot;Math doesn&#39;t need control flow!&quot;) sys.exit(1) nextoffset = instructions[i&#43;1].offset if i&#43;1 &lt; len(instructions) else len(bytecode) if inst.opname in banned: bytecode[inst.offset:instructions[i&#43;1].offset] = [-1]*(instructions[i&#43;1].offset-inst.offset) names = list(code.co_names) for i, name in enumerate(code.co_names): if &quot;__&quot; in name: names[i] = &quot;$INVALID$&quot; code = code.replace(co_code=bytes(b for b in bytecode if b &gt;= 0), co_names=tuple(names), co_stacksize=2**20) v = {} exec(code, {&quot;__builtins__&quot;: {&quot;gift&quot;: gift}}, v) if v: print(&quot;\n&quot;.join(f&quot;{name} = {val}&quot; for name, val in v.items())) else: print(&quot;No results stored.&quot;) More precisely, the gauntlet does the following:
+" /><meta name="generator" content="Hugo 0.166.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/ti1337se" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -728,9 +728,6 @@ class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
 	<section id="isso-thread"></section>
   <p class="comments-meta">if you liked this post, click to make an invisible number go up: <button class="btn like-button">like</button></p>
-	
-	
-	
 	<footer class="post-footer">
 		<nav class="pagination">
 			
@@ -744,7 +741,7 @@ class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2026 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

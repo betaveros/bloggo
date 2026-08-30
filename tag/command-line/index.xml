@@ -1,71 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>command line on Bounded-Error Log</title>
-    <link>//blog.vero.site/tag/command-line</link>
-    <description>Recent content in command line on Bounded-Error Log</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 21 Feb 2013 22:01:25 +0800</lastBuildDate><atom:link href="//blog.vero.site/tag/command-line/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Adventures in Scala Pseudo-Abuse</title>
-      <link>//blog.vero.site/post/scala</link>
-      <pubDate>Thu, 21 Feb 2013 22:01:25 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/scala</guid>
-      <description>&lt;p&gt;So, what have I been doing with programming recently?&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.scala-lang.org/&#34;&gt;Scala&lt;/a&gt; is an amazing
-multiparadigm programming language that runs on the Java Virtual Machine
-and interoperates with Java. I learned about it last time reading random
-articles on Twitter.&lt;/p&gt;
-&lt;p&gt;When I say “amazing” I mean “This is a language in which my code
-gives me nerdgasms every time I read it.” Wheeee.&lt;/p&gt;
-&lt;p&gt;Okay, it’s not perfect. People say it’s too academic. It has a
-notoriously complicated type system (which is
-&lt;a href=&#34;http://scientopia.org/blogs/goodmath/2013/01/21/types-gone-wild-ski-at-compile-time/&#34;&gt;&lt;em&gt;Turing-Complete&lt;/em&gt;
-at compile time&lt;/a&gt;). Its documentation is a bit patchy too. For a
-serious introduction, the Scala website has plenty of links under
-documentation, and a &lt;a href=&#34;http://www.scala-lang.org/node/104&#34;&gt;tour
-of features&lt;/a&gt;. Somebody wrote
-&lt;a href=&#34;http://www.naildrivin5.com/scalatour&#34;&gt;another tour&lt;/a&gt; that
-explains things a bit more. So here, instead of introducing it
-seriously, I’m just going to screw with its features.&lt;/p&gt;
-&lt;p&gt;Example of freedom. Scala lets names consist of symbols, and treats
-one-parameter methods and infix operators exactly the same. The full
-tokenization rules are a bit detailed and I put them at the bottom of
-this post for the interested. This lets you create classes with
-arithmetic and domain-specific languages easily, but it also creates
-some silly opportunities:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre
-class=&#34;sourceCode scala&#34;&gt;&lt;code class=&#34;sourceCode scala&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;scala&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;val&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;12&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;*:&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;Int&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;12&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-4&#34;&gt;&lt;a href=&#34;#cb1-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;scala&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-5&#34;&gt;&lt;a href=&#34;#cb1-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;res0&lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;Int&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1728&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-    </item>
-    
-    <item>
-      <title>Adventures in Meta-Debugging</title>
-      <link>//blog.vero.site/post/debug</link>
-      <pubDate>Mon, 05 Nov 2012 22:28:39 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/debug</guid>
-      <description>&lt;p&gt;Okay did I mention how I sucked at the command line? This is part of
-the journey towards stopping. Yes, I’m on a Mac and it’s not very *nix-y
-in some ways but it’s enough for me for now.&lt;/p&gt;
-&lt;p&gt;Today’s story starts when I learned about
-&lt;a href=&#34;https://www.gnu.org/software/gdb/&#34;&gt;&lt;code&gt;gdb&lt;/code&gt;&lt;/a&gt;, the
-pure-command-line GNU Debugger, which is incredibly cool. I have tried
-and failed to learn how to use the debug function on many of my IDEs; I
-found shotgunning &lt;code&gt;printf&lt;/code&gt; statements as needed faster. This
-may well be the first time I found a command-line tool so much more
-intuitive than the GUI-equipped programs. Wow.&lt;/p&gt;
-&lt;p&gt;Then I learned that for some reason the &lt;code&gt;gdb&lt;/code&gt; on this
-computer was 6.3, which is 1.2~1.5 major versions behind (depending on
-how you count) and missing a frustrating amount of features. (The one
-that the current Code::Blocks installer installs is also something like
-6.4. Blech.)&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Command Line on Bounded-Error Log</title>
+		<link>//blog.vero.site/tag/command-line</link>
+		<description>Recent content in Command Line on Bounded-Error Log</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Thu, 21 Feb 2013 22:01:25 +0800</lastBuildDate>
+		
+			<atom:link href="//blog.vero.site/tag/command-line/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Adventures in Scala Pseudo-Abuse</title>
+				<link>//blog.vero.site/post/scala</link>
+				<pubDate>Thu, 21 Feb 2013 22:01:25 +0800</pubDate>
+				<guid>//blog.vero.site/post/scala</guid>
+				<description>&lt;p&gt;So, what have I been doing with programming recently?&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://www.scala-lang.org/&#34;&gt;Scala&lt;/a&gt; is an amazing&#xA;multiparadigm programming language that runs on the Java Virtual Machine&#xA;and interoperates with Java. I learned about it last time reading random&#xA;articles on Twitter.&lt;/p&gt;&#xA;&lt;p&gt;When I say “amazing” I mean “This is a language in which my code&#xA;gives me nerdgasms every time I read it.” Wheeee.&lt;/p&gt;&#xA;&lt;p&gt;Okay, it’s not perfect. People say it’s too academic. It has a&#xA;notoriously complicated type system (which is&#xA;&lt;a href=&#34;http://scientopia.org/blogs/goodmath/2013/01/21/types-gone-wild-ski-at-compile-time/&#34;&gt;&lt;em&gt;Turing-Complete&lt;/em&gt;&#xA;at compile time&lt;/a&gt;). Its documentation is a bit patchy too. For a&#xA;serious introduction, the Scala website has plenty of links under&#xA;documentation, and a &lt;a href=&#34;http://www.scala-lang.org/node/104&#34;&gt;tour&#xA;of features&lt;/a&gt;. Somebody wrote&#xA;&lt;a href=&#34;http://www.naildrivin5.com/scalatour&#34;&gt;another tour&lt;/a&gt; that&#xA;explains things a bit more. So here, instead of introducing it&#xA;seriously, I’m just going to screw with its features.&lt;/p&gt;&#xA;&lt;p&gt;Example of freedom. Scala lets names consist of symbols, and treats&#xA;one-parameter methods and infix operators exactly the same. The full&#xA;tokenization rules are a bit detailed and I put them at the bottom of&#xA;this post for the interested. This lets you create classes with&#xA;arithmetic and domain-specific languages easily, but it also creates&#xA;some silly opportunities:&lt;/p&gt;&#xA;&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre&#xA;class=&#34;sourceCode scala&#34;&gt;&lt;code class=&#34;sourceCode scala&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;scala&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;val&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;12&lt;/span&gt;&lt;/span&gt;&#xA;&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;*:&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;Int&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;12&lt;/span&gt;&lt;/span&gt;&#xA;&lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;&#xA;&lt;span id=&#34;cb1-4&#34;&gt;&lt;a href=&#34;#cb1-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;scala&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;&lt;/span&gt;&#xA;&lt;span id=&#34;cb1-5&#34;&gt;&lt;a href=&#34;#cb1-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;res0&lt;span class=&#34;op&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;bu&#34;&gt;Int&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;1728&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+			</item>
+			<item>
+				<title>Adventures in Meta-Debugging</title>
+				<link>//blog.vero.site/post/debug</link>
+				<pubDate>Mon, 05 Nov 2012 22:28:39 +0800</pubDate>
+				<guid>//blog.vero.site/post/debug</guid>
+				<description>&lt;p&gt;Okay did I mention how I sucked at the command line? This is part of&#xA;the journey towards stopping. Yes, I’m on a Mac and it’s not very *nix-y&#xA;in some ways but it’s enough for me for now.&lt;/p&gt;&#xA;&lt;p&gt;Today’s story starts when I learned about&#xA;&lt;a href=&#34;https://www.gnu.org/software/gdb/&#34;&gt;&lt;code&gt;gdb&lt;/code&gt;&lt;/a&gt;, the&#xA;pure-command-line GNU Debugger, which is incredibly cool. I have tried&#xA;and failed to learn how to use the debug function on many of my IDEs; I&#xA;found shotgunning &lt;code&gt;printf&lt;/code&gt; statements as needed faster. This&#xA;may well be the first time I found a command-line tool so much more&#xA;intuitive than the GUI-equipped programs. Wow.&lt;/p&gt;&#xA;&lt;p&gt;Then I learned that for some reason the &lt;code&gt;gdb&lt;/code&gt; on this&#xA;computer was 6.3, which is 1.2~1.5 major versions behind (depending on&#xA;how you count) and missing a frustrating amount of features. (The one&#xA;that the current Code::Blocks installer installs is also something like&#xA;6.4. Blech.)&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

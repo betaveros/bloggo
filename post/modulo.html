@@ -12,10 +12,10 @@ The first thing to note is that there is a more important number-theoretic ident
 \[\texttt{a} = (\texttt{a / b}) \cdot \texttt{b} &#43; (\texttt{a \% b}). \tag{1}\]
 In words, the integer division and modulo operators should give a breakdown of a into a sum of some copies of b plus a remainder. Note that this equation also implies that specifying the rounding behavior of division is equivalent to specifying the sign behavior of the modulo operation, which will come up repeatedly later.
 It’s also very uncontroversial that that remainder should have no copies of b, positive or negative, left over, which gives the constraint:
-\[|\texttt{a \% b}| &amp;lt; |\texttt{b}|. \tag{2}\]
+\[|\texttt{a \% b}| &lt; |\texttt{b}|. \tag{2}\]
 Every programming language I can think of satisfies these two constraints.1 So far so good. However, these two constraints don’t uniquely determine the values of a % b when a isn’t divisible by b; there are two possible values for a % b, one positive and one negative. Concretely, we could express \(-5\) as either \((-1) \cdot 3 &#43; (-2)\) or \((-2) \cdot 3 &#43; 1\), so (-5) % 3 could be -2 or 1.
 It’s still mostly uncontroversial that, if a and b are both positive, then a % b should be nonnegative as well; we could call this constraint (3).2 However, if a is negative and b is positive, programming languages start to diverge in their behavior. Why?
-" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+" /><meta name="generator" content="Hugo 0.166.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/modulo" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -693,9 +693,6 @@ class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
 	<section id="isso-thread"></section>
   <p class="comments-meta">if you liked this post, click to make an invisible number go up: <button class="btn like-button">like</button></p>
-	
-	
-	
 	<footer class="post-footer">
 		<nav class="pagination">
 			
@@ -709,7 +706,7 @@ class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2026 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

@@ -9,7 +9,7 @@ Category → math
 </title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.166.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/category/math" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -64,6 +64,68 @@ Category → math
 		</h2>
 	</header>
 	<article class="content"></article><article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/float" class="post-link">Adding Floating-Point Decimals for Fun and Profit</a></h3>
+		
+		<p class="post-meta">
+		
+		2026-08-30
+		(2527 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>, <a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Many people know that you shouldn’t do decimal calculations, such as
+those involving U.S. dollars and cents, with the floating-point numbers
+in most programming languages. This is because decimal numbers can’t be
+expressed exactly as such floating-point numbers, so you will encounter
+rounding errors.</p>
+<p>Famously, with <a
+href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">IEEE
+double-precision floats</a>, <code>0.1 + 0.2</code> is not
+<code>0.3</code>, but rather, <code>0.30000000000000004</code>.</p>
+<p>On the other hand, I use a Python REPL to add up decimal numbers for
+receipts all the time. Of course, my stakes are lower; I’m summing
+things in the $1–$100 range and know to manually round the microscopic
+errors off before copying the sum somewhere. But actually it’s quite
+often that those errors don’t appear at all.</p>
+<p>If we sum every pair of multiples of 0.01 up to 1.00 and look at
+whether the printed result is too large (blue), too small (red), or
+correct, we get a cool pattern:</p>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<figure style="text-align: center">
+<svg id="grid1" width="400" height="400" viewBox="0 0 100 100">
+</svg>
+<figcaption>
+Figure 1: How floating-point affects summing two multiples of 0.01, up
+to 1.00
+</figcaption>
+</figure>
+<script>
+d3.select("#grid1")
+    .selectAll("rect").data(d3.cross(d3.range(100), d3.range(100))).join("rect")
+    .attr("x", d => d[0])
+    .attr("y", d => d[1])
+    .attr("width", 1)
+    .attr("height", 1)
+    .attr("fill", ([r, c]) => {
+        const rr = r + 1, cc = c + 1;
+        const d = (rr / 100 + cc / 100) - (rr + cc) / 100;
+        return d > 0 ? "blue" : d < 0 ? "red" : "transparent";
+    });
+</script>
+<p>Where does this pattern come from?</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/float">→ read more<span class="offscreen"> Adding Floating-Point Decimals for Fun and Profit</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
 	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/imo-2025" class="post-link">Gold-medaling the 2025 IMO was easier than average</a></h3>
 		
@@ -533,37 +595,13 @@ to it, and no smaller value satisfies the same property.</p>
 	</footer>
 </article>
 
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/numbers" class="post-link">Numbers</a></h3>
-		
-		<p class="post-meta">
-		
-		2014-10-20
-		(725 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/math">Math</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	Continuing the porting of stuff from betaveros.stash, and adding more stuff.
-Mnemonic Here’s my mnemonic table for digits, inspired by an old Martin Gardner column. I wrote from memory the first 132 digits of 2012! correctly at IMO 2012 with this table. I had remembered more, but unfortunately, if I recall correctly, I confused myself over whether I had encoded a 5 or a 2 by the S of “nose”, because this is supposed to be more of a phonetic code than a spelling one — otherwise double letters would be confusing and lots of randomly appearing digraphs would be wasted, because English is weird.
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/numbers">→ read more<span class="offscreen"> Numbers</span></a>
-	</footer>
-</article>
-
 		<footer class="list-footer">
 		<nav class="pagination">
 			<h3 class="offscreen">Pagination</h3><a class="pagination-next" href="/category/math/page/2">older posts →</a></nav>
 	</footer></section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2026 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

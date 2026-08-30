@@ -10,10 +10,10 @@ If you do want to understand ECC just enough to produce your own trap-ridden imp
 This post contains a lot of handwaving and straight-up giving up on proofs. You don’t need to know the proofs to be dangerous. The ethos is sort of like Napkin, but way shoddier and with zero pretense of pedagogical soundness. Still, here are some concrete questions that I learned the answer to while writing this post:
 Why does the group law hold, sort of intuitively? Why do people have to modify Curve25519 before using it to compute digital signatures? What is a “quadratic twist” and why should I care about it to pick a secure elliptic curve? How is it possible that an isogeny can be described as surjective but not injective while mapping a finite elliptic curve to another elliptic curve of the same cardinality? How many claws does an alligator have? Elliptic curves have a lot of complicated algebra. If you ever studied algebra in high school and did exercises where you had to simplify or factor or graph some really complicated algebraic expression, and you learned that algebra is also the name of a field in higher mathematics, you might have assumed that working algebraists just dealt with even more complicated expressions. If you then studied algebra in college, you’d probably have realized that that’s not really what algebra is about at all; the difficulty comes from new abstractions, like a bunch of the terms above.
 Well… the study of elliptic curves involves a bunch of complicated expressions like what your high school self might have imagined. Sometimes, notes will just explode into a trainwreck of terms like
-\[\begin{align*}\psi_1 &amp;amp;= 1 \\ \psi_2 &amp;amp;= 2y \\ \psi_3 &amp;amp;= 3x^4 &#43; 6Ax^2 &#43; 12Bx - A^2 \\ \psi_4 &amp;amp;= 4y(x^6 &#43; 5Ax^4 &#43; 20Bx^3 - 5A^2x^2 - 4ABx - A^3 - 8B^2).\end{align*}\]
+\[\begin{align*}\psi_1 &amp;= 1 \\ \psi_2 &amp;= 2y \\ \psi_3 &amp;= 3x^4 &#43; 6Ax^2 &#43; 12Bx - A^2 \\ \psi_4 &amp;= 4y(x^6 &#43; 5Ax^4 &#43; 20Bx^3 - 5A^2x^2 - 4ABx - A^3 - 8B^2).\end{align*}\]
 “This is REAL Math, done by REAL Mathematicians,” one is tempted to quip. The Explicit-Formulas Database is a fun place to take a gander through. I will copy formulas into this post from time to time when there’s something about them I want to call attention to, but in general we won’t do any complicated algebraic manipulations in this post. Just be prepared.
 Because I’m focusing on conceptual understanding (and am lazy), this post contains almost no code, and definitely no code that’s runnable in any real programming language.
-" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+" /><meta name="generator" content="Hugo 0.166.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/elliptic-curves" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -2330,9 +2330,6 @@ class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
 	<section id="isso-thread"></section>
   <p class="comments-meta">if you liked this post, click to make an invisible number go up: <button class="btn like-button">like</button></p>
-	
-	
-	
 	<footer class="post-footer">
 		<nav class="pagination">
 			
@@ -2346,7 +2343,7 @@ class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2026 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

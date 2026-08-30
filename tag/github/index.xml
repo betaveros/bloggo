@@ -1,39 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>github on Bounded-Error Log</title>
-    <link>//blog.vero.site/tag/github</link>
-    <description>Recent content in github on Bounded-Error Log</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 20 May 2014 22:26:53 +0800</lastBuildDate><atom:link href="//blog.vero.site/tag/github/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>#pyconapac2014</title>
-      <link>//blog.vero.site/post/pycon</link>
-      <pubDate>Tue, 20 May 2014 22:26:53 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/pycon</guid>
-      <description>&lt;p&gt;Late post. As usual.&lt;/p&gt;
-&lt;p&gt;It started with an online competition — write programs, solve
-problems, get points. I wouldn’t call the problems easy, but they
-weren’t hard either. So I solved all of them. To make it even less
-impressive, only about twenty people submitted anything at all.&lt;/p&gt;
-&lt;p&gt;But the result was just what it was: I ended up with a free ticket to
-&lt;a href=&#34;https://tw.pycon.org/2014apac/en/&#34;&gt;PyCon APAC 2014&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I’d prefer a conference about a more functional programming language,
-but I’ll take what I get. Another adventure!&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Now on GitHub!</title>
-      <link>//blog.vero.site/post/github</link>
-      <pubDate>Sat, 09 Feb 2013 22:54:34 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/github</guid>
-      <description>Yay?
-Right now I feel about this a lot like I felt about getting Twitter. Nobody I know personally is there, but all the “famous” “technological” people are, and something like 90% of the open-source projects I bump into are too.
-Just like Twitter, I barely know how to use Git either, but that’s okay. For version control I’m going all command-line now! Last time I tried to link stuff up with Eclipse everything exploded, but after I ran git init from the terminal this time, it’s highlighting things red and green everywhere like it’s suddenly begging me not to forsake it for the command line.</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Github on Bounded-Error Log</title>
+		<link>//blog.vero.site/tag/github</link>
+		<description>Recent content in Github on Bounded-Error Log</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 20 May 2014 22:26:53 +0800</lastBuildDate>
+		
+			<atom:link href="//blog.vero.site/tag/github/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>#pyconapac2014</title>
+				<link>//blog.vero.site/post/pycon</link>
+				<pubDate>Tue, 20 May 2014 22:26:53 +0800</pubDate>
+				<guid>//blog.vero.site/post/pycon</guid>
+				<description>&lt;p&gt;Late post. As usual.&lt;/p&gt;&#xA;&lt;p&gt;It started with an online competition — write programs, solve&#xA;problems, get points. I wouldn’t call the problems easy, but they&#xA;weren’t hard either. So I solved all of them. To make it even less&#xA;impressive, only about twenty people submitted anything at all.&lt;/p&gt;&#xA;&lt;p&gt;But the result was just what it was: I ended up with a free ticket to&#xA;&lt;a href=&#34;https://tw.pycon.org/2014apac/en/&#34;&gt;PyCon APAC 2014&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;I’d prefer a conference about a more functional programming language,&#xA;but I’ll take what I get. Another adventure!&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Now on GitHub!</title>
+				<link>//blog.vero.site/post/github</link>
+				<pubDate>Sat, 09 Feb 2013 22:54:34 +0800</pubDate>
+				<guid>//blog.vero.site/post/github</guid>
+				<description>&lt;p&gt;&lt;a href=&#34;https://github.com/betaveros&#34;&gt;Yay?&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Right now I feel about this a lot like I felt about&#xA;&lt;a href=&#34;//blog.vero.site/post/twitter-bandwagon&#34;&gt;getting Twitter&lt;/a&gt;. Nobody I know&#xA;personally is there, but all the “famous” “technological” people are,&#xA;and something like 90% of the open-source projects I bump into are&#xA;too.&lt;/p&gt;&#xA;&lt;p&gt;Just like Twitter, I barely know how to use Git either, but that’s&#xA;okay. For version control I’m going all command-line now! Last time I&#xA;tried to link stuff up with Eclipse everything exploded, but after I ran&#xA;&lt;code&gt;git init&lt;/code&gt; from the terminal this time, it’s highlighting&#xA;things red and green everywhere like it’s suddenly begging me not to&#xA;forsake it for the command line. Nice try, Eclipse. You can’t even get&#xA;your “presentation compiler” to stop crashing.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

@@ -1,104 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>board games on Bounded-Error Log</title>
-    <link>//blog.vero.site/tag/board-games</link>
-    <description>Recent content in board games on Bounded-Error Log</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 17 Aug 2014 22:11:28 +0800</lastBuildDate><atom:link href="//blog.vero.site/tag/board-games/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>[IOI 2014 Part 3] Games of Luck and Strategy and Really Weird Noises</title>
-      <link>//blog.vero.site/post/games</link>
-      <pubDate>Sun, 17 Aug 2014 22:11:28 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/games</guid>
-      <description>&lt;p&gt;Shamelessly getting unfinished business out of the way. Yup, that’s
-me.&lt;/p&gt;
-&lt;p&gt;Excursion Day 1. We traveled down to Yilan on a bus. I played
-guess-it with Paul.&lt;/p&gt;
-I was quite surprised at myself for remembering this game, but I think
-it’s simple and little-known enough to be worth mentioning. Guess-it is
-a remarkably pure game of luck and bluffing from one of Martin Gardner’s
-columns, played with a small odd number of cards, e.g. the 13 cards of
-one poker suit. The cards are dealt evenly to players (who can look at
-them) with one card left over, which is kept face down; players take
-turns choosing one of two actions:
-&lt;ol&gt;
-&lt;li&gt;
-Name a card and ask the other player if he or she has it. These
-questions must be answered honestly.
-&lt;/li&gt;
-&lt;li&gt;
-Guess the left-over card. The guesser wins if correct; the other player
-wins if not.
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Guess-it is not trivial because sometimes you should ask the other
-player if he or she has a card that you already see in your hand;
-otherwise whenever you answered “no” to a query you’d immediately guess
-that the asked card is the hidden one. It is actually a solved game in
-the sense that the probabilities of the Nash equilibrium strategy for
-when to guess and when to bluff have been worked out already, but
-they’re not simple probabilities by any means and humans are terrible
-randomizers anyway. A few rounds of it sure beats rock-paper-scissors. I
-was very amused to lose almost all our games with 11 cards but win
-almost all of our games with 13.&lt;/p&gt;
-&lt;p&gt;Okay, no more gratuitous narrative excursions into game-theory. The
-first stop, National Center for Traditional Arts, was a very laid-back
-culture place with old-fashioned retro shops and streets.&lt;/p&gt;
-&lt;p&gt;We watched a 3D glove puppetry (布袋戲) video, in the same session as
-a lot of the leaders.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/519.jpg&#34;&gt;&lt;img class=&#34;aligncenter size-medium wp-image-2521&#34; src=&#34;//blog.vero.site/img/519.jpg?w=225&#34; alt=&#34;519&#34; width=&#34;225&#34; height=&#34;300&#34; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[IMO 2012 Part 2] The Hotel of Deception</title>
-      <link>//blog.vero.site/post/hotel</link>
-      <pubDate>Fri, 20 Jul 2012 12:45:41 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/hotel</guid>
-      <description>&lt;p&gt;We finally arrived at the hotel at 3:30, meeting another local from
-Taiwan, Mr. Chen, who helped us carry some of our stuff off the bus.
-Po-Chiang, our guide, was waiting inside. We took more pictures and
-finally lugged the meager stuff we had off to our hotel rooms.&lt;/p&gt;
-&lt;p&gt;At least, we tried. I started to realize that there was much more to
-this hotel than it seemed.&lt;/p&gt;
-&lt;p&gt;Firstly, of course, was the confusing placement of rooms with numbers
-starting with 4 and 5 on the fourth floor (which would be the fifth
-floor by our numbering system, where the lobby is floor 1; but here the
-lobby was assigned 0. Off-by-one errors just waiting to happen here.)
-Secondly were the completely indecipherable signs. I don’t remember the
-details, but the first signs we saw read something like “560 ~ 540:
-left; 520 ~ 540: right”. Occasionally there would be weird slashes or
-half-slashes between the numbers instead (later I finally realized they
-were slanted, Comic-Sans-style capital Ys, or “and” in Spanish). Are
-these closed, open, or half-open intervals? And why the heck are their
-upper and lower bounds in a different order!?&lt;/p&gt;
-&lt;p&gt;We wandered through the corridors, peeking down each one, trying to
-figure out whether the numbers were increasing or decreasing and whether
-a parity argument (for those of you not fluent in math lingo, that means
-odds and evens) allowed for the existence of our room. Who knew the
-simple act of finding one’s living quarters could be so mathematically
-tasking? In the end, our rooms were in the last corridor, just about
-diametrically opposite to the elevators on the half of our floor. Oh
-well.&lt;/p&gt;
-&lt;p&gt;The room was pretty nice overall. The furniture and basic facilities
-were quite complete, with a sparkly bathroom and a couple tables and
-chairs of various shapes. The closet was big and had a safe, which was
-rather important because just about everybody we had met had warned us
-over and over again about all the incredibly skilled thieves, muggers,
-and pickpockets in Argentina. It was probably much safer (no pun
-intended) in the hotel, but with all of these warnings (later we would
-even find a notice from the hotel warning us to lock our doors) I was
-never entirely certain. There were lots of lights controlled by a set of
-confusing switches on either side of our beds. There was at least one
-white immovable divider cunningly disguised as a switch, one switch that
-didn’t ever seem to do anything, and one that turned everything off. The
-last one made a little sense after a while because it had pictures of
-stars and a moon on it, but the whole setup was still pretty
-non-user-friendly in my opinion.&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Board Games on Bounded-Error Log</title>
+		<link>//blog.vero.site/tag/board-games</link>
+		<description>Recent content in Board Games on Bounded-Error Log</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 17 Aug 2014 22:11:28 +0800</lastBuildDate>
+		
+			<atom:link href="//blog.vero.site/tag/board-games/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>[IOI 2014 Part 3] Games of Luck and Strategy and Really Weird Noises</title>
+				<link>//blog.vero.site/post/games</link>
+				<pubDate>Sun, 17 Aug 2014 22:11:28 +0800</pubDate>
+				<guid>//blog.vero.site/post/games</guid>
+				<description>&lt;p&gt;Shamelessly getting unfinished business out of the way. Yup, that’s&#xA;me.&lt;/p&gt;&#xA;&lt;p&gt;Excursion Day 1. We traveled down to Yilan on a bus. I played&#xA;guess-it with Paul.&lt;/p&gt;&#xA;I was quite surprised at myself for remembering this game, but I think&#xA;it’s simple and little-known enough to be worth mentioning. Guess-it is&#xA;a remarkably pure game of luck and bluffing from one of Martin Gardner’s&#xA;columns, played with a small odd number of cards, e.g. the 13 cards of&#xA;one poker suit. The cards are dealt evenly to players (who can look at&#xA;them) with one card left over, which is kept face down; players take&#xA;turns choosing one of two actions:&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;Name a card and ask the other player if he or she has it. These&#xA;questions must be answered honestly.&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;Guess the left-over card. The guesser wins if correct; the other player&#xA;wins if not.&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Guess-it is not trivial because sometimes you should ask the other&#xA;player if he or she has a card that you already see in your hand;&#xA;otherwise whenever you answered “no” to a query you’d immediately guess&#xA;that the asked card is the hidden one. It is actually a solved game in&#xA;the sense that the probabilities of the Nash equilibrium strategy for&#xA;when to guess and when to bluff have been worked out already, but&#xA;they’re not simple probabilities by any means and humans are terrible&#xA;randomizers anyway. A few rounds of it sure beats rock-paper-scissors. I&#xA;was very amused to lose almost all our games with 11 cards but win&#xA;almost all of our games with 13.&lt;/p&gt;&#xA;&lt;p&gt;Okay, no more gratuitous narrative excursions into game-theory. The&#xA;first stop, National Center for Traditional Arts, was a very laid-back&#xA;culture place with old-fashioned retro shops and streets.&lt;/p&gt;&#xA;&lt;p&gt;We watched a 3D glove puppetry (布袋戲) video, in the same session as&#xA;a lot of the leaders.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/519.jpg&#34;&gt;&lt;img class=&#34;aligncenter size-medium wp-image-2521&#34; src=&#34;//blog.vero.site/img/519.jpg?w=225&#34; alt=&#34;519&#34; width=&#34;225&#34; height=&#34;300&#34; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>[IMO 2012 Part 2] The Hotel of Deception</title>
+				<link>//blog.vero.site/post/hotel</link>
+				<pubDate>Fri, 20 Jul 2012 12:45:41 +0800</pubDate>
+				<guid>//blog.vero.site/post/hotel</guid>
+				<description>&lt;p&gt;We finally arrived at the hotel at 3:30, meeting another local from&#xA;Taiwan, Mr. Chen, who helped us carry some of our stuff off the bus.&#xA;Po-Chiang, our guide, was waiting inside. We took more pictures and&#xA;finally lugged the meager stuff we had off to our hotel rooms.&lt;/p&gt;&#xA;&lt;p&gt;At least, we tried. I started to realize that there was much more to&#xA;this hotel than it seemed.&lt;/p&gt;&#xA;&lt;p&gt;Firstly, of course, was the confusing placement of rooms with numbers&#xA;starting with 4 and 5 on the fourth floor (which would be the fifth&#xA;floor by our numbering system, where the lobby is floor 1; but here the&#xA;lobby was assigned 0. Off-by-one errors just waiting to happen here.)&#xA;Secondly were the completely indecipherable signs. I don’t remember the&#xA;details, but the first signs we saw read something like “560 ~ 540:&#xA;left; 520 ~ 540: right”. Occasionally there would be weird slashes or&#xA;half-slashes between the numbers instead (later I finally realized they&#xA;were slanted, Comic-Sans-style capital Ys, or “and” in Spanish). Are&#xA;these closed, open, or half-open intervals? And why the heck are their&#xA;upper and lower bounds in a different order!?&lt;/p&gt;&#xA;&lt;p&gt;We wandered through the corridors, peeking down each one, trying to&#xA;figure out whether the numbers were increasing or decreasing and whether&#xA;a parity argument (for those of you not fluent in math lingo, that means&#xA;odds and evens) allowed for the existence of our room. Who knew the&#xA;simple act of finding one’s living quarters could be so mathematically&#xA;tasking? In the end, our rooms were in the last corridor, just about&#xA;diametrically opposite to the elevators on the half of our floor. Oh&#xA;well.&lt;/p&gt;&#xA;&lt;p&gt;The room was pretty nice overall. The furniture and basic facilities&#xA;were quite complete, with a sparkly bathroom and a couple tables and&#xA;chairs of various shapes. The closet was big and had a safe, which was&#xA;rather important because just about everybody we had met had warned us&#xA;over and over again about all the incredibly skilled thieves, muggers,&#xA;and pickpockets in Argentina. It was probably much safer (no pun&#xA;intended) in the hotel, but with all of these warnings (later we would&#xA;even find a notice from the hotel warning us to lock our doors) I was&#xA;never entirely certain. There were lots of lights controlled by a set of&#xA;confusing switches on either side of our beds. There was at least one&#xA;white immovable divider cunningly disguised as a switch, one switch that&#xA;didn’t ever seem to do anything, and one that turned everything off. The&#xA;last one made a little sense after a while because it had pictures of&#xA;stars and a moon on it, but the whole setup was still pretty&#xA;non-user-friendly in my opinion.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

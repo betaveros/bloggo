@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8" />
+<title>Adding Floating-Point Decimals for Fun and Profit</title>
+
+<meta name="author" content="betaveros" />
+<meta name="description" content="Many people know that you shouldn’t do decimal calculations, such as those involving U.S. dollars and cents, with the floating-point numbers in most programming languages. This is because decimal numbers can’t be expressed exactly as such floating-point numbers, so you will encounter rounding errors.
+Famously, with IEEE double-precision floats, 0.1 &#43; 0.2 is not 0.3, but rather, 0.30000000000000004.
+On the other hand, I use a Python REPL to add up decimal numbers for receipts all the time. Of course, my stakes are lower; I’m summing things in the $1–$100 range and know to manually round the microscopic errors off before copying the sum somewhere. But actually it’s quite often that those errors don’t appear at all.
+If we sum every pair of multiples of 0.01 up to 1.00 and look at whether the printed result is too large (blue), too small (red), or correct, we get a cool pattern:
+Figure 1: How floating-point affects summing two multiples of 0.01, up to 1.00 Where does this pattern come from?
+" /><meta name="generator" content="Hugo 0.166.0-DEV" />
+
+<link rel="canonical" href="//blog.vero.site/post/float" />
+<link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="theme-color" content="#330000" />
+<meta name="twitter:creator" content="@betaveros">
+
+<link rel="icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/katex/katex.min.css" />
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+<div id="wrapper">
+<header class="site-header"><h2 class="title"><a href="/">Bounded-Error Log</a></h2><p class="subtitle">theoretical and applied randomness by <a href="https://beta.vero.site/">betaveros</a></p>
+<button class="menu-toggle" type="button" aria-label="Toggle Menu">
+	<span class="icon icon-menu" aria-hidden="true"></span>
+</button>
+<nav class="site-menu collapsed">
+	<h2 class="offscreen">Main Menu</h2>
+	<ul class="menu-list"><li class="menu-item "><a href="/about">About</a></li><li class="menu-item "><a href="/category/life">Life</a></li><li class="menu-item "><a href="/category/thoughts">Thoughts</a></li><li class="menu-item "><a href="/category/self-analysis">Self-Analysis</a></li><li class="menu-item "><a href="/category/math">Math</a></li><li class="menu-item "><a href="/category/cs">CS</a></li><li class="menu-item "><a href="/category/puzzles">Puzzles</a></li><li class="menu-item "><a href="/category/meta">Meta</a></li><li class="menu-item "><a href="/ref">References</a></li><li class="menu-item "><a href="/util">Utilities</a></li><li class="menu-item "><a href="/all">All Posts</a></li></ul>
+</nav>
+<nav class="social-menu collapsed">
+	<h2 class="offscreen">Social Networks</h2>
+	<ul class="social-list"><li class="social-item">
+			<a href="//github.com/betaveros" title="GitHub" aria-label="GitHub"><span class="icon icon-github" aria-hidden="true"></span></a>
+
+		</li><li class="social-item">
+			<a href="/index.xml" title="RSS" aria-label="RSS"><span class="icon icon-rss" aria-hidden="true"></span></a>
+		</li>
+	</ul>
+</nav>
+</header>
+
+<section class="main post-detail">
+	<header>
+		<h1 class="post-title">Adding Floating-Point Decimals for Fun and Profit</h1>
+		
+		<p class="post-meta">
+		
+		2026-08-30
+		(2527 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>, <a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	<article><p>Many people know that you shouldn’t do decimal calculations, such as
+those involving U.S. dollars and cents, with the floating-point numbers
+in most programming languages. This is because decimal numbers can’t be
+expressed exactly as such floating-point numbers, so you will encounter
+rounding errors.</p>
+<p>Famously, with <a
+href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">IEEE
+double-precision floats</a>, <code>0.1 + 0.2</code> is not
+<code>0.3</code>, but rather, <code>0.30000000000000004</code>.</p>
+<p>On the other hand, I use a Python REPL to add up decimal numbers for
+receipts all the time. Of course, my stakes are lower; I’m summing
+things in the $1–$100 range and know to manually round the microscopic
+errors off before copying the sum somewhere. But actually it’s quite
+often that those errors don’t appear at all.</p>
+<p>If we sum every pair of multiples of 0.01 up to 1.00 and look at
+whether the printed result is too large (blue), too small (red), or
+correct, we get a cool pattern:</p>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<figure style="text-align: center">
+<svg id="grid1" width="400" height="400" viewBox="0 0 100 100">
+</svg>
+<figcaption>
+Figure 1: How floating-point affects summing two multiples of 0.01, up
+to 1.00
+</figcaption>
+</figure>
+<script>
+d3.select("#grid1")
+    .selectAll("rect").data(d3.cross(d3.range(100), d3.range(100))).join("rect")
+    .attr("x", d => d[0])
+    .attr("y", d => d[1])
+    .attr("width", 1)
+    .attr("height", 1)
+    .attr("fill", ([r, c]) => {
+        const rr = r + 1, cc = c + 1;
+        const d = (rr / 100 + cc / 100) - (rr + cc) / 100;
+        return d > 0 ? "blue" : d < 0 ? "red" : "transparent";
+    });
+</script>
+<p>Where does this pattern come from?</p>
+<h3 id="floats-briefly">Floats, briefly</h3>
+<p>A double-precision floating-point number <span
+class="math inline">\(x\)</span> consists of 1 sign bit, 11 exponent
+bits, and 52 fraction bits (in that order), for a total of 64 bits.</p>
+<p>The sign bit provides a sign, <span class="math inline">\(+\)</span>
+or <span class="math inline">\(-\)</span>. The exponent bits represent
+an integer <span class="math inline">\(E\)</span> between −1022 and
+1023, inclusive. The fraction bits represent a nonnegative integer <span
+class="math inline">\(F\)</span> less than <span
+class="math inline">\(2^{52}\)</span>, which corresponds to the
+significand <span class="math inline">\(1 + F/{2^{52}} \in [1,
+2)\)</span>; that ever-present <span class="math inline">\(1\)</span> is
+called the “hidden bit”. The floating-point number’s value is <span
+class="math inline">\(x = \pm 2^E(1 + F/{2^{52}})\)</span>.</p>
+<p>The effective value of the last fraction bit is thus <span
+class="math inline">\(2^{E-52}\)</span>, a quantity called the
+<strong>ulp</strong>, for “unit in the last place”, of <span
+class="math inline">\(x\)</span>. The two floating-point numbers closest
+to <span class="math inline">\(x\)</span> differ from it by exactly one
+ulp, except for an edge case on one side when <span
+class="math inline">\(F = 0\)</span> and <span
+class="math inline">\(x\)</span> is exactly a power of two. Example:</p>
+<style>
+  .label-row { position: relative; }
+  .hb-label {
+    display: inline-block;
+    width: 23ch;
+    padding-right: 0.5ch;
+    box-sizing: border-box;
+    text-align: right;
+  }
+  .span-label {
+    display: inline-block;
+    width: 52ch;
+    margin-left: 1ch;
+    text-align: center;
+  }
+  .elbow {
+    position: absolute;
+    left: 22.5ch;
+    width: calc(1ch + 1px);
+    top: 50%;
+    bottom: -0.5em;
+    border-top: 1px solid;
+    border-right: 1px solid;
+  }
+  .rule-row { height: 0.5em; }
+  .rule {
+    display: block;
+    margin-left: 24ch;
+    width: 52ch;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid;
+    border-bottom: 0;
+  }
+</style>
+<pre style="font-variant-ligatures: none; font-feature-settings: 'liga' 0;"><div class="label-row"><span class="hb-label">"hidden bit"</span><span class="span-label">52&nbsp;bits</span><span class="elbow"></span></div><div class="rule-row"><span class="rule"></span></div>    float(0.1)&nbsp;&nbsp;=&nbsp;0.00011001100110011001100110011001100110011001100110011010₂
+ulp(float(0.1))&nbsp;=&nbsp;0.00000000000000000000000000000000000000000000000000000001₂</pre>
+<p>This description is good enough for our purposes but ignores many
+other cases: 0, subnormal numbers, infinities, and NaNs; they use the
+two values of exponent bits I didn’t describe. I also won’t consider
+other precisions of floating-point numbers, for simplicity.</p>
+<h3 id="anatomy-of-an-addition">Anatomy of an addition</h3>
+<p>As an example (following e.g. <a
+href="https://qntm.org/notpointthree">qntm</a>) let’s step through what
+happens when you type <code>0.1 + 0.2</code> into the Python REPL.<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a></p>
+<p>First, the Python expression <code>0.1</code> evaluates to some
+floating-point number: specifically, as required by the IEEE standard,
+the nearest floating-point number to 0.1. We’ll write that
+<em>exact</em> number as <span
+class="math inline">\(\text{float}(0.1)\)</span>.<a href="#fn2"
+class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>Similarly, the Python expression <code>0.2</code> evaluates to some
+other floating-point number, <span
+class="math inline">\(\text{float}(0.2)\)</span>.</p>
+<p>Now, we can imagine the <code>+</code> being evaluated in two steps.
+First, Python computes the <em>exact</em> sum <span
+class="math inline">\(\text{float}(0.1) + \text{float}(0.2)\)</span>.
+Second, it rounds this to the nearest floating-point number. The
+resulting value is <span
+class="math inline">\(\text{float}(\text{float}(0.1) +
+\text{float}(0.2))\)</span>. (This isn’t how it literally works — the
+exact sum from the first step isn’t ever materialized anywhere — but
+it’s mathematically accurate.)</p>
+<p>Actually, there’s a subtlety here I did not notice until working this
+out in excruciating detail: <span
+class="math inline">\(\text{float}(0.1) + \text{float}(0.2)\)</span> is
+<em>equally close</em> to its two nearest floating-point numbers! When
+this happens, Python rounds to the floating-point number with an even
+significand, in this case up.<a href="#fn3" class="footnote-ref"
+id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>Finally, to print this value, Python has to convert it to a decimal.
+This conversion is surprisingly subtle and not exactly specified by the
+IEEE standard! Even though <span
+class="math inline">\(\text{float}(\text{float}(0.1) +
+\text{float}(0.2))\)</span> isn’t exactly 0.3, it is pretty close, so it
+wouldn’t be unreasonable to display it as “0.3”. Another option would be
+to display it exactly, as
+“0.3000000000000000444089209850062616169452667236328125”. One might also
+imagine displaying it after various amounts of rounding:
+0.300000000000000044, or 0.30000000000000004441, or so on. One might
+even consider, say, 0.30000000000000005, because it is still true that
+<span class="math inline">\(\text{float}(\text{float}(0.1) +
+\text{float}(0.2)) = \text{float}(0.30000000000000005)\)</span>; that
+is, the Python expression <code>0.1 + 0.2 == 0.30000000000000005</code>
+is true. The subtlety of this conversion is evidenced by the fact that,
+until a <a href="https://bugs.python.org/issue1580">specific patch in
+Python 3.1</a>, if you typed <code>1.1</code> into the REPL, Python
+would print your input back to you as
+<code>1.1000000000000001</code>.</p>
+<p>The standard description of how this decimal conversion should work
+was formalized by <a
+href="https://dl.acm.org/doi/10.1145/93548.93559">Steele and White,
+1990</a><a href="#fn4" class="footnote-ref" id="fnref4"
+role="doc-noteref"><sup>4</sup></a>, who lay down three criteria<a
+href="#fn5" class="footnote-ref" id="fnref5"
+role="doc-noteref"><sup>5</sup></a>:</p>
+<ol type="1">
+<li>The decimal representation should round-trip: if you type it in
+again, you should get the same floating-point number. This rules out the
+output “0.3”.</li>
+<li>Subject to criterion 1, the decimal representation should be the
+shortest possible. This rules out outputs like
+“0.30000000000000004441”.</li>
+<li>Subject to criteria 1 and 2, the decimal representation should be as
+close as possible to the floating-point number. This rules out outputs
+like “0.30000000000000005”.</li>
+</ol>
+<p>Following this algorithm, we can understand why
+<code>0.1 + 0.2 == 0.30000000000000004</code>.</p>
+<h3 id="generalizing">Generalizing</h3>
+<p>Let’s do the general case: suppose you’re trying to add the exact
+positive decimal quantities <span class="math inline">\(a\)</span> and
+<span class="math inline">\(b\)</span>, whose exact sum is <span
+class="math inline">\(c\)</span>. Well, not fully general. We will
+assume that these values are “reasonable dollar amounts”, positive and
+less than $70 trillion; I think that should be enough to cover the
+receipts I have to file. A bit above that (2<sup>46</sup> =
+70,368,744,177,664) floating-point numbers become sparser than multiples
+of cents, which is no good.</p>
+<p>The question is, how does <span
+class="math inline">\(\text{float}(\text{float}(a) +
+\text{float}(b))\)</span> compare to <span
+class="math inline">\(\text{float}(c)\)</span>?</p>
+<p>Let their difference be <span class="math display">\[\Delta :=
+\text{float}(\text{float}(a) + \text{float}(b)) -
+\text{float}(c).\]</span> We can reason about it by introducing the
+error function <span class="math inline">\(\text{error}(x) :=
+\text{float}(x) - x\)</span>. Then, we can rewrite <span
+class="math inline">\(\Delta\)</span> as <span
+class="math display">\[\begin{aligned}\Delta ={} &amp;\text{error}(a) +
+\text{error}(b) \\&amp;+ \text{error}(\text{float}(a) + \text{float}(b))
+- \text{error}(c).\qquad(*)\end{aligned}\]</span></p>
+<p>We can bound each error term. Recall that the <em>ulp</em> (“unit in
+the last place”) of a floating-point number is the value of the last
+bit. By mild abuse of notation, we will allow ourselves to write <span
+class="math inline">\(\text{ulp}(x)\)</span> even when <span
+class="math inline">\(x\)</span> can’t be exactly represented as a
+floating-point number, and understand that this means <span
+class="math inline">\(\text{ulp}(\text{float}(x))\)</span>. So <span
+class="math inline">\(\text{float}(x) \pm \text{ulp}(x)\)</span> are
+also floating-point numbers<a href="#fn6" class="footnote-ref"
+id="fnref6" role="doc-noteref"><sup>6</sup></a>, which must be no closer
+to <span class="math inline">\(x\)</span> than <span
+class="math inline">\(\text{float}(x)\)</span> itself (otherwise, <span
+class="math inline">\(\text{float}(x)\)</span> would have evaluated to
+the closer value); which means that, for all (reasonable) <span
+class="math inline">\(x\)</span>, we have <span
+class="math display">\[|\text{error}(x)| \leq
+\frac{\text{ulp}(\text{float}(x))}{2}.\]</span> Furthermore, equality
+only holds when <span class="math inline">\(x\)</span> is exactly
+halfway between the two closest floating-point numbers, which can’t hold
+if <span class="math inline">\(x\)</span> is a reasonable amount of
+money.<a href="#fn7" class="footnote-ref" id="fnref7"
+role="doc-noteref"><sup>7</sup></a> We can apply this bound term-by-term
+to <span class="math inline">\((*)\)</span> to conclude that <span
+class="math inline">\(|\Delta| &lt; 2\text{ulp}(c)\)</span>.
+Furthermore, because <span class="math inline">\(\Delta\)</span> is the
+difference between two floating-point numbers near <span
+class="math inline">\(c\)</span>, it’s a multiple of <span
+class="math inline">\(\text{ulp}(c)\)</span>.<a href="#fn8"
+class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>
+From this we conclude that <span class="math inline">\(\Delta \in
+\{-\text{ulp}(c), 0, +\text{ulp}(c)\}\)</span> — that is, the result can
+be at most 1 ulp off from the answer.</p>
+<p>However, here’s a derivation that produces tighter intermediate
+bounds on <span class="math inline">\(|\Delta|\)</span>: Assume without
+loss of generality that <span class="math inline">\(a \leq b\)</span>.
+Then, <span class="math inline">\(\text{float}(c) + \text{ulp}(c) -
+\text{float}(b)\)</span> is a representable floating-point number
+because the result’s ulp is ≤ that of both <span
+class="math inline">\(b\)</span> and <span
+class="math inline">\(c\)</span>. Therefore, at least that is an
+available approximation of <span class="math inline">\(a\)</span>. And
+it’s an overestimate:</p>
+<p><span class="math display">\[\begin{aligned}a &amp;= c - b \\
+&amp;\leq \text{float}(c) + \frac{\text{ulp}(c)}{2} - \text{float}(b) +
+\frac{\text{ulp}(c)}{2} \\ &amp;= \text{float}(c) - \text{float}(b) +
+\text{ulp}(c).\end{aligned}\]</span> Therefore, <span
+class="math display">\[\begin{aligned}\text{float}(a) &amp;\leq
+\text{float}(c) - \text{float}(b) + \text{ulp}(c)\\
+\text{float}(a) + \text{float}(b) &amp;\leq \text{float}(c) +
+\text{ulp}(c).\end{aligned}\]</span> Subtracting <span
+class="math inline">\(a + b = c\)</span> from this, we get <span
+class="math display">\[\text{error}(a) + \text{error}(b) \leq
+\text{error}(c) + \text{ulp}(c).\]</span></p>
+<p>The same bound applies from the other side. As a result, if we let
+<span class="math display">\[\delta := \text{error}(a) + \text{error}(b)
+- \text{error}(c),\]</span> we have <span class="math display">\[-1 \leq
+\frac{\delta}{\text{ulp}(c)} \leq 1.\]</span> As before, we know <span
+class="math inline">\(|\delta - \Delta| \leq \text{ulp}(c)/2\)</span>,
+and again since <span class="math inline">\(\Delta\)</span> is a
+multiple of <span class="math inline">\(\text{ulp}(c)\)</span> we see
+that <span class="math inline">\(\Delta \in \{-\text{ulp}(c), 0,
++\text{ulp}(c)\}\)</span>.</p>
+<p>If we make a heatmap of <span
+class="math inline">\(\delta/\text{ulp}(c)\)</span>, we see what might
+be described as a more continuous version of Figure 1:</p>
+<figure style="text-align: center">
+<svg id="grid2" width="400" height="400" viewBox="0 0 100 100" shape-rendering="crispEdges">
+</svg>
+<figcaption>
+Figure 2: Combined floating-point error from summing two multiples of
+0.01, up to 1.00
+</figcaption>
+</figure>
+<script>
+// [s, t] such that a + b ≈ s, and a + b = s + t exactly.
+function twoSum(a, b) {
+  const s = a + b;
+  const bb = s - a;
+  return [s, (a - (s - bb)) + (b - bb)];
+}
+
+function ulp(d) {
+  const e = Math.floor(Math.log2(d));
+  const u = 2 ** (e - 52);
+  return d >= 2 ** e ? u : u / 2;
+}
+
+function value(r, c) {
+  const s = (r + c) / 100;
+  const [t, e] = twoSum(r / 100, c / 100);
+  return ((t - s) + e) / ulp(s);
+}
+
+d3.select("#grid2")
+    .selectAll("rect").data(d3.cross(d3.range(100), d3.range(100))).join("rect")
+    .attr("x", d => d[0])
+    .attr("y", d => d[1])
+    .attr("width", 1)
+    .attr("height", 1)
+    .attr("fill", ([r, c]) => d3.interpolateRdBu((value(r+1, c+1)+1)/2));
+</script>
+<p>We can now understand Figure 1 as a “rounded” version of Figure 2,
+with a checkerboard pattern arising in regions where <span
+class="math inline">\(\delta\)</span> is exactly <span
+class="math inline">\(\pm\text{ulp}(c)/2\)</span> due to rounding to
+floats with even significand:</p>
+<figure style="text-align: center">
+<svg id="lastbit" width="400" height="400" viewBox="0 0 100 100" shape-rendering="crispEdges">
+</svg>
+<figcaption>
+Figure 3: Multiples of 0.01 with odd floating-point significand
+</figcaption>
+</figure>
+<script>
+d3.select("#lastbit")
+    .selectAll("rect").data(d3.cross(d3.range(100), d3.range(100))).join("rect")
+    .attr("x", d => d[0])
+    .attr("y", d => d[1])
+    .attr("width", 1)
+    .attr("height", 1)
+    .attr("fill", ([r, c]) => {
+        let x = (2 + r + c) / 100;
+        return x + ulp(x)/2 !== x ? "gray" : "transparent";
+    });
+</script>
+<p>And, we can interpret Figure 2 as the result of “interference”
+between three copies of the <span
+class="math inline">\(\text{error}\)</span> function: one horizontal,
+one vertical, one diagonal (albeit with a changing denominator).</p>
+<figure style="text-align: center">
+<svg id="panels" width="100%" viewBox="0 0 360 100" shape-rendering="crispEdges">
+</svg>
+<figcaption>
+Figure 4: Decomposing Figure 2 into terms
+</figcaption>
+</figure>
+<script>
+function veltkampSplit(a) {
+  const c = ((1 << 27) | 1) * a;
+  const hi = c - (c - a);
+  return [hi, a - hi];
+}
+
+function dekkerProduct(a, b) {
+  const p = a * b;
+  const [ah, al] = veltkampSplit(a);
+  const [bh, bl] = veltkampSplit(b);
+  return [p, ((ah * bh - p) + ah * bl + al * bh) + al * bl];
+}
+
+function errOver100(n) {
+  const d = n / 100;
+  const [p, e] = dekkerProduct(100, d);
+  return ((p - n) + e) / 100;
+}
+
+const terms = [
+  (r, c) => errOver100(r) / ulp((r + c) / 100),
+  (r, c) => errOver100(c) / ulp((r + c) / 100),
+  (r, c) => errOver100(r + c) / ulp((r + c) / 100),
+];
+
+d3.select("#panels").selectAll("g").data(terms).join("g")
+    .attr("transform", (d, i) => `translate(${i * 130}, 0)`)
+    .selectAll("rect")
+    .data(df => d3.cross(d3.range(100), d3.range(100)).map(p => [df, p]))
+    .join("rect")
+    .attr("x", d => d[1][1])
+    .attr("y", d => d[1][0])
+    .attr("width", 1)
+    .attr("height", 1)
+    .attr("fill", d => d3.interpolateRdBu(0.5 + d[0](d[1][0] + 1, d[1][1] + 1)));
+
+d3.select("#panels").selectAll("text").data(["\u002B", "\u2212"]).join("text")
+    .attr("x", (d, i) => 115 + i * 130)
+    .attr("y", 55)
+    .attr("text-anchor", "middle")
+    .attr("font-size", "18")
+    .text(d => d);
+</script>
+<p>The only remaining question is, why does <span
+class="math inline">\(\text{error}(x)\)</span> look like that?</p>
+<h3 id="one-dimensional-error">One-dimensional error</h3>
+<figure>
+<svg id="plot" viewBox="0 0 640 260" width="100%">
+</svg>
+<figcaption>
+Figure 5: The error function at multiples of 0.01, up to 2.00
+</figcaption>
+</figure>
+<p>First let’s observe that <span class="math inline">\(\text{error}(x)
+= 0\)</span> whenever <span class="math inline">\(x\)</span> is an exact
+power of 2. In between two such powers, let’s compare <span
+class="math inline">\(\text{error}(x)\)</span> and <span
+class="math inline">\(\text{error}(x+0.01)\)</span>. We have <span
+class="math inline">\(\text{ulp}(x) = \text{ulp}(x+0.01)\)</span>, so
+<span class="math inline">\(\text{float}(x + 0.01) \equiv 0 \equiv
+\text{float}(x) \bmod \text{ulp}(x)\)</span>, so <span
+class="math display">\[\text{error}(x + 0.01) \equiv \text{error}(x) -
+0.01 \bmod \text{ulp}(x);\]</span> that is, <span
+class="math inline">\(\text{error}(x)\)</span> is an “arithmetic
+sequence with common difference −0.01” modulo <span
+class="math inline">\(\text{ulp}(x)\)</span>. So, the wraparound
+behavior of this function leads to the periodic patterns in our previous
+figures.</p>
+<p>Let’s focus on the lower-right quadrant of Figure 2, <span
+class="math inline">\([0.5, 1] \times [0.5, 1]\)</span>. In this region
+we can compute that <span class="math inline">\(\text{ulp}(0.5) =
+2^{-53}\)</span> and <span class="math inline">\(\text{ulp}(1) =
+2^{-52}\)</span>, and then that <span
+class="math display">\[\begin{aligned}\frac{0.01 \bmod
+\text{ulp}(0.5)}{\text{ulp}(0.5)} &amp;\equiv 0.92\equiv -0.08 \bmod 1
+\\
+\frac{0.01 \bmod \text{ulp}(1)}{\text{ulp}(1)} &amp;\equiv 0.96\equiv
+-0.04 \bmod 1,\end{aligned}\]</span> which are both “close to 0”.
+Because <span class="math inline">\(0.08 \approx 1/12\)</span>, <span
+class="math inline">\(\text{error}(x)\)</span> has 12 “steps” before
+wrapping around when <span class="math inline">\(x \in [0.5,
+1]\)</span>; and because <span class="math inline">\(0.04 =
+1/25\)</span>, <span class="math inline">\(\text{error}(x)\)</span> has
+25 “steps” before wrapping around when <span class="math inline">\(x \in
+[1, 2]\)</span>.</p>
+<p>To understand the pattern even better, we can work out that <span
+class="math display">\[\frac{0.01 \bmod 2^{-n}}{2^{-n}} = 0.01 \times
+2^n \bmod 1 = \frac{2^n \bmod 100}{100}.\]</span> It is actually a nice
+coincidence that the number of fraction bits in double-precision
+floating-point, 52, is such that <span
+class="math inline">\(2^{52}\)</span> is “close to 0” mod 100; that’s
+the reason the error function doesn’t wrap around so much, so we have
+smooth regions. If we expand our diagrams to <span
+class="math inline">\(a, b \in [0, 2]\)</span> such that <span
+class="math inline">\(c\)</span> can reach <span
+class="math inline">\([2, 4]\)</span>, we see messier checkerboards and
+diagonal lines, because <span class="math display">\[\frac{0.01 \bmod
+\text{ulp}(2)}{\text{ulp}(2)} \equiv 0.48\bmod 1\]</span> and <span
+class="math inline">\(\text{error}(x)\)</span> wraps around roughly
+every other step in <span class="math inline">\([2, 4]\)</span>, which
+then interferes with the parity of <span
+class="math inline">\(c\)</span>’s significand in a more complicated
+way.</p>
+<figure style="text-align: center">
+<svg id="grid3" width="400" height="400" viewBox="0 0 200 200">
+</svg>
+<figcaption>
+Figure 6: How floating-point affects summing two multiples of 0.01, up
+to 2.00
+</figcaption>
+</figure>
+<script>
+d3.select("#grid3")
+    .selectAll("rect").data(d3.cross(d3.range(200), d3.range(200))).join("rect")
+    .attr("x", d => d[0])
+    .attr("y", d => d[1])
+    .attr("width", 1)
+    .attr("height", 1)
+    .attr("fill", ([r, c]) => {
+        const rr = r + 1, cc = c + 1;
+        const d = (rr / 100 + cc / 100) - (rr + cc) / 100;
+        return d > 0 ? "blue" : d < 0 ? "red" : "transparent";
+    });
+</script>
+<figure style="text-align: center">
+<svg id="grid4" width="400" height="400" viewBox="0 0 200 200" shape-rendering="crispEdges">
+</svg>
+<figcaption>
+Figure 7: Combined floating-point error from summing two multiples of
+0.01, up to 2.00
+</figcaption>
+</figure>
+<script>
+d3.select("#grid4")
+    .selectAll("rect").data(d3.cross(d3.range(200), d3.range(200))).join("rect")
+    .attr("x", d => d[0])
+    .attr("y", d => d[1])
+    .attr("width", 1)
+    .attr("height", 1)
+    .attr("fill", ([r, c]) => d3.interpolateRdBu((value(r+1, c+1)+1)/2));
+</script>
+<figure style="text-align: center">
+<svg id="lastbit2" width="400" height="400" viewBox="0 0 200 200" shape-rendering="crispEdges">
+</svg>
+<figcaption>
+Figure 8: Multiples of 0.01 with odd floating-point significand, up to
+4.00
+</figcaption>
+</figure>
+<script>
+d3.select("#lastbit2")
+    .selectAll("rect").data(d3.cross(d3.range(200), d3.range(200))).join("rect")
+    .attr("x", d => d[0])
+    .attr("y", d => d[1])
+    .attr("width", 1)
+    .attr("height", 1)
+    .attr("fill", ([r, c]) => {
+        let x = (2 + r + c) / 100;
+        return x + ulp(x)/2 !== x ? "gray" : "transparent";
+    });
+</script>
+<figure>
+<svg id="plot2" viewBox="0 0 640 260" width="100%">
+</svg>
+<figcaption>
+Figure 9: The error function at multiples of 0.01, up to 4.00
+</figcaption>
+</figure>
+<script>
+function makePlot(selector, n, xticks, B, ylabel) {
+const plot = d3.select(selector);
+const data = d3.range(0, n+1).map(n => ({ x: n / 100, y: errOver100(n) }));
+const x = d3.scaleLinear([0, n / 100], [56, 632]);
+const y = d3.scaleLinear([-B, B], [232, 12]);
+
+plot.append("g")
+  .attr("stroke", "currentColor")
+  .attr("stroke-opacity", 0.3)
+  .selectAll("line")
+  .data(xticks)
+  .join("line")
+    .attr("x1", d => x(d)).attr("x2", d => x(d))
+    .attr("y1", y(-B)).attr("y2", y(B));
+
+plot.append("line")
+  .attr("x1", x(0)).attr("x2", x(n/100))
+  .attr("y1", y(0)).attr("y2", y(0))
+  .attr("stroke", "currentColor")
+  .attr("stroke-opacity", 0.35);
+
+plot.append("g")
+  .attr("fill", "currentColor")
+  .attr("fill-opacity", 0.6)
+  .attr("text-anchor", "middle")
+  .selectAll("text")
+  .data(xticks)
+  .join("text")
+    .attr("x", d => x(d))
+    .attr("y", 250)
+    .text(d => d);
+
+plot.append("g")
+  .attr("stroke", "currentColor")
+  .attr("stroke-opacity", 0.3)
+  .selectAll("line")
+  .data([-B, 0, B])
+  .join("line")
+    .attr("x1", x(0)).attr("x2", x(n/100))
+    .attr("y1", d => y(d)).attr("y2", d => y(d));
+
+plot.append("g")
+  .attr("fill", "currentColor")
+  .attr("fill-opacity", 0.6)
+  .attr("text-anchor", "end")
+  .selectAll("text")
+  .data([-B, 0, B])
+  .join("text")
+    .attr("x", 50)
+    .attr("y", d => y(d) + 4)
+    .text(d => d === 0 ? "0" : (d < 0 ? "−" : "+") + ylabel);
+
+plot.append("path")
+  .attr("fill", "none")
+  .attr("stroke", "currentColor")
+  .attr("stroke-opacity", 0.6)
+  .attr("d", d3.line().x(d => x(d.x)).y(d => y(d.y))(data));
+
+plot.append("g")
+  .attr("fill", "currentColor")
+  .selectAll("circle")
+  .data(data)
+  .join("circle")
+    .attr("cx", d => x(d.x))
+    .attr("cy", d => y(d.y))
+    .attr("r", 1.6);
+};
+makePlot("#plot", 200, [0, 0.25, 0.5, 1, 2], 2 ** -53, "2⁻⁵³");
+makePlot("#plot2", 400, [0, 0.25, 0.5, 1, 2, 4], 2 ** -52, "2⁻⁵²");
+</script>
+<h3 id="appendix-error-free-transformations-in-floating-point">Appendix:
+Error-free transformations in floating-point</h3>
+<p>(This is probably more practical than the main post)</p>
+<p>How do you actually calculate a function like <span
+class="math inline">\(\text{error}(x) = \text{float}(x) - x\)</span> on
+a computer, for example, to generate the figures in this post? Obviously
+you can’t directly compute it in the same floating-point format you’re
+studying. In that format, <span
+class="math inline">\(\text{float}\)</span> is the identity function;
+the error has already been incurred by the time you try to express <span
+class="math inline">\(x\)</span>.</p>
+<p>The conceptually simplest way is to use some kind of exact rational
+arithmetic, like Python’s <code><a
+href="https://docs.python.org/3/library/fractions.html">fractions</a></code>.
+For my initial explorations, I used my own <a
+href="https://github.com/betaveros/noulith">Noulith</a> (after
+haphazardly bolting on a bunch of features and bugfixes to its
+<code>rational</code> type…).</p>
+<p>However, it turns out there are a bunch of indirect ways to work with
+errors like this without leaving the floating-point format. I believe
+these techniques are called “error-free transformations”.</p>
+<p><a
+href="https://en.wikipedia.org/wiki/2Sum"><strong>2Sum</strong></a>
+(Møller, 1965): From <span class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span>, compute <span
+class="math inline">\(s\)</span> and <span
+class="math inline">\(t\)</span> such that <span class="math inline">\(a
++_\text{float} b = s\)</span> and <span class="math inline">\(a + b = s
++ t\)</span> exactly.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> two_sum(a: <span class="bu">float</span>, b: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">tuple</span>[<span class="bu">float</span>, <span class="bu">float</span>]:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    bb <span class="op">=</span> s <span class="op">-</span> a</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s, (a <span class="op">-</span> (s <span class="op">-</span> bb)) <span class="op">+</span> (b <span class="op">-</span> bb)</span></code></pre></div>
+<p><strong>Veltkamp splitting</strong><a href="#fn9"
+class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>:
+From <span class="math inline">\(a\)</span>, compute <span
+class="math inline">\(h\)</span> and <span
+class="math inline">\(\ell\)</span> such that <span
+class="math inline">\(a = h + \ell\)</span> exactly and both <span
+class="math inline">\(h\)</span> and <span
+class="math inline">\(\ell\)</span> have at most 26 significant bits
+(after the hidden bit). This is useful because multiplying two such
+floating-point numbers in floating-point is exact. (You can reallocate
+the number of significant bits between <span
+class="math inline">\(h\)</span> and <span
+class="math inline">\(\ell\)</span> by changing the magic constant.)</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> veltkamp_split(a: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">tuple</span>[<span class="bu">float</span>, <span class="bu">float</span>]:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> ((<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">27</span>) <span class="op">|</span> <span class="dv">1</span>) <span class="op">*</span> a</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    hi <span class="op">=</span> c <span class="op">-</span> (c <span class="op">-</span> a)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> hi, a <span class="op">-</span> hi</span></code></pre></div>
+<p><strong>Dekker product</strong><a href="#fn10" class="footnote-ref"
+id="fnref10" role="doc-noteref"><sup>10</sup></a>: From <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span>, compute <span
+class="math inline">\(p\)</span> and <span
+class="math inline">\(r\)</span> such that <span class="math inline">\(a
+\times_\text{float} b = p\)</span> and <span class="math inline">\(a
+\times b = p + r\)</span> exactly.</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dekker_product(a: <span class="bu">float</span>, b: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">tuple</span>[<span class="bu">float</span>, <span class="bu">float</span>]:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> a <span class="op">*</span> b</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    ah, al <span class="op">=</span> veltkamp_split(a)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    bh, bl <span class="op">=</span> veltkamp_split(b)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p, ((ah <span class="op">*</span> bh <span class="op">-</span> p) <span class="op">+</span> ah <span class="op">*</span> bl <span class="op">+</span> al <span class="op">*</span> bh) <span class="op">+</span> al <span class="op">*</span> bl</span></code></pre></div>
+<p>Using these techniques, we can compute a good-enough approximation to
+<span class="math inline">\(\text{error}(n / 100)\)</span> as
+follows:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> err_over_100(n: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> n <span class="op">/</span> <span class="dv">100</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    p, e <span class="op">=</span> dekker_product(<span class="dv">100</span>, d)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ((p <span class="op">-</span> n) <span class="op">+</span> e) <span class="op">/</span> <span class="dv">100</span></span></code></pre></div>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I’ll be saying “Python” to be concrete and concise, but
+most of this process is the same in any programming language or
+computing environment with IEEE double-precision floats (which is a lot
+of them), since they adhere to the same standard and probably rely on
+the <a href="https://www.felixcloutier.com/x86/addsd">same CPU
+instructions</a>. In particular, JavaScript, which is computing the
+figures in this post live in your browser. (This is a somewhat
+irresponsible way to generate them when they’re all theoretically
+static, I’m sorry)<a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>If we wanted, we could write <span
+class="math inline">\(\text{float}(0.1)\)</span> out as an
+<em>exact</em> decimal: <span class="math inline">\(\text{float}(0.1) =
+0.1000000000000000055511151231257827021181583404541015625\)</span>. This
+is neat but a bit unwieldy.<a href="#fnref2" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>This rounding strategy is customizable, if you have
+fairly low-level access to your FPU. Here’s a C program that
+demonstrates it with <code>fesetround</code>. (I use an obscenely high
+precision in the <code>printf</code> because changing the rounding mode
+<em>also</em> affects how the float gets printed as a decimal, but
+that’s a red herring.)</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#pragma STDC FENV_ACCESS on</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;fenv.h&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> a <span class="op">=</span> <span class="dv">0</span><span class="er">.1</span><span class="op">,</span> b <span class="op">=</span> <span class="dv">0</span><span class="er">.2</span><span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;0.3         :  </span><span class="sc">%.54g\n</span><span class="st">&quot;</span><span class="op">,</span> <span class="dv">0</span><span class="er">.3</span><span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;FE_TONEAREST:  </span><span class="sc">%.54g\n</span><span class="st">&quot;</span><span class="op">,</span> a <span class="op">+</span> b<span class="op">);</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    fesetround<span class="op">(</span>FE_UPWARD<span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;FE_UPWARD:     </span><span class="sc">%.54g\n</span><span class="st">&quot;</span><span class="op">,</span> a <span class="op">+</span> b<span class="op">);</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    fesetround<span class="op">(</span>FE_DOWNWARD<span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;FE_DOWNWARD:   </span><span class="sc">%.54g\n</span><span class="st">&quot;</span><span class="op">,</span> a <span class="op">+</span> b<span class="op">);</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    fesetround<span class="op">(</span>FE_TOWARDZERO<span class="op">);</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;FE_TOWARDZERO: </span><span class="sc">%.54g\n</span><span class="st">&quot;</span><span class="op">,</span> a <span class="op">+</span> b<span class="op">);</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>I don’t think Python directly exposes this as a setting, but you can
+muck around with <code>ctypes</code> to get the same effect:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ctypes</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ctypes.util</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>libm <span class="op">=</span> ctypes.CDLL(ctypes.util.find_library(<span class="st">&#39;m&#39;</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="fl">0.1</span>, <span class="fl">0.2</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">+</span> y)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>libm.fesetround(<span class="bn">0x400</span>) <span class="co"># FE_DOWNWARD, from fenv.h</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">+</span> y)</span></code></pre></div>
+<p>These should bottom out into instructions like x86’s <a
+href="https://www.felixcloutier.com/x86/fldcw">FLDCW</a> and <a
+href="https://www.felixcloutier.com/x86/ldmxcsr">LDMXCSR</a>.<a
+href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>though they note that it was folkloric knowledge before
+they published<a href="#fnref4" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>They have a fourth criterion about the algorithm for
+generating the digits, namely that it should do so from left to right
+without backtracking. We won’t concern ourselves with that here.<a
+href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>In the edge case where <span
+class="math inline">\(x\)</span> is a power of two, this is still true,
+although <span class="math inline">\(\text{float}(x) -
+\text{ulp}(\text{float}(x))\)</span> won’t be one of the
+<em>closest</em> floating-point numbers to <span
+class="math inline">\(x\)</span>.<a href="#fnref6" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>The smallest multiple of 0.01 that’s exactly halfway
+between two representable floating-point numbers is around 2
+quadrillion: 2,251,799,813,685,248.25 = 2<sup>51</sup> + ¼.<a
+href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>I’m ignoring the case where <span
+class="math inline">\(c\)</span> is a power of two again. It’s annoying
+and left as an exercise to the reader.<a href="#fnref8"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>G. W. Veltkamp, “ALGOL procedures voor het berekenen van
+een inwendig product in dubbele precisie,” RC-Informatie, Technishe
+Hogeschool Eindhoven, Tech. Rep. 22, 1968.<a href="#fnref9"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>T. J. Dekker, “A floating-point technique for extending
+the available precision,” <em>Numerische Mathematik</em>, vol. 18, no.
+3, pp. 224–242, 1971.<a href="#fnref10" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside></article>
+	<footer class="post-footer">
+		
+	</footer>
+	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
+	<section id="isso-thread"></section>
+  <p class="comments-meta">if you liked this post, click to make an invisible number go up: <button class="btn like-button">like</button></p>
+	<footer class="post-footer">
+		<nav class="pagination">
+			
+			<a class="pagination-previous" href="//blog.vero.site/post/behind">← all the words we leave behind</a>
+			
+			
+		</nav>
+	</footer>
+</section>
+</div>
+<footer class="site-footer">
+	<p>© 2017-2026 betaveros, Bounded-Error Log</p>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
+	<a href="https://www.goatcounter.com/">GoatCounter</a>,
+	<a href="https://posativ.org/isso/">Isso</a>,
+	<a href="https://pages.github.com/">GitHub Pages</a>, and
+	<a href="https://www.cloudflare.com/">CloudFlare</a>.
+	</p>
+	<p>Opinions are mine and not of any employer, past or present.</p>
+</footer>
+
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/contrib/auto-render.min.js"></script>
+<script>renderMathInElement(document.body);</script>
+<script src="/js/bundle.js"></script>
+<script>
+  window.goatcounter = { path: function(p) { return '/blog' + p; } }
+  for (let but of document.getElementsByClassName('like-button')) {
+    but.addEventListener('click', function (ev) {
+      goatcounter.count({
+        path: function (p) { return 'like/blog' + p; }
+      });
+    });
+  }
+</script>
+<script data-goatcounter="https://node.vero.site:8073/count" async src="https://node.vero.site:8073/count.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+
+</body>
+</html>

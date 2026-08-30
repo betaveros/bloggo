@@ -9,7 +9,7 @@
 nc challs.actf.co 31501
 If I had a nickel for every CTF challenge I’ve done that involves understanding the internal structure of a QR code, I would have two nickels. Which isn’t a lot, etc etc. That previous challenge probably helped me get first blood on this.
 The source code is wonderfully short:
-import io, qrcode, string flag_contents = [REDACTED] assert all(i in string.ascii_lowercase &#43; &amp;#39;_&amp;#39; for i in flag_contents) flag = b&amp;quot;actf{&amp;quot; &#43; flag_contents.encode() &#43; b&amp;quot;}&amp;quot; print(&amp;quot;flag is %d characters&amp;quot; % len(flag)) qr = qrcode.QRCode(version=1, error_correction = qrcode.constants.ERROR_CORRECT_L, box_size=1, border=0) while 1: try: inp = bytes.fromhex(input(&amp;quot;give input (in hex): &amp;quot;)) assert len(inp) == len(flag) except: print(&amp;quot;bad input, exiting&amp;quot;) break qr.clear() qr.add_data(bytes([i^j for i,j in zip(inp, flag)])) f = io.StringIO() qr.print_ascii(out=f) f.seek(0) print(&amp;#39;\n&amp;#39;.join(i[:11] for i in f))" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+import io, qrcode, string flag_contents = [REDACTED] assert all(i in string.ascii_lowercase &#43; &#39;_&#39; for i in flag_contents) flag = b&quot;actf{&quot; &#43; flag_contents.encode() &#43; b&quot;}&quot; print(&quot;flag is %d characters&quot; % len(flag)) qr = qrcode.QRCode(version=1, error_correction = qrcode.constants.ERROR_CORRECT_L, box_size=1, border=0) while 1: try: inp = bytes.fromhex(input(&quot;give input (in hex): &quot;)) assert len(inp) == len(flag) except: print(&quot;bad input, exiting&quot;) break qr.clear() qr.add_data(bytes([i^j for i,j in zip(inp, flag)])) f = io.StringIO() qr.print_ascii(out=f) f.seek(0) print(&#39;\n&#39;.join(i[:11] for i in f))" /><meta name="generator" content="Hugo 0.166.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/mask" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -599,9 +599,6 @@ class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
 	<section id="isso-thread"></section>
   <p class="comments-meta">if you liked this post, click to make an invisible number go up: <button class="btn like-button">like</button></p>
-	
-	
-	
 	<footer class="post-footer">
 		<nav class="pagination">
 			
@@ -615,7 +612,7 @@ class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2026 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

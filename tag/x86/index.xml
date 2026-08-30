@@ -1,110 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>x86 on Bounded-Error Log</title>
-    <link>//blog.vero.site/tag/x86</link>
-    <description>Recent content in x86 on Bounded-Error Log</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 15 Sep 2019 22:12:04 -0400</lastBuildDate><atom:link href="//blog.vero.site/tag/x86/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>baby_boi (A Textbook CTF ROP Tutorial)</title>
-      <link>//blog.vero.site/post/baby-boi</link>
-      <pubDate>Sun, 15 Sep 2019 22:12:04 -0400</pubDate>
-      
-      <guid>//blog.vero.site/post/baby-boi</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;Welcome to pwn.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;nc pwn.chal.csaw.io 1005&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with
-security professionals who probably have decades of experience and who
-follow security developments for a living or whatever, there remains a
-competition where scrubs like me can apply our extremely basic CTF
-skills and still feel kinda smart by earning points. Now that I’ve
-graduated and am no longer eligible, our team was pretty small and I
-didn’t dedicate the full weekend to the CTF, but it means I got to do
-the really easy challenges in the categories that I was the worst at, by
-which I mean pwn.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;baby_boi&lt;/code&gt; is pretty much the simplest possible modern ROP
-(the modern security protections NX and ASLR are not artificially
-disabled, but you get everything you need to work around them). We even
-get source code.&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode c&#34;&gt;&lt;code class=&#34;sourceCode c&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-4&#34;&gt;&lt;a href=&#34;#cb1-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; main&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; argc&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;**&lt;/span&gt;argv&lt;span class=&#34;op&#34;&gt;[])&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-5&#34;&gt;&lt;a href=&#34;#cb1-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; buf&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;32&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-6&#34;&gt;&lt;a href=&#34;#cb1-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  printf&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;Hello!&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-7&#34;&gt;&lt;a href=&#34;#cb1-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  printf&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;Here I am: &lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;%p\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; printf&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-8&#34;&gt;&lt;a href=&#34;#cb1-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  gets&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;buf&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-9&#34;&gt;&lt;a href=&#34;#cb1-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;So there’s nothing novel here for experienced pwners, but I feel like
-there is a shortage of tutorials that walk you through how to solve a
-textbook ROP the way you’d want to solve it in a CTF, so here is a
-writeup.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>PLC</title>
-      <link>//blog.vero.site/post/plc</link>
-      <pubDate>Sun, 30 Sep 2018 23:16:44 -0400</pubDate>
-      
-      <guid>//blog.vero.site/post/plc</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;We’ve burrowed ourselves deep within the facility, gaining access to
-the programable logic controllers (PLC) that drive their nuclear
-enrichment centrifuges. Kinetic damage is necessary, we need you to
-neutralize these machines.&lt;/p&gt;
-&lt;p&gt;You can access this challenge at &lt;a
-href=&#34;https://wargames.ret2.systems/csaw_2018_plc_challenge&#34;&gt;https://wargames.ret2.systems/csaw_2018_plc_challenge&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;A much belated post. This is a pwn challenge on a custom online
-wargaming platform. We are provided with the assembly of what’s
-ostensibly a programmable logic controller (PLC) for a centrifuge in a
-nuclear reactor. The challenge looks like it’s still up, so you can take
-a look and follow along.&lt;/p&gt;
-&lt;p&gt;This was the first &lt;a
-href=&#34;https://en.wikipedia.org/wiki/Return-oriented_programming&#34;&gt;ROP&lt;/a&gt;
-(okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF,
-which I was pretty excited about. The web platform meant I had to worry
-less about setup, and even though some of the tools it provided were a
-little lacking (no gdb shortcuts like &lt;code&gt;until&lt;/code&gt;, no pwntools
-utilities for packing/unpacking numbers, … no &lt;code&gt;one_gadget&lt;/code&gt;),
-I think they ultimately made the whole thing a lot more educational for
-me, so kudos to the folks behind it. I’ve included a brief description
-of all the exploit techniques that lead up to ROP when we get to that,
-so hopefully this post will be useful even if you don’t know much about
-pwning binaries. The prerequisites would be some knowledge with x86
-assembly, how executables are loaded into memory, and how to use
-&lt;code&gt;gdb&lt;/code&gt; (or fictionalized web knockoffs thereof).&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Thoroughly Stripped</title>
-      <link>//blog.vero.site/post/thoroughly-stripped</link>
-      <pubDate>Sun, 12 Nov 2017 00:00:00 -0500</pubDate>
-      
-      <guid>//blog.vero.site/post/thoroughly-stripped</guid>
-      <description>&lt;p&gt;Woo, first CTF writeup. I got the opportunity to participate in the
-2017 CSAW CTF finals with Don’t Hack Alone.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Dumped by my core, left to bleed out bytes on the heap, I was
-stripped of my dignity… The last thing I could do was to let other
-programs strip me of my null-bytes just so my memory could live on.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;We are provided with a core dump. Examining the flavor-text and the
-dump, we notice that the dump has no null bytes; we conjecture that they
-have been stripped out.&lt;/p&gt;
-&lt;p&gt;Next, we examine the hexdump and look for any clues. There are a
-bunch of ASCII strings, but they look like normal debugging symbols. One
-thing that jumps out is that there are a couple fairly convincing
-regular striped patterns that become vertically aligned if you display
-20 bytes in each line. Once we do that, we notice the following section.
-(This dump is from &lt;code&gt;&lt;a
-href=&#34;https://github.com/betaveros/xxb&#34;&gt;xxb&lt;/a&gt;&lt;/code&gt; but
-&lt;code&gt;xxd -c 20 thoroughlyStripped&lt;/code&gt; is quite sufficient.)&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>X86 on Bounded-Error Log</title>
+		<link>//blog.vero.site/tag/x86</link>
+		<description>Recent content in X86 on Bounded-Error Log</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 15 Sep 2019 22:12:04 -0400</lastBuildDate>
+		
+			<atom:link href="//blog.vero.site/tag/x86/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>baby_boi (A Textbook CTF ROP Tutorial)</title>
+				<link>//blog.vero.site/post/baby-boi</link>
+				<pubDate>Sun, 15 Sep 2019 22:12:04 -0400</pubDate>
+				<guid>//blog.vero.site/post/baby-boi</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;Welcome to pwn.&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;nc pwn.chal.csaw.io 1005&lt;/code&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Ahhh, CSAW CTF. Amidst all the other CTFs where we’re competing with&#xA;security professionals who probably have decades of experience and who&#xA;follow security developments for a living or whatever, there remains a&#xA;competition where scrubs like me can apply our extremely basic CTF&#xA;skills and still feel kinda smart by earning points. Now that I’ve&#xA;graduated and am no longer eligible, our team was pretty small and I&#xA;didn’t dedicate the full weekend to the CTF, but it means I got to do&#xA;the really easy challenges in the categories that I was the worst at, by&#xA;which I mean pwn.&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;baby_boi&lt;/code&gt; is pretty much the simplest possible modern ROP&#xA;(the modern security protections NX and ASLR are not artificially&#xA;disabled, but you get everything you need to work around them). We even&#xA;get source code.&lt;/p&gt;&#xA;&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre class=&#34;sourceCode c&#34;&gt;&lt;code class=&#34;sourceCode c&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&#xA;&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;pp&#34;&gt;#include &lt;/span&gt;&lt;span class=&#34;im&#34;&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&#xA;&lt;span id=&#34;cb1-3&#34;&gt;&lt;a href=&#34;#cb1-3&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;/span&gt;&#xA;&lt;span id=&#34;cb1-4&#34;&gt;&lt;a href=&#34;#cb1-4&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; main&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;dt&#34;&gt;int&lt;/span&gt; argc&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;**&lt;/span&gt;argv&lt;span class=&#34;op&#34;&gt;[])&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;{&lt;/span&gt;&lt;/span&gt;&#xA;&lt;span id=&#34;cb1-5&#34;&gt;&lt;a href=&#34;#cb1-5&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  &lt;span class=&#34;dt&#34;&gt;char&lt;/span&gt; buf&lt;span class=&#34;op&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;dv&#34;&gt;32&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;];&lt;/span&gt;&lt;/span&gt;&#xA;&lt;span id=&#34;cb1-6&#34;&gt;&lt;a href=&#34;#cb1-6&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  printf&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;Hello!&lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;&#xA;&lt;span id=&#34;cb1-7&#34;&gt;&lt;a href=&#34;#cb1-7&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  printf&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;Here I am: &lt;/span&gt;&lt;span class=&#34;sc&#34;&gt;%p\n&lt;/span&gt;&lt;span class=&#34;st&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;,&lt;/span&gt; printf&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;&#xA;&lt;span id=&#34;cb1-8&#34;&gt;&lt;a href=&#34;#cb1-8&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;  gets&lt;span class=&#34;op&#34;&gt;(&lt;/span&gt;buf&lt;span class=&#34;op&#34;&gt;);&lt;/span&gt;&lt;/span&gt;&#xA;&lt;span id=&#34;cb1-9&#34;&gt;&lt;a href=&#34;#cb1-9&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;op&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&#xA;&lt;p&gt;So there’s nothing novel here for experienced pwners, but I feel like&#xA;there is a shortage of tutorials that walk you through how to solve a&#xA;textbook ROP the way you’d want to solve it in a CTF, so here is a&#xA;writeup.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>PLC</title>
+				<link>//blog.vero.site/post/plc</link>
+				<pubDate>Sun, 30 Sep 2018 23:16:44 -0400</pubDate>
+				<guid>//blog.vero.site/post/plc</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;We’ve burrowed ourselves deep within the facility, gaining access to&#xA;the programable logic controllers (PLC) that drive their nuclear&#xA;enrichment centrifuges. Kinetic damage is necessary, we need you to&#xA;neutralize these machines.&lt;/p&gt;&#xA;&lt;p&gt;You can access this challenge at &lt;a&#xA;href=&#34;https://wargames.ret2.systems/csaw_2018_plc_challenge&#34;&gt;https://wargames.ret2.systems/csaw_2018_plc_challenge&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;A much belated post. This is a pwn challenge on a custom online&#xA;wargaming platform. We are provided with the assembly of what’s&#xA;ostensibly a programmable logic controller (PLC) for a centrifuge in a&#xA;nuclear reactor. The challenge looks like it’s still up, so you can take&#xA;a look and follow along.&lt;/p&gt;&#xA;&lt;p&gt;This was the first &lt;a&#xA;href=&#34;https://en.wikipedia.org/wiki/Return-oriented_programming&#34;&gt;ROP&lt;/a&gt;&#xA;(okay, spoiler, it’s a ROP) I ever pulled off live during an actual CTF,&#xA;which I was pretty excited about. The web platform meant I had to worry&#xA;less about setup, and even though some of the tools it provided were a&#xA;little lacking (no gdb shortcuts like &lt;code&gt;until&lt;/code&gt;, no pwntools&#xA;utilities for packing/unpacking numbers, … no &lt;code&gt;one_gadget&lt;/code&gt;),&#xA;I think they ultimately made the whole thing a lot more educational for&#xA;me, so kudos to the folks behind it. I’ve included a brief description&#xA;of all the exploit techniques that lead up to ROP when we get to that,&#xA;so hopefully this post will be useful even if you don’t know much about&#xA;pwning binaries. The prerequisites would be some knowledge with x86&#xA;assembly, how executables are loaded into memory, and how to use&#xA;&lt;code&gt;gdb&lt;/code&gt; (or fictionalized web knockoffs thereof).&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Thoroughly Stripped</title>
+				<link>//blog.vero.site/post/thoroughly-stripped</link>
+				<pubDate>Sun, 12 Nov 2017 00:00:00 -0500</pubDate>
+				<guid>//blog.vero.site/post/thoroughly-stripped</guid>
+				<description>&lt;p&gt;Woo, first CTF writeup. I got the opportunity to participate in the&#xA;2017 CSAW CTF finals with Don’t Hack Alone.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Dumped by my core, left to bleed out bytes on the heap, I was&#xA;stripped of my dignity… The last thing I could do was to let other&#xA;programs strip me of my null-bytes just so my memory could live on.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;We are provided with a core dump. Examining the flavor-text and the&#xA;dump, we notice that the dump has no null bytes; we conjecture that they&#xA;have been stripped out.&lt;/p&gt;&#xA;&lt;p&gt;Next, we examine the hexdump and look for any clues. There are a&#xA;bunch of ASCII strings, but they look like normal debugging symbols. One&#xA;thing that jumps out is that there are a couple fairly convincing&#xA;regular striped patterns that become vertically aligned if you display&#xA;20 bytes in each line. Once we do that, we notice the following section.&#xA;(This dump is from &lt;code&gt;&lt;a&#xA;href=&#34;https://github.com/betaveros/xxb&#34;&gt;xxb&lt;/a&gt;&lt;/code&gt; but&#xA;&lt;code&gt;xxd -c 20 thoroughlyStripped&lt;/code&gt; is quite sufficient.)&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

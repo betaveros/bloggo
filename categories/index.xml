@@ -1,92 +1,80 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Categories on Bounded-Error Log</title>
-    <link>//blog.vero.site/categories</link>
-    <description>Recent content in Categories on Bounded-Error Log</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 31 Dec 2025 19:49:40 -0800</lastBuildDate><atom:link href="//blog.vero.site/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>life</title>
-      <link>//blog.vero.site/category/life</link>
-      <pubDate>Wed, 31 Dec 2025 19:49:40 -0800</pubDate>
-      
-      <guid>//blog.vero.site/category/life</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>math</title>
-      <link>//blog.vero.site/category/math</link>
-      <pubDate>Wed, 03 Sep 2025 01:02:59 -0700</pubDate>
-      
-      <guid>//blog.vero.site/category/math</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>CS</title>
-      <link>//blog.vero.site/category/cs</link>
-      <pubDate>Sun, 22 Jun 2025 20:17:04 -0700</pubDate>
-      
-      <guid>//blog.vero.site/category/cs</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>puzzles</title>
-      <link>//blog.vero.site/category/puzzles</link>
-      <pubDate>Wed, 25 Jan 2023 13:45:37 -0800</pubDate>
-      
-      <guid>//blog.vero.site/category/puzzles</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>meta</title>
-      <link>//blog.vero.site/category/meta</link>
-      <pubDate>Sun, 14 Mar 2021 00:24:46 -0800</pubDate>
-      
-      <guid>//blog.vero.site/category/meta</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>thoughts</title>
-      <link>//blog.vero.site/category/thoughts</link>
-      <pubDate>Fri, 23 Aug 2019 00:37:43 -0400</pubDate>
-      
-      <guid>//blog.vero.site/category/thoughts</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>self-analysis</title>
-      <link>//blog.vero.site/category/self-analysis</link>
-      <pubDate>Sun, 03 Feb 2019 16:01:01 -0500</pubDate>
-      
-      <guid>//blog.vero.site/category/self-analysis</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>creations</title>
-      <link>//blog.vero.site/category/creations</link>
-      <pubDate>Thu, 24 Sep 2015 14:00:18 +0800</pubDate>
-      
-      <guid>//blog.vero.site/category/creations</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>school</title>
-      <link>//blog.vero.site/category/school</link>
-      <pubDate>Sat, 18 Jul 2015 23:45:41 +0800</pubDate>
-      
-      <guid>//blog.vero.site/category/school</guid>
-      <description></description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Categories on Bounded-Error Log</title>
+		<link>//blog.vero.site/categories</link>
+		<description>Recent content in Categories on Bounded-Error Log</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 30 Aug 2026 01:36:16 -0700</lastBuildDate>
+		
+			<atom:link href="//blog.vero.site/categories/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>CS</title>
+				<link>//blog.vero.site/category/cs</link>
+				<pubDate>Sun, 30 Aug 2026 01:36:16 -0700</pubDate>
+				<guid>//blog.vero.site/category/cs</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Math</title>
+				<link>//blog.vero.site/category/math</link>
+				<pubDate>Sun, 30 Aug 2026 01:36:16 -0700</pubDate>
+				<guid>//blog.vero.site/category/math</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Life</title>
+				<link>//blog.vero.site/category/life</link>
+				<pubDate>Wed, 31 Dec 2025 19:49:40 -0800</pubDate>
+				<guid>//blog.vero.site/category/life</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Puzzles</title>
+				<link>//blog.vero.site/category/puzzles</link>
+				<pubDate>Wed, 25 Jan 2023 13:45:37 -0800</pubDate>
+				<guid>//blog.vero.site/category/puzzles</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Meta</title>
+				<link>//blog.vero.site/category/meta</link>
+				<pubDate>Sun, 14 Mar 2021 00:24:46 -0800</pubDate>
+				<guid>//blog.vero.site/category/meta</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Thoughts</title>
+				<link>//blog.vero.site/category/thoughts</link>
+				<pubDate>Fri, 23 Aug 2019 00:37:43 -0400</pubDate>
+				<guid>//blog.vero.site/category/thoughts</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Self-Analysis</title>
+				<link>//blog.vero.site/category/self-analysis</link>
+				<pubDate>Sun, 03 Feb 2019 16:01:01 -0500</pubDate>
+				<guid>//blog.vero.site/category/self-analysis</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Creations</title>
+				<link>//blog.vero.site/category/creations</link>
+				<pubDate>Thu, 24 Sep 2015 14:00:18 +0800</pubDate>
+				<guid>//blog.vero.site/category/creations</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>School</title>
+				<link>//blog.vero.site/category/school</link>
+				<pubDate>Sat, 18 Jul 2015 23:45:41 +0800</pubDate>
+				<guid>//blog.vero.site/category/school</guid>
+				<description></description>
+			</item>
+	</channel>
 </rss>

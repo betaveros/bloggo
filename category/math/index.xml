@@ -1,856 +1,213 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>math on Bounded-Error Log</title>
-    <link>//blog.vero.site/category/math</link>
-    <description>Recent content in math on Bounded-Error Log</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 03 Sep 2025 01:02:59 -0700</lastBuildDate><atom:link href="//blog.vero.site/category/math/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Gold-medaling the 2025 IMO was easier than average</title>
-      <link>//blog.vero.site/post/imo-2025</link>
-      <pubDate>Wed, 03 Sep 2025 01:02:59 -0700</pubDate>
-      
-      <guid>//blog.vero.site/post/imo-2025</guid>
-      <description>&lt;div class=&#34;series&#34;&gt;
-&lt;p&gt;(Background/disclaimer: I work at Anthropic, far from any efforts
-related to math reasoning or evaluations; opinions are my own. I was an
-IMO gold medalist in 2012.)&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;I way missed the news window on this one, but I thought it was
-interesting and a bit underappreciated that the fraction of gold
-medalists at the 2025 IMO (72/630 = 11.4%) is the highest it’s been
-since 1981.&lt;/p&gt;
-&lt;p&gt;Crudely, IMO gold medals are awarded to the highest-scoring 1/12 of
-contestants.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;
-role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; However, because scores are integers
-up to 42 and there’s no provision for tiebreaking, it’s possible for a
-lot of contestants to be tied around the threshold. In that case, either
-all of them get a gold medal or none do, and the fraction of gold
-medalists might deviate substantially from 1/12. That’s what happened
-this year: 46 contestants all won a gold medal by scoring exactly 35
-points.&lt;/p&gt;
-&lt;p&gt;Here’s a comparison with the fraction of IMO gold medalists for each
-year since 2000. (See &lt;a href=&#34;#appendix-full-stats&#34;&gt;appendix 1&lt;/a&gt; for
-a full table and &lt;a href=&#34;#appendix-reference-class&#34;&gt;appendix 2&lt;/a&gt; for
-discussion of the choice of 2000.)&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Just Enough Elliptic Curves to Be Dangerous</title>
-      <link>//blog.vero.site/post/elliptic-curves</link>
-      <pubDate>Sun, 28 Nov 2021 18:24:18 -0800</pubDate>
-      
-      <guid>//blog.vero.site/post/elliptic-curves</guid>
-      <description>&lt;p&gt;A famous Trail of Bits post says to &lt;a
-href=&#34;https://blog.trailofbits.com/2019/07/08/fuck-rsa/&#34;&gt;stop using
-RSA&lt;/a&gt;: it’s simple enough to make people think they can implement it
-correctly, but full of invisible traps. In contrast, although elliptic
-curve cryptography (ECC) implementations could also fall into subtle
-traps, they usually don’t. The post conjectures that this is because ECC
-intimidates people into using cryptographically sound libraries instead
-of implementing their own.&lt;/p&gt;
-&lt;p&gt;If you do want to understand ECC just enough to produce your own
-trap-ridden implementation, though, this post aims to get you there.
-(Assuming some mathematical background chosen in a not particularly
-principled way, approximately what I had before writing this post.)
-Hence the title. Because I have a cryptographic conscience, I will still
-point out the traps I know of; but there are probably traps I don’t know
-about.&lt;/p&gt;
-&lt;p&gt;This post contains a lot of handwaving and straight-up giving up on
-proofs. You don’t need to know the proofs to be dangerous. The ethos is
-sort of like &lt;a href=&#34;https://web.evanchen.cc/napkin.html&#34;&gt;Napkin&lt;/a&gt;,
-but way shoddier and with zero pretense of pedagogical soundness. Still,
-here are some concrete questions that I learned the answer to while
-writing this post:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Why does the group law hold, sort of intuitively?&lt;/li&gt;
-&lt;li&gt;Why do people have to modify Curve25519 before using it to compute
-digital signatures?&lt;/li&gt;
-&lt;li&gt;What is a “quadratic twist” and why should I care about it to pick a
-secure elliptic curve?&lt;/li&gt;
-&lt;li&gt;How is it possible that an isogeny can be described as surjective
-but not injective while mapping a finite elliptic curve to another
-elliptic curve of the same cardinality?&lt;/li&gt;
-&lt;li&gt;How many claws does an alligator have?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Elliptic curves have a lot of complicated algebra. If you ever
-studied algebra in high school and did exercises where you had to
-simplify or factor or graph some really complicated algebraic
-expression, and you learned that algebra is also the name of a field in
-higher mathematics, you might have assumed that working algebraists just
-dealt with even more complicated expressions. If you then studied
-algebra in college, you’d probably have realized that that’s not really
-what algebra is about at all; the difficulty comes from &lt;em&gt;new
-abstractions&lt;/em&gt;, like a bunch of the terms above.&lt;/p&gt;
-&lt;p&gt;Well… the study of elliptic curves involves a bunch of complicated
-expressions like what your high school self might have imagined.
-Sometimes, notes will just explode into a trainwreck of terms like&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{align*}\psi_1 &amp;amp;= 1 \\ \psi_2
-&amp;amp;= 2y \\ \psi_3 &amp;amp;= 3x^4 + 6Ax^2 + 12Bx - A^2 \\ \psi_4 &amp;amp;=
-4y(x^6 + 5Ax^4 + 20Bx^3 - 5A^2x^2 - 4ABx - A^3 -
-8B^2).\end{align*}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;“This is REAL Math, done by REAL Mathematicians,” one is tempted to
-quip. The &lt;a href=&#34;https://hyperelliptic.org/EFD/&#34;&gt;Explicit-Formulas
-Database&lt;/a&gt; is a fun place to take a gander through. I will copy
-formulas into this post from time to time when there’s something about
-them I want to call attention to, but in general we won’t do any
-complicated algebraic manipulations in this post. Just be prepared.&lt;/p&gt;
-&lt;p&gt;Because I’m focusing on conceptual understanding (and am lazy), this
-post contains almost no code, and definitely no code that’s runnable in
-any real programming language.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Signed Modulo</title>
-      <link>//blog.vero.site/post/modulo</link>
-      <pubDate>Tue, 04 Feb 2020 18:00:58 -0500</pubDate>
-      
-      <guid>//blog.vero.site/post/modulo</guid>
-      <description>&lt;p&gt;One thing many mathematically-inclined programmers run into when
-implementing mathematical algorithms, particularly number-theoretic
-ones, is that the &lt;a
-href=&#34;https://en.wikipedia.org/wiki/Modulo_operation&#34;&gt;modulo
-operation&lt;/a&gt; doesn’t behave how they expect or prefer.&lt;/p&gt;
-&lt;p&gt;In many languages, this operator is denoted &lt;code&gt;%&lt;/code&gt;.
-Concretely, one might prefer that, if the second argument is positive,
-then the modulo operation would always give a nonnegative result. Under
-this behavior, the expression &lt;code&gt;(-5) % 3&lt;/code&gt; would evaluate to
-&lt;code&gt;1&lt;/code&gt; rather than &lt;code&gt;-2&lt;/code&gt;. This is a lot more useful
-for number theory because then for positive integers &lt;code&gt;n&lt;/code&gt;, the
-&lt;code&gt;% n&lt;/code&gt; operation actually maps integers to exactly the
-&lt;code&gt;n&lt;/code&gt; canonical representatives for the residue classes. As a
-result, &lt;span class=&#34;math inline&#34;&gt;\(a \equiv b \mod n\)&lt;/span&gt; if and
-only if &lt;code&gt;a % n == b % n&lt;/code&gt;. You can also do things like index
-into a length-&lt;code&gt;n&lt;/code&gt; array with &lt;code&gt;a % n&lt;/code&gt; and know that
-the index will be in-bounds. Finally, there are also optimization
-opportunities: modding by a power of 2 becomes equivalent to a simple
-bitwise AND, which is really fast on modern computers.&lt;/p&gt;
-&lt;p&gt;A few programming languages, notably Python, do implement
-&lt;code&gt;%&lt;/code&gt; this way. However, the majority of languages today,
-including pretty much everything remotely descended from C, do not;
-instead, &lt;code&gt;(-5) % 3&lt;/code&gt; is &lt;code&gt;-2&lt;/code&gt;. This post attempts to
-track down why.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;The first thing to note is that there is a more important
-number-theoretic identity we’d like to have:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\texttt{a} = (\texttt{a / b}) \cdot
-\texttt{b} + (\texttt{a \% b}). \tag{1}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;In words, the integer division and modulo operators should give a
-breakdown of &lt;code&gt;a&lt;/code&gt; into a sum of some copies of &lt;code&gt;b&lt;/code&gt;
-plus a remainder. Note that this equation also implies that specifying
-the rounding behavior of division is equivalent to specifying the sign
-behavior of the modulo operation, which will come up repeatedly
-later.&lt;/p&gt;
-&lt;p&gt;It’s also very uncontroversial that that remainder should have no
-copies of &lt;code&gt;b&lt;/code&gt;, positive or negative, left over, which gives
-the constraint:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[|\texttt{a \% b}| &amp;lt; |\texttt{b}|.
-\tag{2}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Every programming language I can think of satisfies these two
-constraints.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;
-role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; So far so good. However, these two
-constraints don’t uniquely determine the values of &lt;code&gt;a % b&lt;/code&gt;
-when &lt;code&gt;a&lt;/code&gt; isn’t divisible by &lt;code&gt;b&lt;/code&gt;; there are two
-possible values for &lt;code&gt;a % b&lt;/code&gt;, one positive and one negative.
-Concretely, we could express &lt;span class=&#34;math inline&#34;&gt;\(-5\)&lt;/span&gt; as
-either &lt;span class=&#34;math inline&#34;&gt;\((-1) \cdot 3 + (-2)\)&lt;/span&gt; or &lt;span
-class=&#34;math inline&#34;&gt;\((-2) \cdot 3 + 1\)&lt;/span&gt;, so
-&lt;code&gt;(-5) % 3&lt;/code&gt; could be &lt;code&gt;-2&lt;/code&gt; or &lt;code&gt;1&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;It’s still mostly uncontroversial that, if &lt;code&gt;a&lt;/code&gt; and
-&lt;code&gt;b&lt;/code&gt; are both positive, then &lt;code&gt;a % b&lt;/code&gt; should be
-nonnegative as well; we could call this constraint (3).&lt;a href=&#34;#fn2&#34;
-class=&#34;footnote-ref&#34; id=&#34;fnref2&#34; role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;
-However, if &lt;code&gt;a&lt;/code&gt; is negative and &lt;code&gt;b&lt;/code&gt; is positive,
-programming languages start to diverge in their behavior. Why?&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Rocket Equation</title>
-      <link>//blog.vero.site/post/advent-rocket</link>
-      <pubDate>Sun, 01 Dec 2019 13:38:14 -0500</pubDate>
-      
-      <guid>//blog.vero.site/post/advent-rocket</guid>
-      <description>&lt;p&gt;It’s December, so it’s time for a lot of things, including &lt;a
-href=&#34;https://adventofcode.com/&#34;&gt;Advent of Code&lt;/a&gt;. I will not be able
-to be as competitive as I was last year, and already lost a lot of
-points to a really silly mistake on day 1, but I’ll be playing when I
-can and &lt;a
-href=&#34;https://github.com/betaveros/advent-of-code-golf-2019&#34;&gt;golfing&lt;/a&gt;
-the problems when I have time (so far: 7 + 14 bytes).&lt;/p&gt;
-&lt;p&gt;As one might expect, &lt;a
-href=&#34;https://adventofcode.com/2019/day/1&#34;&gt;Day 1&lt;/a&gt; is not too complex,
-but the second part can be analyzed to some mathematical depth and was
-discussed a bit on Reddit; plus, it occurred to me recently that I set
-up KaTeX on my blog but never used it, so I was looking for an excuse to
-write some equations anyway.&lt;/p&gt;
-&lt;p&gt;The problem statement for part 2, in brief: We are tasked with
-calculating the total mass of fuel required to launch a rocket module of
-a given mass. For something of mass &lt;span
-class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt;, one can compute the directly required
-mass of fuel by dividing &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; by 3,
-rounding down, and subtracting 2; if the result is negative, it is taken
-to be 0 instead. However, the directly required fuel also requires fuel
-itself, calculated from its own mass by the same procedure, and that
-required fuel requires fuel based on its own mass, and so on until you
-reach fuel with 0 requirement.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[CIMC 2015 Part 2] Journey of the Blue-White Slippers</title>
-      <link>//blog.vero.site/post/cimc-2015-part-2</link>
-      <pubDate>Fri, 07 Aug 2015 12:04:30 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/cimc-2015-part-2</guid>
-      <description>&lt;p&gt;(Nontopical life update: Current 18.06 homework status: 34% (mildly
-screwed, probably won’t finish before I leave my cozy home for the U.S.
-and I usually struggle to get into the mood for homework while
-traveling, but I guess I’ll have to))
-&lt;a href=&#34;//blog.vero.site/img/18-06-1.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/18-06-1.png?w=296&#34; alt=&#34;[18.06 status panel: 34%]&#34; /&gt;&lt;/a&gt;
-(I’ve been spending most of my uptime doing said homework and running
-errands, and my downtime catching up on &lt;cite&gt;Last Week Tonight with
-John Oliver&lt;/cite&gt; while farming the Flight Rising Coliseum. And, okay,
-making the above status panel.
-&lt;a href=&#34;https://dl.dropboxusercontent.com/u/5295912/status.html&#34;&gt;Live
-version here&lt;/a&gt; courtesy of Dropbox’s Public folder. No regrets.)&lt;/p&gt;
-&lt;h3 id=&#34;day-3-excursions&#34;&gt;
-Day 3 (Excursions)
-&lt;/h3&gt;
-&lt;p&gt;Morning routine snipped. We come to the middle school again to eat
-breakfast and gather; the contestants will be taking their tests here
-(accompanied by one bottle of “Buff” energy drink each) while the rest
-of us will be going on an excursion. Before this happens, though, two
-Taiwanese contestants ask me and Hsin-Po some math problems. There’s a
-geometry problem, which I fail to solve:&lt;/p&gt;
-&lt;blockquote&gt;
-(paraphrased) In triangle △ABC, ∠A is 40° and ∠B is 60°. The angle
-bisector of ∠A meets BC at D; E is on AB such that ∠ADE is 30°. Find
-∠DEC.
-&lt;/blockquote&gt;
-&lt;p&gt;Hsin-Po figures out that, once you guess (ROT13) gur bgure boivbhf
-privna vf nyfb na natyr ovfrpgbe naq gurl vagrefrpg ng gur vapragre, lbh
-pna cebir vg ol pbafgehpgvat gur vapragre naq fubjvat sebz gur tvira
-natyr gung gurl vaqrrq pbvapvqr.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34;
-id=&#34;fnref1&#34; role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; Then, there’s a
-combinatorics problem in a book with a solution that they’re not sure
-about:&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>(8,9,7)</title>
-      <link>//blog.vero.site/post/897</link>
-      <pubDate>Sun, 05 Jul 2015 10:09:29 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/897</guid>
-      <description>&lt;p&gt;(&lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;streak&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;I always tell myself, okay, I will actually just draw something
-facetiously and get it over with, nobody comes to this blog to admire my
-GIMP mouse doodles, but then perfectionist tendencies kick in and I get
-&lt;a href=&#34;//blog.vero.site/post/1024&#34;&gt;car&lt;/a&gt;ried away and it ends up
-taking more than an hour or so.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/linear.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/linear.png?w=652&#34; alt=&#34;linear&#34; width=&#34;652&#34; height=&#34;489&#34; class=&#34;aligncenter size-large wp-image-3074&#34; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Sylow</title>
-      <link>//blog.vero.site/post/sylow</link>
-      <pubDate>Sat, 16 May 2015 00:00:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/sylow</guid>
-      <description>&lt;p&gt;&lt;a
-href=&#34;http://www.artofproblemsolving.com/community/c1285h1035830&#34;&gt;original
-sillier post&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Note on notation: I’m going to use &lt;span
-class=&#34;math inline&#34;&gt;\(\text{Stab}(x)\)&lt;/span&gt; instead of &lt;span
-class=&#34;math inline&#34;&gt;\(G_x\)&lt;/span&gt; for the stabilizer subgroup and &lt;span
-class=&#34;math inline&#34;&gt;\(\text{Cl}(x)\)&lt;/span&gt; instead of &lt;span
-class=&#34;math inline&#34;&gt;\(^Gx\)&lt;/span&gt; for the conjugacy classes. For the
-orbit of &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; I’ll stick with the norm
-and use &lt;span class=&#34;math inline&#34;&gt;\(Gx\)&lt;/span&gt;, although it’s only used
-in confusing summation notation that I’ll explain with words too.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;We keep using this silly counting argument which I thought was
-something like Burnside’s lemma but actually is a lot simpler, just
-partitioning the set into orbits and slapping the orbit-stabilizer
-theorem on.&lt;/p&gt;
-&lt;p&gt;If &lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt; is the group and &lt;span
-class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt; is the set then&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>|Wedge|</title>
-      <link>//blog.vero.site/post/wedge</link>
-      <pubDate>Wed, 13 May 2015 00:00:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/wedge</guid>
-      <description>&lt;p&gt;&lt;a
-href=&#34;http://www.artofproblemsolving.com/community/c1285h1033032&#34;&gt;original
-sillier post&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Note on notation: to be maximally clear, I have bolded all my vectors
-and put tiny arrows on them. Normal letters are usually reals, uppercase
-letters are usually bigger matrices. Also, &lt;span
-class=&#34;math inline&#34;&gt;\(\cdot^T\)&lt;/span&gt; denotes the transpose of a
-matrix.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(\vec{\textbf{v}}_1, \ldots,
-\vec{\textbf{v}}_m\)&lt;/span&gt; be elements of &lt;span
-class=&#34;math inline&#34;&gt;\(\mathbb{R}^n\)&lt;/span&gt; where &lt;span
-class=&#34;math inline&#34;&gt;\(m \leq n\)&lt;/span&gt;, i.e. column vectors with &lt;span
-class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; real elements. Let &lt;span
-class=&#34;math inline&#34;&gt;\(V = [\vec{\textbf{v}}_1, \ldots,
-\vec{\textbf{v}}_m]\)&lt;/span&gt;. This means pasting the column vectors
-together to make an &lt;span class=&#34;math inline&#34;&gt;\(n \times m\)&lt;/span&gt;
-matrix (&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; rows &lt;span
-class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; columns).&lt;/p&gt;
-&lt;p&gt;Consider the thing &lt;span class=&#34;math inline&#34;&gt;\(\vec{\textbf{v}}_1
-\wedge \vec{\textbf{v}}_2 \wedge \cdots \wedge
-\vec{\textbf{v}}_m\)&lt;/span&gt;, which can be visualized as the
-hyperparallelogram &lt;span class=&#34;math inline&#34;&gt;\(\left\{\sum_{i=1}^{m}
-t_i\vec{\textbf{v}}_i \,\middle\vert\, t_i \in [0,1], i = 1, 2, \ldots,
-m \right\}\)&lt;/span&gt; but is apparently a different thing in a different
-vector space of things. We wonder how to compute &lt;strong&gt;the hyperarea
-of this hyperparallelogram&lt;/strong&gt;.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Extreme Value Theorem</title>
-      <link>//blog.vero.site/post/evt</link>
-      <pubDate>Wed, 22 Oct 2014 00:00:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/evt</guid>
-      <description>&lt;p&gt;&lt;a
-href=&#34;http://www.artofproblemsolving.com/community/c1285h1042959&#34;&gt;original
-sillier post&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;The “Extreme Value Theorem”, according to my old calculus textbook
-(Larson, Hostetler, Edwards, 8th ed.), is “A continuous function defined
-on a closed interval attains a minimum and a maximum on the interval.”
-The calculus textbook continues,&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Although [it] is intuitively plausible, a proof of this theorem is
-not within the scope of this text.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Of course Rudin proves this, but coming from an unrigorous calculus
-background, the required deductions span three chapters and are very
-hard to motivate. That’s probably because it proves things for extremely
-general objects.&lt;/p&gt;
-&lt;p&gt;In particular, I have no idea why the definition of “compact” is what
-it is: “a set for which every open cover has a finite subcovering”.
-Therefore, here’s a less general but more motivated proof, from the
-grounds-up.&lt;/p&gt;
-&lt;h3 id=&#34;definitions&#34;&gt;Definitions&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Real numbers&lt;/strong&gt; are hard to define. We only need to
-know that we can add, subtract, multiply, divide, and compare them,
-i.e. they’re an ordered field, and that they have the
-&lt;strong&gt;least-upper-bound property&lt;/strong&gt;. That is, if we have a set
-of real numbers that are bounded above, then the set has a &lt;em&gt;least
-upper bound&lt;/em&gt;, a bound that “perfectly fits” the set. Precisely, the
-bound must be such that every element of the set is less than or equal
-to it, and no smaller value satisfies the same property.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Numbers</title>
-      <link>//blog.vero.site/post/numbers</link>
-      <pubDate>Mon, 20 Oct 2014 00:00:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/numbers</guid>
-      <description>Continuing the porting of stuff from betaveros.stash, and adding more stuff.
-Mnemonic Here’s my mnemonic table for digits, inspired by an old Martin Gardner column. I wrote from memory the first 132 digits of 2012! correctly at IMO 2012 with this table. I had remembered more, but unfortunately, if I recall correctly, I confused myself over whether I had encoded a 5 or a 2 by the S of “nose”, because this is supposed to be more of a phonetic code than a spelling one — otherwise double letters would be confusing and lots of randomly appearing digraphs would be wasted, because English is weird.</description>
-    </item>
-    
-    <item>
-      <title>Haskell and Primes</title>
-      <link>//blog.vero.site/post/haskell</link>
-      <pubDate>Sat, 25 May 2013 23:03:05 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/haskell</guid>
-      <description>&lt;blockquote&gt;
-“I have been told that any encryption becomes safer if the underlying
-algorithm is maximally obscured, what is most conveniently done by
-coding it in Haskell.” – rankk
-&lt;/blockquote&gt;
-&lt;p&gt;Functional programming is terribly addicting! Partly I think the
-completely different way of thinking makes it feel like learning
-programming, and falling in love with it, all over again. Partly there’s
-this evil sense of satisfaction from using &lt;code&gt;$&lt;/code&gt;s (and later
-&lt;code&gt;&amp;lt;$&amp;gt;&lt;/code&gt;s and &lt;code&gt;=&amp;lt;&amp;lt;&lt;/code&gt;s and
-&lt;code&gt;&amp;amp;&amp;amp;&amp;amp;&lt;/code&gt;s) to improve readability for initiated
-Haskellers and worsen it for everybody else. Partly it’s because
-&lt;a href=&#34;http://learnyouahaskell.com/&#34;&gt;&lt;i&gt;Learn You a Haskell for Great
-Good!&lt;/i&gt;&lt;/a&gt; is such a fun read — there are too many funny bits to list
-but my favorite so far is when the author analyzes the first verse of
-Avril Lavigne’s &lt;em&gt;Girlfriend&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Although I think my code in Haskell tends to be more readable than in
-other languages, code obfuscation in Haskell is almost natural: all you
-have to do is refactor the wrong function to be “pointfree”, which means
-that even though it’s a function that takes arguments, you define it
-without parameters by manipulating and joining a bunch of other
-functions. Example (plus a few other tiny obfuscations):&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre
-class=&#34;sourceCode haskell&#34;&gt;&lt;code class=&#34;sourceCode haskell&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;isPrime &lt;span class=&#34;ot&#34;&gt;=&lt;/span&gt; liftA2 (&lt;span class=&#34;op&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;) (liftA2 (&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;) (&lt;span class=&#34;fu&#34;&gt;all&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;.&lt;/span&gt; ((&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;) (&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;/=&lt;/span&gt;)) &lt;span class=&#34;op&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;fu&#34;&gt;rem&lt;/span&gt;) (&lt;span class=&#34;fu&#34;&gt;flip&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;fu&#34;&gt;takeWhile&lt;/span&gt; [&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;..&lt;/span&gt;] &lt;span class=&#34;op&#34;&gt;.&lt;/span&gt; (&lt;span class=&#34;fu&#34;&gt;flip&lt;/span&gt; (&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;$&lt;/span&gt; liftA2 (&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;) &lt;span class=&#34;fu&#34;&gt;id&lt;/span&gt; &lt;span class=&#34;fu&#34;&gt;id&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;.&lt;/span&gt; (&lt;span class=&#34;op&#34;&gt;&amp;gt;=&lt;/span&gt;))) ((&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;) &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;QQ wordpress why no Haskell highlighting &lt;ins&gt;(Editor’s note from
-2017: The migration should highlight this now!)&lt;/ins&gt;&lt;/p&gt;
-&lt;p&gt;Also, for some reason, you can do this in Haskell:&lt;/p&gt;
-&lt;div class=&#34;sourceCode&#34; id=&#34;cb2&#34;&gt;&lt;pre
-class=&#34;sourceCode haskell&#34;&gt;&lt;code class=&#34;sourceCode haskell&#34;&gt;&lt;span id=&#34;cb2-1&#34;&gt;&lt;a href=&#34;#cb2-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;ghci&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&#34;cb2-2&#34;&gt;&lt;a href=&#34;#cb2-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;(via &lt;a href=&#34;http://www.yellosoft.us/evilgenius/&#34;&gt;Haskell for the
-Evil Genius&lt;/a&gt;)&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;Okay, but seriously now. I wrote this about my journey to learn
-functional programming in the
-&lt;a href=&#34;//blog.vero.site/post/programming&#34;&gt;programming babble post&lt;/a&gt; half a
-year ago:&lt;/p&gt;
-&lt;blockquote&gt;
-The main obstacle I have is that it’s hard to optimize or get
-asymptotics when computation is expensive (a big problem if you’re
-trying to learn through Project Euler problems, particularly ones with
-lots of primes).
-&lt;/blockquote&gt;</description>
-    </item>
-    
-    <item>
-      <title>Φllotaxy</title>
-      <link>//blog.vero.site/post/phyllotaxy</link>
-      <pubDate>Thu, 04 Apr 2013 13:49:55 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/phyllotaxy</guid>
-      <description>This is beautiful. Why do they have to make it sound all mysterious and difficult? That’s (the reciprocal of) the golden ratio, by the way.
-Transcript since the resolution is far from awesome: “Most angiosperms have alternate phyllotaxy, with leaves arranged in an ascending spiral around the stem, each successive leaf emerging 137.5° from the site of the previous one. Why 137.5°? Mathematical analyses suggest that this angle minimizes shading of the lower leaves by those above.</description>
-    </item>
-    
-    <item>
-      <title>Matrix Intuition</title>
-      <link>//blog.vero.site/post/matrix</link>
-      <pubDate>Sun, 14 Oct 2012 17:01:29 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/matrix</guid>
-      <description>&lt;p&gt;Stopped by a friend’s house a few days ago to do homework, which
-somehow devolved into me analyzing what programming language I should
-try to learn next in a corner, which is completely irrelevant to the
-rest of this post. Oops.&lt;/p&gt;
-&lt;p&gt;Anyway, in normal-math-curriculum-land, my classmates are now
-learning about matrices. How to add them, how to multiply them, how to
-calculate the determinant and stuff. Being a nice person, and feeling
-somewhat guilty for my grade stability despite the number of study hours
-I siphoned off to puzzles and the like, I was eager to help confront the
-monster. Said classmate basically asked me what they were for.&lt;/p&gt;
-&lt;p&gt;Well, what a hard question. But of course given the curriculum it’s
-the only interesting problem I think could be asked.&lt;/p&gt;
-&lt;p&gt;When I was hurrying through the high-school curriculum I remember
-having to learn the same thing and not having any idea what the heck was
-happening. Matrices appeared in that section as a messy, burdensome way
-to solve equations and never again, at least not in an interesting
-enough way to make me remember. I don’t have my precalc textbook, but a
-supplementary precalc book completely confirms my impressions and
-“matrix” doesn’t even appear in my calculus textbook index. They
-virtually failed to show up in olympiad training too. I learned that
-Po-Shen Loh knew how to
-&lt;a href=&#34;http://www.math.cmu.edu/~ploh/docs/math/mop2009/alg-comb.pdf&#34;&gt;kill
-a bunch of combinatorics problems with them (PDF)&lt;/a&gt;, but not in the
-slightest how to do that myself.&lt;/p&gt;
-&lt;p&gt;Somewhere else, during what I’m guessing was random independent
-exploration, I happened upon the signed-permutation-rule (a.k.a.
-&lt;a href=&#34;https://en.wikipedia.org/wiki/Leibniz_formula_for_determinants&#34;&gt;Leibniz
-formula&lt;/a&gt;) for evaluating determinants, which made a lot more sense
-for me and looked more beautiful and symmetric&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\det(A) = \sum_{\sigma \in S_n}
-\text{sgn}(\sigma) \prod_{i=1}^n A_{i,\sigma_i}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;and I was annoyed when both of my linear algebra textbooks defined it
-first with cofactor expansion. Even though they quickly proved you could
-expand along any row or column, and one also followed up with the
-permutation formula a few sections later, it still felt uglier to me.
-Yes, it’s impossible to understand that equation without knowledge of
-permutations and their signs, but I’m very much a permutations kind of
-guy. Sue me.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[IMO 2012 Part 6] Mostly Not About Excursions</title>
-      <link>//blog.vero.site/post/not-excursions</link>
-      <pubDate>Mon, 27 Aug 2012 08:40:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/not-excursions</guid>
-      <description>&lt;p&gt;Yes. I know it’s been more than a month. Blogging motivation
-decreases, but the responsibility of that &lt;em&gt;stay tuned&lt;/em&gt; doesn’t go
-away.&lt;/p&gt;
-&lt;p&gt;It’s okay. It’s all worth it because the stuff in the games room is
-absolutely ridiculous. Warning: huge post.&lt;/p&gt;
-&lt;figure&gt;
-&lt;a href=&#34;//blog.vero.site/img/p4.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/p4.jpg&#34; alt=&#34;[IMO 2012 Problem 4 on a cake.&#34; title=&#34;Problem 4 Cake&#34; width=&#34;474&#34; height=&#34;252&#34; class=&#34;size-full wp-image-1317&#34; /&gt;&lt;/a&gt;
-&lt;figcaption&gt;
-Our old friend, the monster of a functional equation, in edible form. In
-the games room. Did I mention abso-zarking-lutely ridiculous?
-&lt;/figcaption&gt;
-&lt;/figure&gt;</description>
-    </item>
-    
-    <item>
-      <title>[IMO 2012 Part 5] Unlucky Fours</title>
-      <link>//blog.vero.site/post/fours</link>
-      <pubDate>Thu, 02 Aug 2012 23:03:41 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/fours</guid>
-      <description>&lt;ins datetime=&#34;2012-12-03T13:52:25+00:00&#34;&gt;
-[edit: okay guys I’m surprised at many people come here with search
-queries looking for solutions. If you want IMO solutions,
-&lt;a href=&#34;http://www.artofproblemsolving.com/Forum/viewforum.php?f=834&#34;&gt;the
-corresponding AoPS forum&lt;/a&gt; invariably has many of them. This is
-probably late-ish, but just in case.]
-&lt;/ins&gt;
-&lt;p&gt;Day 2 of the contest.&lt;/p&gt;
-&lt;p&gt;Did you know that in Chinese [or Mandarin, whatever] “four” is
-unlucky because it’s a homophone for “death”, and hospitals tend to skip
-it in floors or ward numbers?&lt;/p&gt;
-&lt;p&gt;Did you know that there was going to be an anecdote involving the
-seventh Artemis Fowl book but I couldn’t make it work so instead you
-have a weird and utterly disconnected metareference to something
-deleted?&lt;/p&gt;
-&lt;p&gt;I don’t know, it sounded cool at the time.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Problem 4.&lt;/strong&gt; Find all functions f: Z → Z such that,
-for all integers a,b,c that satisfy a+b+c = 0, the following equality
-holds: &lt;span
-class=&#34;math display&#34;&gt;\[f(a)^2+f(b)^2+f(c)^2=2f(a)f(b)+2f(b)f(c)+2f(c)f(a).\]&lt;/span&gt;
-(Here Z denotes the set of integers.)&lt;/p&gt;
-&lt;p&gt;An innocent-looking functional equation, but once you start trying it
-you discover that there’s quite some depth to it. Random guessing can
-yield that &lt;span class=&#34;math inline&#34;&gt;\(f(x) = x^2\)&lt;/span&gt; is a
-solution, so I proved inductively that after dividing out a constant
-f(1) then the remaining part of f is a perfect square. Letting &lt;span
-class=&#34;math inline&#34;&gt;\(f(x) = f(1)g(x)^2\)&lt;/span&gt; with g(x) a nonnegative
-integer and factorizing the original equation, I got an auxiliary
-functional equation equivalent to the original equation.&lt;/p&gt;
-&lt;p&gt;Casework on small values of g, and the surprises started coming hard
-and fast. First: wow there’s an extra odd-even solution! Then: woah
-there’s another mod 4 solution! What is this madness?&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[IMO 2012 Part 4] The Inequality of Broken Dreams</title>
-      <link>//blog.vero.site/post/inequality</link>
-      <pubDate>Thu, 02 Aug 2012 11:07:33 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/inequality</guid>
-      <description>&lt;p&gt;I could spend all day coming up with post titles like this one.
-Really, I could. Anyway, after receiving the letter gently reminding me
-to turn in the official IMO report in Chinese, I finished that first and
-turned it in. This, plus the fact that I don’t have any way to do any of
-my summer homework yet, should make continued blogging much easier.&lt;/p&gt;
-&lt;p&gt;These months of preparation and anticipation, and in just over two
-days it will be behind us forever.&lt;/p&gt;
-&lt;p&gt;Thus were my thoughts at 3:30 in the morning, which were a much worse
-method of preparation than that which I used for the APMO, which
-involved trying for the first time to put my compass in its box and
-staring at a cryptic crossword. Twisted thoughts as I lay innocently in
-bed, trying to preserve my spirit and mathematical function. I got up at
-6:30 and ate a breakfast nervously with the team.&lt;/p&gt;
-&lt;p&gt;We dispersed into the contest hall. Flat squarish white tables in
-orderly rows greeted us. They were considerably smaller than the
-arm-span tables we had last year in the Netherlands’ stadium, but the
-space was still ample compared to the ones we took our practice tests on
-at home. I floundered a bit looking for whoever was supposed to check
-our stuff for forbidden items, but none of the proctors paid any
-attention to that, so I flipped through my own jacket pockets
-paranoidly.&lt;/p&gt;
-&lt;p&gt;But preparation was too brief, and there were at least fifteen
-minutes left with nothing to do except try not to panic. I managed to
-fill these fifteen minutes by doing elaborate breathing exercises,
-raising and flapping my arms, counting down seconds, focusing on a color
-word, meditating badly, clearing out everything nonmathematical from my
-mind with a symbolic gesture. This is not a very coherent description,
-but I wasn’t feeling very coherent.&lt;/p&gt;
-&lt;p&gt;I opened an eye halfway and watched as the clock ticked down the last
-few seconds. The starting signal sounded. I opened up the problem
-envelope…&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[IMO 2012 Part 3] Luggage Carriers and Language Barriers</title>
-      <link>//blog.vero.site/post/luggage-language</link>
-      <pubDate>Wed, 25 Jul 2012 09:32:45 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/luggage-language</guid>
-      <description>&lt;p&gt;Who knew coming up with strangely cryptic and illogical but
-nice-sounding post titles was so much fun!?&lt;/p&gt;
-&lt;p&gt;Okay, this break in storytelling is mainly brought to you by generic
-summer laziness, as well as possibly a tiny bit of chemotherapy adverse
-effect. There is only a little perfectionism involved, and that’s
-because this post contains a long awkward situation (you might have
-guessed already). I guess this is what it feels like to have oodles of
-stuff to blog about, but not enough motivation. Heck, these few days
-with running the TAIMC have long filled my list of rant topics with
-juicy stories until it’s near-bursting. But I need to end this self-pity
-party before I get carried away, so… back to the action.&lt;/p&gt;
-&lt;p&gt;Stranded in a foreign country at least 20 degrees Celsius below our
-comfort zone, having worn the same clothes for 36 hours of airplane
-travel, and still with less than 48 hours until the contest and &lt;em&gt;zero
-out of six compasses&lt;/em&gt;, we were running out of options.&lt;/p&gt;
-&lt;p&gt;A quick inventory of clothes showed that, after including the vests
-and caps in the backpacks we got, we probably had just enough clothes to
-survive the cruel frigid environment. So, reluctantly, we left the games
-room and hit the street to hunt down some underwear and socks to change
-into. Not to mention toothbrushes and some T-shirts and jackets for good
-measure, because the inside of the hotel was not the right temperature
-for full cold-resistance gear.&lt;/p&gt;
-&lt;p&gt;Some haphazard wandering up and down the streets later, we found a
-store that suited our needs and picked up some clothes. The underwear
-came in two sizes: too loose and too tight. We picked the latter. Oh
-well, it would only be for a day or so… right?&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[IMO 2012 Part 2] The Hotel of Deception</title>
-      <link>//blog.vero.site/post/hotel</link>
-      <pubDate>Fri, 20 Jul 2012 12:45:41 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/hotel</guid>
-      <description>&lt;p&gt;We finally arrived at the hotel at 3:30, meeting another local from
-Taiwan, Mr. Chen, who helped us carry some of our stuff off the bus.
-Po-Chiang, our guide, was waiting inside. We took more pictures and
-finally lugged the meager stuff we had off to our hotel rooms.&lt;/p&gt;
-&lt;p&gt;At least, we tried. I started to realize that there was much more to
-this hotel than it seemed.&lt;/p&gt;
-&lt;p&gt;Firstly, of course, was the confusing placement of rooms with numbers
-starting with 4 and 5 on the fourth floor (which would be the fifth
-floor by our numbering system, where the lobby is floor 1; but here the
-lobby was assigned 0. Off-by-one errors just waiting to happen here.)
-Secondly were the completely indecipherable signs. I don’t remember the
-details, but the first signs we saw read something like “560 ~ 540:
-left; 520 ~ 540: right”. Occasionally there would be weird slashes or
-half-slashes between the numbers instead (later I finally realized they
-were slanted, Comic-Sans-style capital Ys, or “and” in Spanish). Are
-these closed, open, or half-open intervals? And why the heck are their
-upper and lower bounds in a different order!?&lt;/p&gt;
-&lt;p&gt;We wandered through the corridors, peeking down each one, trying to
-figure out whether the numbers were increasing or decreasing and whether
-a parity argument (for those of you not fluent in math lingo, that means
-odds and evens) allowed for the existence of our room. Who knew the
-simple act of finding one’s living quarters could be so mathematically
-tasking? In the end, our rooms were in the last corridor, just about
-diametrically opposite to the elevators on the half of our floor. Oh
-well.&lt;/p&gt;
-&lt;p&gt;The room was pretty nice overall. The furniture and basic facilities
-were quite complete, with a sparkly bathroom and a couple tables and
-chairs of various shapes. The closet was big and had a safe, which was
-rather important because just about everybody we had met had warned us
-over and over again about all the incredibly skilled thieves, muggers,
-and pickpockets in Argentina. It was probably much safer (no pun
-intended) in the hotel, but with all of these warnings (later we would
-even find a notice from the hotel warning us to lock our doors) I was
-never entirely certain. There were lots of lights controlled by a set of
-confusing switches on either side of our beds. There was at least one
-white immovable divider cunningly disguised as a switch, one switch that
-didn’t ever seem to do anything, and one that turned everything off. The
-last one made a little sense after a while because it had pictures of
-stars and a moon on it, but the whole setup was still pretty
-non-user-friendly in my opinion.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[IMO 2012 Part 1] Dangerous Metal Chopsticks</title>
-      <link>//blog.vero.site/post/metal-chopsticks</link>
-      <pubDate>Fri, 20 Jul 2012 07:44:51 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/metal-chopsticks</guid>
-      <description>&lt;p&gt;It’s time to begin the epic blogging journey. The detailed version of
-this year’s amazing IMO, because I decided that a perfectionist guy like
-myself could not possibly liveblog and be satisfied with both the
-quality of the posts and being able to fully enjoy the actual event.&lt;/p&gt;
-&lt;p&gt;Our story begins in a hotel in Taiwan.&lt;/p&gt;
-&lt;p&gt;The night before departure, us six contestants and Prof. Lin gathered
-in a hotel. This was entirely necessary because our flight left at
-something like five o’clock in the morning. After checking over the
-flight plans and relevant phone numbers in a conference room, we enjoyed
-a pretty extensive buffet dinner, what would easily be the best meal we
-would get to have for at least a week, the highlight of which was a fish
-steak that looked and tasted exactly like fried egg. Afterwards we did
-some emergency shopping and prepared a convenience-store breakfast for
-consumption three o’clock the next day.&lt;/p&gt;
-&lt;p&gt;As I’ve complained before, we have an 11-hour difference to get used
-to, and that morning I had gotten myself to sleep as late as 6 AM trying
-(successfully, much to my amazement) to complete an iPod OS system
-update. I didn’t think I could pass airport security with the sort of
-consciousness I had when I finally slept that morning, so I reverted
-with the rest of the team to an 11 PM curfew. Oh well. The seven of us
-left the hotel after 3 AM, setting off in a huge 30-person bus for the
-airport.&lt;/p&gt;
-&lt;p&gt;Luggage drop-off was mostly uneventful. I realized that the airline
-didn’t seem to like passengers bringing two bags onto the airplane, and
-decided to distribute my bag with all the winter clothes in it into my
-luggage and my backpack. Little did we know what would happen to the
-luggage…&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Impact Minus Two Weeks</title>
-      <link>//blog.vero.site/post/impact-minus-two-weeks</link>
-      <pubDate>Mon, 25 Jun 2012 20:14:12 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/impact-minus-two-weeks</guid>
-      <description>&lt;p&gt;Wait, are you serious? Under two weeks left, is that what it’s come
-to?&lt;/p&gt;
-&lt;p&gt;What happened to my majestic plans to go over every functional
-equation I failed on, ever? Or to go through a super-intense
-geometry-immersion period and actually try to develop some of that crazy
-“intuition” thing? And I have &lt;em&gt;finals&lt;/em&gt; coming up too! I just
-finished a ludicrous deadline-extended geography project that I am
-absolutely confident is the crappiest paper of my entire school career
-so far! And despite a semester of (slacking) classes, my Spanish is
-still only barely at a usable level! Exclamation marks!&lt;/p&gt;
-&lt;p&gt;Don’t panic… let’s focus on the positive. I am absolutely prepared
-with my stationery. I bought three spanking new 0.4mm pens that say “Can
-write for 1000 meters!” because all of my current ones are annoyingly
-thick and constantly having almost-but-not-quite run out, plus three new
-mechanical pencils and enough matching 2B lead to last me through
-college. All the pencils and lead are Pentel. I haven’t done any
-research, so if something terrible happens in Argentina I know what
-company to blame, and I am writing it here so I won’t confuse the
-brands. Also, in view of what happened to SCH’s carry-on baggage last
-year (luckily there was no geo on Day 1), I got an extra compass I hope
-won’t be needed.&lt;/p&gt;
-&lt;p&gt;While we’re listing all the &lt;em&gt;stuff&lt;/em&gt; I have gotten ready:&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Coup de Grâce</title>
-      <link>//blog.vero.site/post/coup-de-grace</link>
-      <pubDate>Mon, 30 Apr 2012 19:22:49 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/coup-de-grace</guid>
-      <description>&lt;p&gt;Yes, it’s official now. I’m on the 2012 International Mathematical
-Olympiad team bound for Argentina, and if I didn’t make a post about
-this I would be ashamed to call myself a blogger. So, a little moment of
-smug self-satisfaction should be justified, I hope? And not to mention,
-last year’s title of youngest Taiwan contestant is not yet passed? Let’s
-cue the evil laughter!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://imgs.xkcd.com/comics/toot.png&#34; alt=&#34;Obligatory xkcd where a guy pops up and toots a literal air horn&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;…or maybe not.&lt;/p&gt;
-&lt;p&gt;Here is a simple tabulation of our selection problems:&lt;/p&gt;
-&lt;ol type=&#34;1&#34;&gt;
-&lt;li&gt;GA/GN/CG/GNC/NGA&lt;/li&gt;
-&lt;li&gt;AG/CA/NG/GCN/AGA&lt;/li&gt;
-&lt;li&gt;GA/GN/CA/GCN/AGC&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Algebra x9, Combinatorics x7, Geometry x12, Number Theory x8. In
-other words a distribution in perfect negative correlation with my
-estimated ability in each subject. At least, that’s how I’ve always
-estimated them before about a month ago. Ouch, the last stage was the
-only one of the three where problem distribution for combinatorics
-actually reached its fair share. (Alternative interpretation: 2011’s
-distribution was majorly f123ed up with only one real geometry problem,
-which just means that this year’s battle will probably be difficult for
-me. (Alternative alternative interpretation: the evil, nasty, wicked,
-depraved windmill was actually an outrageous negative for me. Gee, I
-don’t know how to feel. But I should actually do stuff instead of wildly
-speculating; let’s get back to the topic.))&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Back from Math-Camp Post...</title>
-      <link>//blog.vero.site/post/back-from-math-camp</link>
-      <pubDate>Thu, 13 Aug 2009 19:23:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/back-from-math-camp</guid>
-      <description>&lt;div class=&#34;warning&#34;&gt;
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2009 self wrote this. It is preserved for
-historical interest and amusement, and as a testament to how far I’d go
-to typeset math equations in ASCII art.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;I have just come back from a week of continuous mathematics, board
-gaming, and hitting people with sticks to ensure that they get up in
-time. Yippee! Those problems sure do get around.&lt;/p&gt;
-&lt;p&gt;Sample problem: This problem rocks!&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Iverson Bracket</title>
-      <link>//blog.vero.site/ref/iverson</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>//blog.vero.site/ref/iverson</guid>
-      <description>Very simple to explain: if \(P\) is a statement, \([P]\) is 1 if \(P\) is true and 0 if not. So for example
-\[\begin{aligned} \lbrack 1 &amp;lt; 2\rbrack &amp;amp;= 1 \\ \lbrack 1 &amp;gt; 2\rbrack &amp;amp;= 0 \end{aligned}\]
-It’s like using a boolean as an integer in C or Python.
-It’s useful to keep yourself organized when you’re writing summations, especially if you’re summing across terms with a weird condition or if you need to exchange two sums.</description>
-    </item>
-    
-    <item>
-      <title>Linear Algebra</title>
-      <link>//blog.vero.site/ref/linalg</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>//blog.vero.site/ref/linalg</guid>
-      <description>This is a matrix.
-\[\begin{bmatrix} 1 &amp;amp; 2 &amp;amp; 3 \\\\ 4 &amp;amp; 5 &amp;amp; 6 \end{bmatrix}\]
-It has 2 rows and 3 columns, so it is a \(2 \times 3\) matrix.
-Matrix addition and multiplication-by-a-scalar is done componentwise. Matrix multiplication is done trickily; it’s associative, distributive, commutative with scalars, linear, anticommutative-under-transposition.
-Vectors are like columns of matrices, or matrices with one column. Except row vectors are rows of matrices.</description>
-    </item>
-    
-    <item>
-      <title>Operation Exchange</title>
-      <link>//blog.vero.site/ref/exchange</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>//blog.vero.site/ref/exchange</guid>
-      <description>&lt;h3 id=&#34;limit-limit&#34;&gt;Limit + Limit&lt;/h3&gt;
-&lt;p&gt;Cheaply, using an &lt;a
-href=&#34;%7B%%20post_url%202014-10-21-iverson-bracket%20%%7D&#34;&gt;Iverson
-bracket&lt;/a&gt; expression:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-\lim_{a \to \infty} \lim_{b \to \infty} [a &amp;gt; b] &amp;amp;= 0 \\
-\lim_{b \to \infty} \lim_{a \to \infty} [a &amp;gt; b] &amp;amp;= 1
-\end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;For more continuity, use &lt;span class=&#34;math inline&#34;&gt;\(\frac{a}{a +
-b}\)&lt;/span&gt; instead (Rudin Example 7.2).&lt;/p&gt;
-&lt;p&gt;Uniform convergence on one limit suffices to allow this exchange,
-almost by definition.&lt;/p&gt;
-&lt;h3 id=&#34;limit-continuity&#34;&gt;Limit + Continuity&lt;/h3&gt;
-&lt;p&gt;Let&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-f_\epsilon(x) = \begin{cases} 0 &amp;amp; \text{if } |x| \geq \epsilon \\ 1
-- \left|\frac{x}{\epsilon}\right| &amp;amp;\text{if } |x| &amp;lt; \epsilon
-\end{cases}.
-\]&lt;/span&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Problem Reference</title>
-      <link>//blog.vero.site/ref/problem-ref</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>//blog.vero.site/ref/problem-ref</guid>
-      <description>(ported from wiki)
-Certain notable problems that I don’t want to look through a zillion pages to find.
-Iran TST 1996, notoriously reposted at least 35 times on AoPS (okay, many of these are actually modifications):
-If \(x, y, z &amp;gt; 0\) then
-\[(xy+yz+zx)\left(\frac{1}{(x+y)^2} + \frac{1}{(y+z)^2} + \frac{1}{(z+x)^2}\right) \geq \frac{9}{4}\]
-ISL 1988 #4: if \(1, 2, \ldots, n^2\) are placed in a \(n \times n\) chessboard, some two adjacent numbers differ by at least \(n\)</description>
-    </item>
-    
-    <item>
-      <title>Rudin Crib Notes</title>
-      <link>//blog.vero.site/ref/rudin</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>//blog.vero.site/ref/rudin</guid>
-      <description>&lt;p&gt;Brevity has been chosen over accuracy because the whole point is that
-you should know this stuff already.&lt;/p&gt;
-&lt;h3 id=&#34;chapter-2-basic-topology-some-ch.-3&#34;&gt;Chapter 2: Basic Topology
-(+ some Ch. 3)&lt;/h3&gt;
-&lt;p&gt;An &lt;strong&gt;isolated point&lt;/strong&gt; of E is in E but not a limit point
-of it. E is &lt;strong&gt;perfect&lt;/strong&gt; if it is exactly equal to its set
-of limit points. Equivalently, it is closed and has no isolated points.
-Ex. 2.44: The Cantor set is perfect.&lt;/p&gt;
-&lt;p&gt;A &lt;strong&gt;compact set&lt;/strong&gt; is a set for which every open cover
-has a finite subcover.&lt;/p&gt;
-&lt;p&gt;Compactness or compact sets have these properties (with made-up
-names):&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Math on Bounded-Error Log</title>
+		<link>//blog.vero.site/category/math</link>
+		<description>Recent content in Math on Bounded-Error Log</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 30 Aug 2026 01:36:16 -0700</lastBuildDate>
+		
+			<atom:link href="//blog.vero.site/category/math/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Adding Floating-Point Decimals for Fun and Profit</title>
+				<link>//blog.vero.site/post/float</link>
+				<pubDate>Sun, 30 Aug 2026 01:36:16 -0700</pubDate>
+				<guid>//blog.vero.site/post/float</guid>
+				<description>&lt;p&gt;Many people know that you shouldn’t do decimal calculations, such as&#xA;those involving U.S. dollars and cents, with the floating-point numbers&#xA;in most programming languages. This is because decimal numbers can’t be&#xA;expressed exactly as such floating-point numbers, so you will encounter&#xA;rounding errors.&lt;/p&gt;&#xA;&lt;p&gt;Famously, with &lt;a&#xA;href=&#34;https://en.wikipedia.org/wiki/Double-precision_floating-point_format&#34;&gt;IEEE&#xA;double-precision floats&lt;/a&gt;, &lt;code&gt;0.1 + 0.2&lt;/code&gt; is not&#xA;&lt;code&gt;0.3&lt;/code&gt;, but rather, &lt;code&gt;0.30000000000000004&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;On the other hand, I use a Python REPL to add up decimal numbers for&#xA;receipts all the time. Of course, my stakes are lower; I’m summing&#xA;things in the $1–$100 range and know to manually round the microscopic&#xA;errors off before copying the sum somewhere. But actually it’s quite&#xA;often that those errors don’t appear at all.&lt;/p&gt;&#xA;&lt;p&gt;If we sum every pair of multiples of 0.01 up to 1.00 and look at&#xA;whether the printed result is too large (blue), too small (red), or&#xA;correct, we get a cool pattern:&lt;/p&gt;&#xA;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/d3@7&#34;&gt;&lt;/script&gt;&#xA;&lt;figure style=&#34;text-align: center&#34;&gt;&#xA;&lt;svg id=&#34;grid1&#34; width=&#34;400&#34; height=&#34;400&#34; viewBox=&#34;0 0 100 100&#34;&gt;&#xA;&lt;/svg&gt;&#xA;&lt;figcaption&gt;&#xA;Figure 1: How floating-point affects summing two multiples of 0.01, up&#xA;to 1.00&#xA;&lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;script&gt;&#xA;d3.select(&#34;#grid1&#34;)&#xA;    .selectAll(&#34;rect&#34;).data(d3.cross(d3.range(100), d3.range(100))).join(&#34;rect&#34;)&#xA;    .attr(&#34;x&#34;, d =&gt; d[0])&#xA;    .attr(&#34;y&#34;, d =&gt; d[1])&#xA;    .attr(&#34;width&#34;, 1)&#xA;    .attr(&#34;height&#34;, 1)&#xA;    .attr(&#34;fill&#34;, ([r, c]) =&gt; {&#xA;        const rr = r + 1, cc = c + 1;&#xA;        const d = (rr / 100 + cc / 100) - (rr + cc) / 100;&#xA;        return d &gt; 0 ? &#34;blue&#34; : d &lt; 0 ? &#34;red&#34; : &#34;transparent&#34;;&#xA;    });&#xA;&lt;/script&gt;&#xA;&lt;p&gt;Where does this pattern come from?&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Gold-medaling the 2025 IMO was easier than average</title>
+				<link>//blog.vero.site/post/imo-2025</link>
+				<pubDate>Wed, 03 Sep 2025 01:02:59 -0700</pubDate>
+				<guid>//blog.vero.site/post/imo-2025</guid>
+				<description>&lt;div class=&#34;series&#34;&gt;&#xA;&lt;p&gt;(Background/disclaimer: I work at Anthropic, far from any efforts&#xA;related to math reasoning or evaluations; opinions are my own. I was an&#xA;IMO gold medalist in 2012.)&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;I way missed the news window on this one, but I thought it was&#xA;interesting and a bit underappreciated that the fraction of gold&#xA;medalists at the 2025 IMO (72/630 = 11.4%) is the highest it’s been&#xA;since 1981.&lt;/p&gt;&#xA;&lt;p&gt;Crudely, IMO gold medals are awarded to the highest-scoring 1/12 of&#xA;contestants.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&#xA;role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; However, because scores are integers&#xA;up to 42 and there’s no provision for tiebreaking, it’s possible for a&#xA;lot of contestants to be tied around the threshold. In that case, either&#xA;all of them get a gold medal or none do, and the fraction of gold&#xA;medalists might deviate substantially from 1/12. That’s what happened&#xA;this year: 46 contestants all won a gold medal by scoring exactly 35&#xA;points.&lt;/p&gt;&#xA;&lt;p&gt;Here’s a comparison with the fraction of IMO gold medalists for each&#xA;year since 2000. (See &lt;a href=&#34;#appendix-full-stats&#34;&gt;appendix 1&lt;/a&gt; for&#xA;a full table and &lt;a href=&#34;#appendix-reference-class&#34;&gt;appendix 2&lt;/a&gt; for&#xA;discussion of the choice of 2000.)&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Just Enough Elliptic Curves to Be Dangerous</title>
+				<link>//blog.vero.site/post/elliptic-curves</link>
+				<pubDate>Sun, 28 Nov 2021 18:24:18 -0800</pubDate>
+				<guid>//blog.vero.site/post/elliptic-curves</guid>
+				<description>&lt;p&gt;A famous Trail of Bits post says to &lt;a&#xA;href=&#34;https://blog.trailofbits.com/2019/07/08/fuck-rsa/&#34;&gt;stop using&#xA;RSA&lt;/a&gt;: it’s simple enough to make people think they can implement it&#xA;correctly, but full of invisible traps. In contrast, although elliptic&#xA;curve cryptography (ECC) implementations could also fall into subtle&#xA;traps, they usually don’t. The post conjectures that this is because ECC&#xA;intimidates people into using cryptographically sound libraries instead&#xA;of implementing their own.&lt;/p&gt;&#xA;&lt;p&gt;If you do want to understand ECC just enough to produce your own&#xA;trap-ridden implementation, though, this post aims to get you there.&#xA;(Assuming some mathematical background chosen in a not particularly&#xA;principled way, approximately what I had before writing this post.)&#xA;Hence the title. Because I have a cryptographic conscience, I will still&#xA;point out the traps I know of; but there are probably traps I don’t know&#xA;about.&lt;/p&gt;&#xA;&lt;p&gt;This post contains a lot of handwaving and straight-up giving up on&#xA;proofs. You don’t need to know the proofs to be dangerous. The ethos is&#xA;sort of like &lt;a href=&#34;https://web.evanchen.cc/napkin.html&#34;&gt;Napkin&lt;/a&gt;,&#xA;but way shoddier and with zero pretense of pedagogical soundness. Still,&#xA;here are some concrete questions that I learned the answer to while&#xA;writing this post:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Why does the group law hold, sort of intuitively?&lt;/li&gt;&#xA;&lt;li&gt;Why do people have to modify Curve25519 before using it to compute&#xA;digital signatures?&lt;/li&gt;&#xA;&lt;li&gt;What is a “quadratic twist” and why should I care about it to pick a&#xA;secure elliptic curve?&lt;/li&gt;&#xA;&lt;li&gt;How is it possible that an isogeny can be described as surjective&#xA;but not injective while mapping a finite elliptic curve to another&#xA;elliptic curve of the same cardinality?&lt;/li&gt;&#xA;&lt;li&gt;How many claws does an alligator have?&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Elliptic curves have a lot of complicated algebra. If you ever&#xA;studied algebra in high school and did exercises where you had to&#xA;simplify or factor or graph some really complicated algebraic&#xA;expression, and you learned that algebra is also the name of a field in&#xA;higher mathematics, you might have assumed that working algebraists just&#xA;dealt with even more complicated expressions. If you then studied&#xA;algebra in college, you’d probably have realized that that’s not really&#xA;what algebra is about at all; the difficulty comes from &lt;em&gt;new&#xA;abstractions&lt;/em&gt;, like a bunch of the terms above.&lt;/p&gt;&#xA;&lt;p&gt;Well… the study of elliptic curves involves a bunch of complicated&#xA;expressions like what your high school self might have imagined.&#xA;Sometimes, notes will just explode into a trainwreck of terms like&lt;/p&gt;&#xA;&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{align*}\psi_1 &amp;amp;= 1 \\ \psi_2&#xA;&amp;amp;= 2y \\ \psi_3 &amp;amp;= 3x^4 + 6Ax^2 + 12Bx - A^2 \\ \psi_4 &amp;amp;=&#xA;4y(x^6 + 5Ax^4 + 20Bx^3 - 5A^2x^2 - 4ABx - A^3 -&#xA;8B^2).\end{align*}\]&lt;/span&gt;&lt;/p&gt;&#xA;&lt;p&gt;“This is REAL Math, done by REAL Mathematicians,” one is tempted to&#xA;quip. The &lt;a href=&#34;https://hyperelliptic.org/EFD/&#34;&gt;Explicit-Formulas&#xA;Database&lt;/a&gt; is a fun place to take a gander through. I will copy&#xA;formulas into this post from time to time when there’s something about&#xA;them I want to call attention to, but in general we won’t do any&#xA;complicated algebraic manipulations in this post. Just be prepared.&lt;/p&gt;&#xA;&lt;p&gt;Because I’m focusing on conceptual understanding (and am lazy), this&#xA;post contains almost no code, and definitely no code that’s runnable in&#xA;any real programming language.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Signed Modulo</title>
+				<link>//blog.vero.site/post/modulo</link>
+				<pubDate>Tue, 04 Feb 2020 18:00:58 -0500</pubDate>
+				<guid>//blog.vero.site/post/modulo</guid>
+				<description>&lt;p&gt;One thing many mathematically-inclined programmers run into when&#xA;implementing mathematical algorithms, particularly number-theoretic&#xA;ones, is that the &lt;a&#xA;href=&#34;https://en.wikipedia.org/wiki/Modulo_operation&#34;&gt;modulo&#xA;operation&lt;/a&gt; doesn’t behave how they expect or prefer.&lt;/p&gt;&#xA;&lt;p&gt;In many languages, this operator is denoted &lt;code&gt;%&lt;/code&gt;.&#xA;Concretely, one might prefer that, if the second argument is positive,&#xA;then the modulo operation would always give a nonnegative result. Under&#xA;this behavior, the expression &lt;code&gt;(-5) % 3&lt;/code&gt; would evaluate to&#xA;&lt;code&gt;1&lt;/code&gt; rather than &lt;code&gt;-2&lt;/code&gt;. This is a lot more useful&#xA;for number theory because then for positive integers &lt;code&gt;n&lt;/code&gt;, the&#xA;&lt;code&gt;% n&lt;/code&gt; operation actually maps integers to exactly the&#xA;&lt;code&gt;n&lt;/code&gt; canonical representatives for the residue classes. As a&#xA;result, &lt;span class=&#34;math inline&#34;&gt;\(a \equiv b \mod n\)&lt;/span&gt; if and&#xA;only if &lt;code&gt;a % n == b % n&lt;/code&gt;. You can also do things like index&#xA;into a length-&lt;code&gt;n&lt;/code&gt; array with &lt;code&gt;a % n&lt;/code&gt; and know that&#xA;the index will be in-bounds. Finally, there are also optimization&#xA;opportunities: modding by a power of 2 becomes equivalent to a simple&#xA;bitwise AND, which is really fast on modern computers.&lt;/p&gt;&#xA;&lt;p&gt;A few programming languages, notably Python, do implement&#xA;&lt;code&gt;%&lt;/code&gt; this way. However, the majority of languages today,&#xA;including pretty much everything remotely descended from C, do not;&#xA;instead, &lt;code&gt;(-5) % 3&lt;/code&gt; is &lt;code&gt;-2&lt;/code&gt;. This post attempts to&#xA;track down why.&lt;/p&gt;&#xA;&lt;hr /&gt;&#xA;&lt;p&gt;The first thing to note is that there is a more important&#xA;number-theoretic identity we’d like to have:&lt;/p&gt;&#xA;&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\texttt{a} = (\texttt{a / b}) \cdot&#xA;\texttt{b} + (\texttt{a \% b}). \tag{1}\]&lt;/span&gt;&lt;/p&gt;&#xA;&lt;p&gt;In words, the integer division and modulo operators should give a&#xA;breakdown of &lt;code&gt;a&lt;/code&gt; into a sum of some copies of &lt;code&gt;b&lt;/code&gt;&#xA;plus a remainder. Note that this equation also implies that specifying&#xA;the rounding behavior of division is equivalent to specifying the sign&#xA;behavior of the modulo operation, which will come up repeatedly&#xA;later.&lt;/p&gt;&#xA;&lt;p&gt;It’s also very uncontroversial that that remainder should have no&#xA;copies of &lt;code&gt;b&lt;/code&gt;, positive or negative, left over, which gives&#xA;the constraint:&lt;/p&gt;&#xA;&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[|\texttt{a \% b}| &amp;lt; |\texttt{b}|.&#xA;\tag{2}\]&lt;/span&gt;&lt;/p&gt;&#xA;&lt;p&gt;Every programming language I can think of satisfies these two&#xA;constraints.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&#xA;role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; So far so good. However, these two&#xA;constraints don’t uniquely determine the values of &lt;code&gt;a % b&lt;/code&gt;&#xA;when &lt;code&gt;a&lt;/code&gt; isn’t divisible by &lt;code&gt;b&lt;/code&gt;; there are two&#xA;possible values for &lt;code&gt;a % b&lt;/code&gt;, one positive and one negative.&#xA;Concretely, we could express &lt;span class=&#34;math inline&#34;&gt;\(-5\)&lt;/span&gt; as&#xA;either &lt;span class=&#34;math inline&#34;&gt;\((-1) \cdot 3 + (-2)\)&lt;/span&gt; or &lt;span&#xA;class=&#34;math inline&#34;&gt;\((-2) \cdot 3 + 1\)&lt;/span&gt;, so&#xA;&lt;code&gt;(-5) % 3&lt;/code&gt; could be &lt;code&gt;-2&lt;/code&gt; or &lt;code&gt;1&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;It’s still mostly uncontroversial that, if &lt;code&gt;a&lt;/code&gt; and&#xA;&lt;code&gt;b&lt;/code&gt; are both positive, then &lt;code&gt;a % b&lt;/code&gt; should be&#xA;nonnegative as well; we could call this constraint (3).&lt;a href=&#34;#fn2&#34;&#xA;class=&#34;footnote-ref&#34; id=&#34;fnref2&#34; role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&#xA;However, if &lt;code&gt;a&lt;/code&gt; is negative and &lt;code&gt;b&lt;/code&gt; is positive,&#xA;programming languages start to diverge in their behavior. Why?&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Rocket Equation</title>
+				<link>//blog.vero.site/post/advent-rocket</link>
+				<pubDate>Sun, 01 Dec 2019 13:38:14 -0500</pubDate>
+				<guid>//blog.vero.site/post/advent-rocket</guid>
+				<description>&lt;p&gt;It’s December, so it’s time for a lot of things, including &lt;a&#xA;href=&#34;https://adventofcode.com/&#34;&gt;Advent of Code&lt;/a&gt;. I will not be able&#xA;to be as competitive as I was last year, and already lost a lot of&#xA;points to a really silly mistake on day 1, but I’ll be playing when I&#xA;can and &lt;a&#xA;href=&#34;https://github.com/betaveros/advent-of-code-golf-2019&#34;&gt;golfing&lt;/a&gt;&#xA;the problems when I have time (so far: 7 + 14 bytes).&lt;/p&gt;&#xA;&lt;p&gt;As one might expect, &lt;a&#xA;href=&#34;https://adventofcode.com/2019/day/1&#34;&gt;Day 1&lt;/a&gt; is not too complex,&#xA;but the second part can be analyzed to some mathematical depth and was&#xA;discussed a bit on Reddit; plus, it occurred to me recently that I set&#xA;up KaTeX on my blog but never used it, so I was looking for an excuse to&#xA;write some equations anyway.&lt;/p&gt;&#xA;&lt;p&gt;The problem statement for part 2, in brief: We are tasked with&#xA;calculating the total mass of fuel required to launch a rocket module of&#xA;a given mass. For something of mass &lt;span&#xA;class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt;, one can compute the directly required&#xA;mass of fuel by dividing &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; by 3,&#xA;rounding down, and subtracting 2; if the result is negative, it is taken&#xA;to be 0 instead. However, the directly required fuel also requires fuel&#xA;itself, calculated from its own mass by the same procedure, and that&#xA;required fuel requires fuel based on its own mass, and so on until you&#xA;reach fuel with 0 requirement.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>[CIMC 2015 Part 2] Journey of the Blue-White Slippers</title>
+				<link>//blog.vero.site/post/cimc-2015-part-2</link>
+				<pubDate>Fri, 07 Aug 2015 12:04:30 +0800</pubDate>
+				<guid>//blog.vero.site/post/cimc-2015-part-2</guid>
+				<description>&lt;p&gt;(Nontopical life update: Current 18.06 homework status: 34% (mildly&#xA;screwed, probably won’t finish before I leave my cozy home for the U.S.&#xA;and I usually struggle to get into the mood for homework while&#xA;traveling, but I guess I’ll have to))&#xA;&lt;a href=&#34;//blog.vero.site/img/18-06-1.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/18-06-1.png?w=296&#34; alt=&#34;[18.06 status panel: 34%]&#34; /&gt;&lt;/a&gt;&#xA;(I’ve been spending most of my uptime doing said homework and running&#xA;errands, and my downtime catching up on &lt;cite&gt;Last Week Tonight with&#xA;John Oliver&lt;/cite&gt; while farming the Flight Rising Coliseum. And, okay,&#xA;making the above status panel.&#xA;&lt;a href=&#34;https://dl.dropboxusercontent.com/u/5295912/status.html&#34;&gt;Live&#xA;version here&lt;/a&gt; courtesy of Dropbox’s Public folder. No regrets.)&lt;/p&gt;&#xA;&lt;h3 id=&#34;day-3-excursions&#34;&gt;&#xA;Day 3 (Excursions)&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;Morning routine snipped. We come to the middle school again to eat&#xA;breakfast and gather; the contestants will be taking their tests here&#xA;(accompanied by one bottle of “Buff” energy drink each) while the rest&#xA;of us will be going on an excursion. Before this happens, though, two&#xA;Taiwanese contestants ask me and Hsin-Po some math problems. There’s a&#xA;geometry problem, which I fail to solve:&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;(paraphrased) In triangle △ABC, ∠A is 40° and ∠B is 60°. The angle&#xA;bisector of ∠A meets BC at D; E is on AB such that ∠ADE is 30°. Find&#xA;∠DEC.&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Hsin-Po figures out that, once you guess (ROT13) gur bgure boivbhf&#xA;privna vf nyfb na natyr ovfrpgbe naq gurl vagrefrpg ng gur vapragre, lbh&#xA;pna cebir vg ol pbafgehpgvat gur vapragre naq fubjvat sebz gur tvira&#xA;natyr gung gurl vaqrrq pbvapvqr.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34;&#xA;id=&#34;fnref1&#34; role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; Then, there’s a&#xA;combinatorics problem in a book with a solution that they’re not sure&#xA;about:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(8,9,7)</title>
+				<link>//blog.vero.site/post/897</link>
+				<pubDate>Sun, 05 Jul 2015 10:09:29 +0800</pubDate>
+				<guid>//blog.vero.site/post/897</guid>
+				<description>&lt;p&gt;(&lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;streak&lt;/a&gt;)&lt;/p&gt;&#xA;&lt;p&gt;I always tell myself, okay, I will actually just draw something&#xA;facetiously and get it over with, nobody comes to this blog to admire my&#xA;GIMP mouse doodles, but then perfectionist tendencies kick in and I get&#xA;&lt;a href=&#34;//blog.vero.site/post/1024&#34;&gt;car&lt;/a&gt;ried away and it ends up&#xA;taking more than an hour or so.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/linear.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/linear.png?w=652&#34; alt=&#34;linear&#34; width=&#34;652&#34; height=&#34;489&#34; class=&#34;aligncenter size-large wp-image-3074&#34; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Sylow</title>
+				<link>//blog.vero.site/post/sylow</link>
+				<pubDate>Sat, 16 May 2015 00:00:00 +0800</pubDate>
+				<guid>//blog.vero.site/post/sylow</guid>
+				<description>&lt;p&gt;&lt;a&#xA;href=&#34;http://www.artofproblemsolving.com/community/c1285h1035830&#34;&gt;original&#xA;sillier post&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Note on notation: I’m going to use &lt;span&#xA;class=&#34;math inline&#34;&gt;\(\text{Stab}(x)\)&lt;/span&gt; instead of &lt;span&#xA;class=&#34;math inline&#34;&gt;\(G_x\)&lt;/span&gt; for the stabilizer subgroup and &lt;span&#xA;class=&#34;math inline&#34;&gt;\(\text{Cl}(x)\)&lt;/span&gt; instead of &lt;span&#xA;class=&#34;math inline&#34;&gt;\(^Gx\)&lt;/span&gt; for the conjugacy classes. For the&#xA;orbit of &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; I’ll stick with the norm&#xA;and use &lt;span class=&#34;math inline&#34;&gt;\(Gx\)&lt;/span&gt;, although it’s only used&#xA;in confusing summation notation that I’ll explain with words too.&lt;/p&gt;&#xA;&lt;hr /&gt;&#xA;&lt;p&gt;We keep using this silly counting argument which I thought was&#xA;something like Burnside’s lemma but actually is a lot simpler, just&#xA;partitioning the set into orbits and slapping the orbit-stabilizer&#xA;theorem on.&lt;/p&gt;&#xA;&lt;p&gt;If &lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt; is the group and &lt;span&#xA;class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt; is the set then&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>|Wedge|</title>
+				<link>//blog.vero.site/post/wedge</link>
+				<pubDate>Wed, 13 May 2015 00:00:00 +0800</pubDate>
+				<guid>//blog.vero.site/post/wedge</guid>
+				<description>&lt;p&gt;&lt;a&#xA;href=&#34;http://www.artofproblemsolving.com/community/c1285h1033032&#34;&gt;original&#xA;sillier post&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Note on notation: to be maximally clear, I have bolded all my vectors&#xA;and put tiny arrows on them. Normal letters are usually reals, uppercase&#xA;letters are usually bigger matrices. Also, &lt;span&#xA;class=&#34;math inline&#34;&gt;\(\cdot^T\)&lt;/span&gt; denotes the transpose of a&#xA;matrix.&lt;/p&gt;&#xA;&lt;hr /&gt;&#xA;&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(\vec{\textbf{v}}_1, \ldots,&#xA;\vec{\textbf{v}}_m\)&lt;/span&gt; be elements of &lt;span&#xA;class=&#34;math inline&#34;&gt;\(\mathbb{R}^n\)&lt;/span&gt; where &lt;span&#xA;class=&#34;math inline&#34;&gt;\(m \leq n\)&lt;/span&gt;, i.e. column vectors with &lt;span&#xA;class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; real elements. Let &lt;span&#xA;class=&#34;math inline&#34;&gt;\(V = [\vec{\textbf{v}}_1, \ldots,&#xA;\vec{\textbf{v}}_m]\)&lt;/span&gt;. This means pasting the column vectors&#xA;together to make an &lt;span class=&#34;math inline&#34;&gt;\(n \times m\)&lt;/span&gt;&#xA;matrix (&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; rows &lt;span&#xA;class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; columns).&lt;/p&gt;&#xA;&lt;p&gt;Consider the thing &lt;span class=&#34;math inline&#34;&gt;\(\vec{\textbf{v}}_1&#xA;\wedge \vec{\textbf{v}}_2 \wedge \cdots \wedge&#xA;\vec{\textbf{v}}_m\)&lt;/span&gt;, which can be visualized as the&#xA;hyperparallelogram &lt;span class=&#34;math inline&#34;&gt;\(\left\{\sum_{i=1}^{m}&#xA;t_i\vec{\textbf{v}}_i \,\middle\vert\, t_i \in [0,1], i = 1, 2, \ldots,&#xA;m \right\}\)&lt;/span&gt; but is apparently a different thing in a different&#xA;vector space of things. We wonder how to compute &lt;strong&gt;the hyperarea&#xA;of this hyperparallelogram&lt;/strong&gt;.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Extreme Value Theorem</title>
+				<link>//blog.vero.site/post/evt</link>
+				<pubDate>Wed, 22 Oct 2014 00:00:00 +0800</pubDate>
+				<guid>//blog.vero.site/post/evt</guid>
+				<description>&lt;p&gt;&lt;a&#xA;href=&#34;http://www.artofproblemsolving.com/community/c1285h1042959&#34;&gt;original&#xA;sillier post&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;The “Extreme Value Theorem”, according to my old calculus textbook&#xA;(Larson, Hostetler, Edwards, 8th ed.), is “A continuous function defined&#xA;on a closed interval attains a minimum and a maximum on the interval.”&#xA;The calculus textbook continues,&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Although [it] is intuitively plausible, a proof of this theorem is&#xA;not within the scope of this text.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Of course Rudin proves this, but coming from an unrigorous calculus&#xA;background, the required deductions span three chapters and are very&#xA;hard to motivate. That’s probably because it proves things for extremely&#xA;general objects.&lt;/p&gt;&#xA;&lt;p&gt;In particular, I have no idea why the definition of “compact” is what&#xA;it is: “a set for which every open cover has a finite subcovering”.&#xA;Therefore, here’s a less general but more motivated proof, from the&#xA;grounds-up.&lt;/p&gt;&#xA;&lt;h3 id=&#34;definitions&#34;&gt;Definitions&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;Real numbers&lt;/strong&gt; are hard to define. We only need to&#xA;know that we can add, subtract, multiply, divide, and compare them,&#xA;i.e. they’re an ordered field, and that they have the&#xA;&lt;strong&gt;least-upper-bound property&lt;/strong&gt;. That is, if we have a set&#xA;of real numbers that are bounded above, then the set has a &lt;em&gt;least&#xA;upper bound&lt;/em&gt;, a bound that “perfectly fits” the set. Precisely, the&#xA;bound must be such that every element of the set is less than or equal&#xA;to it, and no smaller value satisfies the same property.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Numbers</title>
+				<link>//blog.vero.site/post/numbers</link>
+				<pubDate>Mon, 20 Oct 2014 00:00:00 +0800</pubDate>
+				<guid>//blog.vero.site/post/numbers</guid>
+				<description>&lt;p&gt;Continuing the porting of stuff from betaveros.stash, and adding more&#xA;stuff.&lt;/p&gt;&#xA;&lt;h3 id=&#34;mnemonic&#34;&gt;Mnemonic&lt;/h3&gt;&#xA;&lt;p&gt;Here’s my mnemonic table for digits, inspired by an old Martin&#xA;Gardner column. I wrote from memory the first 132 digits of 2012!&#xA;correctly at IMO 2012 with this table. I had remembered more, but&#xA;unfortunately, if I recall correctly, I confused myself over whether I&#xA;had encoded a 5 or a 2 by the S of “nose”, because this is supposed to&#xA;be more of a phonetic code than a spelling one — otherwise double&#xA;letters would be confusing and lots of randomly appearing digraphs would&#xA;be wasted, because English is weird.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Haskell and Primes</title>
+				<link>//blog.vero.site/post/haskell</link>
+				<pubDate>Sat, 25 May 2013 23:03:05 +0800</pubDate>
+				<guid>//blog.vero.site/post/haskell</guid>
+				<description>&lt;blockquote&gt;&#xA;“I have been told that any encryption becomes safer if the underlying&#xA;algorithm is maximally obscured, what is most conveniently done by&#xA;coding it in Haskell.” – rankk&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Functional programming is terribly addicting! Partly I think the&#xA;completely different way of thinking makes it feel like learning&#xA;programming, and falling in love with it, all over again. Partly there’s&#xA;this evil sense of satisfaction from using &lt;code&gt;$&lt;/code&gt;s (and later&#xA;&lt;code&gt;&amp;lt;$&amp;gt;&lt;/code&gt;s and &lt;code&gt;=&amp;lt;&amp;lt;&lt;/code&gt;s and&#xA;&lt;code&gt;&amp;amp;&amp;amp;&amp;amp;&lt;/code&gt;s) to improve readability for initiated&#xA;Haskellers and worsen it for everybody else. Partly it’s because&#xA;&lt;a href=&#34;http://learnyouahaskell.com/&#34;&gt;&lt;i&gt;Learn You a Haskell for Great&#xA;Good!&lt;/i&gt;&lt;/a&gt; is such a fun read — there are too many funny bits to list&#xA;but my favorite so far is when the author analyzes the first verse of&#xA;Avril Lavigne’s &lt;em&gt;Girlfriend&lt;/em&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Although I think my code in Haskell tends to be more readable than in&#xA;other languages, code obfuscation in Haskell is almost natural: all you&#xA;have to do is refactor the wrong function to be “pointfree”, which means&#xA;that even though it’s a function that takes arguments, you define it&#xA;without parameters by manipulating and joining a bunch of other&#xA;functions. Example (plus a few other tiny obfuscations):&lt;/p&gt;&#xA;&lt;div class=&#34;sourceCode&#34; id=&#34;cb1&#34;&gt;&lt;pre&#xA;class=&#34;sourceCode haskell&#34;&gt;&lt;code class=&#34;sourceCode haskell&#34;&gt;&lt;span id=&#34;cb1-1&#34;&gt;&lt;a href=&#34;#cb1-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;isPrime &lt;span class=&#34;ot&#34;&gt;=&lt;/span&gt; liftA2 (&lt;span class=&#34;op&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;) (liftA2 (&lt;span class=&#34;op&#34;&gt;$&lt;/span&gt;) (&lt;span class=&#34;fu&#34;&gt;all&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;.&lt;/span&gt; ((&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;) (&lt;span class=&#34;dv&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;/=&lt;/span&gt;)) &lt;span class=&#34;op&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;fu&#34;&gt;rem&lt;/span&gt;) (&lt;span class=&#34;fu&#34;&gt;flip&lt;/span&gt;&lt;/span&gt;&#xA;&lt;span id=&#34;cb1-2&#34;&gt;&lt;a href=&#34;#cb1-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;    &lt;span class=&#34;fu&#34;&gt;takeWhile&lt;/span&gt; [&lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;op&#34;&gt;..&lt;/span&gt;] &lt;span class=&#34;op&#34;&gt;.&lt;/span&gt; (&lt;span class=&#34;fu&#34;&gt;flip&lt;/span&gt; (&lt;span class=&#34;op&#34;&gt;.&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;$&lt;/span&gt; liftA2 (&lt;span class=&#34;op&#34;&gt;*&lt;/span&gt;) &lt;span class=&#34;fu&#34;&gt;id&lt;/span&gt; &lt;span class=&#34;fu&#34;&gt;id&lt;/span&gt;) &lt;span class=&#34;op&#34;&gt;.&lt;/span&gt; (&lt;span class=&#34;op&#34;&gt;&amp;gt;=&lt;/span&gt;))) ((&lt;span class=&#34;op&#34;&gt;&amp;lt;&lt;/span&gt;) &lt;span class=&#34;dv&#34;&gt;1&lt;/span&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&#xA;&lt;p&gt;QQ wordpress why no Haskell highlighting &lt;ins&gt;(Editor’s note from&#xA;2017: The migration should highlight this now!)&lt;/ins&gt;&lt;/p&gt;&#xA;&lt;p&gt;Also, for some reason, you can do this in Haskell:&lt;/p&gt;&#xA;&lt;div class=&#34;sourceCode&#34; id=&#34;cb2&#34;&gt;&lt;pre&#xA;class=&#34;sourceCode haskell&#34;&gt;&lt;code class=&#34;sourceCode haskell&#34;&gt;&lt;span id=&#34;cb2-1&#34;&gt;&lt;a href=&#34;#cb2-1&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;ghci&lt;span class=&#34;op&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;ot&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt; &lt;span class=&#34;kw&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;op&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;dv&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&#xA;&lt;span id=&#34;cb2-2&#34;&gt;&lt;a href=&#34;#cb2-2&#34; aria-hidden=&#34;true&#34; tabindex=&#34;-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;dv&#34;&gt;5&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&#xA;&lt;p&gt;(via &lt;a href=&#34;http://www.yellosoft.us/evilgenius/&#34;&gt;Haskell for the&#xA;Evil Genius&lt;/a&gt;)&lt;/p&gt;&#xA;&lt;hr /&gt;&#xA;&lt;p&gt;Okay, but seriously now. I wrote this about my journey to learn&#xA;functional programming in the&#xA;&lt;a href=&#34;//blog.vero.site/post/programming&#34;&gt;programming babble post&lt;/a&gt; half a&#xA;year ago:&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;The main obstacle I have is that it’s hard to optimize or get&#xA;asymptotics when computation is expensive (a big problem if you’re&#xA;trying to learn through Project Euler problems, particularly ones with&#xA;lots of primes).&#xA;&lt;/blockquote&gt;</description>
+			</item>
+			<item>
+				<title>Φllotaxy</title>
+				<link>//blog.vero.site/post/phyllotaxy</link>
+				<pubDate>Thu, 04 Apr 2013 13:49:55 +0800</pubDate>
+				<guid>//blog.vero.site/post/phyllotaxy</guid>
+				<description>&lt;p&gt;This is beautiful. Why do they have to make it sound all mysterious&#xA;and difficult? That’s (the reciprocal of)&#xA;&lt;a href=&#34;https://en.wikipedia.org/wiki/Golden_Ratio&#34;&gt;the golden&#xA;ratio&lt;/a&gt;, by the way.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/phi.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/phi.jpg?w=474&#34; alt=&#34;[Textbook]&#34; width=&#34;474&#34; height=&#34;355&#34; class=&#34;aligncenter size-large wp-image-1865&#34; /&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Transcript since the resolution is far from awesome: “Most&#xA;angiosperms have alternate phyllotaxy, with leaves arranged in an&#xA;ascending spiral around the stem, each successive leaf emerging 137.5°&#xA;from the site of the previous one. Why 137.5°? Mathematical analyses&#xA;suggest that this angle minimizes shading of the lower leaves by those&#xA;above.”&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Matrix Intuition</title>
+				<link>//blog.vero.site/post/matrix</link>
+				<pubDate>Sun, 14 Oct 2012 17:01:29 +0800</pubDate>
+				<guid>//blog.vero.site/post/matrix</guid>
+				<description>&lt;p&gt;Stopped by a friend’s house a few days ago to do homework, which&#xA;somehow devolved into me analyzing what programming language I should&#xA;try to learn next in a corner, which is completely irrelevant to the&#xA;rest of this post. Oops.&lt;/p&gt;&#xA;&lt;p&gt;Anyway, in normal-math-curriculum-land, my classmates are now&#xA;learning about matrices. How to add them, how to multiply them, how to&#xA;calculate the determinant and stuff. Being a nice person, and feeling&#xA;somewhat guilty for my grade stability despite the number of study hours&#xA;I siphoned off to puzzles and the like, I was eager to help confront the&#xA;monster. Said classmate basically asked me what they were for.&lt;/p&gt;&#xA;&lt;p&gt;Well, what a hard question. But of course given the curriculum it’s&#xA;the only interesting problem I think could be asked.&lt;/p&gt;&#xA;&lt;p&gt;When I was hurrying through the high-school curriculum I remember&#xA;having to learn the same thing and not having any idea what the heck was&#xA;happening. Matrices appeared in that section as a messy, burdensome way&#xA;to solve equations and never again, at least not in an interesting&#xA;enough way to make me remember. I don’t have my precalc textbook, but a&#xA;supplementary precalc book completely confirms my impressions and&#xA;“matrix” doesn’t even appear in my calculus textbook index. They&#xA;virtually failed to show up in olympiad training too. I learned that&#xA;Po-Shen Loh knew how to&#xA;&lt;a href=&#34;http://www.math.cmu.edu/~ploh/docs/math/mop2009/alg-comb.pdf&#34;&gt;kill&#xA;a bunch of combinatorics problems with them (PDF)&lt;/a&gt;, but not in the&#xA;slightest how to do that myself.&lt;/p&gt;&#xA;&lt;p&gt;Somewhere else, during what I’m guessing was random independent&#xA;exploration, I happened upon the signed-permutation-rule (a.k.a.&#xA;&lt;a href=&#34;https://en.wikipedia.org/wiki/Leibniz_formula_for_determinants&#34;&gt;Leibniz&#xA;formula&lt;/a&gt;) for evaluating determinants, which made a lot more sense&#xA;for me and looked more beautiful and symmetric&lt;/p&gt;&#xA;&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\det(A) = \sum_{\sigma \in S_n}&#xA;\text{sgn}(\sigma) \prod_{i=1}^n A_{i,\sigma_i}\]&lt;/span&gt;&lt;/p&gt;&#xA;&lt;p&gt;and I was annoyed when both of my linear algebra textbooks defined it&#xA;first with cofactor expansion. Even though they quickly proved you could&#xA;expand along any row or column, and one also followed up with the&#xA;permutation formula a few sections later, it still felt uglier to me.&#xA;Yes, it’s impossible to understand that equation without knowledge of&#xA;permutations and their signs, but I’m very much a permutations kind of&#xA;guy. Sue me.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>[IMO 2012 Part 6] Mostly Not About Excursions</title>
+				<link>//blog.vero.site/post/not-excursions</link>
+				<pubDate>Mon, 27 Aug 2012 08:40:00 +0800</pubDate>
+				<guid>//blog.vero.site/post/not-excursions</guid>
+				<description>&lt;p&gt;Yes. I know it’s been more than a month. Blogging motivation&#xA;decreases, but the responsibility of that &lt;em&gt;stay tuned&lt;/em&gt; doesn’t go&#xA;away.&lt;/p&gt;&#xA;&lt;p&gt;It’s okay. It’s all worth it because the stuff in the games room is&#xA;absolutely ridiculous. Warning: huge post.&lt;/p&gt;&#xA;&lt;figure&gt;&#xA;&lt;a href=&#34;//blog.vero.site/img/p4.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/p4.jpg&#34; alt=&#34;[IMO 2012 Problem 4 on a cake.&#34; title=&#34;Problem 4 Cake&#34; width=&#34;474&#34; height=&#34;252&#34; class=&#34;size-full wp-image-1317&#34; /&gt;&lt;/a&gt;&#xA;&lt;figcaption&gt;&#xA;Our old friend, the monster of a functional equation, in edible form. In&#xA;the games room. Did I mention abso-zarking-lutely ridiculous?&#xA;&lt;/figcaption&gt;&#xA;&lt;/figure&gt;</description>
+			</item>
+			<item>
+				<title>[IMO 2012 Part 5] Unlucky Fours</title>
+				<link>//blog.vero.site/post/fours</link>
+				<pubDate>Thu, 02 Aug 2012 23:03:41 +0800</pubDate>
+				<guid>//blog.vero.site/post/fours</guid>
+				<description>&lt;ins datetime=&#34;2012-12-03T13:52:25+00:00&#34;&gt;&#xA;[edit: okay guys I’m surprised at many people come here with search&#xA;queries looking for solutions. If you want IMO solutions,&#xA;&lt;a href=&#34;http://www.artofproblemsolving.com/Forum/viewforum.php?f=834&#34;&gt;the&#xA;corresponding AoPS forum&lt;/a&gt; invariably has many of them. This is&#xA;probably late-ish, but just in case.]&#xA;&lt;/ins&gt;&#xA;&lt;p&gt;Day 2 of the contest.&lt;/p&gt;&#xA;&lt;p&gt;Did you know that in Chinese [or Mandarin, whatever] “four” is&#xA;unlucky because it’s a homophone for “death”, and hospitals tend to skip&#xA;it in floors or ward numbers?&lt;/p&gt;&#xA;&lt;p&gt;Did you know that there was going to be an anecdote involving the&#xA;seventh Artemis Fowl book but I couldn’t make it work so instead you&#xA;have a weird and utterly disconnected metareference to something&#xA;deleted?&lt;/p&gt;&#xA;&lt;p&gt;I don’t know, it sounded cool at the time.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Problem 4.&lt;/strong&gt; Find all functions f: Z → Z such that,&#xA;for all integers a,b,c that satisfy a+b+c = 0, the following equality&#xA;holds: &lt;span&#xA;class=&#34;math display&#34;&gt;\[f(a)^2+f(b)^2+f(c)^2=2f(a)f(b)+2f(b)f(c)+2f(c)f(a).\]&lt;/span&gt;&#xA;(Here Z denotes the set of integers.)&lt;/p&gt;&#xA;&lt;p&gt;An innocent-looking functional equation, but once you start trying it&#xA;you discover that there’s quite some depth to it. Random guessing can&#xA;yield that &lt;span class=&#34;math inline&#34;&gt;\(f(x) = x^2\)&lt;/span&gt; is a&#xA;solution, so I proved inductively that after dividing out a constant&#xA;f(1) then the remaining part of f is a perfect square. Letting &lt;span&#xA;class=&#34;math inline&#34;&gt;\(f(x) = f(1)g(x)^2\)&lt;/span&gt; with g(x) a nonnegative&#xA;integer and factorizing the original equation, I got an auxiliary&#xA;functional equation equivalent to the original equation.&lt;/p&gt;&#xA;&lt;p&gt;Casework on small values of g, and the surprises started coming hard&#xA;and fast. First: wow there’s an extra odd-even solution! Then: woah&#xA;there’s another mod 4 solution! What is this madness?&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>[IMO 2012 Part 4] The Inequality of Broken Dreams</title>
+				<link>//blog.vero.site/post/inequality</link>
+				<pubDate>Thu, 02 Aug 2012 11:07:33 +0800</pubDate>
+				<guid>//blog.vero.site/post/inequality</guid>
+				<description>&lt;p&gt;I could spend all day coming up with post titles like this one.&#xA;Really, I could. Anyway, after receiving the letter gently reminding me&#xA;to turn in the official IMO report in Chinese, I finished that first and&#xA;turned it in. This, plus the fact that I don’t have any way to do any of&#xA;my summer homework yet, should make continued blogging much easier.&lt;/p&gt;&#xA;&lt;p&gt;These months of preparation and anticipation, and in just over two&#xA;days it will be behind us forever.&lt;/p&gt;&#xA;&lt;p&gt;Thus were my thoughts at 3:30 in the morning, which were a much worse&#xA;method of preparation than that which I used for the APMO, which&#xA;involved trying for the first time to put my compass in its box and&#xA;staring at a cryptic crossword. Twisted thoughts as I lay innocently in&#xA;bed, trying to preserve my spirit and mathematical function. I got up at&#xA;6:30 and ate a breakfast nervously with the team.&lt;/p&gt;&#xA;&lt;p&gt;We dispersed into the contest hall. Flat squarish white tables in&#xA;orderly rows greeted us. They were considerably smaller than the&#xA;arm-span tables we had last year in the Netherlands’ stadium, but the&#xA;space was still ample compared to the ones we took our practice tests on&#xA;at home. I floundered a bit looking for whoever was supposed to check&#xA;our stuff for forbidden items, but none of the proctors paid any&#xA;attention to that, so I flipped through my own jacket pockets&#xA;paranoidly.&lt;/p&gt;&#xA;&lt;p&gt;But preparation was too brief, and there were at least fifteen&#xA;minutes left with nothing to do except try not to panic. I managed to&#xA;fill these fifteen minutes by doing elaborate breathing exercises,&#xA;raising and flapping my arms, counting down seconds, focusing on a color&#xA;word, meditating badly, clearing out everything nonmathematical from my&#xA;mind with a symbolic gesture. This is not a very coherent description,&#xA;but I wasn’t feeling very coherent.&lt;/p&gt;&#xA;&lt;p&gt;I opened an eye halfway and watched as the clock ticked down the last&#xA;few seconds. The starting signal sounded. I opened up the problem&#xA;envelope…&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>[IMO 2012 Part 3] Luggage Carriers and Language Barriers</title>
+				<link>//blog.vero.site/post/luggage-language</link>
+				<pubDate>Wed, 25 Jul 2012 09:32:45 +0800</pubDate>
+				<guid>//blog.vero.site/post/luggage-language</guid>
+				<description>&lt;p&gt;Who knew coming up with strangely cryptic and illogical but&#xA;nice-sounding post titles was so much fun!?&lt;/p&gt;&#xA;&lt;p&gt;Okay, this break in storytelling is mainly brought to you by generic&#xA;summer laziness, as well as possibly a tiny bit of chemotherapy adverse&#xA;effect. There is only a little perfectionism involved, and that’s&#xA;because this post contains a long awkward situation (you might have&#xA;guessed already). I guess this is what it feels like to have oodles of&#xA;stuff to blog about, but not enough motivation. Heck, these few days&#xA;with running the TAIMC have long filled my list of rant topics with&#xA;juicy stories until it’s near-bursting. But I need to end this self-pity&#xA;party before I get carried away, so… back to the action.&lt;/p&gt;&#xA;&lt;p&gt;Stranded in a foreign country at least 20 degrees Celsius below our&#xA;comfort zone, having worn the same clothes for 36 hours of airplane&#xA;travel, and still with less than 48 hours until the contest and &lt;em&gt;zero&#xA;out of six compasses&lt;/em&gt;, we were running out of options.&lt;/p&gt;&#xA;&lt;p&gt;A quick inventory of clothes showed that, after including the vests&#xA;and caps in the backpacks we got, we probably had just enough clothes to&#xA;survive the cruel frigid environment. So, reluctantly, we left the games&#xA;room and hit the street to hunt down some underwear and socks to change&#xA;into. Not to mention toothbrushes and some T-shirts and jackets for good&#xA;measure, because the inside of the hotel was not the right temperature&#xA;for full cold-resistance gear.&lt;/p&gt;&#xA;&lt;p&gt;Some haphazard wandering up and down the streets later, we found a&#xA;store that suited our needs and picked up some clothes. The underwear&#xA;came in two sizes: too loose and too tight. We picked the latter. Oh&#xA;well, it would only be for a day or so… right?&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>[IMO 2012 Part 2] The Hotel of Deception</title>
+				<link>//blog.vero.site/post/hotel</link>
+				<pubDate>Fri, 20 Jul 2012 12:45:41 +0800</pubDate>
+				<guid>//blog.vero.site/post/hotel</guid>
+				<description>&lt;p&gt;We finally arrived at the hotel at 3:30, meeting another local from&#xA;Taiwan, Mr. Chen, who helped us carry some of our stuff off the bus.&#xA;Po-Chiang, our guide, was waiting inside. We took more pictures and&#xA;finally lugged the meager stuff we had off to our hotel rooms.&lt;/p&gt;&#xA;&lt;p&gt;At least, we tried. I started to realize that there was much more to&#xA;this hotel than it seemed.&lt;/p&gt;&#xA;&lt;p&gt;Firstly, of course, was the confusing placement of rooms with numbers&#xA;starting with 4 and 5 on the fourth floor (which would be the fifth&#xA;floor by our numbering system, where the lobby is floor 1; but here the&#xA;lobby was assigned 0. Off-by-one errors just waiting to happen here.)&#xA;Secondly were the completely indecipherable signs. I don’t remember the&#xA;details, but the first signs we saw read something like “560 ~ 540:&#xA;left; 520 ~ 540: right”. Occasionally there would be weird slashes or&#xA;half-slashes between the numbers instead (later I finally realized they&#xA;were slanted, Comic-Sans-style capital Ys, or “and” in Spanish). Are&#xA;these closed, open, or half-open intervals? And why the heck are their&#xA;upper and lower bounds in a different order!?&lt;/p&gt;&#xA;&lt;p&gt;We wandered through the corridors, peeking down each one, trying to&#xA;figure out whether the numbers were increasing or decreasing and whether&#xA;a parity argument (for those of you not fluent in math lingo, that means&#xA;odds and evens) allowed for the existence of our room. Who knew the&#xA;simple act of finding one’s living quarters could be so mathematically&#xA;tasking? In the end, our rooms were in the last corridor, just about&#xA;diametrically opposite to the elevators on the half of our floor. Oh&#xA;well.&lt;/p&gt;&#xA;&lt;p&gt;The room was pretty nice overall. The furniture and basic facilities&#xA;were quite complete, with a sparkly bathroom and a couple tables and&#xA;chairs of various shapes. The closet was big and had a safe, which was&#xA;rather important because just about everybody we had met had warned us&#xA;over and over again about all the incredibly skilled thieves, muggers,&#xA;and pickpockets in Argentina. It was probably much safer (no pun&#xA;intended) in the hotel, but with all of these warnings (later we would&#xA;even find a notice from the hotel warning us to lock our doors) I was&#xA;never entirely certain. There were lots of lights controlled by a set of&#xA;confusing switches on either side of our beds. There was at least one&#xA;white immovable divider cunningly disguised as a switch, one switch that&#xA;didn’t ever seem to do anything, and one that turned everything off. The&#xA;last one made a little sense after a while because it had pictures of&#xA;stars and a moon on it, but the whole setup was still pretty&#xA;non-user-friendly in my opinion.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>[IMO 2012 Part 1] Dangerous Metal Chopsticks</title>
+				<link>//blog.vero.site/post/metal-chopsticks</link>
+				<pubDate>Fri, 20 Jul 2012 07:44:51 +0800</pubDate>
+				<guid>//blog.vero.site/post/metal-chopsticks</guid>
+				<description>&lt;p&gt;It’s time to begin the epic blogging journey. The detailed version of&#xA;this year’s amazing IMO, because I decided that a perfectionist guy like&#xA;myself could not possibly liveblog and be satisfied with both the&#xA;quality of the posts and being able to fully enjoy the actual event.&lt;/p&gt;&#xA;&lt;p&gt;Our story begins in a hotel in Taiwan.&lt;/p&gt;&#xA;&lt;p&gt;The night before departure, us six contestants and Prof. Lin gathered&#xA;in a hotel. This was entirely necessary because our flight left at&#xA;something like five o’clock in the morning. After checking over the&#xA;flight plans and relevant phone numbers in a conference room, we enjoyed&#xA;a pretty extensive buffet dinner, what would easily be the best meal we&#xA;would get to have for at least a week, the highlight of which was a fish&#xA;steak that looked and tasted exactly like fried egg. Afterwards we did&#xA;some emergency shopping and prepared a convenience-store breakfast for&#xA;consumption three o’clock the next day.&lt;/p&gt;&#xA;&lt;p&gt;As I’ve complained before, we have an 11-hour difference to get used&#xA;to, and that morning I had gotten myself to sleep as late as 6 AM trying&#xA;(successfully, much to my amazement) to complete an iPod OS system&#xA;update. I didn’t think I could pass airport security with the sort of&#xA;consciousness I had when I finally slept that morning, so I reverted&#xA;with the rest of the team to an 11 PM curfew. Oh well. The seven of us&#xA;left the hotel after 3 AM, setting off in a huge 30-person bus for the&#xA;airport.&lt;/p&gt;&#xA;&lt;p&gt;Luggage drop-off was mostly uneventful. I realized that the airline&#xA;didn’t seem to like passengers bringing two bags onto the airplane, and&#xA;decided to distribute my bag with all the winter clothes in it into my&#xA;luggage and my backpack. Little did we know what would happen to the&#xA;luggage…&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Impact Minus Two Weeks</title>
+				<link>//blog.vero.site/post/impact-minus-two-weeks</link>
+				<pubDate>Mon, 25 Jun 2012 20:14:12 +0800</pubDate>
+				<guid>//blog.vero.site/post/impact-minus-two-weeks</guid>
+				<description>&lt;p&gt;Wait, are you serious? Under two weeks left, is that what it’s come&#xA;to?&lt;/p&gt;&#xA;&lt;p&gt;What happened to my majestic plans to go over every functional&#xA;equation I failed on, ever? Or to go through a super-intense&#xA;geometry-immersion period and actually try to develop some of that crazy&#xA;“intuition” thing? And I have &lt;em&gt;finals&lt;/em&gt; coming up too! I just&#xA;finished a ludicrous deadline-extended geography project that I am&#xA;absolutely confident is the crappiest paper of my entire school career&#xA;so far! And despite a semester of (slacking) classes, my Spanish is&#xA;still only barely at a usable level! Exclamation marks!&lt;/p&gt;&#xA;&lt;p&gt;Don’t panic… let’s focus on the positive. I am absolutely prepared&#xA;with my stationery. I bought three spanking new 0.4mm pens that say “Can&#xA;write for 1000 meters!” because all of my current ones are annoyingly&#xA;thick and constantly having almost-but-not-quite run out, plus three new&#xA;mechanical pencils and enough matching 2B lead to last me through&#xA;college. All the pencils and lead are Pentel. I haven’t done any&#xA;research, so if something terrible happens in Argentina I know what&#xA;company to blame, and I am writing it here so I won’t confuse the&#xA;brands. Also, in view of what happened to SCH’s carry-on baggage last&#xA;year (luckily there was no geo on Day 1), I got an extra compass I hope&#xA;won’t be needed.&lt;/p&gt;&#xA;&lt;p&gt;While we’re listing all the &lt;em&gt;stuff&lt;/em&gt; I have gotten ready:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Coup de Grâce</title>
+				<link>//blog.vero.site/post/coup-de-grace</link>
+				<pubDate>Mon, 30 Apr 2012 19:22:49 +0800</pubDate>
+				<guid>//blog.vero.site/post/coup-de-grace</guid>
+				<description>&lt;p&gt;Yes, it’s official now. I’m on the 2012 International Mathematical&#xA;Olympiad team bound for Argentina, and if I didn’t make a post about&#xA;this I would be ashamed to call myself a blogger. So, a little moment of&#xA;smug self-satisfaction should be justified, I hope? And not to mention,&#xA;last year’s title of youngest Taiwan contestant is not yet passed? Let’s&#xA;cue the evil laughter!&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://imgs.xkcd.com/comics/toot.png&#34; alt=&#34;Obligatory xkcd where a guy pops up and toots a literal air horn&#34; /&gt;&lt;/p&gt;&#xA;&lt;p&gt;…or maybe not.&lt;/p&gt;&#xA;&lt;p&gt;Here is a simple tabulation of our selection problems:&lt;/p&gt;&#xA;&lt;ol type=&#34;1&#34;&gt;&#xA;&lt;li&gt;GA/GN/CG/GNC/NGA&lt;/li&gt;&#xA;&lt;li&gt;AG/CA/NG/GCN/AGA&lt;/li&gt;&#xA;&lt;li&gt;GA/GN/CA/GCN/AGC&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Algebra x9, Combinatorics x7, Geometry x12, Number Theory x8. In&#xA;other words a distribution in perfect negative correlation with my&#xA;estimated ability in each subject. At least, that’s how I’ve always&#xA;estimated them before about a month ago. Ouch, the last stage was the&#xA;only one of the three where problem distribution for combinatorics&#xA;actually reached its fair share. (Alternative interpretation: 2011’s&#xA;distribution was majorly f123ed up with only one real geometry problem,&#xA;which just means that this year’s battle will probably be difficult for&#xA;me. (Alternative alternative interpretation: the evil, nasty, wicked,&#xA;depraved windmill was actually an outrageous negative for me. Gee, I&#xA;don’t know how to feel. But I should actually do stuff instead of wildly&#xA;speculating; let’s get back to the topic.))&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Back from Math-Camp Post...</title>
+				<link>//blog.vero.site/post/back-from-math-camp</link>
+				<pubDate>Thu, 13 Aug 2009 19:23:00 +0800</pubDate>
+				<guid>//blog.vero.site/post/back-from-math-camp</guid>
+				<description>&lt;div class=&#34;warning&#34;&gt;&#xA;&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2009 self wrote this. It is preserved for&#xA;historical interest and amusement, and as a testament to how far I’d go&#xA;to typeset math equations in ASCII art.&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;I have just come back from a week of continuous mathematics, board&#xA;gaming, and hitting people with sticks to ensure that they get up in&#xA;time. Yippee! Those problems sure do get around.&lt;/p&gt;&#xA;&lt;p&gt;Sample problem: This problem rocks!&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Iverson Bracket</title>
+				<link>//blog.vero.site/ref/iverson</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>//blog.vero.site/ref/iverson</guid>
+				<description>&lt;p&gt;Very simple to explain: if &lt;span class=&#34;math inline&#34;&gt;\(P\)&lt;/span&gt; is&#xA;a statement, &lt;span class=&#34;math inline&#34;&gt;\([P]\)&lt;/span&gt; is 1 if &lt;span&#xA;class=&#34;math inline&#34;&gt;\(P\)&lt;/span&gt; is true and 0 if not. So for&#xA;example&lt;/p&gt;&#xA;&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{aligned} \lbrack 1 &amp;lt; 2\rbrack&#xA;&amp;amp;= 1 \\ \lbrack 1 &amp;gt; 2\rbrack &amp;amp;= 0 \end{aligned}\]&lt;/span&gt;&lt;/p&gt;&#xA;&lt;p&gt;It’s like using a boolean as an integer in C or Python.&lt;/p&gt;&#xA;&lt;p&gt;It’s useful to keep yourself organized when you’re writing&#xA;summations, especially if you’re summing across terms with a weird&#xA;condition or if you need to exchange two sums. It’s also useful for&#xA;writing pathological functions concisely.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Linear Algebra</title>
+				<link>//blog.vero.site/ref/linalg</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>//blog.vero.site/ref/linalg</guid>
+				<description>&lt;p&gt;This is a matrix.&lt;/p&gt;&#xA;&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{bmatrix} 1 &amp;amp; 2 &amp;amp; 3 \\\\ 4&#xA;&amp;amp; 5 &amp;amp; 6 \end{bmatrix}\]&lt;/span&gt;&lt;/p&gt;&#xA;&lt;p&gt;It has 2 rows and 3 columns, so it is a &lt;span class=&#34;math inline&#34;&gt;\(2&#xA;\times 3\)&lt;/span&gt; matrix.&lt;/p&gt;&#xA;&lt;p&gt;Matrix addition and multiplication-by-a-scalar is done componentwise.&#xA;Matrix multiplication is done trickily; it’s associative, distributive,&#xA;commutative with scalars, linear,&#xA;anticommutative-under-transposition.&lt;/p&gt;&#xA;&lt;hr /&gt;&#xA;&lt;p&gt;Vectors are like columns of matrices, or matrices with one column.&#xA;Except row vectors are rows of matrices.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Operation Exchange</title>
+				<link>//blog.vero.site/ref/exchange</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>//blog.vero.site/ref/exchange</guid>
+				<description>&lt;h3 id=&#34;limit-limit&#34;&gt;Limit + Limit&lt;/h3&gt;&#xA;&lt;p&gt;Cheaply, using an &lt;a&#xA;href=&#34;%7B%%20post_url%202014-10-21-iverson-bracket%20%%7D&#34;&gt;Iverson&#xA;bracket&lt;/a&gt; expression:&lt;/p&gt;&#xA;&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[&#xA;\begin{aligned}&#xA;\lim_{a \to \infty} \lim_{b \to \infty} [a &amp;gt; b] &amp;amp;= 0 \\&#xA;\lim_{b \to \infty} \lim_{a \to \infty} [a &amp;gt; b] &amp;amp;= 1&#xA;\end{aligned}&#xA;\]&lt;/span&gt;&lt;/p&gt;&#xA;&lt;p&gt;For more continuity, use &lt;span class=&#34;math inline&#34;&gt;\(\frac{a}{a +&#xA;b}\)&lt;/span&gt; instead (Rudin Example 7.2).&lt;/p&gt;&#xA;&lt;p&gt;Uniform convergence on one limit suffices to allow this exchange,&#xA;almost by definition.&lt;/p&gt;&#xA;&lt;h3 id=&#34;limit-continuity&#34;&gt;Limit + Continuity&lt;/h3&gt;&#xA;&lt;p&gt;Let&lt;/p&gt;&#xA;&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[&#xA;f_\epsilon(x) = \begin{cases} 0 &amp;amp; \text{if } |x| \geq \epsilon \\ 1&#xA;- \left|\frac{x}{\epsilon}\right| &amp;amp;\text{if } |x| &amp;lt; \epsilon&#xA;\end{cases}.&#xA;\]&lt;/span&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Problem Reference</title>
+				<link>//blog.vero.site/ref/problem-ref</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>//blog.vero.site/ref/problem-ref</guid>
+				<description>&lt;p&gt;(ported from wiki)&lt;/p&gt;&#xA;&lt;p&gt;Certain notable problems that I don’t want to look through a zillion&#xA;pages to find.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;p&gt;&lt;a&#xA;href=&#34;http://www.artofproblemsolving.com/Forum/viewtopic.php?t=3547&#34;&gt;Iran&#xA;TST 1996&lt;/a&gt;, notoriously reposted &lt;a&#xA;href=&#34;http://www.artofproblemsolving.com/Forum/viewtopic.php?p=2089092#p2089092&#34;&gt;at&#xA;least 35 times on AoPS&lt;/a&gt; (okay, many of these are actually&#xA;modifications):&lt;/p&gt;&#xA;&lt;p&gt;If &lt;span class=&#34;math inline&#34;&gt;\(x, y, z &amp;gt; 0\)&lt;/span&gt; then&lt;/p&gt;&#xA;&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[(xy+yz+zx)\left(\frac{1}{(x+y)^2} +&#xA;\frac{1}{(y+z)^2} + \frac{1}{(z+x)^2}\right) \geq&#xA;\frac{9}{4}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;p&gt;&lt;a&#xA;href=&#34;http://www.artofproblemsolving.com/Forum/viewtopic.php?f=41&amp;amp;t=57272&#34;&gt;ISL&#xA;1988 #4&lt;/a&gt;: if &lt;span class=&#34;math inline&#34;&gt;\(1, 2, \ldots, n^2\)&lt;/span&gt;&#xA;are placed in a &lt;span class=&#34;math inline&#34;&gt;\(n \times n\)&lt;/span&gt;&#xA;chessboard, some two adjacent numbers differ by at least &lt;span&#xA;class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Rudin Crib Notes</title>
+				<link>//blog.vero.site/ref/rudin</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>//blog.vero.site/ref/rudin</guid>
+				<description>&lt;p&gt;Brevity has been chosen over accuracy because the whole point is that&#xA;you should know this stuff already.&lt;/p&gt;&#xA;&lt;h3 id=&#34;chapter-2-basic-topology-some-ch.-3&#34;&gt;Chapter 2: Basic Topology&#xA;(+ some Ch. 3)&lt;/h3&gt;&#xA;&lt;p&gt;An &lt;strong&gt;isolated point&lt;/strong&gt; of E is in E but not a limit point&#xA;of it. E is &lt;strong&gt;perfect&lt;/strong&gt; if it is exactly equal to its set&#xA;of limit points. Equivalently, it is closed and has no isolated points.&#xA;Ex. 2.44: The Cantor set is perfect.&lt;/p&gt;&#xA;&lt;p&gt;A &lt;strong&gt;compact set&lt;/strong&gt; is a set for which every open cover&#xA;has a finite subcover.&lt;/p&gt;&#xA;&lt;p&gt;Compactness or compact sets have these properties (with made-up&#xA;names):&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

@@ -7,8 +7,8 @@
 <meta name="author" content="betaveros" />
 <meta name="description" content=" Now that kmh is gone, clam’s been going through pickle withdrawal. To help him cope, he wrote his own pickle pyjail. It’s nothing like kmh’s, but maybe it’s enough.
 Language jails are rapidly becoming one of my CTF areas of expertise. Not sure how I feel about that.
-#!/usr/local/bin/python3 import pickle import io import sys module = type(__builtins__) empty = module(&amp;quot;empty&amp;quot;) empty.empty = empty sys.modules[&amp;quot;empty&amp;quot;] = empty class SafeUnpickler(pickle.Unpickler): def find_class(self, module, name): if module == &amp;quot;empty&amp;quot; and name.count(&amp;quot;.&amp;quot;) &amp;lt;= 1: return super().find_class(module, name) raise pickle.UnpicklingError(&amp;quot;e-legal&amp;quot;) lepickle = bytes.fromhex(input(&amp;quot;Enter hex-encoded pickle: &amp;quot;)) if len(lepickle) &amp;gt; 400: print(&amp;quot;your pickle is too large for my taste &amp;gt;:(&amp;quot;) else: SafeUnpickler(io.BytesIO(lepickle)).load() pickle is a Python object serialization format. As the docs page loudly proclaims, it is not secure. Roughly the simplest possible code to pop a shell (adapted from David Hamann, who constructs a more realistic RCE) looks like:
-" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+#!/usr/local/bin/python3 import pickle import io import sys module = type(__builtins__) empty = module(&quot;empty&quot;) empty.empty = empty sys.modules[&quot;empty&quot;] = empty class SafeUnpickler(pickle.Unpickler): def find_class(self, module, name): if module == &quot;empty&quot; and name.count(&quot;.&quot;) &lt;= 1: return super().find_class(module, name) raise pickle.UnpicklingError(&quot;e-legal&quot;) lepickle = bytes.fromhex(input(&quot;Enter hex-encoded pickle: &quot;)) if len(lepickle) &gt; 400: print(&quot;your pickle is too large for my taste &gt;:(&quot;) else: SafeUnpickler(io.BytesIO(lepickle)).load() pickle is a Python object serialization format. As the docs page loudly proclaims, it is not secure. Roughly the simplest possible code to pop a shell (adapted from David Hamann, who constructs a more realistic RCE) looks like:
+" /><meta name="generator" content="Hugo 0.166.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/kevin-higgs" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -334,9 +334,6 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a h
 	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
 	<section id="isso-thread"></section>
   <p class="comments-meta">if you liked this post, click to make an invisible number go up: <button class="btn like-button">like</button></p>
-	
-	
-	
 	<footer class="post-footer">
 		<nav class="pagination">
 			
@@ -350,7 +347,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a h
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2026 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

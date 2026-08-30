@@ -1,685 +1,136 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>competitions on Bounded-Error Log</title>
-    <link>//blog.vero.site/tag/competitions</link>
-    <description>Recent content in competitions on Bounded-Error Log</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 03 Feb 2019 16:01:01 -0500</lastBuildDate><atom:link href="//blog.vero.site/tag/competitions/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Olympiads: The Infinitely Overdue Retrospective</title>
-      <link>//blog.vero.site/post/olympiads</link>
-      <pubDate>Sun, 03 Feb 2019 16:01:01 -0500</pubDate>
-      
-      <guid>//blog.vero.site/post/olympiads</guid>
-      <description>&lt;p&gt;I put this question in my FAQ, because at least two people have asked
-me this question, and that’s how frequent a question needs to be to be
-on my FAQ: I got an IMO&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;
-role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; gold medal in 2012, as a ninth
-grader, and an IOI gold medal in 2014, as an eleventh grader. I could
-have kept going to either, or even decided to try taking the IPhO or
-something, but I didn’t. Why not?&lt;/p&gt;
-&lt;p&gt;The short answer: It was a rough utilitarian calculation. By
-continuing, I would probably displace somebody else who would gain more
-from being on an IMO/IOI team than I would. Besides, I wanted to do
-other things in high school, so I wasn’t losing much.&lt;/p&gt;
-&lt;p&gt;I think the short answer actually captures most of my thinking when I
-made the decision back then, and it’s not really new; I said as much at
-&lt;a href=&#34;//blog.vero.site/post/time&#34;&gt;the end of 2013&lt;/a&gt;. But behind it
-was a lot of complex thoughts and feelings that I’ve been ruminating
-over and trying to put into words for the better part of a decade.
-Hence, this post.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;There is a natural question that precedes the frequently asked one
-that I have never been asked, something I am now realizing I never
-honestly asked myself and never tried to answer deeply: Why did I
-participate in the IMO and the IOI in the first place?&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Jam-Packed Fun and Games</title>
-      <link>//blog.vero.site/post/jam</link>
-      <pubDate>Mon, 21 Sep 2015 00:45:43 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/jam</guid>
-      <description>&lt;p&gt;Did I say “fun”? That was short for function calls. Which are fun
-too, admittedly. Blah, I always go to such lengths to come up with
-snappy yet justified post titles and end up achieving neither.&lt;/p&gt;
-&lt;p&gt;One more complimentary breakfast later:&lt;/p&gt;
-&lt;p&gt;This is it.&lt;/p&gt;
-&lt;p&gt;Google Code Jam World Finals.
-&lt;a href=&#34;//blog.vero.site/img/nametag.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/nametag.jpg?w=170&#34; alt=&#34;[Google Code Jam 2015 name tag with my name and handle and country]&#34; width=&#34;170&#34; height=&#34;300&#34; class=&#34;aligncenter size-medium wp-image-3374&#34; /&gt;&lt;/a&gt;
-Let me take a moment to reflect. Seriously. I do not know how I made it
-this far this year. I guess I might be a top-500-ish competitive
-programmer globally, maybe even top-150-ish, but definitely not
-top-25-ish. And
-&lt;a href=&#34;https://code.google.com/codejam/contest/4254486/dashboard#s=p3&#34;&gt;Log
-Set&lt;/a&gt;, the hard problem that got me through Round 3, doesn’t seem like
-it plays to my forte particularly either. It’s a bit mathy, but the math
-bits aren’t the hard part; I think it’s largely implementation, with one
-psychological hurdle where you have to realize that, because of how few
-distinct integers there are in S′, you can efficiently solve the
-subset-sum instances you need to produce the lexicographically earliest
-answer. I’m actually kind of impressed I got that. It seems like the
-sort of hurdle I usually get stuck on. How did this happen?&lt;/p&gt;
-&lt;p&gt;Maybe randomness. Maybe I was just particularly clear-minded during
-the round and wrote less buggy code than usual, because I had no
-expectation of making it whatsoever and so could look at the contest
-detachedly (until midway through the contest I accidentally noticed that
-my rank was under 20, and even then I tried very very hard not to think
-about it, and it kind of worked).&lt;/p&gt;
-&lt;p&gt;But it happened, and now I’m here. Time to roll.&lt;/p&gt;
-&lt;p&gt;In some emails much earlier in the Code Jam logistical process,
-Google had asked for “requests for changes and/or additions” to the
-software that would be installed on our competition computers, and I had
-sent them a long list:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Hi,&lt;br /&gt; Here are some things I’d like if they were installed, in
-decreasing order of priority:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-The Vim plugin syntastic ( https://github.com/scrooloose/syntastic )
-&lt;/li&gt;
-&lt;li&gt;
-a Haskell compiler (probably Haskell Platform 2014.2.0.0
-https://www.haskell.org/platform/ even though it’s a year old)
-&lt;/li&gt;
-&lt;li&gt;
-the Haskell package hdevtools (
-https://hackage.haskell.org/package/hdevtools ) so that the above two
-may be integrated
-&lt;/li&gt;
-&lt;li&gt;
-(I don’t have enough Linux experience to name a specific thing to
-install, but command-line utilities that are the equivalent of pbcopy
-and pbpaste on Mac OS X, which allow me to redirect text into or out of
-the clipboard from the command line easily)
-&lt;/li&gt;
-&lt;/ol&gt;
-Of course, this is my first Code Jam and I don’t know how reasonable
-these requests are. Any nontrivial subset would be appreciated.
-&lt;/blockquote&gt;</description>
-    </item>
-    
-    <item>
-      <title>Orthogonal Planes</title>
-      <link>//blog.vero.site/post/planes</link>
-      <pubDate>Sun, 20 Sep 2015 11:13:14 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/planes</guid>
-      <description>&lt;p&gt;I have a backlog of at least 6,000 words and still too many events to
-blog about, so these posts will not reflect things currently happening
-to me for a long, long time, except for the little blurbs on top of
-posts like this one when they exist.&lt;/p&gt;
-&lt;p&gt;Blogging is hard.&lt;/p&gt;
-&lt;p&gt;Also, I don’t have a good title.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;It begins with an airplane.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/plane.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/plane.jpg?w=660&#34; alt=&#34;[View of airplane wing and clouds from airplane]&#34; width=&#34;660&#34; height=&#34;373&#34; class=&#34;aligncenter size-large wp-image-3361&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;For Zarquon’s sake, you’re entrusting me with &lt;em&gt;my own passport and
-airline tickets and luggage and all this stuff I can’t even.&lt;/em&gt; I
-still layover people for months on end in &lt;cite&gt;Pocket Planes&lt;/cite&gt;
-sometimes. &lt;a href=&#34;//blog.vero.site/post/cars&#34;&gt;(Watch the graceful
-descent of this reference into personally overused snowclone
-territory.)&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Source: Taiwan, my home for the previous twelve years, which I am now
-bidding farewell to for the longest time in forever (…which is only
-(“only”?) five months, assuming I fly back for winter break as already
-planned). Destination: Seattle, for this year’s Google Code Jam World
-Finals, which I still don’t know how I managed to qualify for (more on
-that in later posts); and, before that, an accompanying interview for an
-internship that I scored as part of the bargain.&lt;/p&gt;
-&lt;p&gt;I successfully get on the plane, sort some nice things to have on
-hand into my MIT tote bag (how did I &lt;em&gt;ever&lt;/em&gt; survive airplanes
-without keeping a tote bag on hand?), and put my backpack with the rest
-of my stuff into the overhead compartment. An old-ish guy who is
-probably Korean sits next to me. Plane takeoff is a bit delayed due to
-traffic congestion. Once during the flight, after an attendant passes
-out forms to everybody entering South Korea and I tell him I’m not, the
-guy asks me where I’m going and we have a short conversation. But for
-the most part, it’s typical airplane shenanigans. I listen to Avril
-Lavigne and Ellie Goulding, do a little homework, and eat the airplane
-food. Nothing remarkable happens.&lt;/p&gt;
-&lt;p&gt;Until near the end of the flight: a guy in a suit shows up in the
-aisle and, looking at some sort of checklist, calls my name.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[IOI 2014 Outtakes]</title>
-      <link>//blog.vero.site/post/outtakes</link>
-      <pubDate>Sun, 07 Sep 2014 16:01:28 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/outtakes</guid>
-      <description>Miscellaneous observations that didn’t make it into a compelling narrative, sometimes because I have forgotten exactly when they happened, sometimes because I only remembered when they happened after blogging about it, sometimes because it just seemed too tangential, sometimes just because of the circumference of the mooooooooooooooooon! (That made no sense and I’m not going to remember what I’m alluding to in a few months.) During the first day a guy came into the secret computer room that the Taiwan team had concealed themselves in, saw us watching anime (SAO 2 among others), and innocently asked, &#34;</description>
-    </item>
-    
-    <item>
-      <title>[IOI 2014 Part 4] Shades of Xanthous</title>
-      <link>//blog.vero.site/post/xanthous</link>
-      <pubDate>Sat, 06 Sep 2014 13:04:16 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/xanthous</guid>
-      <description>&lt;p&gt;No, I didn’t forget. Not for one minute. I was doing homework. I am
-very happy because that means I was actually carrying out my priorities
-as I envisioned them. I’ve probably edited this post too many times,
-though. Meh. But it’s the first weekend after finishing summer homework,
-so here we go again!&lt;/p&gt;
-&lt;p&gt;Fun fact: This is by far my favorite post title in the entire series.
-Possibly in the entire history of this blog.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;In the morning of the last day of official IOI activities, there were
-a bunch of cultural activities, e.g. writing Chinese characters
-calligraphically, doing tricks with the diabolo, or picking up beans
-with chopsticks, and noncultural activities, e.g. getting somebody to
-pour water into a cup on your head while he or she was blindfolded. Due
-to the last activity I got wet, but my shirt dried really quickly. And
-alas, even though I had taken calligraphy summer classes a long time
-ago, my calligraphy was awful — robotic, lifeless strokes without the
-right aesthetic proportions to make up for it. Blargh.&lt;/p&gt;
-&lt;p&gt;Anyway, lunch followed, and then it was time for the closing
-ceremony, in the same building as the other ceremonies and contests. Our
-team caught the ending song of in a Chinese musical being rehearsed as
-we walked into the auditorium. While we waited for everybody, we milled
-about waving flags that our various teachers had brought, including not
-only Taiwan’s flag but also flags of my school, thoughtfully brought by
-teachers who had volunteered. A little later our leader told us that all
-the leaders had discussed the matter during a meeting and decided that
-we shouldn’t bring any flags to the stage while receiving our medals, so
-we were going to have to make do with being patriotic and
-school-respecting off stage.&lt;/p&gt;
-&lt;p&gt;There were a few performances, including two aboriginal music
-performances and the musical we had seen rehearsed ealier, which was a
-fun rock musical rendition of some Chinese tale that seemed to have been
-sharply abridged, giving it the plot depth of a Wikipedia stub-article
-synopsis — a conflict, boy-meets-girl-and-falls-in-love, and a lamenting
-Aesop song conclusion with thrillingly vague general applicability. But
-the singing and counterpointing and atmosphere were good. I guess it was
-proportional to the relative importance of the performance to the
-closing ceremony. The program interleaved them with the long-awaited
-medal presentations: one round of bronze medalists, one round of silver,
-one round of gold.&lt;/p&gt;
-&lt;p&gt;Dum-dum-dum-dum, medals! The home team advantage was really obvious
-here; the cheering and the medal-presenter handshakes were both
-significantly more forceful for Taiwan’s medalists.&lt;/p&gt;
-&lt;figure&gt;
-&lt;a href=&#34;//blog.vero.site/img/gold.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/gold.jpg&#34; alt=&#34;I think our leader made this. Thanks.&#34; /&gt;&lt;/a&gt;
-&lt;figcaption&gt;
-I think our leader made this. Thanks.
-&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;Naturally, after the normal medals had been exhausted, the three full
-scorers received bags with prizes that may forever remain unknown to my
-sorry self, as well as a standing ovation from everybody in the
-auditorium. The orchestra had been going through ABBA songs during the
-ceremony, and very considerately played “The Winner Takes It All” for
-this part. It was impossible not to mentally fill in the lyrics.&lt;/p&gt;
-&lt;blockquote&gt;
-The winner takes it all&lt;br /&gt;The loser has to fall&lt;br /&gt;It’s simple and
-it’s plain&lt;br /&gt;Why should I complaiiiiiiiin?
-&lt;/blockquote&gt;
-&lt;p&gt;Speeches followed. Most were just average forgettable speeches, but
-Forster gave another speech that was somehow even better than the one he
-gave at the opening ceremony, with nonstop golden quotables such as:&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[IOI 2014 Part 2] One Line to Solve Them All</title>
-      <link>//blog.vero.site/post/one-line</link>
-      <pubDate>Sat, 26 Jul 2014 23:49:14 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/one-line</guid>
-      <description>&lt;p&gt;I started trying to sleep at 9 the night before the contest, tossed
-and turned in bed until 10, then fell asleep and got up at 3:35 in the
-morning. Blah. At that point, I went to the bathroom and applied some
-chapstick before trying to go back to sleep until 6. After breakfast, I
-grabbed a few minutes of sleep on the bus to the convention center where
-our contest would be, then slept on a sofa outside the actual contest
-hall alongside most of the rest of our team as we waited for a very long
-time until it was okay for us to enter. Competitions really mess with
-one’s sleep schedule.&lt;/p&gt;
-&lt;p&gt;Then, much too soon, we could enter. Day 1 of the contest was about
-to start.&lt;/p&gt;
-&lt;p&gt;The laptops were as yesterday, although they were protected with a
-white screensaver that indicated my name and ID as well as a countdown
-to the start of the contest. I was glad to see that my mousepad and all
-my writing utensils had survived without me. Somebody had the sense of
-humor to project an online stopwatch with an animated bomb fuse onto the
-screens to indicate the remaining time, which, once again, there was a
-lot of.&lt;/p&gt;
-&lt;p&gt;I conferred briefly with Paul (TZW (alphaveros (?))) about vim
-settings for a bit, but there were still fifteen minutes left or so. I
-idly stretched, practiced typing my &lt;code&gt;.vimrc&lt;/code&gt; on an imaginary
-keyboard, and watched as the US dude two tables to my left unplugged his
-laptop’s mouse and rearranged absolutely everything on his table using
-the surface under his chair as swap space. (Well, that was how I
-mentally described it at the time, pending further revelations. (hint
-hint))&lt;/p&gt;
-&lt;p&gt;Then it began.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[IOI 2014 Part 1] Everything is More Exciting with Lightsabers</title>
-      <link>//blog.vero.site/post/lightsabers</link>
-      <pubDate>Mon, 21 Jul 2014 17:31:10 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/lightsabers</guid>
-      <description>&lt;p&gt;Okay, I guess it was really naïve of me to suppose that I could get
-any considerable amount of blogging done before the IOI ended.
-Onward…&lt;/p&gt;
-&lt;p&gt;We left off at the end of the practice session. As if somebody were
-taking revenge against us for not having to suffer through any airplane
-trips, we were served a cold airplane meal for lunch.&lt;/p&gt;
-&lt;p&gt;Seriously, the box had a sticker that noted its manufacturer as
-something something Air Kitchen and another translucent sticker that
-badly covered an inscription saying the same thing in much bigger
-letters. It contained a cold apple salad, a cold chicken bun, a cold
-flat plastic cylinder of orange juice, and a package of plastic utensils
-that was exactly like the utensils that came with every airplane meal
-ever. I was disappointed, but at least the salad tasted okay, and I ate
-an extra one because two of my teammates volunteered theirs.&lt;/p&gt;
-&lt;p&gt;To pass the time, we played an extra-evil
-&lt;a href=&#34;https://en.wikipedia.org/wiki/Ninety-nine_(addition_card_game)&#34;&gt;ninety-nine&lt;/a&gt;
-variant. Apparently this is a very Taiwanese game because lots of
-student guides were teaching their teams the game, although our special
-cards differ from the ones Wikipedia lists in a lot of ways and our evil
-variant created more opportunity for sabotage and counter-sabotage and
-bluffing. 7s are used to draw your replacement card from somebody else’s
-hand, and that person cannot draw again and will have one less card;
-aces are used to swap your entire hand with somebody else, who also
-cannot draw a card; small-value cards can be combined to form special
-values (e.g. play a 2 and 5 for the effect of a 7) but after playing a
-combination you can only draw one replacement card; and later, to speed
-up the game, we added a rule where all 9s had to be unconditionally
-discarded without replacement but would still get shuffled back into the
-draw pile. Players lose if it’s their turn and they have no playable
-cards, including no cards at all.&lt;/p&gt;
-&lt;p&gt;While we were playing and repeatedly reveling in everybody ganging up
-to beat the winner from the last round, an instrumental version of “You
-Are My Sunshine” played on repeat in the background for literally the
-entire time. It wasn’t a very good version either. If you didn’t listen
-carefully for the fade-out and few seconds of silence at the end of each
-loop, you’d think that the loop was only one verse long.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[IOI 2014 Part 0] Waiting</title>
-      <link>//blog.vero.site/post/waiting</link>
-      <pubDate>Tue, 15 Jul 2014 21:30:53 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/waiting</guid>
-      <description>&lt;p&gt;Yes, I know day 1 of the contest already ended and is probably a more
-interesting topic to blog about, but I finished writing this last night
-just before the internet was cut off to quarantine the contestants from
-the leaders, who received the problems and began translating them. I
-didn’t know about this until it was too late, which is why I’ve been
-waiting since yesterday to post this.&lt;/p&gt;
-&lt;p&gt;To provide a counterpoint to the last post, one of the many,
-&lt;em&gt;many&lt;/em&gt; advantages of entering an international competition is
-that you get to meet a lot more people you already know, so there’s less
-time spent being socially awkward. While waiting for stuff to happen,
-aside from all the expected time spent with the Taiwan team, I also
-talked to, played games with, and otherwise entertained a whole lot of
-people I already knew, including my schoolmates (no less than fourteen
-of them were volunteers) and some of the college students who had
-shepherded us around during olympiad training.&lt;/p&gt;
-&lt;p&gt;Which is a good thing, too, because there was a lot of waiting.&lt;/p&gt;
-&lt;p&gt;First I waited for my teammates; my parents had decided to take me to
-the hotel (Fullon Shenkeng) directly, since I had a lot of stuff, and I
-had arrived early. This took about an hour, after which we had lunch.
-Then I waited for the hotel to give us our room cards, which took about
-five hours, after which we had dinner. Finally, at night, I waited for
-the Codeforces system tests. Very nerve-wracking. But I’m getting ahead
-of myself.&lt;/p&gt;
-&lt;p&gt;Advantage #2 of being the home team: you can talk to all of the
-organizers and volunteers fluently, so you can get them to help you more
-quickly. Although we waited for our room cards for an obscenely long
-time, I got the volunteers to replace my pinyin-name-card with a
-legitimate one that said “Brian” on it really quickly.&lt;/p&gt;
-&lt;p&gt;Unfortunately, after I talked to a few more people, it looks like
-they aren’t going to change my name in the database. So if anybody
-reading this chances to look at the IOI live ranking and is unable to
-find me, look for the first name “Po-En”.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Rise from the Ashes</title>
-      <link>//blog.vero.site/post/rise</link>
-      <pubDate>Tue, 29 Apr 2014 19:27:33 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/rise</guid>
-      <description>&lt;p&gt;After the first stage of selection camp, I was very nervous because I
-was fifth place in a selection sequence that would finally result in a
-team of four.&lt;/p&gt;
-&lt;p&gt;I screwed myself over on the first mock test by committing to a bad
-implementation method on a problem that was hard to get points on. My
-method seemed simple, but the memory usage leaked out in a way that was
-confusing and hard to patch; unfortunately, I tried to patch it in
-increasingly desperate and convoluted ways rather than scrapping the
-method, and thus missed out on many of the points elsewhere.&lt;/p&gt;
-&lt;p&gt;During the second test I failed to read the last problem carefully
-and spent too much of my time on the second problem, once again missing
-out on a lot of relatively easy points. I had optimized and optimized
-and pushed my quadratic runtime down to linearithmic, which would allow
-me to get the points for the last subtask — or so I thought. But with 10
-minutes left I had all but one testcase right, and after desperately
-rereading my code, I realized that I had a string comparison stuck in an
-inner loop that could make my runtime degenerate to quadratic if the
-input string had lots of the same digit. In order to have a solidly
-linearithmic algorithm, I would have to implement a
-&lt;a href=&#34;https://en.wikipedia.org/wiki/Suffix_array&#34;&gt;suffix array&lt;/a&gt;.
-Ten minutes? I gave up. (The problem setters told me afterwards that
-hashing would have worked too; I didn’t think of that at all. Oops.) I
-spent the 10 minutes reading the last problem and still failed to read
-it carefully. So that did not go very well.&lt;/p&gt;
-&lt;p&gt;But, as the title probably gave away, during the third and fourth
-mock tests everything went much better than expected. :)&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Adventures in Cabal Installations</title>
-      <link>//blog.vero.site/post/cabal</link>
-      <pubDate>Sun, 13 Apr 2014 15:51:16 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/cabal</guid>
-      <description>&lt;p&gt;First Google Code Jam!&lt;/p&gt;
-&lt;p&gt;The format of this competition, allowing us to run programs on our
-own machines, brought up a very interesting issue for me: what
-programming language should I be using? (I had had similar
-considerations for IPSC 2013, but GCJ’s problems are closer to the
-traditional ACM-ICPC style.)&lt;/p&gt;
-&lt;p&gt;The obvious choice is C++, the language I use for roughly every other
-competition, but its safety (or lack thereof) is not very appealing. I
-need speed, but not &lt;em&gt;that much&lt;/em&gt; speed. Unfortunately I still
-haven’t gotten around to learning any other friendlier mid-level
-languages (on the list: D, Go, or Rust), so I have no close substitutes
-for C++ right now.&lt;/p&gt;
-&lt;p&gt;Python is certainly available for a reliable arbitrary-length integer
-type, if nothing else.&lt;/p&gt;
-&lt;p&gt;As for non-candidates, Java has &lt;code&gt;BigInteger&lt;/code&gt; and memory
-safety, but all in all I decided the benefits are too minor and it’s too
-ugly without operator overloading. Scala is probably way too slow. So I
-don’t expect to be writing either language.&lt;/p&gt;
-&lt;p&gt;The only difficult choice I have to make is, of course, Haskell —
-which can be quite fast, even while it’s ridiculously type-safe and
-expressive and referentially transparent and easy to reason about, once
-you’ve:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;figured out how to do the problem&lt;/li&gt;
-&lt;li&gt;scrapped step 1 and &lt;em&gt;actually&lt;/em&gt; figured out how to do the
-problem &lt;em&gt;functionally&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;gotten the thing to compile&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Even if I can handle step 1, step 2 is by no means a simple task, as
-my struggle to implement a mere
-&lt;a href=&#34;//blog.vero.site/post/haskell&#34;&gt;Sieve of Eratosthenes&lt;/a&gt;
-efficiently shows. That is fun, but not at all intuitive; I am doubtful
-I can do this under contest conditions. It is extremely difficult to
-transfer my skills in learning how to implement, say, a segment tree or
-treap into this language.&lt;/p&gt;
-&lt;p&gt;But! Google links to the
-&lt;a href=&#34;http://www.go-hero.net/jam/10/round/0&#34;&gt;programming language
-breakdown for 2010 Qualification Round&lt;/a&gt; as an example, and much to my
-surprise, Haskell ranks somewhere between sixth and tenth place in
-popularity (depending on what you sort by), so there are functional
-superprogrammers who can presumably do something like this.&lt;/p&gt;
-&lt;p&gt;As it happens, I ended up implementing all four solutions to the
-qualification rounds in Haskell, because of the relaxed time limit and
-lack of any involved algorithms and data structures. I think it was
-worth it.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>The Sands of Time</title>
-      <link>//blog.vero.site/post/time</link>
-      <pubDate>Tue, 31 Dec 2013 18:33:17 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/time</guid>
-      <description>&lt;p&gt;Random video! Although I feel that I’ve heard it earlier, my first
-conscious memory of getting linked to it is from
-&lt;a href=&#34;http://usamoarchive.wordpress.com/2012/03/01/youre-older-than-youve-ever-been/&#34;&gt;this
-post&lt;/a&gt;. At first I thought it would be the right background music for
-this post, but upon further reflection I think it mainly suited me while
-I was writing this post. Well, it’s topical if you mentally replace
-“day” with “year”.&lt;/p&gt;
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://www.youtube.com/embed/q2bo_u_YmW8&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Anyway. Around this time a year ago, I paused my participation in big
-high-school competitions, for a variety of reasons.&lt;/p&gt;
-&lt;p&gt;Firstly, I stopped attempting to make IMO both because I wouldn’t get
-that much from the training and because other people ought to have the
-opportunity. I was concerned that I might condition myself to only be
-able to do math with the short-term motivation of contests. Better to
-focus on college math and maybe some original research, I thought.
-During the year, I did lots of the former and very little of the latter.
-Meh.&lt;/p&gt;
-&lt;p&gt;As for the IOI, my obvious next target: I was tired of training and
-going abroad while paranoid about whether my immune system would hold
-up. I didn’t feel that the IOI was worth that. To some degree, I also
-felt burned out about programming. Long story short, my treatment should
-end soon, and learning Haskell completely resolved the burnout
-problem.&lt;/p&gt;
-&lt;p&gt;But the most important reason, I think, was that “high school was too
-short”. I started math competitions ridiculously early and didn’t spend
-much time exploring other interests. I thought I knew myself well enough
-that I could say I didn’t have many more interests at all, but I was
-completely wrong (psych nerds will reflexively note this to be the
-&lt;a href=&#34;https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect&#34;&gt;Dunning-Kruger
-effect&lt;/a&gt;). I coded lots in weird languages — Haskell, as mentioned
-previously, plus Scala, plus all manner of other magical command line
-tools. I wrote my first math problem and submitted it officially, picked
-up a new instrument, went to a debate competition, served as an
-unimportant tech guy for MUN, discovered and became hooked on
-Pentatonix, participated in three puzzle hunts in Australia and one in
-Massachusetts, figured out my rough political stance, rode a boat, got
-retweeted by &lt;span class=&#34;citation&#34; data-cites=&#34;eevee&#34;&gt;@eevee&lt;/span&gt; and
-&lt;span class=&#34;citation&#34;
-data-cites=&#34;Kyrgyzstan_News&#34;&gt;@Kyrgyzstan_News&lt;/span&gt;, increased my
-Neopets™ fortune by over 3400%, and lurked on FurAffinity a little too
-much.&lt;/p&gt;
-&lt;p&gt;But now, dear competition world, I’m back.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Ridiculously Long-Winded Programming Babble</title>
-      <link>//blog.vero.site/post/programming</link>
-      <pubDate>Sun, 16 Dec 2012 22:08:28 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/programming</guid>
-      <description>&lt;p&gt;Okay I don’t actually know how this pointless rambling got so long. I
-know the longer it is the more people will just tend to skim, because I
-do that all the time. So I went back and refactored—er, rewrote all the
-somewhat tangential bits (wow these puns are too easy) into footnotes.
-Manually. Obviously if I have to do this again I’ll write a script for
-it. But the post is still really long, and I bet nobody will read the
-whole thing. Oh well.&lt;/p&gt;
-&lt;p&gt;Life updates: I got out of the hospital Friday two-and-a-half weeks
-ago, went to the preliminaries of NPSC (a national team programming
-contest) with classmates, threw up a lot, went back into the hospital,
-and came out again. I wrote a lot of stuff about the experience and how
-much it sucked (hint: &lt;em&gt;a lot&lt;/em&gt;) when I started this draft around
-that time, but now putting so much detail in this post feels weird. I’m
-mostly good now.&lt;/p&gt;
-&lt;p&gt;Three years ago NPSC was the only programming contest I really knew
-of; now I’ve participated in quite a few more, both online and locally,
-but it’s still the only contest I’ve entered that gives you real-time
-verdicts. I believe it inherits this from being modeled after ACM-ICPC,
-but that’s for college people and I’m less clear on how it works. All
-the other contests, namely
-&lt;a href=&#34;https://www.topcoder.com/&#34;&gt;TopCoder&lt;/a&gt;,
-&lt;a href=&#34;http://www.codeforces.com/&#34;&gt;CodeForces&lt;/a&gt;,
-&lt;a href=&#34;http://usaco.org/&#34;&gt;USACO&lt;/a&gt;, and the other local individual
-competition (there doesn’t appear to be an English name so for the
-purpose of this post I’ll just call it “Nameless Local”; there’s a
-nation-wide competition in one-and-a-half weeks!), have system tests
-after the contest that don’t allow you to resubmit afterwards.&lt;a
-href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;
-role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; They all give pretests that you get
-to know about right away, just to catch super-silly non-algorithmic
-mistakes like failing to remove the debug statements or reading input
-from the wrong place, but these contain weak test cases and don’t
-guarantee that the solution will pass the system tests and get full
-score.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[IMO 2012 Part 2] The Hotel of Deception</title>
-      <link>//blog.vero.site/post/hotel</link>
-      <pubDate>Fri, 20 Jul 2012 12:45:41 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/hotel</guid>
-      <description>&lt;p&gt;We finally arrived at the hotel at 3:30, meeting another local from
-Taiwan, Mr. Chen, who helped us carry some of our stuff off the bus.
-Po-Chiang, our guide, was waiting inside. We took more pictures and
-finally lugged the meager stuff we had off to our hotel rooms.&lt;/p&gt;
-&lt;p&gt;At least, we tried. I started to realize that there was much more to
-this hotel than it seemed.&lt;/p&gt;
-&lt;p&gt;Firstly, of course, was the confusing placement of rooms with numbers
-starting with 4 and 5 on the fourth floor (which would be the fifth
-floor by our numbering system, where the lobby is floor 1; but here the
-lobby was assigned 0. Off-by-one errors just waiting to happen here.)
-Secondly were the completely indecipherable signs. I don’t remember the
-details, but the first signs we saw read something like “560 ~ 540:
-left; 520 ~ 540: right”. Occasionally there would be weird slashes or
-half-slashes between the numbers instead (later I finally realized they
-were slanted, Comic-Sans-style capital Ys, or “and” in Spanish). Are
-these closed, open, or half-open intervals? And why the heck are their
-upper and lower bounds in a different order!?&lt;/p&gt;
-&lt;p&gt;We wandered through the corridors, peeking down each one, trying to
-figure out whether the numbers were increasing or decreasing and whether
-a parity argument (for those of you not fluent in math lingo, that means
-odds and evens) allowed for the existence of our room. Who knew the
-simple act of finding one’s living quarters could be so mathematically
-tasking? In the end, our rooms were in the last corridor, just about
-diametrically opposite to the elevators on the half of our floor. Oh
-well.&lt;/p&gt;
-&lt;p&gt;The room was pretty nice overall. The furniture and basic facilities
-were quite complete, with a sparkly bathroom and a couple tables and
-chairs of various shapes. The closet was big and had a safe, which was
-rather important because just about everybody we had met had warned us
-over and over again about all the incredibly skilled thieves, muggers,
-and pickpockets in Argentina. It was probably much safer (no pun
-intended) in the hotel, but with all of these warnings (later we would
-even find a notice from the hotel warning us to lock our doors) I was
-never entirely certain. There were lots of lights controlled by a set of
-confusing switches on either side of our beds. There was at least one
-white immovable divider cunningly disguised as a switch, one switch that
-didn’t ever seem to do anything, and one that turned everything off. The
-last one made a little sense after a while because it had pictures of
-stars and a moon on it, but the whole setup was still pretty
-non-user-friendly in my opinion.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[IMO 2012 Part 1] Dangerous Metal Chopsticks</title>
-      <link>//blog.vero.site/post/metal-chopsticks</link>
-      <pubDate>Fri, 20 Jul 2012 07:44:51 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/metal-chopsticks</guid>
-      <description>&lt;p&gt;It’s time to begin the epic blogging journey. The detailed version of
-this year’s amazing IMO, because I decided that a perfectionist guy like
-myself could not possibly liveblog and be satisfied with both the
-quality of the posts and being able to fully enjoy the actual event.&lt;/p&gt;
-&lt;p&gt;Our story begins in a hotel in Taiwan.&lt;/p&gt;
-&lt;p&gt;The night before departure, us six contestants and Prof. Lin gathered
-in a hotel. This was entirely necessary because our flight left at
-something like five o’clock in the morning. After checking over the
-flight plans and relevant phone numbers in a conference room, we enjoyed
-a pretty extensive buffet dinner, what would easily be the best meal we
-would get to have for at least a week, the highlight of which was a fish
-steak that looked and tasted exactly like fried egg. Afterwards we did
-some emergency shopping and prepared a convenience-store breakfast for
-consumption three o’clock the next day.&lt;/p&gt;
-&lt;p&gt;As I’ve complained before, we have an 11-hour difference to get used
-to, and that morning I had gotten myself to sleep as late as 6 AM trying
-(successfully, much to my amazement) to complete an iPod OS system
-update. I didn’t think I could pass airport security with the sort of
-consciousness I had when I finally slept that morning, so I reverted
-with the rest of the team to an 11 PM curfew. Oh well. The seven of us
-left the hotel after 3 AM, setting off in a huge 30-person bus for the
-airport.&lt;/p&gt;
-&lt;p&gt;Luggage drop-off was mostly uneventful. I realized that the airline
-didn’t seem to like passengers bringing two bags onto the airplane, and
-decided to distribute my bag with all the winter clothes in it into my
-luggage and my backpack. Little did we know what would happen to the
-luggage…&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Impact Minus Two Weeks</title>
-      <link>//blog.vero.site/post/impact-minus-two-weeks</link>
-      <pubDate>Mon, 25 Jun 2012 20:14:12 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/impact-minus-two-weeks</guid>
-      <description>&lt;p&gt;Wait, are you serious? Under two weeks left, is that what it’s come
-to?&lt;/p&gt;
-&lt;p&gt;What happened to my majestic plans to go over every functional
-equation I failed on, ever? Or to go through a super-intense
-geometry-immersion period and actually try to develop some of that crazy
-“intuition” thing? And I have &lt;em&gt;finals&lt;/em&gt; coming up too! I just
-finished a ludicrous deadline-extended geography project that I am
-absolutely confident is the crappiest paper of my entire school career
-so far! And despite a semester of (slacking) classes, my Spanish is
-still only barely at a usable level! Exclamation marks!&lt;/p&gt;
-&lt;p&gt;Don’t panic… let’s focus on the positive. I am absolutely prepared
-with my stationery. I bought three spanking new 0.4mm pens that say “Can
-write for 1000 meters!” because all of my current ones are annoyingly
-thick and constantly having almost-but-not-quite run out, plus three new
-mechanical pencils and enough matching 2B lead to last me through
-college. All the pencils and lead are Pentel. I haven’t done any
-research, so if something terrible happens in Argentina I know what
-company to blame, and I am writing it here so I won’t confuse the
-brands. Also, in view of what happened to SCH’s carry-on baggage last
-year (luckily there was no geo on Day 1), I got an extra compass I hope
-won’t be needed.&lt;/p&gt;
-&lt;p&gt;While we’re listing all the &lt;em&gt;stuff&lt;/em&gt; I have gotten ready:&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Coup de Grâce</title>
-      <link>//blog.vero.site/post/coup-de-grace</link>
-      <pubDate>Mon, 30 Apr 2012 19:22:49 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/coup-de-grace</guid>
-      <description>&lt;p&gt;Yes, it’s official now. I’m on the 2012 International Mathematical
-Olympiad team bound for Argentina, and if I didn’t make a post about
-this I would be ashamed to call myself a blogger. So, a little moment of
-smug self-satisfaction should be justified, I hope? And not to mention,
-last year’s title of youngest Taiwan contestant is not yet passed? Let’s
-cue the evil laughter!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://imgs.xkcd.com/comics/toot.png&#34; alt=&#34;Obligatory xkcd where a guy pops up and toots a literal air horn&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;…or maybe not.&lt;/p&gt;
-&lt;p&gt;Here is a simple tabulation of our selection problems:&lt;/p&gt;
-&lt;ol type=&#34;1&#34;&gt;
-&lt;li&gt;GA/GN/CG/GNC/NGA&lt;/li&gt;
-&lt;li&gt;AG/CA/NG/GCN/AGA&lt;/li&gt;
-&lt;li&gt;GA/GN/CA/GCN/AGC&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Algebra x9, Combinatorics x7, Geometry x12, Number Theory x8. In
-other words a distribution in perfect negative correlation with my
-estimated ability in each subject. At least, that’s how I’ve always
-estimated them before about a month ago. Ouch, the last stage was the
-only one of the three where problem distribution for combinatorics
-actually reached its fair share. (Alternative interpretation: 2011’s
-distribution was majorly f123ed up with only one real geometry problem,
-which just means that this year’s battle will probably be difficult for
-me. (Alternative alternative interpretation: the evil, nasty, wicked,
-depraved windmill was actually an outrageous negative for me. Gee, I
-don’t know how to feel. But I should actually do stuff instead of wildly
-speculating; let’s get back to the topic.))&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Adventures in Crappy Markup</title>
-      <link>//blog.vero.site/post/crappy-markup</link>
-      <pubDate>Fri, 10 Feb 2012 21:39:00 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/crappy-markup</guid>
-      <description>There are two big elementary and middle school competitions around this part of the globe. Well, “big” according to “I’ve heard of it”, which is by no means an accurate measure of, well, anything. I don’t go out of my way to look for them any more, even though… hold on, am I still eligible? Whatever. But in any case, diverting any unnecessary energy from the olympiad-proof-training is probably not a good idea now.</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Competitions on Bounded-Error Log</title>
+		<link>//blog.vero.site/tag/competitions</link>
+		<description>Recent content in Competitions on Bounded-Error Log</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 03 Feb 2019 16:01:01 -0500</lastBuildDate>
+		
+			<atom:link href="//blog.vero.site/tag/competitions/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Olympiads: The Infinitely Overdue Retrospective</title>
+				<link>//blog.vero.site/post/olympiads</link>
+				<pubDate>Sun, 03 Feb 2019 16:01:01 -0500</pubDate>
+				<guid>//blog.vero.site/post/olympiads</guid>
+				<description>&lt;p&gt;I put this question in my FAQ, because at least two people have asked&#xA;me this question, and that’s how frequent a question needs to be to be&#xA;on my FAQ: I got an IMO&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&#xA;role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; gold medal in 2012, as a ninth&#xA;grader, and an IOI gold medal in 2014, as an eleventh grader. I could&#xA;have kept going to either, or even decided to try taking the IPhO or&#xA;something, but I didn’t. Why not?&lt;/p&gt;&#xA;&lt;p&gt;The short answer: It was a rough utilitarian calculation. By&#xA;continuing, I would probably displace somebody else who would gain more&#xA;from being on an IMO/IOI team than I would. Besides, I wanted to do&#xA;other things in high school, so I wasn’t losing much.&lt;/p&gt;&#xA;&lt;p&gt;I think the short answer actually captures most of my thinking when I&#xA;made the decision back then, and it’s not really new; I said as much at&#xA;&lt;a href=&#34;//blog.vero.site/post/time&#34;&gt;the end of 2013&lt;/a&gt;. But behind it&#xA;was a lot of complex thoughts and feelings that I’ve been ruminating&#xA;over and trying to put into words for the better part of a decade.&#xA;Hence, this post.&lt;/p&gt;&#xA;&lt;hr /&gt;&#xA;&lt;p&gt;There is a natural question that precedes the frequently asked one&#xA;that I have never been asked, something I am now realizing I never&#xA;honestly asked myself and never tried to answer deeply: Why did I&#xA;participate in the IMO and the IOI in the first place?&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Jam-Packed Fun and Games</title>
+				<link>//blog.vero.site/post/jam</link>
+				<pubDate>Mon, 21 Sep 2015 00:45:43 +0800</pubDate>
+				<guid>//blog.vero.site/post/jam</guid>
+				<description>&lt;p&gt;Did I say “fun”? That was short for function calls. Which are fun&#xA;too, admittedly. Blah, I always go to such lengths to come up with&#xA;snappy yet justified post titles and end up achieving neither.&lt;/p&gt;&#xA;&lt;p&gt;One more complimentary breakfast later:&lt;/p&gt;&#xA;&lt;p&gt;This is it.&lt;/p&gt;&#xA;&lt;p&gt;Google Code Jam World Finals.&#xA;&lt;a href=&#34;//blog.vero.site/img/nametag.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/nametag.jpg?w=170&#34; alt=&#34;[Google Code Jam 2015 name tag with my name and handle and country]&#34; width=&#34;170&#34; height=&#34;300&#34; class=&#34;aligncenter size-medium wp-image-3374&#34; /&gt;&lt;/a&gt;&#xA;Let me take a moment to reflect. Seriously. I do not know how I made it&#xA;this far this year. I guess I might be a top-500-ish competitive&#xA;programmer globally, maybe even top-150-ish, but definitely not&#xA;top-25-ish. And&#xA;&lt;a href=&#34;https://code.google.com/codejam/contest/4254486/dashboard#s=p3&#34;&gt;Log&#xA;Set&lt;/a&gt;, the hard problem that got me through Round 3, doesn’t seem like&#xA;it plays to my forte particularly either. It’s a bit mathy, but the math&#xA;bits aren’t the hard part; I think it’s largely implementation, with one&#xA;psychological hurdle where you have to realize that, because of how few&#xA;distinct integers there are in S′, you can efficiently solve the&#xA;subset-sum instances you need to produce the lexicographically earliest&#xA;answer. I’m actually kind of impressed I got that. It seems like the&#xA;sort of hurdle I usually get stuck on. How did this happen?&lt;/p&gt;&#xA;&lt;p&gt;Maybe randomness. Maybe I was just particularly clear-minded during&#xA;the round and wrote less buggy code than usual, because I had no&#xA;expectation of making it whatsoever and so could look at the contest&#xA;detachedly (until midway through the contest I accidentally noticed that&#xA;my rank was under 20, and even then I tried very very hard not to think&#xA;about it, and it kind of worked).&lt;/p&gt;&#xA;&lt;p&gt;But it happened, and now I’m here. Time to roll.&lt;/p&gt;&#xA;&lt;p&gt;In some emails much earlier in the Code Jam logistical process,&#xA;Google had asked for “requests for changes and/or additions” to the&#xA;software that would be installed on our competition computers, and I had&#xA;sent them a long list:&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Hi,&lt;br /&gt; Here are some things I’d like if they were installed, in&#xA;decreasing order of priority:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;The Vim plugin syntastic ( https://github.com/scrooloose/syntastic )&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;a Haskell compiler (probably Haskell Platform 2014.2.0.0&#xA;https://www.haskell.org/platform/ even though it’s a year old)&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;the Haskell package hdevtools (&#xA;https://hackage.haskell.org/package/hdevtools ) so that the above two&#xA;may be integrated&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;(I don’t have enough Linux experience to name a specific thing to&#xA;install, but command-line utilities that are the equivalent of pbcopy&#xA;and pbpaste on Mac OS X, which allow me to redirect text into or out of&#xA;the clipboard from the command line easily)&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;Of course, this is my first Code Jam and I don’t know how reasonable&#xA;these requests are. Any nontrivial subset would be appreciated.&#xA;&lt;/blockquote&gt;</description>
+			</item>
+			<item>
+				<title>Orthogonal Planes</title>
+				<link>//blog.vero.site/post/planes</link>
+				<pubDate>Sun, 20 Sep 2015 11:13:14 +0800</pubDate>
+				<guid>//blog.vero.site/post/planes</guid>
+				<description>&lt;p&gt;I have a backlog of at least 6,000 words and still too many events to&#xA;blog about, so these posts will not reflect things currently happening&#xA;to me for a long, long time, except for the little blurbs on top of&#xA;posts like this one when they exist.&lt;/p&gt;&#xA;&lt;p&gt;Blogging is hard.&lt;/p&gt;&#xA;&lt;p&gt;Also, I don’t have a good title.&lt;/p&gt;&#xA;&lt;hr /&gt;&#xA;&lt;p&gt;It begins with an airplane.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/plane.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/plane.jpg?w=660&#34; alt=&#34;[View of airplane wing and clouds from airplane]&#34; width=&#34;660&#34; height=&#34;373&#34; class=&#34;aligncenter size-large wp-image-3361&#34; /&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;For Zarquon’s sake, you’re entrusting me with &lt;em&gt;my own passport and&#xA;airline tickets and luggage and all this stuff I can’t even.&lt;/em&gt; I&#xA;still layover people for months on end in &lt;cite&gt;Pocket Planes&lt;/cite&gt;&#xA;sometimes. &lt;a href=&#34;//blog.vero.site/post/cars&#34;&gt;(Watch the graceful&#xA;descent of this reference into personally overused snowclone&#xA;territory.)&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Source: Taiwan, my home for the previous twelve years, which I am now&#xA;bidding farewell to for the longest time in forever (…which is only&#xA;(“only”?) five months, assuming I fly back for winter break as already&#xA;planned). Destination: Seattle, for this year’s Google Code Jam World&#xA;Finals, which I still don’t know how I managed to qualify for (more on&#xA;that in later posts); and, before that, an accompanying interview for an&#xA;internship that I scored as part of the bargain.&lt;/p&gt;&#xA;&lt;p&gt;I successfully get on the plane, sort some nice things to have on&#xA;hand into my MIT tote bag (how did I &lt;em&gt;ever&lt;/em&gt; survive airplanes&#xA;without keeping a tote bag on hand?), and put my backpack with the rest&#xA;of my stuff into the overhead compartment. An old-ish guy who is&#xA;probably Korean sits next to me. Plane takeoff is a bit delayed due to&#xA;traffic congestion. Once during the flight, after an attendant passes&#xA;out forms to everybody entering South Korea and I tell him I’m not, the&#xA;guy asks me where I’m going and we have a short conversation. But for&#xA;the most part, it’s typical airplane shenanigans. I listen to Avril&#xA;Lavigne and Ellie Goulding, do a little homework, and eat the airplane&#xA;food. Nothing remarkable happens.&lt;/p&gt;&#xA;&lt;p&gt;Until near the end of the flight: a guy in a suit shows up in the&#xA;aisle and, looking at some sort of checklist, calls my name.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>[IOI 2014 Outtakes]</title>
+				<link>//blog.vero.site/post/outtakes</link>
+				<pubDate>Sun, 07 Sep 2014 16:01:28 +0800</pubDate>
+				<guid>//blog.vero.site/post/outtakes</guid>
+				<description>Miscellaneous observations that didn’t make it into a compelling&#xA;narrative, sometimes because I have forgotten exactly when they&#xA;happened, sometimes because I only remembered when they happened after&#xA;blogging about it, sometimes because it just seemed too tangential,&#xA;sometimes just because of the circumference of the mooooooooooooooooon!&#xA;(That made no sense and I’m not going to remember what I’m alluding to&#xA;in a few months.)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;During the first day a guy came into the secret computer room that the&#xA;Taiwan team had concealed themselves in, saw us watching anime (SAO 2&#xA;among others), and innocently asked, &#34;Are you the Japanese team?&#34;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;The organizers had provided a free whack-a-mole machine, two basketball&#xA;machines, a Kinect, and a table soccer table in the basement outside the&#xA;dining hall. I don’t know what it is with science olympiads and table&#xA;soccer; it’s been provided at all three Olympiads I’ve gone to. Can this&#xA;be just a fluke?&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;Paul spent most mornings and evenings playing&#xA;&lt;a href=&#34;http://www.kingdomrush.com/&#34;&gt;Kingdom Rush&lt;/a&gt; in our room.&#xA;Kingdom Rush is a great game, but the reason I put it here is that I was&#xA;mildly amused to see a Kingdom Rush screenshot in&#xA;&lt;a href=&#34;http://www.mit.edu/~evanchen/handouts/IMO_2014/IMO_2014.pdf#section.4.7&#34;&gt;Evan’s&#xA;IMO 2014 report&lt;/a&gt; when it came out. Things that transcend boundaries…&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;Somewhere among the many occasions when I abruptly switched to English&#xA;to greet my classmates, our team developed the &#34;Hey, Brian!&#34; meme, which&#xA;then got two letters transposed. Just for your information.&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;I spotted T-shirts from IOI 2011, IOI 2012, IOI 2013, IMO 2012, Google&#xA;Code Jam, TopCoder, Codeforces, Dropbox, and Quora.&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;There really does appear to be a critical mass of confused people dining&#xA;in one place above which clapping for no reason is contagious. I&#xA;&lt;a href=&#34;//blog.vero.site/post/not-excursions#clapping&#34;&gt;observed this during IMO&#xA;2012 too.&lt;/a&gt; The new thing I learned was that the same trick also works&#xA;with singing “Happy Birthday” to some degree.&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;During one of the bus rides, I was randomly pulled into a conversation&#xA;about Phineas &amp;amp; Ferb. I impressed some contestant (I don’t remember&#xA;which country he came from, unfortunately; it &lt;em&gt;might&lt;/em&gt; have&#xA;started with a T?) by mentioning the English name of the evil genius,&#xA;Doofenshmirtz. (For a few seconds I wondered if I had met&#xA;&lt;a href=&#34;http://www.artofproblemsolving.com/community/user/79494&#34;&gt;a&#xA;certain IMO legend&lt;/a&gt; again.) The guy congratulated me, then remarked&#xA;that my eye cover made me look like a character from Happy Tree Friends.&#xA;&#34;It’s not good news to be a character from Happy Tree Friends.&#xA;Especially since we’re on a bus. Do you know the episode on a bus?&#34; I&#xA;didn’t know the episode on a bus, and I was pretty sure I preferred not&#xA;to know.&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;I still remember xyz111, the full scorer from China, for writing the&#xA;Codeforces round (#254) that&#xA;&lt;a href=&#34;http://codeforces.com/contest/444/standings/participant/2587738#p2587738&#34;&gt;totally&#xA;pwned me&lt;/a&gt; (my first rating decrease!) and then issuing an editorial&#xA;in response to an unexpected solution saying,&#xA;&lt;blockquote&gt;&#xA;This is my mistake, and I feel sorry for not noticing that, I’m too&#xA;naive, and not good at solving problems. Please forgive me.&#xA;&lt;/blockquote&gt;&#xA;o_O&#xA;&lt;blockquote&gt;&#xA;&lt;strong&gt;not good at solving problems&lt;/strong&gt;&#xA;&lt;/blockquote&gt;&#xA;O_o and people wonder why I’m humble…&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+			</item>
+			<item>
+				<title>[IOI 2014 Part 4] Shades of Xanthous</title>
+				<link>//blog.vero.site/post/xanthous</link>
+				<pubDate>Sat, 06 Sep 2014 13:04:16 +0800</pubDate>
+				<guid>//blog.vero.site/post/xanthous</guid>
+				<description>&lt;p&gt;No, I didn’t forget. Not for one minute. I was doing homework. I am&#xA;very happy because that means I was actually carrying out my priorities&#xA;as I envisioned them. I’ve probably edited this post too many times,&#xA;though. Meh. But it’s the first weekend after finishing summer homework,&#xA;so here we go again!&lt;/p&gt;&#xA;&lt;p&gt;Fun fact: This is by far my favorite post title in the entire series.&#xA;Possibly in the entire history of this blog.&lt;/p&gt;&#xA;&lt;hr /&gt;&#xA;&lt;p&gt;In the morning of the last day of official IOI activities, there were&#xA;a bunch of cultural activities, e.g. writing Chinese characters&#xA;calligraphically, doing tricks with the diabolo, or picking up beans&#xA;with chopsticks, and noncultural activities, e.g. getting somebody to&#xA;pour water into a cup on your head while he or she was blindfolded. Due&#xA;to the last activity I got wet, but my shirt dried really quickly. And&#xA;alas, even though I had taken calligraphy summer classes a long time&#xA;ago, my calligraphy was awful — robotic, lifeless strokes without the&#xA;right aesthetic proportions to make up for it. Blargh.&lt;/p&gt;&#xA;&lt;p&gt;Anyway, lunch followed, and then it was time for the closing&#xA;ceremony, in the same building as the other ceremonies and contests. Our&#xA;team caught the ending song of in a Chinese musical being rehearsed as&#xA;we walked into the auditorium. While we waited for everybody, we milled&#xA;about waving flags that our various teachers had brought, including not&#xA;only Taiwan’s flag but also flags of my school, thoughtfully brought by&#xA;teachers who had volunteered. A little later our leader told us that all&#xA;the leaders had discussed the matter during a meeting and decided that&#xA;we shouldn’t bring any flags to the stage while receiving our medals, so&#xA;we were going to have to make do with being patriotic and&#xA;school-respecting off stage.&lt;/p&gt;&#xA;&lt;p&gt;There were a few performances, including two aboriginal music&#xA;performances and the musical we had seen rehearsed ealier, which was a&#xA;fun rock musical rendition of some Chinese tale that seemed to have been&#xA;sharply abridged, giving it the plot depth of a Wikipedia stub-article&#xA;synopsis — a conflict, boy-meets-girl-and-falls-in-love, and a lamenting&#xA;Aesop song conclusion with thrillingly vague general applicability. But&#xA;the singing and counterpointing and atmosphere were good. I guess it was&#xA;proportional to the relative importance of the performance to the&#xA;closing ceremony. The program interleaved them with the long-awaited&#xA;medal presentations: one round of bronze medalists, one round of silver,&#xA;one round of gold.&lt;/p&gt;&#xA;&lt;p&gt;Dum-dum-dum-dum, medals! The home team advantage was really obvious&#xA;here; the cheering and the medal-presenter handshakes were both&#xA;significantly more forceful for Taiwan’s medalists.&lt;/p&gt;&#xA;&lt;figure&gt;&#xA;&lt;a href=&#34;//blog.vero.site/img/gold.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/gold.jpg&#34; alt=&#34;I think our leader made this. Thanks.&#34; /&gt;&lt;/a&gt;&#xA;&lt;figcaption&gt;&#xA;I think our leader made this. Thanks.&#xA;&lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;Naturally, after the normal medals had been exhausted, the three full&#xA;scorers received bags with prizes that may forever remain unknown to my&#xA;sorry self, as well as a standing ovation from everybody in the&#xA;auditorium. The orchestra had been going through ABBA songs during the&#xA;ceremony, and very considerately played “The Winner Takes It All” for&#xA;this part. It was impossible not to mentally fill in the lyrics.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;The winner takes it all&lt;br /&gt;The loser has to fall&lt;br /&gt;It’s simple and&#xA;it’s plain&lt;br /&gt;Why should I complaiiiiiiiin?&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Speeches followed. Most were just average forgettable speeches, but&#xA;Forster gave another speech that was somehow even better than the one he&#xA;gave at the opening ceremony, with nonstop golden quotables such as:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>[IOI 2014 Part 2] One Line to Solve Them All</title>
+				<link>//blog.vero.site/post/one-line</link>
+				<pubDate>Sat, 26 Jul 2014 23:49:14 +0800</pubDate>
+				<guid>//blog.vero.site/post/one-line</guid>
+				<description>&lt;p&gt;I started trying to sleep at 9 the night before the contest, tossed&#xA;and turned in bed until 10, then fell asleep and got up at 3:35 in the&#xA;morning. Blah. At that point, I went to the bathroom and applied some&#xA;chapstick before trying to go back to sleep until 6. After breakfast, I&#xA;grabbed a few minutes of sleep on the bus to the convention center where&#xA;our contest would be, then slept on a sofa outside the actual contest&#xA;hall alongside most of the rest of our team as we waited for a very long&#xA;time until it was okay for us to enter. Competitions really mess with&#xA;one’s sleep schedule.&lt;/p&gt;&#xA;&lt;p&gt;Then, much too soon, we could enter. Day 1 of the contest was about&#xA;to start.&lt;/p&gt;&#xA;&lt;p&gt;The laptops were as yesterday, although they were protected with a&#xA;white screensaver that indicated my name and ID as well as a countdown&#xA;to the start of the contest. I was glad to see that my mousepad and all&#xA;my writing utensils had survived without me. Somebody had the sense of&#xA;humor to project an online stopwatch with an animated bomb fuse onto the&#xA;screens to indicate the remaining time, which, once again, there was a&#xA;lot of.&lt;/p&gt;&#xA;&lt;p&gt;I conferred briefly with Paul (TZW (alphaveros (?))) about vim&#xA;settings for a bit, but there were still fifteen minutes left or so. I&#xA;idly stretched, practiced typing my &lt;code&gt;.vimrc&lt;/code&gt; on an imaginary&#xA;keyboard, and watched as the US dude two tables to my left unplugged his&#xA;laptop’s mouse and rearranged absolutely everything on his table using&#xA;the surface under his chair as swap space. (Well, that was how I&#xA;mentally described it at the time, pending further revelations. (hint&#xA;hint))&lt;/p&gt;&#xA;&lt;p&gt;Then it began.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>[IOI 2014 Part 1] Everything is More Exciting with Lightsabers</title>
+				<link>//blog.vero.site/post/lightsabers</link>
+				<pubDate>Mon, 21 Jul 2014 17:31:10 +0800</pubDate>
+				<guid>//blog.vero.site/post/lightsabers</guid>
+				<description>&lt;p&gt;Okay, I guess it was really naïve of me to suppose that I could get&#xA;any considerable amount of blogging done before the IOI ended.&#xA;Onward…&lt;/p&gt;&#xA;&lt;p&gt;We left off at the end of the practice session. As if somebody were&#xA;taking revenge against us for not having to suffer through any airplane&#xA;trips, we were served a cold airplane meal for lunch.&lt;/p&gt;&#xA;&lt;p&gt;Seriously, the box had a sticker that noted its manufacturer as&#xA;something something Air Kitchen and another translucent sticker that&#xA;badly covered an inscription saying the same thing in much bigger&#xA;letters. It contained a cold apple salad, a cold chicken bun, a cold&#xA;flat plastic cylinder of orange juice, and a package of plastic utensils&#xA;that was exactly like the utensils that came with every airplane meal&#xA;ever. I was disappointed, but at least the salad tasted okay, and I ate&#xA;an extra one because two of my teammates volunteered theirs.&lt;/p&gt;&#xA;&lt;p&gt;To pass the time, we played an extra-evil&#xA;&lt;a href=&#34;https://en.wikipedia.org/wiki/Ninety-nine_(addition_card_game)&#34;&gt;ninety-nine&lt;/a&gt;&#xA;variant. Apparently this is a very Taiwanese game because lots of&#xA;student guides were teaching their teams the game, although our special&#xA;cards differ from the ones Wikipedia lists in a lot of ways and our evil&#xA;variant created more opportunity for sabotage and counter-sabotage and&#xA;bluffing. 7s are used to draw your replacement card from somebody else’s&#xA;hand, and that person cannot draw again and will have one less card;&#xA;aces are used to swap your entire hand with somebody else, who also&#xA;cannot draw a card; small-value cards can be combined to form special&#xA;values (e.g. play a 2 and 5 for the effect of a 7) but after playing a&#xA;combination you can only draw one replacement card; and later, to speed&#xA;up the game, we added a rule where all 9s had to be unconditionally&#xA;discarded without replacement but would still get shuffled back into the&#xA;draw pile. Players lose if it’s their turn and they have no playable&#xA;cards, including no cards at all.&lt;/p&gt;&#xA;&lt;p&gt;While we were playing and repeatedly reveling in everybody ganging up&#xA;to beat the winner from the last round, an instrumental version of “You&#xA;Are My Sunshine” played on repeat in the background for literally the&#xA;entire time. It wasn’t a very good version either. If you didn’t listen&#xA;carefully for the fade-out and few seconds of silence at the end of each&#xA;loop, you’d think that the loop was only one verse long.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>[IOI 2014 Part 0] Waiting</title>
+				<link>//blog.vero.site/post/waiting</link>
+				<pubDate>Tue, 15 Jul 2014 21:30:53 +0800</pubDate>
+				<guid>//blog.vero.site/post/waiting</guid>
+				<description>&lt;p&gt;Yes, I know day 1 of the contest already ended and is probably a more&#xA;interesting topic to blog about, but I finished writing this last night&#xA;just before the internet was cut off to quarantine the contestants from&#xA;the leaders, who received the problems and began translating them. I&#xA;didn’t know about this until it was too late, which is why I’ve been&#xA;waiting since yesterday to post this.&lt;/p&gt;&#xA;&lt;p&gt;To provide a counterpoint to the last post, one of the many,&#xA;&lt;em&gt;many&lt;/em&gt; advantages of entering an international competition is&#xA;that you get to meet a lot more people you already know, so there’s less&#xA;time spent being socially awkward. While waiting for stuff to happen,&#xA;aside from all the expected time spent with the Taiwan team, I also&#xA;talked to, played games with, and otherwise entertained a whole lot of&#xA;people I already knew, including my schoolmates (no less than fourteen&#xA;of them were volunteers) and some of the college students who had&#xA;shepherded us around during olympiad training.&lt;/p&gt;&#xA;&lt;p&gt;Which is a good thing, too, because there was a lot of waiting.&lt;/p&gt;&#xA;&lt;p&gt;First I waited for my teammates; my parents had decided to take me to&#xA;the hotel (Fullon Shenkeng) directly, since I had a lot of stuff, and I&#xA;had arrived early. This took about an hour, after which we had lunch.&#xA;Then I waited for the hotel to give us our room cards, which took about&#xA;five hours, after which we had dinner. Finally, at night, I waited for&#xA;the Codeforces system tests. Very nerve-wracking. But I’m getting ahead&#xA;of myself.&lt;/p&gt;&#xA;&lt;p&gt;Advantage #2 of being the home team: you can talk to all of the&#xA;organizers and volunteers fluently, so you can get them to help you more&#xA;quickly. Although we waited for our room cards for an obscenely long&#xA;time, I got the volunteers to replace my pinyin-name-card with a&#xA;legitimate one that said “Brian” on it really quickly.&lt;/p&gt;&#xA;&lt;p&gt;Unfortunately, after I talked to a few more people, it looks like&#xA;they aren’t going to change my name in the database. So if anybody&#xA;reading this chances to look at the IOI live ranking and is unable to&#xA;find me, look for the first name “Po-En”.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Rise from the Ashes</title>
+				<link>//blog.vero.site/post/rise</link>
+				<pubDate>Tue, 29 Apr 2014 19:27:33 +0800</pubDate>
+				<guid>//blog.vero.site/post/rise</guid>
+				<description>&lt;p&gt;After the first stage of selection camp, I was very nervous because I&#xA;was fifth place in a selection sequence that would finally result in a&#xA;team of four.&lt;/p&gt;&#xA;&lt;p&gt;I screwed myself over on the first mock test by committing to a bad&#xA;implementation method on a problem that was hard to get points on. My&#xA;method seemed simple, but the memory usage leaked out in a way that was&#xA;confusing and hard to patch; unfortunately, I tried to patch it in&#xA;increasingly desperate and convoluted ways rather than scrapping the&#xA;method, and thus missed out on many of the points elsewhere.&lt;/p&gt;&#xA;&lt;p&gt;During the second test I failed to read the last problem carefully&#xA;and spent too much of my time on the second problem, once again missing&#xA;out on a lot of relatively easy points. I had optimized and optimized&#xA;and pushed my quadratic runtime down to linearithmic, which would allow&#xA;me to get the points for the last subtask — or so I thought. But with 10&#xA;minutes left I had all but one testcase right, and after desperately&#xA;rereading my code, I realized that I had a string comparison stuck in an&#xA;inner loop that could make my runtime degenerate to quadratic if the&#xA;input string had lots of the same digit. In order to have a solidly&#xA;linearithmic algorithm, I would have to implement a&#xA;&lt;a href=&#34;https://en.wikipedia.org/wiki/Suffix_array&#34;&gt;suffix array&lt;/a&gt;.&#xA;Ten minutes? I gave up. (The problem setters told me afterwards that&#xA;hashing would have worked too; I didn’t think of that at all. Oops.) I&#xA;spent the 10 minutes reading the last problem and still failed to read&#xA;it carefully. So that did not go very well.&lt;/p&gt;&#xA;&lt;p&gt;But, as the title probably gave away, during the third and fourth&#xA;mock tests everything went much better than expected. :)&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Adventures in Cabal Installations</title>
+				<link>//blog.vero.site/post/cabal</link>
+				<pubDate>Sun, 13 Apr 2014 15:51:16 +0800</pubDate>
+				<guid>//blog.vero.site/post/cabal</guid>
+				<description>&lt;p&gt;First Google Code Jam!&lt;/p&gt;&#xA;&lt;p&gt;The format of this competition, allowing us to run programs on our&#xA;own machines, brought up a very interesting issue for me: what&#xA;programming language should I be using? (I had had similar&#xA;considerations for IPSC 2013, but GCJ’s problems are closer to the&#xA;traditional ACM-ICPC style.)&lt;/p&gt;&#xA;&lt;p&gt;The obvious choice is C++, the language I use for roughly every other&#xA;competition, but its safety (or lack thereof) is not very appealing. I&#xA;need speed, but not &lt;em&gt;that much&lt;/em&gt; speed. Unfortunately I still&#xA;haven’t gotten around to learning any other friendlier mid-level&#xA;languages (on the list: D, Go, or Rust), so I have no close substitutes&#xA;for C++ right now.&lt;/p&gt;&#xA;&lt;p&gt;Python is certainly available for a reliable arbitrary-length integer&#xA;type, if nothing else.&lt;/p&gt;&#xA;&lt;p&gt;As for non-candidates, Java has &lt;code&gt;BigInteger&lt;/code&gt; and memory&#xA;safety, but all in all I decided the benefits are too minor and it’s too&#xA;ugly without operator overloading. Scala is probably way too slow. So I&#xA;don’t expect to be writing either language.&lt;/p&gt;&#xA;&lt;p&gt;The only difficult choice I have to make is, of course, Haskell —&#xA;which can be quite fast, even while it’s ridiculously type-safe and&#xA;expressive and referentially transparent and easy to reason about, once&#xA;you’ve:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;figured out how to do the problem&lt;/li&gt;&#xA;&lt;li&gt;scrapped step 1 and &lt;em&gt;actually&lt;/em&gt; figured out how to do the&#xA;problem &lt;em&gt;functionally&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;gotten the thing to compile&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Even if I can handle step 1, step 2 is by no means a simple task, as&#xA;my struggle to implement a mere&#xA;&lt;a href=&#34;//blog.vero.site/post/haskell&#34;&gt;Sieve of Eratosthenes&lt;/a&gt;&#xA;efficiently shows. That is fun, but not at all intuitive; I am doubtful&#xA;I can do this under contest conditions. It is extremely difficult to&#xA;transfer my skills in learning how to implement, say, a segment tree or&#xA;treap into this language.&lt;/p&gt;&#xA;&lt;p&gt;But! Google links to the&#xA;&lt;a href=&#34;http://www.go-hero.net/jam/10/round/0&#34;&gt;programming language&#xA;breakdown for 2010 Qualification Round&lt;/a&gt; as an example, and much to my&#xA;surprise, Haskell ranks somewhere between sixth and tenth place in&#xA;popularity (depending on what you sort by), so there are functional&#xA;superprogrammers who can presumably do something like this.&lt;/p&gt;&#xA;&lt;p&gt;As it happens, I ended up implementing all four solutions to the&#xA;qualification rounds in Haskell, because of the relaxed time limit and&#xA;lack of any involved algorithms and data structures. I think it was&#xA;worth it.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>The Sands of Time</title>
+				<link>//blog.vero.site/post/time</link>
+				<pubDate>Tue, 31 Dec 2013 18:33:17 +0800</pubDate>
+				<guid>//blog.vero.site/post/time</guid>
+				<description>&lt;p&gt;Random video! Although I feel that I’ve heard it earlier, my first&#xA;conscious memory of getting linked to it is from&#xA;&lt;a href=&#34;http://usamoarchive.wordpress.com/2012/03/01/youre-older-than-youve-ever-been/&#34;&gt;this&#xA;post&lt;/a&gt;. At first I thought it would be the right background music for&#xA;this post, but upon further reflection I think it mainly suited me while&#xA;I was writing this post. Well, it’s topical if you mentally replace&#xA;“day” with “year”.&lt;/p&gt;&#xA;&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;&#x9;&#x9;&#x9;&lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/q2bo_u_YmW8?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;&#x9;&#x9;&lt;/div&gt;&#xA;&#xA;&lt;p&gt;Anyway. Around this time a year ago, I paused my participation in big&#xA;high-school competitions, for a variety of reasons.&lt;/p&gt;&#xA;&lt;p&gt;Firstly, I stopped attempting to make IMO both because I wouldn’t get&#xA;that much from the training and because other people ought to have the&#xA;opportunity. I was concerned that I might condition myself to only be&#xA;able to do math with the short-term motivation of contests. Better to&#xA;focus on college math and maybe some original research, I thought.&#xA;During the year, I did lots of the former and very little of the latter.&#xA;Meh.&lt;/p&gt;&#xA;&lt;p&gt;As for the IOI, my obvious next target: I was tired of training and&#xA;going abroad while paranoid about whether my immune system would hold&#xA;up. I didn’t feel that the IOI was worth that. To some degree, I also&#xA;felt burned out about programming. Long story short, my treatment should&#xA;end soon, and learning Haskell completely resolved the burnout&#xA;problem.&lt;/p&gt;&#xA;&lt;p&gt;But the most important reason, I think, was that “high school was too&#xA;short”. I started math competitions ridiculously early and didn’t spend&#xA;much time exploring other interests. I thought I knew myself well enough&#xA;that I could say I didn’t have many more interests at all, but I was&#xA;completely wrong (psych nerds will reflexively note this to be the&#xA;&lt;a href=&#34;https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect&#34;&gt;Dunning-Kruger&#xA;effect&lt;/a&gt;). I coded lots in weird languages — Haskell, as mentioned&#xA;previously, plus Scala, plus all manner of other magical command line&#xA;tools. I wrote my first math problem and submitted it officially, picked&#xA;up a new instrument, went to a debate competition, served as an&#xA;unimportant tech guy for MUN, discovered and became hooked on&#xA;Pentatonix, participated in three puzzle hunts in Australia and one in&#xA;Massachusetts, figured out my rough political stance, rode a boat, got&#xA;retweeted by @eevee and @Kyrgyzstan_News, increased my Neopets™ fortune&#xA;by over 3400%, and lurked on FurAffinity a little too much.&lt;/p&gt;&#xA;&lt;p&gt;But now, dear competition world, I’m back.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Ridiculously Long-Winded Programming Babble</title>
+				<link>//blog.vero.site/post/programming</link>
+				<pubDate>Sun, 16 Dec 2012 22:08:28 +0800</pubDate>
+				<guid>//blog.vero.site/post/programming</guid>
+				<description>&lt;p&gt;Okay I don’t actually know how this pointless rambling got so long. I&#xA;know the longer it is the more people will just tend to skim, because I&#xA;do that all the time. So I went back and refactored—er, rewrote all the&#xA;somewhat tangential bits (wow these puns are too easy) into footnotes.&#xA;Manually. Obviously if I have to do this again I’ll write a script for&#xA;it. But the post is still really long, and I bet nobody will read the&#xA;whole thing. Oh well.&lt;/p&gt;&#xA;&lt;p&gt;Life updates: I got out of the hospital Friday two-and-a-half weeks&#xA;ago, went to the preliminaries of NPSC (a national team programming&#xA;contest) with classmates, threw up a lot, went back into the hospital,&#xA;and came out again. I wrote a lot of stuff about the experience and how&#xA;much it sucked (hint: &lt;em&gt;a lot&lt;/em&gt;) when I started this draft around&#xA;that time, but now putting so much detail in this post feels weird. I’m&#xA;mostly good now.&lt;/p&gt;&#xA;&lt;p&gt;Three years ago NPSC was the only programming contest I really knew&#xA;of; now I’ve participated in quite a few more, both online and locally,&#xA;but it’s still the only contest I’ve entered that gives you real-time&#xA;verdicts. I believe it inherits this from being modeled after ACM-ICPC,&#xA;but that’s for college people and I’m less clear on how it works. All&#xA;the other contests, namely&#xA;&lt;a href=&#34;https://www.topcoder.com/&#34;&gt;TopCoder&lt;/a&gt;,&#xA;&lt;a href=&#34;http://www.codeforces.com/&#34;&gt;CodeForces&lt;/a&gt;,&#xA;&lt;a href=&#34;http://usaco.org/&#34;&gt;USACO&lt;/a&gt;, and the other local individual&#xA;competition (there doesn’t appear to be an English name so for the&#xA;purpose of this post I’ll just call it “Nameless Local”; there’s a&#xA;nation-wide competition in one-and-a-half weeks!), have system tests&#xA;after the contest that don’t allow you to resubmit afterwards.&lt;a&#xA;href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&#xA;role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; They all give pretests that you get&#xA;to know about right away, just to catch super-silly non-algorithmic&#xA;mistakes like failing to remove the debug statements or reading input&#xA;from the wrong place, but these contain weak test cases and don’t&#xA;guarantee that the solution will pass the system tests and get full&#xA;score.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>[IMO 2012 Part 2] The Hotel of Deception</title>
+				<link>//blog.vero.site/post/hotel</link>
+				<pubDate>Fri, 20 Jul 2012 12:45:41 +0800</pubDate>
+				<guid>//blog.vero.site/post/hotel</guid>
+				<description>&lt;p&gt;We finally arrived at the hotel at 3:30, meeting another local from&#xA;Taiwan, Mr. Chen, who helped us carry some of our stuff off the bus.&#xA;Po-Chiang, our guide, was waiting inside. We took more pictures and&#xA;finally lugged the meager stuff we had off to our hotel rooms.&lt;/p&gt;&#xA;&lt;p&gt;At least, we tried. I started to realize that there was much more to&#xA;this hotel than it seemed.&lt;/p&gt;&#xA;&lt;p&gt;Firstly, of course, was the confusing placement of rooms with numbers&#xA;starting with 4 and 5 on the fourth floor (which would be the fifth&#xA;floor by our numbering system, where the lobby is floor 1; but here the&#xA;lobby was assigned 0. Off-by-one errors just waiting to happen here.)&#xA;Secondly were the completely indecipherable signs. I don’t remember the&#xA;details, but the first signs we saw read something like “560 ~ 540:&#xA;left; 520 ~ 540: right”. Occasionally there would be weird slashes or&#xA;half-slashes between the numbers instead (later I finally realized they&#xA;were slanted, Comic-Sans-style capital Ys, or “and” in Spanish). Are&#xA;these closed, open, or half-open intervals? And why the heck are their&#xA;upper and lower bounds in a different order!?&lt;/p&gt;&#xA;&lt;p&gt;We wandered through the corridors, peeking down each one, trying to&#xA;figure out whether the numbers were increasing or decreasing and whether&#xA;a parity argument (for those of you not fluent in math lingo, that means&#xA;odds and evens) allowed for the existence of our room. Who knew the&#xA;simple act of finding one’s living quarters could be so mathematically&#xA;tasking? In the end, our rooms were in the last corridor, just about&#xA;diametrically opposite to the elevators on the half of our floor. Oh&#xA;well.&lt;/p&gt;&#xA;&lt;p&gt;The room was pretty nice overall. The furniture and basic facilities&#xA;were quite complete, with a sparkly bathroom and a couple tables and&#xA;chairs of various shapes. The closet was big and had a safe, which was&#xA;rather important because just about everybody we had met had warned us&#xA;over and over again about all the incredibly skilled thieves, muggers,&#xA;and pickpockets in Argentina. It was probably much safer (no pun&#xA;intended) in the hotel, but with all of these warnings (later we would&#xA;even find a notice from the hotel warning us to lock our doors) I was&#xA;never entirely certain. There were lots of lights controlled by a set of&#xA;confusing switches on either side of our beds. There was at least one&#xA;white immovable divider cunningly disguised as a switch, one switch that&#xA;didn’t ever seem to do anything, and one that turned everything off. The&#xA;last one made a little sense after a while because it had pictures of&#xA;stars and a moon on it, but the whole setup was still pretty&#xA;non-user-friendly in my opinion.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>[IMO 2012 Part 1] Dangerous Metal Chopsticks</title>
+				<link>//blog.vero.site/post/metal-chopsticks</link>
+				<pubDate>Fri, 20 Jul 2012 07:44:51 +0800</pubDate>
+				<guid>//blog.vero.site/post/metal-chopsticks</guid>
+				<description>&lt;p&gt;It’s time to begin the epic blogging journey. The detailed version of&#xA;this year’s amazing IMO, because I decided that a perfectionist guy like&#xA;myself could not possibly liveblog and be satisfied with both the&#xA;quality of the posts and being able to fully enjoy the actual event.&lt;/p&gt;&#xA;&lt;p&gt;Our story begins in a hotel in Taiwan.&lt;/p&gt;&#xA;&lt;p&gt;The night before departure, us six contestants and Prof. Lin gathered&#xA;in a hotel. This was entirely necessary because our flight left at&#xA;something like five o’clock in the morning. After checking over the&#xA;flight plans and relevant phone numbers in a conference room, we enjoyed&#xA;a pretty extensive buffet dinner, what would easily be the best meal we&#xA;would get to have for at least a week, the highlight of which was a fish&#xA;steak that looked and tasted exactly like fried egg. Afterwards we did&#xA;some emergency shopping and prepared a convenience-store breakfast for&#xA;consumption three o’clock the next day.&lt;/p&gt;&#xA;&lt;p&gt;As I’ve complained before, we have an 11-hour difference to get used&#xA;to, and that morning I had gotten myself to sleep as late as 6 AM trying&#xA;(successfully, much to my amazement) to complete an iPod OS system&#xA;update. I didn’t think I could pass airport security with the sort of&#xA;consciousness I had when I finally slept that morning, so I reverted&#xA;with the rest of the team to an 11 PM curfew. Oh well. The seven of us&#xA;left the hotel after 3 AM, setting off in a huge 30-person bus for the&#xA;airport.&lt;/p&gt;&#xA;&lt;p&gt;Luggage drop-off was mostly uneventful. I realized that the airline&#xA;didn’t seem to like passengers bringing two bags onto the airplane, and&#xA;decided to distribute my bag with all the winter clothes in it into my&#xA;luggage and my backpack. Little did we know what would happen to the&#xA;luggage…&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Impact Minus Two Weeks</title>
+				<link>//blog.vero.site/post/impact-minus-two-weeks</link>
+				<pubDate>Mon, 25 Jun 2012 20:14:12 +0800</pubDate>
+				<guid>//blog.vero.site/post/impact-minus-two-weeks</guid>
+				<description>&lt;p&gt;Wait, are you serious? Under two weeks left, is that what it’s come&#xA;to?&lt;/p&gt;&#xA;&lt;p&gt;What happened to my majestic plans to go over every functional&#xA;equation I failed on, ever? Or to go through a super-intense&#xA;geometry-immersion period and actually try to develop some of that crazy&#xA;“intuition” thing? And I have &lt;em&gt;finals&lt;/em&gt; coming up too! I just&#xA;finished a ludicrous deadline-extended geography project that I am&#xA;absolutely confident is the crappiest paper of my entire school career&#xA;so far! And despite a semester of (slacking) classes, my Spanish is&#xA;still only barely at a usable level! Exclamation marks!&lt;/p&gt;&#xA;&lt;p&gt;Don’t panic… let’s focus on the positive. I am absolutely prepared&#xA;with my stationery. I bought three spanking new 0.4mm pens that say “Can&#xA;write for 1000 meters!” because all of my current ones are annoyingly&#xA;thick and constantly having almost-but-not-quite run out, plus three new&#xA;mechanical pencils and enough matching 2B lead to last me through&#xA;college. All the pencils and lead are Pentel. I haven’t done any&#xA;research, so if something terrible happens in Argentina I know what&#xA;company to blame, and I am writing it here so I won’t confuse the&#xA;brands. Also, in view of what happened to SCH’s carry-on baggage last&#xA;year (luckily there was no geo on Day 1), I got an extra compass I hope&#xA;won’t be needed.&lt;/p&gt;&#xA;&lt;p&gt;While we’re listing all the &lt;em&gt;stuff&lt;/em&gt; I have gotten ready:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Coup de Grâce</title>
+				<link>//blog.vero.site/post/coup-de-grace</link>
+				<pubDate>Mon, 30 Apr 2012 19:22:49 +0800</pubDate>
+				<guid>//blog.vero.site/post/coup-de-grace</guid>
+				<description>&lt;p&gt;Yes, it’s official now. I’m on the 2012 International Mathematical&#xA;Olympiad team bound for Argentina, and if I didn’t make a post about&#xA;this I would be ashamed to call myself a blogger. So, a little moment of&#xA;smug self-satisfaction should be justified, I hope? And not to mention,&#xA;last year’s title of youngest Taiwan contestant is not yet passed? Let’s&#xA;cue the evil laughter!&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://imgs.xkcd.com/comics/toot.png&#34; alt=&#34;Obligatory xkcd where a guy pops up and toots a literal air horn&#34; /&gt;&lt;/p&gt;&#xA;&lt;p&gt;…or maybe not.&lt;/p&gt;&#xA;&lt;p&gt;Here is a simple tabulation of our selection problems:&lt;/p&gt;&#xA;&lt;ol type=&#34;1&#34;&gt;&#xA;&lt;li&gt;GA/GN/CG/GNC/NGA&lt;/li&gt;&#xA;&lt;li&gt;AG/CA/NG/GCN/AGA&lt;/li&gt;&#xA;&lt;li&gt;GA/GN/CA/GCN/AGC&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Algebra x9, Combinatorics x7, Geometry x12, Number Theory x8. In&#xA;other words a distribution in perfect negative correlation with my&#xA;estimated ability in each subject. At least, that’s how I’ve always&#xA;estimated them before about a month ago. Ouch, the last stage was the&#xA;only one of the three where problem distribution for combinatorics&#xA;actually reached its fair share. (Alternative interpretation: 2011’s&#xA;distribution was majorly f123ed up with only one real geometry problem,&#xA;which just means that this year’s battle will probably be difficult for&#xA;me. (Alternative alternative interpretation: the evil, nasty, wicked,&#xA;depraved windmill was actually an outrageous negative for me. Gee, I&#xA;don’t know how to feel. But I should actually do stuff instead of wildly&#xA;speculating; let’s get back to the topic.))&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Adventures in Crappy Markup</title>
+				<link>//blog.vero.site/post/crappy-markup</link>
+				<pubDate>Fri, 10 Feb 2012 21:39:00 +0800</pubDate>
+				<guid>//blog.vero.site/post/crappy-markup</guid>
+				<description>&lt;p&gt;There are two big elementary and middle school competitions around&#xA;this part of the globe. Well, “big” according to “I’ve heard of it”,&#xA;which is by no means an accurate measure of, well, anything. I don’t go&#xA;out of my way to look for them any more, even though… hold on, am I&#xA;still eligible? Whatever. But in any case, diverting any unnecessary&#xA;energy from the olympiad-proof-training is probably not a good idea now.&#xA;Blah blah blah boilerplate introduction.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

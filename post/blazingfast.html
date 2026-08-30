@@ -8,9 +8,9 @@
 <meta name="description" content="Last weekend Galhacktic Trendsetters sort of spontaneously decided to do DiceCTF 2022, months or years after most of us had done another CTF. It was a lot of fun and we placed 6th!
 I made a blazing fast MoCkInG CaSe converter!
 blazingfast.mc.ax
-We’re presented with a website that converts text to AlTeRnAtInG CaSe. The core converter is written in WASM, and also checks that its input doesn’t have any of the characters &amp;lt;&amp;gt;&amp;amp;&#34;. The JavaScript wrapper takes an input from the URL, converts it to uppercase, feeds it to the converter, and if the check passes, injects the output into an innerHTML. The goal is to compose a URL that, when visited by an admin bot, leaks the flag from localStorage.
+We’re presented with a website that converts text to AlTeRnAtInG CaSe. The core converter is written in WASM, and also checks that its input doesn’t have any of the characters &lt;&gt;&amp;&#34;. The JavaScript wrapper takes an input from the URL, converts it to uppercase, feeds it to the converter, and if the check passes, injects the output into an innerHTML. The goal is to compose a URL that, when visited by an admin bot, leaks the flag from localStorage.
 The converter is compiled from this C code:
-int length, ptr = 0; char buf[1000]; void init(int size) { length = size; ptr = 0; } char read() { return buf[ptr&#43;&#43;]; } void write(char c) { buf[ptr&#43;&#43;] = c; } int mock() { for (int i = 0; i &amp;lt; length; i &#43;&#43;) { if (i % 2 == 1 &amp;amp;&amp;amp; buf[i] &amp;gt;= 65 &amp;amp;&amp;amp; buf[i] &amp;lt;= 90) { buf[i] &#43;= 32; } if (buf[i] == &amp;#39;&amp;lt;&amp;#39; || buf[i] == &amp;#39;&amp;gt;&amp;#39; || buf[i] == &amp;#39;&amp;amp;&amp;#39; || buf[i] == &amp;#39;&amp;quot;&amp;#39;) { return 1; } } ptr = 0; return 0; }" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+int length, ptr = 0; char buf[1000]; void init(int size) { length = size; ptr = 0; } char read() { return buf[ptr&#43;&#43;]; } void write(char c) { buf[ptr&#43;&#43;] = c; } int mock() { for (int i = 0; i &lt; length; i &#43;&#43;) { if (i % 2 == 1 &amp;&amp; buf[i] &gt;= 65 &amp;&amp; buf[i] &lt;= 90) { buf[i] &#43;= 32; } if (buf[i] == &#39;&lt;&#39; || buf[i] == &#39;&gt;&#39; || buf[i] == &#39;&amp;&#39; || buf[i] == &#39;&quot;&#39;) { return 1; } } ptr = 0; return 0; }" /><meta name="generator" content="Hugo 0.166.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/blazingfast" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -321,9 +321,6 @@ think of using ampersand escapes.</p></article>
 	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
 	<section id="isso-thread"></section>
   <p class="comments-meta">if you liked this post, click to make an invisible number go up: <button class="btn like-button">like</button></p>
-	
-	
-	
 	<footer class="post-footer">
 		<nav class="pagination">
 			
@@ -337,7 +334,7 @@ think of using ampersand escapes.</p></article>
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2026 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

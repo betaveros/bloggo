@@ -1,223 +1,52 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>blogs on Bounded-Error Log</title>
-    <link>//blog.vero.site/tag/blogs</link>
-    <description>Recent content in blogs on Bounded-Error Log</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 27 Jul 2015 07:10:20 +0800</lastBuildDate><atom:link href="//blog.vero.site/tag/blogs/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>C-c-c-Combo Breaker!</title>
-      <link>//blog.vero.site/post/combo</link>
-      <pubDate>Mon, 27 Jul 2015 07:10:20 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/combo</guid>
-      <description>&lt;p&gt;I made it!&lt;/p&gt;
-&lt;p&gt;After a &lt;a href=&#34;//blog.vero.site/post/rekt&#34;&gt;misstep on the fourth
-day&lt;/a&gt; I managed to post one post every day, completing the rest of the
-&lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;streak&lt;/a&gt;! This post is scheduled
-to go out around the time my plane takes off.&lt;/p&gt;
-&lt;p&gt;I’m free!&lt;/p&gt;
-&lt;p&gt;I’d insert a &lt;cite&gt;Frozen&lt;/cite&gt; gif here if I could find a good one,
-but I don’t like any of the ones I found and besides, copyright is an
-issue. So instead:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;figure&gt;
-&lt;a href=&#34;//blog.vero.site/img/cliques.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/cliques.png&#34; alt=&#34;source: Wikimedia Commons, public domain&#34; width=&#34;585&#34; height=&#34;468&#34; class=&#34;size-full wp-image-3257&#34; /&gt;&lt;/a&gt;
-&lt;figcaption&gt;
-source:
-&lt;a href=&#34;https://commons.wikimedia.org/wiki/File:VR_complex.svg&#34;&gt;Wikimedia
-Commons&lt;/a&gt;, public domain
-&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;IMO2007.C6. In a mathematical competition some competitors are
-friends. Friendship is always mutual. Call a group of competitors a
-clique if each two of them are friends. (In particular, any group of
-fewer than two competitiors is a clique.) The number of members of a
-clique is called its size.&lt;/p&gt;
-&lt;p&gt;Given that, in this competition, the largest size of a clique is
-even, prove that the competitors can be arranged into two rooms such
-that the largest size of a clique contained in one room is the same as
-the largest size of a clique contained in the other room.&lt;/p&gt;
-Author: Vasily Astakhov, Russia
-&lt;/blockquote&gt;
-&lt;p&gt;If you remember where I first posted this to break a combo, you have
-an excellent memory and/or spend too much time stalking me. If you
-remember the &lt;em&gt;context&lt;/em&gt; under which I posted this to break a
-combo, you have a better memory than I do.&lt;/p&gt;
-&lt;p&gt;Was my streak a success? On the bright side, I definitely generated
-lots of posts, many of which were radical departures from my old
-blogging habits:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;a href=&#34;//blog.vero.site/post/99&#34;&gt;card game documentation&lt;/a&gt;,
-&lt;/li&gt;
-&lt;li&gt;
-&lt;a href=&#34;//blog.vero.site/post/nuclear&#34;&gt;weird short stories&lt;/a&gt; and
-&lt;a href=&#34;//blog.vero.site/post/nuclear-ii&#34;&gt;sequels to weird short stories&lt;/a&gt;,
-&lt;/li&gt;
-&lt;li&gt;
-an essay (liberally defined) with
-&lt;a href=&#34;//blog.vero.site/post/quixotic-1&#34;&gt;two&lt;/a&gt;
-&lt;a href=&#34;//blog.vero.site/post/quixotic-2&#34;&gt;parts&lt;/a&gt;,
-&lt;/li&gt;
-&lt;li&gt;
-an essay with &lt;a href=&#34;//blog.vero.site/post/more-fiction-1&#34;&gt;two&lt;/a&gt;
-&lt;a href=&#34;//blog.vero.site/post/more-fiction-2&#34;&gt;parts&lt;/a&gt; and a
-&lt;a href=&#34;//blog.vero.site/post/more-fiction-2-5&#34;&gt;half&lt;/a&gt;,
-&lt;/li&gt;
-&lt;li&gt;
-another &lt;a href=&#34;//blog.vero.site/post/college-emails&#34;&gt;bar graph&lt;/a&gt; that is
-actually documented,
-&lt;/li&gt;
-&lt;li&gt;
-a ridiculous &lt;a href=&#34;//blog.vero.site/post/phone&#34;&gt;literate Haskell
-post&lt;/a&gt;,
-&lt;/li&gt;
-&lt;li&gt;
-numerous &lt;a href=&#34;//blog.vero.site/post/1024&#34;&gt;facetious&lt;/a&gt;
-&lt;a href=&#34;//blog.vero.site/post/zzz&#34;&gt;Paintbrush&lt;/a&gt;
-&lt;a href=&#34;//blog.vero.site/post/double-post&#34;&gt;dragons&lt;/a&gt;,
-&lt;/li&gt;
-&lt;li&gt;
-a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a side
-blog&lt;/a&gt;,
-&lt;/li&gt;
-&lt;li&gt;
-&lt;a href=&#34;//blog.vero.site/post/index-txt&#34;&gt;and&lt;/a&gt;,
-&lt;a href=&#34;//blog.vero.site/post/897&#34;&gt;of&lt;/a&gt;
-&lt;a href=&#34;//blog.vero.site/post/drop-in&#34;&gt;course&lt;/a&gt;,
-&lt;a href=&#34;//blog.vero.site/post/a-list&#34;&gt;metric&lt;/a&gt;
-&lt;a href=&#34;//blog.vero.site/post/sheep&#34;&gt;zarktons&lt;/a&gt;
-&lt;a href=&#34;//blog.vero.site/post/2857&#34;&gt;of&lt;/a&gt;
-&lt;a href=&#34;//blog.vero.site/post/numbers-bmp&#34;&gt;shameless&lt;/a&gt;
-&lt;a href=&#34;//blog.vero.site/post/clicker&#34;&gt;filler&lt;/a&gt;.
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I also had lots of fun conversations about my posts, such as:&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Coming Up with Blog Post Titles Is Hard</title>
-      <link>//blog.vero.site/post/titles</link>
-      <pubDate>Sat, 27 Jun 2015 23:59:03 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/titles</guid>
-      <description>&lt;p&gt;(Disjointed blog content, posted as part of a
-&lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly
-committed to&lt;/a&gt;; standard disclaimers apply)&lt;/p&gt;
-&lt;p&gt;Blogging is weird. I’m still nervous when I post stuff because I’m
-concerned I’m wrong, and end up looking unprofessional or attracting a
-bunch of Cueballs or something.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://imgs.xkcd.com/comics/duty_calls.png&#34; alt=&#34;xkcd&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Before I told people about this blog, during the time when 100% of
-its traffic came from its coincidental placement in search results, I
-didn’t have to worry about this. Now, I choose my words. Because some
-Important Person™ might show up. Maybe even misinterpret something I
-said and/or get furiously offended at a badly phrased joke.&lt;/p&gt;
-&lt;p&gt;I also fear that I’ll update my beliefs quickly; maybe I’ll change my
-mind or discover a much better argument for the other side really soon.
-But the blog post would still be there, displaying my old belief, giving
-the reader an inaccurate or misleading impression of myself. People
-might even chat with me to argue about it, and then I have to &lt;em&gt;admit
-I’m wrong oh no!&lt;/em&gt; It feels a lot better admitting I’m wrong on my
-own turf, in my own time.&lt;/p&gt;
-&lt;p&gt;This passage from &lt;cite&gt;Lord of the Flies&lt;/cite&gt; comes to mind (I had
-hurriedly reread the book as ammunition for the AP Literature test and
-noticed that my past self had marked it):&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Signal Boost</title>
-      <link>//blog.vero.site/post/signal</link>
-      <pubDate>Wed, 17 Jun 2015 21:59:18 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/signal</guid>
-      <description>&lt;p&gt;(Short blog content, posted as part of a
-&lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly
-committed to&lt;/a&gt;; standard disclaimers apply)&lt;/p&gt;
-&lt;p&gt;For the interested, I wrote a
-&lt;a href=&#34;https://ibshgin.wordpress.com/2015/06/17/copyright/&#34;&gt;&lt;strong&gt;post
-summarizing issues in copyright and patent law&lt;/strong&gt;&lt;/a&gt; on a new
-blog for a school club. Actually, if you’re reading this post, you’re
-probably already interested enough / bored enough to read that post, so
-go read it. I think the videos are worth watching despite their length,
-but I tried to summarize the key points in text, so decide how much to
-read or watch depending on how much spare time you have.&lt;/p&gt;
-&lt;p&gt;I don’t know if that blog will work out, but anyway WordPress tells
-me I have 8500% more followers on this blog than the other one, even
-though I have doubts about how many of those followers actually read
-anything I post at all, so I thought I should link to that post here.
-Also, by publicizing the blog, I get to shame my friends and fellow club
-members into posting so that it doesn’t look so empty. Social media
-expertise, you know?&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Comments</title>
-      <link>//blog.vero.site/post/comments</link>
-      <pubDate>Wed, 19 Sep 2012 18:46:21 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/comments</guid>
-      <description>&lt;div class=&#34;warning&#34;&gt;
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2012 self wrote this. It is a little dated
-and does not entirely capture my current beliefs and attitudes, although
-I have to say it’s not too far off either. As of 2018, &lt;a
-href=&#34;//blog.vero.site/post/me-and-facebook&#34;&gt;Me and Facebook&lt;/a&gt; is more
-relevant.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/orange-comment.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/orange-comment.png&#34; alt=&#34;&#34; title=&#34;orange-comment&#34; width=&#34;458&#34; height=&#34;85&#34; class=&#34;aligncenter size-full wp-image-1383&#34; /&gt;&lt;/a&gt;
-Here’s a guilty secret: I like getting feedback.&lt;/p&gt;
-&lt;p&gt;I’m not restricting myself to painstakingly thoughtful comments that
-attempt to &lt;em&gt;build upon&lt;/em&gt; and &lt;em&gt;transform&lt;/em&gt; the post to form
-an interesting conversation, the kind English teachers are hellbent on
-promoting. Sure, I get the most kicks out of those, but I’m not picky.
-Even single-digit pageview bars or a handful of Facebook “like”s give me
-buzzes of excitement.&lt;/p&gt;
-&lt;p&gt;It’s a guilty feeling, because I also think that that these are
-unimaginably cheap internet currencies and should not qualify as
-“meaningful” under a rational mindset. I strongly suspect visitors
-accidentally click on my blog and leave after five seconds without
-taking in anything, because I do that all the time to other people’s
-blogs and sites. Sometimes it is out of boredom, sometimes it is because
-I actually have something of higher priority to do than indiscriminate
-reading, sometimes it is simply because I cannot read the language. I’ve
-seen plenty of people like posts on Facebook based on the poster, only
-occasionally taking into consideration the first word of the post in
-question, before actually reading them.&lt;/p&gt;
-&lt;p&gt;Yes, the proliferation of “liking” on Facebook bothers me. I don’t
-expect everybody to reply meaningfully to everything when they just want
-to express approval lightly. However, when I see that tiny minority of
-people handing them out to people in their own threads like programs at
-a concert, I become indignant. Under their influence, what was
-originally a straightforward, meaningful badge of appreciation becomes a
-handwavy gesture that carries virtually no weight, and then I don’t know
-what to do when I see something I like &lt;em&gt;seriously&lt;/em&gt;. Will clicking
-that button still express the feeling strongly enough?&lt;/p&gt;
-&lt;p&gt;I accept that, in our stressful world, a few instant effortless gags
-that take ten seconds to fully process and approve deserve a place.
-Nevertheless, the number of people who seem to want to make the “like” a
-completely passive and automatic action is almost physically
-painful:&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Scheduled Blogging</title>
-      <link>//blog.vero.site/post/scheduled-blogging</link>
-      <pubDate>Fri, 20 Apr 2012 11:43:31 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/scheduled-blogging</guid>
-      <description>&lt;p&gt;Some bloggers have a regular schedule for posting and forcing
-themselves to meet the deadlines. In essence, something like “updates
-every Thursday.”&lt;/p&gt;
-&lt;p&gt;For me, I think this is a bad idea, because it forces me to write. If
-my day is boring and uneventful as it quite often is and I still have to
-crank out a post, it would not be a post that readers would enjoy.
-Better once-a-month enthusiastic, interesting posts then an ugly stream
-of tedious drudgery for the visitor to wade through every time, stuff
-like (quoting one random ancient post):&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Blogs on Bounded-Error Log</title>
+		<link>//blog.vero.site/tag/blogs</link>
+		<description>Recent content in Blogs on Bounded-Error Log</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Mon, 27 Jul 2015 07:10:20 +0800</lastBuildDate>
+		
+			<atom:link href="//blog.vero.site/tag/blogs/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>C-c-c-Combo Breaker!</title>
+				<link>//blog.vero.site/post/combo</link>
+				<pubDate>Mon, 27 Jul 2015 07:10:20 +0800</pubDate>
+				<guid>//blog.vero.site/post/combo</guid>
+				<description>&lt;p&gt;I made it!&lt;/p&gt;&#xA;&lt;p&gt;After a &lt;a href=&#34;//blog.vero.site/post/rekt&#34;&gt;misstep on the fourth&#xA;day&lt;/a&gt; I managed to post one post every day, completing the rest of the&#xA;&lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;streak&lt;/a&gt;! This post is scheduled&#xA;to go out around the time my plane takes off.&lt;/p&gt;&#xA;&lt;p&gt;I’m free!&lt;/p&gt;&#xA;&lt;p&gt;I’d insert a &lt;cite&gt;Frozen&lt;/cite&gt; gif here if I could find a good one,&#xA;but I don’t like any of the ones I found and besides, copyright is an&#xA;issue. So instead:&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;figure&gt;&#xA;&lt;a href=&#34;//blog.vero.site/img/cliques.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/cliques.png&#34; alt=&#34;source: Wikimedia Commons, public domain&#34; width=&#34;585&#34; height=&#34;468&#34; class=&#34;size-full wp-image-3257&#34; /&gt;&lt;/a&gt;&#xA;&lt;figcaption&gt;&#xA;source:&#xA;&lt;a href=&#34;https://commons.wikimedia.org/wiki/File:VR_complex.svg&#34;&gt;Wikimedia&#xA;Commons&lt;/a&gt;, public domain&#xA;&lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;IMO2007.C6. In a mathematical competition some competitors are&#xA;friends. Friendship is always mutual. Call a group of competitors a&#xA;clique if each two of them are friends. (In particular, any group of&#xA;fewer than two competitiors is a clique.) The number of members of a&#xA;clique is called its size.&lt;/p&gt;&#xA;&lt;p&gt;Given that, in this competition, the largest size of a clique is&#xA;even, prove that the competitors can be arranged into two rooms such&#xA;that the largest size of a clique contained in one room is the same as&#xA;the largest size of a clique contained in the other room.&lt;/p&gt;&#xA;Author: Vasily Astakhov, Russia&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;If you remember where I first posted this to break a combo, you have&#xA;an excellent memory and/or spend too much time stalking me. If you&#xA;remember the &lt;em&gt;context&lt;/em&gt; under which I posted this to break a&#xA;combo, you have a better memory than I do.&lt;/p&gt;&#xA;&lt;p&gt;Was my streak a success? On the bright side, I definitely generated&#xA;lots of posts, many of which were radical departures from my old&#xA;blogging habits:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;a href=&#34;//blog.vero.site/post/99&#34;&gt;card game documentation&lt;/a&gt;,&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;a href=&#34;//blog.vero.site/post/nuclear&#34;&gt;weird short stories&lt;/a&gt; and&#xA;&lt;a href=&#34;//blog.vero.site/post/nuclear-ii&#34;&gt;sequels to weird short stories&lt;/a&gt;,&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;an essay (liberally defined) with&#xA;&lt;a href=&#34;//blog.vero.site/post/quixotic-1&#34;&gt;two&lt;/a&gt;&#xA;&lt;a href=&#34;//blog.vero.site/post/quixotic-2&#34;&gt;parts&lt;/a&gt;,&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;an essay with &lt;a href=&#34;//blog.vero.site/post/more-fiction-1&#34;&gt;two&lt;/a&gt;&#xA;&lt;a href=&#34;//blog.vero.site/post/more-fiction-2&#34;&gt;parts&lt;/a&gt; and a&#xA;&lt;a href=&#34;//blog.vero.site/post/more-fiction-2-5&#34;&gt;half&lt;/a&gt;,&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;another &lt;a href=&#34;//blog.vero.site/post/college-emails&#34;&gt;bar graph&lt;/a&gt; that is&#xA;actually documented,&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;a ridiculous &lt;a href=&#34;//blog.vero.site/post/phone&#34;&gt;literate Haskell&#xA;post&lt;/a&gt;,&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;numerous &lt;a href=&#34;//blog.vero.site/post/1024&#34;&gt;facetious&lt;/a&gt;&#xA;&lt;a href=&#34;//blog.vero.site/post/zzz&#34;&gt;Paintbrush&lt;/a&gt;&#xA;&lt;a href=&#34;//blog.vero.site/post/double-post&#34;&gt;dragons&lt;/a&gt;,&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;a &lt;a href=&#34;//blog.vero.site/post/signal&#34;&gt;post about a post on a side&#xA;blog&lt;/a&gt;,&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;a href=&#34;//blog.vero.site/post/index-txt&#34;&gt;and&lt;/a&gt;,&#xA;&lt;a href=&#34;//blog.vero.site/post/897&#34;&gt;of&lt;/a&gt;&#xA;&lt;a href=&#34;//blog.vero.site/post/drop-in&#34;&gt;course&lt;/a&gt;,&#xA;&lt;a href=&#34;//blog.vero.site/post/a-list&#34;&gt;metric&lt;/a&gt;&#xA;&lt;a href=&#34;//blog.vero.site/post/sheep&#34;&gt;zarktons&lt;/a&gt;&#xA;&lt;a href=&#34;//blog.vero.site/post/2857&#34;&gt;of&lt;/a&gt;&#xA;&lt;a href=&#34;//blog.vero.site/post/numbers-bmp&#34;&gt;shameless&lt;/a&gt;&#xA;&lt;a href=&#34;//blog.vero.site/post/clicker&#34;&gt;filler&lt;/a&gt;.&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;I also had lots of fun conversations about my posts, such as:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Coming Up with Blog Post Titles Is Hard</title>
+				<link>//blog.vero.site/post/titles</link>
+				<pubDate>Sat, 27 Jun 2015 23:59:03 +0800</pubDate>
+				<guid>//blog.vero.site/post/titles</guid>
+				<description>&lt;p&gt;(Disjointed blog content, posted as part of a&#xA;&lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly&#xA;committed to&lt;/a&gt;; standard disclaimers apply)&lt;/p&gt;&#xA;&lt;p&gt;Blogging is weird. I’m still nervous when I post stuff because I’m&#xA;concerned I’m wrong, and end up looking unprofessional or attracting a&#xA;bunch of Cueballs or something.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://imgs.xkcd.com/comics/duty_calls.png&#34; alt=&#34;xkcd&#34; /&gt;&lt;/p&gt;&#xA;&lt;p&gt;Before I told people about this blog, during the time when 100% of&#xA;its traffic came from its coincidental placement in search results, I&#xA;didn’t have to worry about this. Now, I choose my words. Because some&#xA;Important Person™ might show up. Maybe even misinterpret something I&#xA;said and/or get furiously offended at a badly phrased joke.&lt;/p&gt;&#xA;&lt;p&gt;I also fear that I’ll update my beliefs quickly; maybe I’ll change my&#xA;mind or discover a much better argument for the other side really soon.&#xA;But the blog post would still be there, displaying my old belief, giving&#xA;the reader an inaccurate or misleading impression of myself. People&#xA;might even chat with me to argue about it, and then I have to &lt;em&gt;admit&#xA;I’m wrong oh no!&lt;/em&gt; It feels a lot better admitting I’m wrong on my&#xA;own turf, in my own time.&lt;/p&gt;&#xA;&lt;p&gt;This passage from &lt;cite&gt;Lord of the Flies&lt;/cite&gt; comes to mind (I had&#xA;hurriedly reread the book as ammunition for the AP Literature test and&#xA;noticed that my past self had marked it):&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Signal Boost</title>
+				<link>//blog.vero.site/post/signal</link>
+				<pubDate>Wed, 17 Jun 2015 21:59:18 +0800</pubDate>
+				<guid>//blog.vero.site/post/signal</guid>
+				<description>&lt;p&gt;(Short blog content, posted as part of a&#xA;&lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly&#xA;committed to&lt;/a&gt;; standard disclaimers apply)&lt;/p&gt;&#xA;&lt;p&gt;For the interested, I wrote a&#xA;&lt;a href=&#34;https://ibshgin.wordpress.com/2015/06/17/copyright/&#34;&gt;&lt;strong&gt;post&#xA;summarizing issues in copyright and patent law&lt;/strong&gt;&lt;/a&gt; on a new&#xA;blog for a school club. Actually, if you’re reading this post, you’re&#xA;probably already interested enough / bored enough to read that post, so&#xA;go read it. I think the videos are worth watching despite their length,&#xA;but I tried to summarize the key points in text, so decide how much to&#xA;read or watch depending on how much spare time you have.&lt;/p&gt;&#xA;&lt;p&gt;I don’t know if that blog will work out, but anyway WordPress tells&#xA;me I have 8500% more followers on this blog than the other one, even&#xA;though I have doubts about how many of those followers actually read&#xA;anything I post at all, so I thought I should link to that post here.&#xA;Also, by publicizing the blog, I get to shame my friends and fellow club&#xA;members into posting so that it doesn’t look so empty. Social media&#xA;expertise, you know?&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Comments</title>
+				<link>//blog.vero.site/post/comments</link>
+				<pubDate>Wed, 19 Sep 2012 18:46:21 +0800</pubDate>
+				<guid>//blog.vero.site/post/comments</guid>
+				<description>&lt;div class=&#34;warning&#34;&gt;&#xA;&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: My 2012 self wrote this. It is a little dated&#xA;and does not entirely capture my current beliefs and attitudes, although&#xA;I have to say it’s not too far off either. As of 2018, &lt;a&#xA;href=&#34;//blog.vero.site/post/me-and-facebook&#34;&gt;Me and Facebook&lt;/a&gt; is more&#xA;relevant.&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/orange-comment.png&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/orange-comment.png&#34; alt=&#34;&#34; title=&#34;orange-comment&#34; width=&#34;458&#34; height=&#34;85&#34; class=&#34;aligncenter size-full wp-image-1383&#34; /&gt;&lt;/a&gt;&#xA;Here’s a guilty secret: I like getting feedback.&lt;/p&gt;&#xA;&lt;p&gt;I’m not restricting myself to painstakingly thoughtful comments that&#xA;attempt to &lt;em&gt;build upon&lt;/em&gt; and &lt;em&gt;transform&lt;/em&gt; the post to form&#xA;an interesting conversation, the kind English teachers are hellbent on&#xA;promoting. Sure, I get the most kicks out of those, but I’m not picky.&#xA;Even single-digit pageview bars or a handful of Facebook “like”s give me&#xA;buzzes of excitement.&lt;/p&gt;&#xA;&lt;p&gt;It’s a guilty feeling, because I also think that that these are&#xA;unimaginably cheap internet currencies and should not qualify as&#xA;“meaningful” under a rational mindset. I strongly suspect visitors&#xA;accidentally click on my blog and leave after five seconds without&#xA;taking in anything, because I do that all the time to other people’s&#xA;blogs and sites. Sometimes it is out of boredom, sometimes it is because&#xA;I actually have something of higher priority to do than indiscriminate&#xA;reading, sometimes it is simply because I cannot read the language. I’ve&#xA;seen plenty of people like posts on Facebook based on the poster, only&#xA;occasionally taking into consideration the first word of the post in&#xA;question, before actually reading them.&lt;/p&gt;&#xA;&lt;p&gt;Yes, the proliferation of “liking” on Facebook bothers me. I don’t&#xA;expect everybody to reply meaningfully to everything when they just want&#xA;to express approval lightly. However, when I see that tiny minority of&#xA;people handing them out to people in their own threads like programs at&#xA;a concert, I become indignant. Under their influence, what was&#xA;originally a straightforward, meaningful badge of appreciation becomes a&#xA;handwavy gesture that carries virtually no weight, and then I don’t know&#xA;what to do when I see something I like &lt;em&gt;seriously&lt;/em&gt;. Will clicking&#xA;that button still express the feeling strongly enough?&lt;/p&gt;&#xA;&lt;p&gt;I accept that, in our stressful world, a few instant effortless gags&#xA;that take ten seconds to fully process and approve deserve a place.&#xA;Nevertheless, the number of people who seem to want to make the “like” a&#xA;completely passive and automatic action is almost physically&#xA;painful:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Scheduled Blogging</title>
+				<link>//blog.vero.site/post/scheduled-blogging</link>
+				<pubDate>Fri, 20 Apr 2012 11:43:31 +0800</pubDate>
+				<guid>//blog.vero.site/post/scheduled-blogging</guid>
+				<description>&lt;p&gt;Some bloggers have a regular schedule for posting and forcing&#xA;themselves to meet the deadlines. In essence, something like “updates&#xA;every Thursday.”&lt;/p&gt;&#xA;&lt;p&gt;For me, I think this is a bad idea, because it forces me to write. If&#xA;my day is boring and uneventful as it quite often is and I still have to&#xA;crank out a post, it would not be a post that readers would enjoy.&#xA;Better once-a-month enthusiastic, interesting posts then an ugly stream&#xA;of tedious drudgery for the visitor to wade through every time, stuff&#xA;like (quoting one random ancient post):&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

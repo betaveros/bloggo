@@ -9,7 +9,7 @@ Category → CS
 </title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.166.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/category/cs" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -64,6 +64,54 @@ Category → CS
 		</h2>
 	</header>
 	<article class="content"></article><article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/rise" class="post-link">Rise from the Ashes</a></h3>
+		
+		<p class="post-meta">
+		
+		2014-04-29
+		(1625 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/life">Life</a>, <a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>After the first stage of selection camp, I was very nervous because I
+was fifth place in a selection sequence that would finally result in a
+team of four.</p>
+<p>I screwed myself over on the first mock test by committing to a bad
+implementation method on a problem that was hard to get points on. My
+method seemed simple, but the memory usage leaked out in a way that was
+confusing and hard to patch; unfortunately, I tried to patch it in
+increasingly desperate and convoluted ways rather than scrapping the
+method, and thus missed out on many of the points elsewhere.</p>
+<p>During the second test I failed to read the last problem carefully
+and spent too much of my time on the second problem, once again missing
+out on a lot of relatively easy points. I had optimized and optimized
+and pushed my quadratic runtime down to linearithmic, which would allow
+me to get the points for the last subtask — or so I thought. But with 10
+minutes left I had all but one testcase right, and after desperately
+rereading my code, I realized that I had a string comparison stuck in an
+inner loop that could make my runtime degenerate to quadratic if the
+input string had lots of the same digit. In order to have a solidly
+linearithmic algorithm, I would have to implement a
+<a href="https://en.wikipedia.org/wiki/Suffix_array">suffix array</a>.
+Ten minutes? I gave up. (The problem setters told me afterwards that
+hashing would have worked too; I didn’t think of that at all. Oops.) I
+spent the 10 minutes reading the last problem and still failed to read
+it carefully. So that did not go very well.</p>
+<p>But, as the title probably gave away, during the third and fourth
+mock tests everything went much better than expected. :)</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/rise">→ read more<span class="offscreen"> Rise from the Ashes</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
 	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/cabal" class="post-link">Adventures in Cabal Installations</a></h3>
 		
@@ -137,7 +185,7 @@ worth it.</p>
 		<p class="post-meta">
 		
 		2013-12-31
-		(1468 words)
+		(1488 words)
 		
 		<span class="post-categories">
 			filed under
@@ -154,10 +202,9 @@ post</a>. At first I thought it would be the right background music for
 this post, but upon further reflection I think it mainly suited me while
 I was writing this post. Well, it’s topical if you mentally replace
 “day” with “year”.</p>
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/q2bo_u_YmW8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/q2bo_u_YmW8?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
 
 <p>Anyway. Around this time a year ago, I paused my participation in big
 high-school competitions, for a variety of reasons.</p>
@@ -187,11 +234,8 @@ up a new instrument, went to a debate competition, served as an
 unimportant tech guy for MUN, discovered and became hooked on
 Pentatonix, participated in three puzzle hunts in Australia and one in
 Massachusetts, figured out my rough political stance, rode a boat, got
-retweeted by <span class="citation" data-cites="eevee">@eevee</span> and
-<span class="citation"
-data-cites="Kyrgyzstan_News">@Kyrgyzstan_News</span>, increased my
-Neopets™ fortune by over 3400%, and lurked on FurAffinity a little too
-much.</p>
+retweeted by @eevee and @Kyrgyzstan_News, increased my Neopets™ fortune
+by over 3400%, and lurked on FurAffinity a little too much.</p>
 <p>But now, dear competition world, I’m back.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/time">→ read more<span class="offscreen"> The Sands of Time</span></a>
@@ -424,9 +468,19 @@ class="sourceCode scala"><code class="sourceCode scala"><span id="cb1-1"><a href
 		</p>
 	</header>
 	
-	Yay?
-Right now I feel about this a lot like I felt about getting Twitter. Nobody I know personally is there, but all the “famous” “technological” people are, and something like 90% of the open-source projects I bump into are too.
-Just like Twitter, I barely know how to use Git either, but that’s okay. For version control I’m going all command-line now! Last time I tried to link stuff up with Eclipse everything exploded, but after I ran git init from the terminal this time, it’s highlighting things red and green everywhere like it’s suddenly begging me not to forsake it for the command line.
+	<p><a href="https://github.com/betaveros">Yay?</a></p>
+<p>Right now I feel about this a lot like I felt about
+<a href="//blog.vero.site/post/twitter-bandwagon">getting Twitter</a>. Nobody I know
+personally is there, but all the “famous” “technological” people are,
+and something like 90% of the open-source projects I bump into are
+too.</p>
+<p>Just like Twitter, I barely know how to use Git either, but that’s
+okay. For version control I’m going all command-line now! Last time I
+tried to link stuff up with Eclipse everything exploded, but after I ran
+<code>git init</code> from the terminal this time, it’s highlighting
+things red and green everywhere like it’s suddenly begging me not to
+forsake it for the command line. Nice try, Eclipse. You can’t even get
+your “presentation compiler” to stop crashing.</p>
 	<footer class="post-footer">
 		<a class="read-more" href="//blog.vero.site/post/github">→ read more<span class="offscreen"> Now on GitHub!</span></a>
 	</footer>
@@ -488,37 +542,13 @@ score.</p>
 	</footer>
 </article>
 
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/gridderface-0-5" class="post-link">Gridderface 0.5</a></h3>
-		
-		<p class="post-meta">
-		
-		2012-11-27
-		(237 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>, <a href="/category/puzzles">Puzzles</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	Okay, I give up. Here it is: Gridderface is a (quoting the project description, which I wrote anyway so whatever) “keyboard inferface for marking grid-based puzzles in Java” that I’ve been working on for too long. It is open-source under the GPL v3.
-Basically, it’s a thing you can paste logic puzzle images into to solve them in, like people do in Paint, when you can’t or don’t want to print them.
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/gridderface-0-5">→ read more<span class="offscreen"> Gridderface 0.5</span></a>
-	</footer>
-</article>
-
 		<footer class="list-footer">
 		<nav class="pagination">
 			<h3 class="offscreen">Pagination</h3><a class="pagination-previous" href="/category/cs/page/5">← newer posts</a><a class="pagination-next" href="/category/cs/page/7">older posts →</a></nav>
 	</footer></section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2026 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

@@ -5,7 +5,7 @@
 <title>Bounded-Error Log</title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.166.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -58,6 +58,88 @@
 	</header>
 	
 	
+		
+			<article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/ti1337se" class="post-link">TI-1337 Silver Edition</a></h3>
+		
+		<h4 class="post-subtitle">DiceCTF 2022 (Misc, 299 pts)</h4>
+		
+		<p class="post-meta">
+		
+		2022-02-14
+		(3740 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Last weekend <a
+href="https://galhacktictrendsetters.wordpress.com/">Galhacktic
+Trendsetters</a> sort of spontaneously decided to do <a
+href="https://ctf.dicega.ng/">DiceCTF 2022</a>, months or years after
+most of us had done another CTF. It was a lot of fun and we placed
+6th!</p>
+<blockquote>
+<p>Back in the day the silver edition was the top of the line Texas
+Instruments calculator, but now the security is looking a little
+obsolete. Can you break it?</p>
+</blockquote>
+<p>It’s yet another Python jail. We input a string and, after it makes
+it through a gauntlet of checks and processing, it gets
+<code>exec</code>’d.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python3</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dis</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>banned <span class="op">=</span> [<span class="st">&quot;MAKE_FUNCTION&quot;</span>, <span class="st">&quot;CALL_FUNCTION&quot;</span>, <span class="st">&quot;CALL_FUNCTION_KW&quot;</span>, <span class="st">&quot;CALL_FUNCTION_EX&quot;</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>used_gift <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gift(target, name, value):</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> used_gift</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> used_gift: sys.exit(<span class="dv">1</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    used_gift <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">setattr</span>(target, name, value)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Welcome to the TI-1337 Silver Edition. Enter your calculations below:&quot;</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>math <span class="op">=</span> <span class="bu">input</span>(<span class="st">&quot;&gt; &quot;</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(math) <span class="op">&gt;</span> <span class="dv">1337</span>:</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Nobody needs that much math!&quot;</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    sys.exit(<span class="dv">1</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>code <span class="op">=</span> <span class="bu">compile</span>(math, <span class="st">&quot;&lt;math&gt;&quot;</span>, <span class="st">&quot;exec&quot;</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>bytecode <span class="op">=</span> <span class="bu">list</span>(code.co_code)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>instructions <span class="op">=</span> <span class="bu">list</span>(dis.get_instructions(code))</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, inst <span class="kw">in</span> <span class="bu">enumerate</span>(instructions):</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> inst.is_jump_target:</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Math doesn&#39;t need control flow!&quot;</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        sys.exit(<span class="dv">1</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    nextoffset <span class="op">=</span> instructions[i<span class="op">+</span><span class="dv">1</span>].offset <span class="cf">if</span> i<span class="op">+</span><span class="dv">1</span> <span class="op">&lt;</span> <span class="bu">len</span>(instructions) <span class="cf">else</span> <span class="bu">len</span>(bytecode)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> inst.opname <span class="kw">in</span> banned:</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        bytecode[inst.offset:instructions[i<span class="op">+</span><span class="dv">1</span>].offset] <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>]<span class="op">*</span>(instructions[i<span class="op">+</span><span class="dv">1</span>].offset<span class="op">-</span>inst.offset)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> <span class="bu">list</span>(code.co_names)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(code.co_names):</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">&quot;__&quot;</span> <span class="kw">in</span> name: names[i] <span class="op">=</span> <span class="st">&quot;$INVALID$&quot;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>code <span class="op">=</span> code.replace(co_code<span class="op">=</span><span class="bu">bytes</span>(b <span class="cf">for</span> b <span class="kw">in</span> bytecode <span class="cf">if</span> b <span class="op">&gt;=</span> <span class="dv">0</span>), co_names<span class="op">=</span><span class="bu">tuple</span>(names), co_stacksize<span class="op">=</span><span class="dv">2</span><span class="op">**</span><span class="dv">20</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> {}</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="bu">exec</span>(code, {<span class="st">&quot;__builtins__&quot;</span>: {<span class="st">&quot;gift&quot;</span>: gift}}, v)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> v: <span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>.join(<span class="ss">f&quot;</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>val<span class="sc">}</span><span class="ss">&quot;</span> <span class="cf">for</span> name, val <span class="kw">in</span> v.items()))</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>: <span class="bu">print</span>(<span class="st">&quot;No results stored.&quot;</span>)</span></code></pre></div>
+<p>More precisely, the gauntlet does the following:</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/ti1337se">→ read more<span class="offscreen"> TI-1337 Silver Edition</span></a>
+	</footer>
+</article>
+
 		
 			<article class="post-entry">
 	<header class="post-header">
@@ -217,8 +299,8 @@ mornings than in past years.</p>
 	</header>
 	
 	<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/2OXgMj6NF08" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/2OXgMj6NF08?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
 
 <p>It’s another year, huh.</p>
 <p>2021 is the first year during which I held a full-time job
@@ -687,63 +769,6 @@ years.</p>
 </article>
 
 		
-			<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/and-i-feel-fine" class="post-link">…And I Feel Fine</a></h3>
-		
-		<p class="post-meta">
-		
-		2020-12-31
-		(557 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/life">Life</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/Is73BbYhFz4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
-
-<p>It’s a strange and darkly funny story — Tim Minchin wrote the album
-this is from, <a
-href="https://tim-minchin.lnk.to/ApartTogetherAlbumWE"><cite>Apart
-Together</cite></a>, well before the pandemic hit and social distancing
-became the norm, and I assume I am not alone in finding that the song
-resonates unusually strongly as a result.<a href="#fn1"
-class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> By
-Jove, it resonates.</p>
-<p>Nobody needs me to say that it’s been a rough year. People have been
-complaining that each of the last few years were terrible, and looking
-forward to the next one, and being disappointed — as if years were
-coherent bundles of quality, and there was any reason to expect
-discontinuities in how things are going to occur around January 1st —
-and as if there were additionally any reason to expect such
-discontinuities, if they did exist, to be positive ones.</p>
-<p>Seriously, do you remember when we thought 2015–2018 were bad?</p>
-
-<p>And yet… I feel like overall, 2020 went quite a bit better than
-expectations for me. Which maybe means it’s astronomically better than
-the average person’s 2020. I had a long draft for this post that slowly
-accumulated words over the year as usual, but a lot of the ramblings I’d
-usually include now seem unusually vapid, and a lot of the deeper trends
-and experiences I might normally reflect on are things I don’t think
-I’ve really gone through or thought about for long enough to achieve
-closure on. This is partly due to the pandemic scrambling a lot of plans
-and partly because last January, nearly a full year ago, <a
-href="//blog.vero.site/post/2020-hunt">✈✈✈ Galactic Trendsetters ✈✈✈ won
-Mystery Hunt</a> and so we’re writing the 2021 hunt. The ramifications
-are still being felt and will accelerate until it actually happens two
-weeks from now, and that’s all I’ll say about it here.</p>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/and-i-feel-fine">→ read more<span class="offscreen"> …And I Feel Fine</span></a>
-	</footer>
-</article>
-
-		
 	
 	
 	<footer class="list-footer">
@@ -761,7 +786,7 @@ weeks from now, and that’s all I’ll say about it here.</p>
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2026 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

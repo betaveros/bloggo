@@ -9,7 +9,7 @@ Category → CS
 </title>
 
 <meta name="author" content="betaveros" />
-<meta name="description" content="" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+<meta name="description" content="" /><meta name="generator" content="Hugo 0.166.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/category/cs" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -64,6 +64,68 @@ Category → CS
 		</h2>
 	</header>
 	<article class="content"></article><article class="post-entry">
+	<header class="post-header">
+		<h3 class="post-title"><a href="//blog.vero.site/post/float" class="post-link">Adding Floating-Point Decimals for Fun and Profit</a></h3>
+		
+		<p class="post-meta">
+		
+		2026-08-30
+		(2527 words)
+		
+		<span class="post-categories">
+			filed under
+			<a href="/category/math">Math</a>, <a href="/category/cs">CS</a>
+		</span>
+		
+		</p>
+	</header>
+	
+	<p>Many people know that you shouldn’t do decimal calculations, such as
+those involving U.S. dollars and cents, with the floating-point numbers
+in most programming languages. This is because decimal numbers can’t be
+expressed exactly as such floating-point numbers, so you will encounter
+rounding errors.</p>
+<p>Famously, with <a
+href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">IEEE
+double-precision floats</a>, <code>0.1 + 0.2</code> is not
+<code>0.3</code>, but rather, <code>0.30000000000000004</code>.</p>
+<p>On the other hand, I use a Python REPL to add up decimal numbers for
+receipts all the time. Of course, my stakes are lower; I’m summing
+things in the $1–$100 range and know to manually round the microscopic
+errors off before copying the sum somewhere. But actually it’s quite
+often that those errors don’t appear at all.</p>
+<p>If we sum every pair of multiples of 0.01 up to 1.00 and look at
+whether the printed result is too large (blue), too small (red), or
+correct, we get a cool pattern:</p>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<figure style="text-align: center">
+<svg id="grid1" width="400" height="400" viewBox="0 0 100 100">
+</svg>
+<figcaption>
+Figure 1: How floating-point affects summing two multiples of 0.01, up
+to 1.00
+</figcaption>
+</figure>
+<script>
+d3.select("#grid1")
+    .selectAll("rect").data(d3.cross(d3.range(100), d3.range(100))).join("rect")
+    .attr("x", d => d[0])
+    .attr("y", d => d[1])
+    .attr("width", 1)
+    .attr("height", 1)
+    .attr("fill", ([r, c]) => {
+        const rr = r + 1, cc = c + 1;
+        const d = (rr / 100 + cc / 100) - (rr + cc) / 100;
+        return d > 0 ? "blue" : d < 0 ? "red" : "transparent";
+    });
+</script>
+<p>Where does this pattern come from?</p>
+	<footer class="post-footer">
+		<a class="read-more" href="//blog.vero.site/post/float">→ read more<span class="offscreen"> Adding Floating-Point Decimals for Fun and Profit</span></a>
+	</footer>
+</article>
+
+		<article class="post-entry">
 	<header class="post-header">
 		<h3 class="post-title"><a href="//blog.vero.site/post/digraphs" class="post-link">Vim Digraphs: The Unnecessarily Detailed Guide</a></h3>
 		
@@ -173,10 +235,9 @@ on the colormap should “look equally different” to humans.</p>
 as Jamie Wong’s <a href="https://jamie-wong.com/post/color/">From
 Hexcodes to Eyeballs</a> or Bartosz Ciechanowski’s <a
 href="https://ciechanow.ski/color-spaces/">Color Spaces</a>.</p>
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/xAoljeRJ3lU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/xAoljeRJ3lU?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
 
 <p>Instead, I nerd-sniped myself with a different question: How is
 viridis, specifically, defined?</p>
@@ -360,7 +421,7 @@ improvement.</p>
 		<p class="post-meta">
 		
 		2023-04-09
-		(17343 words)
+		(17352 words)
 		
 		<span class="post-categories">
 			filed under
@@ -583,70 +644,13 @@ attempt.</p>
 	</footer>
 </article>
 
-		<article class="post-entry">
-	<header class="post-header">
-		<h3 class="post-title"><a href="//blog.vero.site/post/mask" class="post-link">Mask</a></h3>
-		
-		<h4 class="post-subtitle">ångstromCTF 2022 (200 points)</h4>
-		
-		<p class="post-meta">
-		
-		2022-07-04
-		(2519 words)
-		
-		<span class="post-categories">
-			filed under
-			<a href="/category/cs">CS</a>
-		</span>
-		
-		</p>
-	</header>
-	
-	<blockquote>
-<p>Don’t forget to wear your mask…</p>
-<p><code>nc challs.actf.co 31501</code></p>
-</blockquote>
-<p>If I had a nickel for every <a href="//blog.vero.site/post/messy-desk">CTF
-challenge I’ve done</a> that involves understanding the internal
-structure of a QR code, I would have two nickels. Which isn’t a lot, etc
-etc. That previous challenge probably helped me get first blood on
-this.</p>
-<p>The source code is wonderfully short:</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> io, qrcode, string</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>flag_contents <span class="op">=</span> [REDACTED]</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">all</span>(i <span class="kw">in</span> string.ascii_lowercase <span class="op">+</span> <span class="st">&#39;_&#39;</span> <span class="cf">for</span> i <span class="kw">in</span> flag_contents)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>flag <span class="op">=</span> <span class="st">b&quot;actf{&quot;</span> <span class="op">+</span> flag_contents.encode() <span class="op">+</span> <span class="st">b&quot;}&quot;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;flag is </span><span class="sc">%d</span><span class="st"> characters&quot;</span> <span class="op">%</span> <span class="bu">len</span>(flag))</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>qr <span class="op">=</span> qrcode.QRCode(version<span class="op">=</span><span class="dv">1</span>, error_correction <span class="op">=</span> qrcode.constants.ERROR_CORRECT_L, box_size<span class="op">=</span><span class="dv">1</span>, border<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="dv">1</span>:</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        inp <span class="op">=</span> <span class="bu">bytes</span>.fromhex(<span class="bu">input</span>(<span class="st">&quot;give input (in hex): &quot;</span>))</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> <span class="bu">len</span>(inp) <span class="op">==</span> <span class="bu">len</span>(flag)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;bad input, exiting&quot;</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    qr.clear()</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    qr.add_data(<span class="bu">bytes</span>([i<span class="op">^</span>j <span class="cf">for</span> i,j <span class="kw">in</span> <span class="bu">zip</span>(inp, flag)]))</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> io.StringIO()</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    qr.print_ascii(out<span class="op">=</span>f)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    f.seek(<span class="dv">0</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>.join(i[:<span class="dv">11</span>] <span class="cf">for</span> i <span class="kw">in</span> f))</span></code></pre></div>
-	<footer class="post-footer">
-		<a class="read-more" href="//blog.vero.site/post/mask">→ read more<span class="offscreen"> Mask</span></a>
-	</footer>
-</article>
-
 		<footer class="list-footer">
 		<nav class="pagination">
 			<h3 class="offscreen">Pagination</h3><a class="pagination-next" href="/category/cs/page/2">older posts →</a></nav>
 	</footer></section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2026 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

@@ -1,78 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>emails on Bounded-Error Log</title>
-    <link>//blog.vero.site/tag/emails</link>
-    <description>Recent content in emails on Bounded-Error Log</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 13 Jun 2015 09:08:33 +0800</lastBuildDate><atom:link href="//blog.vero.site/tag/emails/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>College Emails</title>
-      <link>//blog.vero.site/post/college-emails</link>
-      <pubDate>Sat, 13 Jun 2015 09:08:33 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/college-emails</guid>
-      <description>&lt;p&gt;(Frivolous blog content, posted as part of a
-&lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly
-committed to&lt;/a&gt;; standard disclaimers apply)&lt;/p&gt;
-&lt;p&gt;Out of boredom and curiosity, I
-&lt;a href=&#34;https://betaveros.github.io/bars-college.html&#34;&gt;graphed how many
-emails colleges sent me&lt;/a&gt;, excluding the colleges I actually applied
-to. I am being extremely polite and just calling them emails. I’ve
-wanted to make this for a long time, but it wasn’t until I saw this
-&lt;a href=&#34;https://medium.com/message/my-failed-experiment-in-time-travel-3aa2240a6bc0&#34;&gt;post
-about an email experiment&lt;/a&gt; on
-&lt;a href=&#34;http://waxy.org/links/&#34;&gt;waxy.org/links&lt;/a&gt; that I understood
-which tools I could use to quantify my emails. (And then I actually made
-it and procrastinated posting it here for two months. If you look at my
-GitHub page or activity you might have seen it already, though.
-Oops.)&lt;/p&gt;
-&lt;p&gt;I don’t think the results were expected. Other than saying that, I
-leave the interpretation up to the reader because I’m on a tight
-blogging schedule. Cool? Cool.&lt;/p&gt;
-&lt;p&gt;Step-by-step instructions:&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Unread Count</title>
-      <link>//blog.vero.site/post/unread-count</link>
-      <pubDate>Sat, 03 Nov 2012 11:32:50 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/unread-count</guid>
-      <description>&lt;div class=&#34;warning&#34;&gt;
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; from 2019: My 2012 self wrote this. I don’t
-remember writing it. This is the first time I have felt personally
-attacked by a post I wrote seven years ago.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Why do so many people have these three- or four- or even five-digit
-inbox unread counts? I become uncomfortable when I have more than about
-five unread emails, or if there are twenty emails of whatever status in
-my inbox — the rest get archived, of course. Out of sight, out of mind.
-Whew. It’s hard for me to fathom how anybody can sleep knowing they have
-such a scary number of unread emails waiting for them.&lt;/p&gt;
-&lt;p&gt;Why does the status of being unread matter, one might ask? There are
-already so many ways to classify things in the typical inbox: stars or
-labels or folders or flags or whatever your mail service may call them.
-Well, the thing that makes the unread qualifier stand out is that it
-already has meaning; you don’t need to assign it any. It means you
-haven’t read it! Thank you, Captain Obvious.&lt;/p&gt;
-&lt;p&gt;If you know how to use email, there are no good reasons to ignore the
-status. Is the email actually not important to the point where you won’t
-even bother to read it? In that case, why is it even in your inbox? If
-it’s spam, mark it as such; spam filters are pretty effective nowadays,
-but only if you train them, and even if not it only takes one click to
-get rid of it. If it’s some notification you don’t care about,
-unsuscribe or fine-tune your subscription. As invasive as web services
-are getting nowadays, I haven’t yet seen a legitimate one that doesn’t
-provide a link to let you do one of these things, even if it’s concealed
-in small gray text at the bottom of the email. Should you encounter a
-notification that doesn’t have these links or doesn’t stop spawning evil
-clones after you tell it to, don’t think twice; it is spam and should be
-mercilessly filtered as such. And if you still have two hundred emails
-left after all that, you should either rethink your values or start
-reading them now.&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Emails on Bounded-Error Log</title>
+		<link>//blog.vero.site/tag/emails</link>
+		<description>Recent content in Emails on Bounded-Error Log</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 13 Jun 2015 09:08:33 +0800</lastBuildDate>
+		
+			<atom:link href="//blog.vero.site/tag/emails/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>College Emails</title>
+				<link>//blog.vero.site/post/college-emails</link>
+				<pubDate>Sat, 13 Jun 2015 09:08:33 +0800</pubDate>
+				<guid>//blog.vero.site/post/college-emails</guid>
+				<description>&lt;p&gt;(Frivolous blog content, posted as part of a&#xA;&lt;a href=&#34;//blog.vero.site/post/commitment&#34;&gt;daily posting streak I have openly&#xA;committed to&lt;/a&gt;; standard disclaimers apply)&lt;/p&gt;&#xA;&lt;p&gt;Out of boredom and curiosity, I&#xA;&lt;a href=&#34;https://betaveros.github.io/bars-college.html&#34;&gt;graphed how many&#xA;emails colleges sent me&lt;/a&gt;, excluding the colleges I actually applied&#xA;to. I am being extremely polite and just calling them emails. I’ve&#xA;wanted to make this for a long time, but it wasn’t until I saw this&#xA;&lt;a href=&#34;https://medium.com/message/my-failed-experiment-in-time-travel-3aa2240a6bc0&#34;&gt;post&#xA;about an email experiment&lt;/a&gt; on&#xA;&lt;a href=&#34;http://waxy.org/links/&#34;&gt;waxy.org/links&lt;/a&gt; that I understood&#xA;which tools I could use to quantify my emails. (And then I actually made&#xA;it and procrastinated posting it here for two months. If you look at my&#xA;GitHub page or activity you might have seen it already, though.&#xA;Oops.)&lt;/p&gt;&#xA;&lt;p&gt;I don’t think the results were expected. Other than saying that, I&#xA;leave the interpretation up to the reader because I’m on a tight&#xA;blogging schedule. Cool? Cool.&lt;/p&gt;&#xA;&lt;p&gt;Step-by-step instructions:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Unread Count</title>
+				<link>//blog.vero.site/post/unread-count</link>
+				<pubDate>Sat, 03 Nov 2012 11:32:50 +0800</pubDate>
+				<guid>//blog.vero.site/post/unread-count</guid>
+				<description>&lt;div class=&#34;warning&#34;&gt;&#xA;&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; from 2019: My 2012 self wrote this. I don’t&#xA;remember writing it. This is the first time I have felt personally&#xA;attacked by a post I wrote seven years ago.&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;Why do so many people have these three- or four- or even five-digit&#xA;inbox unread counts? I become uncomfortable when I have more than about&#xA;five unread emails, or if there are twenty emails of whatever status in&#xA;my inbox — the rest get archived, of course. Out of sight, out of mind.&#xA;Whew. It’s hard for me to fathom how anybody can sleep knowing they have&#xA;such a scary number of unread emails waiting for them.&lt;/p&gt;&#xA;&lt;p&gt;Why does the status of being unread matter, one might ask? There are&#xA;already so many ways to classify things in the typical inbox: stars or&#xA;labels or folders or flags or whatever your mail service may call them.&#xA;Well, the thing that makes the unread qualifier stand out is that it&#xA;already has meaning; you don’t need to assign it any. It means you&#xA;haven’t read it! Thank you, Captain Obvious.&lt;/p&gt;&#xA;&lt;p&gt;If you know how to use email, there are no good reasons to ignore the&#xA;status. Is the email actually not important to the point where you won’t&#xA;even bother to read it? In that case, why is it even in your inbox? If&#xA;it’s spam, mark it as such; spam filters are pretty effective nowadays,&#xA;but only if you train them, and even if not it only takes one click to&#xA;get rid of it. If it’s some notification you don’t care about,&#xA;unsuscribe or fine-tune your subscription. As invasive as web services&#xA;are getting nowadays, I haven’t yet seen a legitimate one that doesn’t&#xA;provide a link to let you do one of these things, even if it’s concealed&#xA;in small gray text at the bottom of the email. Should you encounter a&#xA;notification that doesn’t have these links or doesn’t stop spawning evil&#xA;clones after you tell it to, don’t think twice; it is spam and should be&#xA;mercilessly filtered as such. And if you still have two hundred emails&#xA;left after all that, you should either rethink your values or start&#xA;reading them now.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

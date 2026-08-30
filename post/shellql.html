@@ -7,9 +7,9 @@
 <meta name="author" content="betaveros" />
 <meta name="description" content="The hardest challenge of not very many I solved in this CTF. What a struggle! I have a long way to improve. It was pretty fun though. (I solved “You Already Know”, and got the essence of “ghettohackers: Throwback”, but didn’t guess the right flag format and believe I was asleep when they released the hint about it.)
 The challenge consists of a simple PHP script that opens a MySQL connection and then feeds our input into a custom PHP extension shellme.so.
-$link = mysqli_connect(&amp;#39;localhost&amp;#39;, &amp;#39;shellql&amp;#39;, &amp;#39;shellql&amp;#39;, &amp;#39;shellql&amp;#39;); if (isset($_POST[&amp;#39;shell&amp;#39;])) { if (strlen($_POST[&amp;#39;shell&amp;#39;]) &amp;lt;= 1000) { echo $_POST[&amp;#39;shell&amp;#39;]; shellme($_POST[&amp;#39;shell&amp;#39;]); } exit(); } The extension basically just executes $_POST[&#39;shell&#39;] as shellcode after a strict SECCOMP call, prctl(22, 1). This means that we can only use the four syscalls read, write, and exit, and sigreturn, where the latter two aren’t particularly useful.
+$link = mysqli_connect(&#39;localhost&#39;, &#39;shellql&#39;, &#39;shellql&#39;, &#39;shellql&#39;); if (isset($_POST[&#39;shell&#39;])) { if (strlen($_POST[&#39;shell&#39;]) &lt;= 1000) { echo $_POST[&#39;shell&#39;]; shellme($_POST[&#39;shell&#39;]); } exit(); } The extension basically just executes $_POST[&#39;shell&#39;] as shellcode after a strict SECCOMP call, prctl(22, 1). This means that we can only use the four syscalls read, write, and exit, and sigreturn, where the latter two aren’t particularly useful.
 Disassembled innermost function of interest in shellme.so The goal is to read the flag from the open MySQL connection.
-" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+" /><meta name="generator" content="Hugo 0.166.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/shellql" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -255,9 +255,6 @@ fixing the letter cases gives us the flag:</p>
 	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
 	<section id="isso-thread"></section>
   <p class="comments-meta">if you liked this post, click to make an invisible number go up: <button class="btn like-button">like</button></p>
-	
-	
-	
 	<footer class="post-footer">
 		<nav class="pagination">
 			
@@ -271,7 +268,7 @@ fixing the letter cases gives us the flag:</p>
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2026 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,

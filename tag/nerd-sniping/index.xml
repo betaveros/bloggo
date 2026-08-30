@@ -1,77 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>nerd-sniping on Bounded-Error Log</title>
-    <link>//blog.vero.site/tag/nerd-sniping</link>
-    <description>Recent content in nerd-sniping on Bounded-Error Log</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 04 Aug 2019 09:49:20 -0400</lastBuildDate><atom:link href="//blog.vero.site/tag/nerd-sniping/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Multiplication by Juxtaposition</title>
-      <link>//blog.vero.site/post/multiplication</link>
-      <pubDate>Sun, 04 Aug 2019 09:49:20 -0400</pubDate>
-      
-      <guid>//blog.vero.site/post/multiplication</guid>
-      <description>&lt;p&gt;We interrupt the irregularly scheduled philosophical posts for some
-programming memes:&lt;/p&gt;
-&lt;p&gt;Over the last few days, the Internet has divided itself over what the
-value of the expression 8÷2(2+2) should be. Some say it should be
-evaluated as (8÷2)×(2+2) = 16. Some say it should be evaluated as
-8÷(2×(2+2)) = 1.&lt;/p&gt;
-&lt;p&gt;At the risk of belaboring the obvious, the core dispute here is not
-really mathematical. There is not some sequence of mathematical
-operations that produces some number, where mathematicians disagree
-about what number it produces. Instead, this is a dispute about
-mathematical notation: what sequence of mathematical operations the
-expression corresponds to the way it’s written. Specifically, it is a
-dispute about whether multiplication written as juxtaposition (how “2”
-is written right next to “(2+2)”) has strictly higher precedence than
-division. It is closer to a linguistic or typographical dispute than a
-purely mathematical one, and the correct answer to the dispute is that
-whoever wrote the expression that way should learn to write math
-better.&lt;/p&gt;
-&lt;p&gt;This debate is not even new. The internet had fun arguing over &lt;a
-href=&#34;https://knowyourmeme.com/memes/48293&#34;&gt;48÷2(9+3) and 6÷2(1+2)&lt;/a&gt;,
-which are functionally identical ambiguous expressions, eight years ago.
-I don’t know why the debate is resurging now and why we still haven’t
-gotten tired of it.&lt;/p&gt;
-&lt;p&gt;But life is short, so since we’re here anyway, let’s make some
-additional memes.&lt;/p&gt;
-&lt;h3 id=&#34;asking-the-computer&#34;&gt;Asking the computer&lt;/h3&gt;
-&lt;p&gt;Some of my coworkers had the idea to ask some programming languages
-what the answer was. The results were underwhelming.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ python3
-Python 3.6.7 (default, Oct 22 2018, 11:32:17)
-[GCC 8.2.0] on linux
-Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.
-&amp;gt;&amp;gt;&amp;gt; 8/2(2+2)
-Traceback (most recent call last):
-  File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;
-TypeError: &amp;#39;int&amp;#39; object is not callable&lt;/code&gt;&lt;/pre&gt;</description>
-    </item>
-    
-    <item>
-      <title>Phone</title>
-      <link>//blog.vero.site/post/phone</link>
-      <pubDate>Wed, 15 Jul 2015 23:58:02 +0800</pubDate>
-      
-      <guid>//blog.vero.site/post/phone</guid>
-      <description>&lt;p&gt;&lt;strong&gt;tl;dr: anybody want to add me on Line or tell/remind me about
-other phone chat apps? betaveros as always.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Wow, talk about uninspired post titles.&lt;/p&gt;
-&lt;p&gt;I got a new phone today. Or, well, it’s second-hand, actually. I try
-to make electronics last a long time, but I think this was justified
-given the state of my last phone’s screen:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/screen.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/screen.jpg?w=269&#34; alt=&#34;old phone screen, with a visibly malfunctioning black patch&#34; width=&#34;269&#34; height=&#34;300&#34; class=&#34;aligncenter size-medium wp-image-3142&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Besides, I’m going off to college and all. Anyway, the phone is
-pretty cool. It’s a slick shade of red, it came with a cover and
-everything, and it has one of those fancy 3x3-grid locks. How secure are
-those again?&lt;/p&gt;
-&lt;p&gt;Well, we could just
-&lt;a href=&#34;https://stackoverflow.com/questions/6979524/android-lock-password-combinations&#34;&gt;find
-the answer on StackOverflow&lt;/a&gt;, but that’s boring.&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Nerd-Sniping on Bounded-Error Log</title>
+		<link>//blog.vero.site/tag/nerd-sniping</link>
+		<description>Recent content in Nerd-Sniping on Bounded-Error Log</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 04 Aug 2019 09:49:20 -0400</lastBuildDate>
+		
+			<atom:link href="//blog.vero.site/tag/nerd-sniping/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Multiplication by Juxtaposition</title>
+				<link>//blog.vero.site/post/multiplication</link>
+				<pubDate>Sun, 04 Aug 2019 09:49:20 -0400</pubDate>
+				<guid>//blog.vero.site/post/multiplication</guid>
+				<description>&lt;p&gt;We interrupt the irregularly scheduled philosophical posts for some&#xA;programming memes:&lt;/p&gt;&#xA;&lt;p&gt;Over the last few days, the Internet has divided itself over what the&#xA;value of the expression 8÷2(2+2) should be. Some say it should be&#xA;evaluated as (8÷2)×(2+2) = 16. Some say it should be evaluated as&#xA;8÷(2×(2+2)) = 1.&lt;/p&gt;&#xA;&lt;p&gt;At the risk of belaboring the obvious, the core dispute here is not&#xA;really mathematical. There is not some sequence of mathematical&#xA;operations that produces some number, where mathematicians disagree&#xA;about what number it produces. Instead, this is a dispute about&#xA;mathematical notation: what sequence of mathematical operations the&#xA;expression corresponds to the way it’s written. Specifically, it is a&#xA;dispute about whether multiplication written as juxtaposition (how “2”&#xA;is written right next to “(2+2)”) has strictly higher precedence than&#xA;division. It is closer to a linguistic or typographical dispute than a&#xA;purely mathematical one, and the correct answer to the dispute is that&#xA;whoever wrote the expression that way should learn to write math&#xA;better.&lt;/p&gt;&#xA;&lt;p&gt;This debate is not even new. The internet had fun arguing over &lt;a&#xA;href=&#34;https://knowyourmeme.com/memes/48293&#34;&gt;48÷2(9+3) and 6÷2(1+2)&lt;/a&gt;,&#xA;which are functionally identical ambiguous expressions, eight years ago.&#xA;I don’t know why the debate is resurging now and why we still haven’t&#xA;gotten tired of it.&lt;/p&gt;&#xA;&lt;p&gt;But life is short, so since we’re here anyway, let’s make some&#xA;additional memes.&lt;/p&gt;&#xA;&lt;h3 id=&#34;asking-the-computer&#34;&gt;Asking the computer&lt;/h3&gt;&#xA;&lt;p&gt;Some of my coworkers had the idea to ask some programming languages&#xA;what the answer was. The results were underwhelming.&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;$ python3&#xA;Python 3.6.7 (default, Oct 22 2018, 11:32:17)&#xA;[GCC 8.2.0] on linux&#xA;Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.&#xA;&amp;gt;&amp;gt;&amp;gt; 8/2(2+2)&#xA;Traceback (most recent call last):&#xA;  File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;&#xA;TypeError: &amp;#39;int&amp;#39; object is not callable&lt;/code&gt;&lt;/pre&gt;</description>
+			</item>
+			<item>
+				<title>Phone</title>
+				<link>//blog.vero.site/post/phone</link>
+				<pubDate>Wed, 15 Jul 2015 23:58:02 +0800</pubDate>
+				<guid>//blog.vero.site/post/phone</guid>
+				<description>&lt;p&gt;&lt;strong&gt;tl;dr: anybody want to add me on Line or tell/remind me about&#xA;other phone chat apps? betaveros as always.&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Wow, talk about uninspired post titles.&lt;/p&gt;&#xA;&lt;p&gt;I got a new phone today. Or, well, it’s second-hand, actually. I try&#xA;to make electronics last a long time, but I think this was justified&#xA;given the state of my last phone’s screen:&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;//blog.vero.site/img/screen.jpg&#34;&gt;&lt;img src=&#34;//blog.vero.site/img/screen.jpg?w=269&#34; alt=&#34;old phone screen, with a visibly malfunctioning black patch&#34; width=&#34;269&#34; height=&#34;300&#34; class=&#34;aligncenter size-medium wp-image-3142&#34; /&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Besides, I’m going off to college and all. Anyway, the phone is&#xA;pretty cool. It’s a slick shade of red, it came with a cover and&#xA;everything, and it has one of those fancy 3x3-grid locks. How secure are&#xA;those again?&lt;/p&gt;&#xA;&lt;p&gt;Well, we could just&#xA;&lt;a href=&#34;https://stackoverflow.com/questions/6979524/android-lock-password-combinations&#34;&gt;find&#xA;the answer on StackOverflow&lt;/a&gt;, but that’s boring.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

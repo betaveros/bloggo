@@ -11,7 +11,7 @@ I can’t name just a single reason I started work on my language, Noulith, back
 As I worked on it, I kept accumulating reasons to keep going. There were other contexts where I wanted to quickly code a combinatorial brute force that was annoying to write in other languages; a glib phrasing is that I wanted access to Haskell’s list monad in a sloppier language. I also wanted an excuse to read Crafting Interpreters more thoroughly. But sometimes I think the best characterization for what developing the language “felt like” was that I had been possessed by a supernatural creature — say, the dragon from the Dragon Book. I spent every spare minute thinking about language features and next implementation steps, because I had to.
 The first “real program” I wrote in Noulith was to brute force constructions for The Cube, for last year’s Galactic Puzzle Hunt in early August, and it worked unexpectedly well. I wrote a for loop with a 53-clause iteratee and the interpreter executed it smoothly. Eventually I realized that the language could expand into other niches in my life where I wanted a scripting language. For example, I did a few Cryptopals challenges in them. It would take a month or two before it dawned on me that the same compulsion that drove me to create this language would drive me to do Advent of Code in it. That’s just how it has to be.
 This post details my thought process behind the design of this language. Some preliminary notes:
-" /><meta name="generator" content="Hugo 0.102.0-DEV" />
+" /><meta name="generator" content="Hugo 0.166.0-DEV" />
 
 <link rel="canonical" href="//blog.vero.site/post/noulith" />
 <link rel="alternative" href="/index.xml" title="Bounded-Error Log" type="application/atom+xml" />
@@ -65,7 +65,7 @@ This post details my thought process behind the design of this language. Some pr
 		<p class="post-meta">
 		
 		2023-04-09
-		(17343 words)
+		(17352 words)
 		
 		<span class="post-categories">
 			filed under
@@ -1839,7 +1839,10 @@ internally consistent with how we already decided <code>-</code> would
 work. Furthermore, this is the same approach as the numerical analysis
 language <a
 href="https://yorick.sourceforge.net/refcard/qrlang06.php">Yorick</a>
-and, curiously, the exact mirror of <a
+<ins datetime="2026-06-15T23:57:29-0700">(edit: and, probably more
+famously, the
+<a href="https://www.lua.org/manual/5.5/manual.html#3.4.2">embeddable
+language Lua</a>)</ins> and, curiously, the exact mirror of <a
 href="https://go.dev/ref/spec#Arithmetic_operators">Go’s approach</a>,
 whereby <code>^</code> means both bitwise xor and complement so that
 <code>~</code> can be assigned a different meaning, so this decision
@@ -2198,9 +2201,6 @@ href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 	<script data-isso="//node.vero.site/isso/" data-isso-css="false" src="//node.vero.site/isso/js/embed.min.js"></script>
 	<section id="isso-thread"></section>
   <p class="comments-meta">if you liked this post, click to make an invisible number go up: <button class="btn like-button">like</button></p>
-	
-	
-	
 	<footer class="post-footer">
 		<nav class="pagination">
 			
@@ -2214,7 +2214,7 @@ href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </section>
 </div>
 <footer class="site-footer">
-	<p>© 2017-2025 betaveros, Bounded-Error Log</p>
+	<p>© 2017-2026 betaveros, Bounded-Error Log</p>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	<p>Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="http://pandoc.org/">pandoc</a>,
 	<a href="https://www.goatcounter.com/">GoatCounter</a>,
